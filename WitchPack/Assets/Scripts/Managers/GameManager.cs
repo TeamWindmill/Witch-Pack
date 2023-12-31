@@ -38,8 +38,6 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         SceneHandler.LoadScene(SceneType.MainMenu);
-
-        
     }
 
     #region Test
