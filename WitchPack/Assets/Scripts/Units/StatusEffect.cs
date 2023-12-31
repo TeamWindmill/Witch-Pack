@@ -72,7 +72,6 @@ public class StatusEffect
         }
         host.Owner.Stats.AddValueToStat(Stat, -Mathf.RoundToInt(amount));
         Remove();
-
     }
     private IEnumerator InstantEffect()
     {
