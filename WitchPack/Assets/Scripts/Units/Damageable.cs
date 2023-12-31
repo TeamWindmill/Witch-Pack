@@ -1,0 +1,52 @@
+using System;
+using UnityEngine;
+[System.Serializable]
+public class Damageable
+{
+    private BaseUnit owner;
+    private int currentHp;
+    private int maxHp;
+
+    public Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility, bool /*critical - a more generic callback*/> OnGetHit;
+    public Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility> OnDeath;
+    
+    //add gfx events later
+
+    public BaseUnit Owner { get => owner; }
+
+    public Damageable(BaseUnit owner)
+    {
+        this.owner = owner;
+    }
+
+    public void GetHit(DamageDealer dealer, BaseAbility ability)
+    {
+        //calc hit? -> return
+        //status effects addition
+        
+        //calc crit
+        //trigger hit event
+        //check if ability is offensive if it is take damage
+    }
+
+    public void TakeDamage(DamageHandler handler, DamageDealer dealer, BaseAbility attack)
+    {
+        currentHp -= handler.GetFinalDamage();
+        if (currentHp <= 0)
+        {
+            OnDeath?.Invoke(this, dealer, handler, attack);
+            dealer.OnKill?.Invoke(this, dealer, handler, attack);
+        }
+        ClampHp();
+    }
+
+
+
+    private void ClampHp()
+    {
+        currentHp = Mathf.Clamp(currentHp, 0, maxHp);
+    }
+
+
+
+}
