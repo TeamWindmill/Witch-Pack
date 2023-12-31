@@ -31,11 +31,18 @@ public class Damageable
         //calc crit
         if (UnityEngine.Random.Range(0,100) <= dealer.Owner.Stats.CritChance)
         {
+            dealer.OnHitTarget?.Invoke(this, dealer, dmg, ability, true);
+            OnGetHit?.Invoke(this, dealer, dmg, ability, true);
             dmg.AddMod((dealer.Owner.Stats.CritDamage / 100) + 1);//not sure what the math is supposed to be here
+        }
+        else
+        {
+            dealer.OnHitTarget?.Invoke(this, dealer, dmg, ability, false);
+            OnGetHit?.Invoke(this, dealer, dmg, ability, false);
+
         }
         TakeDamage(dmg, dealer, ability);
         //trigger hit event
-        //check if ability is offensive if it is take damage
     }
 
     public void TakeDamage(DamageHandler handler, DamageDealer dealer, BaseAbility attack)
