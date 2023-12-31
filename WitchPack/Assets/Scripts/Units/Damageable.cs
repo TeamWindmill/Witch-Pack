@@ -23,8 +23,17 @@ public class Damageable
     {
         //calc hit? -> return
         //status effects addition
-        
+        foreach (var item in ability.StatusEffects)
+        {
+            owner.Effectable.AddEffect(item, dealer.Owner.Affector);
+        }
+        DamageHandler dmg = new DamageHandler(ability.BaseDamage);
         //calc crit
+        if (UnityEngine.Random.Range(0,100) <= dealer.Owner.Stats.CritChance)
+        {
+            dmg.AddMod((dealer.Owner.Stats.CritDamage / 100) + 1);//not sure what the math is supposed to be here
+        }
+        TakeDamage(dmg, dealer, ability);
         //trigger hit event
         //check if ability is offensive if it is take damage
     }
