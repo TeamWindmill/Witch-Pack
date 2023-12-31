@@ -9,6 +9,7 @@ public class BaseUnit : MonoBehaviour
     [SerializeField, TabGroup("Combat")] private Effectable effectable;
     [SerializeField, TabGroup("Stats")] private StatSheet baseStats;
     [SerializeField, TabGroup("Stats")] private UnitStats stats;
+    [SerializeField, TabGroup("Test")] private StatusEffectConfig test;
 
     public Damageable Damageable { get => damageable; }
     public DamageDealer DamageDealer { get => damageDealer; }
@@ -28,6 +29,9 @@ public class BaseUnit : MonoBehaviour
         effectable = new Effectable(this);
     }
 
-
-
+    [ContextMenu("testSS")]
+    public void TestEffects()
+    {
+        effectable.AddEffect(test, Affector);
+    }
 }

@@ -40,6 +40,16 @@ public class Damageable
         ClampHp();
     }
 
+    public void TakeFlatDamage(int amount)  //DOES NOT TRIGGER EVENTS!
+    {
+        currentHp -= amount;
+        if (currentHp <= 0)
+        {
+          //gfx here
+        }
+        ClampHp();
+    }
+
 
 
     private void ClampHp()
