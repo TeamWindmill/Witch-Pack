@@ -4,5 +4,7 @@ using UnityEngine;
 
 public class OffensiveAbility : BaseAbility
 {
-   
+    [SerializeField] private int baseDamage;
+    public int BaseDamage { get => baseDamage; }
+
 }
