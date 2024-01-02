@@ -1,11 +1,15 @@
 using System;
 using UnityEngine;
+using System.Collections;
+
 [System.Serializable]
 public class Damageable
 {
     private BaseUnit owner;
     private int currentHp;
-    private int maxHp;
+    private int maxHp => owner.Stats.MaxHp;
+
+    private bool hitable;
 
     public Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility, bool /*critical - a more generic callback*/> OnGetHit;
     public Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility> OnDeath;
@@ -17,32 +21,46 @@ public class Damageable
     public Damageable(BaseUnit owner)
     {
         this.owner = owner;
+        hitable = true;
+        OnGetHit += AddStatsDamageReduction;
     }
 
     public void GetHit(DamageDealer dealer, BaseAbility ability)
     {
-        //calc hit? -> return
+        if (!hitable)
+        {
+            return;
+        }
+        owner.StartCoroutine(SetInvincibleFor(owner.Stats.InvincibleTime));
         //status effects addition
         foreach (var item in ability.StatusEffects)
         {
             owner.Effectable.AddEffect(item, dealer.Owner.Affector);
         }
-        DamageHandler dmg = new DamageHandler(ability.BaseDamage);
-        //calc crit
-        if (UnityEngine.Random.Range(0,100) <= dealer.Owner.Stats.CritChance)
-        {
-            dealer.OnHitTarget?.Invoke(this, dealer, dmg, ability, true);
-            OnGetHit?.Invoke(this, dealer, dmg, ability, true);
-            dmg.AddMod((dealer.Owner.Stats.CritDamage / 100) + 1);//not sure what the math is supposed to be here
-        }
-        else
-        {
-            dealer.OnHitTarget?.Invoke(this, dealer, dmg, ability, false);
-            OnGetHit?.Invoke(this, dealer, dmg, ability, false);
 
+        if (ability is OffensiveAbility)
+        {
+            DamageHandler dmg = new DamageHandler((ability as OffensiveAbility).BaseDamage);
+            if (UnityEngine.Random.Range(0, 100) <= dealer.Owner.Stats.CritChance)
+            {
+                dealer.OnHitTarget?.Invoke(this, dealer, dmg, ability, true);
+                OnGetHit?.Invoke(this, dealer, dmg, ability, true);
+            }
+            else
+            {
+                dealer.OnHitTarget?.Invoke(this, dealer, dmg, ability, false);
+                OnGetHit?.Invoke(this, dealer, dmg, ability, false);
+
+            }
+            TakeDamage(dmg, dealer, ability);
         }
-        TakeDamage(dmg, dealer, ability);
-        //trigger hit event
+        else // in case we want to make an ability that only applys status effects
+        {
+            dealer.OnHitTarget?.Invoke(this, dealer, null, ability, false);
+            OnGetHit?.Invoke(this, dealer, null, ability, false);
+        }
+
+        
     }
 
     public void TakeDamage(DamageHandler handler, DamageDealer dealer, BaseAbility attack)
@@ -73,6 +91,18 @@ public class Damageable
         currentHp = Mathf.Clamp(currentHp, 0, maxHp);
     }
 
+    private void AddStatsDamageReduction(Damageable target, DamageDealer dealer, DamageHandler dmg, BaseAbility ability, bool crit )
+    {
+        dmg.AddMod(1 - (owner.Stats.Armor / 100));
+    }
+
+
+    private IEnumerator SetInvincibleFor(float duration)
+    {
+        hitable = false;
+        yield return new WaitForSeconds(duration);
+        hitable = true;
+    }
 
 
 }

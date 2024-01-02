@@ -157,7 +157,7 @@ public class CameraHandler : MonoBehaviour
         if (Input.GetMouseButtonDown(mouseButtonId))
         {
             _dragPanMoveActive = true;
-            _lastMousePosition = GameManager.CameraHandler._mainCamera.ScreenToViewportPoint(Input.mousePosition);
+            _lastMousePosition = GameManager.Instance.CameraHandler._mainCamera.ScreenToViewportPoint(Input.mousePosition);
         }
 
         if (Input.GetMouseButtonUp(mouseButtonId))
@@ -167,9 +167,9 @@ public class CameraHandler : MonoBehaviour
 
         if (!_dragPanMoveActive) return inputDir.normalized;
 
-        var mouseMovementDelta = _lastMousePosition - (Vector2)GameManager.CameraHandler._mainCamera.ScreenToViewportPoint(Input.mousePosition);
+        var mouseMovementDelta = _lastMousePosition - (Vector2)GameManager.Instance.CameraHandler._mainCamera.ScreenToViewportPoint(Input.mousePosition);
 
-        _lastMousePosition = GameManager.CameraHandler._mainCamera.ScreenToViewportPoint(Input.mousePosition);
+        _lastMousePosition = GameManager.Instance.CameraHandler._mainCamera.ScreenToViewportPoint(Input.mousePosition);
 
         _dragPanSpeed.x = _cameraSettings.CameraDragPanSpeed * _mainCamera.aspect;
         _dragPanSpeed.y = _cameraSettings.CameraDragPanSpeed;

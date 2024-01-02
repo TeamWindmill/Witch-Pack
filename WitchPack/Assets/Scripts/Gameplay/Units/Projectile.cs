@@ -1,0 +1,61 @@
+using UnityEngine;
+using Sirenix.OdinInspector;
+
+[RequireComponent(typeof(Collider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
+public class Projectile : MonoBehaviour
+{
+    private BaseAbility refAbility;
+    private BaseUnit owner;
+    [SerializeField] private int maxNumberOfHits;
+    [SerializeField] private float speed;
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private float lifeTime;
+    private int currentNumberOfHits;
+    public void Fire(BaseUnit shooter, BaseAbility givenAbility, Vector2 dir)
+    {
+        owner = shooter;
+        refAbility = givenAbility;
+        rb.velocity = dir * speed;
+        Invoke("Disable", lifeTime);
+        //rotate to look at dir given 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //projectiles can only hit the the layer of the opposite unit type
+       
+        BaseUnit target = collision.GetComponent<BaseUnit>();
+        if (!ReferenceEquals(target, null))
+        {
+            target.Damageable.GetHit(owner.DamageDealer, refAbility);
+        }
+        currentNumberOfHits++;
+        if (currentNumberOfHits >= maxNumberOfHits)
+        {
+            Disable();
+        }
+    }
+
+
+    private void Disable()
+    {
+        owner = null;
+        refAbility = null;
+        currentNumberOfHits = 0;
+        gameObject.SetActive(false);
+    }
+
+    private void OnValidate()
+    {
+        if (speed <= 1)
+        {
+            speed = 1;
+        }
+        if (maxNumberOfHits <= 1)
+        {
+            maxNumberOfHits = 1;
+        }
+    }
+
+}
