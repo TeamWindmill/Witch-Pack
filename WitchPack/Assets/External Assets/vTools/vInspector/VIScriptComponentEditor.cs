@@ -57,8 +57,6 @@ namespace VInspector
 
                 curProperty.NextVisible(true);
 
-                SetupHeader();
-
                 data.rootTab.ResetSubtabsDrawn();
 
                 updateSelectedTabPath();
@@ -67,7 +65,7 @@ namespace VInspector
 
             void drawScriptFieldOrSpace()
             {
-                if (VIMenuItems.hideScriptFieldEnabled)
+                if (VIMenuItems.cleanerHeaderEnabled)
                     Space(3);
                 else
                     using (new EditorGUI.DisabledScope(true))
@@ -225,14 +223,6 @@ namespace VInspector
 
 
 
-                    ifs();
-
-                    if (hide) return;
-
-                    GUI.enabled = !disable;
-
-
-
                     tabs();
 
                     if (!selectedTabPath.StartsWith(drawingTabPath)) return;
@@ -241,9 +231,20 @@ namespace VInspector
 
 
 
+
                     foldouts();
 
                     if (!data.rootFoldout.IsSubfoldoutContentVisible(drawingFoldoutPath)) return;
+
+
+
+
+                    ifs();
+
+                    if (hide) return;
+
+                    GUI.enabled = !disable;
+
 
 
 
@@ -320,6 +321,8 @@ namespace VInspector
         }
 
 
+
+
         public void OnEnable()
         {
             CheckScriptMissing();
@@ -345,127 +348,8 @@ namespace VInspector
             data.Dirty();
 
         }
-        public void SetupHeader()
-        {
-            void findHeader(VisualElement element)
-            {
-                if (element == null) return;
-
-                if (element.GetType().Name == "EditorElement")
-                {
-                    IMGUIContainer curHeader = null;
-                    foreach (var child in element.Children())
-                    {
-                        curHeader = curHeader ?? new[] { child as IMGUIContainer }.FirstOrDefault(r => r != null && r.name.EndsWith("Header"));
-
-                        if (curHeader is null) continue;
-                        if (!(child is InspectorElement)) continue;
-
-                        if (child.GetFieldValue("m_Editor").Equals(this))
-                        {
-                            header = curHeader;
-                            return;
-                        }
-
-                    }
-                }
-
-                foreach (var r in element.Children())
-                    if (header == null)
-                        findHeader(r);
-
-            }
-            void setupGUICallbacks()
-            {
-                defaultHeaderGUI = header.onGUIHandler;
-                header.onGUIHandler = OnHeaderGUIOverride;
-            }
-
-            if (header is VisualElement v && v.panel == null) { header.onGUIHandler = defaultHeaderGUI; header = null; }
-
-            if (header != null && header.onGUIHandler == OnHeaderGUIOverride) return;
-            if (typeof(ScriptableObject).IsAssignableFrom(target.GetType())) return;
-            if (!(this.GetPropertyValue("propertyViewer") is EditorWindow window)) return;
-
-            findHeader(window.rootVisualElement);
-            setupGUICallbacks();
-
-        }
 
 
-        void OnHeaderGUIOverride()
-        {
-            var bgNorm = EditorGUIUtility.isProSkin ? Greyscale(.248f) : Greyscale(.8f);
-            var bgHovered = EditorGUIUtility.isProSkin ? Greyscale(.28f) : Greyscale(.84f);
-            var name = target.GetType().Name.Decamelcase();
-            var nameRect = header.contentRect.MoveX(60).SetWidth(name.GetLabelWidth(isBold: true));
-
-
-            void headerClick()
-            {
-                if (e.mouseDown())
-                    mousePressedOnHeader = true;
-
-                if (e.mouseUp())
-                    mousePressedOnHeader = false;
-
-            }
-            void scriptNameClick()
-            {
-                if (e.mouseUp())
-                    mousePressedOnScriptName = false;
-
-                if (!nameRect.IsHovered()) return;
-                if (!e.mouseDown()) return;
-
-                e.Use();
-
-                mousePressedOnScriptName = true;
-
-
-                var script = MonoScript.FromMonoBehaviour(target as MonoBehaviour);
-
-                if (e.clickCount == 2)
-                    AssetDatabase.OpenAsset(script);
-
-                if (holdingAlt)
-                    PingObject(script);
-
-            }
-            void hideScriptText()
-            {
-                var rect = header.contentRect.SetWidth(60).MoveX(name.GetLabelWidth(isBold: true) + 60).SetHeightFromMid(15);
-
-                rect.xMax = rect.xMax.Min(header.contentRect.width - 60).Max(rect.xMin);
-
-                rect.Draw(header.contentRect.IsHovered() && (!mousePressedOnHeader || mousePressedOnScriptName) ? bgHovered : bgNorm);
-
-            }
-            void greyoutScriptName()
-            {
-                if (!mousePressedOnScriptName) return;
-
-                nameRect.Resize(1).Draw(Greyscale(bgHovered.r, EditorGUIUtility.isProSkin ? .3f : .45f));
-
-            }
-
-
-            if (e.mouseUp())
-                Repaint();
-
-            headerClick();
-            scriptNameClick();
-
-            defaultHeaderGUI();
-
-            hideScriptText();
-            greyoutScriptName();
-
-        }
-        bool mousePressedOnScriptName;
-        bool mousePressedOnHeader;
-        IMGUIContainer header;
-        System.Action defaultHeaderGUI;
 
 
         void CheckScriptMissing()
@@ -476,6 +360,7 @@ namespace VInspector
                 scriptMissing = target is MonoBehaviour || target is ScriptableObject;
 
         }
+
         void ScriptMissingWarningGUI()
         {
             SetGUIEnabled(true);
@@ -501,14 +386,17 @@ namespace VInspector
             ResetGUIEnabled();
 
         }
+
         bool scriptMissing;
+
+
 
 
         VInspectorData data;
 
 
 
-        const string version = "1.2.17";
+        const string version = "1.2.22";
 
     }
 }
