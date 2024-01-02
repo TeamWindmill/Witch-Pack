@@ -11,6 +11,7 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] private PoolManager poolManager;
 
     private CameraHandler _cameraHandler;
+
     public CameraHandler CameraHandler
     {
         get
@@ -31,20 +32,22 @@ public class GameManager : MonoSingleton<GameManager>
     protected override void Awake()
     {
         base.Awake();
-        {
-            if (SceneHandler == null)
-                SceneHandler = _sceneHandler;
 
-            CameraHandler = FindObjectOfType<CameraHandler>(); //May need to change 
 
-        }
+        if (SceneHandler == null)
+            SceneHandler = _sceneHandler;
+
+        CameraHandler = FindObjectOfType<CameraHandler>(); //May need to change 
     }
 
-    public PoolManager PoolManager { get => poolManager; }
+    public PoolManager PoolManager
+    {
+        get => poolManager;
+    }
 
     void Start()
     {
-        //SceneHandler.LoadScene(SceneType.MainMenu);
+        SceneHandler.LoadScene(SceneType.MainMenu);
     }
 
     public void SetLevelConfig(LevelConfig levelConfig)
@@ -52,7 +55,7 @@ public class GameManager : MonoSingleton<GameManager>
         CurrentLevelConfig = levelConfig;
     }
 
-    
+
     private void OnValidate()
     {
         if (_sceneHandler == null)
