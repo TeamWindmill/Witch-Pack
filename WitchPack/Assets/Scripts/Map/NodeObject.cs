@@ -61,8 +61,8 @@ public class NodeObject : MonoBehaviour
     
     private void OnNodeClick()
     {
-       // GameManager.GameData.CurrentLevelConfig  = _levelConfig;
-       // GameManager.PlayerManager.PlayerSerializeData.SetPartyData(_shamanConfigs);
+        GameManager.Instance.SetLevelConfig(_levelConfig);
+       // set party data
         GameManager.SceneHandler.LoadScene(SceneType.Game);
     }
 }

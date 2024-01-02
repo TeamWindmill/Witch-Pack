@@ -10,6 +10,7 @@ public class SceneHandler : MonoBehaviour, ISceneHandler
 
     public static event Action<SceneType> OnSceneLoaded;
 
+    private const int PRESISTENT_SCENE_INDEX = 0;
     private const int MAIN_MENU_SCENE_INDEX = 1;
     private const int MAP_SCENE_INDEX = 2;
     private const int GAME_SCENE_INDEX = 3;
@@ -41,6 +42,7 @@ public class SceneHandler : MonoBehaviour, ISceneHandler
 
         int sceneIndex = sceneType switch
         {
+            SceneType.PersistentScene => PRESISTENT_SCENE_INDEX,
             SceneType.MainMenu => MAIN_MENU_SCENE_INDEX,
             SceneType.Map => MAP_SCENE_INDEX,
             SceneType.Game => GAME_SCENE_INDEX,
@@ -123,6 +125,7 @@ public interface ISceneHandler
 
 public enum SceneType
 {
+    PersistentScene,
     MainMenu,
     Map,
     Game

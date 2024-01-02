@@ -1,62 +1,79 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Tzipory.GameplayLogic.Managers.MainGameManagers
+
+public class PauseMenuManager : MonoBehaviour
 {
-    public class PauseMenuManager : MonoBehaviour
+    [SerializeField] private Canvas _canvas;
+    [SerializeField] private Transform mapButton;
+    [SerializeField] private TextMeshProUGUI pauseTitleText;
+
+    private bool _isOpen;
+    private bool _isSkippedFrame;
+
+    private void Awake()
     {
-        [SerializeField] private Canvas _canvas;
+        _canvas.gameObject.SetActive(false);
+        _isOpen = false;
+        _isSkippedFrame = false;
+    }
 
-        private bool _isOpen;
-        private bool _isSkippedFrame;
-        
-        private void Awake()
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape) && !SceneHandler.IsLoading && !_isOpen)
         {
-            _canvas.gameObject.SetActive(false);
-            _isOpen = false;
-            _isSkippedFrame = false;
-        }
-
-        private void Update()
-        {
-            if (Input.GetKeyDown(KeyCode.Escape) && !SceneHandler.IsLoading && !_isOpen)
+            var scene = SceneManager.GetActiveScene();
+            if (scene.buildIndex == (int)SceneType.Game)
             {
-                var scene = SceneManager.GetActiveScene();
-                if (scene.buildIndex == (int)SceneType.Game)
-                    OpenPauseMenu();
+                pauseTitleText.text = "game paused";
+                mapButton.gameObject.SetActive(true);
+                OpenPauseMenu();
             }
-
-            if (!_isOpen)
-                return;
-
-            if (!_isSkippedFrame)
+            else if (scene.buildIndex == (int)SceneType.Map)
             {
-                _isSkippedFrame = true;
-                return;
+                pauseTitleText.text = "witch pack";
+                mapButton.gameObject.SetActive(false);
+                OpenPauseMenu();
             }
-            
-            if (Input.GetKeyDown(KeyCode.Escape) && _isSkippedFrame && _isOpen)
-                Resume();
         }
 
-        private void OpenPauseMenu()
+        if (!_isOpen)
+            return;
+
+        if (!_isSkippedFrame)
         {
-            _isOpen = true;
-            _isSkippedFrame = false;
-            _canvas.gameObject.SetActive(true);
-            GAME_TIME.Pause();
+            _isSkippedFrame = true;
+            return;
         }
 
-        public void Resume()
-        {
-            _canvas.gameObject.SetActive(false);
-            GAME_TIME.Play();
-            _isOpen = false;
-        }
+        if (Input.GetKeyDown(KeyCode.Escape) && _isSkippedFrame && _isOpen)
+            Resume();
+    }
 
-        public void ReturnToMap()
-        {
-            GameManager.SceneHandler.LoadScene(SceneType.Map);   
-        }
+    private void OpenPauseMenu()
+    {
+        _isOpen = true;
+        _isSkippedFrame = false;
+        _canvas.gameObject.SetActive(true);
+        GAME_TIME.Pause();
+    }
+
+    public void Resume()
+    {
+        _canvas.gameObject.SetActive(false);
+        GAME_TIME.Play();
+        _isOpen = false;
+    }
+
+    public void ReturnToMap()
+    {
+        _canvas.gameObject.SetActive(false);
+        GameManager.SceneHandler.LoadScene(SceneType.Map);
+    }
+
+    public void Quit()
+    {
+        GameManager.Instance.Quit();
     }
 }

@@ -8,5 +8,10 @@ namespace Tzipory.GameplayLogic.Managers.MainMenuMangers
         {
             GameManager.SceneHandler.LoadScene(SceneType.Map);
         }
+
+        public void Quit()
+        {
+            GameManager.Instance.Quit();
+        }
     }
 }

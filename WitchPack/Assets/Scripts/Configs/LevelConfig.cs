@@ -1,14 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "LevelConfig", menuName = "Configs/LevelConfig", order = 0)]
 public class LevelConfig : ScriptableObject
 {
     [Header("Level")]
-    [SerializeField] private BaseUnit[] shamans;
-    [SerializeField] private Transform levelMap;
-    [Header("Camera")]
-    [SerializeField] private int cameraStartZoom;
-    [SerializeField] private Vector3 cameraStartPos;
+    public ShamanConfig[] Shamans;
+    public Transform LevelMap;
+    public CameraLevelSettings CameraLevelSettings;
+
+}
+
+[Serializable]
+public struct CameraLevelSettings
+{
+    public Vector2 CameraBorders;
+    public int CameraMaxZoom;
+    public bool OverrideCameraStartPos;
+    [ShowIf(nameof(OverrideCameraStartPos))]public int CameraStartZoom;
+    [ShowIf(nameof(OverrideCameraStartPos))]public Vector3 CameraStartPos;
 }

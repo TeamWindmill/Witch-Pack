@@ -58,13 +58,13 @@ public class PowerStructure : MonoBehaviour
 
     private void OnDestroy()
     {
-        foreach (var ring in proximityRingsManager.RingHandlers)
-        {
-            // ring.OnShamanEnter -= OnShamanRingEnter;
-            // ring.OnShamanExit -= OnShamanRingExit;
-            // ring.OnShadowEnter -= OnShadowShamanEnter;
-            // ring.OnShadowExit -= OnShadowShamanExit;
-        }
+        // foreach (var ring in proximityRingsManager.RingHandlers)
+        // {
+        //     // ring.OnShamanEnter -= OnShamanRingEnter;
+        //     // ring.OnShamanExit -= OnShamanRingExit;
+        //     // ring.OnShadowEnter -= OnShadowShamanEnter;
+        //     // ring.OnShadowExit -= OnShadowShamanExit;
+        // }
     }
 
     // private void OnShamanRingEnter(int ringId, ITargetAbleEntity shaman)

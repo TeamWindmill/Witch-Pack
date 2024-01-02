@@ -58,6 +58,8 @@ public class CameraSettings : ScriptableObject
     [TabGroup("Camera Zoom"), Tooltip("the largest value that the zoom can reach")]
     public float ZoomMaxClamp = 14f;
 
+    [TabGroup("Controls")] public bool RightClickToPanCamera;
+
 
     [Button("Set as camera setting")] //WIP (not working)
     public void SetAsCameraSetting()

@@ -152,14 +152,15 @@ public class CameraHandler : MonoBehaviour
 #endif
         if (!_enablePanScroll) return inputDir;
 
-
-        if (Input.GetMouseButtonDown(1))
+        int mouseButtonId = _cameraSettings.RightClickToPanCamera ? 1 : 2;
+        
+        if (Input.GetMouseButtonDown(mouseButtonId))
         {
             _dragPanMoveActive = true;
             _lastMousePosition = GameManager.CameraHandler._mainCamera.ScreenToViewportPoint(Input.mousePosition);
         }
 
-        if (Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonUp(mouseButtonId))
         {
             _dragPanMoveActive = false;
         }
@@ -273,14 +274,14 @@ public class CameraHandler : MonoBehaviour
 
     #region PublicMethods
 
-    public void SetCameraSettings(Vector2 cameraBorders, float cameraMaxZoom, bool overWrite, Vector2 startPos, float startZoom)
+    public void SetCameraLevelSettings(CameraLevelSettings cameraLevelSettings)
     {
-        _cameraBorders = cameraBorders;
-        _cameraMaxZoom = cameraMaxZoom;
-        if (overWrite)
+        _cameraBorders = cameraLevelSettings.CameraBorders;
+        _cameraMaxZoom = cameraLevelSettings.CameraMaxZoom;
+        if (cameraLevelSettings.OverrideCameraStartPos)
         {
-            _cameraStartPosition = startPos;
-            _cameraStartZoom = startZoom;
+            _cameraStartPosition = cameraLevelSettings.CameraStartPos;
+            _cameraStartZoom = cameraLevelSettings.CameraStartZoom;
         }
     }
 

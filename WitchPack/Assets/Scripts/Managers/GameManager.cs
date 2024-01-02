@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoSingleton<GameManager>
 {
     public static ISceneHandler SceneHandler { get; private set; }
     public LevelConfig CurrentLevelConfig { get; private set; }
@@ -26,32 +26,28 @@ public class GameManager : MonoBehaviour
         private set => _cameraHandler = value;
     }
 
-
-    private void Awake()
+    protected override void Awake()
     {
-        if (SceneHandler == null)
-            SceneHandler = _sceneHandler;
-
-        CameraHandler = FindObjectOfType<CameraHandler>(); //May need to change 
+        base.Awake();
+        {
+            if (SceneHandler == null)
+                SceneHandler = _sceneHandler;
         
+            CameraHandler = FindObjectOfType<CameraHandler>(); //May need to change 
+            
+        }
     }
+    
 
     void Start()
     {
         SceneHandler.LoadScene(SceneType.MainMenu);
     }
 
-    #region Test
-
-    [ContextMenu("LoadMap")]
-    public void LoadScene()
+    public void SetLevelConfig(LevelConfig levelConfig)
     {
-        SceneHandler.LoadScene(SceneType.Map);
+        CurrentLevelConfig = levelConfig;
     }
-    
-
-    #endregion
-
     private void OnValidate()
     {
         if (_sceneHandler == null)
