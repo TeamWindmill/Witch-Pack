@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class TEMP_MapManager : MonoBehaviour
+public class MapManager : MonoBehaviour
 {
-    [SerializeField] private TEMP_NodeObject[] _nodeObjects;
+    [SerializeField] private NodeObject[] _nodeObjects;
     [SerializeField] private bool _unLockAll;
     [Header("Camera Control")]
     [SerializeField] private Vector2 _cameraLockedPos;

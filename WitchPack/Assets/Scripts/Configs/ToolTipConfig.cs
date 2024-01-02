@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "NewToolTipConfig", menuName = "ScriptableObjects/NewToolTipConfig", order = 0)]
+[CreateAssetMenu(fileName = "ToolTipConfig", menuName = "Configs/UIConfigs/ToolTipConfig", order = 0)]
 public class ToolTipConfig : ScriptableObject
 {
     [SerializeField] private string[] _toolTips;

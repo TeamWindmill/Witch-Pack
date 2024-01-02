@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "NewEndScreenTexts", menuName = "ScriptableObjects/new end screen text", order = 0)]
+[CreateAssetMenu(fileName = "EndScreenTexts", menuName = "Configs/UIConfigs/EndScreenTexts", order = 0)]
 public class EndScreenTextsConfig : ScriptableObject
 {
     [SerializeField] private string[] _winText;

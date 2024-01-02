@@ -1,11 +1,11 @@
 using UnityEngine;
 
-public class TEMP_NodeObject : MonoBehaviour
+public class NodeObject : MonoBehaviour
 {
-    //[SerializeField] private LevelConfig _levelConfig;
-    //[SerializeField] private UnitEntityConfig[] _shamanConfigs;
+    [SerializeField] private LevelConfig _levelConfig;
+    [SerializeField] private BaseUnit[] _shamanConfigs;
     
-    [SerializeField] private TEMP_NodeObject[] _nextNodes;
+    [SerializeField] private NodeObject[] _nextNodes;
     [SerializeField] private ClickHelper _clickHelper;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Color _winNodeColor;
@@ -15,7 +15,7 @@ public class TEMP_NodeObject : MonoBehaviour
 
     //public int Id => _levelConfig.LevelId;
 
-    private void Awake()
+    private void Start()
     {
         _clickHelper.OnClick += OnNodeClick;
     }

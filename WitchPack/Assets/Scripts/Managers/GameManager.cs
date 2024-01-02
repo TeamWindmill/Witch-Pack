@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static ISceneHandler SceneHandler { get; private set; }
+    public LevelConfig CurrentLevelConfig { get; private set; }
 
     [SerializeField] private SceneHandler _sceneHandler;
 

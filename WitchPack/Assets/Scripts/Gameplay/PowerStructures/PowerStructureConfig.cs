@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-[CreateAssetMenu(fileName = "NewPowerStructureConfig", menuName = "ScriptableObjects/EntitySystem/PowerStructure/New Power Structure Config", order = 0)]
+[CreateAssetMenu(fileName = "PowerStructureConfig", menuName = "Configs/PowerStructure", order = 0)]
 public class PowerStructureConfig : ScriptableObject
 {
     [Range(0, 20)] public float Range;
