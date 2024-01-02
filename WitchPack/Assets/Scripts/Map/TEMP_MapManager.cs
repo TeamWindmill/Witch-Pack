@@ -46,7 +46,7 @@ public class TEMP_MapManager : MonoBehaviour
     private void Start()
     {
        // GameManager.CameraHandler.SetCameraLockedPosition(_cameraLockedPos,_cameraLockedZoom);
-        GameManager.CameraHandler.LockCamera(_cameraLockedPos,_cameraLockedZoom);
+        GameManager.Instance.CameraHandler.LockCamera(_cameraLockedPos,_cameraLockedZoom);
     }
     
 }

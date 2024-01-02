@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ability", menuName = "Ability")]
 public class BaseAbility : ScriptableObject
 {
     [SerializeField] private float cd;

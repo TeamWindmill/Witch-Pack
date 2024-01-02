@@ -10,12 +10,14 @@ public class Projectile : MonoBehaviour
     [SerializeField] private int maxNumberOfHits;
     [SerializeField] private float speed;
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private float lifeTime;
     private int currentNumberOfHits;
     public void Fire(BaseUnit shooter, BaseAbility givenAbility, Vector2 dir)
     {
         owner = shooter;
         refAbility = givenAbility;
         rb.velocity = dir * speed;
+        Invoke("Disable", lifeTime);
         //rotate to look at dir given 
     }
 
@@ -40,6 +42,7 @@ public class Projectile : MonoBehaviour
     {
         owner = null;
         refAbility = null;
+        currentNumberOfHits = 0;
         gameObject.SetActive(false);
     }
 

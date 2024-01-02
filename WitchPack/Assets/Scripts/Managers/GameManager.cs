@@ -2,14 +2,15 @@ using System;
 using UnityEngine;
 
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoSingleton<GameManager>
 {
     public static ISceneHandler SceneHandler { get; private set; }
 
     [SerializeField] private SceneHandler _sceneHandler;
+    [SerializeField] private PoolManager poolManager;
 
-    private static CameraHandler _cameraHandler;
-    public static CameraHandler CameraHandler
+    private CameraHandler _cameraHandler;
+    public CameraHandler CameraHandler
     {
         get
         {
@@ -25,19 +26,21 @@ public class GameManager : MonoBehaviour
         private set => _cameraHandler = value;
     }
 
+    public PoolManager PoolManager { get => poolManager; }
 
     private void Awake()
     {
+        base.Awake();
         if (SceneHandler == null)
             SceneHandler = _sceneHandler;
 
         CameraHandler = FindObjectOfType<CameraHandler>(); //May need to change 
-        
+
     }
 
     void Start()
     {
-        SceneHandler.LoadScene(SceneType.MainMenu);
+        //SceneHandler.LoadScene(SceneType.MainMenu);
     }
 
     #region Test
@@ -47,7 +50,7 @@ public class GameManager : MonoBehaviour
     {
         SceneHandler.LoadScene(SceneType.Map);
     }
-    
+
 
     #endregion
 

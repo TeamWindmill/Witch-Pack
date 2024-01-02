@@ -10,6 +10,7 @@ public class BaseUnit : MonoBehaviour
     [SerializeField, TabGroup("Stats")] private StatSheet baseStats;
     [SerializeField, TabGroup("Stats")] private UnitStats stats;
 
+
     public Damageable Damageable { get => damageable; }
     public DamageDealer DamageDealer { get => damageDealer; }
     public Affector Affector { get => affector; }

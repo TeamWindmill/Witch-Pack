@@ -17,6 +17,8 @@ public class StatSheet : ScriptableObject
     public BaseStat Armor = new BaseStat(Stat.Armor);
     public BaseStat HpRegen = new BaseStat(Stat.HpRegen);
     public BaseStat BonusStatusEffectDuration = new BaseStat(Stat.BonusStatusEffectDuration);
+    public BaseStat AbilityProjectileSpeed = new BaseStat(Stat.AbilityProjectileSpeed);
+    public BaseStat AbilityProjectilePenetration = new BaseStat(Stat.AbilityProjectilePenetration);
 }
 
 public enum Stat
@@ -32,7 +34,10 @@ public enum Stat
     AbilityCooldownReduction,//cdr for abilities only (anything that isnt an auto attack)
     Armor,// damage redcutcion from all sources
     HpRegen,//amount of health resotred every second while being out of combat
-    BonusStatusEffectDuration//fixed duration added for every effect applied by unit
+    BonusStatusEffectDuration,//fixed duration added for every effect applied by unit
+    AbilityProjectileSpeed,
+    AbilityProjectilePenetration
+
 }
 
 [System.Serializable]
