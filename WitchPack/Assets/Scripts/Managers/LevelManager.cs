@@ -5,9 +5,9 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] private Transform enviromentHolder;
     [SerializeField] private Transform shamanHolder;
+    [SerializeField] private Shaman _shamanPrefab; //connect shaman prefab
+    
     private List<Shaman> _shamanParty;
-
-    private Shaman _shamanPrefab; //connect shaman prefab
     private LevelHandler _currentLevel;
 
     private void Start()
