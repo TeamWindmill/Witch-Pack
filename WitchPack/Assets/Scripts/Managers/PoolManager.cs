@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PoolManager : MonoBehaviour
 {
-    [SerializeField] private ProjectilePool autoAttackPool;
+    [SerializeField] private ProjectilePool testAbilityPool;//unsure yet if well have generic pools or specific ones 
+    [SerializeField] private  TargetedShotPool shamanAutoAttackPool;
 
-    public ProjectilePool AutoAttackPool { get => autoAttackPool; }
+    public ProjectilePool TestAbilityPool { get => testAbilityPool; }
+    public TargetedShotPool ShamanAutoAttackPool { get => shamanAutoAttackPool; }
 }
