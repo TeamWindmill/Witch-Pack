@@ -1,22 +1,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(CircleCollider2D))]
 public class Targeter<T> : MonoBehaviour where T : Component
 {
     [SerializeField] private List<T> availableTargets = new List<T>();
-    [SerializeField] private CircleCollider2D collider;
+    [SerializeField] private PolygonCollider2D collider;
+
 
     public void AddRadius(Stat stat, float value)
     {
         if (stat == Stat.BaseRange)
         {
-            collider.radius += value;
+            transform.parent.localScale += new Vector3(value * 2, value * 2, value * 2);
         }
     }
     public void SetRadius(float value)
     {
-        collider.radius = value;
+        transform.parent.localScale = new Vector3(value * 2, value * 2, value * 2);
     }
 
     private void OnTriggerStay2D(Collider2D collision)

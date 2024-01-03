@@ -44,7 +44,6 @@ public class TargetedShot : MonoBehaviour
             counter += Time.deltaTime * 10f;
             yield return new WaitForEndOfFrame();
         }
-
     }
 
     private void Disable()
