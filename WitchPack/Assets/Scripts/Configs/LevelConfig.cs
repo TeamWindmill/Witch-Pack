@@ -7,7 +7,7 @@ public class LevelConfig : ScriptableObject
 {
     [Header("Level")]
     public ShamanConfig[] Shamans;
-    public Transform LevelMap;
+    public LevelHandler levelPrefab;
     public CameraLevelSettings CameraLevelSettings;
 
 }

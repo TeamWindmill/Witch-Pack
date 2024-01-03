@@ -5,18 +5,18 @@ public class LevelManager : MonoBehaviour
 {
     [SerializeField] private Transform enviromentHolder;
     [SerializeField] private Transform shamanHolder;
-    private LevelConfig _levelConfig;
     private List<Shaman> _shamanParty;
 
-    private Shaman shamanPrefab; //connect shaman prefab
+    private Shaman _shamanPrefab; //connect shaman prefab
+    private LevelHandler _currentLevel;
 
     private void Start()
     {
-        _levelConfig = GameManager.Instance.CurrentLevelConfig;
-        Instantiate(_levelConfig.LevelMap, enviromentHolder);
-        GameManager.Instance.CameraHandler.SetCameraLevelSettings(_levelConfig.CameraLevelSettings);
+        var levelConfig = GameManager.Instance.CurrentLevelConfig;
+        _currentLevel = Instantiate(levelConfig.levelPrefab, enviromentHolder);
+        GameManager.Instance.CameraHandler.SetCameraLevelSettings(levelConfig.CameraLevelSettings);
         GameManager.Instance.CameraHandler.ResetCamera();
-        SpawnParty(_levelConfig.Shamans);
+        SpawnParty(levelConfig.Shamans);
 
     }
 
@@ -24,7 +24,7 @@ public class LevelManager : MonoBehaviour
     {
         foreach (var shamanConfig in shamanConfigs)
         {
-            var shaman = Instantiate(shamanPrefab, shamanHolder);
+            var shaman = Instantiate(_shamanPrefab, shamanHolder);
             //init shaman with config
             _shamanParty.Add(shaman);
         }
