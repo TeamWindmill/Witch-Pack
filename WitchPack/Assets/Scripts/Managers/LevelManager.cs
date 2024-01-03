@@ -14,8 +14,8 @@ public class LevelManager : MonoBehaviour
     {
         _levelConfig = GameManager.Instance.CurrentLevelConfig;
         Instantiate(_levelConfig.LevelMap, enviromentHolder);
-        GameManager.CameraHandler.SetCameraLevelSettings(_levelConfig.CameraLevelSettings);
-        GameManager.CameraHandler.ResetCamera();
+        GameManager.Instance.CameraHandler.SetCameraLevelSettings(_levelConfig.CameraLevelSettings);
+        GameManager.Instance.CameraHandler.ResetCamera();
         SpawnParty(_levelConfig.Shamans);
 
     }

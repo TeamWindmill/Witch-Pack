@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public class UnitCastingHandler
+public class AutoAttackHandler
 {
-    //manage cds, send abilities to cast -> specific interactions come from the so itself? 
 
     private BaseUnit unit;
     private BaseAbility ability;
@@ -11,22 +10,21 @@ public class UnitCastingHandler
     public BaseAbility Ability { get => ability; }
     public float LastCast { get => lastCast; }
     public BaseUnit Unit { get => unit; }
-
-    public UnitCastingHandler(BaseUnit owner, BaseAbility ability)
+    public AutoAttackHandler(BaseUnit owner, BaseAbility ability)
     {
         unit = owner;
         this.ability = ability;
-        lastCast = GetAbilityCD() * -1;
+        lastCast = GetAACD() * -1;
+    }
+  
+    public float GetAACD()
+    {
+        return 1 / unit.Stats.AttackSpeed;
     }
 
-    public float GetAbilityCD()
+    public void Attack()
     {
-        return ability.Cd * (1 - unit.Stats.AbilityCooldownReduction / 100);
-    }
-
-    public void CastAbility()
-    {
-        if (Time.time - lastCast >= GetAbilityCD())
+        if (Time.time - lastCast >= GetAACD())
         {
             if (ability.CastAbility(unit))
             {
@@ -34,7 +32,6 @@ public class UnitCastingHandler
             }
         }
     }
-
 
 
 }

@@ -1,17 +1,28 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D))]
-public class Targeter<T> : MonoBehaviour where T: Component
+[RequireComponent(typeof(CircleCollider2D))]
+public class Targeter<T> : MonoBehaviour where T : Component
 {
     [SerializeField] private List<T> availableTargets = new List<T>();
+    [SerializeField] private CircleCollider2D collider;
 
+    public void AddRadius(Stat stat, float value)
+    {
+        if (stat == Stat.BaseRange)
+        {
+            collider.radius += value;
+        }
+    }
+    public void SetRadius(float value)
+    {
+        collider.radius = value;
+    }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
         T possibleTarget = collision.GetComponent<T>();
-        if (!ReferenceEquals(possibleTarget, null))
+        if (!ReferenceEquals(possibleTarget, null) && !availableTargets.Contains(possibleTarget))
         {
             availableTargets.Add(possibleTarget);
         }

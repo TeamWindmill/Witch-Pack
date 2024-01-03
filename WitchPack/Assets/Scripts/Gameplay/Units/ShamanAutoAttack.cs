@@ -1,15 +1,11 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
-[CreateAssetMenu(fileName = "ability", menuName = "Ability/Test")]
+[CreateAssetMenu(fileName = "ShamanAA", menuName = "Ability/ShamanAA")]
 
-public class TestAbility : OffensiveAbility
+public class ShamanAutoAttack : OffensiveAbility
 {
-    // testing simple projectile 
-
     public override bool CastAbility(BaseUnit caster)
     {
         if (caster is Shaman)
@@ -17,11 +13,11 @@ public class TestAbility : OffensiveAbility
             Transform target = (caster as Shaman).EnemyTargeter.GetClosestTarget()?.transform;
             if (!ReferenceEquals(target, null))
             {
-                Projectile newPew = GameManager.Instance.PoolManager.TestAbilityPool.GetPooledObject();
+                TargetedShot newPew = GameManager.Instance.PoolManager.ShamanAutoAttackPool.GetPooledObject();
                 newPew.transform.position = caster.transform.position;
                 newPew.gameObject.SetActive(true);
                 Vector2 dir = (target.position - caster.transform.position).normalized;
-                newPew.Fire(caster, this, dir);
+                newPew.Fire(caster, this, dir, target.position);
                 return true;
             }
             else
@@ -31,10 +27,5 @@ public class TestAbility : OffensiveAbility
         }
         return false;
         //enemy logic here (when necessary)
-       
-        
-      
-       
     }
-
 }

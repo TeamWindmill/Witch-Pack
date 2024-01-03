@@ -5,48 +5,61 @@ using Sirenix.OdinInspector;
 public class StatSheet : ScriptableObject
 {
     //base stats here - affects every unit 
-    public BaseStat MaxHp = new BaseStat(Stat.MaxHp);
-    public BaseStat BaseDamage = new BaseStat(Stat.BaseDamage);
-    public BaseStat AttackSpeed = new BaseStat(Stat.AttackSpeed);
-    public BaseStat BonusRange = new BaseStat(Stat.BonusRange);
-    public BaseStat MovementSpeed = new BaseStat(Stat.MovementSpeed);
-    public BaseStat CritDamage = new BaseStat(Stat.CritDamage);
-    public BaseStat CritChance = new BaseStat(Stat.CritChance);
-    public BaseStat InvincibleTime = new BaseStat(Stat.InvincibleTime);
-    public BaseStat AbilityCooldownReduction = new BaseStat(Stat.AbilityCooldownReduction);
-    public BaseStat Armor = new BaseStat(Stat.Armor);
-    public BaseStat HpRegen = new BaseStat(Stat.HpRegen);
-    public BaseStat BonusStatusEffectDuration = new BaseStat(Stat.BonusStatusEffectDuration);
-    public BaseStat AbilityProjectileSpeed = new BaseStat(Stat.AbilityProjectileSpeed);
-    public BaseStat AbilityProjectilePenetration = new BaseStat(Stat.AbilityProjectilePenetration);
+    public BaseStatWhole MaxHp = new BaseStatWhole(Stat.MaxHp);
+    public BaseStatWhole BaseDamage = new BaseStatWhole(Stat.BaseDamage);
+    public BaseStatDecimal AttackSpeed = new BaseStatDecimal(Stat.AttackSpeed);
+    public BaseStatWhole BaseRange = new BaseStatWhole(Stat.BaseRange);
+    public BaseStatWhole MovementSpeed = new BaseStatWhole(Stat.MovementSpeed);
+    public BaseStatWhole CritDamage = new BaseStatWhole(Stat.CritDamage);
+    public BaseStatWhole CritChance = new BaseStatWhole(Stat.CritChance);
+    public BaseStatDecimal InvincibleTime = new BaseStatDecimal(Stat.InvincibleTime);
+    public BaseStatWhole AbilityCooldownReduction = new BaseStatWhole(Stat.AbilityCooldownReduction);
+    public BaseStatWhole Armor = new BaseStatWhole(Stat.Armor);
+    public BaseStatWhole HpRegen = new BaseStatWhole(Stat.HpRegen);
+    public BaseStatWhole BonusStatusEffectDuration = new BaseStatWhole(Stat.BonusStatusEffectDuration);
+    public BaseStatWhole AbilityProjectileSpeed = new BaseStatWhole(Stat.AbilityProjectileSpeed);
+    public BaseStatWhole AbilityProjectilePenetration = new BaseStatWhole(Stat.AbilityProjectilePenetration);
 }
 
 public enum Stat
 {
     MaxHp,
-    BaseDamage,//affects every damage instance a unit deals in the game
-    AttackSpeed,//attack speed for auto attacks only
-    BonusRange,//range increase for every ranged attack 
+    BaseDamage,// =basic attack damage
+    AttackSpeed,//cdr for auto attacks 
+    BaseRange,//range for all attacks 
     MovementSpeed,
     CritDamage,
     CritChance,
     InvincibleTime,//flat duration of invincibility after recieving damage
     AbilityCooldownReduction,//cdr for abilities only (anything that isnt an auto attack)
     Armor,// damage redcutcion from all sources
-    HpRegen,//amount of health resotred every second while being out of combat
+    HpRegen,//amount of health resotred every second
     BonusStatusEffectDuration,//fixed duration added for every effect applied by unit
-    AbilityProjectileSpeed,
-    AbilityProjectilePenetration
+    AbilityProjectileSpeed,//if an ability is projectile quicken it by this amount
+    AbilityProjectilePenetration//the amount of times a projectile ability can hit targets before disabling
 
 }
 
 [System.Serializable]
-public class BaseStat
+public class BaseStatWhole
 {
     [ReadOnly] public Stat stat;
     public int value;
 
-    public BaseStat(Stat givenStat)
+    public BaseStatWhole(Stat givenStat)
+    {
+        stat = givenStat;
+    }
+
+}
+
+[System.Serializable]
+public class BaseStatDecimal
+{
+    [ReadOnly] public Stat stat;
+    public float value;
+
+    public BaseStatDecimal(Stat givenStat)
     {
         stat = givenStat;
     }
