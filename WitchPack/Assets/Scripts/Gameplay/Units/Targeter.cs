@@ -6,6 +6,7 @@ public class Targeter<T> : MonoBehaviour where T : Component
     [SerializeField] private List<T> availableTargets = new List<T>();
     [SerializeField] private PolygonCollider2D collider;
 
+    public List<T> AvailableTargets { get => availableTargets; }
 
     public void AddRadius(Stat stat, float value)
     {
