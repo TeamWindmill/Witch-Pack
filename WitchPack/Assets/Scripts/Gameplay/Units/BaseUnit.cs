@@ -1,5 +1,4 @@
 using Sirenix.OdinInspector;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BaseUnit : MonoBehaviour
@@ -12,6 +11,7 @@ public class BaseUnit : MonoBehaviour
     [SerializeField, TabGroup("Combat")] private UnitAutoAttacker autoAttacker;
     [SerializeField, TabGroup("Stats")] private UnitStats stats;
     [SerializeField, TabGroup("Movement")] private UnitMovement movement;
+    [SerializeField, TabGroup("Visual")] private SpriteRenderer unitVisual;
 
     private AutoAttackHandler autoAttackHandler;
 
@@ -31,7 +31,7 @@ public class BaseUnit : MonoBehaviour
     //movement comp
     //state machine -> heros and enemies essentially work the same only heroes can be told where to go, everything else is automatic 
 
-    protected virtual void InitUnit(BaseUnitConfig givenConfig)
+    public virtual void Init(BaseUnitConfig givenConfig)
     {
         damageable = new Damageable(this);
         damageDealer = new DamageDealer(this, autoAttack);
@@ -39,6 +39,8 @@ public class BaseUnit : MonoBehaviour
         effectable = new Effectable(this);
         stats = new UnitStats(this);
         autoAttackHandler = new AutoAttackHandler(this, autoAttack);
+
+        unitVisual.sprite = givenConfig.UnitSprite;
     }
 
 

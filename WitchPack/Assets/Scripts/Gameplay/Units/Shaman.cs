@@ -5,16 +5,16 @@ using UnityEngine;
 public class Shaman : BaseUnit
 {
     [SerializeField, TabGroup("Combat")] private EnemyTargeter enemyTargeter;
-    [SerializeField] private ShamanConfig shamanConfig;
+    private ShamanConfig shamanConfig;
     private List<BaseAbility> knownAbilities = new List<BaseAbility>();
     private List<UnitCastingHandler> castingHandlers = new List<UnitCastingHandler>();
 
 
     public override StatSheet BaseStats => shamanConfig.BaseStats;
-    protected override void InitUnit(BaseUnitConfig baseUnitConfig)
+    public override void Init(BaseUnitConfig baseUnitConfig)
     {
-        base.InitUnit(baseUnitConfig);
         shamanConfig = baseUnitConfig as ShamanConfig;
+        base.Init(baseUnitConfig);
         enemyTargeter.SetRadius(Stats.BonusRange);
         Stats.OnStatChanged += enemyTargeter.AddRadius;
         AutoAttacker?.SetUp(this);

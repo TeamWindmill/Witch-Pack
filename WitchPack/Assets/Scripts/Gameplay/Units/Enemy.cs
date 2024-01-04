@@ -9,10 +9,10 @@ public class Enemy : BaseUnit
 
     public override StatSheet BaseStats => enemyConfig.BaseStats;
 
-    protected override void InitUnit(BaseUnitConfig givenConfig)
+    public override void Init(BaseUnitConfig givenConfig)
     {
-        base.InitUnit(givenConfig);
         enemyConfig = givenConfig as EnemyConfig;
+        base.Init(givenConfig);
 
     }
 
