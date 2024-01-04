@@ -9,12 +9,9 @@ public class BaseAbility : ScriptableObject
     public float Cd { get => cd; }
     public List<StatusEffectConfig> StatusEffects { get => statusEffects; }
 
-    public virtual void CastAbility(BaseUnit caster)
+    public virtual bool CastAbility(BaseUnit caster)
     {
-
+        return true;
     }
 
-    //cd
-    //mana costs etc... 
-    //every executable ability in the game inherits from this SO
 }

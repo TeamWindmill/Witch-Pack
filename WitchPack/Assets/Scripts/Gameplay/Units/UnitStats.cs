@@ -1,21 +1,29 @@
 using UnityEngine;
+using System;
 
 [System.Serializable]
 public class UnitStats
 {
 
+    public Action<Stat, float> OnStatChanged;
+
     private BaseUnit owner;
 
     private StatSheet ownerBaseStats => owner.BaseStats;
 
+    public UnitStats(BaseUnit owner)
+    {
+        this.owner = owner;
+    }
+
     private int maxHp;
     private int baseDamage;
-    private int attackSpeed;
-    private int bonusRange;
+    private float attackSpeed;
+    private int baseRange;
     private int movementSpeed;
     private int critDamage;
     private int critChance;
-    private int invincibleTime;
+    private float invincibleTime;
     private int abilityCooldownReduction;
     private int armor;
     private int hpRegen;
@@ -25,12 +33,12 @@ public class UnitStats
 
     public int MaxHp { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.MaxHp.value + maxHp), 0, (ownerBaseStats.MaxHp.value + maxHp))); } }
     public int BaseDamage { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.BaseDamage.value + baseDamage), 0, (ownerBaseStats.BaseDamage.value + baseDamage))); } }
-    public int AttackSpeed { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.AttackSpeed.value + attackSpeed), 0, (ownerBaseStats.AttackSpeed.value + attackSpeed))); } }
-    public int BonusRange { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.BonusRange.value + bonusRange), 0, (ownerBaseStats.BonusRange.value + bonusRange))); } }
+    public float AttackSpeed { get { return Mathf.Clamp((ownerBaseStats.AttackSpeed.value + attackSpeed), 0, 2f); } }
+    public int BonusRange { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.BaseRange.value + baseRange), 0, (ownerBaseStats.BaseRange.value + baseRange))); } }
     public int MovementSpeed { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.MovementSpeed.value + movementSpeed), 0, (ownerBaseStats.MovementSpeed.value + movementSpeed))); } }
     public int CritDamage { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.CritDamage.value + critDamage), 0, (ownerBaseStats.CritDamage.value + critDamage))); } }
     public int CritChance { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.CritChance.value + critChance), 0, (ownerBaseStats.CritChance.value + critChance))); } }
-    public int InvincibleTime { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.InvincibleTime.value + invincibleTime), 0, (ownerBaseStats.InvincibleTime.value + invincibleTime))); } }
+    public float InvincibleTime { get { return Mathf.Clamp((ownerBaseStats.InvincibleTime.value + invincibleTime), 0, 0.5f); } }
     public int AbilityCooldownReduction { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.AbilityCooldownReduction.value + abilityCooldownReduction), 0, (ownerBaseStats.AbilityCooldownReduction.value + abilityCooldownReduction))); } }
     public int Armor { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.Armor.value + armor), 0, (ownerBaseStats.Armor.value + armor))); } }
     public int HpRegen { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.HpRegen.value + hpRegen), 0, (ownerBaseStats.HpRegen.value + hpRegen))); } }
@@ -38,10 +46,6 @@ public class UnitStats
     public int AbilityProjectileSpeed { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.AbilityProjectileSpeed.value + abilityProjectileSpeed), 0, (ownerBaseStats.AbilityProjectileSpeed.value + abilityProjectileSpeed))); } }
     public int AbilityProjectilePenetration { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.AbilityProjectilePenetration.value + abilityProjectilePenetration), 0, (ownerBaseStats.AbilityProjectilePenetration.value + abilityProjectilePenetration))); } }
 
-    public void CacheOwner(BaseUnit owner)
-    {
-        this.owner = owner;
-    }
 
     public void AddValueToStat(Stat stat, int value) //can be used to reduce or increase
     {
@@ -56,8 +60,8 @@ public class UnitStats
             case Stat.AttackSpeed:
                 attackSpeed += value;
                 break;
-            case Stat.BonusRange:
-                bonusRange += value;
+            case Stat.BaseRange:
+                baseRange += value;
                 break;
             case Stat.MovementSpeed:
                 movementSpeed += value;
@@ -86,6 +90,8 @@ public class UnitStats
             default:
                 break;
         }
+
+        OnStatChanged?.Invoke(stat, value);
     }
 
 
