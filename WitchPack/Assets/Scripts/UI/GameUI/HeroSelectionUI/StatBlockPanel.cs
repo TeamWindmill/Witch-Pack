@@ -8,45 +8,36 @@ public class StatBlockPanel : MonoBehaviour
     [SerializeField] private Color _statBonusAdditionColor;
     [SerializeField] private Color _statBonusReductionColor;
 
-    public bool IsInitialization { get; }
+    public void Init(BaseUnit unit)
+    {
+        foreach (var statBlock in _statBlocks)
+        {
+            var statValue = unit.Stats.GetStatValue(statBlock.StatTypeId);
+            statBlock.Init(statValue, _statBonusAdditionColor, _statBonusReductionColor);
+        }
 
-    // public void Init(IEnumerable<Stat> stats)
-    // {
-    //     foreach (var statBlock in _statBlocks)
-    //     {
-    //         foreach (var stat in stats)
-    //         {
-    //             if ((int)statBlock.StatId == stat.Id)
-    //                 statBlock.Init(stat.Name, stat.CurrentValue, _statBonusAdditionColor, _statBonusReductionColor);
-    //         }
-    //     }
-    //
-    //     foreach (var statBar in _statBarHandlers)
-    //     {
-    //         foreach (var stat in stats)
-    //         {
-    //             if ((int)statBar.StatType == stat.Id)
-    //                 statBar.Init(stat);
-    //         }
-    //     }
-    // }
+        foreach (var statBar in _statBarHandlers)
+        {
+            statBar.Init(unit);
+        }
+    }
 
-    // public void UpdateStatBlocks(Stat shamanStat, float newValue)
-    // {
-    //     foreach (var statBlock in _statBlocks)
-    //     {
-    //         if ((int)statBlock.StatId == shamanStat.Id)
-    //         {
-    //             statBlock.UpdateUI(newValue);
-    //         }
-    //     }
-    // }
-    //
-    // public void HideStatBlocks()
-    // {
-    //     foreach (var statBarHandler in _statBarHandlers)
-    //     {
-    //         statBarHandler.Hide();
-    //     }
-    // }
+    public void UpdateStatBlocks(StatType shamanStatType, float newValue)
+    {
+        foreach (var statBlock in _statBlocks)
+        {
+            if (statBlock.StatTypeId == shamanStatType)
+            {
+                statBlock.UpdateUI(newValue);
+            }
+        }
+    }
+
+    public void HideStatBlocks()
+    {
+        foreach (var statBarHandler in _statBarHandlers)
+        {
+            statBarHandler.Hide();
+        }
+    }
 }

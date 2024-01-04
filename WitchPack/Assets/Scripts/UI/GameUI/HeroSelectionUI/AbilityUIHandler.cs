@@ -5,7 +5,7 @@ public class AbilityUIHandler : MonoBehaviour
 {
     [SerializeField] private AbilityUI[] _abilityUIBlocks;
     
-    // public void Show(Dictionary<string,Ability> abilities)
+    // public void Show(Dictionary<string,abili> abilities)
     // {
     //     foreach (var ability in abilities)
     //     {

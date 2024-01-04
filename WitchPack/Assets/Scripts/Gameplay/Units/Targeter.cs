@@ -8,9 +8,9 @@ public class Targeter<T> : MonoBehaviour where T : Component
 
     public List<T> AvailableTargets { get => availableTargets; }
 
-    public void AddRadius(Stat stat, float value)
+    public void AddRadius(StatType statType, float value)
     {
-        if (stat == Stat.BaseRange)
+        if (statType == StatType.BaseRange)
         {
             transform.parent.localScale += new Vector3(value * 2, value * 2, value * 2);
         }

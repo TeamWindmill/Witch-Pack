@@ -7,7 +7,8 @@ public class Damageable
 {
     private BaseUnit owner;
     private int currentHp;
-    private int maxHp => owner.Stats.MaxHp;
+    public int MaxHp => owner.Stats.MaxHp;
+    public int CurrentHp => currentHp;
 
     private bool hitable;
 
@@ -89,7 +90,7 @@ public class Damageable
 
     private void ClampHp()
     {
-        currentHp = Mathf.Clamp(currentHp, 0, maxHp);
+        currentHp = Mathf.Clamp(currentHp, 0, MaxHp);
     }
 
     private void AddStatsDamageReduction(Damageable target, DamageDealer dealer, DamageHandler dmg, BaseAbility ability, bool crit )

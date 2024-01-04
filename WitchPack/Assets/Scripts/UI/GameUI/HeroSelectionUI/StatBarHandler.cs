@@ -5,34 +5,69 @@ using UnityEngine.UI;
 
 public class StatBarHandler : MonoBehaviour
 {
-    //[SerializeField] private Constant.StatsId _statType;
+    [SerializeField] private StatBarType statBarType;
+    [SerializeField] private TextMeshProUGUI _statBarName;
     [SerializeField] private TextMeshProUGUI _statBarBaseValue;
     [SerializeField] private TextMeshProUGUI _statBarValue;
     [SerializeField] private Image _statBarFill;
 
-    private float _baseStatValue;
-    //private Stat _stat;
+    private BaseUnit _unit;
 
-    //public Constant.StatsId StatType => _statType;
+    public StatBarType StatBarType => statBarType;
 
-    // public void Init(Stat stat)
-    // {
-    //     _statBarBaseValue.text = MathF.Round(stat.BaseValue).ToString();
-    //     _statBarValue.text = MathF.Round(stat.CurrentValue).ToString();
-    //     _statBarFill.fillAmount = stat.CurrentValue / stat.BaseValue;
-    //     _baseStatValue = stat.BaseValue;
-    //     _stat = stat;
-    //     stat.OnValueChanged += UpdateStatBar;
-    // }
+     public void Init(BaseUnit unit)
+     {
+         _unit = unit;
+         string name;
+         int baseValue = 0;
+         int currentValue = 0;
+         switch (statBarType)
+         {
+             case StatBarType.HealthBar:
+                 name = "Health:";
+                 baseValue = unit.Damageable.MaxHp;
+                 currentValue = unit.Damageable.CurrentHp;
+                 unit.Damageable.OnGetHit += UpdateStatBarHealth;
+                 break;
+             case StatBarType.EnergyBar:
+                 name = "Energy:";
+                 break;
+             default:
+                 throw new ArgumentOutOfRangeException();
+         }
 
-    // public void UpdateStatBar(StatChangeData statChangeData)
-    // {
-    //     _statBarValue.text = MathF.Round(statChangeData.NewValue).ToString();
-    //     _statBarFill.fillAmount = statChangeData.NewValue / _baseStatValue;
-    // }
-    //
-    // public void Hide()
-    // {
-    //     _stat.OnValueChanged -= UpdateStatBar;
-    // }
+         _statBarName.text = name;
+         _statBarBaseValue.text = baseValue.ToString();
+         _statBarValue.text = currentValue.ToString();
+         _statBarFill.fillAmount = currentValue / baseValue;
+     }
+
+     public void UpdateStatBarHealth(Damageable damageable, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4, bool arg5)
+     {
+         var currentHP = damageable.CurrentHp;
+         var maxHP = damageable.MaxHp;
+         _statBarValue.text = currentHP.ToString();
+         _statBarFill.fillAmount = currentHP / maxHP;
+     }
+    
+     public void Hide()
+     {
+         switch (statBarType)
+         {
+             case StatBarType.HealthBar:
+                 _unit.Damageable.OnGetHit -= UpdateStatBarHealth;
+                 break;
+             case StatBarType.EnergyBar:
+                 break;
+             default:
+                 throw new ArgumentOutOfRangeException();
+         }
+         
+     }
+}
+
+public enum StatBarType
+{
+    HealthBar,
+    EnergyBar
 }

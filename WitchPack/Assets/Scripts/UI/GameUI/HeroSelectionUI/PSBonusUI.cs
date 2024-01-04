@@ -4,12 +4,12 @@ using UnityEngine.UI;
 
 public class PSBonusUI : MonoBehaviour
 {
-    //[SerializeField] private Constant.StatsId _statBonusType;
+    [SerializeField] private StatType statBonusType;
     [SerializeField] private Sprite _psIconSprite;
     [SerializeField] private TextMeshProUGUI _bonusText;
     [SerializeField] private Image _splash;
 
-    //public Constant.StatsId StatBonusType => _statBonusType;
+    public StatType StatBonusType => statBonusType;
 
     public void Show(float bonusValue)
     {
