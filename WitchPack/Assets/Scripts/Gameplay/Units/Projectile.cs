@@ -1,5 +1,7 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
+using System;
+using System.Collections;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -19,8 +21,7 @@ public class Projectile : MonoBehaviour
         refAbility = givenAbility;
         rb.velocity = dir * (speed + shooter.Stats.AbilityProjectileSpeed);
         maxNumberOfHits = baseMaxNumberOfHits + shooter.Stats.AbilityProjectilePenetration;
-        //Invoke("Disable", lifeTime);
-        //rotate to look at dir given 
+        StartCoroutine(LifeTime());
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -45,6 +46,7 @@ public class Projectile : MonoBehaviour
         owner = null;
         refAbility = null;
         currentNumberOfHits = 0;
+        rb.velocity = Vector2.zero;
         gameObject.SetActive(false);
     }
 
@@ -59,5 +61,12 @@ public class Projectile : MonoBehaviour
             baseMaxNumberOfHits = 1;
         }
     }
+
+    private IEnumerator LifeTime()
+    {
+        yield return new WaitForSeconds(lifeTime);
+        Disable();
+    }
+
 
 }

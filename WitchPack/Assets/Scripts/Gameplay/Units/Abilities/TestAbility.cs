@@ -20,8 +20,8 @@ public class TestAbility : OffensiveAbility
                 Projectile newPew = GameManager.Instance.PoolManager.TestAbilityPool.GetPooledObject();
                 newPew.transform.position = caster.transform.position;
                 newPew.gameObject.SetActive(true);
-                Vector2 dir = (target.position - caster.transform.position).normalized;
-                newPew.Fire(caster, this, dir);
+                Vector2 dir = (target.position - caster.transform.position) / (target.position - caster.transform.position).magnitude;
+                newPew.Fire(caster, this, dir.normalized);
                 return true;
             }
             else
