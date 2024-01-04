@@ -5,23 +5,24 @@ using Sirenix.OdinInspector;
 public class StatSheet : ScriptableObject
 {
     //base stats here - affects every unit 
-    public BaseStatWhole MaxHp = new BaseStatWhole(Stat.MaxHp);
-    public BaseStatWhole BaseDamage = new BaseStatWhole(Stat.BaseDamage);
-    public BaseStatDecimal AttackSpeed = new BaseStatDecimal(Stat.AttackSpeed);
-    public BaseStatWhole BaseRange = new BaseStatWhole(Stat.BaseRange);
-    public BaseStatWhole MovementSpeed = new BaseStatWhole(Stat.MovementSpeed);
-    public BaseStatWhole CritDamage = new BaseStatWhole(Stat.CritDamage);
-    public BaseStatWhole CritChance = new BaseStatWhole(Stat.CritChance);
-    public BaseStatDecimal InvincibleTime = new BaseStatDecimal(Stat.InvincibleTime);
-    public BaseStatWhole AbilityCooldownReduction = new BaseStatWhole(Stat.AbilityCooldownReduction);
-    public BaseStatWhole Armor = new BaseStatWhole(Stat.Armor);
-    public BaseStatWhole HpRegen = new BaseStatWhole(Stat.HpRegen);
-    public BaseStatWhole BonusStatusEffectDuration = new BaseStatWhole(Stat.BonusStatusEffectDuration);
-    public BaseStatWhole AbilityProjectileSpeed = new BaseStatWhole(Stat.AbilityProjectileSpeed);
-    public BaseStatWhole AbilityProjectilePenetration = new BaseStatWhole(Stat.AbilityProjectilePenetration);
+    public BaseStat MaxHp = new BaseStat(StatType.MaxHp);
+    public BaseStat BaseDamage = new BaseStat(StatType.BaseDamage);
+    public BaseStatDecimal AttackSpeed = new BaseStatDecimal(StatType.AttackSpeed);
+    public BaseStat BaseRange = new BaseStat(StatType.BaseRange);
+    public BaseStat MovementSpeed = new BaseStat(StatType.MovementSpeed);
+    public BaseStat CritDamage = new BaseStat(StatType.CritDamage);
+    public BaseStat CritChance = new BaseStat(StatType.CritChance);
+    public BaseStatDecimal InvincibleTime = new BaseStatDecimal(StatType.InvincibleTime);
+    public BaseStat AbilityCooldownReduction = new BaseStat(StatType.AbilityCooldownReduction);
+    public BaseStat Armor = new BaseStat(StatType.Armor);
+    public BaseStat HpRegen = new BaseStat(StatType.HpRegen);
+    public BaseStat BonusStatusEffectDuration = new BaseStat(StatType.BonusStatusEffectDuration);
+    public BaseStat AbilityProjectileSpeed = new BaseStat(StatType.AbilityProjectileSpeed);
+    public BaseStat AbilityProjectilePenetration = new BaseStat(StatType.AbilityProjectilePenetration);
+    
 }
 
-public enum Stat
+public enum StatType
 {
     MaxHp,
     BaseDamage,// =basic attack damage
@@ -41,14 +42,14 @@ public enum Stat
 }
 
 [System.Serializable]
-public class BaseStatWhole
+public class BaseStat
 {
-    [ReadOnly] public Stat stat;
+    [ReadOnly] public StatType statType;
     public int value;
 
-    public BaseStatWhole(Stat givenStat)
+    public BaseStat(StatType givenStatType)
     {
-        stat = givenStat;
+        statType = givenStatType;
     }
 
 }
@@ -56,12 +57,12 @@ public class BaseStatWhole
 [System.Serializable]
 public class BaseStatDecimal
 {
-    [ReadOnly] public Stat stat;
+    [ReadOnly] public StatType statType;
     public float value;
 
-    public BaseStatDecimal(Stat givenStat)
+    public BaseStatDecimal(StatType givenStatType)
     {
-        stat = givenStat;
+        statType = givenStatType;
     }
 
 }

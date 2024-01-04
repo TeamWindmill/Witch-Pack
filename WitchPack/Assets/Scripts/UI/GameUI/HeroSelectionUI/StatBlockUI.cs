@@ -4,75 +4,73 @@ using UnityEngine;
 
 public class StatBlockUI : MonoBehaviour
 {
-    //[SerializeField] private Constant.StatsId _statId;
+    [SerializeField] private StatType statTypeId;
     [SerializeField] private TextMeshProUGUI _statText;
     [SerializeField] private TextMeshProUGUI _statValue;
     
     private Color _statBonusAdditionColor;
     private Color _statBonusReductionColor;
 
-    private string _name;
     private float _baseValue;
-    //public Constant.StatsId StatId => _statId;
+    public StatType StatTypeId => statTypeId;
     
-    public void Init(string statName, float currentValue, Color addColor, Color reduceColor)
+    public void Init(float currentValue, Color addColor, Color reduceColor)
     {
-        _name = statName;
-        _baseValue = MathF.Round(currentValue);
+        _baseValue = currentValue;
         _statBonusAdditionColor = addColor;
         _statBonusReductionColor = reduceColor;
-        //SetStatText(_baseValue,0);
+        SetStatText(_baseValue,0);
     }
     public void UpdateUI(float bonusValue)
     {
         if(!HeroSelectionUI.Instance.IsActive) return;
-        //SetStatText(_baseValue,bonusValue);
+        SetStatText(_baseValue,bonusValue);
     }
 
-    // private void SetStatText(float baseValue, float bonusValue)
-    // {
-    //     string statName = _name;
-    //     string modifier = "";
-    //     switch (_statId)
-    //     {
-    //         case Constant.StatsId.AttackDamage:
-    //             statName = "Damage";
-    //             break;
-    //         case Constant.StatsId.AttackRate:
-    //             statName = "Attack Speed";
-    //             break;
-    //         case Constant.StatsId.AttackRange:
-    //             statName = "Range";
-    //             break;
-    //         case Constant.StatsId.MovementSpeed:
-    //             statName = "Move Speed";
-    //             break;
-    //         case Constant.StatsId.CritDamage:
-    //             statName = "Crit Damage";
-    //             break;
-    //         case Constant.StatsId.CritChance:
-    //             statName = "Crit Chance";
-    //             modifier = "%";
-    //             break;
-    //     }
-    //
-    //     _statText.text = statName;
-    //     string modifierText = $"{modifier}";
-    //     string baseValueText = $"{baseValue}";
-    //     string bonusValueText;
-    //     switch (bonusValue)
-    //     {
-    //         case > 0:
-    //             bonusValueText = ColorLogHelper.SetColorToString($" (+{bonusValue})", _statBonusAdditionColor);;
-    //             _statValue.text =  baseValueText + modifierText + bonusValueText;
-    //             break;
-    //         case < 0:
-    //             bonusValueText = ColorLogHelper.SetColorToString($" (-{-bonusValue})", _statBonusReductionColor);;
-    //             _statValue.text = baseValueText + modifierText + bonusValueText;
-    //             break;
-    //         case 0:
-    //             _statValue.text = baseValueText + modifierText;
-    //             break;
-    //     }
-    // }
+    private void SetStatText(float baseValue, float bonusValue)
+    {
+        string statName = "";
+        string modifier = "";
+        switch (statTypeId)
+        {
+            case StatType.BaseDamage:
+                statName = "Damage";
+                break;
+            case StatType.AttackSpeed:
+                statName = "Attack Speed";
+                break;
+            case StatType.BaseRange:
+                statName = "Range";
+                break;
+            case StatType.MovementSpeed:
+                statName = "Move Speed";
+                break;
+            case StatType.CritDamage:
+                statName = "Crit Damage";
+                break;
+            case StatType.CritChance:
+                statName = "Crit Chance";
+                modifier = "%";
+                break;
+        }
+    
+        _statText.text = statName;
+        string modifierText = $"{modifier}";
+        string baseValueText = $"{baseValue}";
+        string bonusValueText;
+        switch (bonusValue)
+        {
+            case > 0:
+                bonusValueText = ColorLogHelper.SetColorToString($" (+{bonusValue})", _statBonusAdditionColor);;
+                _statValue.text =  baseValueText + modifierText + bonusValueText;
+                break;
+            case < 0:
+                bonusValueText = ColorLogHelper.SetColorToString($" (-{-bonusValue})", _statBonusReductionColor);;
+                _statValue.text = baseValueText + modifierText + bonusValueText;
+                break;
+            case 0:
+                _statValue.text = baseValueText + modifierText;
+                break;
+        }
+    }
 }

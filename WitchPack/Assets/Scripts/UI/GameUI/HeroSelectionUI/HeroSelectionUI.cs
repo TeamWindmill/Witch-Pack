@@ -4,8 +4,6 @@ using UnityEngine.UI;
 
 public class HeroSelectionUI : MonoSingleton<HeroSelectionUI>
 {
-    public bool IsInitialization { get; }
-
     [SerializeField] private Image _shamanSprite;
     [SerializeField] private TextMeshProUGUI _shamanName;
     [SerializeField] private StatBlockPanel _statBlockPanel;
@@ -19,28 +17,28 @@ public class HeroSelectionUI : MonoSingleton<HeroSelectionUI>
         gameObject.SetActive(false);
     }
 
-    // public void Init(UnitEntity shaman)
-    // {
-    //     IEnumerable<Stat> stats = shaman.EntityStatComponent.GetAllStats();
-    //     
-    //     _statBlockPanel.Init(stats);
-    //     _psBonusUIHandler.Show(stats);
-    //     _abilityUIHandler.Show(shaman.EntityAbilitiesComponent.Abilities);
-    //     _shamanSprite.sprite = shaman.Config.VisualComponentConfig.Icon;
-    //     _shamanName.text = shaman.Config.EntityName;
-    //     
-    //     IsActive = true;
-    //     gameObject.SetActive(true);
-    // }
+    public void Init(BaseUnit shaman)
+    {
+        UnitStats stats = shaman.Stats;
+        
+        _statBlockPanel.Init(shaman);
+        _psBonusUIHandler.Show(stats);
+        //_abilityUIHandler.Show(shaman.EntityAbilitiesComponent.Abilities);
+        //_shamanSprite.sprite = shaman.Config.VisualComponentConfig.Icon;
+        //_shamanName.text = shaman.Config.EntityName;
+        
+        IsActive = true;
+        gameObject.SetActive(true);
+    }
 
-    // public void UpdateStatBlocks(Stat shamanStat, float newValue)
-    // {
-    //     _statBlockPanel.UpdateStatBlocks(shamanStat, newValue);
-    // }
+    public void UpdateStatBlocks(StatType shamanStatType, float newValue)
+    {
+        _statBlockPanel.UpdateStatBlocks(shamanStatType, newValue);
+    }
 
     public void HideSelectionUI()
     {
-        //_statBlockPanel.HideStatBlocks();
+        _statBlockPanel.HideStatBlocks();
         _psBonusUIHandler.Hide();
         _abilityUIHandler.Hide();
 

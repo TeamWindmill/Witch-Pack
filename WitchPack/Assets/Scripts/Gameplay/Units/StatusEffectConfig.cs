@@ -9,12 +9,12 @@ public class StatusEffectConfig : ScriptableObject
     [SerializeField, Tooltip("Instant means a stat will change by the amount given for a duration then return to normal, " +
         "Over Time means a stat will decrease every 1 second by a fixed amount until reaching the given amount 1 second before the duration ends")] 
     private StatusEffectProcess process;
-    [SerializeField] private Stat statAffected;//all stats you wish to affect on the target
+    [SerializeField] private StatType statTypeAffected;//all stats you wish to affect on the target
 
     public float Duration { get => duration; }
     public int Amount { get => amount; }
     public StatusEffectProcess Process { get => process; }
-    public Stat StatAffected { get => statAffected; }
+    public StatType StatTypeAffected { get => statTypeAffected; }
 }
 
 public enum StatusEffectProcess

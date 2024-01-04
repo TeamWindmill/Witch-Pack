@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System;
 
@@ -5,7 +6,7 @@ using System;
 public class UnitStats
 {
 
-    public Action<Stat, float> OnStatChanged;
+    public Action<StatType, float> OnStatChanged;
 
     private BaseUnit owner;
 
@@ -47,51 +48,123 @@ public class UnitStats
     public int AbilityProjectilePenetration { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.AbilityProjectilePenetration.value + abilityProjectilePenetration), 0, (ownerBaseStats.AbilityProjectilePenetration.value + abilityProjectilePenetration))); } }
 
 
-    public void AddValueToStat(Stat stat, int value) //can be used to reduce or increase
+    public float GetStatValue(StatType statTypeId)
     {
-        switch (stat)
+        switch (statTypeId)
         {
-            case Stat.MaxHp:
+            case StatType.MaxHp:
+                return MaxHp;
+            case StatType.BaseDamage:
+                return BaseDamage;
+            case StatType.AttackSpeed:
+                return AttackSpeed;
+            case StatType.BaseRange:
+                return BonusRange;
+            case StatType.MovementSpeed:
+                return MovementSpeed;
+            case StatType.CritDamage:
+                return CritDamage;
+            case StatType.CritChance:
+                return CritChance;
+            case StatType.InvincibleTime:
+                return InvincibleTime;
+            case StatType.AbilityCooldownReduction:
+                return AbilityCooldownReduction;
+            case StatType.Armor:
+                return Armor;
+            case StatType.HpRegen:
+                return HpRegen;
+            case StatType.BonusStatusEffectDuration:
+                return BonusStatusEffectDuration;
+            case StatType.AbilityProjectileSpeed:
+                return AbilityProjectileSpeed;
+            case StatType.AbilityProjectilePenetration:
+                return AbilityProjectilePenetration;
+            default:
+                return 0;
+        }
+    }
+    public float GetBaseStatValue(StatType statTypeId)
+    {
+        switch (statTypeId)
+        {
+            case StatType.MaxHp:
+                return ownerBaseStats.MaxHp.value;
+            case StatType.BaseDamage:
+                return ownerBaseStats.BaseDamage.value;
+            case StatType.AttackSpeed:
+                return ownerBaseStats.AttackSpeed.value;
+            case StatType.BaseRange:
+                return ownerBaseStats.BaseRange.value;
+            case StatType.MovementSpeed:
+                return ownerBaseStats.MovementSpeed.value;
+            case StatType.CritDamage:
+                return ownerBaseStats.CritDamage.value;
+            case StatType.CritChance:
+                return ownerBaseStats.CritChance.value;
+            case StatType.InvincibleTime:
+                return ownerBaseStats.InvincibleTime.value;
+            case StatType.AbilityCooldownReduction:
+                return ownerBaseStats.AbilityCooldownReduction.value;
+            case StatType.Armor:
+                return ownerBaseStats.Armor.value;
+            case StatType.HpRegen:
+                return ownerBaseStats.HpRegen.value;
+            case StatType.BonusStatusEffectDuration:
+                return ownerBaseStats.BonusStatusEffectDuration.value;
+            case StatType.AbilityProjectileSpeed:
+                return ownerBaseStats.AbilityProjectileSpeed.value;
+            case StatType.AbilityProjectilePenetration:
+                return ownerBaseStats.AbilityProjectilePenetration.value;
+            default:
+                return 0;
+        }
+    }
+    public void AddValueToStat(StatType statType, int value) //can be used to reduce or increase
+    {
+        switch (statType)
+        {
+            case StatType.MaxHp:
                 maxHp += value;
                 break;
-            case Stat.BaseDamage:
+            case StatType.BaseDamage:
                 baseDamage += value;
                 break;
-            case Stat.AttackSpeed:
+            case StatType.AttackSpeed:
                 attackSpeed += value;
                 break;
-            case Stat.BaseRange:
+            case StatType.BaseRange:
                 baseRange += value;
                 break;
-            case Stat.MovementSpeed:
+            case StatType.MovementSpeed:
                 movementSpeed += value;
                 break;
-            case Stat.CritDamage:
+            case StatType.CritDamage:
                 critDamage += value;
                 break;
-            case Stat.CritChance:
+            case StatType.CritChance:
                 critChance += value;
                 break;
-            case Stat.InvincibleTime:
+            case StatType.InvincibleTime:
                 invincibleTime += value;
                 break;
-            case Stat.AbilityCooldownReduction:
+            case StatType.AbilityCooldownReduction:
                 abilityCooldownReduction += value;
                 break;
-            case Stat.Armor:
+            case StatType.Armor:
                 armor += value;
                 break;
-            case Stat.HpRegen:
+            case StatType.HpRegen:
                 hpRegen += value;
                 break;
-            case Stat.BonusStatusEffectDuration:
+            case StatType.BonusStatusEffectDuration:
                 bonusStatusEffectDuration += value;
                 break;
             default:
                 break;
         }
 
-        OnStatChanged?.Invoke(stat, value);
+        OnStatChanged?.Invoke(statType, value);
     }
 
 

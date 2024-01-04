@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class LevelHandler : MonoBehaviour
 {
-   
+   [SerializeField] private Transform[] shamanSpawnPoints;
 }

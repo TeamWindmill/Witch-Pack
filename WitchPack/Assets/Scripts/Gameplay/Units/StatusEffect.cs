@@ -8,21 +8,21 @@ public class StatusEffect
     protected float counter;//how long until the duration is over
     protected float duration;//ss lifetime
     private float amount;//the amount to change each stat by (might be flat or %)
-    private Stat stat;//the stats to affect
+    private StatType _statType;//the stats to affect
     private StatusEffectProcess process;
 
     public Effectable Host { get => host; }
     public float Counter { get => counter; }
     public float Duration { get => duration; }
-    public Stat Stat { get => stat; }
+    public StatType StatType { get => _statType; }
     public StatusEffectProcess Process { get => process; }
 
-    public StatusEffect(Effectable host, float duration, float amount, Stat effectedStat, StatusEffectProcess process)
+    public StatusEffect(Effectable host, float duration, float amount, StatType effectedStatType, StatusEffectProcess process)
     {
         this.host = host;
         this.duration = duration;
         this.amount = amount;
-        this.stat = effectedStat;
+        this._statType = effectedStatType;
         this.process = process;
     }
 
@@ -66,22 +66,22 @@ public class StatusEffect
         int amountToChange = Mathf.RoundToInt(amount / duration);
         while (counter < duration)
         {
-            host.Owner.Stats.AddValueToStat(Stat, amountToChange);
+            host.Owner.Stats.AddValueToStat(StatType, amountToChange);
             yield return new WaitForSeconds(1f);
             counter++;
         }
-        host.Owner.Stats.AddValueToStat(Stat, -Mathf.RoundToInt(amount));
+        host.Owner.Stats.AddValueToStat(StatType, -Mathf.RoundToInt(amount));
         Remove();
     }
     private IEnumerator InstantEffect()
     {
-        host.Owner.Stats.AddValueToStat(Stat, Mathf.RoundToInt(amount));
+        host.Owner.Stats.AddValueToStat(StatType, Mathf.RoundToInt(amount));
         while (counter < duration)
         {
             yield return new WaitForSeconds(1f);
             counter++;
         }
-        host.Owner.Stats.AddValueToStat(Stat, -Mathf.RoundToInt(amount));
+        host.Owner.Stats.AddValueToStat(StatType, -Mathf.RoundToInt(amount));
         Remove();
     }
 }
