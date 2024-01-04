@@ -47,7 +47,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     void Start()
     {
-        SceneHandler.LoadScene(SceneType.MainMenu);
+        //SceneHandler.LoadScene(SceneType.MainMenu);
     }
 
     public void SetLevelConfig(LevelConfig levelConfig)

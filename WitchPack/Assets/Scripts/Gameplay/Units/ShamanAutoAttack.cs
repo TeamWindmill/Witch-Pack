@@ -17,7 +17,7 @@ public class ShamanAutoAttack : OffensiveAbility
                 newPew.transform.position = caster.transform.position;
                 newPew.gameObject.SetActive(true);
                 Vector2 dir = (target.position - caster.transform.position).normalized;
-                newPew.Fire(caster, this, dir, target.position);
+                newPew.Fire(caster, this, dir.normalized, target.position);
                 return true;
             }
             else

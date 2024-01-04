@@ -10,6 +10,7 @@ public class BaseStateHandler : MonoBehaviour
     private CoroutineState activeState;
     private bool stunned;
 
+
     public BaseUnit RefUnit { get => refUnit; }
     public bool Stunned { get => stunned; set => stunned = value; }
 
@@ -18,10 +19,12 @@ public class BaseStateHandler : MonoBehaviour
         stunned = false;
         SortStates();
         SubscribeHandler();
-        //StartCoroutine(RunStateMachine());
+        StartCoroutine(RunStateMachine());
     }
 
-    //need to start enemies only when the player is within some king of range from them
+    //testing
+    
+
     private IEnumerator RunStateMachine()
     {
         yield return new WaitForSeconds(1f);
@@ -63,6 +66,6 @@ public class BaseStateHandler : MonoBehaviour
         return null;
     }
 
-
+  
 
 }
