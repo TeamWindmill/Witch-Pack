@@ -4,9 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "EnemyConfig", menuName = "EnemyConfig")]
 
-public class EnemyConfig : ScriptableObject
+public class EnemyConfig : BaseUnitConfig
 {
-    [SerializeField] private StatSheet baseStats;
-
-    public StatSheet BaseStats { get => baseStats; }
+  
 }

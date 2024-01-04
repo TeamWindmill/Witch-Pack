@@ -31,7 +31,7 @@ public class BaseUnit : MonoBehaviour
     //movement comp
     //state machine -> heros and enemies essentially work the same only heroes can be told where to go, everything else is automatic 
 
-    protected virtual void Awake()
+    protected virtual void InitUnit(BaseUnitConfig givenConfig)
     {
         damageable = new Damageable(this);
         damageDealer = new DamageDealer(this, autoAttack);

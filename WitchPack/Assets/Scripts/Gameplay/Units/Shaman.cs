@@ -11,9 +11,10 @@ public class Shaman : BaseUnit
 
 
     public override StatSheet BaseStats => shamanConfig.BaseStats;
-    protected override void Awake()
+    protected override void InitUnit(BaseUnitConfig baseUnitConfig)
     {
-        base.Awake();
+        base.InitUnit(baseUnitConfig);
+        shamanConfig = baseUnitConfig as ShamanConfig;
         enemyTargeter.SetRadius(Stats.BonusRange);
         Stats.OnStatChanged += enemyTargeter.AddRadius;
         AutoAttacker?.SetUp(this);
