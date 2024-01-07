@@ -7,8 +7,6 @@ public class WindEffectHandler : EffectTransitionLerp<WindParticleAnimationType>
 {
     private ParticleSystem[] _windParticles;
 
-    public bool IsInitialization { get; }
-
     public void Init(ParticleSystem[] windParticles)
     {
         _windParticles = windParticles;

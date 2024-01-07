@@ -1,5 +1,4 @@
 using Sirenix.OdinInspector;
-using Tzipory.Tools.Sound;
 using UnityEngine;
 
 
@@ -20,7 +19,7 @@ public class SlowMotionManager : MonoSingleton<SlowMotionManager>
         _audioFilters.Init(BgMusicManager.Instance.AudioSource,
             BgMusicManager.Instance.AudioReverbFilter, BgMusicManager.Instance.AudioLowPassFilter);
         _postProcessFilters.Init(GameManager.Instance.CameraHandler.PostProcessVolume);
-        //_windEffectHandler.Init(LevelHandler.ParticleSystems);
+        _windEffectHandler.Init(LevelManager.Instance.CurrentLevel.WindEffectsParticleSystem);
     }
 
     public void StartSlowMotionEffects()

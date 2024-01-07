@@ -17,7 +17,7 @@ public class TestAbility : OffensiveAbility
             Transform target = (caster as Shaman).EnemyTargeter.GetClosestTarget()?.transform;
             if (!ReferenceEquals(target, null))
             {
-                Projectile newPew = GameManager.Instance.PoolManager.TestAbilityPool.GetPooledObject();
+                Projectile newPew = LevelManager.Instance.PoolManager.TestAbilityPool.GetPooledObject();
                 newPew.transform.position = caster.transform.position;
                 newPew.gameObject.SetActive(true);
                 Vector2 dir = (target.position - caster.transform.position) / (target.position - caster.transform.position).magnitude;
