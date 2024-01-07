@@ -7,6 +7,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     [SerializeField] private Transform shamanHolder;
     [SerializeField] private Shaman shamanPrefab;
     [SerializeField] private PartyUIManager partyUIManager;
+    [SerializeField] private PoolManager poolManager;
 
     public LevelHandler CurrentLevel { get; private set; }
     public List<Shaman> ShamanParty { get; private set; }
@@ -49,5 +50,9 @@ public class LevelManager : MonoSingleton<LevelManager>
             ShamanParty.Add(shaman);
             spawnPoint.gameObject.SetActive(false);
         }
+    }
+    public PoolManager PoolManager
+    {
+        get => poolManager;
     }
 }

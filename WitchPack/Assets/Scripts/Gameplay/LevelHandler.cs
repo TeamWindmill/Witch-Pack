@@ -1,11 +1,13 @@
 using System;
 using UnityEngine;
+using NavMeshPlus.Components;
 
 public class LevelHandler : MonoBehaviour
 {
     [SerializeField] private Transform[] shamanSpawnPoints;
     [SerializeField] private CustomPath[] paths;
     [SerializeField] private ParticleSystem[] windEffectsParticleSystem;
+    [SerializeField] private NavMeshSurface navMeshSurface;
 
 
    public ParticleSystem[] WindEffectsParticleSystem => windEffectsParticleSystem;
@@ -13,6 +15,11 @@ public class LevelHandler : MonoBehaviour
    public Transform[] ShamanSpawnPoints => shamanSpawnPoints;
 
    private bool _tempSlowMotion; //TEMP
+
+   private void Start()
+   {
+      navMeshSurface.BuildNavMeshAsync();
+   }
 
    private void Update()
    {
