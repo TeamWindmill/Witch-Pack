@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelManager : MonoBehaviour
+public class LevelManager : MonoSingleton<LevelManager>
 {
     [SerializeField] private Transform enviromentHolder;
     [SerializeField] private Transform shamanHolder;
@@ -10,6 +10,7 @@ public class LevelManager : MonoBehaviour
 
     public LevelHandler CurrentLevel { get; private set; }
     public List<Shaman> ShamanParty { get; private set; }
+    public static bool IsWon { get; private set; }
 
     private void Start()
     {
@@ -20,6 +21,7 @@ public class LevelManager : MonoBehaviour
         SpawnParty(levelConfig.Shamans);
         CurrentLevel.TurnOffSpawnPoints();
         partyUIManager.Init(ShamanParty);
+        BgMusicManager.Instance.PlayMusic();
     }
 
     private void SpawnParty(ShamanConfig[] shamanConfigs)
