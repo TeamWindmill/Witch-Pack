@@ -53,32 +53,20 @@ public class UnitMovement : MonoBehaviour
         reachedDest = false;
         OnDestenationSet?.Invoke(worldPos);
         agent.destination = (Vector2)worldPos;
-        /* if (!ReferenceEquals(activeMovementRoutine, null))
-         {
-             StopCoroutine(activeMovementRoutine);
-         }
-         activeMovementRoutine = StartCoroutine(LerpToPos());*/
-    }
-
-
-
-
-    //testing
-    private IEnumerator LerpToPos()
-    {
-        Vector3 startPosition = transform.position;
-        float counter = 0;
-        while (counter <= 1)
+        if (!ReferenceEquals(activeMovementRoutine, null))
         {
-            Vector3 positionLerp = Vector3.Lerp(startPosition, currentDest, counter);
-            transform.position = positionLerp;
-            counter += Time.deltaTime * 2;
-            yield return new WaitForEndOfFrame();
+            StopCoroutine(activeMovementRoutine);
         }
-        yield return new WaitForEndOfFrame();
-        OnDestenationReached?.Invoke(currentDest);
-        reachedDest = true;
+        activeMovementRoutine = StartCoroutine(WaitTilReached());
+    }
+
+    private IEnumerator WaitTilReached()
+    {
+        yield return new WaitUntil(() => agent.remainingDistance <= agent.stoppingDistance);
+        OnDestenationReached?.Invoke(transform.position);
     }
 
 
+
+   
 }
