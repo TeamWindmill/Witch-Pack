@@ -12,6 +12,9 @@ public class UnitMovement : MonoBehaviour
     private BaseUnit owner;
     [SerializeField] private NavMeshAgent agent;
 
+    //testing - until selection system is implemented
+    [SerializeField] private bool input;
+
     private void Awake()
     {
         agent.updateRotation = false;
@@ -21,12 +24,12 @@ public class UnitMovement : MonoBehaviour
     public void SetUp(BaseUnit givenOwner)
     {
         owner = givenOwner;
-
     }
 
     public void SetSpeed(float value)
     {
         agent.speed = value;
+        agent.acceleration = agent.speed;
     }
 
     public void AddSpeed(StatType stat, float value)
@@ -34,13 +37,14 @@ public class UnitMovement : MonoBehaviour
         if (stat == StatType.MovementSpeed)
         {
             agent.speed += value;
+            agent.acceleration = agent.speed;
         }
     }
 
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (input && Input.GetMouseButtonDown(0))
         {
             Vector3 newDest = GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
             SetDest(newDest);
@@ -62,7 +66,8 @@ public class UnitMovement : MonoBehaviour
 
     private IEnumerator WaitTilReached()
     {
-        yield return new WaitUntil(() => agent.remainingDistance <= agent.stoppingDistance);
+        yield return new WaitUntil(() => agent.velocity != Vector3.zero);
+        yield return new WaitUntil(() =>  agent.remainingDistance <= agent.stoppingDistance);
         OnDestenationReached?.Invoke(transform.position);
     }
 

@@ -10,7 +10,7 @@ public class CustomPath : MonoBehaviour
     //when the shaman target cannot be detected anymore return to the current waypoint on the assigned path 
 
     //assign wayoints from inspecotor -> curves and turns need to be expressed with more wayponits 
-    [SerializeField, TabGroup("WayPoints")] private List<Transform> waypoints = new List<Transform>();
+    [SerializeField, TabGroup("Way Points")] private List<Transform> waypoints = new List<Transform>();
 
     public List<Transform> Waypoints { get => waypoints; }
 }

@@ -16,11 +16,7 @@ public class Shaman : BaseUnit
         shamanConfig = baseUnitConfig as ShamanConfig;
         base.Init(shamanConfig);
         enemyTargeter.SetRadius(Stats.BonusRange);
-        Movement.SetSpeed(Stats.MovementSpeed);
         Stats.OnStatChanged += enemyTargeter.AddRadius;
-        Stats.OnStatChanged += Movement.AddSpeed;
-        AutoAttacker.SetUp(this);
-        Movement.SetUp(this);
         IntializeCastingHandlers();
         Movement.OnDestenationSet += DisableAttacker;
         Movement.OnDestenationReached += EnableAttacker;
