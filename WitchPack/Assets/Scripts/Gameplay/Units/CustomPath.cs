@@ -13,4 +13,8 @@ public class CustomPath : MonoBehaviour
     [SerializeField, TabGroup("Way Points")] private List<Transform> waypoints = new List<Transform>();
 
     public List<Transform> Waypoints { get => waypoints; }
+
+
+
+
 }
