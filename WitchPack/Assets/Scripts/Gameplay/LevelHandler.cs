@@ -18,7 +18,7 @@ public class LevelHandler : MonoBehaviour
 
    private void Start()
    {
-      navMeshSurface.BuildNavMeshAsync();
+      navMeshSurface.BuildNavMeshAsync();//bakes navmesh
    }
 
    private void Update()
