@@ -14,10 +14,13 @@ public class Shaman : BaseUnit
     public override void Init(BaseUnitConfig baseUnitConfig)
     {
         shamanConfig = baseUnitConfig as ShamanConfig;
-        base.Init(baseUnitConfig);
+        base.Init(shamanConfig);
         enemyTargeter.SetRadius(Stats.BonusRange);
+        Movement.SetSpeed(Stats.MovementSpeed);
         Stats.OnStatChanged += enemyTargeter.AddRadius;
-        AutoAttacker?.SetUp(this);
+        Stats.OnStatChanged += Movement.AddSpeed;
+        AutoAttacker.SetUp(this);
+        Movement.SetUp(this);
         IntializeCastingHandlers();
         Movement.OnDestenationSet += DisableAttacker;
         Movement.OnDestenationReached += EnableAttacker;

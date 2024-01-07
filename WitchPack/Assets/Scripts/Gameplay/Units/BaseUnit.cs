@@ -39,7 +39,6 @@ public class BaseUnit : MonoBehaviour
         effectable = new Effectable(this);
         stats = new UnitStats(this);
         autoAttackHandler = new AutoAttackHandler(this, autoAttack);
-
         unitVisual.sprite = givenConfig.UnitSprite;
     }
 
