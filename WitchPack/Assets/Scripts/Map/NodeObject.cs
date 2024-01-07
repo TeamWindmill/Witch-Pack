@@ -3,7 +3,6 @@ using UnityEngine;
 public class NodeObject : MonoBehaviour
 {
     [SerializeField] private LevelConfig _levelConfig;
-    [SerializeField] private BaseUnit[] _shamanConfigs;
     
     [SerializeField] private NodeObject[] _nextNodes;
     [SerializeField] private ClickHelper _clickHelper;
