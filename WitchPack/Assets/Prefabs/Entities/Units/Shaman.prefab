@@ -56,7 +56,7 @@ MonoBehaviour:
   autoAttack: {fileID: 11400000, guid: d8ade3c4f5a1e02449732df010cb8f20, type: 2}
   autoAttacker: {fileID: 3965648085528756686}
   movement: {fileID: 1678831272390562764}
-  unitVisual: {fileID: 7305447644303394504}
+  unitVisual: {fileID: 3336282220744888323}
   enemyTargeter: {fileID: 4238458035565866751}
 --- !u!50 &7156522581338340880
 Rigidbody2D:
@@ -166,16 +166,16 @@ NavMeshAgent:
   m_GameObject: {fileID: 1271772123178820980}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
+  m_Radius: 0.2
+  m_Speed: 5
+  m_Acceleration: 5
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 500
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1
   m_BaseOffset: 0
   m_WalkableMask: 1
   m_ObstacleAvoidanceType: 4
@@ -393,6 +393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7089430048365987238}
   - component: {fileID: 7305447644303394504}
+  - component: {fileID: 3336282220744888323}
   m_Layer: 0
   m_Name: ShamanVisual
   m_TagString: Untagged
@@ -467,6 +468,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3336282220744888323
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5069646117184760680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e54a3e46499a5b4ba7e18b83ae87bf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 7305447644303394504}
 --- !u!1 &8671966536731905977
 GameObject:
   m_ObjectHideFlags: 0

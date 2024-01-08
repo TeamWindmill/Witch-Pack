@@ -148,7 +148,7 @@ MonoBehaviour:
   autoAttack: {fileID: 11400000, guid: d8ade3c4f5a1e02449732df010cb8f20, type: 2}
   autoAttacker: {fileID: 848828296485308851}
   movement: {fileID: 3601066906968062841}
-  unitVisual: {fileID: 1985950817653077848}
+  unitVisual: {fileID: 2318317557426790600}
   enemyConfig: {fileID: 11400000, guid: 8a629e69e62654f499038c546813d573, type: 2}
   shamanTargeter: {fileID: 2132873035886577152}
   givenPath: {fileID: 0}
@@ -211,6 +211,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5676501016523247785}
   - component: {fileID: 1985950817653077848}
+  - component: {fileID: 2318317557426790600}
   m_Layer: 0
   m_Name: EnemyVisual
   m_TagString: Untagged
@@ -274,8 +275,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 40
-  m_Sprite: {fileID: -2413806693520163455, guid: bf5fa35dfe5519c488c5cf271beb8f13, type: 3}
-  m_Color: {r: 0.6981132, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 896b3c0626f9f004b8a76282dd0cdc85, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -285,6 +286,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2318317557426790600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5435822555962536687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e54a3e46499a5b4ba7e18b83ae87bf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderer: {fileID: 1985950817653077848}
 --- !u!1 &7838721497319768159
 GameObject:
   m_ObjectHideFlags: 0

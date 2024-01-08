@@ -11,7 +11,7 @@ public class BaseUnit : MonoBehaviour
     [SerializeField, TabGroup("Combat")] private UnitAutoAttacker autoAttacker;
     [SerializeField, TabGroup("Stats")] private UnitStats stats;
     [SerializeField, TabGroup("Movement")] private UnitMovement movement;
-    [SerializeField, TabGroup("Visual")] private SpriteRenderer unitVisual;
+    [SerializeField, TabGroup("Visual")] private UnitVisualHandler unitVisual;
 
     private AutoAttackHandler autoAttackHandler;
 
@@ -20,7 +20,6 @@ public class BaseUnit : MonoBehaviour
     public DamageDealer DamageDealer { get => damageDealer; }
     public Affector Affector { get => affector; }
     public Effectable Effectable { get => effectable; }
-
     public virtual StatSheet BaseStats { get { return null; } }
     public UnitStats Stats { get => stats; }
     public OffensiveAbility AutoAttack { get => autoAttack; }
@@ -43,7 +42,7 @@ public class BaseUnit : MonoBehaviour
         Stats.OnStatChanged += Movement.AddSpeed;
         AutoAttacker.SetUp(this);
         Movement.SetUp(this);
-       // unitVisual.sprite = givenConfig.UnitSprite; /*for now*/
+        unitVisual.Init(this, givenConfig);
     }
 
 

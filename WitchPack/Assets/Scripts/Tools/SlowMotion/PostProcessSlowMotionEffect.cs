@@ -1,15 +1,14 @@
 ﻿using System;
-using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 
 [Serializable]
 public class PostProcessSlowMotionEffect : EffectTransitionLerp<PostProcessType>
 {
-    private PostProcessVolume _postProcessVolume;
+    private Volume _postProcessVolume;
 
-    public bool IsInitialization { get; }
-
-    public void Init(PostProcessVolume postProcessVolume)
+    public void Init(Volume postProcessVolume)
     {
         _postProcessVolume = postProcessVolume;
     }
@@ -19,29 +18,16 @@ public class PostProcessSlowMotionEffect : EffectTransitionLerp<PostProcessType>
         switch (type)
         {
             case PostProcessType.Bloom:
-                try
+                if (_postProcessVolume.profile.TryGet<Bloom>(out var bloom))
                 {
-                    var bloom = _postProcessVolume.profile.GetSetting<Bloom>();
                     bloom.intensity.value = value;
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    throw;
                 }
                 break;
             case PostProcessType.Vignette:
-                try
+                if (_postProcessVolume.profile.TryGet<Vignette>(out var vignette))
                 {
-                    var vignette = _postProcessVolume.profile.GetSetting<Vignette>();
                     vignette.intensity.value = value;
                 }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    throw;
-                }
-
                 break;
         }
     }
