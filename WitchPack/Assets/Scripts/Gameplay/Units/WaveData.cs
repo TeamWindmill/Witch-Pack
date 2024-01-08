@@ -1,20 +1,54 @@
+using Sirenix.OdinInspector;
+using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "WaveData", menuName = "WaveData")]
-public class WaveData : MonoBehaviour
+[CreateAssetMenu(fileName = "WaveData", menuName = "Wave")]
+public class WaveData : ScriptableObject
 {
-    private float spwanInterval;
-    private float waveInterval;
-    private EnemySpawnData[] spawnData;
+    [SerializeField] private float waveInterval;//the interval between the end a wave to the beginning of the next one 
+    [SerializeField] private EnemySpawnData[] waves;
 
-    public EnemySpawnData[] SpawnData { get => spawnData; }
+    public EnemySpawnData[] Waves { get => waves; }
     public float WaveInterval { get => waveInterval; }
-    public float SpwanInterval { get => spwanInterval; }
+
+    [Button]
+    public void CalcSpawns()
+    {
+        for (int i = 0; i < waves.Length; i++)
+        {
+            int highestDivision = waves[i].Groups[0].GetNumberOfSpawns();
+            foreach (var group in waves[i].Groups)
+            {
+                if (group.GetNumberOfSpawns() > highestDivision)
+                {
+                    highestDivision = group.GetNumberOfSpawns();
+                }
+            }
+            waves[i].totalSpawns = highestDivision;
+        }
+    }
+
 }
 
+[Serializable]
 public struct EnemySpawnData
 {
-    public int Amount;
-    public EnemyConfig enemyType;
+    [ReadOnly] public int totalSpawns;
+    public float SpwanInterval;
+    public EnemyGroup[] Groups;
+}
+
+[Serializable]
+public struct EnemyGroup
+{
+    public EnemyConfig Enemy;
+    public int AmountPerSpawn;
+    public int TotalAmount;
+    [Min(1)] public int FirstSpawn;//this is the spawn interval this group will start spawaning at
+
+    public int GetNumberOfSpawns()
+    {
+        return (TotalAmount / AmountPerSpawn) + (TotalAmount % AmountPerSpawn) + (FirstSpawn - 1);
+    }
 
 }
