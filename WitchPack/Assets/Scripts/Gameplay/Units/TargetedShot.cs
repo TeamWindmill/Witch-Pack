@@ -10,8 +10,8 @@ public class TargetedShot : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     private BaseAbility ability;
     private BaseUnit owner;
-    private Vector3 target;
-    public void Fire(BaseUnit shooter, BaseAbility givenAbility, Vector2 dir, Vector3 target)
+    private Transform target;
+    public void Fire(BaseUnit shooter, BaseAbility givenAbility, Vector2 dir, Transform target)
     {
         owner = shooter;
         ability = givenAbility;
@@ -39,9 +39,9 @@ public class TargetedShot : MonoBehaviour
         float counter = 0;
         while (counter <= 1)
         {
-            Vector3 positionLerp = Vector3.Lerp(startPosition, target, counter);
+            Vector3 positionLerp = Vector3.Lerp(startPosition, target.position, counter);
             transform.position = positionLerp;
-            counter += Time.deltaTime * 10f;
+            counter += Time.deltaTime * 20f;
             yield return new WaitForEndOfFrame();
         }
     }

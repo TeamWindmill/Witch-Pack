@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
-
+using System.Collections;
+using UnityEngine;
+using UnityEngine.AI;
 public class UnitMovement : MonoBehaviour
 {
     private bool reachedDest;
@@ -10,10 +9,42 @@ public class UnitMovement : MonoBehaviour
     public Action<Vector3> OnDestenationSet;
     public Action<Vector3> OnDestenationReached;
     private Coroutine activeMovementRoutine;
+    private BaseUnit owner;
+    [SerializeField] private NavMeshAgent agent;
+
+    //testing - until selection system is implemented
+    [SerializeField] private bool input;
+
+    private void Awake()
+    {
+        agent.updateRotation = false;
+        agent.updateUpAxis = false;
+    }
+
+    public void SetUp(BaseUnit givenOwner)
+    {
+        owner = givenOwner;
+    }
+
+    public void SetSpeed(float value)
+    {
+        agent.speed = value;
+        agent.acceleration = agent.speed;
+    }
+
+    public void AddSpeed(StatType stat, float value)
+    {
+        if (stat == StatType.MovementSpeed)
+        {
+            agent.speed += value;
+            agent.acceleration = agent.speed;
+        }
+    }
+
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (input && Input.GetMouseButtonDown(0))
         {
             Vector3 newDest = GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
             SetDest(newDest);
@@ -25,29 +56,22 @@ public class UnitMovement : MonoBehaviour
         currentDest = worldPos;
         reachedDest = false;
         OnDestenationSet?.Invoke(worldPos);
+        agent.destination = (Vector2)worldPos;
         if (!ReferenceEquals(activeMovementRoutine, null))
         {
             StopCoroutine(activeMovementRoutine);
         }
-        activeMovementRoutine = StartCoroutine(LerpToPos());
+        activeMovementRoutine = StartCoroutine(WaitTilReached());
     }
 
-    //testing
-    private IEnumerator LerpToPos()
+    private IEnumerator WaitTilReached()
     {
-        Vector3 startPosition = transform.position;
-        float counter = 0;
-        while (counter <= 1)
-        {
-            Vector3 positionLerp = Vector3.Lerp(startPosition, currentDest, counter);
-            transform.parent.position = positionLerp;
-            counter += Time.deltaTime * 2;
-            yield return new WaitForEndOfFrame();
-        }
-        yield return new WaitForEndOfFrame();
-        OnDestenationReached?.Invoke(currentDest);
-        reachedDest = true;
+        yield return new WaitUntil(() => agent.velocity != Vector3.zero);
+        yield return new WaitUntil(() =>  agent.remainingDistance <= agent.stoppingDistance);
+        OnDestenationReached?.Invoke(transform.position);
     }
 
 
+
+   
 }

@@ -13,11 +13,11 @@ public class ShamanAutoAttack : OffensiveAbility
             Transform target = (caster as Shaman).EnemyTargeter.GetClosestTarget()?.transform;
             if (!ReferenceEquals(target, null))
             {
-                TargetedShot newPew = GameManager.Instance.PoolManager.ShamanAutoAttackPool.GetPooledObject();
+                TargetedShot newPew = LevelManager.Instance.PoolManager.ShamanAutoAttackPool.GetPooledObject();
                 newPew.transform.position = caster.transform.position;
                 newPew.gameObject.SetActive(true);
                 Vector2 dir = (target.position - caster.transform.position).normalized;
-                newPew.Fire(caster, this, dir.normalized, target.position);
+                newPew.Fire(caster, this, dir.normalized, target);
                 return true;
             }
             else

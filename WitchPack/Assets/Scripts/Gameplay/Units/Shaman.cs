@@ -14,10 +14,9 @@ public class Shaman : BaseUnit
     public override void Init(BaseUnitConfig baseUnitConfig)
     {
         shamanConfig = baseUnitConfig as ShamanConfig;
-        base.Init(baseUnitConfig);
+        base.Init(shamanConfig);
         enemyTargeter.SetRadius(Stats.BonusRange);
         Stats.OnStatChanged += enemyTargeter.AddRadius;
-        AutoAttacker?.SetUp(this);
         IntializeCastingHandlers();
         Movement.OnDestenationSet += DisableAttacker;
         Movement.OnDestenationReached += EnableAttacker;

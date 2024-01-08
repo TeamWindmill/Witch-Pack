@@ -8,7 +8,12 @@ public class GameManager : MonoSingleton<GameManager>
     public LevelConfig CurrentLevelConfig { get; private set; }
 
     [SerializeField] private SceneHandler _sceneHandler;
-    [SerializeField] private PoolManager poolManager;
+    //[SerializeField] private PoolManager poolManager;
+
+    // [SerializeField] private BaseUnitConfig shamanConf;
+    // [SerializeField] private BaseUnitConfig enemyConf;
+    // [SerializeField] private Shaman testShaman;
+    // [SerializeField] private Enemy[] enemies;
 
     private CameraHandler _cameraHandler;
 
@@ -40,14 +45,15 @@ public class GameManager : MonoSingleton<GameManager>
         CameraHandler = FindObjectOfType<CameraHandler>(); //May need to change 
     }
 
-    public PoolManager PoolManager
-    {
-        get => poolManager;
-    }
+    // public PoolManager PoolManager
+    // {
+    //     get => poolManager;
+    // }
 
     void Start()
     {
         SceneHandler.LoadScene(SceneType.MainMenu);
+        //InitUnits();
     }
 
     public void SetLevelConfig(LevelConfig levelConfig)
@@ -72,4 +78,14 @@ public class GameManager : MonoSingleton<GameManager>
     {
         Application.Quit();
     }
+
+    // private void InitUnits()
+    // {
+    //     foreach (var item in enemies)
+    //     {
+    //         item.Init(enemyConf);
+    //     }
+    //     testShaman.Init(shamanConf);
+    // }
+
 }
