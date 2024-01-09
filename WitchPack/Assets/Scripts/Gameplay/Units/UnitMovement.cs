@@ -29,7 +29,7 @@ public class UnitMovement : MonoBehaviour
     public void SetSpeed(float value)
     {
         agent.speed = value;
-        agent.acceleration = agent.speed;
+        //agent.acceleration = agent.speed;
     }
 
     public void AddSpeed(StatType stat, float value)
@@ -37,7 +37,7 @@ public class UnitMovement : MonoBehaviour
         if (stat == StatType.MovementSpeed)
         {
             agent.speed += value;
-            agent.acceleration = agent.speed;
+            //agent.acceleration = agent.speed;
         }
     }
 
@@ -53,6 +53,8 @@ public class UnitMovement : MonoBehaviour
 
     public void SetDest(Vector3 worldPos)
     {
+        agent.velocity = Vector3.zero;
+        currentDest = transform.position;
         currentDest = worldPos;
         reachedDest = false;
         OnDestenationSet?.Invoke(worldPos);

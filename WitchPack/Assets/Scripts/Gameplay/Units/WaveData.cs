@@ -24,13 +24,13 @@ public class WaveData : ScriptableObject
 }
 
 [Serializable]
-public struct EnemySpawnData
+public class EnemySpawnData
 {
     [ReadOnly] public int TotalSpawns;
     public float SpwanInterval;
     public List<EnemyGroup> Groups;
 
-    public void CalcSpawns()
+    public int CalcSpawns()
     {
         int highestDivision = Groups[0].GetNumberOfSpawns();
         foreach (var group in Groups)
@@ -42,6 +42,7 @@ public struct EnemySpawnData
         }
 
         TotalSpawns = highestDivision;
+        return highestDivision;
     }
 
 }

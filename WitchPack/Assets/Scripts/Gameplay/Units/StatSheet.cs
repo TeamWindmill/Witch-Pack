@@ -1,13 +1,22 @@
-using UnityEngine;
 using Sirenix.OdinInspector;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "StatSheet", menuName = "Stat Sheet")]
 public class StatSheet : ScriptableObject
 {
+    [SerializeField, ReadOnly] private float damageMitigation;
+
+    [Button]
+    public void CalcDamageMitigation()
+    {
+        float damageTaken = 100 * 100 / (100 + Armor.value);
+        damageMitigation = (1 - (damageTaken / 100)) * 100;
+    }
+
     //base stats here - affects every unit 
     public BaseStat MaxHp = new BaseStat(StatType.MaxHp);
     public BaseStat BaseDamage = new BaseStat(StatType.BaseDamage);
-    public BaseStatDecimal AttackSpeed = new BaseStatDecimal(StatType.AttackSpeed);
+    public BaseStatDecimal AttackSpeed = new BaseStatDecimal(StatType.AttackSpeed);//capped at unit stats 
     public BaseStat BaseRange = new BaseStat(StatType.BaseRange);
     public BaseStat MovementSpeed = new BaseStat(StatType.MovementSpeed);
     public BaseStat CritDamage = new BaseStat(StatType.CritDamage);
@@ -19,7 +28,7 @@ public class StatSheet : ScriptableObject
     public BaseStat BonusStatusEffectDuration = new BaseStat(StatType.BonusStatusEffectDuration);
     public BaseStat AbilityProjectileSpeed = new BaseStat(StatType.AbilityProjectileSpeed);
     public BaseStat AbilityProjectilePenetration = new BaseStat(StatType.AbilityProjectilePenetration);
-    
+
 }
 
 public enum StatType
