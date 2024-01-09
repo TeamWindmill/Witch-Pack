@@ -14,25 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveInterval: 10
   waves:
-  - totalSpawns: 5
-    SpwanInterval: 1.5
-    Groups:
-    - Enemy: {fileID: 11400000, guid: 8a629e69e62654f499038c546813d573, type: 2}
-      AmountPerSpawn: 2
-      TotalAmount: 10
-      FirstSpawn: 1
-    - Enemy: {fileID: 11400000, guid: 8a629e69e62654f499038c546813d573, type: 2}
-      AmountPerSpawn: 1
-      TotalAmount: 1
-      FirstSpawn: 1
-  - totalSpawns: 5
+  - TotalSpawns: 0
     SpwanInterval: 1.5
     Groups:
     - Enemy: {fileID: 11400000, guid: 8a629e69e62654f499038c546813d573, type: 2}
       AmountPerSpawn: 3
-      TotalAmount: 15
-      FirstSpawn: 1
+      TotalAmount: 35
+      SpawnedAtInterval: 1
+      NumSpawned: 0
     - Enemy: {fileID: 11400000, guid: 8a629e69e62654f499038c546813d573, type: 2}
-      AmountPerSpawn: 1
-      TotalAmount: 3
-      FirstSpawn: 2
+      AmountPerSpawn: 8
+      TotalAmount: 8
+      SpawnedAtInterval: 4
+      NumSpawned: 0

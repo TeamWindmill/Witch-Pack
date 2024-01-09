@@ -1,35 +1,77 @@
+using Sirenix.OdinInspector;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WaveHandler : MonoBehaviour
 {
     [SerializeField] private EnemySpawnPoint[] spawnPoints;
-    private WaveData waveData;//wave data is supposed to be given to a room from the inspector in the editor and not in runtime
+    [SerializeField] private WaveData waveData;//wave data is supposed to be given to a room from the inspector in the editor and not in runtime
+    [SerializeField] private List<EnemySpawnData> spawnData;
 
-   /* public void Init(WaveData givenWaveData)
+
+    public void Init()
     {
-        waveData = givenWaveData;
+        foreach (EnemySpawnData item in waveData.waves)
+        {
+            EnemySpawnData newWave = new EnemySpawnData();
+            newWave.Groups = new List<EnemyGroup>();
+
+            newWave.Groups.AddRange(item.Groups);
+
+            newWave.SpwanInterval = item.SpwanInterval;
+            newWave.CalcSpawns();
+
+            spawnData.Add(newWave);
+        }
+
+
     }
+
+    [Button]
+    public void StartSpawning()
+    {
+        StartCoroutine(StartSpawningWaves());
+    }
+
     private IEnumerator StartSpawningWaves()
     {
         EnemySpawnPoint spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        for (int i = 0; i < waveData.SpawnData.Length; i++)
+        for (int i = 0; i < spawnData.Count; i++)
         {
-            yield return StartCoroutine(SpawnWave(waveData.SpawnData[i]));
-            yield return StartCoroutine(IntervalDelay(waveData.WaveInterval));
+            spawnData[i].CalcSpawns();
+            yield return StartCoroutine(SpawnWave(spawnData[i], spawnPoint));
+            yield return StartCoroutine(IntervalDelay(10f));//temp
         }
     }
 
 
-    private IEnumerator SpawnWave(EnemySpawnData givenData)
+    private IEnumerator SpawnWave(EnemySpawnData givenData, EnemySpawnPoint point)
     {
-        EnemySpawnPoint spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
-        for (int i = 0; i < givenData.Enemies.Length; i++)
+        for (int i = 0; i < givenData.TotalSpawns; i++)//loop over how many spawns there are in total
         {
-            spawnPoint.SpawnEnemy(givenData.Enemies[i]);//basically how it should work?
+            for (int j = 0; j < givenData.Groups.Count; j++)
+            {
+                if (givenData.Groups[j].SpawnedAtInterval <= i + 1)
+                {
+                    for (int z = 0; z < givenData.Groups[j].AmountPerSpawn; z++)
+                    {
+                        if (givenData.Groups[j].TotalAmount <= givenData.Groups[j].NumSpawned)//if ran out of enemies to spawn break out.
+                        {
+                            break;
+                        }
+                        point.SpawnEnemy(givenData.Groups[j].Enemy);
+
+                        EnemyGroup group = givenData.Groups[j];
+                        group.NumSpawned++;
+                        givenData.Groups[j] = group;
+
+                        yield return new WaitForSeconds(0.5f);//for now
+                    }
+                }
+            }
             yield return StartCoroutine(IntervalDelay(givenData.SpwanInterval));
         }
-        yield return new WaitForEndOfFrame();
     }
 
     private IEnumerator IntervalDelay(float givenInterval)
@@ -37,12 +79,8 @@ public class WaveHandler : MonoBehaviour
         float counter = 0f;
         while (counter < givenInterval)
         {
-            counter += Time.deltaTime *//* * game time thing*//*; //for slow/ speed up time effect
+            counter += Time.deltaTime; //* game time thing; //for slow/ speed up time effect
             yield return new WaitForEndOfFrame();
         }
-    }*/
-
-
-    //wave data -> interval between waves, number of enemies of each type in each wave, interval between sapwns, 
-
+    }
 }
