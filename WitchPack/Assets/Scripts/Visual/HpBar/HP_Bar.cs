@@ -1,43 +1,46 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class HP_Bar : MonoBehaviour
 {
     [SerializeField] Transform fillSprite;
+    [SerializeField] SpriteRenderer fillSpriteRenderer;
     [SerializeField] float drainDuration;
     [Header("Colors")] [SerializeField] Color defaultBarColor;
     [SerializeField] Color heroHealthColor;
     [SerializeField] Color enemyHealthColor;
     [SerializeField] Color coreHealthColor;
 
-    float _maxValue;
 
     Vector3 _originalScale;
-    private SpriteRenderer _fillSpriteRenderer;
+    float _maxValue;
 
-    //float targetValue;
     Coroutine _runningSmoothBar;
+
+    private void OnValidate()
+    {
+        fillSpriteRenderer ??= fillSprite.GetComponentInChildren<SpriteRenderer>();
+    }
 
     public void Init(float max, UnitType entityType)
     {
-        //fillImage.fillAmount = 1f; //just to make sure. later on this will be removed and it will just read the value
         _originalScale = fillSprite.localScale;
         fillSprite.localScale = new Vector3(1f, _originalScale.y, _originalScale.z);
 
-        _fillSpriteRenderer = fillSprite.GetComponentInChildren<SpriteRenderer>();
         switch (entityType)
         {
             case UnitType.Shaman:
-                _fillSpriteRenderer.color = heroHealthColor;
+                fillSpriteRenderer.color = heroHealthColor;
                 break;
             case UnitType.Enemy:
-                _fillSpriteRenderer.color = enemyHealthColor;
+                fillSpriteRenderer.color = enemyHealthColor;
                 break;
             case UnitType.Temple:
-                _fillSpriteRenderer.color = coreHealthColor;
+                fillSpriteRenderer.color = coreHealthColor;
                 break;
             default:
-                _fillSpriteRenderer.color = defaultBarColor;
+                fillSpriteRenderer.color = defaultBarColor;
                 break;
         }
 
@@ -46,25 +49,22 @@ public class HP_Bar : MonoBehaviour
 
     public void Init(float max)
     {
-        //fillImage.fillAmount = 1f; //just to make sure. later on this will be removed and it will just read the value
         _originalScale = fillSprite.localScale;
         fillSprite.localScale = new Vector3(1f, _originalScale.y, _originalScale.z);
 
-        _fillSpriteRenderer = fillSprite.GetComponentInChildren<SpriteRenderer>();
-        _fillSpriteRenderer.color = defaultBarColor;
+        fillSpriteRenderer = fillSprite.GetComponentInChildren<SpriteRenderer>();
+        fillSpriteRenderer.color = defaultBarColor;
 
         _maxValue = max;
     }
 
     public void SetBarValue(float value)
     {
-        //fillImage.fillAmount = value/ _maxValue;
         fillSprite.localScale = new Vector3(value / _maxValue, _originalScale.y, _originalScale.z);
     }
 
     public void SetBarValueSmoothly(float value)
     {
-        //targetValue = value;
         if (_runningSmoothBar != null)
         {
             StopCoroutine(_runningSmoothBar);
@@ -85,6 +85,13 @@ public class HP_Bar : MonoBehaviour
             SetBarValue(currentValue);
             yield return null;
         }
+    }
+
+    public void SetBarValue(Damageable arg1, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4)
+    {
+        var ratio = arg1.CurrentHp / _maxValue;
+        if (ratio < 0) ratio = 0;
+        fillSprite.localScale = new Vector3(ratio, _originalScale.y, _originalScale.z);
     }
 }
 

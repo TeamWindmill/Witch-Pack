@@ -35,6 +35,8 @@ public class CameraHandler : MonoBehaviour
 
     [SerializeField, Tooltip("toggle whether the camera moves to the mouse position when zooming")]
     private bool _enableZoomMovesCamera = false;
+    
+    [SerializeField] private bool _testing = false;
 
     [Header("Game Objects")] [TabGroup("Cameras"), SerializeField]
     private Camera _mainCamera;
@@ -176,7 +178,7 @@ public class CameraHandler : MonoBehaviour
 
         var tempLogDragPanSpeed = _dragPanSpeed;
         _dragPanSpeed *= mouseMovementDelta.magnitude;
-        Debug.Log($"drag speed: {tempLogDragPanSpeed}, Magnitude: {_dragPanSpeed}");
+        if (_testing) Debug.Log($"drag speed: {tempLogDragPanSpeed}, Magnitude: {_dragPanSpeed}");
         return mouseMovementDelta.normalized;
     }
 

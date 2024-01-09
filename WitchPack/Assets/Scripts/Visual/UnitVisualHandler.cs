@@ -3,13 +3,19 @@ using UnityEngine;
 
 public class UnitVisualHandler : MonoBehaviour
 {
-    [HideInInspector,SerializeField] private SpriteRenderer spriteRenderer;
+    public Action<bool> OnSpriteFlip;
     
+    [HideInInspector,SerializeField] private SpriteRenderer spriteRenderer;
+    [HideInInspector,SerializeField] private Animator unitAnimator;
+    public Animator UnitAnimator => unitAnimator;
+
+
     private Vector2 _lastPos;
     private BaseUnit _baseUnit;
     private void OnValidate()
     {
         spriteRenderer ??= GetComponent<SpriteRenderer>();
+        unitAnimator ??= GetComponent<Animator>();
     }
 
     public void Init(BaseUnit unit, BaseUnitConfig config)
@@ -36,10 +42,10 @@ public class UnitVisualHandler : MonoBehaviour
         }
     }
     
-    public void SpriteFlipX(bool doFlip)
+    private void SpriteFlipX(bool doFlip)
     {
         spriteRenderer.flipX = doFlip;
+        OnSpriteFlip?.Invoke(doFlip);
         //_silhouette.flipX = doFlip;
-        //OnSpriteFlipX?.Invoke(doFlip);
     }
 }

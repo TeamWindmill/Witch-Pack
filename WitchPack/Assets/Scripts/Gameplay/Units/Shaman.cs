@@ -5,6 +5,7 @@ using UnityEngine;
 public class Shaman : BaseUnit
 {
     [SerializeField, TabGroup("Combat")] private EnemyTargeter enemyTargeter;
+    [SerializeField, TabGroup("Visual")] private ShamanAnimator shamanAnimator;
     private ShamanConfig shamanConfig;
     private List<BaseAbility> knownAbilities = new List<BaseAbility>();
     private List<UnitCastingHandler> castingHandlers = new List<UnitCastingHandler>();
@@ -20,6 +21,7 @@ public class Shaman : BaseUnit
         IntializeCastingHandlers();
         Movement.OnDestenationSet += DisableAttacker;
         Movement.OnDestenationReached += EnableAttacker;
+        shamanAnimator.Init(this,UnitVisual.UnitAnimator);
 
     }
 

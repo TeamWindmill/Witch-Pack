@@ -1,8 +1,10 @@
+using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class BaseUnit : MonoBehaviour
 {
+    [SerializeField] private UnitType unitType;
     [SerializeField, TabGroup("Combat")] private Damageable damageable;
     [SerializeField, TabGroup("Combat")] private DamageDealer damageDealer;
     [SerializeField, TabGroup("Combat")] private Affector affector;
@@ -13,9 +15,14 @@ public class BaseUnit : MonoBehaviour
     [SerializeField, TabGroup("Movement")] private UnitMovement movement;
     [SerializeField, TabGroup("Visual")] private UnitVisualHandler unitVisual;
 
+
+    [SerializeField, TabGroup("Visual")] private bool hasHPBar;
+    [SerializeField,ShowIf(nameof(hasHPBar)), TabGroup("Visual")] private HP_Bar hpBar;
+
     private AutoAttackHandler autoAttackHandler;
 
 
+    public UnitVisualHandler UnitVisual => unitVisual;
     public Damageable Damageable { get => damageable; }
     public DamageDealer DamageDealer { get => damageDealer; }
     public Affector Affector { get => affector; }
@@ -32,17 +39,23 @@ public class BaseUnit : MonoBehaviour
 
     public virtual void Init(BaseUnitConfig givenConfig)
     {
+        stats = new UnitStats(this);
         damageable = new Damageable(this);
         damageDealer = new DamageDealer(this, autoAttack);
         affector = new Affector(this);
         effectable = new Effectable(this);
-        stats = new UnitStats(this);
         autoAttackHandler = new AutoAttackHandler(this, autoAttack);
         Movement.SetSpeed(Stats.MovementSpeed);
         Stats.OnStatChanged += Movement.AddSpeed;
         AutoAttacker.SetUp(this);
         Movement.SetUp(this);
         unitVisual.Init(this, givenConfig);
+        if (hasHPBar)
+        {
+            hpBar.Init(damageable.MaxHp,unitType);
+            damageable.OnDamageCalc += hpBar.SetBarValue;
+        }
+        
     }
 
 
@@ -56,6 +69,9 @@ public class BaseUnit : MonoBehaviour
         autoAttacker.CanAttack = true;
     }
 
-   
-
+    private void OnDestroy()
+    {
+        if (hasHPBar) damageable.OnDamageCalc -= hpBar.SetBarValue;
+        Stats.OnStatChanged -= Movement.AddSpeed;
+    }
 }
