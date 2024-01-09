@@ -1,15 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class ShamanAnimator : UnitAnimator
 {
+    private bool _movementChange;
+
+    public override void Init(BaseUnit unit)
+    {
+        base.Init(unit);
+        _movementChange = unit.Movement.IsMoving;
+    }
+
     protected override void MoveAnimation()
     {
-        // if (_entityMovementComponent.IsMoving != _movementChange)
-        // {
-        //     _movementChange = _entityMovementComponent.IsMoving; 
-        //     _entityAnimator.SetBool("Walking", _movementChange);
-        // }
+        if (unit.Movement.IsMoving != _movementChange)
+        {
+            _movementChange = unit.Movement.IsMoving; 
+            animator.SetBool("Walking", _movementChange);
+        }
     }
 }

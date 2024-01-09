@@ -15,6 +15,8 @@ public class UnitMovement : MonoBehaviour
     //testing - until selection system is implemented
     [SerializeField] private bool input;
 
+    public bool IsMoving => !agent.isStopped; //need to replace
+
     private void Awake()
     {
         agent.updateRotation = false;
@@ -62,6 +64,11 @@ public class UnitMovement : MonoBehaviour
             StopCoroutine(activeMovementRoutine);
         }
         activeMovementRoutine = StartCoroutine(WaitTilReached());
+    }
+
+    public void ToggleMovement(bool state)
+    {
+        agent.isStopped = state;
     }
 
     private IEnumerator WaitTilReached()

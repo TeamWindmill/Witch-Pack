@@ -17,7 +17,10 @@ public class Enemy : BaseUnit
     {
         Init(enemyConfig);
     }
-
+    private void OnValidate()
+    {
+        enemyAnimator ??= GetComponentInChildren<EnemyAnimator>();
+    }
     public override void Init(BaseUnitConfig givenConfig)
     {
         enemyConfig = givenConfig as EnemyConfig;
@@ -25,7 +28,7 @@ public class Enemy : BaseUnit
         shamanTargeter.SetRadius(Stats.BonusRange);
         Movement.SetDest(givenPath.Waypoints[pointIndex].position);
         Movement.OnDestenationReached += SetNextDest;
-        enemyAnimator.Init(this,UnitVisual.UnitAnimator);
+        enemyAnimator.Init(this);
     }
 
 

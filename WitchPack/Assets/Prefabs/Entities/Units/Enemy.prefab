@@ -153,6 +153,7 @@ MonoBehaviour:
   unitVisual: {fileID: 2318317557426790600}
   hasHPBar: 1
   hpBar: {fileID: 714259947031342330}
+  enemyAnimator: {fileID: 4409901568874554751}
   enemyConfig: {fileID: 11400000, guid: c9729e563b1f8dc4982cbaf376195c9f, type: 2}
   shamanTargeter: {fileID: 2132873035886577152}
   givenPath: {fileID: 0}
@@ -216,6 +217,8 @@ GameObject:
   - component: {fileID: 5676501016523247785}
   - component: {fileID: 1985950817653077848}
   - component: {fileID: 2318317557426790600}
+  - component: {fileID: 4409901568874554751}
+  - component: {fileID: 2438517714681042483}
   m_Layer: 0
   m_Name: EnemyVisual
   m_TagString: Untagged
@@ -303,6 +306,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 1985950817653077848}
+  unitAnimator: {fileID: 0}
+--- !u!114 &4409901568874554751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5435822555962536687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 893eacf97488c05468b8e8995bbcc77a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &2438517714681042483
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5435822555962536687}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9a2fa0a9203435143934a6900fe251ba, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &7838721497319768159
 GameObject:
   m_ObjectHideFlags: 0

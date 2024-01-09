@@ -62,6 +62,7 @@ MonoBehaviour:
   hasHPBar: 1
   hpBar: {fileID: 6607112471978238696}
   enemyTargeter: {fileID: 4238458035565866751}
+  shamanAnimator: {fileID: 0}
 --- !u!50 &7156522581338340880
 Rigidbody2D:
   serializedVersion: 4
@@ -398,6 +399,8 @@ GameObject:
   - component: {fileID: 7089430048365987238}
   - component: {fileID: 7305447644303394504}
   - component: {fileID: 3336282220744888323}
+  - component: {fileID: 7099561053656345452}
+  - component: {fileID: 2313241048133495088}
   m_Layer: 0
   m_Name: ShamanVisual
   m_TagString: Untagged
@@ -485,6 +488,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 7305447644303394504}
+  unitAnimator: {fileID: 0}
+--- !u!114 &7099561053656345452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5069646117184760680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a7030572dc1cb5419a412e55ca644dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!95 &2313241048133495088
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5069646117184760680}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0cd45dd2bd38be642a0562447966bb64, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8671966536731905977
 GameObject:
   m_ObjectHideFlags: 0

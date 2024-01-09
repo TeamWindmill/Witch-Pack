@@ -1,3 +1,4 @@
+using System;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,12 @@ public class Shaman : BaseUnit
 
 
     public override StatSheet BaseStats => shamanConfig.BaseStats;
+
+    private void OnValidate()
+    {
+        shamanAnimator ??= GetComponentInChildren<ShamanAnimator>();
+    }
+
     public override void Init(BaseUnitConfig baseUnitConfig)
     {
         shamanConfig = baseUnitConfig as ShamanConfig;
@@ -21,7 +28,7 @@ public class Shaman : BaseUnit
         IntializeCastingHandlers();
         Movement.OnDestenationSet += DisableAttacker;
         Movement.OnDestenationReached += EnableAttacker;
-        shamanAnimator.Init(this,UnitVisual.UnitAnimator);
+        shamanAnimator.Init(this);
 
     }
 
