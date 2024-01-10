@@ -6,7 +6,6 @@ public class ShamanAnimator : UnitAnimator
     public override void Init(BaseUnit unit)
     {
         base.Init(unit);
-        _movementChange = unit.Movement.IsMoving;
     }
 
     protected override void MoveAnimation()

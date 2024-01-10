@@ -15,7 +15,7 @@ public class UnitMovement : MonoBehaviour
     //testing - until selection system is implemented
     [SerializeField] private bool input;
 
-    public bool IsMoving => !agent.isStopped; //need to replace
+    public bool IsMoving => agent.velocity.sqrMagnitude > 0; //need to replace
 
     private void Awake()
     {

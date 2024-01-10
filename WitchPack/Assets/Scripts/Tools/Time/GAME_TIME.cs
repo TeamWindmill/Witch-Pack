@@ -82,6 +82,7 @@ public class GAME_TIME : MonoBehaviour
     private static void SetTime(float timeRate)
     {
         _timeRate = timeRate;
+        Time.timeScale = timeRate;
 
         Debug.Log($"Set time to {timeRate}");
 
