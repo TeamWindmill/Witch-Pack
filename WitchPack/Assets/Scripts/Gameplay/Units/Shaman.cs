@@ -7,6 +7,7 @@ public class Shaman : BaseUnit
 {
     [SerializeField, TabGroup("Combat")] private EnemyTargeter enemyTargeter;
     [SerializeField, TabGroup("Visual")] private ShamanAnimator shamanAnimator;
+    [SerializeField] private ClickHelper clicker;
     private ShamanConfig shamanConfig;
     private List<BaseAbility> knownAbilities = new List<BaseAbility>();
     private List<UnitCastingHandler> castingHandlers = new List<UnitCastingHandler>();
@@ -29,7 +30,7 @@ public class Shaman : BaseUnit
         Movement.OnDestenationSet += DisableAttacker;
         Movement.OnDestenationReached += EnableAttacker;
         shamanAnimator.Init(this);
-
+        clicker.OnClick += SetSelectedShaman;
     }
 
 
@@ -61,6 +62,10 @@ public class Shaman : BaseUnit
         }
     }
 
+    private void SetSelectedShaman()
+    {
+        LevelManager.Instance.SelectionManager.SetSelectedShaman(this);
+    }
 
     public EnemyTargeter EnemyTargeter { get => enemyTargeter; }
     public ShamanConfig ShamanConfig { get => shamanConfig; }

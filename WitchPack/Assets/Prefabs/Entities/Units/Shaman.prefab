@@ -62,7 +62,8 @@ MonoBehaviour:
   hasHPBar: 1
   hpBar: {fileID: 6607112471978238696}
   enemyTargeter: {fileID: 4238458035565866751}
-  shamanAnimator: {fileID: 0}
+  shamanAnimator: {fileID: 7099561053656345452}
+  clicker: {fileID: 1861919391548874701}
 --- !u!50 &7156522581338340880
 Rigidbody2D:
   serializedVersion: 4
@@ -319,7 +320,7 @@ GameObject:
   - component: {fileID: 7959801215139176056}
   - component: {fileID: 1861919391548874701}
   - component: {fileID: 1659051077440101610}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: ClickHelper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -382,7 +383,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -501,6 +502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a7030572dc1cb5419a412e55ca644dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 2313241048133495088}
 --- !u!95 &2313241048133495088
 Animator:
   serializedVersion: 5
