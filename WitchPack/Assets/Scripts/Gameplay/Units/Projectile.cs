@@ -39,9 +39,6 @@ public class Projectile : MonoBehaviour
         }
     }
 
-
-
-
     private void Rotate(Vector2 dir)
     {
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;

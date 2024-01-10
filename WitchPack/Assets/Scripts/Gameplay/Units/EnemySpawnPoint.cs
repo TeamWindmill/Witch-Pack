@@ -10,9 +10,10 @@ public class EnemySpawnPoint : MonoBehaviour
 
     public void SpawnEnemy(EnemyConfig givenConf)
     {
-        Enemy enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+        Enemy enemy = LevelManager.Instance.PoolManager.EnemyPool.GetPooledObject();
         enemy.transform.parent = transform;// for now
         enemy.SetPath(path);
+        enemy.gameObject.SetActive(true);
         enemy.Init(givenConf);
     }
 

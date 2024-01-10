@@ -48,12 +48,12 @@ public abstract class UnitAnimator : MonoBehaviour
     {
         MoveAnimation();
     }
-
-    private void OnDestroy()
+        
+  /*  private void OnDestroy() //pointless?
     {
         unit.Damageable.OnHitGFX -= GetHitAnimation;
         unit.Damageable.OnDeathGFX -= DeathAnimation;
         unit.UnitVisual.OnSpriteFlip -= FlipAnimations;
         unit.AutoAttackHandler.OnAttack -= AttackAnimation;
-    }
+    }*/
 }

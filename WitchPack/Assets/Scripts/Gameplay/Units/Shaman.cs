@@ -1,4 +1,3 @@
-using System;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,12 +31,24 @@ public class Shaman : BaseUnit
         shamanAnimator.Init(this);
         clicker.OnClick += SetSelectedShaman;
         clicker.OnClick += ApplySelectedSlowMo;
+        Movement.OnDestenationSet += DisableSlowMo;
+        Movement.OnDestenationSet += DeselectShaman;
+
     }
 
     //test
     private void ApplySelectedSlowMo()
     {
-        GAME_TIME.SetTimeStep(0.5f);
+        if (!ReferenceEquals(LevelManager.Instance.SelectionManager.SelectedShaman, this))
+        {
+            GAME_TIME.SetTimeStep(0.5f);
+        }
+    }
+
+    private void DisableSlowMo()
+    {
+        GAME_TIME.SetTimeStep(1f);
+
     }
 
     private void IntializeCastingHandlers()
@@ -72,7 +83,13 @@ public class Shaman : BaseUnit
     {
         LevelManager.Instance.SelectionManager.SetSelectedShaman(this);
     }
-
+    private void DeselectShaman()
+    {
+        if (ReferenceEquals(LevelManager.Instance.SelectionManager.SelectedShaman, this))
+        {
+            LevelManager.Instance.SelectionManager.SetSelectedShaman(null);
+        }
+    }
     public EnemyTargeter EnemyTargeter { get => enemyTargeter; }
     public ShamanConfig ShamanConfig { get => shamanConfig; }
     public List<BaseAbility> KnownAbilities { get => knownAbilities; }

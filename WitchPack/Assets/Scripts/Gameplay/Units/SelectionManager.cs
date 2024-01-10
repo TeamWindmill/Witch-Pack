@@ -6,7 +6,7 @@ public class SelectionManager : MonoBehaviour
 {
     private Shaman selectedShaman;
 
-
+    public Shaman SelectedShaman { get => selectedShaman; }
 
     public void SetSelectedShaman(Shaman selectedShaman)
     {

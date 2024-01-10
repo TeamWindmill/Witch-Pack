@@ -6,8 +6,8 @@ public class UnitMovement : MonoBehaviour
 {
     private bool reachedDest;
     private Vector2 currentDest;
-    public Action<Vector3> OnDestenationSet;
-    public Action<Vector3> OnDestenationReached;
+    public Action OnDestenationSet;
+    public Action OnDestenationReached;
     private Coroutine activeMovementRoutine;
     private BaseUnit owner;
     [SerializeField] private NavMeshAgent agent;
@@ -21,7 +21,6 @@ public class UnitMovement : MonoBehaviour
     {
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-        GAME_TIME.OnTimeRateChange += ChangeSpeedOnGameTime;
     }
 
     public void SetUp(BaseUnit givenOwner)
@@ -35,11 +34,11 @@ public class UnitMovement : MonoBehaviour
         //agent.acceleration = agent.speed;
     }
 
-    private void ChangeSpeedOnGameTime()
-    {
-        SetSpeed(agent.speed * GAME_TIME.GetCurrentTimeRate);
-    }
 
+    private void Update()
+    {
+        agent.speed *= GAME_TIME.GetCurrentTimeRate;
+    }
 
     public void AddSpeed(StatType stat, float value)
     {
@@ -66,7 +65,7 @@ public class UnitMovement : MonoBehaviour
         currentDest = transform.position;
         currentDest = worldPos;
         reachedDest = false;
-        OnDestenationSet?.Invoke(worldPos);
+        OnDestenationSet?.Invoke();
         agent.destination = (Vector2)worldPos;
         if (!ReferenceEquals(activeMovementRoutine, null))
         {
@@ -84,7 +83,7 @@ public class UnitMovement : MonoBehaviour
     {
         yield return new WaitUntil(() => agent.velocity != Vector3.zero);
         yield return new WaitUntil(() =>  agent.remainingDistance <= agent.stoppingDistance);
-        OnDestenationReached?.Invoke(transform.position);
+        OnDestenationReached?.Invoke();
     }
 
 

@@ -59,12 +59,12 @@ public class BaseUnit : MonoBehaviour
     }
 
 
-    protected void DisableAttacker(Vector3 pos)
+    protected void DisableAttacker()
     {
         autoAttacker.CanAttack = false;
 
     }
-    protected void EnableAttacker(Vector3 pos)
+    protected void EnableAttacker()
     {
         autoAttacker.CanAttack = true;
     }

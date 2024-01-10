@@ -18,6 +18,7 @@ public class Enemy : BaseUnit
     }
     public override void Init(BaseUnitConfig givenConfig)
     {
+        pointIndex = 0;
         enemyConfig = givenConfig as EnemyConfig;
         base.Init(enemyConfig);
         shamanTargeter.SetRadius(Stats.BonusRange);
@@ -32,7 +33,7 @@ public class Enemy : BaseUnit
     }
 
 
-    private void SetNextDest(Vector3 pos)
+    private void SetNextDest()
     {
         pointIndex++;
         if (givenPath.Waypoints.Count <= pointIndex)//if reached the end of the path target nexus 
