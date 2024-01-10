@@ -31,13 +31,18 @@ public class Enemy : BaseUnit
         enemyAnimator.Init(this);
     }
 
+    public void SetPath(CustomPath path)
+    {
+        givenPath = path;
+    }
+
 
     private void SetNextDest(Vector3 pos)
     {
         pointIndex++;
         if (givenPath.Waypoints.Count <= pointIndex)//if reached the end of the path target nexus 
         {
-            return; //for now
+            gameObject.SetActive(false);
         }
         else
         {

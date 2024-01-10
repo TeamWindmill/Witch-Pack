@@ -8,7 +8,7 @@ public class LevelHandler : MonoBehaviour
     [SerializeField] private CustomPath[] paths;
     [SerializeField] private ParticleSystem[] windEffectsParticleSystem;
     [SerializeField] private NavMeshSurface navMeshSurface;
-
+    [SerializeField] private WaveHandler waveHandler;
 
    public ParticleSystem[] WindEffectsParticleSystem => windEffectsParticleSystem;
 
@@ -18,7 +18,8 @@ public class LevelHandler : MonoBehaviour
 
    private void Start()
    {
-      navMeshSurface.BuildNavMeshAsync();
+      navMeshSurface.BuildNavMeshAsync();//bakes navmesh
+      waveHandler.Init();
    }
 
    private void Update()
@@ -42,7 +43,5 @@ public class LevelHandler : MonoBehaviour
    }
 
     public CustomPath[] Paths { get => paths;}
-
-    
-
+    public WaveHandler WaveHandler { get => waveHandler; }
 }
