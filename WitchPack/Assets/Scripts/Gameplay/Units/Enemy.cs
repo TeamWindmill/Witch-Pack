@@ -1,4 +1,3 @@
-using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -6,7 +5,7 @@ public class Enemy : BaseUnit
 {
     [SerializeField, TabGroup("Visual")] private EnemyAnimator enemyAnimator;
     [SerializeField] private ShamanTargeter shamanTargeter;
-    [SerializeField] private CustomPath givenPath;
+    private CustomPath givenPath;
     //testing 
     private EnemyConfig enemyConfig;
     private int pointIndex = 0;

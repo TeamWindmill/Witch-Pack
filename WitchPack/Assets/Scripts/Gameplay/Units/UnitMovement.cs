@@ -12,8 +12,6 @@ public class UnitMovement : MonoBehaviour
     private BaseUnit owner;
     [SerializeField] private NavMeshAgent agent;
 
-    //testing - until selection system is implemented
-    [SerializeField] private bool input;
 
     public bool IsMoving => agent.velocity.sqrMagnitude > 0; //need to replace
 
@@ -28,17 +26,12 @@ public class UnitMovement : MonoBehaviour
         owner = givenOwner;
     }
 
-    public void SetSpeed(float value)
+   /* public void SetSpeed(float value)
     {
         agent.speed = value;
         //agent.acceleration = agent.speed;
     }
 
-
-    private void Update()
-    {
-        agent.speed *= GAME_TIME.GetCurrentTimeRate;
-    }
 
     public void AddSpeed(StatType stat, float value)
     {
@@ -47,18 +40,13 @@ public class UnitMovement : MonoBehaviour
             agent.speed += value;
             //agent.acceleration = agent.speed;
         }
-    }
+    }*/
 
-
-   /* private void Update()
+    private void Update()
     {
-        if (input && Input.GetMouseButtonDown(0))
-        {
-            Vector3 newDest = GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
-            SetDest(newDest);
-        }
+        agent.speed = owner.Stats.MovementSpeed * GAME_TIME.GetCurrentTimeRate;
     }
-*/
+
     public void SetDest(Vector3 worldPos)
     {
         agent.velocity = Vector3.zero;

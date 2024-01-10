@@ -45,8 +45,6 @@ public class BaseUnit : MonoBehaviour
         affector = new Affector(this);
         effectable = new Effectable(this);
         autoAttackHandler = new AutoAttackHandler(this, autoAttack);
-        Movement.SetSpeed(Stats.MovementSpeed);
-        Stats.OnStatChanged += Movement.AddSpeed;
         AutoAttacker.SetUp(this);
         Movement.SetUp(this);
         unitVisual.Init(this, givenConfig);
@@ -72,6 +70,5 @@ public class BaseUnit : MonoBehaviour
     private void OnDestroy()
     {
         if (hasHPBar) damageable.OnDamageCalc -= hpBar.SetBarValue;
-        Stats.OnStatChanged -= Movement.AddSpeed;
     }
 }

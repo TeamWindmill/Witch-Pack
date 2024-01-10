@@ -39,10 +39,7 @@ public class Shaman : BaseUnit
     //test
     private void ApplySelectedSlowMo()
     {
-        if (!ReferenceEquals(LevelManager.Instance.SelectionManager.SelectedShaman, this))
-        {
-            GAME_TIME.SetTimeStep(0.5f);
-        }
+        GAME_TIME.SetTimeStep(0.5f);
     }
 
     private void DisableSlowMo()
