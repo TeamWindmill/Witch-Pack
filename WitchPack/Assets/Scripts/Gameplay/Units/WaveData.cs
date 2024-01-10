@@ -27,7 +27,7 @@ public class WaveData : ScriptableObject
 public class EnemySpawnData
 {
     [ReadOnly] public int TotalSpawns;
-    public float SpwanInterval;
+    public float TimeBetweenIntervals;
     public List<EnemyGroup> Groups;
 
     public int CalcSpawns()
