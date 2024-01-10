@@ -36,7 +36,7 @@ public class Shadow : MonoBehaviour
             newPos.z = _shamanTransform.position.z;
             transform.position = newPos;
             lineRenderer.positionCount = 2; 
-            lineRenderer.SetPositions(new [] { _shamanTransform.position, transform.position });
+            lineRenderer.SetPositions(new Vector3[] { _shamanTransform.position, transform.position });
         }
     }
 }
