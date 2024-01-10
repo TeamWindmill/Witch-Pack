@@ -31,8 +31,14 @@ public class Shaman : BaseUnit
         Movement.OnDestenationReached += EnableAttacker;
         shamanAnimator.Init(this);
         clicker.OnClick += SetSelectedShaman;
+        clicker.OnClick += ApplySelectedSlowMo;
     }
 
+    //test
+    private void ApplySelectedSlowMo()
+    {
+        GAME_TIME.SetTimeStep(0.5f);
+    }
 
     private void IntializeCastingHandlers()
     {
