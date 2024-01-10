@@ -20,7 +20,7 @@ public class Targeter<T> : MonoBehaviour where T : Component
         transform.parent.localScale = new Vector3(value * 2, value * 2, value * 2);
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         T possibleTarget = collision.GetComponent<T>();
         if (!ReferenceEquals(possibleTarget, null) && !availableTargets.Contains(possibleTarget))
