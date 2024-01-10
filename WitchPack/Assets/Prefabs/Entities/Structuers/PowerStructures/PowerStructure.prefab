@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6619323321585655180}
   - component: {fileID: 4291540667549584041}
+  - component: {fileID: 4927866150541045540}
   m_Layer: 0
   m_Name: HoverArea
   m_TagString: Untagged
@@ -67,6 +68,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &4927866150541045540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2992155674472561553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97f41a4379a4d27458b4dbadc5d35846, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5588915253065766011
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,7 +309,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _powerStructureConfig: {fileID: 0}
-  proximityRingsManager: {fileID: 0}
+  proximityRingsManager: {fileID: 824177015204369618}
   _powerStructureSpriteRenderer: {fileID: 8745228081916453919}
   _testing: 0
 --- !u!1001 &1959934396187330115
@@ -362,6 +375,22 @@ PrefabInstance:
     - target: {fileID: 847729341074206653, guid: 7affbdbe11fb30e478a4679f54425446, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1171786178137723537, guid: 7affbdbe11fb30e478a4679f54425446, type: 3}
+      propertyPath: _clickHelper
+      value: 
+      objectReference: {fileID: 4927866150541045540}
+    - target: {fileID: 1171786178137723537, guid: 7affbdbe11fb30e478a4679f54425446, type: 3}
+      propertyPath: _ringHandlers.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1171786178137723537, guid: 7affbdbe11fb30e478a4679f54425446, type: 3}
+      propertyPath: _ringHandlers.Array.data[1]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1171786178137723537, guid: 7affbdbe11fb30e478a4679f54425446, type: 3}
+      propertyPath: _ringHandlers.Array.data[2]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1735494549323767867, guid: 7affbdbe11fb30e478a4679f54425446, type: 3}
       propertyPath: m_Name
@@ -484,6 +513,17 @@ PrefabInstance:
       addedObject: {fileID: 5340676426205900941}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7affbdbe11fb30e478a4679f54425446, type: 3}
+--- !u!114 &824177015204369618 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1171786178137723537, guid: 7affbdbe11fb30e478a4679f54425446, type: 3}
+  m_PrefabInstance: {fileID: 1959934396187330115}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0064784db071997439483b7761990ea8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1220660950801558014 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 847729341074206653, guid: 7affbdbe11fb30e478a4679f54425446, type: 3}
