@@ -21,6 +21,7 @@ public class UnitMovement : MonoBehaviour
     {
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        GAME_TIME.OnTimeRateChange += ChangeSpeedOnGameTime;
     }
 
     public void SetUp(BaseUnit givenOwner)
@@ -33,6 +34,12 @@ public class UnitMovement : MonoBehaviour
         agent.speed = value;
         //agent.acceleration = agent.speed;
     }
+
+    private void ChangeSpeedOnGameTime()
+    {
+        SetSpeed(agent.speed * GAME_TIME.GetCurrentTimeRate);
+    }
+
 
     public void AddSpeed(StatType stat, float value)
     {
