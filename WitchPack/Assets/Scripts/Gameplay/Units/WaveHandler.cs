@@ -7,11 +7,12 @@ public class WaveHandler : MonoBehaviour
 {
     [SerializeField] private EnemySpawnPoint[] spawnPoints;
     [SerializeField] private WaveData waveData;//wave data is supposed to be given to a room from the inspector in the editor and not in runtime
-    [SerializeField] private List<EnemySpawnData> spawnData;
+    private List<EnemySpawnData> spawnData;
 
 
     public void Init()
     {
+        spawnData = new List<EnemySpawnData>();
         foreach (EnemySpawnData item in waveData.waves)
         {
             EnemySpawnData newWave = new EnemySpawnData();
@@ -19,13 +20,11 @@ public class WaveHandler : MonoBehaviour
 
             newWave.Groups.AddRange(item.Groups);
 
-            newWave.SpwanInterval = item.SpwanInterval;
+            newWave.TimeBetweenIntervals = item.TimeBetweenIntervals;
             newWave.CalcSpawns();
 
             spawnData.Add(newWave);
         }
-
-
     }
 
     [Button]
@@ -70,7 +69,7 @@ public class WaveHandler : MonoBehaviour
                     }
                 }
             }
-            yield return StartCoroutine(IntervalDelay(givenData.SpwanInterval));
+            yield return StartCoroutine(IntervalDelay(givenData.TimeBetweenIntervals));
         }
     }
 
