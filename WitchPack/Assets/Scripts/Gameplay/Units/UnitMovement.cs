@@ -21,6 +21,7 @@ public class UnitMovement : MonoBehaviour
     {
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        GAME_TIME.OnTimeRateChange += ChangeSpeedOnGameTime;
     }
 
     public void SetUp(BaseUnit givenOwner)
@@ -34,6 +35,12 @@ public class UnitMovement : MonoBehaviour
         //agent.acceleration = agent.speed;
     }
 
+    private void ChangeSpeedOnGameTime()
+    {
+        SetSpeed(agent.speed * GAME_TIME.GetCurrentTimeRate);
+    }
+
+
     public void AddSpeed(StatType stat, float value)
     {
         if (stat == StatType.MovementSpeed)
@@ -44,7 +51,7 @@ public class UnitMovement : MonoBehaviour
     }
 
 
-    private void Update()
+   /* private void Update()
     {
         if (input && Input.GetMouseButtonDown(0))
         {
@@ -52,7 +59,7 @@ public class UnitMovement : MonoBehaviour
             SetDest(newDest);
         }
     }
-
+*/
     public void SetDest(Vector3 worldPos)
     {
         agent.velocity = Vector3.zero;

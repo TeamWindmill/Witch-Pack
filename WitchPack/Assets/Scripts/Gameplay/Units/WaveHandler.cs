@@ -78,7 +78,7 @@ public class WaveHandler : MonoBehaviour
         float counter = 0f;
         while (counter < givenInterval)
         {
-            counter += Time.deltaTime; //* game time thing; //for slow/ speed up time effect
+            counter += GAME_TIME.GameDeltaTime;
             yield return new WaitForEndOfFrame();
         }
     }
