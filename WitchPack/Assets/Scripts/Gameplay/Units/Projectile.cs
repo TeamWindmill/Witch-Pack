@@ -19,9 +19,15 @@ public class Projectile : MonoBehaviour
     {
         owner = shooter;
         refAbility = givenAbility;
+        Rotate(dir);
         rb.velocity = dir * (speed + shooter.Stats.AbilityProjectileSpeed);
         maxNumberOfHits = baseMaxNumberOfHits + shooter.Stats.AbilityProjectilePenetration;
         StartCoroutine(LifeTime());
+    }
+    private void Rotate(Vector2 dir)
+    {
+        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle-90,Vector3.forward);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

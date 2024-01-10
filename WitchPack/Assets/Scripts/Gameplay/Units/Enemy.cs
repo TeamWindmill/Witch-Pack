@@ -1,7 +1,10 @@
+using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class Enemy : BaseUnit
 {
+    [SerializeField, TabGroup("Visual")] private EnemyAnimator enemyAnimator;
     [SerializeField] private EnemyConfig enemyConfig;
     [SerializeField] private ShamanTargeter shamanTargeter;
     [SerializeField] private CustomPath givenPath;
@@ -10,13 +13,22 @@ public class Enemy : BaseUnit
 
     public override StatSheet BaseStats => enemyConfig.BaseStats;
 
+    private void Start() // temp
+    {
+        Init(enemyConfig);
+    }
+    private void OnValidate()
+    {
+        enemyAnimator ??= GetComponentInChildren<EnemyAnimator>();
+    }
     public override void Init(BaseUnitConfig givenConfig)
     {
         enemyConfig = givenConfig as EnemyConfig;
-        base.Init(givenConfig);
+        base.Init(enemyConfig);
         shamanTargeter.SetRadius(Stats.BonusRange);
         Movement.SetDest(givenPath.Waypoints[pointIndex].position);
         Movement.OnDestenationReached += SetNextDest;
+        enemyAnimator.Init(this);
     }
 
     public void SetPath(CustomPath path)

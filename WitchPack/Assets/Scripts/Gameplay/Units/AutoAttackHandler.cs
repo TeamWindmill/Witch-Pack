@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 public class AutoAttackHandler
 {
+    public Action OnAttack;
 
     private BaseUnit unit;
     private BaseAbility ability;
@@ -29,6 +31,7 @@ public class AutoAttackHandler
             if (ability.CastAbility(unit))
             {
                 lastCast = Time.time;
+                OnAttack?.Invoke();
             }
         }
     }

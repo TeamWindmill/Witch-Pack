@@ -3,7 +3,7 @@ using System.Collections;
 using Cinemachine;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Rendering;
 
 
 public class CameraHandler : MonoBehaviour
@@ -35,6 +35,8 @@ public class CameraHandler : MonoBehaviour
 
     [SerializeField, Tooltip("toggle whether the camera moves to the mouse position when zooming")]
     private bool _enableZoomMovesCamera = false;
+    
+    [SerializeField] private bool _testing = false;
 
     [Header("Game Objects")] [TabGroup("Cameras"), SerializeField]
     private Camera _mainCamera;
@@ -44,9 +46,9 @@ public class CameraHandler : MonoBehaviour
     [TabGroup("Cameras"), SerializeField] private CinemachineBrain _cinemachineBrain;
 
     [TabGroup("Post Process"), SerializeField]
-    private PostProcessVolume _postProcessVolume;
+    private Volume _postProcessVolume;
 
-    public PostProcessVolume PostProcessVolume => _postProcessVolume;
+    public Volume PostProcessVolume => _postProcessVolume;
 
     #endregion
 
@@ -176,7 +178,7 @@ public class CameraHandler : MonoBehaviour
 
         var tempLogDragPanSpeed = _dragPanSpeed;
         _dragPanSpeed *= mouseMovementDelta.magnitude;
-        Debug.Log($"drag speed: {tempLogDragPanSpeed}, Magnitude: {_dragPanSpeed}");
+        if (_testing) Debug.Log($"drag speed: {tempLogDragPanSpeed}, Magnitude: {_dragPanSpeed}");
         return mouseMovementDelta.normalized;
     }
 

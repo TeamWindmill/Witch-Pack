@@ -1,3 +1,4 @@
+using System;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,12 +6,19 @@ using UnityEngine;
 public class Shaman : BaseUnit
 {
     [SerializeField, TabGroup("Combat")] private EnemyTargeter enemyTargeter;
+    [SerializeField, TabGroup("Visual")] private ShamanAnimator shamanAnimator;
     private ShamanConfig shamanConfig;
     private List<BaseAbility> knownAbilities = new List<BaseAbility>();
     private List<UnitCastingHandler> castingHandlers = new List<UnitCastingHandler>();
 
 
     public override StatSheet BaseStats => shamanConfig.BaseStats;
+
+    private void OnValidate()
+    {
+        shamanAnimator ??= GetComponentInChildren<ShamanAnimator>();
+    }
+
     public override void Init(BaseUnitConfig baseUnitConfig)
     {
         shamanConfig = baseUnitConfig as ShamanConfig;
@@ -20,6 +28,7 @@ public class Shaman : BaseUnit
         IntializeCastingHandlers();
         Movement.OnDestenationSet += DisableAttacker;
         Movement.OnDestenationReached += EnableAttacker;
+        shamanAnimator.Init(this);
 
     }
 

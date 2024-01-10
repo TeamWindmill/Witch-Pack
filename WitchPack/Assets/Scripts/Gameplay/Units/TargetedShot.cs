@@ -1,4 +1,7 @@
 using System.Collections;
+using System.Runtime.InteropServices;
+using Sirenix.OdinInspector;
+using Unity.Mathematics;
 using UnityEngine;
 
 
@@ -15,9 +18,16 @@ public class TargetedShot : MonoBehaviour
     {
         owner = shooter;
         ability = givenAbility;
-        rb.velocity = dir * (speed);
         this.target = target;
+        Rotate(dir);
+        rb.velocity = dir * (speed);
         StartCoroutine(TravelTimeCountdown());
+    }
+
+    private void Rotate(Vector2 dir)
+    {
+        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle-90,Vector3.forward);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
