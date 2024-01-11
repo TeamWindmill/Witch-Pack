@@ -15,11 +15,11 @@ public class LevelHandler : MonoBehaviour
    public Transform[] ShamanSpawnPoints => shamanSpawnPoints;
 
    private bool _tempSlowMotion; //TEMP
-
-   private void Start()
+   public void Init(Action<LevelHandler> onLevelLoad)
    {
       navMeshSurface.BuildNavMeshAsync();//bakes navmesh
       waveHandler.Init();
+      onLevelLoad?.Invoke(this);
    }
 
    private void Update()
