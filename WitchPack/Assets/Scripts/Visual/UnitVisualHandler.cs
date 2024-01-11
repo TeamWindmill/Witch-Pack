@@ -42,10 +42,25 @@ public class UnitVisualHandler : MonoBehaviour
         }
     }
     
+
     private void SpriteFlipX(bool doFlip)
     {
         spriteRenderer.flipX = doFlip;
         OnSpriteFlip?.Invoke(doFlip);
         //_silhouette.flipX = doFlip;
     }
+
+    private void OnBecameVisible()
+    {
+        //send message to indicator sys
+    }
+
+    private void OnBecameInvisible()
+    {
+        //send message to indicator sys
+
+    }
+
+
+
 }

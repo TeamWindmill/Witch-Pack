@@ -9,6 +9,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     [SerializeField] private PartyUIManager partyUIManager;
     [SerializeField] private PoolManager poolManager;
     [SerializeField] private SelectionManager selectionManager;
+    [SerializeField] private IndicatorManager indicatorManager;
 
     public LevelHandler CurrentLevel { get; private set; }
     public List<Shaman> ShamanParty { get; private set; }
@@ -39,7 +40,7 @@ public class LevelManager : MonoSingleton<LevelManager>
         {
             int rand = Random.Range(0, CurrentLevel.ShamanSpawnPoints.Length);
             var spawnPoint = CurrentLevel.ShamanSpawnPoints[rand];
-            
+
             while (!spawnPoint.gameObject.activeSelf)
             {
                 rand = Random.Range(0, CurrentLevel.ShamanSpawnPoints.Length);
@@ -56,5 +57,6 @@ public class LevelManager : MonoSingleton<LevelManager>
     {
         get => poolManager;
     }
-    public SelectionManager SelectionManager { get => selectionManager;}
+    public SelectionManager SelectionManager { get => selectionManager; }
+    public IndicatorManager IndicatorManager { get => indicatorManager; }
 }

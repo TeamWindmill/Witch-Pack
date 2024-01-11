@@ -47,6 +47,7 @@ public class GAME_TIME : MonoBehaviour
         if (_fadeCoroutine != null)
         {
             _monoBehaviour.StopCoroutine(_fadeCoroutine);
+            SetTime(1f);
             _fadeCoroutine = null;
         }
 
