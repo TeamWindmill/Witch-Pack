@@ -18,7 +18,7 @@ public class Indicator : MonoBehaviour
         this.artwork.sprite = artwork;
         counter = 0f;
         circle.fillAmount = 1;
-        
+        Vector2 midScreen = new Vector2(((RectTransform)transform.parent).sizeDelta.x * 0.5f, ((RectTransform)transform.parent).sizeDelta.y * 0.5f);
     }
 
 
@@ -34,11 +34,9 @@ public class Indicator : MonoBehaviour
             }
         }
         //place object on screen edge (+some kind of offset) in the direction of the target
-        Vector3 midScreen = new Vector3(Screen.width / 2, Screen.height / 2);
-        Vector2 dir = (target.position - transform.position).normalized;
-        transform.position = midScreen * dir;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        pointer.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        //Vector2 dir = (target.position - transform.position).normalized;
+        //float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        //pointer.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         //physikef
     }
 
