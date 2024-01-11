@@ -220,7 +220,8 @@ MonoBehaviour:
   partyUIManager: {fileID: 1453287780}
   poolManager: {fileID: 990766649}
   selectionManager: {fileID: 1559208035}
-  indicatorManager: {fileID: 0}
+  indicatorManager: {fileID: 288888826}
+  gameUi: {fileID: 743365505}
 --- !u!1 &121035000
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,8 +460,52 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pooledObjects: []
-  PrefabToPool: {fileID: 1417542039348955131, guid: ac402f6c8ade51a4f951363b827e99cb, type: 3}
+  PrefabToPool: {fileID: 884435277657300661, guid: c1f36145876b6ba40a56360fa9646b1d, type: 3}
   NumToPool: 10
+--- !u!1 &288888824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 288888825}
+  - component: {fileID: 288888826}
+  m_Layer: 0
+  m_Name: IndicatorManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &288888825
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288888824}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1461322451}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &288888826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 288888824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 897384e1a57241a4cb0940c6cda1a595, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &395123092
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,7 +798,7 @@ MonoBehaviour:
   testAbilityPool: {fileID: 1825141824}
   shamanAutoAttackPool: {fileID: 59189840}
   enemyPool: {fileID: 1953231977}
-  inidcatorPool: {fileID: 0}
+  inidcatorPool: {fileID: 152963770}
 --- !u!1 &1014536823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1517,6 +1562,7 @@ Transform:
   - {fileID: 121035001}
   - {fileID: 990766648}
   - {fileID: 1559208034}
+  - {fileID: 288888825}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1559208033

@@ -10,6 +10,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     [SerializeField] private PoolManager poolManager;
     [SerializeField] private SelectionManager selectionManager;
     [SerializeField] private IndicatorManager indicatorManager;
+    [SerializeField] private Canvas gameUi;
 
     public LevelHandler CurrentLevel { get; private set; }
     public List<Shaman> ShamanParty { get; private set; }
@@ -59,4 +60,5 @@ public class LevelManager : MonoSingleton<LevelManager>
     }
     public SelectionManager SelectionManager { get => selectionManager; }
     public IndicatorManager IndicatorManager { get => indicatorManager; }
+    public Canvas GameUi { get => gameUi; }
 }

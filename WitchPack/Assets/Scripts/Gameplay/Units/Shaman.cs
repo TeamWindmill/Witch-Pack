@@ -7,13 +7,16 @@ public class Shaman : BaseUnit
     [SerializeField, TabGroup("Combat")] private EnemyTargeter enemyTargeter;
     [SerializeField, TabGroup("Visual")] private ShamanAnimator shamanAnimator;
     [SerializeField] private ClickHelper clicker;
+    [SerializeField] private Indicatable indicatable;
     private ShamanConfig shamanConfig;
     private List<BaseAbility> knownAbilities = new List<BaseAbility>();
     private List<UnitCastingHandler> castingHandlers = new List<UnitCastingHandler>();
-    private Indicator currentIndicator;
 
     public override StatSheet BaseStats => shamanConfig.BaseStats;
-
+    public EnemyTargeter EnemyTargeter { get => enemyTargeter; }
+    public ShamanConfig ShamanConfig { get => shamanConfig; }
+    public List<BaseAbility> KnownAbilities { get => knownAbilities; }
+    public List<UnitCastingHandler> CastingHandlers { get => castingHandlers; }
     private void OnValidate()
     {
         shamanAnimator ??= GetComponentInChildren<ShamanAnimator>();
@@ -27,12 +30,14 @@ public class Shaman : BaseUnit
         Stats.OnStatChanged += enemyTargeter.AddRadius;
         IntializeCastingHandlers();
         Movement.OnDestenationSet += DisableAttacker;
+        Movement.OnDestenationSet += EnableClicker;
         Movement.OnDestenationReached += EnableAttacker;
         shamanAnimator.Init(this);
         clicker.OnClick += SetSelectedShaman;
+        indicatable.Init(shamanConfig.UnitIcon);
     }
 
-  
+
     private void IntializeCastingHandlers()
     {
         foreach (var item in ShamanConfig.KnownAbilities)
@@ -66,21 +71,12 @@ public class Shaman : BaseUnit
         if (!ReferenceEquals(LevelManager.Instance.SelectionManager.SelectedShaman, this))
         {
             LevelManager.Instance.SelectionManager.SetSelectedShaman(this);
+            clicker.enabled = false;
         }
     }
-
-    private void OnBecameVisible()
+    private void EnableClicker()
     {
-        if (!ReferenceEquals(currentIndicator, null))
-        {
-            currentIndicator?.gameObject.SetActive(false);
-            currentIndicator = null;
-        }
-    }
-
-    private void OnBecameInvisible()
-    {
-        currentIndicator = LevelManager.Instance.IndicatorManager.CreateIndicator(transform, shamanConfig.UnitSprite);
+        clicker.enabled = true;
     }
 
     private void OnDisable()
@@ -88,9 +84,7 @@ public class Shaman : BaseUnit
         clicker.OnClick -= SetSelectedShaman;
         Movement.OnDestenationSet -= DisableAttacker;
         Movement.OnDestenationReached -= EnableAttacker;
+        Movement.OnDestenationSet -= EnableClicker;
     }
-    public EnemyTargeter EnemyTargeter { get => enemyTargeter; }
-    public ShamanConfig ShamanConfig { get => shamanConfig; }
-    public List<BaseAbility> KnownAbilities { get => knownAbilities; }
-    public List<UnitCastingHandler> CastingHandlers { get => castingHandlers; }
+
 }
