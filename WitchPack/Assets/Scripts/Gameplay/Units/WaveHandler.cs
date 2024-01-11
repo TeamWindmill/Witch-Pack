@@ -7,6 +7,7 @@ public class WaveHandler : MonoBehaviour
 {
     [SerializeField] private EnemySpawnPoint[] spawnPoints;
     [SerializeField] private WaveData waveData;//wave data is supposed to be given to a room from the inspector in the editor and not in runtime
+    [SerializeField] private float fixedSpawnInterval;
     private List<EnemySpawnData> spawnData;
 
 
@@ -40,7 +41,7 @@ public class WaveHandler : MonoBehaviour
         {
             spawnData[i].CalcSpawns();
             yield return StartCoroutine(SpawnWave(spawnData[i], spawnPoint));
-            yield return StartCoroutine(IntervalDelay(10f));//temp
+            yield return StartCoroutine(IntervalDelay(waveData.WaveInterval));
         }
     }
 
@@ -51,6 +52,7 @@ public class WaveHandler : MonoBehaviour
         {
             for (int j = 0; j < givenData.Groups.Count; j++)
             {
+                EnemySpawnPoint currentSpawnPoint = GetSpawnPointFromIndex(givenData.Groups[j].SpawnerIndex - 1);
                 if (givenData.Groups[j].SpawnedAtInterval <= i + 1)
                 {
                     for (int z = 0; z < givenData.Groups[j].AmountPerSpawn; z++)
@@ -59,17 +61,33 @@ public class WaveHandler : MonoBehaviour
                         {
                             break;
                         }
-                        point.SpawnEnemy(givenData.Groups[j].Enemy);
+                        currentSpawnPoint.SpawnEnemy(givenData.Groups[j].Enemy);
 
                         EnemyGroup group = givenData.Groups[j];
                         group.NumSpawned++;
                         givenData.Groups[j] = group;
 
-                        yield return new WaitForSeconds(0.5f);//for now
+                        yield return new WaitForSeconds(fixedSpawnInterval);//for now
                     }
                 }
             }
             yield return StartCoroutine(IntervalDelay(givenData.TimeBetweenIntervals));
+        }
+    }
+
+    private EnemySpawnPoint GetSpawnPointFromIndex(int index)
+    {
+        if (index >= spawnPoints.Length)
+        {
+            return spawnPoints[spawnPoints.Length - 1];
+        }
+        else if (index < 0)
+        {
+            return spawnPoints[0];
+        }
+        else
+        {
+            return spawnPoints[index];
         }
     }
 

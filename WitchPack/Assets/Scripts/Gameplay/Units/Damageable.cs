@@ -28,6 +28,12 @@ public class Damageable
         hitable = true;
         currentHp = MaxHp;
         OnGetHit += AddStatsDamageReduction;
+        OnDeathGFX += DisableGo;
+    }
+
+    private void DisableGo()
+    {
+        Owner.gameObject.SetActive(false);
     }
 
     public void GetHit(DamageDealer dealer, BaseAbility ability)

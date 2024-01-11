@@ -41,9 +41,15 @@ public class Enemy : BaseUnit
         }
         else
         {
+            Debug.Log("set dest");
             Movement.SetDest(givenPath.Waypoints[pointIndex].position);
         }
 
+    }
+
+    private void OnDisable()
+    {
+        Movement.OnDestenationReached -= SetNextDest;
     }
 
     public EnemyConfig EnemyConfig { get => enemyConfig; }

@@ -53,7 +53,6 @@ public class BaseUnit : MonoBehaviour
             hpBar.Init(damageable.MaxHp,unitType);
             damageable.OnDamageCalc += hpBar.SetBarValue;
         }
-        
     }
 
 
