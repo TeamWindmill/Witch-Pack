@@ -7,7 +7,7 @@ public class Shaman : BaseUnit
     [SerializeField, TabGroup("Combat")] private EnemyTargeter enemyTargeter;
     [SerializeField, TabGroup("Visual")] private ShamanAnimator shamanAnimator;
     [SerializeField] private ClickHelper clicker;
-    [SerializeField] private Indicatable indicatable;
+    //[SerializeField] private Indicatable indicatable;
     private ShamanConfig shamanConfig;
     private List<BaseAbility> knownAbilities = new List<BaseAbility>();
     private List<UnitCastingHandler> castingHandlers = new List<UnitCastingHandler>();
@@ -34,7 +34,21 @@ public class Shaman : BaseUnit
         Movement.OnDestenationReached += EnableAttacker;
         shamanAnimator.Init(this);
         clicker.OnClick += SetSelectedShaman;
-        indicatable.Init(shamanConfig.UnitIcon);
+        //indicatable.Init(shamanConfig.UnitIcon);
+    }
+
+
+    //test
+    private void OnShamanSelect()
+    {
+        SlowMotionManager.Instance.StartSlowMotionEffects();
+        HeroSelectionUI.Instance.Show(this);
+    }
+
+    private void OnShamanDeselect()
+    {
+        SlowMotionManager.Instance.EndSlowMotionEffects();
+        HeroSelectionUI.Instance.Hide();
     }
 
 

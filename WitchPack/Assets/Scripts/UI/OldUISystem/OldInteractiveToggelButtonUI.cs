@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-public abstract class BaseInteractiveToggelButtonUI : BaseInteractiveUIElement
+public abstract class OldInteractiveToggelButtonUI : OldInteractiveUIElement
 {
     public event Action<ButtonState> OnChangeState;
     [SerializeField] private bool _disableOffToggel;

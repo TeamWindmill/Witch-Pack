@@ -1,14 +1,23 @@
+using System;
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class WaveHandler : MonoBehaviour
 {
+    public event Action<int> OnWaveStart; 
+    public event Action<int> OnWaveEnd;
+    
     [SerializeField] private EnemySpawnPoint[] spawnPoints;
     [SerializeField] private WaveData waveData;//wave data is supposed to be given to a room from the inspector in the editor and not in runtime
     [SerializeField] private float fixedSpawnInterval;
     private List<EnemySpawnData> spawnData;
+    private int _currentWave;
+
+    public int CurrentWave => _currentWave;
+    public int TotalWaves => spawnData.Count;
 
 
     public void Init()
@@ -40,7 +49,10 @@ public class WaveHandler : MonoBehaviour
         for (int i = 0; i < spawnData.Count; i++)
         {
             spawnData[i].CalcSpawns();
+            OnWaveStart?.Invoke(i+1);
+            _currentWave = i+1;
             yield return StartCoroutine(SpawnWave(spawnData[i], spawnPoint));
+            OnWaveEnd?.Invoke(i+1);
             yield return StartCoroutine(IntervalDelay(waveData.WaveInterval));
         }
     }

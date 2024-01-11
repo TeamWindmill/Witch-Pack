@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public abstract class ChangeColorToggleButton : BaseInteractiveToggelButtonUI
+public abstract class ChangeColorToggleButton : OldInteractiveToggelButtonUI
 {
     [SerializeField] private Image _image;
     [SerializeField] private Color onColor;
