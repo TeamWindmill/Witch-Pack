@@ -54,6 +54,10 @@ public class TargetedShot : MonoBehaviour
             counter += GAME_TIME.GameDeltaTime * speed;
             yield return new WaitForEndOfFrame();
         }
+        if (!target.gameObject.activeSelf)
+        {
+            Disable();
+        }
     }
 
     private void Disable()
