@@ -10,12 +10,18 @@ public class PowerStructureConfig : ScriptableObject
     public Color PowerStructureTypeColor;
     public float DefaultSpriteAlpha;
     public float SpriteAlphaFade;
-    //public StatEffectConfig StatEffectConfig;
+    public PowerStructureStatEffect statEffect;
     public Sprite PowerStructureSprite;
 
     private void OnValidate()
     {
-        // if (StatEffectConfig.StatModifier.RingModifiers.Length != RingsRanges.Length)
-        //     StatEffectConfig.StatModifier.ChangeRingModifiersNumber(RingsRanges.Length);
+        // if (statEffect.RingValues.Length != RingsRanges.Length)
+        //     statEffect.RingValues = new int[RingsRanges.Length];
     }
+}
+
+public struct PowerStructureStatEffect
+{
+    public StatType StatType;
+    public int[] RingValues;
 }
