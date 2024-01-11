@@ -30,22 +30,21 @@ public class Shaman : BaseUnit
         Movement.OnDestenationReached += EnableAttacker;
         shamanAnimator.Init(this);
         clicker.OnClick += SetSelectedShaman;
-        clicker.OnClick += ApplySelectedSlowMo;
-        Movement.OnDestenationSet += DisableSlowMo;
+        clicker.OnClick += OnShamanSelect;
+        Movement.OnDestenationSet += OnShamanDeselect;
         Movement.OnDestenationSet += DeselectShaman;
 
     }
 
     //test
-    private void ApplySelectedSlowMo()
+    private void OnShamanSelect()
     {
-        GAME_TIME.SetTimeStep(0.5f);
+        SlowMotionManager.Instance.StartSlowMotionEffects();
     }
 
-    private void DisableSlowMo()
+    private void OnShamanDeselect()
     {
-        GAME_TIME.SetTimeStep(1f);
-
+        SlowMotionManager.Instance.EndSlowMotionEffects();
     }
 
     private void IntializeCastingHandlers()
