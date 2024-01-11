@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-public class TimeControlUIHandler : BaseUIElement
+public class TimeControlUIHandler : UIElement
 {
     [SerializeField] private List<TimeButtonsUI> _timeButtons;
 
@@ -14,7 +14,7 @@ public class TimeControlUIHandler : BaseUIElement
         foreach (var timeButtonsUI in _timeButtons)
         {
             timeButtonsUI.OnTurnOn += OnButtonPressed;
-            if (timeButtonsUI.State == ButtonState.On)
+            if (timeButtonsUI.IsActive)
                 _currentButton = timeButtonsUI;
         }
 
@@ -37,7 +37,7 @@ public class TimeControlUIHandler : BaseUIElement
             return;
         }
 
-        _currentButton.ChangeState(ButtonState.Off);
+        _currentButton.SetState(false);
         _currentButton = timeButtonsUI;
     }
 }

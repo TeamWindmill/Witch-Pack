@@ -2,9 +2,9 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManager : MonoBehaviour
+public class OLD_UIManager : MonoBehaviour
 {
-    private static readonly Dictionary<UIGroup, List<BaseUIElement>> UIGroups = new();
+    private static readonly Dictionary<UIGroup, List<OLD_UIElement>> UIGroups = new();
 
     private static readonly Array UIGroupTagsArray = Enum.GetValues(typeof(UIGroup));
 
@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public static void AddUIElement(BaseUIElement element, UIGroup group)
+    public static void AddUIElement(OLD_UIElement element, UIGroup group)
     {
         if (group == UIGroup.None)
         {
@@ -53,11 +53,11 @@ public class UIManager : MonoBehaviour
                 foundUIGroup.Add(element);
             }
             else
-                UIGroups.Add((UIGroup)uiGroupsKey, new List<BaseUIElement>() { element });
+                UIGroups.Add((UIGroup)uiGroupsKey, new List<OLD_UIElement>() { element });
         }
     }
 
-    public static void RemoveUIElement(BaseUIElement element)
+    public static void RemoveUIElement(OLD_UIElement element)
     {
         var group = element.UIGroupTags;
 

@@ -40,11 +40,13 @@ public class Shaman : BaseUnit
     private void OnShamanSelect()
     {
         SlowMotionManager.Instance.StartSlowMotionEffects();
+        HeroSelectionUI.Instance.Show(this);
     }
 
     private void OnShamanDeselect()
     {
         SlowMotionManager.Instance.EndSlowMotionEffects();
+        HeroSelectionUI.Instance.Hide();
     }
 
     private void IntializeCastingHandlers()

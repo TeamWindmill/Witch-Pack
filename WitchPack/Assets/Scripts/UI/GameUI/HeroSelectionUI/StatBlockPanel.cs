@@ -8,17 +8,17 @@ public class StatBlockPanel : MonoBehaviour
     [SerializeField] private Color _statBonusAdditionColor;
     [SerializeField] private Color _statBonusReductionColor;
 
-    public void Init(BaseUnit unit)
+    public void Init(Shaman shaman)
     {
         foreach (var statBlock in _statBlocks)
         {
-            var statValue = unit.Stats.GetStatValue(statBlock.StatTypeId);
+            var statValue = shaman.Stats.GetStatValue(statBlock.StatTypeId);
             statBlock.Init(statValue, _statBonusAdditionColor, _statBonusReductionColor);
         }
 
         foreach (var statBar in _statBarHandlers)
         {
-            statBar.Init(unit);
+            statBar.Init(shaman);
         }
     }
 

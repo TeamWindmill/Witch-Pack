@@ -26,11 +26,11 @@ public class AutoAttackHandler
 
     public void Attack()
     {
-        if (Time.time - lastCast >= GetAACD())
+        if (GAME_TIME.GameTime - lastCast >= GetAACD())
         {
             if (ability.CastAbility(unit))
             {
-                lastCast = Time.time;
+                lastCast = GAME_TIME.GameTime;
                 OnAttack?.Invoke();
             }
         }

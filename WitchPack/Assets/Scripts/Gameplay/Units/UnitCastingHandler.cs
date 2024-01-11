@@ -26,11 +26,11 @@ public class UnitCastingHandler
 
     public void CastAbility()
     {
-        if (Time.time - lastCast >= GetAbilityCD())
+        if (GAME_TIME.GameTime - lastCast >= GetAbilityCD())
         {
             if (ability.CastAbility(unit))
             {
-                lastCast = Time.time;
+                lastCast = GAME_TIME.GameTime;
             }
         }
     }

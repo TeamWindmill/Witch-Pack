@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-public abstract class BaseUIElement : MonoBehaviour
+public abstract class OLD_UIElement : MonoBehaviour
 {
     public Action OnShow;
     public Action OnHide;
@@ -19,7 +19,7 @@ public abstract class BaseUIElement : MonoBehaviour
 
     protected virtual void Awake()
     {
-        UIManager.AddUIElement(this, UIGroupTags);
+        OLD_UIManager.AddUIElement(this, UIGroupTags);
 
         if (_showOnAwake)
             Show();
@@ -29,7 +29,7 @@ public abstract class BaseUIElement : MonoBehaviour
 
     private void OnDestroy()
     {
-        UIManager.RemoveUIElement(this);
+        OLD_UIManager.RemoveUIElement(this);
         Hide();
     }
 
