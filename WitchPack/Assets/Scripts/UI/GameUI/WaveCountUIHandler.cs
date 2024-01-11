@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class WaveCountUIHandler : CounterUIElement
 {
-    private void Start()
+    public override void Init()
     {
-        int waveNumber = LevelManager.Instance.CurrentLevel.WaveHandler.TotalWaves;
-        //Init(waveNumber,0);
+        base.Init();
+        ElementInit(LevelManager.Instance.CurrentLevel.WaveHandler.TotalWaves,LevelManager.Instance.CurrentLevel.WaveHandler.CurrentWave);
     }
-
-    public override void Init(int maxValue, int currentValue = -1)
+    
+    public override void ElementInit(int maxValue, int currentValue = -1)
     {
-        base.Init(maxValue, currentValue);
+        base.ElementInit(maxValue, currentValue);
         LevelManager.Instance.CurrentLevel.WaveHandler.OnWaveStart += UpdateWave;
     }
 

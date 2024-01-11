@@ -6,10 +6,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "WaveData", menuName = "Wave")]
 public class WaveData : ScriptableObject
 {
-    [SerializeField] private float waveInterval;//the interval between the end a wave to the beginning of the next one 
+    [SerializeField] private float startDelayInterval;//the interval between the end a wave to the beginning of the next one 
+    [SerializeField] private float betweenBetweenWavesesInterval;//the interval between the end a wave to the beginning of the next one 
     public List<EnemySpawnData> waves = new List<EnemySpawnData>();
 
-    public float WaveInterval { get => waveInterval; }
+    public float BetweenWavesInterval { get => betweenBetweenWavesesInterval; }
+    public float StartDelayInterval { get => startDelayInterval; }
     //public List<EnemySpawnData> Waves { get => waves; set => waves = value; }
 
     [Button]

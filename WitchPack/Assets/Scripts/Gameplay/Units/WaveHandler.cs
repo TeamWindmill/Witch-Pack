@@ -7,11 +7,11 @@ using Random = UnityEngine.Random;
 
 public class WaveHandler : MonoBehaviour
 {
-    public event Action<int> OnWaveStart; 
+    public event Action<int> OnWaveStart;
     public event Action<int> OnWaveEnd;
-    
+
     [SerializeField] private EnemySpawnPoint[] spawnPoints;
-    [SerializeField] private WaveData waveData;//wave data is supposed to be given to a room from the inspector in the editor and not in runtime
+    [SerializeField] private WaveData waveData; //wave data is supposed to be given to a room from the inspector in the editor and not in runtime
     [SerializeField] private float fixedSpawnInterval;
     private List<EnemySpawnData> spawnData;
     private int _currentWave;
@@ -35,32 +35,28 @@ public class WaveHandler : MonoBehaviour
 
             spawnData.Add(newWave);
         }
-    }
-
-    [Button]
-    public void StartSpawning()
-    {
         StartCoroutine(StartSpawningWaves());
     }
 
     private IEnumerator StartSpawningWaves()
     {
+        yield return StartCoroutine(IntervalDelay(waveData.StartDelayInterval));
         EnemySpawnPoint spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
         for (int i = 0; i < spawnData.Count; i++)
         {
             spawnData[i].CalcSpawns();
-            OnWaveStart?.Invoke(i+1);
-            _currentWave = i+1;
+            OnWaveStart?.Invoke(i + 1);
+            _currentWave = i + 1;
             yield return StartCoroutine(SpawnWave(spawnData[i], spawnPoint));
-            OnWaveEnd?.Invoke(i+1);
-            yield return StartCoroutine(IntervalDelay(waveData.WaveInterval));
+            OnWaveEnd?.Invoke(i + 1);
+            yield return StartCoroutine(IntervalDelay(waveData.BetweenWavesInterval));
         }
     }
 
 
     private IEnumerator SpawnWave(EnemySpawnData givenData, EnemySpawnPoint point)
     {
-        for (int i = 0; i < givenData.TotalSpawns; i++)//loop over how many spawns there are in total
+        for (int i = 0; i < givenData.TotalSpawns; i++) //loop over how many spawns there are in total
         {
             for (int j = 0; j < givenData.Groups.Count; j++)
             {
@@ -69,20 +65,22 @@ public class WaveHandler : MonoBehaviour
                 {
                     for (int z = 0; z < givenData.Groups[j].AmountPerSpawn; z++)
                     {
-                        if (givenData.Groups[j].TotalAmount <= givenData.Groups[j].NumSpawned)//if ran out of enemies to spawn break out.
+                        if (givenData.Groups[j].TotalAmount <= givenData.Groups[j].NumSpawned) //if ran out of enemies to spawn break out.
                         {
                             break;
                         }
+
                         currentSpawnPoint.SpawnEnemy(givenData.Groups[j].Enemy);
 
                         EnemyGroup group = givenData.Groups[j];
                         group.NumSpawned++;
                         givenData.Groups[j] = group;
 
-                        yield return new WaitForSeconds(fixedSpawnInterval);//for now
+                        yield return new WaitForSeconds(fixedSpawnInterval); //for now
                     }
                 }
             }
+
             yield return StartCoroutine(IntervalDelay(givenData.TimeBetweenIntervals));
         }
     }

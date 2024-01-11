@@ -5,15 +5,15 @@ using UnityEngine;
 
 public class CoreHPUIHnadler : CounterUIElement
 {
-    private void Start()
+    public override void Init()
     {
-        //Init();
-        //init with core hp
+        base.Init(); 
+        //ElementInit(); //get core hp
     }
 
-    public override void Init(int maxValue, int currentValue = -1)
+    public override void ElementInit(int maxValue, int currentValue = -1)
     {
-        base.Init(maxValue, currentValue);
+        base.ElementInit(maxValue, currentValue);
     }
 
     public override void UpdateVisual()
