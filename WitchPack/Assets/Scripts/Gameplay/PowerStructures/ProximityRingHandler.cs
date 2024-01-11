@@ -4,24 +4,30 @@ using UnityEngine;
 
 public class ProximityRingHandler : MonoBehaviour
 {
-    // public event Action<int, ITargetAbleEntity> OnShadowEnter;
-    // public event Action<int, ITargetAbleEntity> OnShadowExit;
-    // public event Action<int, ITargetAbleEntity> OnShamanEnter;
-    // public event Action<int, ITargetAbleEntity> OnShamanExit;
-    [HideInInspector] public int Id { get; private set; }
+    public event Action<int, Shadow> OnShadowEnter;
+    public event Action<int, Shadow> OnShadowExit;
+    public event Action<int, Shaman> OnShamanEnter;
+    public event Action<int, Shaman> OnShamanExit;
+    public int Id { get; private set; }
 
-    [SerializeField] private SpriteRenderer _spriteRenderer;
-    [SerializeField] private Targeter<Shaman> _colliderTargetingArea;
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Targeter<Shaman> shamanTargeter;
+    [SerializeField] private Targeter<Shadow> shadowTargeter;
 
     private float _spriteAlpha;
 
 
     public void Init(int id, float alpha)
     {
-        // _colliderTargetingArea.Init(this);
         _spriteAlpha = alpha;
         Id = id;
+        shamanTargeter.OnTargetAdded += OnShamanEnterTargeter;
+        shamanTargeter.OnTargetLost += OnShamanExitTargeter;
+        shadowTargeter.OnTargetLost += OnShadowEnterTargeter;
+        shadowTargeter.OnTargetLost += OnShadowExitTargeter;
     }
+
+    
 
     public void Scale(float range)
     {
@@ -30,51 +36,18 @@ public class ProximityRingHandler : MonoBehaviour
 
     public void ToggleSprite(bool state)
     {
-        _spriteRenderer.enabled = state;
+        spriteRenderer.enabled = state;
     }
 
     public void ChangeColor(Color color)
     {
         color.a = _spriteAlpha;
-        _spriteRenderer.color = color;
+        spriteRenderer.color = color;
     }
-
-    // public void RecieveCollision(Collider2D other, IOType ioType)
-    // {
-    //     if (other.gameObject.CompareTag("ShadowShaman"))
-    //     {
-    //         if (ioType == IOType.In)
-    //         {
-    //             if (other.gameObject.TryGetComponent<Shadow>(out var shadow))
-    //                 OnShadowEnter?.Invoke(Id, shadow.Shaman);
-    //         }
-    //
-    //         if (ioType == IOType.Out)
-    //         {
-    //             if (other.gameObject.TryGetComponent<Shadow>(out var shadow))
-    //                 OnShadowExit?.Invoke(Id, shadow.Shaman);
-    //         }
-    //     }
-    //
-    //     if (other.gameObject.CompareTag("Shaman"))
-    //     {
-    //         if (ioType == IOType.In)
-    //         {
-    //             if (other.gameObject.transform.parent.TryGetComponent<UnitEntity>(out var unitEntity))
-    //             {
-    //                 if (unitEntity.EntityType == EntityType.Hero)
-    //                     OnShamanEnter?.Invoke(Id, unitEntity);
-    //             }
-    //         }
-    //
-    //         if (ioType == IOType.Out)
-    //         {
-    //             if (other.gameObject.transform.parent.TryGetComponent<UnitEntity>(out var unitEntity))
-    //             {
-    //                 if (unitEntity.EntityType == EntityType.Hero)
-    //                     OnShamanExit?.Invoke(Id, unitEntity);
-    //             }
-    //         }
-    //     }
-    // }
+    private void OnShadowExitTargeter(Shadow obj) => OnShadowExit?.Invoke(Id,obj);
+    private void OnShadowEnterTargeter(Shadow obj) =>OnShadowEnter?.Invoke(Id,obj);
+    private void OnShamanExitTargeter(Shaman obj) =>OnShamanExit?.Invoke(Id,obj);
+    private void OnShamanEnterTargeter(Shaman obj) =>OnShamanEnter?.Invoke(Id,obj);
+    
+    
 }

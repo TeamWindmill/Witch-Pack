@@ -5,7 +5,6 @@ using UnityEngine;
 public class Targeter<T> : MonoBehaviour where T : Component
 {
     [SerializeField] private List<T> availableTargets = new List<T>();
-    [SerializeField] private PolygonCollider2D collider;
     public Action<T> OnTargetAdded;
     public Action<T> OnTargetLost;
 
