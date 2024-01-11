@@ -11,7 +11,7 @@ public class ProximityRingHandler : MonoBehaviour
     [HideInInspector] public int Id { get; private set; }
 
     [SerializeField] private SpriteRenderer _spriteRenderer;
-    // [SerializeField] private ColliderTargetingArea _colliderTargetingArea;
+    [SerializeField] private Targeter<Shaman> _colliderTargetingArea;
 
     private float _spriteAlpha;
 

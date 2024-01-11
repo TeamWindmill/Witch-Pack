@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,6 +6,8 @@ public class Targeter<T> : MonoBehaviour where T : Component
 {
     [SerializeField] private List<T> availableTargets = new List<T>();
     [SerializeField] private PolygonCollider2D collider;
+    public Action<T> OnTargetAdded;
+    public Action<T> OnTargetLost;
 
     public List<T> AvailableTargets { get => availableTargets; }
 
@@ -20,12 +23,13 @@ public class Targeter<T> : MonoBehaviour where T : Component
         transform.parent.localScale = new Vector3(value * 2, value * 2, value * 2);
     }
 
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         T possibleTarget = collision.GetComponent<T>();
         if (!ReferenceEquals(possibleTarget, null) && !availableTargets.Contains(possibleTarget))
         {
             availableTargets.Add(possibleTarget);
+            OnTargetAdded?.Invoke(possibleTarget);
         }
 
     }
@@ -36,6 +40,7 @@ public class Targeter<T> : MonoBehaviour where T : Component
         if (!ReferenceEquals(possibleTarget, null))
         {
             availableTargets.Remove(possibleTarget);
+            OnTargetLost?.Invoke(possibleTarget);
         }
 
     }

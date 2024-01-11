@@ -13,7 +13,10 @@ public class Damageable
     private bool hitable;
 
     public Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility, bool /*critical - a more generic callback*/> OnGetHit;
+    public Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility> OnDamageCalc;
     public Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility> OnDeath;
+    public Action OnDeathGFX;
+    public Action<bool> OnHitGFX;
     
     //add gfx events later
 
@@ -23,6 +26,7 @@ public class Damageable
     {
         this.owner = owner;
         hitable = true;
+        currentHp = MaxHp;
         OnGetHit += AddStatsDamageReduction;
     }
 
@@ -46,12 +50,13 @@ public class Damageable
             {
                 dealer.OnHitTarget?.Invoke(this, dealer, dmg, ability, true);
                 OnGetHit?.Invoke(this, dealer, dmg, ability, true);
+                OnHitGFX?.Invoke(true);
             }
             else
             {
                 dealer.OnHitTarget?.Invoke(this, dealer, dmg, ability, false);
                 OnGetHit?.Invoke(this, dealer, dmg, ability, false);
-
+                OnHitGFX?.Invoke(false);
             }
             TakeDamage(dmg, dealer, ability);
         }
@@ -59,19 +64,20 @@ public class Damageable
         {
             dealer.OnHitTarget?.Invoke(this, dealer, null, ability, false);
             OnGetHit?.Invoke(this, dealer, null, ability, false);
+            OnHitGFX?.Invoke(false);
         }
-
-        
     }
 
     public void TakeDamage(DamageHandler handler, DamageDealer dealer, BaseAbility attack)
     {
         currentHp -= handler.GetFinalDamage();
         Debug.Log($"{owner.gameObject} took {handler.GetFinalDamage()} damage from {dealer.Owner.name}");
+        OnDamageCalc?.Invoke(this,dealer,handler,attack);
         if (currentHp <= 0)
         {
             OnDeath?.Invoke(this, dealer, handler, attack);
             dealer.OnKill?.Invoke(this, dealer, handler, attack);
+            OnDeathGFX?.Invoke();
         }
         ClampHp();
     }
@@ -81,7 +87,7 @@ public class Damageable
         currentHp -= amount;
         if (currentHp <= 0)
         {
-          //gfx here
+            OnDeathGFX?.Invoke();
         }
         ClampHp();
     }

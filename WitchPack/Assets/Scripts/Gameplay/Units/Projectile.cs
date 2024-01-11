@@ -15,13 +15,37 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float lifeTime;
     private int currentNumberOfHits;
     private int maxNumberOfHits;
+
+    private void Awake()
+    {
+        GAME_TIME.OnTimeRateChange += ChangeVelocity;
+    }
+
     public void Fire(BaseUnit shooter, BaseAbility givenAbility, Vector2 dir)
     {
         owner = shooter;
         refAbility = givenAbility;
-        rb.velocity = dir * (speed + shooter.Stats.AbilityProjectileSpeed);
+        Rotate(dir);
+        rb.velocity = dir * (speed + shooter.Stats.AbilityProjectileSpeed) * GAME_TIME.GetCurrentTimeRate;
         maxNumberOfHits = baseMaxNumberOfHits + shooter.Stats.AbilityProjectilePenetration;
         StartCoroutine(LifeTime());
+    }
+
+    private void ChangeVelocity()
+    {
+        if (gameObject.activeSelf)
+        {
+            rb.velocity *= GAME_TIME.GetCurrentTimeRate;
+        }
+    }
+
+
+
+
+    private void Rotate(Vector2 dir)
+    {
+        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle-90,Vector3.forward);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -64,7 +88,12 @@ public class Projectile : MonoBehaviour
 
     private IEnumerator LifeTime()
     {
-        yield return new WaitForSeconds(lifeTime);
+        float counter = 0f;
+        while (counter < lifeTime)
+        {
+            counter += GAME_TIME.GameDeltaTime;
+            yield return new WaitForEndOfFrame();
+        }
         Disable();
     }
 

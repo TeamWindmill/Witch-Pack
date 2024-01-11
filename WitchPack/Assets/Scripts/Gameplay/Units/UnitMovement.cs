@@ -15,10 +15,13 @@ public class UnitMovement : MonoBehaviour
     //testing - until selection system is implemented
     [SerializeField] private bool input;
 
+    public bool IsMoving => agent.velocity.sqrMagnitude > 0; //need to replace
+
     private void Awake()
     {
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        GAME_TIME.OnTimeRateChange += ChangeSpeedOnGameTime;
     }
 
     public void SetUp(BaseUnit givenOwner)
@@ -29,20 +32,26 @@ public class UnitMovement : MonoBehaviour
     public void SetSpeed(float value)
     {
         agent.speed = value;
-        agent.acceleration = agent.speed;
+        //agent.acceleration = agent.speed;
     }
+
+    private void ChangeSpeedOnGameTime()
+    {
+        SetSpeed(agent.speed * GAME_TIME.GetCurrentTimeRate);
+    }
+
 
     public void AddSpeed(StatType stat, float value)
     {
         if (stat == StatType.MovementSpeed)
         {
             agent.speed += value;
-            agent.acceleration = agent.speed;
+            //agent.acceleration = agent.speed;
         }
     }
 
 
-    private void Update()
+   /* private void Update()
     {
         if (input && Input.GetMouseButtonDown(0))
         {
@@ -50,9 +59,11 @@ public class UnitMovement : MonoBehaviour
             SetDest(newDest);
         }
     }
-
+*/
     public void SetDest(Vector3 worldPos)
     {
+        agent.velocity = Vector3.zero;
+        currentDest = transform.position;
         currentDest = worldPos;
         reachedDest = false;
         OnDestenationSet?.Invoke(worldPos);
@@ -62,6 +73,11 @@ public class UnitMovement : MonoBehaviour
             StopCoroutine(activeMovementRoutine);
         }
         activeMovementRoutine = StartCoroutine(WaitTilReached());
+    }
+
+    public void ToggleMovement(bool state)
+    {
+        agent.isStopped = state;
     }
 
     private IEnumerator WaitTilReached()

@@ -8,6 +8,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     [SerializeField] private Shaman shamanPrefab;
     [SerializeField] private PartyUIManager partyUIManager;
     [SerializeField] private PoolManager poolManager;
+    [SerializeField] private SelectionManager selectionManager;
 
     public LevelHandler CurrentLevel { get; private set; }
     public List<Shaman> ShamanParty { get; private set; }
@@ -55,4 +56,5 @@ public class LevelManager : MonoSingleton<LevelManager>
     {
         get => poolManager;
     }
+    public SelectionManager SelectionManager { get => selectionManager;}
 }
