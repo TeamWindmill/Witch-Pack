@@ -6,40 +6,78 @@ public class Indicator : MonoBehaviour
     [SerializeField] private Image artwork;
     [SerializeField] private Image circle;
     [SerializeField] private Transform pointer;
+    [SerializeField] private LayerMask layers;
 
     private float time;
     private float counter;
-    Transform target;
+    Indicatable target;
+    Vector3 midScreen;
 
-    public void InitIndicator(Transform target, Sprite artwork, float time)
+    private Vector2 screenSize = new Vector2(Screen.width, Screen.height);
+
+    public void InitIndicator(Indicatable target, Sprite artwork, float time)
     {
+        if (target.IsVisible())
+        {
+            gameObject.SetActive(false);
+            return;
+        }
+        Vector3 targetSP = GameManager.Instance.CameraHandler.MainCamera.WorldToScreenPoint(target.transform.position);
         this.time = time;
         this.target = target;
         this.artwork.sprite = artwork;
         counter = 0f;
         circle.fillAmount = 1;
-        Vector2 midScreen = new Vector2(((RectTransform)transform.parent).sizeDelta.x * 0.5f, ((RectTransform)transform.parent).sizeDelta.y * 0.5f);
-    }
-
-
-    private void Update()
-    {
-        if (time != 0)//if timer is needed 
+        float x;
+        float y;
+        if (targetSP.x > 0)
         {
-            counter += GAME_TIME.GameDeltaTime;
-            circle.fillAmount = counter / time;
-            if (counter >= time)
-            {
-                gameObject.SetActive(false);
-            }
+            x = screenSize.x / 2;
         }
-        //place object on screen edge (+some kind of offset) in the direction of the target
-        //Vector2 dir = (target.position - transform.position).normalized;
-        //float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        //pointer.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        //physikef
+        else
+        {
+            x = -screenSize.x / 2;
+        }
+        if (targetSP.y > 0)
+        {
+            y = screenSize.y / 2;
+        }
+        else
+        {
+            y = -screenSize.y / 2;
+        }
+        Vector2 dir = targetSP - GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(screenSize / 2);
+        transform.localPosition = new Vector2(x, y) * dir.normalized;
+
     }
 
+
+    private void OnDrawGizmosSelected()
+    {
+        Vector3 targetSP = GameManager.Instance.CameraHandler.MainCamera.WorldToScreenPoint(target.transform.position);
+
+        float x;
+        float y;
+        if (targetSP.x > 0)
+        {
+            x = screenSize.x / 2;
+        }
+        else
+        {
+            x = -screenSize.x / 2;
+        }
+        if (targetSP.y > 0)
+        {
+            y = screenSize.y / 2;
+        }
+        else
+        {
+            y = -screenSize.y / 2;
+        }
+       // Vector2 to = targetSP - GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(screenSize / 2);
+        Gizmos.color = Color.red;
+        Gizmos.DrawLine(GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(screenSize / 2), targetSP);
+    }
 
 }
 
