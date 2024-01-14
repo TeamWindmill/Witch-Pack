@@ -33,7 +33,7 @@ public class TargetedShot : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         BaseUnit target = collision.GetComponent<BaseUnit>();
-        if (!ReferenceEquals(target, null))
+        if (!ReferenceEquals(target, null) && !ReferenceEquals(ability, null))
         {
             target.Damageable.GetHit(owner.DamageDealer, ability);
         }
@@ -53,6 +53,10 @@ public class TargetedShot : MonoBehaviour
             transform.position = positionLerp;
             counter += GAME_TIME.GameDeltaTime * speed;
             yield return new WaitForEndOfFrame();
+        }
+        if (!target.gameObject.activeSelf)
+        {
+            Disable();
         }
     }
 

@@ -5,13 +5,13 @@ using UnityEngine;
 public class EnemySpawnPoint : MonoBehaviour
 {
 
-    [SerializeField] private Enemy enemyPrefab; // for now
     [SerializeField] private CustomPath path;
 
     public void SpawnEnemy(EnemyConfig givenConf)
     {
-        Enemy enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
-        enemy.transform.parent = transform;// for now
+        Enemy enemy = LevelManager.Instance.PoolManager.EnemyPool.GetPooledObject();
+        enemy.transform.position = transform.position;
+        enemy.gameObject.SetActive(true);
         enemy.SetPath(path);
         enemy.Init(givenConf);
     }

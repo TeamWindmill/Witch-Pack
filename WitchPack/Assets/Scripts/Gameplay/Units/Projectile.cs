@@ -15,6 +15,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float lifeTime;
     private int currentNumberOfHits;
     private int maxNumberOfHits;
+    private float lastRate;
 
     private void Awake()
     {
@@ -26,7 +27,8 @@ public class Projectile : MonoBehaviour
         owner = shooter;
         refAbility = givenAbility;
         Rotate(dir);
-        rb.velocity = dir * (speed + shooter.Stats.AbilityProjectileSpeed) * GAME_TIME.GetCurrentTimeRate;
+        lastRate = GAME_TIME.GetCurrentTimeRate;
+        rb.velocity = dir * (speed + shooter.Stats.AbilityProjectileSpeed) * lastRate;
         maxNumberOfHits = baseMaxNumberOfHits + shooter.Stats.AbilityProjectilePenetration;
         StartCoroutine(LifeTime());
     }
@@ -35,12 +37,11 @@ public class Projectile : MonoBehaviour
     {
         if (gameObject.activeSelf)
         {
-            rb.velocity *= GAME_TIME.GetCurrentTimeRate;
+            rb.velocity /= lastRate;
+            lastRate = GAME_TIME.GetCurrentTimeRate;
+            rb.velocity *= lastRate;
         }
     }
-
-
-
 
     private void Rotate(Vector2 dir)
     {

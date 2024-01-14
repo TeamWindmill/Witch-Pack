@@ -17,15 +17,15 @@ public class HeroSelectionUI : MonoSingleton<HeroSelectionUI>
         gameObject.SetActive(false);
     }
 
-    public void Init(BaseUnit shaman)
+    public void Show(Shaman shaman)
     {
         UnitStats stats = shaman.Stats;
         
         _statBlockPanel.Init(shaman);
         _psBonusUIHandler.Show(stats);
-        //_abilityUIHandler.Show(shaman.EntityAbilitiesComponent.Abilities);
-        //_shamanSprite.sprite = shaman.Config.VisualComponentConfig.Icon;
-        //_shamanName.text = shaman.Config.EntityName;
+        _abilityUIHandler.Show(shaman.CastingHandlers);
+        _shamanSprite.sprite = shaman.ShamanConfig.UnitIcon;
+        _shamanName.text = shaman.ShamanConfig.Name;
         
         IsActive = true;
         gameObject.SetActive(true);
@@ -36,7 +36,7 @@ public class HeroSelectionUI : MonoSingleton<HeroSelectionUI>
         _statBlockPanel.UpdateStatBlocks(shamanStatType, newValue);
     }
 
-    public void HideSelectionUI()
+    public void Hide()
     {
         _statBlockPanel.HideStatBlocks();
         _psBonusUIHandler.Hide();

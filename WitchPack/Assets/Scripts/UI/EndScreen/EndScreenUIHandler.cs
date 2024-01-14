@@ -11,7 +11,7 @@ public class EndScreenUIHandler : MonoBehaviour
 
     public void Show()
     {
-        var isWon = LevelManager.IsWon;
+        var isWon = LevelManager.Instance.IsWon;
         _title.text = isWon ? "You won!" : "You lost!";
         _tips.text = isWon ? _config.WinText[Random.Range(0, _config.WinText.Length)] : _config.LoseText[Random.Range(0, _config.LoseText.Length)];
     }

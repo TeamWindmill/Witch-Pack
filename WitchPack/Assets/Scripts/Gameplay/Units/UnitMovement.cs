@@ -6,14 +6,12 @@ public class UnitMovement : MonoBehaviour
 {
     private bool reachedDest;
     private Vector2 currentDest;
-    public Action<Vector3> OnDestenationSet;
-    public Action<Vector3> OnDestenationReached;
+    public Action OnDestenationSet;
+    public Action OnDestenationReached;
     private Coroutine activeMovementRoutine;
     private BaseUnit owner;
     [SerializeField] private NavMeshAgent agent;
 
-    //testing - until selection system is implemented
-    [SerializeField] private bool input;
 
     public bool IsMoving => agent.velocity.sqrMagnitude > 0; //need to replace
 
@@ -21,7 +19,6 @@ public class UnitMovement : MonoBehaviour
     {
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-        GAME_TIME.OnTimeRateChange += ChangeSpeedOnGameTime;
     }
 
     public void SetUp(BaseUnit givenOwner)
@@ -29,15 +26,10 @@ public class UnitMovement : MonoBehaviour
         owner = givenOwner;
     }
 
-    public void SetSpeed(float value)
+   /* public void SetSpeed(float value)
     {
         agent.speed = value;
         //agent.acceleration = agent.speed;
-    }
-
-    private void ChangeSpeedOnGameTime()
-    {
-        SetSpeed(agent.speed * GAME_TIME.GetCurrentTimeRate);
     }
 
 
@@ -48,25 +40,20 @@ public class UnitMovement : MonoBehaviour
             agent.speed += value;
             //agent.acceleration = agent.speed;
         }
-    }
+    }*/
 
-
-   /* private void Update()
+    private void Update()
     {
-        if (input && Input.GetMouseButtonDown(0))
-        {
-            Vector3 newDest = GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
-            SetDest(newDest);
-        }
+        agent.speed = owner.Stats.MovementSpeed * GAME_TIME.GetCurrentTimeRate;
     }
-*/
+
     public void SetDest(Vector3 worldPos)
     {
         agent.velocity = Vector3.zero;
         currentDest = transform.position;
         currentDest = worldPos;
         reachedDest = false;
-        OnDestenationSet?.Invoke(worldPos);
+        OnDestenationSet?.Invoke();
         agent.destination = (Vector2)worldPos;
         if (!ReferenceEquals(activeMovementRoutine, null))
         {
@@ -84,7 +71,7 @@ public class UnitMovement : MonoBehaviour
     {
         yield return new WaitUntil(() => agent.velocity != Vector3.zero);
         yield return new WaitUntil(() =>  agent.remainingDistance <= agent.stoppingDistance);
-        OnDestenationReached?.Invoke(transform.position);
+        OnDestenationReached?.Invoke();
     }
 
 

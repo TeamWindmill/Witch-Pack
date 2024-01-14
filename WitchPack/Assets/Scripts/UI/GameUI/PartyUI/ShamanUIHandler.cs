@@ -2,7 +2,7 @@
 using UnityEngine.UI;
 
 
-public class ShamanUIHandler : MonoBehaviour
+public class ShamanUIHandler : ClickableUIElement
 {
     [SerializeField] private Image _fill;
     [SerializeField] private Slider _healthBar;
@@ -11,20 +11,22 @@ public class ShamanUIHandler : MonoBehaviour
     private Shaman _shaman;
 
 
-    public void SetShamanData(Shaman shaman)
+    public void Init(Shaman shaman)
     {
         _shaman = shaman;
         _splash.sprite = _shaman.ShamanConfig.UnitIcon;
+        _healthBar.value = 1;
     }
 
     private void GoToShaman() =>
         GameManager.Instance.CameraHandler.SetCameraPosition(_shaman.transform.position);
 
-    public void Show()
+    public override void Show()
     {
+        base.Show();
         _shaman.Damageable.OnGetHit += OnHealthChange;
         _shaman.Damageable.OnDeath += ShamanDeathUI;
-        //OnClickEvent += GoToShaman;
+        OnClickEvent += GoToShaman;
     }
 
     private void OnHealthChange(Damageable arg1, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4, bool arg5)
@@ -34,11 +36,12 @@ public class ShamanUIHandler : MonoBehaviour
         _fill.color = Color.Lerp(Color.red, Color.green, hpRatio);
     }
 
-    public void Hide()
+    public override void Hide()
     {
         _shaman.Damageable.OnGetHit -= OnHealthChange;
         _shaman.Damageable.OnDeath -= ShamanDeathUI;
-        //OnClickEvent -= GoToShaman;
+        OnClickEvent -= GoToShaman;
+        base.Hide();
     }
 
     private void ShamanDeathUI(Damageable arg1, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4)

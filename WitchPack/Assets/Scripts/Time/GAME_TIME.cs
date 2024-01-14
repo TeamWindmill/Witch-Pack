@@ -7,6 +7,7 @@ public class GAME_TIME : MonoBehaviour
 {
     public static event Action OnTimeRateChange;
 
+    private static float _gameTime;
     private static float _timeRate = 1f;
     private static float _startGameTime;
 
@@ -15,6 +16,7 @@ public class GAME_TIME : MonoBehaviour
     private static float _tempTimeData = 1;
     public static float TimePlayed => Time.realtimeSinceStartup - _startGameTime;
     public static float GetCurrentTimeRate => _timeRate;
+    public static float GameTime => _gameTime;
     public static float GameDeltaTime => Time.deltaTime * _timeRate;
 
     public static bool IsTimeStopped => _timeRate == 0;
@@ -29,11 +31,12 @@ public class GAME_TIME : MonoBehaviour
     {
         _monoBehaviour = this;
         _startGameTime = Time.realtimeSinceStartup;
+        _gameTime = 0;
     }
 
     private void Update()
     {
-        //TimerHandler.TickAllTimers();
+        _gameTime += GameDeltaTime;
     }
 
     public static void SetTimeStep(float time, float transitionTime = 1, AnimationCurve curve = null)
@@ -47,6 +50,7 @@ public class GAME_TIME : MonoBehaviour
         if (_fadeCoroutine != null)
         {
             _monoBehaviour.StopCoroutine(_fadeCoroutine);
+            SetTime(1f);
             _fadeCoroutine = null;
         }
 
@@ -81,7 +85,7 @@ public class GAME_TIME : MonoBehaviour
     {
         _timeRate = timeRate;
 
-        //Debug.Log($"Set time to {timeRate}");
+        Debug.Log($"Set time to {timeRate}");
 
         OnTimeRateChange?.Invoke();
     }

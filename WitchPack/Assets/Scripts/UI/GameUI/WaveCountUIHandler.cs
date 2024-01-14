@@ -1,25 +1,29 @@
-﻿using TMPro;
+﻿using System;
+using TMPro;
 using UnityEngine;
 
-public class WaveCountUIHandler : BaseUIElement
+public class WaveCountUIHandler : CounterUIElement
 {
-    [SerializeField] private TMP_Text _currentCount;
-    [SerializeField] private TMP_Text _maxCount;
-    public override void Show()
+    public override void Init()
     {
-        //LevelManager.WaveManager.OnNewWaveStarted += UpdateUiData;
-        base.Show();
+        base.Init();
+        ElementInit(LevelManager.Instance.CurrentLevel.WaveHandler.TotalWaves,LevelManager.Instance.CurrentLevel.WaveHandler.CurrentWave);
+    }
+    
+    public override void ElementInit(int maxValue, int currentValue = -1)
+    {
+        base.ElementInit(maxValue, currentValue);
+        LevelManager.Instance.CurrentLevel.WaveHandler.OnWaveStart += UpdateWave;
     }
 
-    public override void UpdateUIVisual()
+    private void UpdateWave(int wave)
     {
-        base.UpdateUIVisual();
-        //_maxCount.text = $"/{LevelManager.WaveManager.TotalNumberOfWaves}";
+        UpdateUIData(wave);
     }
 
     public override void Hide()
     {
-        //LevelManager.WaveManager.OnNewWaveStarted -= UpdateUiData;
+        LevelManager.Instance.CurrentLevel.WaveHandler.OnWaveStart += UpdateWave;
         base.Hide();
     }
 }

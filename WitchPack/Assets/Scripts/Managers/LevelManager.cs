@@ -1,28 +1,40 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class LevelManager : MonoSingleton<LevelManager>
 {
+    public event Action<LevelHandler> OnLevelLoad;
     [SerializeField] private Transform enviromentHolder;
     [SerializeField] private Transform shamanHolder;
     [SerializeField] private Shaman shamanPrefab;
     [SerializeField] private PartyUIManager partyUIManager;
     [SerializeField] private PoolManager poolManager;
     [SerializeField] private SelectionManager selectionManager;
+    [SerializeField] private IndicatorManager indicatorManager;
+    [SerializeField] private Canvas gameUi;
 
     public LevelHandler CurrentLevel { get; private set; }
     public List<Shaman> ShamanParty { get; private set; }
-    public static bool IsWon { get; private set; }
-
+    public bool IsWon { get; private set; }
+    public SelectionManager SelectionManager { get => selectionManager; }
+    public IndicatorManager IndicatorManager { get => indicatorManager; }
+    public Canvas GameUi { get => gameUi; }
+    public PoolManager PoolManager
+    {
+        get => poolManager;
+    }
     private void Start()
     {
         var levelConfig = GameManager.Instance.CurrentLevelConfig;
         CurrentLevel = Instantiate(levelConfig.levelPrefab, enviromentHolder);
+        CurrentLevel.Init(OnLevelLoad);
         GameManager.Instance.CameraHandler.SetCameraLevelSettings(levelConfig.CameraLevelSettings);
         GameManager.Instance.CameraHandler.ResetCamera();
         SpawnParty(levelConfig.Shamans);
         CurrentLevel.TurnOffSpawnPoints();
-        partyUIManager.Init(ShamanParty);
+        UIManager.Instance.InitUIElements(UIGroup.GameUI);
         BgMusicManager.Instance.PlayMusic();
     }
 
@@ -39,7 +51,7 @@ public class LevelManager : MonoSingleton<LevelManager>
         {
             int rand = Random.Range(0, CurrentLevel.ShamanSpawnPoints.Length);
             var spawnPoint = CurrentLevel.ShamanSpawnPoints[rand];
-            
+
             while (!spawnPoint.gameObject.activeSelf)
             {
                 rand = Random.Range(0, CurrentLevel.ShamanSpawnPoints.Length);
@@ -52,9 +64,5 @@ public class LevelManager : MonoSingleton<LevelManager>
             spawnPoint.gameObject.SetActive(false);
         }
     }
-    public PoolManager PoolManager
-    {
-        get => poolManager;
-    }
-    public SelectionManager SelectionManager { get => selectionManager;}
+    
 }

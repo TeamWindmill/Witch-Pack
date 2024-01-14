@@ -1,4 +1,3 @@
-using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -6,7 +5,7 @@ public class Enemy : BaseUnit
 {
     [SerializeField, TabGroup("Visual")] private EnemyAnimator enemyAnimator;
     [SerializeField] private ShamanTargeter shamanTargeter;
-    [SerializeField] private CustomPath givenPath;
+    private CustomPath givenPath;
     //testing 
     private EnemyConfig enemyConfig;
     private int pointIndex = 0;
@@ -18,6 +17,7 @@ public class Enemy : BaseUnit
     }
     public override void Init(BaseUnitConfig givenConfig)
     {
+        pointIndex = 0;
         enemyConfig = givenConfig as EnemyConfig;
         base.Init(enemyConfig);
         shamanTargeter.SetRadius(Stats.BonusRange);
@@ -32,7 +32,7 @@ public class Enemy : BaseUnit
     }
 
 
-    private void SetNextDest(Vector3 pos)
+    private void SetNextDest()
     {
         pointIndex++;
         if (givenPath.Waypoints.Count <= pointIndex)//if reached the end of the path target nexus 
@@ -41,9 +41,15 @@ public class Enemy : BaseUnit
         }
         else
         {
+            Debug.Log("set dest");
             Movement.SetDest(givenPath.Waypoints[pointIndex].position);
         }
 
+    }
+
+    private void OnDisable()
+    {
+        Movement.OnDestenationReached -= SetNextDest;
     }
 
     public EnemyConfig EnemyConfig { get => enemyConfig; }

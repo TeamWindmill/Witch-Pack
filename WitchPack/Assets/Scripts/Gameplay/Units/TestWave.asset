@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82081355af3c5334cb92e806794a9fd2, type: 3}
   m_Name: TestWave
   m_EditorClassIdentifier: 
-  waveInterval: 10
+  startDelayInterval: 15
+  betweenBetweenWavesesInterval: 10
   waves:
   - TotalSpawns: 13
     TimeBetweenIntervals: 1.5
@@ -21,9 +22,26 @@ MonoBehaviour:
       AmountPerSpawn: 3
       TotalAmount: 35
       SpawnedAtInterval: 1
+      SpawnerIndex: 1
       NumSpawned: 0
     - Enemy: {fileID: 11400000, guid: c9729e563b1f8dc4982cbaf376195c9f, type: 2}
       AmountPerSpawn: 8
       TotalAmount: 8
       SpawnedAtInterval: 4
+      SpawnerIndex: 3
+      NumSpawned: 0
+  - TotalSpawns: 30
+    TimeBetweenIntervals: 1
+    Groups:
+    - Enemy: {fileID: 11400000, guid: c9729e563b1f8dc4982cbaf376195c9f, type: 2}
+      AmountPerSpawn: 3
+      TotalAmount: 90
+      SpawnedAtInterval: 1
+      SpawnerIndex: 4
+      NumSpawned: 0
+    - Enemy: {fileID: 11400000, guid: d356efe2251b1ae4db6097a512631b25, type: 2}
+      AmountPerSpawn: 2
+      TotalAmount: 30
+      SpawnedAtInterval: 15
+      SpawnerIndex: 3
       NumSpawned: 0

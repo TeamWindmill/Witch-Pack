@@ -6,10 +6,12 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "WaveData", menuName = "Wave")]
 public class WaveData : ScriptableObject
 {
-    [SerializeField] private float waveInterval;//the interval between the end a wave to the beginning of the next one 
+    [SerializeField] private float startDelayInterval;//the interval between the end a wave to the beginning of the next one 
+    [SerializeField] private float betweenBetweenWavesesInterval;//the interval between the end a wave to the beginning of the next one 
     public List<EnemySpawnData> waves = new List<EnemySpawnData>();
 
-    public float WaveInterval { get => waveInterval; }
+    public float BetweenWavesInterval { get => betweenBetweenWavesesInterval; }
+    public float StartDelayInterval { get => startDelayInterval; }
     //public List<EnemySpawnData> Waves { get => waves; set => waves = value; }
 
     [Button]
@@ -54,6 +56,8 @@ public struct EnemyGroup
     public int AmountPerSpawn;
     public int TotalAmount;
     public int SpawnedAtInterval;//this is the spawn interval this group will start spawaning at
+    [Tooltip("this refers to the index of the spawn point the group is intended to spawn at." +
+        " If the number is higher than the highest index the portal will be set to the highest index")] public int SpawnerIndex;
     [ReadOnly] public int NumSpawned;
 
 

@@ -30,7 +30,7 @@ public abstract class UnitAnimator : MonoBehaviour
 
     protected virtual void DeathAnimation()
     {
-        unit.Movement.ToggleMovement(false);
+        //unit.Movement.ToggleMovement(false);
         animator.SetBool("Dead",true);
         animator.SetTrigger(_isFlipped ? "Death_Flipped" : "Death");
     }
@@ -48,12 +48,12 @@ public abstract class UnitAnimator : MonoBehaviour
     {
         MoveAnimation();
     }
-
-    private void OnDestroy()
+        
+  /*  private void OnDestroy() //pointless?
     {
         unit.Damageable.OnHitGFX -= GetHitAnimation;
         unit.Damageable.OnDeathGFX -= DeathAnimation;
         unit.UnitVisual.OnSpriteFlip -= FlipAnimations;
         unit.AutoAttackHandler.OnAttack -= AttackAnimation;
-    }
+    }*/
 }

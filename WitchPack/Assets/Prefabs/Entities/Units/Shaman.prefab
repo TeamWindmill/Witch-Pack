@@ -64,6 +64,7 @@ MonoBehaviour:
   enemyTargeter: {fileID: 4238458035565866751}
   shamanAnimator: {fileID: 7099561053656345452}
   clicker: {fileID: 1861919391548874701}
+  indicatable: {fileID: 2569011272749710196}
 --- !u!50 &7156522581338340880
 Rigidbody2D:
   serializedVersion: 4
@@ -117,7 +118,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   agent: {fileID: 4454941212971954470}
-  input: 1
 --- !u!61 &3464479959116816041
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -174,7 +174,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.2
   m_Speed: 5
-  m_Acceleration: 5
+  m_Acceleration: 32
   avoidancePriority: 50
   m_AngularSpeed: 500
   m_StoppingDistance: 0
@@ -243,7 +243,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableTargets: []
-  collider: {fileID: 4578788197242187036}
 --- !u!60 &4578788197242187036
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -402,6 +401,7 @@ GameObject:
   - component: {fileID: 3336282220744888323}
   - component: {fileID: 7099561053656345452}
   - component: {fileID: 2313241048133495088}
+  - component: {fileID: 2569011272749710196}
   m_Layer: 0
   m_Name: ShamanVisual
   m_TagString: Untagged
@@ -524,6 +524,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2569011272749710196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5069646117184760680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e352be8bad2220d4b9084a4791f26622, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8671966536731905977
 GameObject:
   m_ObjectHideFlags: 0

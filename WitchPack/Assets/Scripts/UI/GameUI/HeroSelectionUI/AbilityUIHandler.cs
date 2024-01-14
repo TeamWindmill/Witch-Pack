@@ -5,18 +5,18 @@ public class AbilityUIHandler : MonoBehaviour
 {
     [SerializeField] private AbilityUI[] _abilityUIBlocks;
     
-    // public void Show(Dictionary<string,abili> abilities)
-    // {
-    //     foreach (var ability in abilities)
-    //     {
-    //         foreach (var uiBlock in _abilityUIBlocks)
-    //         {
-    //             if (uiBlock.IsActive) return;
-    //             uiBlock.Show(ability.Value);
-    //             break;
-    //         }
-    //     }
-    // }
+    public void Show(List<UnitCastingHandler> abilities)
+    {
+        foreach (var ability in abilities)
+        {
+            foreach (var uiBlock in _abilityUIBlocks)
+            {
+                if (uiBlock.IsActive) return;
+                uiBlock.Show(ability);
+                break;
+            }
+        }
+    }
 
     public void Hide()
     {
