@@ -12,7 +12,8 @@ public class AbilityUIHandler : MonoBehaviour
             foreach (var uiBlock in _abilityUIBlocks)
             {
                 if (uiBlock.IsActive) return;
-                uiBlock.Show(ability);
+                uiBlock.Show();
+                uiBlock.Init(ability);
                 break;
             }
         }

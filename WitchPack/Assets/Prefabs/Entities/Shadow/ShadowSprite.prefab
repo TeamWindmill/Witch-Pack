@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6730149955412250309}
   - component: {fileID: 2228609329478350251}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: Line
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,9 +146,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1447107314027615554}
   - component: {fileID: 1881725767972929558}
-  - component: {fileID: 7673678306335734228}
   - component: {fileID: 6404782579656315629}
-  m_Layer: 13
+  m_Layer: 0
   m_Name: ShadowSprite
   m_TagString: ShadowShaman
   m_Icon: {fileID: 0}
@@ -190,33 +189,6 @@ MonoBehaviour:
   rangeTransform: {fileID: 2668273189290507671}
   spriteRenderer: {fileID: 6890606164068426322}
   lineRenderer: {fileID: 2228609329478350251}
---- !u!50 &7673678306335734228
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5249046983319933460}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 0
 --- !u!58 &6404782579656315629
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -262,7 +234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2668273189290507671}
   - component: {fileID: 6799797271645015345}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Range
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -554,6 +526,10 @@ PrefabInstance:
     - target: {fileID: 2961289737693887031, guid: be738f59324d72141835518464a01fb3, type: 3}
       propertyPath: m_Name
       value: StatBonusPopupWindow
+      objectReference: {fileID: 0}
+    - target: {fileID: 4783657741023008296, guid: be738f59324d72141835518464a01fb3, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7234423072817309251, guid: be738f59324d72141835518464a01fb3, type: 3}
       propertyPath: _statEffectPopupHandlerPrefab

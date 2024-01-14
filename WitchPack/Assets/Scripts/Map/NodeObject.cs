@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class NodeObject : MonoBehaviour
 {
@@ -58,8 +59,10 @@ public class NodeObject : MonoBehaviour
     }
 
     
-    private void OnNodeClick()
+    private void OnNodeClick(PointerEventData.InputButton button)
     {
+        if (button != PointerEventData.InputButton.Left) return;
+        
         GameManager.Instance.SetLevelConfig(_levelConfig);
        // set party data
         GameManager.SceneHandler.LoadScene(SceneType.Game);

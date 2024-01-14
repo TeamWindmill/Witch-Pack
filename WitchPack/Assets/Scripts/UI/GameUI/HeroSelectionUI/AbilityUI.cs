@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AbilityUI : MonoBehaviour
+public class AbilityUI : UIElement , IInit<UnitCastingHandler>
 {
     [SerializeField] private Image _abilitySpriteRenderer;
     [SerializeField] private Image _cooldownSpriteRenderer;
@@ -10,20 +10,31 @@ public class AbilityUI : MonoBehaviour
     public bool IsActive => _isActive;
     private bool _isActive;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         _abilitySpriteRenderer.enabled = false;
         _cooldownSpriteRenderer.enabled = false;
     }
-
-    public void Show(UnitCastingHandler abilityCaster)
+    public void Init(UnitCastingHandler abilityCaster)
     {
         _abilityCaster = abilityCaster;
+        _abilitySpriteRenderer.sprite = abilityCaster.Ability.Icon;
+    }
+    public override void Show()
+    {
         _abilitySpriteRenderer.enabled = true;
         _cooldownSpriteRenderer.enabled = true;
-        _abilitySpriteRenderer.sprite = abilityCaster.Ability.Icon;
         _isActive = true;
     }
+   
+    public override void Hide()
+    {
+        _abilitySpriteRenderer.enabled = false;
+        _cooldownSpriteRenderer.enabled = false;
+        _isActive = false;
+    }
+
     private void Update()
     {
         if (!_isActive) return;
@@ -39,11 +50,5 @@ public class AbilityUI : MonoBehaviour
             if (ratio < 0) ratio = 0;
         }
         _cooldownSpriteRenderer.fillAmount = ratio;
-    }
-    public void Hide()
-    {
-        _abilitySpriteRenderer.enabled = false;
-        _cooldownSpriteRenderer.enabled = false;
-        _isActive = false;
     }
 }

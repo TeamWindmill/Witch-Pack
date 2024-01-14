@@ -85,7 +85,7 @@ public class GAME_TIME : MonoBehaviour
     {
         _timeRate = timeRate;
 
-        Debug.Log($"Set time to {timeRate}");
+        //Debug.Log($"Set time to {timeRate}");
 
         OnTimeRateChange?.Invoke();
     }

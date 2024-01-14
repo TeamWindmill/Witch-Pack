@@ -1,8 +1,9 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class HeroSelectionUI : MonoSingleton<HeroSelectionUI>
+public class HeroSelectionUI : MonoSingleton<HeroSelectionUI> , IPointerEnterHandler , IPointerExitHandler
 {
     [SerializeField] private Image _shamanSprite;
     [SerializeField] private TextMeshProUGUI _shamanName;
@@ -11,6 +12,7 @@ public class HeroSelectionUI : MonoSingleton<HeroSelectionUI>
     [SerializeField] private AbilityUIHandler _abilityUIHandler;
 
     public bool IsActive { get; private set; }
+    public bool MouseOverUI { get; private set; }
 
     private void Start()
     {
@@ -44,5 +46,15 @@ public class HeroSelectionUI : MonoSingleton<HeroSelectionUI>
 
         IsActive = false;
         gameObject.SetActive(false);
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        MouseOverUI = true;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        MouseOverUI = false;
     }
 }
