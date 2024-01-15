@@ -9,7 +9,7 @@ public class HeroSelectionUI : MonoSingleton<HeroSelectionUI> , IPointerEnterHan
     [SerializeField] private TextMeshProUGUI _shamanName;
     [SerializeField] private StatBlockPanel _statBlockPanel;
     [SerializeField] private PSBonusUIHandler _psBonusUIHandler;
-    [SerializeField] private AbilityUIHandler _abilityUIHandler;
+    [SerializeField] private AbilitiesHandlerUI abilitiesHandlerUI;
 
     public bool IsActive { get; private set; }
     public bool MouseOverUI { get; private set; }
@@ -25,7 +25,7 @@ public class HeroSelectionUI : MonoSingleton<HeroSelectionUI> , IPointerEnterHan
         
         _statBlockPanel.Init(shaman);
         _psBonusUIHandler.Show(stats);
-        _abilityUIHandler.Show(shaman.CastingHandlers);
+        abilitiesHandlerUI.Show(shaman.CastingHandlers);
         _shamanSprite.sprite = shaman.ShamanConfig.UnitIcon;
         _shamanName.text = shaman.ShamanConfig.Name;
         
@@ -42,7 +42,7 @@ public class HeroSelectionUI : MonoSingleton<HeroSelectionUI> , IPointerEnterHan
     {
         _statBlockPanel.HideStatBlocks();
         _psBonusUIHandler.Hide();
-        _abilityUIHandler.Hide();
+        abilitiesHandlerUI.Hide();
 
         IsActive = false;
         gameObject.SetActive(false);

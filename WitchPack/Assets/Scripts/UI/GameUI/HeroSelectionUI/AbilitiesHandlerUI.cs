@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AbilityUIHandler : MonoBehaviour
+public class AbilitiesHandlerUI : MonoBehaviour
 {
     [SerializeField] private AbilityUI[] _abilityUIBlocks;
     
@@ -12,8 +12,8 @@ public class AbilityUIHandler : MonoBehaviour
             foreach (var uiBlock in _abilityUIBlocks)
             {
                 if (uiBlock.IsActive) return;
-                uiBlock.Show();
                 uiBlock.Init(ability);
+                uiBlock.Show();
                 break;
             }
         }

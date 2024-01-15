@@ -12,7 +12,8 @@ public class AbilityUI : UIElement , IInit<UnitCastingHandler>
 
     protected override void Start()
     {
-        base.Start();
+        UIManager.Instance.AddUIElement(this,uiGroup);
+        
         _abilitySpriteRenderer.enabled = false;
         _cooldownSpriteRenderer.enabled = false;
     }

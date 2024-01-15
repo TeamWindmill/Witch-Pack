@@ -23,7 +23,7 @@ public class ProximityRingHandler : MonoBehaviour
         Id = id;
         shamanTargeter.OnTargetAdded += OnShamanEnterTargeter;
         shamanTargeter.OnTargetLost += OnShamanExitTargeter;
-        shadowTargeter.OnTargetLost += OnShadowEnterTargeter;
+        shadowTargeter.OnTargetAdded += OnShadowEnterTargeter;
         shadowTargeter.OnTargetLost += OnShadowExitTargeter;
     }
 

@@ -8,7 +8,9 @@ public class Shadow : MonoBehaviour
     [SerializeField] private LineRenderer lineRenderer;
 
     private Shaman _shaman;
+
     private bool _isActive;
+    public Shaman Shaman => _shaman;
 
     public void Show(Shaman shaman)
     {

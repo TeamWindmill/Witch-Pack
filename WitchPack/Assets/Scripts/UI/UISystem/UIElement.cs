@@ -6,7 +6,7 @@ public abstract class UIElement : MonoBehaviour
     //inherit from this class if it is a ui element
     [SerializeField, HideInInspector] protected RectTransform rectTransform;
     [SerializeField] private bool _showOnAwake = true;
-    [SerializeField] private UIGroup uiGroup;
+    [SerializeField] protected UIGroup uiGroup;
 
     public RectTransform RectTransform => rectTransform;
 

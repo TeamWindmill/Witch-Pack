@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -10,8 +11,8 @@ public class PowerStructureConfig : ScriptableObject
     public Color PowerStructureTypeColor;
     public float DefaultSpriteAlpha;
     public float SpriteAlphaFade;
-    public PowerStructureStatEffect statEffect;
     public Sprite PowerStructureSprite;
+    public PowerStructureStatEffect statEffect;
 
     private void OnValidate()
     {
@@ -20,8 +21,9 @@ public class PowerStructureConfig : ScriptableObject
     }
 }
 
+[Serializable]
 public struct PowerStructureStatEffect
 {
     public StatType StatType;
-    public int[] RingValues;
+    [Range(1,2)]public float[] RingValues;
 }
