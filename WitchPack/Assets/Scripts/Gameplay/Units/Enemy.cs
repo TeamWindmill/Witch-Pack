@@ -37,6 +37,7 @@ public class Enemy : BaseUnit
         pointIndex++;
         if (givenPath.Waypoints.Count <= pointIndex)//if reached the end of the path target nexus 
         {
+            //levelmanager.core.take damage (stats.basedamage) deal basic attack damage to core and die
             gameObject.SetActive(false);
         }
         else

@@ -1,83 +1,71 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
-public class Indicator : MonoBehaviour
+public class Indicator : UIElement
 {
     [SerializeField] private Image artwork;
     [SerializeField] private Image circle;
+    [SerializeField] private Button button;
     [SerializeField] private Transform pointer;
-    [SerializeField] private LayerMask layers;
 
+    private Action onClick;
     private float time;
     private float counter;
-    Indicatable target;
-    Vector3 midScreen;
+    private Indicatable target;
 
-    private Vector2 screenSize = new Vector2(Screen.width, Screen.height);
+    private Vector3 halfScreenSize = new Vector3(Screen.width / 2, Screen.height / 2);
 
-    public void InitIndicator(Indicatable target, Sprite artwork, float time)
+    public void InitIndicator(Indicatable target, Sprite artwork, float time, bool clickable, Action onClick = null)
     {
-        if (target.IsVisible())
-        {
-            gameObject.SetActive(false);
-            return;
-        }
-        Vector3 targetSP = GameManager.Instance.CameraHandler.MainCamera.WorldToScreenPoint(target.transform.position);
         this.time = time;
         this.target = target;
         this.artwork.sprite = artwork;
         counter = 0f;
         circle.fillAmount = 1;
-        float x;
-        float y;
-        if (targetSP.x > 0)
-        {
-            x = screenSize.x / 2;
+        button.enabled = clickable;
+        if (!ReferenceEquals(onClick, null))
+        { 
+            this.onClick = onClick;
         }
         else
         {
-            x = -screenSize.x / 2;
+            this.onClick = null;
         }
-        if (targetSP.y > 0)
-        {
-            y = screenSize.y / 2;
-        }
-        else
-        {
-            y = -screenSize.y / 2;
-        }
-        Vector2 dir = targetSP - GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(screenSize / 2);
-        transform.localPosition = new Vector2(x, y) * dir.normalized;
-
     }
 
 
-    private void OnDrawGizmosSelected()
+
+    private void Update()
+    {
+        PositionIndicator();
+    }
+
+
+    public void InvokeClick()
+    {
+        onClick?.Invoke();
+    }
+
+
+    private void PositionIndicator()
     {
         Vector3 targetSP = GameManager.Instance.CameraHandler.MainCamera.WorldToScreenPoint(target.transform.position);
 
-        float x;
-        float y;
-        if (targetSP.x > 0)
-        {
-            x = screenSize.x / 2;
-        }
-        else
-        {
-            x = -screenSize.x / 2;
-        }
-        if (targetSP.y > 0)
-        {
-            y = screenSize.y / 2;
-        }
-        else
-        {
-            y = -screenSize.y / 2;
-        }
-       // Vector2 to = targetSP - GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(screenSize / 2);
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(screenSize / 2), targetSP);
+
+        float angle = Mathf.Atan2(targetSP.y - halfScreenSize.y, targetSP.x - halfScreenSize.x);
+        Vector3 posIndicator = new Vector3();
+
+        posIndicator.x = Mathf.Cos(angle) * halfScreenSize.x;
+        posIndicator.y = Mathf.Sin(angle) * halfScreenSize.y;
+        posIndicator.z = 0.0f;
+
+        RectTransform.localPosition = posIndicator;
+
+
     }
+
 
 }
 

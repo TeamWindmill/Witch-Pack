@@ -10,21 +10,21 @@ public class Temple_HPBarConnector : MonoBehaviour
     
     private void Start()
     {
-        hP_Bar.Init(coreTemple.Damageable.MaxHp);
+        hP_Bar.Init(coreTemple.MaxHp);
     }
     
     private void OnEnable()
     {
-        coreTemple.Damageable.OnGetHit += SetBarToHealth;
+        coreTemple.OnGetHit += SetBarToHealth;
     }
 
-    private void SetBarToHealth(Damageable arg1, DamageDealer damageDealer, DamageHandler damageHandler, BaseAbility arg4, bool arg5)
+    private void SetBarToHealth(int amount)
     {
-        hP_Bar.SetBarValue(damageHandler.GetFinalDamage());
+        hP_Bar.SetBarValue(amount);
     }
 
     private void OnDisable()
     {
-        coreTemple.Damageable.OnGetHit -= SetBarToHealth;
+        coreTemple.OnGetHit -= SetBarToHealth;
     }
 }

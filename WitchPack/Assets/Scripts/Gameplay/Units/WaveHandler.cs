@@ -1,5 +1,4 @@
 using System;
-using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +14,7 @@ public class WaveHandler : MonoBehaviour
     [SerializeField] private float fixedSpawnInterval;
     private List<EnemySpawnData> spawnData;
     private int _currentWave;
+    private bool skipFlag;
 
     public int CurrentWave => _currentWave;
     public int TotalWaves => spawnData.Count;
@@ -35,6 +35,7 @@ public class WaveHandler : MonoBehaviour
 
             spawnData.Add(newWave);
         }
+        OnWaveEnd += SetIndicator;
         StartCoroutine(StartSpawningWaves());
     }
 
@@ -50,6 +51,7 @@ public class WaveHandler : MonoBehaviour
             yield return StartCoroutine(SpawnWave(spawnData[i], spawnPoint));
             OnWaveEnd?.Invoke(i + 1);
             yield return StartCoroutine(IntervalDelay(waveData.BetweenWavesInterval));
+            skipFlag = false;
         }
     }
 
@@ -106,8 +108,22 @@ public class WaveHandler : MonoBehaviour
         float counter = 0f;
         while (counter < givenInterval)
         {
+            if (skipFlag)
+            {
+                break;
+            }
             counter += GAME_TIME.GameDeltaTime;
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    private void SetIndicator(int waveIndex)
+    {
+        GetSpawnPointFromIndex(spawnData[waveIndex - 1].Groups[0].SpawnerIndex).SetIndicator(spawnData[waveIndex - 1].Groups[0].Enemy.UnitIcon, waveData.BetweenWavesInterval, SkipWaveCD);
+    }
+
+    private void SkipWaveCD()
+    {
+        skipFlag = true;
     }
 }
