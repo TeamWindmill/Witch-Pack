@@ -7,14 +7,14 @@ public class Shadow : MonoBehaviour
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private LineRenderer lineRenderer;
 
-    private Transform _shamanTransform;
     private Shaman _shaman;
+
     private bool _isActive;
+    public Shaman Shaman => _shaman;
 
     public void Show(Shaman shaman)
     {
         spriteRenderer.sprite = shaman.ShamanConfig.UnitSprite;
-        _shamanTransform = shaman.transform;
         _shaman = shaman;
         rangeTransform.localScale = new Vector3(shaman.Stats.BonusRange, shaman.Stats.BonusRange, 0);
         gameObject.SetActive(true);
@@ -33,10 +33,10 @@ public class Shadow : MonoBehaviour
         if (_isActive)
         {
             Vector3 newPos = GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
-            newPos.z = _shamanTransform.position.z;
+            newPos.z = _shaman.transform.position.z;
             transform.position = newPos;
             lineRenderer.positionCount = 2; 
-            lineRenderer.SetPositions(new Vector3[] { _shamanTransform.position, transform.position });
+            lineRenderer.SetPositions(new Vector3[] { _shaman.transform.position, transform.position });
         }
     }
 }

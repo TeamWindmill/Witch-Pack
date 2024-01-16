@@ -21,9 +21,10 @@ public class StatBlockUI : MonoBehaviour
         _statBonusReductionColor = reduceColor;
         SetStatText(_baseValue,0);
     }
-    public void UpdateUI(float bonusValue)
+    public void UpdateUI(float newValue)
     {
         if(!HeroSelectionUI.Instance.IsActive) return;
+        var bonusValue = newValue - _baseValue;
         SetStatText(_baseValue,bonusValue);
     }
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class PowerStructure : MonoBehaviour
     private ProximityRingsManager proximityRingsManager;
 
     [SerializeField] private SpriteRenderer _powerStructureSpriteRenderer;
+    [SerializeField] private SpriteMask _powerStructureMask;
     [Space] [SerializeField] private bool _testing;
 
     private Dictionary<int, int> _activeStatEffectsOnShamans;
@@ -32,6 +34,7 @@ public class PowerStructure : MonoBehaviour
 
         proximityRingsManager.Init(_powerStructureConfig);
         _powerStructureSpriteRenderer.sprite = _powerStructureConfig.PowerStructureSprite;
+        _powerStructureMask.sprite = _powerStructureConfig.PowerStructureSprite;
         _statType = _powerStructureConfig.statEffect.StatType;
         foreach (var ring in proximityRingsManager.RingHandlers)
         {
@@ -72,15 +75,17 @@ public class PowerStructure : MonoBehaviour
     {
         if (_testing) Debug.Log($"shaman entered ring {ringId}");
 
-        var ringStatValue = _powerStructureConfig.statEffect.RingValues[ringId];
-
         if (_activeStatEffectsOnShamans.TryGetValue(shaman.GetInstanceID(), out var statValue))
         {
             shaman.Stats.AddValueToStat(_statType, -statValue);
+            _activeStatEffectsOnShamans.Remove(shaman.GetInstanceID());
+            shaman.RemovePSBonus();
         }
 
-        _activeStatEffectsOnShamans.Add(shaman.GetInstanceID(), ringStatValue);
-        shaman.Stats.AddValueToStat(_statType, ringStatValue);
+        var statEffectValue = GetStatEffectValue(ringId, shaman);
+        shaman.Stats.AddValueToStat(_statType, statEffectValue);
+        shaman.AddPSBonus(statEffectValue);
+        _activeStatEffectsOnShamans.Add(shaman.GetInstanceID(), statEffectValue);
     }
 
     private void OnShamanRingExit(int ringId, Shaman shaman)
@@ -92,18 +97,23 @@ public class PowerStructure : MonoBehaviour
             if (_activeStatEffectsOnShamans.TryGetValue(shaman.GetInstanceID(), out var statValue))
             {
                 shaman.Stats.AddValueToStat(_statType, -statValue);
+                _activeStatEffectsOnShamans.Remove(shaman.GetInstanceID());
+                shaman.RemovePSBonus();
             }
         }
         else if (ringId < proximityRingsManager.RingHandlers.Length - 1)
         {
-            var ringStatValue = _powerStructureConfig.statEffect.RingValues[ringId + 1];
-
             if (_activeStatEffectsOnShamans.TryGetValue(shaman.GetInstanceID(), out var statValue))
             {
                 shaman.Stats.AddValueToStat(_statType, -statValue);
+                _activeStatEffectsOnShamans.Remove(shaman.GetInstanceID());
+                shaman.RemovePSBonus();
             }
 
-            shaman.Stats.AddValueToStat(_statType, ringStatValue);
+            var statEffectValue = GetStatEffectValue(ringId, shaman);
+            shaman.Stats.AddValueToStat(_statType, statEffectValue);
+            _activeStatEffectsOnShamans.Add(shaman.GetInstanceID(), statEffectValue);
+            shaman.AddPSBonus(statEffectValue);
         }
     }
 
@@ -149,84 +159,61 @@ public class PowerStructure : MonoBehaviour
 
     private void ShowStatPopupWindows(ProximityRingHandler ringHandler, Shadow shadow)
     {
-        //     Color color = _powerStructureConfig.PowerStructureTypeColor;
-        //     float alpha = _powerStructureConfig.DefaultSpriteAlpha -
-        //                   _powerStructureConfig.SpriteAlphaFade * ringHandler.Id;
-        //     color.a = alpha;
-        //
-        //     var shamanStat =
-        //         shaman.EntityStatComponent.GetStat((int)_powerStructureConfig.StatEffectConfig.AffectedStatType);
-        //
-        //     var statEffectValue = GetStatEffectByRing(ringHandler);
-        //     var modifiedStatEffect = ModifyStatEffectForDisplay(shamanStat, statEffectValue, true);
-        //     StatEffectPopupManager.ShowPopupWindows(EntityInstanceID, shamanStat, modifiedStatEffect, true, color);
-        //
-        //     var changedValue = GetDeltaFromStatEffectOnShaman(statEffectValue, shamanStat, true);
-        //     HeroSelectionUI.Instance.UpdateStatBlocks(shamanStat, changedValue);
+        Color color = _powerStructureConfig.PowerStructureTypeColor;
+        float alpha = _powerStructureConfig.DefaultSpriteAlpha -
+                      _powerStructureConfig.SpriteAlphaFade * ringHandler.Id;
+        color.a = alpha;
+
+        var statType = _powerStructureConfig.statEffect.StatType;
+
+        var statEffectValue = _powerStructureConfig.statEffect.RingValues[ringHandler.Id];
+        var modifiedStatEffect = ModifyStatEffectForDisplay(statEffectValue, true);
+        StatEffectPopupManager.ShowPopupWindows(shadow.Shaman.GetInstanceID(), statType.ToString(), modifiedStatEffect, true, color);
+
+        var newValue = CalculateStatValueForShadow(ringHandler.Id, shadow.Shaman);
+        HeroSelectionUI.Instance.UpdateStatBlocks(statType, newValue);
     }
 
     private void HideStatPopupWindows(Shadow shadow)
     {
-        //     StatEffectPopupManager.HidePopupWindows(EntityInstanceID);
-        //
-        //     var shamanStat =
-        //         shaman.EntityStatComponent.GetStat((int)_powerStructureConfig.StatEffectConfig.AffectedStatType);
-        //
-        //     var changedValue = shamanStat.BaseValue - shamanStat.CurrentValue;
-        //     var roundedValue = Mathf.Round(changedValue);
-        //     HeroSelectionUI.Instance.UpdateStatBlocks(shamanStat, roundedValue);
-        // }
+        StatEffectPopupManager.HidePopupWindows(shadow.Shaman.GetInstanceID());
 
-        // private float GetStatEffectByRing(ProximityRingHandler ringHandler)
-        // {
-        //     float statEffectModifiedValue =
-        //         _powerStructureConfig.StatEffectConfig.StatModifier.RingModifiers[ringHandler.Id];
-        //
-        //     return statEffectModifiedValue;
+
+        var newValue = CalculateStatValueForShadow(-1, shadow.Shaman);
+        HeroSelectionUI.Instance.UpdateStatBlocks(_statType, newValue);
     }
 
-    // private float ModifyStatEffectForDisplay(Stat shamanStat, float modifiedStatValue, bool rounded)
-    // {
-    //     float statValue = 0;
-    //     float statPercent = 0;
-    //     switch ((Constant.StatsId)shamanStat.Id)
-    //     {
-    //         case Constant.StatsId.CritChance:
-    //             statPercent = (modifiedStatValue * shamanStat.BaseValue) / shamanStat.BaseValue;
-    //             statValue = (statPercent - 1) * 100;
-    //             break;
-    //         case Constant.StatsId.AttackDamage:
-    //             statPercent = (modifiedStatValue * shamanStat.BaseValue) / shamanStat.BaseValue;
-    //             statValue = (statPercent - 1) * 100;
-    //             break;
-    //         case Constant.StatsId.CritDamage:
-    //             statPercent = (modifiedStatValue * shamanStat.BaseValue) / shamanStat.BaseValue;
-    //             statValue = (statPercent - 1) * 100;
-    //             break;
-    //     }
-    //
-    //
-    //     if (!rounded) return statValue;
-    //     float roundedValue = MathF.Round(statValue);
-    //     return roundedValue;
-    // }
+    private int GetStatEffectValue(int ringId, Shaman shaman)
+    {
+        var value = shaman.Stats.GetStatValue(_statType);
+        var modifier = _powerStructureConfig.statEffect.RingValues[ringId];
+        var modifiedValue = value * (modifier - 1);
+        var roundedValue = Mathf.RoundToInt(modifiedValue);
+        return roundedValue;
+    }
 
-    // private float GetDeltaFromStatEffectOnShaman(float StatEffectValue, Stat shamanStat, bool rounded)
-    // {
-    //     float value = StatEffectValue;
-    //     switch (_powerStructureConfig.StatEffectConfig.StatModifier.StatusModifierType)
-    //     {
-    //         case StatusModifierType.Addition:
-    //             break;
-    //         case StatusModifierType.Reduce:
-    //             break;
-    //         case StatusModifierType.Multiplication:
-    //             value = (shamanStat.BaseValue * StatEffectValue) - shamanStat.CurrentValue;
-    //             break;
-    //     }
-    //
-    //     if (!rounded) return value;
-    //     float roundedValue = MathF.Round(value);
-    //     return roundedValue;
-    // }
+    private float ModifyStatEffectForDisplay(float statEffectValue, bool rounded)
+    {
+        float statValue = (statEffectValue - 1) * 100;
+
+        if (!rounded) return statValue;
+        float roundedValue = MathF.Round(statValue);
+        return roundedValue;
+    }
+
+    private int CalculateStatValueForShadow(int shadowRingId, Shaman shaman)
+    {
+        var currentStatValue = shaman.Stats.GetStatValue(_statType);
+        var baseStatValue = currentStatValue;
+        
+        if (shaman.ShamanPSBonus.HasBonus)
+        {
+            baseStatValue = currentStatValue - shaman.ShamanPSBonus.BonusValue;
+        }
+        if (shadowRingId == -1)
+            return Mathf.RoundToInt(baseStatValue);
+
+        var modifier = _powerStructureConfig.statEffect.RingValues[shadowRingId];
+        return Mathf.RoundToInt(baseStatValue * modifier);
+    }
 }
