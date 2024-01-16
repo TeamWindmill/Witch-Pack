@@ -23,9 +23,11 @@ public class BaseUnit : MonoBehaviour
     [SerializeField, TabGroup("Visual")] private bool hasHPBar;
     [SerializeField,ShowIf(nameof(hasHPBar)), TabGroup("Visual")] private HP_Bar hpBar;
 
+
     private AutoAttackHandler autoAttackHandler;
 
 
+    public HP_Bar HpBar => hpBar;
     public UnitVisualHandler UnitVisual => unitVisual;
     public Damageable Damageable { get => damageable; }
     public DamageDealer DamageDealer { get => damageDealer; }
@@ -55,6 +57,7 @@ public class BaseUnit : MonoBehaviour
         ToggleCollider(true);
         if (hasHPBar)
         {
+            hpBar.gameObject.SetActive(true);
             hpBar.Init(damageable.MaxHp,unitType);
             damageable.OnDamageCalc += hpBar.SetBarValue;
         }

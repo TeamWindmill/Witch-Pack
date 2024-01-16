@@ -7,13 +7,14 @@ public class Enemy : BaseUnit
 {
     [SerializeField, TabGroup("Visual")] private EnemyAnimator enemyAnimator;
     [SerializeField] private ShamanTargeter shamanTargeter;
-    private PathCreator givenPath;
+    private PathCreator _path;
     //testing 
     private EnemyConfig enemyConfig;
-    private int pointIndex = 0;
+    private int pointIndex;
     private float dstTravelled;
-    private int _speed = 5;
+    private bool _isMoving;
 
+    public bool IsMoving => _isMoving;
     public override StatSheet BaseStats => enemyConfig.BaseStats;
     private void OnValidate()
     {
@@ -24,21 +25,24 @@ public class Enemy : BaseUnit
         pointIndex = 0;
         enemyConfig = givenConfig as EnemyConfig;
         base.Init(enemyConfig);
+        _path = enemyConfig.Path;
         shamanTargeter.SetRadius(Stats.BonusRange);
         //Movement.SetDest(givenPath.Waypoints[pointIndex].position);
         //Movement.OnDestenationReached += SetNextDest;
         enemyAnimator.Init(this);
-    }
-
-    public void SetPath(PathCreator path)
-    {
-        givenPath = path;
+        ToggleMove(true);
     }
 
     private void Update()
     {
-        dstTravelled = _speed * Time.deltaTime;
-        transform.position = givenPath.path.GetPointAtDistance(dstTravelled, EndOfPathInstruction.Stop);
+        if(!_isMoving) return;
+        dstTravelled += Stats.MovementSpeed * Time.deltaTime;
+        transform.position = _path.path.GetPointAtDistance(dstTravelled, EndOfPathInstruction.Stop);
+    }
+
+    public void ToggleMove(bool state)
+    {
+        _isMoving = state;
     }
 
     private void SetNextDest()
@@ -59,6 +63,7 @@ public class Enemy : BaseUnit
     private void OnDisable()
     {
         Movement.OnDestenationReached -= SetNextDest;
+        dstTravelled = 0;
     }
 
     public EnemyConfig EnemyConfig { get => enemyConfig; }
