@@ -43,7 +43,7 @@ public class Indicatable : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        if (!toggleOnVis)
+        if (!Application.isPlaying || !toggleOnVis)
         {
             return;
         }
@@ -57,7 +57,7 @@ public class Indicatable : MonoBehaviour
     [ContextMenu("Test Indicator")]
     public void SetCurrentIndicator()
     {
-        currentIndicator = LevelManager.Instance.IndicatorManager.CreateIndicator(this, artWork, lifetime, clickable, onClickAction);
+        currentIndicator = LevelManager.Instance?.IndicatorManager.CreateIndicator(this, artWork, lifetime, clickable, onClickAction);
     }
 
 

@@ -17,11 +17,14 @@ public class Projectile : MonoBehaviour
     private int maxNumberOfHits;
     private float lastRate;
 
-    private void Awake()
+    private void OnEnable()
     {
         GAME_TIME.OnTimeRateChange += ChangeVelocity;
     }
-
+    private void OnDisable()
+    {
+        GAME_TIME.OnTimeRateChange -= ChangeVelocity;
+    }
     public void Fire(BaseUnit shooter, BaseAbility givenAbility, Vector2 dir)
     {
         owner = shooter;
