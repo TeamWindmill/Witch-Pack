@@ -1,5 +1,6 @@
 using System;
 using Sirenix.OdinInspector;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BaseUnit : MonoBehaviour
@@ -11,6 +12,9 @@ public class BaseUnit : MonoBehaviour
     [SerializeField, TabGroup("Combat")] private Effectable effectable;
     [SerializeField, TabGroup("Combat")] private OffensiveAbility autoAttack;
     [SerializeField, TabGroup("Combat")] private UnitAutoAttacker autoAttacker;
+    [SerializeField, TabGroup("Combat")] private BoxCollider2D boxCollider;
+
+
     [SerializeField, TabGroup("Stats")] private UnitStats stats;
     [SerializeField, TabGroup("Movement")] private UnitMovement movement;
     [SerializeField, TabGroup("Visual")] private UnitVisualHandler unitVisual;
@@ -48,6 +52,7 @@ public class BaseUnit : MonoBehaviour
         AutoAttacker.SetUp(this);
         Movement.SetUp(this);
         unitVisual.Init(this, givenConfig);
+        ToggleCollider(true);
         if (hasHPBar)
         {
             hpBar.Init(damageable.MaxHp,unitType);
@@ -55,7 +60,11 @@ public class BaseUnit : MonoBehaviour
         }
     }
 
-
+    public void ToggleCollider(bool state)
+    {
+        boxCollider.enabled = state;
+    }
+    
     protected void DisableAttacker()
     {
         autoAttacker.CanAttack = false;
@@ -69,5 +78,10 @@ public class BaseUnit : MonoBehaviour
     private void OnDestroy()
     {
         if (hasHPBar) damageable.OnDamageCalc -= hpBar.SetBarValue;
+    }
+
+    private void OnValidate()
+    {
+        boxCollider ??= GetComponent<BoxCollider2D>();
     }
 }
