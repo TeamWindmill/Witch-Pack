@@ -19,10 +19,12 @@ public class CoreTemple : MonoBehaviour
     public void TakeDamage(int amount)
     {
         curHp -= amount;
-        OnGetHit?.Invoke(amount);//lose game? 
+        OnGetHit?.Invoke(amount);
         if (curHp <= 0)
         {
             OnCoreDestroyed?.Invoke();//lose game? 
+            // destroy anim
+            //game over
         }
     }
 
