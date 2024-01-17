@@ -13,8 +13,9 @@ public class LevelHandler : MonoBehaviour
     [SerializeField] private CameraLevelSettings cameraLevelSettings;
 
    public ParticleSystem[] WindEffectsParticleSystem => windEffectsParticleSystem;
-
    public Transform[] ShamanSpawnPoints => shamanSpawnPoints;
+   public CustomPath[] Paths { get => paths;}
+   public WaveHandler WaveHandler { get => waveHandler; }
 
    private bool _tempSlowMotion; //TEMP
    public void Init()
@@ -28,30 +29,14 @@ public class LevelHandler : MonoBehaviour
          powerStructure.Init();
       }
    }
-
-   private void Update()
-   {
-      if (Input.GetKeyDown(KeyCode.Space)) //TEMP
-      {
-         if(!_tempSlowMotion)
-            SlowMotionManager.Instance.StartSlowMotionEffects();
-         else
-            SlowMotionManager.Instance.EndSlowMotionEffects();
-         _tempSlowMotion = !_tempSlowMotion;
-      }
-   }
-
    public void TurnOffSpawnPoints()
    {
       foreach (var spawnPoint in shamanSpawnPoints)
       {
+         if(!spawnPoint.gameObject.activeSelf) return;
          spawnPoint.gameObject.SetActive(false);
       }
    }
-
-    public CustomPath[] Paths { get => paths;}
-    public WaveHandler WaveHandler { get => waveHandler; }
-
     private void OnDrawGizmos()
     {
        Gizmos.DrawWireCube(Vector3.zero, cameraLevelSettings.CameraBorders);
