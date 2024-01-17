@@ -21,7 +21,8 @@ public class TargetedShot : MonoBehaviour
         this.target = target;
         Rotate(dir);
         //rb.velocity = dir * (speed);
-        StartCoroutine(TravelTimeCountdown());
+        //StartCoroutine(TravelTimeCountdown());
+        TweenShot();
     }
 
     private void Rotate(Vector2 dir)
@@ -40,6 +41,11 @@ public class TargetedShot : MonoBehaviour
         Disable();
     }
 
+    private void TweenShot()
+    {
+        //float tweenTime = Vector3.Distance(target.position, owner.transform.position) / (speed * GAME_TIME.GetCurrentTimeRate);
+        LeanTween.move(gameObject, target.position, 0.8f).setEaseInCirc();
+    }
 
     private IEnumerator TravelTimeCountdown()
     {
