@@ -10,21 +10,23 @@ public class LevelHandler : MonoBehaviour
     [SerializeField] private ParticleSystem[] windEffectsParticleSystem;
     [SerializeField] private NavMeshSurface navMeshSurface;
     [SerializeField] private WaveHandler waveHandler;
+    [SerializeField] private CameraLevelSettings cameraLevelSettings;
 
    public ParticleSystem[] WindEffectsParticleSystem => windEffectsParticleSystem;
 
    public Transform[] ShamanSpawnPoints => shamanSpawnPoints;
 
    private bool _tempSlowMotion; //TEMP
-   public void Init(Action<LevelHandler> onLevelLoad)
+   public void Init()
    {
+      GameManager.Instance.CameraHandler.SetCameraLevelSettings(cameraLevelSettings);
+      GameManager.Instance.CameraHandler.ResetCamera();
       navMeshSurface.BuildNavMeshAsync();//bakes navmesh
       waveHandler.Init();
       foreach (var powerStructure in powerStructures)
       {
          powerStructure.Init();
       }
-      onLevelLoad?.Invoke(this);
    }
 
    private void Update()
@@ -49,4 +51,9 @@ public class LevelHandler : MonoBehaviour
 
     public CustomPath[] Paths { get => paths;}
     public WaveHandler WaveHandler { get => waveHandler; }
+
+    private void OnDrawGizmos()
+    {
+       Gizmos.DrawWireCube(Vector3.zero, cameraLevelSettings.CameraBorders);
+    }
 }

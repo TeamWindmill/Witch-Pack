@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CameraSettings : ScriptableObject
 {
-    private const string CAMERA_SETTING_PATH = "/CameraSettings";
-
     [Header("Camera speed")] [TabGroup("Camera Movement"), Tooltip("the value of the camera speed when zoom in all the way")]
     public float MoveSpeedMinimum = 5f;
 
@@ -33,13 +31,6 @@ public class CameraSettings : ScriptableObject
     [TabGroup("Camera Movement"), Range(0, 1), Tooltip("the delay of the camera when transitioning to an event position Y")]
     public float EventTransitionDampingY = 0.4f;
 
-    [Header("Border Padding")] [TabGroup("Camera Movement"), Tooltip("determines how far away the camera stays from the border on the X")]
-    public float DefaultEdgePaddingX = 2f;
-
-    [TabGroup("Camera Movement"), Tooltip("determines how far away the camera stays from the border on the Y")]
-    public float DefaultEdgePaddingY = 1.3f;
-
-
     [Header("Zoom")] [TabGroup("Camera Zoom"), Tooltip("affects the lerp of the camera when zooming in and out")]
     public float ZoomSpeed = 6.5f;
 
@@ -48,9 +39,6 @@ public class CameraSettings : ScriptableObject
 
     [TabGroup("Camera Zoom"), Tooltip("zoom starting value")]
     public float ZoomDefaultStartValue = 7f;
-
-    [TabGroup("Camera Zoom"), Range(0, 1), Tooltip("zoom starting value")]
-    public float ZoomMoveCameraValue = 5f;
 
     [Header("Clamping")] [TabGroup("Camera Zoom"), Tooltip("the smallest value that the zoom can reach")]
     public float ZoomMinClamp = 2f;

@@ -64,8 +64,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.35, y: 1.35, z: 1.35}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5676501016523247785}
   - {fileID: 284854751558478916}
@@ -289,7 +289,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 40
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 4332a2da08622714ba37ab25e3c9dc89, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -314,7 +314,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 1985950817653077848}
-  unitAnimator: {fileID: 0}
+  animator: {fileID: 2438517714681042483}
+  unitAnimator: {fileID: 4409901568874554751}
 --- !u!114 &4409901568874554751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -471,6 +472,18 @@ PrefabInstance:
     - target: {fileID: 2482432304323612586, guid: d9811e9856b31b04cbf763f6941cacd5, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4002182410603616698, guid: d9811e9856b31b04cbf763f6941cacd5, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5617180991050575516, guid: d9811e9856b31b04cbf763f6941cacd5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5617180991050575516, guid: d9811e9856b31b04cbf763f6941cacd5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.9
       objectReference: {fileID: 0}
     - target: {fileID: 5617180991050575516, guid: d9811e9856b31b04cbf763f6941cacd5, type: 3}
       propertyPath: m_LocalPosition.x
