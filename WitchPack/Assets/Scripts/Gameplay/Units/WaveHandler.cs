@@ -35,7 +35,7 @@ public class WaveHandler : MonoBehaviour
 
             spawnData.Add(newWave);
         }
-        OnWaveEnd += SetIndicator;
+        //OnWaveEnd += SetIndicator;
         StartCoroutine(StartSpawningWaves());
     }
 
@@ -117,11 +117,11 @@ public class WaveHandler : MonoBehaviour
         }
     }
 
-    private void SetIndicator(int waveIndex)
+ /*   private void SetIndicator(int waveIndex)
     {
         GetSpawnPointFromIndex(spawnData[waveIndex - 1].Groups[0].SpawnerIndex).SetIndicator(spawnData[waveIndex - 1].Groups[0].Enemy.UnitIcon, waveData.BetweenWavesInterval, SkipWaveCD);
     }
-
+*/
     private void SkipWaveCD()
     {
         skipFlag = true;
