@@ -33,9 +33,6 @@ public class CameraHandler : MonoBehaviour
     [SerializeField, Tooltip("toggle mouse Pan scroll camera movement")]
     private bool _enablePanScroll = true;
 
-    [SerializeField, Tooltip("toggle whether the camera moves to the mouse position when zooming")]
-    private bool _enableZoomMovesCamera = false;
-    
     [SerializeField] private bool _testing = false;
 
     [Header("Game Objects")] [TabGroup("Cameras"), SerializeField]
@@ -66,11 +63,10 @@ public class CameraHandler : MonoBehaviour
 
     private bool _dragPanMoveActive = false;
     private Vector2 _dragPanSpeed;
-    private float _edgePaddingX;
-    private float _edgePaddingY;
     private Vector2 _lastMousePosition;
     private float _targetOrthographicSize;
     private float _zoomPadding;
+    private Vector3 _inputDir;
 
     public Camera MainCamera => _mainCamera;
 
@@ -101,8 +97,6 @@ public class CameraHandler : MonoBehaviour
 
         _cinemachineTransposer.m_XDamping = _cameraSettings.XDamping;
         _cinemachineTransposer.m_YDamping = _cameraSettings.YDamping;
-        _edgePaddingX = _cameraSettings.DefaultEdgePaddingX;
-        _edgePaddingY = _cameraSettings.DefaultEdgePaddingY;
         _cameraMaxZoom = _cameraSettings.ZoomMaxClamp;
         _dragPanSpeed.x = _cameraSettings.CameraDragPanSpeed * _mainCamera.aspect;
         _dragPanSpeed.y = _cameraSettings.CameraDragPanSpeed;
@@ -122,22 +116,21 @@ public class CameraHandler : MonoBehaviour
 
         if (_enableCameraMovement) //option to disable camera movement and zoom
         {
-            Vector3 inputDir = HandleInput();
+            _inputDir = HandleInput();
             HandleZoom();
 
-            HandleCameraMove(inputDir);
+            HandleCameraMove(_inputDir);
         }
     }
 
     private Vector3 HandleInput()
     {
         var inputDir = new Vector3(0, 0, 0); //resetting the input direction
-
         //WASD Detection
-        if (Input.GetKey(KeyCode.W)) inputDir.y = +1f;
-        if (Input.GetKey(KeyCode.S)) inputDir.y = -1f;
+        if (Input.GetKey(KeyCode.W)) {inputDir.y = +1f;}
+        else if (Input.GetKey(KeyCode.S)) inputDir.y = -1f;
         if (Input.GetKey(KeyCode.A)) inputDir.x = -1f;
-        if (Input.GetKey(KeyCode.D)) inputDir.x = +1f;
+        else if (Input.GetKey(KeyCode.D)) inputDir.x = +1f;
 #if !UNITY_EDITOR
             //Edge Scrolling Detection
             if (_enableEdgeScroll)
@@ -155,7 +148,7 @@ public class CameraHandler : MonoBehaviour
         if (!_enablePanScroll) return inputDir;
 
         int mouseButtonId = _cameraSettings.RightClickToPanCamera ? 1 : 2;
-        
+
         if (Input.GetMouseButtonDown(mouseButtonId))
         {
             _dragPanMoveActive = true;
@@ -185,38 +178,15 @@ public class CameraHandler : MonoBehaviour
     private void HandleZoom()
     {
         //Mouse Scroll Zoom 
-        float zoomMoveCameraValue = _cameraSettings.ZoomMoveCameraValue;
-        var zoomCameraDirection =
-            _mainCamera.ScreenToWorldPoint(Input.mousePosition) - _cameraFollowObject.position;
-
         if (Input.mouseScrollDelta.y > 0) //zoom in
         {
             _targetOrthographicSize -= _cameraSettings.ZoomChangeValue;
-            if (_enableZoomMovesCamera)
-            {
-                if (_targetOrthographicSize > _cameraSettings.ZoomMinClamp - 1)
-                {
-                    _cameraFollowObject.Translate(zoomCameraDirection * zoomMoveCameraValue); //move the camera towards the mouse
-                    StartCoroutine(ChangeDampingUntilCameraFinishZoom(_cameraSettings.EventTransitionDampingX, _cameraSettings.EventTransitionDampingY));
-                }
-                else
-                    StartCoroutine(ChangeDampingUntilCameraFinishZoom(0, 0));
-            }
+            
         }
 
         if (Input.mouseScrollDelta.y < 0) //zoom out
         {
             _targetOrthographicSize += _cameraSettings.ZoomChangeValue;
-            if (_enableZoomMovesCamera)
-            {
-                if (_targetOrthographicSize < _zoomPadding + 1)
-                {
-                    _cameraFollowObject.Translate(-zoomCameraDirection * zoomMoveCameraValue); //move the camera away from the mouse
-                    StartCoroutine(ChangeDampingUntilCameraFinishZoom(_cameraSettings.EventTransitionDampingX, _cameraSettings.EventTransitionDampingY));
-                }
-                else
-                    StartCoroutine(ChangeDampingUntilCameraFinishZoom(0, 0));
-            }
         }
 
         CameraZoomClamp();
@@ -251,13 +221,13 @@ public class CameraHandler : MonoBehaviour
     private Vector3 CameraMoveClamp(Vector3 cameraPosition)
     {
         var orthographicSize = _mainCamera.orthographicSize;
-        Vector2 fixedOrthographicSize = new Vector2(orthographicSize * (_edgePaddingX), orthographicSize * (_edgePaddingY));
+        var cameraHeight = orthographicSize * 2;
+        var cameraWidth = _mainCamera.aspect * cameraHeight;
 
         //clamping the camera to the borders of the map
-        cameraPosition.x = Mathf.Clamp(cameraPosition.x, -(_cameraBorders.x - fixedOrthographicSize.x),
-            _cameraBorders.x - fixedOrthographicSize.x);
-        cameraPosition.y = Mathf.Clamp(cameraPosition.y, -(_cameraBorders.y - fixedOrthographicSize.y),
-            _cameraBorders.y - fixedOrthographicSize.y);
+        cameraPosition.x = Mathf.Clamp(cameraPosition.x, (-_cameraBorders.x / 2 + cameraWidth / 2), (_cameraBorders.x / 2 - cameraWidth / 2));
+
+        cameraPosition.y = Mathf.Clamp(cameraPosition.y, (-_cameraBorders.y / 2 + cameraHeight / 2), (_cameraBorders.y / 2 - cameraHeight / 2));
 
         return cameraPosition;
     }
@@ -293,8 +263,6 @@ public class CameraHandler : MonoBehaviour
         //calculating the current aspect ratio according to screen resolution
         if (FULL_HD_PIXELS_X / FULL_HD_PIXELS_Y == _mainCamera.aspect)
         {
-            _edgePaddingX = _cameraSettings.DefaultEdgePaddingX;
-            _edgePaddingY = _cameraSettings.DefaultEdgePaddingY;
             _dragPanSpeed.x = _cameraSettings.CameraDragPanSpeed * _mainCamera.aspect;
             _dragPanSpeed.y = _cameraSettings.CameraDragPanSpeed;
             _zoomPadding = _cameraMaxZoom;
@@ -306,8 +274,6 @@ public class CameraHandler : MonoBehaviour
             _currentAspectRatioY = FULL_HD_PIXELS_Y / _mainCamera.pixelHeight;
 
             //calculating the current padding for movement borders and zoom
-            _edgePaddingX = _cameraSettings.DefaultEdgePaddingX / _currentAspectRatioX;
-            _edgePaddingY = _cameraSettings.DefaultEdgePaddingY / _currentAspectRatioY;
             _dragPanSpeed.x = _cameraSettings.CameraDragPanSpeed * _mainCamera.aspect;
             _dragPanSpeed.y = _cameraSettings.CameraDragPanSpeed;
             _zoomPadding = _cameraMaxZoom * _currentAspectRatioX;
@@ -376,48 +342,15 @@ public class CameraHandler : MonoBehaviour
         return cameraFinishedFollowUp;
     }
 
-    private bool CameraFinishedZoom()
-    {
-        bool cameraFinishedZoom =
-            _cinemachineVirtualCamera.m_Lens.OrthographicSize <= (_targetOrthographicSize + ORTHOGRAPHIC_DETECT_RANGE) &&
-            _cinemachineVirtualCamera.m_Lens.OrthographicSize >= (_targetOrthographicSize - ORTHOGRAPHIC_DETECT_RANGE);
-        return cameraFinishedZoom;
-    }
-
     private IEnumerator ChangeDampingUntilCameraFinishFollowUp(float xdamping, float ydamping)
     {
         _cinemachineTransposer.m_XDamping = xdamping;
         _cinemachineTransposer.m_YDamping = ydamping;
+        yield return new WaitUntil(() => CameraFinishedFollowUp() || _inputDir != Vector3.zero);
+        _cinemachineTransposer.m_XDamping = _cameraSettings.XDamping;
+        _cinemachineTransposer.m_YDamping = _cameraSettings.YDamping;
 
-        while (true)
-        {
-            if (CameraFinishedFollowUp())
-            {
-                _cinemachineTransposer.m_XDamping = _cameraSettings.XDamping;
-                _cinemachineTransposer.m_YDamping = _cameraSettings.YDamping;
-                yield break;
-            }
-
-            yield return null;
-        }
-    }
-
-    private IEnumerator ChangeDampingUntilCameraFinishZoom(float xdamping, float ydamping)
-    {
-        _cinemachineTransposer.m_XDamping = xdamping;
-        _cinemachineTransposer.m_YDamping = ydamping;
-
-        while (true)
-        {
-            if (CameraFinishedZoom())
-            {
-                _cinemachineTransposer.m_XDamping = _cameraSettings.XDamping;
-                _cinemachineTransposer.m_YDamping = _cameraSettings.YDamping;
-                yield break;
-            }
-
-            yield return null;
-        }
+        yield return null;
     }
 
     #endregion

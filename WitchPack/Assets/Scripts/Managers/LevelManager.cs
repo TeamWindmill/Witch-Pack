@@ -5,7 +5,6 @@ using Random = UnityEngine.Random;
 
 public class LevelManager : MonoSingleton<LevelManager>
 {
-    public event Action<LevelHandler> OnLevelLoad;
     [SerializeField] private Transform enviromentHolder;
     [SerializeField] private Transform shamanHolder;
     [SerializeField] private Shaman shamanPrefab;
@@ -29,9 +28,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     {
         var levelConfig = GameManager.Instance.CurrentLevelConfig;
         CurrentLevel = Instantiate(levelConfig.levelPrefab, enviromentHolder);
-        CurrentLevel.Init(OnLevelLoad);
-        GameManager.Instance.CameraHandler.SetCameraLevelSettings(levelConfig.CameraLevelSettings);
-        GameManager.Instance.CameraHandler.ResetCamera();
+        CurrentLevel.Init();
         SpawnParty(levelConfig.Shamans);
         CurrentLevel.TurnOffSpawnPoints();
         UIManager.Instance.InitUIElements(UIGroup.GameUI);
