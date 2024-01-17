@@ -24,7 +24,7 @@ public class CoreTemple : MonoBehaviour
         {
             OnCoreDestroyed?.Invoke();//lose game? 
             // destroy anim
-            //game over
+            LevelManager.Instance.EndLevel(false);
         }
     }
 

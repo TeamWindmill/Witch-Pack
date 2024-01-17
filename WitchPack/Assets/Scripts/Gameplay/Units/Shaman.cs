@@ -37,7 +37,7 @@ public class Shaman : BaseUnit
         Movement.OnDestenationReached += EnableAttacker;
         shamanAnimator.Init(this);
         clicker.OnClick += SetSelectedShaman;
-        indicatable.Init(shamanConfig.UnitIcon);
+        //indicatable.Init(shamanConfig.UnitIcon);
     }
 
     private void OnShamanSelect()
