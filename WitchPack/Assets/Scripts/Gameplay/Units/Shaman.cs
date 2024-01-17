@@ -1,6 +1,7 @@
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Shaman : BaseUnit
 {
@@ -11,7 +12,10 @@ public class Shaman : BaseUnit
     private ShamanConfig shamanConfig;
     private List<BaseAbility> knownAbilities = new List<BaseAbility>();
     private List<UnitCastingHandler> castingHandlers = new List<UnitCastingHandler>();
+    private ShamanPSBonus _shamanPSBonus;
 
+
+    public ShamanPSBonus ShamanPSBonus => _shamanPSBonus;
     public override StatSheet BaseStats => shamanConfig.BaseStats;
     public EnemyTargeter EnemyTargeter { get => enemyTargeter; }
     public ShamanConfig ShamanConfig { get => shamanConfig; }
@@ -30,7 +34,6 @@ public class Shaman : BaseUnit
         Stats.OnStatChanged += enemyTargeter.AddRadius;
         IntializeCastingHandlers();
         Movement.OnDestenationSet += DisableAttacker;
-        Movement.OnDestenationSet += EnableClicker;
         Movement.OnDestenationReached += EnableAttacker;
         shamanAnimator.Init(this);
         clicker.OnClick += SetSelectedShaman;
@@ -78,17 +81,37 @@ public class Shaman : BaseUnit
         }
     }
 
-    private void SetSelectedShaman()
+    private void SetSelectedShaman(PointerEventData.InputButton button)
     {
-        if (!ReferenceEquals(LevelManager.Instance.SelectionManager.SelectedShaman, this))
+        if (button == PointerEventData.InputButton.Left)
         {
-            LevelManager.Instance.SelectionManager.SetSelectedShaman(this);
-            clicker.enabled = false;
+            if (!ReferenceEquals(LevelManager.Instance.SelectionManager.SelectedShaman, this))
+            {
+                LevelManager.Instance.SelectionManager.SetSelectedShaman(this,SelectionType.Movement);
+            }
+        }
+        else if (button == PointerEventData.InputButton.Right)
+        {
+            if (!ReferenceEquals(LevelManager.Instance.SelectionManager.SelectedShaman, this))
+            {
+                LevelManager.Instance.SelectionManager.SetSelectedShaman(this,SelectionType.Info);
+            }
         }
     }
-    private void EnableClicker()
+    public void ToggleClicker(bool state)
     {
-        clicker.enabled = true;
+        clicker.enabled = state;
+    }
+
+    public void AddPSBonus(int value)
+    {
+        _shamanPSBonus.BonusValue = value;
+        _shamanPSBonus.HasBonus = true;
+    }
+    public void RemovePSBonus()
+    {
+        _shamanPSBonus.BonusValue = 0;
+        _shamanPSBonus.HasBonus = false;
     }
 
     private void OnDisable()
@@ -96,7 +119,12 @@ public class Shaman : BaseUnit
         clicker.OnClick -= SetSelectedShaman;
         Movement.OnDestenationSet -= DisableAttacker;
         Movement.OnDestenationReached -= EnableAttacker;
-        Movement.OnDestenationSet -= EnableClicker;
     }
 
+}
+
+public struct ShamanPSBonus
+{
+    public bool HasBonus;
+    public int BonusValue;
 }

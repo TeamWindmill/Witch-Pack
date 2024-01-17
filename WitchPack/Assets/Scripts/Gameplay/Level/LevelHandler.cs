@@ -6,6 +6,7 @@ public class LevelHandler : MonoBehaviour
 {
     [SerializeField] private Transform[] shamanSpawnPoints;
     [SerializeField] private CustomPath[] paths;
+    [SerializeField] private PowerStructure[] powerStructures;
     [SerializeField] private ParticleSystem[] windEffectsParticleSystem;
     [SerializeField] private NavMeshSurface navMeshSurface;
     [SerializeField] private WaveHandler waveHandler;
@@ -19,6 +20,10 @@ public class LevelHandler : MonoBehaviour
    {
       navMeshSurface.BuildNavMeshAsync();//bakes navmesh
       waveHandler.Init();
+      foreach (var powerStructure in powerStructures)
+      {
+         powerStructure.Init();
+      }
       onLevelLoad?.Invoke(this);
    }
 

@@ -18,6 +18,7 @@ public class SceneHandler : MonoBehaviour, ISceneHandler
     [SerializeField] private float _minLoadTime;
 
     [SerializeField] private LoadingScreenHandler _loadingScreenHandler;
+    [SerializeField] private bool _testing;
 
     private float _loadTime;
 
@@ -54,7 +55,7 @@ public class SceneHandler : MonoBehaviour, ISceneHandler
         if (preventsScene.buildIndex != 0)
         {
             SceneManager.SetActiveScene(PresistanteScene);
-            Debug.Log($"Unloading scene {preventsScene.name}");
+            if (_testing) Debug.Log($"Unloading scene {preventsScene.name}");
 
             yield return _loadingScreenHandler.FadeIn();
 
@@ -62,10 +63,10 @@ public class SceneHandler : MonoBehaviour, ISceneHandler
 
             yield return SceneLoaderAndUnLoader(unloadSceneAsync);
 
-            Debug.Log($"Unloaded scene {preventsScene.name}");
+            if (_testing) Debug.Log($"Unloaded scene {preventsScene.name}");
         }
 
-        Debug.Log($"start loading sceneType");
+        if (_testing) Debug.Log($"start loading sceneType");
 
         var loadSceneAsync = SceneManager.LoadSceneAsync(sceneIndex, LoadSceneMode.Additive);
 
@@ -89,7 +90,7 @@ public class SceneHandler : MonoBehaviour, ISceneHandler
 
         IsLoading = false;
 
-        Debug.Log($"Loaded sceneType {CurrentScene.name}");
+        if (_testing) Debug.Log($"Loaded sceneType {CurrentScene.name}");
     }
 
     private IEnumerator SceneLoaderAndUnLoader(AsyncOperation asyncOperation)
@@ -101,7 +102,7 @@ public class SceneHandler : MonoBehaviour, ISceneHandler
             if (asyncOperation.progress >= 0.9f)
                 asyncOperation.allowSceneActivation = true;
 
-            Debug.Log($"loading progress {asyncOperation.progress * 100}%");
+            if (_testing) Debug.Log($"loading progress {asyncOperation.progress * 100}%");
             yield return null;
         }
     }

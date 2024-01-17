@@ -6,16 +6,24 @@ public class UnitVisualHandler : MonoBehaviour
     public Action<bool> OnSpriteFlip;
     
     [HideInInspector,SerializeField] private SpriteRenderer spriteRenderer;
-    [HideInInspector,SerializeField] private Animator unitAnimator;
-    public Animator UnitAnimator => unitAnimator;
+    [HideInInspector,SerializeField] private Animator animator;
+    [HideInInspector,SerializeField] private UnitAnimator unitAnimator;
+    public Animator Animator => animator;
 
 
     private Vector2 _lastPos;
     private BaseUnit _baseUnit;
+
+    private void Awake()
+    {
+        unitAnimator.OnDeathAnimationEnd += ResetSprite;
+    }
+
     private void OnValidate()
     {
         spriteRenderer ??= GetComponent<SpriteRenderer>();
-        unitAnimator ??= GetComponent<Animator>();
+        unitAnimator ??= GetComponent<UnitAnimator>();
+        animator ??= GetComponent<Animator>();
     }
 
     public void Init(BaseUnit unit, BaseUnitConfig config)
@@ -48,6 +56,14 @@ public class UnitVisualHandler : MonoBehaviour
         spriteRenderer.flipX = doFlip;
         OnSpriteFlip?.Invoke(doFlip);
         //_silhouette.flipX = doFlip;
+    }
+
+    private void ResetSprite()
+    {
+        Color color = Color.white;
+        color.a = 1;
+        spriteRenderer.color = color;
+        spriteRenderer.transform.localScale = Vector3.one;
     }
 
     private void OnBecameVisible()
