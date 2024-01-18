@@ -11,7 +11,7 @@ public class ProximityRingHandler : MonoBehaviour
     public int Id { get; private set; }
 
     [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private Targeter<Shaman> shamanTargeter;
+    [SerializeField] private Targeter<GroundCollider> shamanTargeter;
     [SerializeField] private Targeter<Shadow> shadowTargeter;
 
     private float _spriteAlpha;
@@ -46,8 +46,8 @@ public class ProximityRingHandler : MonoBehaviour
     }
     private void OnShadowExitTargeter(Shadow obj) => OnShadowExit?.Invoke(Id,obj);
     private void OnShadowEnterTargeter(Shadow obj) =>OnShadowEnter?.Invoke(Id,obj);
-    private void OnShamanExitTargeter(Shaman obj) =>OnShamanExit?.Invoke(Id,obj);
-    private void OnShamanEnterTargeter(Shaman obj) =>OnShamanEnter?.Invoke(Id,obj);
+    private void OnShamanExitTargeter(GroundCollider obj) =>OnShamanExit?.Invoke(Id,obj.Unit as Shaman);
+    private void OnShamanEnterTargeter(GroundCollider obj) =>OnShamanEnter?.Invoke(Id,obj.Unit as Shaman);
     
     
 }

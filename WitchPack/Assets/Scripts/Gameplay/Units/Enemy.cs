@@ -36,7 +36,7 @@ public class Enemy : BaseUnit
     private void Update()
     {
         if(!_isMoving) return;
-        dstTravelled += Stats.MovementSpeed * Time.deltaTime;
+        dstTravelled += Stats.MovementSpeed * GAME_TIME.GameDeltaTime;
         transform.position = _path.path.GetPointAtDistance(dstTravelled, EndOfPathInstruction.Stop);
     }
 
