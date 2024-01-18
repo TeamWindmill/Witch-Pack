@@ -31,8 +31,8 @@ public class ProximityRingsManager : MonoBehaviour
 
         _clickHelper.OnEnterHover += ActivateRingSprites;
         _clickHelper.OnExitHover += DeactivateRingSprites;
-        // Systems.MovementSystem.HerosMovementSystem.TempHeroMovementManager.OnAnyShamanSelected += OnShamanSelect;
-        // Systems.MovementSystem.HerosMovementSystem.TempHeroMovementManager.OnAnyShamanDeselected += OnShamanDeselect;
+        LevelManager.Instance.SelectionManager.OnShamanMoveSelect += OnShamanSelect;
+        LevelManager.Instance.SelectionManager.OnShamanDeselected += OnShamanDeselect;
         ScaleCircles(powerStructureConfig.Range, powerStructureConfig.RingsRanges);
         ChangeAllRingsColors(_powerStructureTypeColor);
     }
@@ -41,8 +41,9 @@ public class ProximityRingsManager : MonoBehaviour
     {
         _clickHelper.OnEnterHover -= ActivateRingSprites;
         _clickHelper.OnExitHover -= DeactivateRingSprites;
-        // Systems.MovementSystem.HerosMovementSystem.TempHeroMovementManager.OnAnyShamanSelected -= OnShamanSelect;
-        // Systems.MovementSystem.HerosMovementSystem.TempHeroMovementManager.OnAnyShamanDeselected -= OnShamanDeselect;
+        if (ReferenceEquals(LevelManager.Instance,null)) return;
+        LevelManager.Instance.SelectionManager.OnShamanMoveSelect -= OnShamanSelect;
+        LevelManager.Instance.SelectionManager.OnShamanDeselected -= OnShamanDeselect;
     }
 
     private void ChangeAllRingsColors(Color color)
@@ -61,12 +62,12 @@ public class ProximityRingsManager : MonoBehaviour
         }
     }
 
-    private void OnShamanSelect()
+    private void OnShamanSelect(Shaman shaman)
     {
         _shamanSelected = true;
     }
 
-    private void OnShamanDeselect()
+    private void OnShamanDeselect(Shaman shaman)
     {
         _shamanSelected = false;
     }

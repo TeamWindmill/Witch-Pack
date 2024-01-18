@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using PathCreation;
 using UnityEngine;
 
 public class EnemySpawnPoint : MonoBehaviour
 {
 
-    [SerializeField] private CustomPath path;
+    [SerializeField] private PathCreator path;
 
     public void SpawnEnemy(EnemyConfig givenConf)
     {
         Enemy enemy = LevelManager.Instance.PoolManager.EnemyPool.GetPooledObject();
         enemy.transform.position = transform.position;
         enemy.gameObject.SetActive(true);
-        enemy.SetPath(path);
+        givenConf.Path = path;
         enemy.Init(givenConf);
     }
 

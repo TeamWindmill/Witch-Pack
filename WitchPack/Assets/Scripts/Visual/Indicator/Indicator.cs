@@ -1,46 +1,76 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Indicator : MonoBehaviour
+public class Indicator : UIElement
 {
     [SerializeField] private Image artwork;
     [SerializeField] private Image circle;
+    [SerializeField] private Button button;
     [SerializeField] private Transform pointer;
 
+    private Action onClick;
     private float time;
     private float counter;
-    Transform target;
+    private Indicatable target;
 
-    public void InitIndicator(Transform target, Sprite artwork, float time)
+    private Vector3 midScreen = new Vector3(Screen.width / 2, Screen.height / 2);
+
+    public void InitIndicator(Indicatable target, Sprite artwork, float time, bool clickable, Action onClick = null)
     {
         this.time = time;
         this.target = target;
         this.artwork.sprite = artwork;
         counter = 0f;
         circle.fillAmount = 1;
-        Vector2 midScreen = new Vector2(((RectTransform)transform.parent).sizeDelta.x * 0.5f, ((RectTransform)transform.parent).sizeDelta.y * 0.5f);
+        button.enabled = clickable;
+        if (!ReferenceEquals(onClick, null))
+        {
+            this.onClick = onClick;
+        }
+        else
+        {
+            this.onClick = null;
+        }
     }
+
 
 
     private void Update()
     {
-        if (time != 0)//if timer is needed 
-        {
-            counter += GAME_TIME.GameDeltaTime;
-            circle.fillAmount = counter / time;
-            if (counter >= time)
-            {
-                gameObject.SetActive(false);
-            }
-        }
-        //place object on screen edge (+some kind of offset) in the direction of the target
-        //Vector2 dir = (target.position - transform.position).normalized;
-        //float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        //pointer.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        //physikef
+        PositionIndicator();
     }
 
 
+    public void InvokeClick()
+    {
+        onClick?.Invoke();
+    }
+
+
+    private void PositionIndicator()
+    {
+        Vector3 targetSP = GameManager.Instance.CameraHandler.MainCamera.WorldToScreenPoint(target.transform.position);
+
+        /* float angle = Mathf.Atan2(targetSP.y - midScreen.y, targetSP.x - midScreen.x);
+         Vector3 posIndicator = new Vector3();
+
+         posIndicator.x = Mathf.Cos(angle) * midScreen.x;
+         posIndicator.y = Mathf.Sin(angle) * midScreen.y;
+         posIndicator.z = 0f;
+
+         RectTransform.localPosition = posIndicator;*/
+
+        //trigo solution - works in 3d too. 
+        
+        Vector3 dirToTarget = (targetSP - midScreen).normalized;
+        float angle = Mathf.Atan2(dirToTarget.y, dirToTarget.x) * Mathf.Rad2Deg;
+
+        rectTransform.anchoredPosition = dirToTarget * (((RectTransform)LevelManager.Instance.GameUi.transform).sizeDelta.magnitude * 0.5f);
+        RectTransform.localPosition = new Vector2(Mathf.Clamp(rectTransform.localPosition.x, -midScreen.x, midScreen.x), Mathf.Clamp(rectTransform.localPosition.y, -midScreen.y, midScreen.y));
+    }
 }
+
+
 
 

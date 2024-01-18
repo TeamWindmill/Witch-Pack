@@ -33,7 +33,7 @@ public class Damageable
 
     private void DisableGo()
     {
-        Owner.gameObject.SetActive(false);
+        //Owner.gameObject.SetActive(false);
     }
 
     public void GetHit(DamageDealer dealer, BaseAbility ability)

@@ -24,6 +24,7 @@ public class UnitMovement : MonoBehaviour
     public void SetUp(BaseUnit givenOwner)
     {
         owner = givenOwner;
+        ToggleMovement(true);
     }
 
    /* public void SetSpeed(float value)
@@ -64,7 +65,7 @@ public class UnitMovement : MonoBehaviour
 
     public void ToggleMovement(bool state)
     {
-        agent.isStopped = state;
+        agent.enabled = state;
     }
 
     private IEnumerator WaitTilReached()

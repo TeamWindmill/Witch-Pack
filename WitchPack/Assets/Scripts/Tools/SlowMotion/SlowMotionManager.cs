@@ -13,6 +13,8 @@ public class SlowMotionManager : MonoSingleton<SlowMotionManager>
     [TabGroup("Time"), SerializeField] private float _slowTimeTransitionTime;
     [TabGroup("Time"), SerializeField] private float _slowTime;
     private float _previousTimeRate;
+    
+    public bool IsActive { get; private set; }
 
     private void Start()
     {
@@ -29,6 +31,7 @@ public class SlowMotionManager : MonoSingleton<SlowMotionManager>
         _audioFilters.StartTransitionEffect();
         _windEffectHandler.StartTransitionEffect();
         _postProcessFilters.StartTransitionEffect();
+        IsActive = true;
     }
 
     public void EndSlowMotionEffects()
@@ -37,5 +40,6 @@ public class SlowMotionManager : MonoSingleton<SlowMotionManager>
         _audioFilters.EndTransitionEffect();
         _windEffectHandler.EndTransitionEffect();
         _postProcessFilters.EndTransitionEffect();
+        IsActive = false;
     }
 }

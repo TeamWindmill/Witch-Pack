@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 public class ClickHelper : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    public event Action OnClick;
+    public event Action<PointerEventData.InputButton> OnClick;
     public event Action OnEnterHover;
     public event Action OnExitHover;
 
@@ -19,10 +19,7 @@ public class ClickHelper : MonoBehaviour, IPointerClickHandler, IPointerEnterHan
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Left)
-        {
-            OnClick?.Invoke();
-        }
+        OnClick?.Invoke(eventData.button);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

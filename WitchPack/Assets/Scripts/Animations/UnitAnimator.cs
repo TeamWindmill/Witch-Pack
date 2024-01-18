@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 public abstract class UnitAnimator : MonoBehaviour
 {
+    public event Action OnDeathAnimationEnd;
     [SerializeField] protected Animator animator;
     protected BaseUnit unit;
 
@@ -12,6 +14,8 @@ public abstract class UnitAnimator : MonoBehaviour
 
 
     private bool _isFlipped;
+    private static readonly int Death = Animator.StringToHash("Death");
+
     public virtual void Init(BaseUnit unit)
     {
         this.unit = unit;
@@ -30,9 +34,16 @@ public abstract class UnitAnimator : MonoBehaviour
 
     protected virtual void DeathAnimation()
     {
-        //unit.Movement.ToggleMovement(false);
-        animator.SetBool("Dead",true);
+        unit.Movement.ToggleMovement(false);
+        animator.SetBool(Death,true);
         animator.SetTrigger(_isFlipped ? "Death_Flipped" : "Death");
+        unit.ToggleCollider(false);
+    }
+    public virtual void DeathAnimationEnded()
+    {
+        animator.SetBool(Death,false);
+        unit.gameObject.SetActive(false);
+        OnDeathAnimationEnd?.Invoke();
     }
 
     protected virtual void GetHitAnimation(bool isCrit)
@@ -48,12 +59,5 @@ public abstract class UnitAnimator : MonoBehaviour
     {
         MoveAnimation();
     }
-        
-  /*  private void OnDestroy() //pointless?
-    {
-        unit.Damageable.OnHitGFX -= GetHitAnimation;
-        unit.Damageable.OnDeathGFX -= DeathAnimation;
-        unit.UnitVisual.OnSpriteFlip -= FlipAnimations;
-        unit.AutoAttackHandler.OnAttack -= AttackAnimation;
-    }*/
+    
 }
