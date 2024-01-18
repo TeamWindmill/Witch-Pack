@@ -58,7 +58,7 @@ public class HP_Bar : MonoBehaviour
         _maxValue = max;
     }
 
-    public void SetBarValue(float value)
+    public void SetBarValue(int value)
     {
         fillSprite.localScale = new Vector3(value / _maxValue, _originalScale.y, _originalScale.z);
     }
@@ -82,7 +82,7 @@ public class HP_Bar : MonoBehaviour
         {
             currentValue = Mathf.Lerp(startValue, targetValue, t);
             t += Time.deltaTime / duration;
-            SetBarValue(currentValue);
+            SetBarValue((int)currentValue);
             yield return null;
         }
     }
