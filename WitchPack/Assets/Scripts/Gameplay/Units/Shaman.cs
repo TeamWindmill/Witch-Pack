@@ -9,6 +9,7 @@ public class Shaman : BaseUnit
     [SerializeField, TabGroup("Visual")] private ShamanAnimator shamanAnimator;
     [SerializeField] private ClickHelper clicker;
     [SerializeField] private Indicatable indicatable;
+    [SerializeField] private GroundCollider groundCollider;
     private ShamanConfig shamanConfig;
     private List<BaseAbility> knownAbilities = new List<BaseAbility>();
     private List<UnitCastingHandler> castingHandlers = new List<UnitCastingHandler>();
@@ -37,6 +38,7 @@ public class Shaman : BaseUnit
         Movement.OnDestenationReached += EnableAttacker;
         shamanAnimator.Init(this);
         clicker.OnClick += SetSelectedShaman;
+        groundCollider.Init(this);
         //indicatable.Init(shamanConfig.UnitIcon);
     }
 
