@@ -33,7 +33,7 @@ public class LevelHandler : MonoBehaviour
    {
       foreach (var spawnPoint in shamanSpawnPoints)
       {
-         if(!spawnPoint.gameObject.activeSelf) return;
+         if(!spawnPoint.gameObject.activeSelf) continue;
          spawnPoint.gameObject.SetActive(false);
       }
    }

@@ -16,7 +16,7 @@ public class Shadow : MonoBehaviour
     {
         spriteRenderer.sprite = shaman.ShamanConfig.UnitSprite;
         _shaman = shaman;
-        rangeTransform.localScale = new Vector3(shaman.Stats.BonusRange, shaman.Stats.BonusRange, 0);
+        rangeTransform.localScale = new Vector3(shaman.Stats.BonusRange * 2, shaman.Stats.BonusRange * 2, 0);
         gameObject.SetActive(true);
         _isActive = true;
     }

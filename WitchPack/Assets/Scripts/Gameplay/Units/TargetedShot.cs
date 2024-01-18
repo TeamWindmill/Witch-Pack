@@ -20,9 +20,9 @@ public class TargetedShot : MonoBehaviour
         ability = givenAbility;
         this.target = target;
         Rotate(dir);
-        //rb.velocity = dir * (speed);
-        //StartCoroutine(TravelTimeCountdown());
-        TweenShot();
+        rb.velocity = dir * (speed);
+        StartCoroutine(TravelTimeCountdown());
+        // TweenShot();
     }
 
     private void Rotate(Vector2 dir)
