@@ -168,7 +168,7 @@ public class PowerStructure : MonoBehaviour
 
         var statEffectValue = _powerStructureConfig.statEffect.RingValues[ringHandler.Id];
         var modifiedStatEffect = ModifyStatEffectForDisplay(statEffectValue, true);
-        StatEffectPopupManager.ShowPopupWindows(shadow.Shaman.GetInstanceID(), statType.ToString(), modifiedStatEffect, true, color);
+        StatEffectPopupManager.ShowPopupWindows(GetInstanceID(), statType.ToString(), modifiedStatEffect, true, color);
 
         var newValue = CalculateStatValueForShadow(ringHandler.Id, shadow.Shaman);
         HeroSelectionUI.Instance.UpdateStatBlocks(statType, newValue);
@@ -176,7 +176,7 @@ public class PowerStructure : MonoBehaviour
 
     private void HideStatPopupWindows(Shadow shadow)
     {
-        StatEffectPopupManager.HidePopupWindows(shadow.Shaman.GetInstanceID());
+        StatEffectPopupManager.HidePopupWindows(GetInstanceID());
 
 
         var newValue = CalculateStatValueForShadow(-1, shadow.Shaman);
