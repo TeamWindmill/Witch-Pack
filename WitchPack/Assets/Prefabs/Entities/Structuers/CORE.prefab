@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8927630302941679741}
   - component: {fileID: 3662381466103775017}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cracks_Sprite Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83,125 +83,6 @@ SpriteMask:
   m_BackSortingOrder: 0
   m_IsCustomRangeActive: 0
   m_SpriteSortPoint: 0
---- !u!1 &550670018670731347
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6458965428895213900}
-  - component: {fileID: 832520078615244440}
-  - component: {fileID: 3564899292034259442}
-  m_Layer: 0
-  m_Name: WarningCollider
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6458965428895213900
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 550670018670731347}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2906356815918704717}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &832520078615244440
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 550670018670731347}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.04, y: -0.27}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: 5.26, y: -0.27}
-  - {x: 5.1441827, y: -1.2056026}
-  - {x: 4.8017907, y: -2.1003149}
-  - {x: 4.2477903, y: -2.9150336}
-  - {x: 3.506392, y: -3.614152}
-  - {x: 2.61, y: -4.1671147}
-  - {x: 1.59779, y: -4.5497546}
-  - {x: 0.51400065, y: -4.7453485}
-  - {x: -0.5940011, y: -4.7453485}
-  - {x: -1.6777898, y: -4.5497546}
-  - {x: -2.6900003, y: -4.1671143}
-  - {x: -3.5863926, y: -3.6141517}
-  - {x: -4.3277907, y: -2.9150333}
-  - {x: -4.881791, y: -2.1003146}
-  - {x: -5.2241826, y: -1.2056023}
-  - {x: -5.34, y: -0.26999962}
-  - {x: -5.224182, y: 0.66560304}
-  - {x: -4.881791, y: 1.5603143}
-  - {x: -4.3277907, y: 2.3750331}
-  - {x: -3.5863926, y: 3.0741513}
-  - {x: -2.6899996, y: 3.6271145}
-  - {x: -1.6777906, y: 4.009754}
-  - {x: -0.5940002, y: 4.2053485}
-  - {x: 0.51400036, y: 4.2053485}
-  - {x: 1.5977908, y: 4.009754}
-  - {x: 2.6099997, y: 3.6271145}
-  - {x: 3.506393, y: 3.0741513}
-  - {x: 4.24779, y: 2.3750339}
-  - {x: 4.8017917, y: 1.5603142}
-  - {x: 5.144182, y: 0.6656029}
-  - {x: 5.26, y: -0.2700008}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
---- !u!114 &3564899292034259442
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 550670018670731347}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3585ffed29a69cd4a895fade144b6fe9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radiusX: 5.3
-  radiusY: 4.5
-  smoothness: 30
-  rotation: 0
 --- !u!1 &880077353921792462
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,7 +94,7 @@ GameObject:
   - component: {fileID: 2408933755807530136}
   - component: {fileID: 5774423846660244931}
   - component: {fileID: 3043936257245008977}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cracks Glow Particle 04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5098,7 +4979,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2906356815918704717}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: CoreVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5120,8 +5001,6 @@ Transform:
   m_Children:
   - {fileID: 8469568218786229654}
   - {fileID: 1315173702629393718}
-  - {fileID: 6458965428895213900}
-  - {fileID: 9118778157147415037}
   m_Father: {fileID: 2769440070172495311}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2060578738130637117
@@ -5134,7 +5013,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1949650414254247159}
   - component: {fileID: 829124397093356063}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Core_Part_04
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5219,7 +5098,7 @@ GameObject:
   - component: {fileID: 5776745869069731852}
   - component: {fileID: 2528666315900056215}
   - component: {fileID: 7588662828199468792}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cracks Glow Particle 06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10106,7 +9985,7 @@ GameObject:
   - component: {fileID: 8972019749037221809}
   - component: {fileID: 8620561625046655855}
   - component: {fileID: 4484345976573903461}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cracks Glow Particle 01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14992,9 +14871,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2769440070172495311}
   - component: {fileID: 8416318639859647037}
-  - component: {fileID: 8251174584002067536}
-  - component: {fileID: 2904058908607672322}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: CORE
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15015,6 +14892,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2906356815918704717}
+  - {fileID: 4657213697310375374}
+  - {fileID: 9118778157147415037}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8416318639859647037
@@ -15029,93 +14908,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 913d2888535dec24ba1229839d8ff747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 0
---- !u!68 &8251174584002067536
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3870130507137683738}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: 2.3, y: 0}
-  - {x: 2.2497394, y: -0.31186754}
-  - {x: 2.1011543, y: -0.610105}
-  - {x: 1.8607391, y: -0.88167787}
-  - {x: 1.5390003, y: -1.1147172}
-  - {x: 1.1499999, y: -1.2990382}
-  - {x: 0.710739, y: -1.4265848}
-  - {x: 0.24041536, y: -1.4917829}
-  - {x: -0.24041557, y: -1.4917829}
-  - {x: -0.71073896, y: -1.4265848}
-  - {x: -1.1500001, y: -1.299038}
-  - {x: -1.5390005, y: -1.1147172}
-  - {x: -1.8607392, y: -0.88167775}
-  - {x: -2.1011546, y: -0.61010486}
-  - {x: -2.2497394, y: -0.31186742}
-  - {x: -2.3, y: 0.00000013113416}
-  - {x: -2.2497394, y: 0.31186768}
-  - {x: -2.1011546, y: 0.6101048}
-  - {x: -1.8607392, y: 0.8816777}
-  - {x: -1.5390005, y: 1.1147171}
-  - {x: -1.1499997, y: 1.2990382}
-  - {x: -0.7107393, y: 1.4265847}
-  - {x: -0.24041517, y: 1.4917829}
-  - {x: 0.24041523, y: 1.4917829}
-  - {x: 0.7107394, y: 1.4265847}
-  - {x: 1.1499997, y: 1.2990382}
-  - {x: 1.5390006, y: 1.1147171}
-  - {x: 1.8607389, y: 0.881678}
-  - {x: 2.1011548, y: 0.61010474}
-  - {x: 2.2497394, y: 0.31186765}
-  - {x: 2.3, y: -0.00000026226832}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
---- !u!114 &2904058908607672322
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3870130507137683738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3585ffed29a69cd4a895fade144b6fe9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  radiusX: 2.3
-  radiusY: 1.5
-  smoothness: 30
-  rotation: 0
+  maxHp: 20
+  enemyTargeter: {fileID: 3909402266356872530}
 --- !u!1 &5270367584337191754
 GameObject:
   m_ObjectHideFlags: 0
@@ -15127,7 +14921,7 @@ GameObject:
   - component: {fileID: 2604904180776693200}
   - component: {fileID: 8301055513307398089}
   - component: {fileID: 4009249955721790858}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cracks Glow Particle 05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20013,7 +19807,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8872473978202373055}
   - component: {fileID: 7430020898372089963}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Core_Part_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -20098,7 +19892,7 @@ GameObject:
   - component: {fileID: 2745793664114076332}
   - component: {fileID: 4913405874167148732}
   - component: {fileID: 4825029128924992513}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cracks Glow Particle 03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24985,7 +24779,7 @@ GameObject:
   - component: {fileID: 8664724435705781442}
   - component: {fileID: 4926486857972164682}
   - component: {fileID: 1247302356095626641}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cracks Glow Particle 07
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29871,7 +29665,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6748166243487154138}
   - component: {fileID: 7272505798619516491}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Core_Part_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29945,6 +29739,121 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &6778048021347155575
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4657213697310375374}
+  - component: {fileID: 3909402266356872530}
+  - component: {fileID: 2038494610182818865}
+  m_Layer: 16
+  m_Name: ProximityRingTargeting
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4657213697310375374
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6778048021347155575}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 5.18, y: 3.5847743, z: 3.5847743}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 2769440070172495311}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3909402266356872530
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6778048021347155575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2858346e747d17b45905ca3c82817068, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  availableTargets: []
+--- !u!60 &2038494610182818865
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6778048021347155575}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: 0, y: 0.5}
+      - {x: -0.15234375, y: 0.47265625}
+      - {x: -0.29296875, y: 0.40234375}
+      - {x: -0.40234375, y: 0.29296875}
+      - {x: -0.47265625, y: 0.15234375}
+      - {x: -0.5, y: 0}
+      - {x: -0.47265625, y: -0.15234375}
+      - {x: -0.40234375, y: -0.29296875}
+      - {x: -0.29296875, y: -0.40234375}
+      - {x: -0.15234375, y: -0.47265625}
+      - {x: 0, y: -0.5}
+      - {x: 0.15234375, y: -0.47265625}
+      - {x: 0.29296875, y: -0.40234375}
+      - {x: 0.40234375, y: -0.29296875}
+      - {x: 0.47265625, y: -0.15234375}
+      - {x: 0.5, y: 0}
+      - {x: 0.47265625, y: 0.15234375}
+      - {x: 0.40234375, y: 0.29296875}
+      - {x: 0.29296875, y: 0.40234375}
+      - {x: 0.15234375, y: 0.47265625}
+  m_UseDelaunayMesh: 0
 --- !u!1 &7370608817371671731
 GameObject:
   m_ObjectHideFlags: 0
@@ -29954,7 +29863,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7847266078205252350}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Destroyed Core
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29990,7 +29899,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1315173702629393718}
   - component: {fileID: 513853444230743146}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: CoreForegruond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30074,7 +29983,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5878603797361674085}
   - component: {fileID: 9194298512112925035}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: PowerCore_Cracks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30160,7 +30069,7 @@ GameObject:
   - component: {fileID: 4402990407033082094}
   - component: {fileID: 9140744131601393012}
   - component: {fileID: 1054927432890533002}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Core
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30285,7 +30194,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3972904727064388129}
   - component: {fileID: 49154795631392119}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Core_Part_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30370,7 +30279,7 @@ GameObject:
   - component: {fileID: 8283584435500914850}
   - component: {fileID: 3431778086010991609}
   - component: {fileID: 8399937784074196228}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Cracks Glow Particle 02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35257,7 +35166,7 @@ GameObject:
   - component: {fileID: 6057142063197419276}
   - component: {fileID: 2861818064390237763}
   - component: {fileID: 6235555472181136436}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: 'Cracks Glow Holder '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40087,15 +39996,35 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 2906356815918704717}
+    m_TransformParent: {fileID: 2769440070172495311}
     m_Modifications:
+    - target: {fileID: 158581863444105605, guid: d9811e9856b31b04cbf763f6941cacd5, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 295643392809047306, guid: d9811e9856b31b04cbf763f6941cacd5, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4523217570999484467, guid: d9811e9856b31b04cbf763f6941cacd5, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5617180991050575516, guid: d9811e9856b31b04cbf763f6941cacd5, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5617180991050575516, guid: d9811e9856b31b04cbf763f6941cacd5, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.75
+      objectReference: {fileID: 0}
     - target: {fileID: 5617180991050575516, guid: d9811e9856b31b04cbf763f6941cacd5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5617180991050575516, guid: d9811e9856b31b04cbf763f6941cacd5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.98
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 5617180991050575516, guid: d9811e9856b31b04cbf763f6941cacd5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -40132,6 +40061,10 @@ PrefabInstance:
     - target: {fileID: 5994928142813065113, guid: d9811e9856b31b04cbf763f6941cacd5, type: 3}
       propertyPath: m_Name
       value: HpBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 5994928142813065113, guid: d9811e9856b31b04cbf763f6941cacd5, type: 3}
+      propertyPath: m_Layer
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

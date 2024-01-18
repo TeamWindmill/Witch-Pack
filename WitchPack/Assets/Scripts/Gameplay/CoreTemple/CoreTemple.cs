@@ -3,17 +3,29 @@ using UnityEngine;
 
 public class CoreTemple : MonoBehaviour
 {
-    [SerializeField] private int maxHp;
-    private int curHp;
     public Action OnCoreDestroyed;
     public Action<int> OnGetHit;
+    
+    [SerializeField] private int maxHp;
+    [SerializeField] private EnemyTargeter enemyTargeter;
+    [SerializeField] private HP_Bar hpBar;
+    
+    private int curHp;
 
     public int MaxHp { get => maxHp; }
     public int CurHp { get => curHp; }
 
-    private void Start()
+    public void Init()
     {
         curHp = maxHp;
+        enemyTargeter.OnTargetAdded += OnEnemyEnter;
+        hpBar.Init(maxHp,UnitType.Temple);
+        OnGetHit += hpBar.SetBarValue;
+    }
+    private void OnEnemyEnter(Enemy enemy)
+    {
+        enemy.Damageable.TakeFlatDamage(enemy.Damageable.CurrentHp);
+        TakeDamage(enemy.CoreDamage);
     }
 
     public void TakeDamage(int amount)

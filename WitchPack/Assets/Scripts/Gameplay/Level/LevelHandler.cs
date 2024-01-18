@@ -6,6 +6,7 @@ public class LevelHandler : MonoBehaviour
 {
     [SerializeField] private Transform[] shamanSpawnPoints;
     [SerializeField] private CustomPath[] paths;
+    [SerializeField] private CoreTemple coreTemple;
     [SerializeField] private PowerStructure[] powerStructures;
     [SerializeField] private ParticleSystem[] windEffectsParticleSystem;
     [SerializeField] private NavMeshSurface navMeshSurface;
@@ -24,6 +25,7 @@ public class LevelHandler : MonoBehaviour
       GameManager.Instance.CameraHandler.ResetCamera();
       navMeshSurface.BuildNavMeshAsync();//bakes navmesh
       waveHandler.Init();
+      coreTemple.Init();
       foreach (var powerStructure in powerStructures)
       {
          powerStructure.Init();
