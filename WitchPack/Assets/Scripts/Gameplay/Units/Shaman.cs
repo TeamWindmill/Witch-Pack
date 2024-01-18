@@ -10,6 +10,7 @@ public class Shaman : BaseUnit
     [SerializeField] private ClickHelper clicker;
     [SerializeField] private Indicatable indicatable;
     [SerializeField] private GroundCollider groundCollider;
+    [SerializeField] private Transform _castPos;
     private ShamanConfig shamanConfig;
     private List<BaseAbility> knownAbilities = new List<BaseAbility>();
     private List<UnitCastingHandler> castingHandlers = new List<UnitCastingHandler>();
@@ -22,6 +23,7 @@ public class Shaman : BaseUnit
     public ShamanConfig ShamanConfig { get => shamanConfig; }
     public List<BaseAbility> KnownAbilities { get => knownAbilities; }
     public List<UnitCastingHandler> CastingHandlers { get => castingHandlers; }
+    public Transform CastPos => _castPos;
     private void OnValidate()
     {
         shamanAnimator ??= GetComponentInChildren<ShamanAnimator>();
