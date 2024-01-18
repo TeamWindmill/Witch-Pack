@@ -54,7 +54,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     {
         IsWon = win;
         endScreenUI.Show();
-        GAME_TIME.Pause();
+        
     }
 
     private void SpawnParty(ShamanConfig[] shamanConfigs)

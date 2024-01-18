@@ -298,7 +298,7 @@ public class CameraHandler : MonoBehaviour
         ToggleCameraLock(false);
     }
 
-    public void ToggleCameraLock(bool state)
+    private void ToggleCameraLock(bool state)
     {
         _enableCameraMovement = !state;
         _cinemachineBrain.enabled = !state;
@@ -312,12 +312,14 @@ public class CameraHandler : MonoBehaviour
         _enableCameraMovement = false;
     }
 
-    public void SetCameraPosition(Vector2 eventPosition)
+    public void SetCameraPosition(Vector2 eventPosition, bool lockCameraMove = false)
     {
         //move the camera to Event Position
         var newPos = new Vector3(eventPosition.x, eventPosition.y, -80);
         _cameraFollowObject.position = newPos;
-        StartCoroutine(ChangeDampingUntilCameraFinishFollowUp(_cameraSettings.EventTransitionDampingX, _cameraSettings.EventTransitionDampingY));
+        ChangeDamping(_cameraSettings.EventTransitionDampingX,_cameraSettings.EventTransitionDampingY);
+        StartCoroutine(!lockCameraMove ? ChangeDampingUntilCameraFinishedFollowUp(_cameraSettings.EventTransitionDampingX, _cameraSettings.EventTransitionDampingY) 
+            : LockCameraAfterFinishedFollowUp());
     }
 
     public void SetCameraZoom(int zoom)
@@ -342,16 +344,26 @@ public class CameraHandler : MonoBehaviour
         return cameraFinishedFollowUp;
     }
 
-    private IEnumerator ChangeDampingUntilCameraFinishFollowUp(float xdamping, float ydamping)
-    {
-        _cinemachineTransposer.m_XDamping = xdamping;
-        _cinemachineTransposer.m_YDamping = ydamping;
-        yield return new WaitUntil(() => CameraFinishedFollowUp() || _inputDir != Vector3.zero);
-        _cinemachineTransposer.m_XDamping = _cameraSettings.XDamping;
-        _cinemachineTransposer.m_YDamping = _cameraSettings.YDamping;
+    
 
+    private void ChangeDamping(float xDamping, float yDamping)
+    {
+        _cinemachineTransposer.m_XDamping = xDamping;
+        _cinemachineTransposer.m_YDamping = yDamping;
+    }
+    
+    private IEnumerator ChangeDampingUntilCameraFinishedFollowUp(float xDamping, float yDamping)
+    {
+        ChangeDamping(xDamping, yDamping);
+        yield return new WaitUntil(() => CameraFinishedFollowUp() || _inputDir != Vector3.zero);
+        ChangeDamping(_cameraSettings.XDamping, _cameraSettings.XDamping);
         yield return null;
     }
-
+    private IEnumerator LockCameraAfterFinishedFollowUp()
+    {
+        yield return new WaitUntil(() => CameraFinishedFollowUp() || _inputDir != Vector3.zero);
+        ToggleCameraLock(true);
+        yield return null;
+    }
     #endregion
 }

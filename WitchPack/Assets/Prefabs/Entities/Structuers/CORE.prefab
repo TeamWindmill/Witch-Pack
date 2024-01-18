@@ -4970,39 +4970,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!1 &1596366543919963745
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2906356815918704717}
-  m_Layer: 16
-  m_Name: CoreVisual
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2906356815918704717
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1596366543919963745}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8469568218786229654}
-  - {fileID: 1315173702629393718}
-  m_Father: {fileID: 2769440070172495311}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2060578738130637117
 GameObject:
   m_ObjectHideFlags: 0
@@ -5055,7 +5022,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14891,7 +14858,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2906356815918704717}
+  - {fileID: 8469568218786229654}
   - {fileID: 4657213697310375374}
   - {fileID: 9118778157147415037}
   m_Father: {fileID: 0}
@@ -14911,6 +14878,11 @@ MonoBehaviour:
   maxHp: 20
   enemyTargeter: {fileID: 3909402266356872530}
   hpBar: {fileID: 4111116889428995083}
+  animator: {fileID: 9140744131601393012}
+  destroyedCore: {fileID: 7847266078205252350}
+  coreSpriteRenderer: {fileID: 4402990407033082094}
+  glowParticleSystem: {fileID: 2861818064390237763}
+  destroyAnimationsDelay: 2
 --- !u!1 &5270367584337191754
 GameObject:
   m_ObjectHideFlags: 0
@@ -19850,7 +19822,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -29708,7 +29680,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -29920,7 +29892,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2906356815918704717}
+  m_Father: {fileID: 8469568218786229654}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &513853444230743146
 SpriteRenderer:
@@ -30071,7 +30043,7 @@ GameObject:
   - component: {fileID: 9140744131601393012}
   - component: {fileID: 1054927432890533002}
   m_Layer: 16
-  m_Name: Core
+  m_Name: CoreVisual
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30094,7 +30066,8 @@ Transform:
   - {fileID: 5878603797361674085}
   - {fileID: 7847266078205252350}
   - {fileID: 6057142063197419276}
-  m_Father: {fileID: 2906356815918704717}
+  - {fileID: 1315173702629393718}
+  m_Father: {fileID: 2769440070172495311}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4402990407033082094
 SpriteRenderer:
@@ -30237,7 +30210,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
