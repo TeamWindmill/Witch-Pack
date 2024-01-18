@@ -30,6 +30,7 @@ public class Enemy : BaseUnit
         enemyConfig = givenConfig as EnemyConfig;
         base.Init(enemyConfig);
         _path = enemyConfig.Path;
+        _coreDamage = enemyConfig.CoreDamage;
         shamanTargeter.SetRadius(Stats.BonusRange);
         //Movement.SetDest(givenPath.Waypoints[pointIndex].position);
         //Movement.OnDestenationReached += SetNextDest;

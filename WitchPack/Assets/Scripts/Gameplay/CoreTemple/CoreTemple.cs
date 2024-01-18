@@ -20,7 +20,6 @@ public class CoreTemple : MonoBehaviour
         curHp = maxHp;
         enemyTargeter.OnTargetAdded += OnEnemyEnter;
         hpBar.Init(maxHp,UnitType.Temple);
-        OnGetHit += hpBar.SetBarValue;
     }
     private void OnEnemyEnter(Enemy enemy)
     {
@@ -32,6 +31,7 @@ public class CoreTemple : MonoBehaviour
     {
         curHp -= amount;
         OnGetHit?.Invoke(amount);
+        hpBar.SetBarValue(curHp);
         if (curHp <= 0)
         {
             OnCoreDestroyed?.Invoke();//lose game? 
