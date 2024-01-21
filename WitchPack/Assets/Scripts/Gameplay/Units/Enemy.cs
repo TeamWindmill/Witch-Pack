@@ -8,12 +8,16 @@ public class Enemy : BaseUnit
     [SerializeField, TabGroup("Visual")] private EnemyAnimator enemyAnimator;
     [SerializeField] private ShamanTargeter shamanTargeter;
     private PathCreator _path;
+    private int _coreDamage;
     //testing 
+
     private EnemyConfig enemyConfig;
     private int pointIndex;
     private float dstTravelled;
     private bool _isMoving;
-
+    public EnemyConfig EnemyConfig { get => enemyConfig; }
+    public ShamanTargeter ShamanTargeter { get => shamanTargeter; }
+    public int CoreDamage => _coreDamage;
     public bool IsMoving => _isMoving;
     public override StatSheet BaseStats => enemyConfig.BaseStats;
     private void OnValidate()
@@ -26,6 +30,7 @@ public class Enemy : BaseUnit
         enemyConfig = givenConfig as EnemyConfig;
         base.Init(enemyConfig);
         _path = enemyConfig.Path;
+        _coreDamage = enemyConfig.CoreDamage;
         shamanTargeter.SetRadius(Stats.BonusRange);
         //Movement.SetDest(givenPath.Waypoints[pointIndex].position);
         //Movement.OnDestenationReached += SetNextDest;
@@ -36,7 +41,7 @@ public class Enemy : BaseUnit
     private void Update()
     {
         if(!_isMoving) return;
-        dstTravelled += Stats.MovementSpeed * Time.deltaTime;
+        dstTravelled += Stats.MovementSpeed * GAME_TIME.GameDeltaTime;
         transform.position = _path.path.GetPointAtDistance(dstTravelled, EndOfPathInstruction.Stop);
     }
 
@@ -66,6 +71,5 @@ public class Enemy : BaseUnit
         dstTravelled = 0;
     }
 
-    public EnemyConfig EnemyConfig { get => enemyConfig; }
-    public ShamanTargeter ShamanTargeter { get => shamanTargeter; }
+    
 }
