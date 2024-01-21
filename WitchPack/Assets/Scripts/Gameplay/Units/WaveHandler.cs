@@ -53,6 +53,7 @@ public class WaveHandler : MonoBehaviour
             yield return StartCoroutine(IntervalDelay(waveData.BetweenWavesInterval));
             skipFlag = false;
         }
+        LevelManager.Instance.EndLevel(true);
     }
 
 

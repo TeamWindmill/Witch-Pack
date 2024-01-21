@@ -319,6 +319,7 @@ MonoBehaviour:
   - {fileID: 2343980686616823673}
   - {fileID: 6672433121986766621}
   paths: []
+  coreTemple: {fileID: 3368295551660145649}
   powerStructures:
   - {fileID: 4253001330743148299}
   - {fileID: 4707224861250962849}
@@ -333,7 +334,7 @@ MonoBehaviour:
     CameraBorders: {x: 75, y: 43}
     CameraMaxZoom: 20
     OverrideCameraStartPos: 1
-    CameraStartZoom: 12
+    CameraStartZoom: 18
     CameraStartPos: {x: 0, y: 0, z: 0}
 --- !u!114 &-5944038825449864076
 MonoBehaviour:
@@ -352,8 +353,8 @@ MonoBehaviour:
   - {fileID: 917497786160138792}
   - {fileID: 6399036452137419230}
   - {fileID: 1964679472224711251}
-  waveData: {fileID: 11400000, guid: b1e2d786b9b14bd4abec600e1d44535b, type: 2}
-  fixedSpawnInterval: 0.3
+  waveData: {fileID: 11400000, guid: 537378bab218e614886c0e9eceb29063, type: 2}
+  fixedSpawnInterval: 0.4
 --- !u!1 &2250709202086342489
 GameObject:
   m_ObjectHideFlags: 0
@@ -1039,14 +1040,14 @@ MonoBehaviour:
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_UseGeometry: 0
+  m_UseGeometry: 1
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
   m_IgnoreNavMeshObstacle: 1
   m_OverrideTileSize: 0
   m_TileSize: 256
-  m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_OverrideVoxelSize: 1
+  m_VoxelSize: 0.1
   m_BuildHeightMesh: 0
   m_HideEditorLogs: 0
   m_NavMeshData: {fileID: 23800000, guid: bdc0dbbc6fd5ffd4396bc9995995a70f, type: 2}
@@ -2331,11 +2332,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2769440070172495311, guid: cc77f83d75dc41c4186ed542ed2d461c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 6.8
       objectReference: {fileID: 0}
     - target: {fileID: 2769440070172495311, guid: cc77f83d75dc41c4186ed542ed2d461c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -2.43
       objectReference: {fileID: 0}
     - target: {fileID: 2769440070172495311, guid: cc77f83d75dc41c4186ed542ed2d461c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2369,27 +2370,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2906356815918704717, guid: cc77f83d75dc41c4186ed542ed2d461c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 6.81
-      objectReference: {fileID: 0}
-    - target: {fileID: 2906356815918704717, guid: cc77f83d75dc41c4186ed542ed2d461c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.53
-      objectReference: {fileID: 0}
     - target: {fileID: 3870130507137683738, guid: cc77f83d75dc41c4186ed542ed2d461c, type: 3}
       propertyPath: m_Name
       value: CORE
-      objectReference: {fileID: 0}
-    - target: {fileID: 7694738468130415080, guid: cc77f83d75dc41c4186ed542ed2d461c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc77f83d75dc41c4186ed542ed2d461c, type: 3}
+--- !u!114 &3368295551660145649 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8416318639859647037, guid: cc77f83d75dc41c4186ed542ed2d461c, type: 3}
+  m_PrefabInstance: {fileID: 6517363709125229004}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 913d2888535dec24ba1229839d8ff747, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8943397692914217987 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2769440070172495311, guid: cc77f83d75dc41c4186ed542ed2d461c, type: 3}

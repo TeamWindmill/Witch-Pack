@@ -21,9 +21,10 @@ public class StatEffectPopupHandler : MonoBehaviour
         {
             if (_popupWindowHandlers[i].ActiveEntityId == EntityId && _popupWindowHandlers[i].IsActive)
             {
-                _popupWindowHandlers[i].UpdatePopupWindow(value, isPercent, color);
+                 _popupWindowHandlers[i].UpdatePopupWindow(value, isPercent, color);
                 return;
             }
+            
         }
 
         for (int i = 0; i < _popupWindowHandlers.Length; i++)

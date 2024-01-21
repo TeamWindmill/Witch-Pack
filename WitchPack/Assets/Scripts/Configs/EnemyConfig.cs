@@ -6,4 +6,6 @@ using UnityEngine;
 public class EnemyConfig : BaseUnitConfig
 {
     public PathCreator Path;
+    [SerializeField] private int coreDamage;
+    public int CoreDamage => coreDamage;
 }

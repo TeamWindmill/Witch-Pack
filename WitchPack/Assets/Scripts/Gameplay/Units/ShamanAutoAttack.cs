@@ -9,14 +9,14 @@ public class ShamanAutoAttack : OffensiveAbility
 {
     public override bool CastAbility(BaseUnit caster)
     {
-        if (caster is Shaman)
+        if (caster is Shaman shaman)
         {
             Shaman shaman = caster as Shaman;
             List<Enemy> targets = shaman.EnemyTargeter.GetAvailableTargets(shaman.transform.position, Range);
             if (!ReferenceEquals(targets, null) && targets.Count > 0)
             {
                 TargetedShot newPew = LevelManager.Instance.PoolManager.ShamanAutoAttackPool.GetPooledObject();
-                newPew.transform.position = caster.transform.position;
+                newPew.transform.position = shaman.CastPos.transform.position;
                 newPew.gameObject.SetActive(true);
                 BaseUnit target = shaman.TargetHelper.GetTarget(targets.Cast<BaseUnit>().ToList(), TargetData);
                 Vector2 dir = (target.transform.position - caster.transform.position).normalized;

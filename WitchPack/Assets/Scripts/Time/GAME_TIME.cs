@@ -103,7 +103,7 @@ public class GAME_TIME : MonoBehaviour
         if (_timeRate == 0) return;
         _tempTimeData = _timeRate;
 
-        Debug.Log($"<color={ColorLogHelper.RED}>PLAY</color>");
+        Debug.Log($"<color={ColorLogHelper.RED}>PAUSE</color>");
         SetTimeStep(0);
     }
 }
