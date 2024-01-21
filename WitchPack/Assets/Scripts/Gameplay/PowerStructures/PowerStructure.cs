@@ -1,13 +1,10 @@
 using System;
 using System.Collections.Generic;
-using Cinemachine;
 using UnityEngine;
 
 
 public class PowerStructure : MonoBehaviour
 {
-    private const string POWER_STRUCTURE_LOG_GROUP = "PowerStructure";
-
     [Header("Config File")] [SerializeField]
     private PowerStructureConfig _powerStructureConfig;
 
@@ -79,12 +76,10 @@ public class PowerStructure : MonoBehaviour
         {
             shaman.Stats.AddValueToStat(_statType, -statValue);
             _activeStatEffectsOnShamans.Remove(shaman.GetInstanceID());
-            shaman.RemovePSBonus();
         }
 
         var statEffectValue = GetStatEffectValue(ringId, shaman);
         shaman.Stats.AddValueToStat(_statType, statEffectValue);
-        shaman.AddPSBonus(statEffectValue);
         _activeStatEffectsOnShamans.Add(shaman.GetInstanceID(), statEffectValue);
     }
 
@@ -98,7 +93,6 @@ public class PowerStructure : MonoBehaviour
             {
                 shaman.Stats.AddValueToStat(_statType, -statValue);
                 _activeStatEffectsOnShamans.Remove(shaman.GetInstanceID());
-                shaman.RemovePSBonus();
             }
         }
         else if (ringId < proximityRingsManager.RingHandlers.Length - 1)
@@ -107,13 +101,11 @@ public class PowerStructure : MonoBehaviour
             {
                 shaman.Stats.AddValueToStat(_statType, -statValue);
                 _activeStatEffectsOnShamans.Remove(shaman.GetInstanceID());
-                shaman.RemovePSBonus();
             }
 
             var statEffectValue = GetStatEffectValue(ringId, shaman);
             shaman.Stats.AddValueToStat(_statType, statEffectValue);
             _activeStatEffectsOnShamans.Add(shaman.GetInstanceID(), statEffectValue);
-            shaman.AddPSBonus(statEffectValue);
         }
     }
 
@@ -206,13 +198,9 @@ public class PowerStructure : MonoBehaviour
         var currentStatValue = shaman.Stats.GetStatValue(_statType);
         var baseStatValue = currentStatValue;
         
-        if (shaman.ShamanPSBonus.HasBonus)
-        {
-            baseStatValue = currentStatValue - shaman.ShamanPSBonus.BonusValue;
-        }
         if (shadowRingId == -1)
             return Mathf.RoundToInt(baseStatValue);
-
+        
         var modifier = _powerStructureConfig.statEffect.RingValues[shadowRingId];
         return Mathf.RoundToInt(baseStatValue * modifier);
     }

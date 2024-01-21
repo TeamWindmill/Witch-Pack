@@ -46,8 +46,7 @@ public class UnitVisualHandler : MonoBehaviour
 
     private void FlipSpriteOnAutoAttack()
     {
-        var shaman = _baseUnit as Shaman;
-        
+                
     }
     
 

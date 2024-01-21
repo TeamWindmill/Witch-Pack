@@ -14,10 +14,6 @@ public class Shaman : BaseUnit
     private ShamanConfig shamanConfig;
     private List<BaseAbility> knownAbilities = new List<BaseAbility>();
     private List<UnitCastingHandler> castingHandlers = new List<UnitCastingHandler>();
-    private ShamanPSBonus _shamanPSBonus;
-
-
-    public ShamanPSBonus ShamanPSBonus => _shamanPSBonus;
     public override StatSheet BaseStats => shamanConfig.BaseStats;
     public EnemyTargeter EnemyTargeter { get => enemyTargeter; }
     public ShamanConfig ShamanConfig { get => shamanConfig; }
@@ -107,17 +103,6 @@ public class Shaman : BaseUnit
         clicker.enabled = state;
     }
 
-    public void AddPSBonus(int value)
-    {
-        _shamanPSBonus.BonusValue = value;
-        _shamanPSBonus.HasBonus = true;
-    }
-    public void RemovePSBonus()
-    {
-        _shamanPSBonus.BonusValue = 0;
-        _shamanPSBonus.HasBonus = false;
-    }
-
     private void OnDisable()
     {
         clicker.OnClick -= SetSelectedShaman;
@@ -125,10 +110,4 @@ public class Shaman : BaseUnit
         Movement.OnDestenationReached -= EnableAttacker;
     }
 
-}
-
-public struct ShamanPSBonus
-{
-    public bool HasBonus;
-    public int BonusValue;
 }
