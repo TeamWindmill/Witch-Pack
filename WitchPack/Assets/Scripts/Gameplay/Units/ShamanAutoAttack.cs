@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
@@ -7,25 +6,23 @@ using System.Linq;
 
 public class ShamanAutoAttack : OffensiveAbility
 {
-    public override bool CastAbility(BaseUnit caster)
+    public override bool CastAbility(BaseUnit caster, Transform target = null)
     {
         if (caster is Shaman shaman)
         {
-            List<Enemy> targets = shaman.EnemyTargeter.GetAvailableTargets(shaman.transform.position, Range);
-            if (!ReferenceEquals(targets, null) && targets.Count > 0)
-            {
-                TargetedShot newPew = LevelManager.Instance.PoolManager.ShamanAutoAttackPool.GetPooledObject();
-                newPew.transform.position = shaman.CastPos.transform.position;
-                newPew.gameObject.SetActive(true);
-                BaseUnit target = shaman.TargetHelper.GetTarget(targets.Cast<BaseUnit>().ToList(), TargetData);
-                Vector2 dir = (target.transform.position - caster.transform.position).normalized;
-                newPew.Fire(caster, this, dir.normalized, target);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            // if (!ReferenceEquals(targets, null) && targets.Count > 0)
+            // {
+            //     TargetedShot newPew = LevelManager.Instance.PoolManager.ShamanAutoAttackPool.GetPooledObject();
+            //     newPew.transform.position = shaman.CastPos.transform.position;
+            //     newPew.gameObject.SetActive(true);
+            //     Vector2 dir = (target.transform.position - caster.transform.position).normalized;
+            //     newPew.Fire(caster, this, dir.normalized, target);
+            //     return true;
+            // }
+            // else
+            // {
+            //     return false;
+            // }
         }
         return false;
         //enemy logic here (when necessary)

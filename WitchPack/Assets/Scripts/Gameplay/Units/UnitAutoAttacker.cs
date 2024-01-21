@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,7 +29,6 @@ public class UnitAutoAttacker : MonoBehaviour
             if (!ReferenceEquals(owner.AutoAttack, null))
             {
                 owner.AutoAttackHandler.Attack();
-
             }
         }
       

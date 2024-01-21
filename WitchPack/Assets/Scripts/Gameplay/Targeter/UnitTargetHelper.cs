@@ -16,7 +16,7 @@ public class UnitTargetHelper
         switch (givenData.Prio)
         {
             case TargetPrio.Stat:
-                return getTargetByStat(targets, stat, givenData.Mod);
+                return GetTargetByStat(targets, stat, givenData.Mod);
 
             case TargetPrio.Distance:
                 return GetTargetByDistance(targets, givenData.Mod);
@@ -31,7 +31,7 @@ public class UnitTargetHelper
     }
 
 
-    private BaseUnit getTargetByStat(List<BaseUnit> targets, StatType givenStat, TargetMod mod)
+    private BaseUnit GetTargetByStat(List<BaseUnit> targets, StatType givenStat, TargetMod mod)
     {
         BaseUnit cur = targets[0];
         for (int i = 0; i < targets.Count; i++)

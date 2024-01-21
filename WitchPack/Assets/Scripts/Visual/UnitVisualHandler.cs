@@ -37,17 +37,17 @@ public class UnitVisualHandler : MonoBehaviour
         var position = (Vector2)transform.position;
         var deltaV = position - _lastPos;
 
-        if (deltaV.sqrMagnitude >= 0.1f)
+        if (deltaV.sqrMagnitude >= 0.1f) //flip sprite according to movement
         {
             SpriteFlipX(deltaV.x >= 0);
             _lastPos = position;
         }
+    }
+
+    private void FlipSpriteOnAutoAttack()
+    {
+        var shaman = _baseUnit as Shaman;
         
-        //if unit has target
-        {
-            //var targetDelta = position.x - target.transform.position.x;
-            //SetSpriteFlipX(targetDelta < 0);
-        }
     }
     
 
