@@ -41,7 +41,6 @@ public class Targeter<T> : MonoBehaviour where T : Component
             availableTargets.Remove(possibleTarget);
             OnTargetLost?.Invoke(possibleTarget);
         }
-
     }
 
     public T GetClosestTarget()
@@ -62,4 +61,41 @@ public class Targeter<T> : MonoBehaviour where T : Component
         return closest;
     }
 
+
+    public List<T> GetAvailableTargets(Vector3 origin, float range)
+    {
+        Collider2D[] foundColldiers = Physics2D.OverlapCircleAll(origin, range);
+        List<T> legalTargets = new List<T>();
+
+        foreach (var item in foundColldiers)
+        {
+            T possibleTarget = item.GetComponent<T>();
+            if (!ReferenceEquals(possibleTarget, null))
+            {
+                legalTargets.Add(possibleTarget);
+            }
+        }
+        return legalTargets;
+    }
+}
+
+public enum TargetPrio
+{
+    Distance,
+    Stat,
+    Threatened,
+    Random
+}
+
+public enum TargetMod
+{
+    Most,
+    Least
+}
+
+[System.Serializable]
+public struct TargetData
+{
+    public TargetPrio Prio;
+    public TargetMod Mod;
 }

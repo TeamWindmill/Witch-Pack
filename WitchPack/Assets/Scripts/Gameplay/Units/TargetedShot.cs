@@ -13,16 +13,16 @@ public class TargetedShot : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     private BaseAbility ability;
     private BaseUnit owner;
-    private Transform target;
-    public void Fire(BaseUnit shooter, BaseAbility givenAbility, Vector2 dir, Transform target)
+    private BaseUnit target;
+    public void Fire(BaseUnit shooter, BaseAbility givenAbility, Vector2 dir, BaseUnit target)
     {
         owner = shooter;
         ability = givenAbility;
         this.target = target;
         Rotate(dir);
         //rb.velocity = dir * (speed);
-        //StartCoroutine(TravelTimeCountdown());
-        TweenShot();
+        StartCoroutine(TravelTimeCountdown());
+        //TweenShot();
     }
 
     private void Rotate(Vector2 dir)
@@ -34,18 +34,18 @@ public class TargetedShot : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         BaseUnit target = collision.GetComponent<BaseUnit>();
-        if (!ReferenceEquals(target, null) && !ReferenceEquals(ability, null))
+        if (!ReferenceEquals(target, null) && !ReferenceEquals(ability, null) && ReferenceEquals(target, this.target))
         {
             target.Damageable.GetHit(owner.DamageDealer, ability);
+            Disable();
         }
-        Disable();
     }
 
-    private void TweenShot()
+/*    private void TweenShot()
     {
         //float tweenTime = Vector3.Distance(target.position, owner.transform.position) / (speed * GAME_TIME.GetCurrentTimeRate);
-        LeanTween.move(gameObject, target.position, 0.8f).setEaseInCirc();
-    }
+        LeanTween.move(gameObject, target,transform.position, 0.8f).setEaseInCirc();
+    }*/
 
     private IEnumerator TravelTimeCountdown()
     {
@@ -55,7 +55,7 @@ public class TargetedShot : MonoBehaviour
         float counter = 0;
         while (counter <= 1)
         {
-            Vector3 positionLerp = Vector3.Lerp(startPosition, target.position, counter);
+            Vector3 positionLerp = Vector3.Lerp(startPosition, target.transform.position, counter);
             transform.position = positionLerp;
             counter += GAME_TIME.GameDeltaTime * speed;
             yield return new WaitForEndOfFrame();
