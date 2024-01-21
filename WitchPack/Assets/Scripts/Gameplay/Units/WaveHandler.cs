@@ -15,7 +15,7 @@ public class WaveHandler : MonoBehaviour
     private List<EnemySpawnData> spawnData;
     private int _currentWave;
     private bool skipFlag;
-
+    private int deathCounter;
     public int CurrentWave => _currentWave;
     public int TotalWaves => spawnData.Count;
 
@@ -53,7 +53,12 @@ public class WaveHandler : MonoBehaviour
             yield return StartCoroutine(SpawnWave(spawnData[i], spawnPoint));
             OnWaveEnd?.Invoke(i + 1);
             SetIndicator(i, waveData.BetweenWavesInterval);
+            if (i == spawnData.Count -1)
+            {
+                yield return new WaitUntil(() => deathCounter >= spawnData[i].GetTotalNumberOfEnemies());
+            }
             yield return StartCoroutine(IntervalDelay(waveData.BetweenWavesInterval));
+            deathCounter = 0;
         }
         LevelManager.Instance.EndLevel(true);
     }
@@ -65,7 +70,7 @@ public class WaveHandler : MonoBehaviour
         {
             for (int j = 0; j < givenData.Groups.Count; j++)
             {
-                EnemySpawnPoint currentSpawnPoint = GetSpawnPointFromIndex(givenData.Groups[j].SpawnerIndex - 1);
+                EnemySpawnPoint currentSpawnPoint = GetSpawnPointFromIndex(givenData.Groups[j].SpawnerIndex);
                 if (givenData.Groups[j].SpawnedAtInterval <= i + 1)
                 {
                     for (int z = 0; z < givenData.Groups[j].AmountPerSpawn; z++)
@@ -75,8 +80,7 @@ public class WaveHandler : MonoBehaviour
                             break;
                         }
 
-                        currentSpawnPoint.SpawnEnemy(givenData.Groups[j].Enemy);
-
+                        currentSpawnPoint.SpawnEnemy(givenData.Groups[j].Enemy).Damageable.OnDeath += DeathCounterIncrement;
                         EnemyGroup group = givenData.Groups[j];
                         group.NumSpawned++;
                         givenData.Groups[j] = group;
@@ -90,19 +94,20 @@ public class WaveHandler : MonoBehaviour
         }
     }
 
+
     private EnemySpawnPoint GetSpawnPointFromIndex(int index)
     {
         if (index >= spawnPoints.Length)
         {
             return spawnPoints[spawnPoints.Length - 1];
         }
-        else if (index < 0)
+        else if (index <= 0)
         {
             return spawnPoints[0];
         }
         else
         {
-            return spawnPoints[index];
+            return spawnPoints[index-1];
         }
     }
 
@@ -129,5 +134,11 @@ public class WaveHandler : MonoBehaviour
     private void SkipWaveCD()
     {
         skipFlag = true;
+    }
+
+    private void DeathCounterIncrement(Damageable target, DamageDealer dealer, DamageHandler dmg, BaseAbility ability)
+    {
+        deathCounter++;
+        target.OnDeath -= DeathCounterIncrement;
     }
 }

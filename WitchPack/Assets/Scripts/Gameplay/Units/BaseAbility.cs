@@ -7,6 +7,7 @@ public class BaseAbility : ScriptableObject
     [SerializeField] private Sprite icon;
     [SerializeField] private float cd;
     [SerializeField] private int penetration;
+    [SerializeField, Tooltip("Interval before casting in real time")] private float castTime;
     [SerializeField] private List<StatusEffectConfig> statusEffects = new List<StatusEffectConfig>();
 
     public Sprite Icon => icon;

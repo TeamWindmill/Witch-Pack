@@ -14,13 +14,14 @@ public class EnemySpawnPoint : MonoBehaviour
         LevelManager.Instance.IndicatorManager.CreateIndicator(indicateable);
     }
 
-    public void SpawnEnemy(EnemyConfig givenConf)
+    public Enemy SpawnEnemy(EnemyConfig givenConf)
     {
         Enemy enemy = LevelManager.Instance.PoolManager.EnemyPool.GetPooledObject();
         enemy.transform.position = transform.position;
         enemy.gameObject.SetActive(true);
         givenConf.Path = path;
         enemy.Init(givenConf);
+        return enemy;
     }
 
 

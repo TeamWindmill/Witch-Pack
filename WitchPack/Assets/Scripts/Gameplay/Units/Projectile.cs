@@ -9,10 +9,10 @@ public class Projectile : MonoBehaviour
 {
     private BaseAbility refAbility;
     private BaseUnit owner;
-    [SerializeField] private int baseMaxNumberOfHits;
     [SerializeField] private float speed;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float lifeTime;
+    private int baseMaxNumberOfHits;
     private int currentNumberOfHits;
     private int maxNumberOfHits;
     private float lastRate;
