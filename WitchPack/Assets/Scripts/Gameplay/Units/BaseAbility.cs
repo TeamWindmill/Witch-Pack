@@ -13,7 +13,7 @@ public class BaseAbility : ScriptableObject
     public float Cd => cd; 
     public List<StatusEffectConfig> StatusEffects { get => statusEffects; }
 
-    public virtual bool CastAbility(BaseUnit caster)
+    public virtual bool CastAbility(BaseUnit caster, Transform target = null)
     {
         return true;
     }
