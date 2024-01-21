@@ -13,6 +13,10 @@ public class BaseUnit : MonoBehaviour, ITargetable
     [SerializeField, TabGroup("Combat")] private OffensiveAbility autoAttack;
     [SerializeField, TabGroup("Combat")] private UnitAutoAttacker autoAttacker;
     [SerializeField, TabGroup("Combat")] private BoxCollider2D boxCollider;
+    [SerializeField] private UnitTargeter targeter;
+    [SerializeField] private Transform _castPos;
+
+
     private UnitTargetHelper targetHelper;
 
 
@@ -42,6 +46,9 @@ public class BaseUnit : MonoBehaviour, ITargetable
     public UnitAutoAttacker AutoAttacker { get => autoAttacker; }
     public UnitMovement Movement { get => movement; }
     public UnitTargetHelper TargetHelper { get => targetHelper; }
+    public virtual UnitTargeter Targeter { get => targeter; }
+    public Transform CastPos => _castPos;
+
 
     //movement comp
     //state machine -> heros and enemies essentially work the same only heroes can be told where to go, everything else is automatic 

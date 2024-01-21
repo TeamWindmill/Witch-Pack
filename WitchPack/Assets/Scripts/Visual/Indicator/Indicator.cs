@@ -17,12 +17,12 @@ public class Indicator : UIElement
 
     private Vector3 midScreen = new Vector3(Screen.width / 2, Screen.height / 2);
 
-    public void InitIndicator(Indicatable target, Sprite artwork, float time, bool clickable, Action onClick = null)
+    public void InitIndicator(Indicatable target, Sprite artwork, float time = 0, bool clickable = false, Action onClick = null)
     {
         this.time = time;
         this.target = target;
         this.artwork.sprite = artwork;
-        counter = 0f;
+        counter = time;
         circle.fillAmount = 1;
         button.enabled = clickable;
         if (!ReferenceEquals(onClick, null))
@@ -39,6 +39,16 @@ public class Indicator : UIElement
 
     private void Update()
     {
+        //decrease ring if time is set
+        if (time != 0)
+        {
+            circle.fillAmount = counter / time;
+            counter -= GAME_TIME.GameDeltaTime;
+            if (counter <= 0)
+            {
+                gameObject.SetActive(false);
+            }
+        }
         PositionIndicator();
     }
 
@@ -46,6 +56,7 @@ public class Indicator : UIElement
     public void InvokeClick()
     {
         onClick?.Invoke();
+        gameObject.SetActive(false);
     }
 
 

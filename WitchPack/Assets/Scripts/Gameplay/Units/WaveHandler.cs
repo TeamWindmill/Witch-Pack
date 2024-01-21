@@ -35,13 +35,15 @@ public class WaveHandler : MonoBehaviour
 
             spawnData.Add(newWave);
         }
-        //OnWaveEnd += SetIndicator;
         StartCoroutine(StartSpawningWaves());
     }
 
     private IEnumerator StartSpawningWaves()
     {
-        yield return StartCoroutine(IntervalDelay(waveData.StartDelayInterval));
+        //yield return StartCoroutine(IntervalDelay(waveData.StartDelayInterval));
+        //create start indicator 
+        SetIndicator(0);
+        yield return new WaitUntil(() => skipFlag);
         EnemySpawnPoint spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
         for (int i = 0; i < spawnData.Count; i++)
         {
@@ -50,8 +52,8 @@ public class WaveHandler : MonoBehaviour
             _currentWave = i + 1;
             yield return StartCoroutine(SpawnWave(spawnData[i], spawnPoint));
             OnWaveEnd?.Invoke(i + 1);
+            SetIndicator(i, waveData.BetweenWavesInterval);
             yield return StartCoroutine(IntervalDelay(waveData.BetweenWavesInterval));
-            skipFlag = false;
         }
         LevelManager.Instance.EndLevel(true);
     }
@@ -111,6 +113,7 @@ public class WaveHandler : MonoBehaviour
         {
             if (skipFlag)
             {
+                skipFlag = false;
                 break;
             }
             counter += GAME_TIME.GameDeltaTime;
@@ -118,11 +121,11 @@ public class WaveHandler : MonoBehaviour
         }
     }
 
- /*   private void SetIndicator(int waveIndex)
+    private void SetIndicator(int waveIndex, float time =0)
     {
-        GetSpawnPointFromIndex(spawnData[waveIndex - 1].Groups[0].SpawnerIndex).SetIndicator(spawnData[waveIndex - 1].Groups[0].Enemy.UnitIcon, waveData.BetweenWavesInterval, SkipWaveCD);
+        GetSpawnPointFromIndex(spawnData[waveIndex].Groups[0].SpawnerIndex).SetIndicator(spawnData[waveIndex].Groups[0].Enemy.UnitIcon, time, SkipWaveCD);
     }
-*/
+
     private void SkipWaveCD()
     {
         skipFlag = true;

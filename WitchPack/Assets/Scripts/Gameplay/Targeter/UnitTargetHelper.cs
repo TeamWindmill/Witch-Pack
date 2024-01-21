@@ -1,9 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class UnitTargetHelper
 {
     private BaseUnit owner;
+
+    public event Action<BaseUnit> OnTarget;
+
     public UnitTargetHelper(BaseUnit givenOwner)
     {
         owner = givenOwner;
@@ -12,22 +16,28 @@ public class UnitTargetHelper
 
     public BaseUnit GetTarget(List<BaseUnit> targets, TargetData givenData, StatType stat = StatType.AttackSpeed /*only send in a stat if necessary*/)
     {
-
+        if (targets.Count <= 0)
+        {
+            return null;
+        }
+        BaseUnit target;
         switch (givenData.Prio)
         {
             case TargetPrio.Stat:
-                return GetTargetByStat(targets, stat, givenData.Mod);
-
+                target = GetTargetByStat(targets, stat, givenData.Mod);
+                break;
             case TargetPrio.Distance:
-                return GetTargetByDistance(targets, givenData.Mod);
-
+                target =  GetTargetByDistance(targets, givenData.Mod);
+                break;
             case TargetPrio.Random:
-                return targets[Random.Range(0, targets.Count)];
-
+                target = targets[UnityEngine.Random.Range(0, targets.Count)];
+                break;
                 //add threat when Im doen adding the system
             default:
                 return targets[0];
         }
+        OnTarget?.Invoke(target);
+        return target;
     }
 
 
