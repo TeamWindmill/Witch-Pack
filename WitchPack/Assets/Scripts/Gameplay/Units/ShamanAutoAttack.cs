@@ -11,7 +11,6 @@ public class ShamanAutoAttack : OffensiveAbility
     {
         if (caster is Shaman shaman)
         {
-            Shaman shaman = caster as Shaman;
             List<Enemy> targets = shaman.EnemyTargeter.GetAvailableTargets(shaman.transform.position, Range);
             if (!ReferenceEquals(targets, null) && targets.Count > 0)
             {
