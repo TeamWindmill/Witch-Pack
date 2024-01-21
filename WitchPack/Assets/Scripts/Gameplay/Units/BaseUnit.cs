@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class BaseUnit : MonoBehaviour
+public class BaseUnit : MonoBehaviour, ITargetable
 {
     [SerializeField] private UnitType unitType;
     [SerializeField, TabGroup("Combat")] private Damageable damageable;

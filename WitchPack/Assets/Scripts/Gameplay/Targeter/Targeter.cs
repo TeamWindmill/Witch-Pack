@@ -7,6 +7,7 @@ public class Targeter<T> : MonoBehaviour where T : Component
     [SerializeField] private List<T> availableTargets = new List<T>();
     public Action<T> OnTargetAdded;
     public Action<T> OnTargetLost;
+    
 
     public List<T> AvailableTargets { get => availableTargets; }
 
