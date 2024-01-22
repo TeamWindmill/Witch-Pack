@@ -26,7 +26,7 @@ public struct PowerStructureStatEffect
 {
     public StatType StatType;
     public Modifier Modifier;
-    [Range(1,2)]public float[] RingValues;
+    public float[] RingValues;
 }
 
 public enum Modifier

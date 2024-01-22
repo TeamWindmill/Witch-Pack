@@ -10,17 +10,41 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82081355af3c5334cb92e806794a9fd2, type: 3}
-  m_Name: Level 1 Waves
+  m_Name: EXP Text Waves 1 Shaman
   m_EditorClassIdentifier: 
   startDelayInterval: 1
   betweenBetweenWavesesInterval: 10
   waves:
-  - TotalSpawns: 5
-    TimeBetweenIntervals: 3
+  - TotalSpawns: 4
+    TimeBetweenIntervals: 1
     Groups:
     - Enemy: {fileID: 11400000, guid: c9729e563b1f8dc4982cbaf376195c9f, type: 2}
-      AmountPerSpawn: 5
-      TotalAmount: 25
+      AmountPerSpawn: 1
+      TotalAmount: 5
+      SpawnedAtInterval: 0
+      SpawnerIndex: 3
+      NumSpawned: 0
+    - Enemy: {fileID: 11400000, guid: c9729e563b1f8dc4982cbaf376195c9f, type: 2}
+      AmountPerSpawn: 1
+      TotalAmount: 5
+      SpawnedAtInterval: 0
+      SpawnerIndex: 3
+      NumSpawned: 0
+    - Enemy: {fileID: 11400000, guid: c9729e563b1f8dc4982cbaf376195c9f, type: 2}
+      AmountPerSpawn: 1
+      TotalAmount: 5
+      SpawnedAtInterval: 0
+      SpawnerIndex: 3
+      NumSpawned: 0
+    - Enemy: {fileID: 11400000, guid: c9729e563b1f8dc4982cbaf376195c9f, type: 2}
+      AmountPerSpawn: 1
+      TotalAmount: 5
+      SpawnedAtInterval: 0
+      SpawnerIndex: 3
+      NumSpawned: 0
+    - Enemy: {fileID: 11400000, guid: c9729e563b1f8dc4982cbaf376195c9f, type: 2}
+      AmountPerSpawn: 1
+      TotalAmount: 5
       SpawnedAtInterval: 0
       SpawnerIndex: 3
       NumSpawned: 0
@@ -39,8 +63,8 @@ MonoBehaviour:
       SpawnedAtInterval: 4
       SpawnerIndex: 4
       NumSpawned: 0
-  - TotalSpawns: 2
-    TimeBetweenIntervals: 3
+  - TotalSpawns: 1
+    TimeBetweenIntervals: 7
     Groups:
     - Enemy: {fileID: 11400000, guid: d356efe2251b1ae4db6097a512631b25, type: 2}
       AmountPerSpawn: 1
@@ -48,8 +72,8 @@ MonoBehaviour:
       SpawnedAtInterval: 0
       SpawnerIndex: 4
       NumSpawned: 0
-  - TotalSpawns: 0
-    TimeBetweenIntervals: 2
+  - TotalSpawns: 19
+    TimeBetweenIntervals: 1
     Groups:
     - Enemy: {fileID: 11400000, guid: c9729e563b1f8dc4982cbaf376195c9f, type: 2}
       AmountPerSpawn: 1
@@ -74,4 +98,28 @@ MonoBehaviour:
       TotalAmount: 1
       SpawnedAtInterval: 15
       SpawnerIndex: 2
+      NumSpawned: 0
+  - TotalSpawns: 24
+    TimeBetweenIntervals: 2
+    Groups:
+    - Enemy: {fileID: 11400000, guid: c9729e563b1f8dc4982cbaf376195c9f, type: 2}
+      AmountPerSpawn: 1
+      TotalAmount: 20
+      SpawnedAtInterval: 5
+      SpawnerIndex: 1
+      NumSpawned: 0
+    - Enemy: {fileID: 11400000, guid: c9729e563b1f8dc4982cbaf376195c9f, type: 2}
+      AmountPerSpawn: 1
+      TotalAmount: 20
+      SpawnedAtInterval: 5
+      SpawnerIndex: 2
+      NumSpawned: 0
+  - TotalSpawns: 11
+    TimeBetweenIntervals: 1
+    Groups:
+    - Enemy: {fileID: 11400000, guid: d356efe2251b1ae4db6097a512631b25, type: 2}
+      AmountPerSpawn: 1
+      TotalAmount: 2
+      SpawnedAtInterval: 10
+      SpawnerIndex: 4
       NumSpawned: 0
