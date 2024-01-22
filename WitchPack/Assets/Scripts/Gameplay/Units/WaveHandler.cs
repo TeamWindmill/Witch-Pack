@@ -15,7 +15,6 @@ public class WaveHandler : MonoBehaviour
     private List<EnemySpawnData> spawnData;
     private int _currentWave;
     private bool skipFlag;
-    private int deathCounter;
     public int CurrentWave => _currentWave;
     public int TotalWaves => spawnData.Count;
 
@@ -50,21 +49,23 @@ public class WaveHandler : MonoBehaviour
             spawnData[i].CalcSpawns();
             OnWaveStart?.Invoke(i + 1);
             _currentWave = i + 1;
-            yield return StartCoroutine(SpawnWave(spawnData[i], spawnPoint));
+            yield return StartCoroutine(SpawnWave(spawnData[i]));//wait until done spawning
             OnWaveEnd?.Invoke(i + 1);
-            SetIndicator(i, waveData.BetweenWavesInterval);
-            if (i == spawnData.Count -1)
+            if (i == spawnData.Count - 1)//if on last wave finished spawning wait until everything dies 
             {
-                yield return new WaitUntil(() => deathCounter >= spawnData[i].GetTotalNumberOfEnemies());
+                yield return new WaitUntil(() => !LevelManager.Instance.PoolManager.EnemyPool.CheckActiveIstance());
             }
-            yield return StartCoroutine(IntervalDelay(waveData.BetweenWavesInterval));
-            deathCounter = 0;
+            else // if a wave other than the last one finished spawning set up the next wave. 
+            {
+                SetIndicator(i, waveData.BetweenWavesInterval);
+                yield return StartCoroutine(IntervalDelay(waveData.BetweenWavesInterval));
+            }
         }
         LevelManager.Instance.EndLevel(true);
     }
 
 
-    private IEnumerator SpawnWave(EnemySpawnData givenData, EnemySpawnPoint point)
+    private IEnumerator SpawnWave(EnemySpawnData givenData)
     {
         for (int i = 0; i < givenData.TotalSpawns; i++) //loop over how many spawns there are in total
         {
@@ -80,7 +81,7 @@ public class WaveHandler : MonoBehaviour
                             break;
                         }
 
-                        currentSpawnPoint.SpawnEnemy(givenData.Groups[j].Enemy).Damageable.OnDeath += DeathCounterIncrement;
+                        currentSpawnPoint.SpawnEnemy(givenData.Groups[j].Enemy);
                         EnemyGroup group = givenData.Groups[j];
                         group.NumSpawned++;
                         givenData.Groups[j] = group;
@@ -107,7 +108,7 @@ public class WaveHandler : MonoBehaviour
         }
         else
         {
-            return spawnPoints[index-1];
+            return spawnPoints[index - 1];
         }
     }
 
@@ -126,7 +127,7 @@ public class WaveHandler : MonoBehaviour
         }
     }
 
-    private void SetIndicator(int waveIndex, float time =0)
+    private void SetIndicator(int waveIndex, float time = 0)
     {
         GetSpawnPointFromIndex(spawnData[waveIndex].Groups[0].SpawnerIndex).SetIndicator(spawnData[waveIndex].Groups[0].Enemy.UnitIcon, time, SkipWaveCD);
     }
@@ -136,9 +137,4 @@ public class WaveHandler : MonoBehaviour
         skipFlag = true;
     }
 
-    private void DeathCounterIncrement(Damageable target, DamageDealer dealer, DamageHandler dmg, BaseAbility ability)
-    {
-        deathCounter++;
-        target.OnDeath -= DeathCounterIncrement;
-    }
 }
