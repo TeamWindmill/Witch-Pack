@@ -79,7 +79,7 @@ public class WaveHandler : MonoBehaviour
                         group.NumSpawned++;
                         givenData.Groups[j] = group;
 
-                        yield return new WaitForSeconds(fixedSpawnInterval); //for now
+                        yield return StartCoroutine(IntervalDelay(fixedSpawnInterval));//for now
                     }
                 }
             }
