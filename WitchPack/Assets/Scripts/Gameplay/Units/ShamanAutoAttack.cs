@@ -3,28 +3,20 @@ using UnityEngine;
 using System.Linq;
 
 [CreateAssetMenu(fileName = "ShamanAA", menuName = "Ability/ShamanAA")]
-
 public class ShamanAutoAttack : OffensiveAbility
 {
-    public override bool CastAbility(BaseUnit caster, Transform target = null)
+    public override bool CastAbility(BaseUnit caster)
     {
-        if (caster is Shaman shaman)
+        BaseUnit target = caster.TargetHelper.GetTarget(caster.Targeter.AvailableTargets, TargetData);
+        if (ReferenceEquals(target, null))
         {
-            // if (!ReferenceEquals(targets, null) && targets.Count > 0)
-            // {
-            //     TargetedShot newPew = LevelManager.Instance.PoolManager.ShamanAutoAttackPool.GetPooledObject();
-            //     newPew.transform.position = shaman.CastPos.transform.position;
-            //     newPew.gameObject.SetActive(true);
-            //     Vector2 dir = (target.transform.position - caster.transform.position).normalized;
-            //     newPew.Fire(caster, this, dir.normalized, target);
-            //     return true;
-            // }
-            // else
-            // {
-            //     return false;
-            // }
+            return false;
         }
-        return false;
-        //enemy logic here (when necessary)
+        TargetedShot newPew = LevelManager.Instance.PoolManager.ShamanAutoAttackPool.GetPooledObject();
+        newPew.transform.position = caster.CastPos.transform.position;
+        newPew.gameObject.SetActive(true);
+        Vector2 dir = (target.transform.position - caster.transform.position).normalized;
+        newPew.Fire(caster, this, dir.normalized, target);
+        return true;
     }
 }

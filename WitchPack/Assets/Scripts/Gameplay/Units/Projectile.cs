@@ -9,10 +9,10 @@ public class Projectile : MonoBehaviour
 {
     private BaseAbility refAbility;
     private BaseUnit owner;
-    [SerializeField] private int baseMaxNumberOfHits;
     [SerializeField] private float speed;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float lifeTime;
+    private int baseMaxNumberOfHits;
     private int currentNumberOfHits;
     private int maxNumberOfHits;
     private float lastRate;
@@ -31,8 +31,8 @@ public class Projectile : MonoBehaviour
         refAbility = givenAbility;
         Rotate(dir);
         lastRate = GAME_TIME.GetCurrentTimeRate;
-        rb.velocity = dir * (speed + shooter.Stats.AbilityProjectileSpeed) * lastRate;
-        maxNumberOfHits = baseMaxNumberOfHits + shooter.Stats.AbilityProjectilePenetration;
+        rb.velocity = dir * (speed /*+ shooter.Stats.AbilityProjectileSpeed*/) * lastRate;
+        maxNumberOfHits = baseMaxNumberOfHits + givenAbility.Penetration;
         StartCoroutine(LifeTime());
     }
 
@@ -54,10 +54,8 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //projectiles can only hit the the layer of the opposite unit type
-       
         BaseUnit target = collision.GetComponent<BaseUnit>();
-        if (!ReferenceEquals(target, null))
+        if (!ReferenceEquals(target, null) && !ReferenceEquals(owner, null))
         {
             target.Damageable.GetHit(owner.DamageDealer, refAbility);
         }
