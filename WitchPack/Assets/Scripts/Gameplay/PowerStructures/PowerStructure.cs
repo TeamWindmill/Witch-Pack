@@ -16,8 +16,10 @@ public class PowerStructure : MonoBehaviour
     [Space] [SerializeField] private bool _testing;
 
     private Dictionary<int, int> _activeStatEffectsOnShamans;
+    private ShadowStatEffect _shadowStatEffect;
     private int _currentActiveRingId = 4;
     private StatType _statType;
+    private Modifier _statModifier;
 
     public void Init()
     {
@@ -33,6 +35,7 @@ public class PowerStructure : MonoBehaviour
         _powerStructureSpriteRenderer.sprite = _powerStructureConfig.PowerStructureSprite;
         _powerStructureMask.sprite = _powerStructureConfig.PowerStructureSprite;
         _statType = _powerStructureConfig.statEffect.StatType;
+        _statModifier = _powerStructureConfig.statEffect.Modifier;
         foreach (var ring in proximityRingsManager.RingHandlers)
         {
             ring.OnShamanEnter += OnShamanRingEnter;
@@ -78,7 +81,7 @@ public class PowerStructure : MonoBehaviour
             _activeStatEffectsOnShamans.Remove(shaman.GetInstanceID());
         }
 
-        var statEffectValue = GetStatEffectValue(ringId, shaman);
+        var statEffectValue = GetStatEffectValue(ringId, shaman.Stats);
         shaman.Stats.AddValueToStat(_statType, statEffectValue);
         _activeStatEffectsOnShamans.Add(shaman.GetInstanceID(), statEffectValue);
     }
@@ -103,7 +106,7 @@ public class PowerStructure : MonoBehaviour
                 _activeStatEffectsOnShamans.Remove(shaman.GetInstanceID());
             }
 
-            var statEffectValue = GetStatEffectValue(ringId, shaman);
+            var statEffectValue = GetStatEffectValue(ringId + 1, shaman.Stats);
             shaman.Stats.AddValueToStat(_statType, statEffectValue);
             _activeStatEffectsOnShamans.Add(shaman.GetInstanceID(), statEffectValue);
         }
@@ -116,12 +119,20 @@ public class PowerStructure : MonoBehaviour
         if (ringId < _currentActiveRingId)
         {
             var currentActiveRing = proximityRingsManager.RingHandlers[ringId];
-
             if (_currentActiveRingId < proximityRingsManager.RingHandlers.Length)
                 proximityRingsManager.RingHandlers[_currentActiveRingId].ToggleSprite(false);
             currentActiveRing.ToggleSprite(true);
             _currentActiveRingId = currentActiveRing.Id;
 
+
+            if (_shadowStatEffect.HasStatEffect)
+            {
+                shadow.Stats.AddValueToStat(_statType, -_shadowStatEffect.Value);
+                _shadowStatEffect.RemoveStatEffect();
+            }
+            var statEffectValue = GetStatEffectValue(ringId, shadow.Stats);
+            shadow.Stats.AddValueToStat(_statType, statEffectValue);
+            _shadowStatEffect.SetStatEffect(statEffectValue);
             ShowStatPopupWindows(currentActiveRing, shadow);
         }
     }
@@ -137,12 +148,28 @@ public class PowerStructure : MonoBehaviour
         if (_currentActiveRingId > proximityRingsManager.RingHandlers.Length)
             _currentActiveRingId = proximityRingsManager.RingHandlers.Length;
 
+        
+        
         if (_currentActiveRingId >= proximityRingsManager.RingHandlers.Length)
         {
+            if (_shadowStatEffect.HasStatEffect)
+            {
+                shadow.Stats.AddValueToStat(_statType, -_shadowStatEffect.Value);
+                _shadowStatEffect.RemoveStatEffect();
+            }
             HideStatPopupWindows(shadow);
         }
         else
         {
+            if (_shadowStatEffect.HasStatEffect)
+            {
+                shadow.Stats.AddValueToStat(_statType, -_shadowStatEffect.Value);
+                _shadowStatEffect.RemoveStatEffect();
+            }
+            var statEffectValue = GetStatEffectValue(_currentActiveRingId, shadow.Stats);
+            shadow.Stats.AddValueToStat(_statType, statEffectValue);
+            _shadowStatEffect.SetStatEffect(statEffectValue);
+            
             proximityRingsManager.ToggleRingSprite(_currentActiveRingId, true);
             currentActiveRing = proximityRingsManager.RingHandlers[_currentActiveRingId];
             ShowStatPopupWindows(currentActiveRing, shadow);
@@ -152,17 +179,16 @@ public class PowerStructure : MonoBehaviour
     private void ShowStatPopupWindows(ProximityRingHandler ringHandler, Shadow shadow)
     {
         Color color = _powerStructureConfig.PowerStructureTypeColor;
-        float alpha = _powerStructureConfig.DefaultSpriteAlpha -
-                      _powerStructureConfig.SpriteAlphaFade * ringHandler.Id;
+        float alpha = _powerStructureConfig.DefaultSpriteAlpha - _powerStructureConfig.SpriteAlphaFade * ringHandler.Id;
         color.a = alpha;
 
         var statType = _powerStructureConfig.statEffect.StatType;
 
         var statEffectValue = _powerStructureConfig.statEffect.RingValues[ringHandler.Id];
-        var modifiedStatEffect = ModifyStatEffectForDisplay(statEffectValue, true);
+        var modifiedStatEffect = ModifyStatEffectForDisplay(statEffectValue);
         StatEffectPopupManager.ShowPopupWindows(GetInstanceID(), statType.ToString(), modifiedStatEffect, true, color);
 
-        var newValue = CalculateStatValueForShadow(ringHandler.Id, shadow.Shaman);
+        var newValue = CalculateStatValueForShadow(shadow, shadow.Shaman);
         HeroSelectionUI.Instance.UpdateStatBlocks(statType, newValue);
     }
 
@@ -170,38 +196,61 @@ public class PowerStructure : MonoBehaviour
     {
         StatEffectPopupManager.HidePopupWindows(GetInstanceID());
 
-
-        var newValue = CalculateStatValueForShadow(-1, shadow.Shaman);
+        var newValue = CalculateStatValueForShadow(shadow, shadow.Shaman);
         HeroSelectionUI.Instance.UpdateStatBlocks(_statType, newValue);
     }
 
-    private int GetStatEffectValue(int ringId, Shaman shaman)
+    private int GetStatEffectValue(int ringId, UnitStats stats)
     {
-        var value = shaman.Stats.GetStatValue(_statType);
+        var value = stats.GetStatValue(_statType);
         var modifier = _powerStructureConfig.statEffect.RingValues[ringId];
-        var modifiedValue = value * (modifier - 1);
-        var roundedValue = Mathf.RoundToInt(modifiedValue);
-        return roundedValue;
+        switch (_statModifier)
+        {
+            case Modifier.Addition:
+                return Mathf.RoundToInt(modifier);
+            case Modifier.Multiplication:
+                var modifiedValue = value * (modifier - 1);
+                return Mathf.RoundToInt(modifiedValue);
+        }
+        return 0;
     }
 
-    private float ModifyStatEffectForDisplay(float statEffectValue, bool rounded)
+    private int ModifyStatEffectForDisplay(float statEffectValue)
     {
-        float statValue = (statEffectValue - 1) * 100;
-
-        if (!rounded) return statValue;
-        float roundedValue = MathF.Round(statValue);
-        return roundedValue;
+        switch (_statModifier)
+        {
+            case Modifier.Addition:
+                return Mathf.RoundToInt(statEffectValue);
+            case Modifier.Multiplication:
+                float statValue = (statEffectValue - 1) * 100;
+                return Mathf.RoundToInt(statValue);
+        }
+        return 0;
     }
 
-    private int CalculateStatValueForShadow(int shadowRingId, Shaman shaman)
+    private int CalculateStatValueForShadow(Shadow shadow, Shaman shaman)
     {
-        var currentStatValue = shaman.Stats.GetStatValue(_statType);
-        var baseStatValue = currentStatValue;
+        var shamanStat = shaman.Stats.GetStatValue(_statType);
+        var shadowStat = shadow.Stats.GetStatValue(_statType);
         
-        if (shadowRingId == -1)
-            return Mathf.RoundToInt(baseStatValue);
-        
-        var modifier = _powerStructureConfig.statEffect.RingValues[shadowRingId];
-        return Mathf.RoundToInt(baseStatValue * modifier);
+        return Mathf.RoundToInt(shadowStat - shamanStat);
+    }
+}
+
+public struct ShadowStatEffect
+{
+    public bool HasStatEffect { get; private set; }
+    public int Value { get; private set; }
+
+    public void SetStatEffect(int value)
+    {
+        HasStatEffect = true;
+        Value = value;
+    }
+
+    public void RemoveStatEffect()
+    {
+        HasStatEffect = false;
+        Value = 0;
     }
 }
