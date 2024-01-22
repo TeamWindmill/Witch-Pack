@@ -6,7 +6,7 @@ public class DamageDealer
 {
     private BaseUnit owner;
 
-    public Action<Damageable, DamageDealer, DamageHandler, BaseAbility, bool /*critical - a more generic callback*/ > OnHitTarget;
+    public Action<Damageable, DamageDealer, DamageHandler, BaseAbility, bool> OnHitTarget;
     public Action<Damageable, DamageDealer, DamageHandler, BaseAbility> OnKill;
 
     private OffensiveAbility autoAttack;

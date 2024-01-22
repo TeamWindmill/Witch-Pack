@@ -6,7 +6,6 @@ using UnityEngine;
 public class Enemy : BaseUnit
 {
     [SerializeField, TabGroup("Visual")] private EnemyAnimator enemyAnimator;
-    [SerializeField] private ShamanTargeter shamanTargeter;
     private PathCreator _path;
     private int _coreDamage;
     //testing 
@@ -16,9 +15,9 @@ public class Enemy : BaseUnit
     private float dstTravelled;
     private bool _isMoving;
     public EnemyConfig EnemyConfig { get => enemyConfig; }
-    public ShamanTargeter ShamanTargeter { get => shamanTargeter; }
     public int CoreDamage => _coreDamage;
     public bool IsMoving => _isMoving;
+
     public override StatSheet BaseStats => enemyConfig.BaseStats;
     private void OnValidate()
     {
@@ -31,7 +30,7 @@ public class Enemy : BaseUnit
         base.Init(enemyConfig);
         _path = enemyConfig.Path;
         _coreDamage = enemyConfig.CoreDamage;
-        shamanTargeter.SetRadius(Stats.BonusRange);
+        Targeter.SetRadius(Stats.BonusRange);
         //Movement.SetDest(givenPath.Waypoints[pointIndex].position);
         //Movement.OnDestenationReached += SetNextDest;
         enemyAnimator.Init(this);

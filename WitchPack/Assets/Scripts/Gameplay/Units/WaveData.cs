@@ -31,6 +31,16 @@ public class EnemySpawnData
     [ReadOnly] public int TotalSpawns;
     public float TimeBetweenIntervals;
     public List<EnemyGroup> Groups;
+       
+    public int GetTotalNumberOfEnemies()
+    {
+        int total = 0;
+        for (int i = 0; i < Groups.Count; i++)
+        {
+            total += Groups[i].TotalAmount;
+        }
+        return total;
+    }
 
     public int CalcSpawns()
     {
@@ -57,13 +67,13 @@ public struct EnemyGroup
     public int TotalAmount;
     public int SpawnedAtInterval;//this is the spawn interval this group will start spawaning at
     [Tooltip("this refers to the index of the spawn point the group is intended to spawn at." +
-        " If the number is higher than the highest index the portal will be set to the highest index")] public int SpawnerIndex;
+        " If the number is higher than the highest index the spawner will be set to the highest index")] public int SpawnerIndex;
     [ReadOnly] public int NumSpawned;
 
 
     public int GetNumberOfSpawns()
     {
-        return (TotalAmount / AmountPerSpawn) + (TotalAmount % AmountPerSpawn) + (SpawnedAtInterval - 1);
+        return (TotalAmount / AmountPerSpawn) + (TotalAmount % AmountPerSpawn) + (Mathf.Clamp( SpawnedAtInterval - 1,0 , SpawnedAtInterval));
     }
 
 }

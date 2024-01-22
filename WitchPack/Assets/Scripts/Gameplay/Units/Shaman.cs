@@ -5,25 +5,17 @@ using UnityEngine.EventSystems;
 
 public class Shaman : BaseUnit
 {
-    [SerializeField, TabGroup("Combat")] private EnemyTargeter enemyTargeter;
     [SerializeField, TabGroup("Visual")] private ShamanAnimator shamanAnimator;
     [SerializeField] private ClickHelper clicker;
     [SerializeField] private Indicatable indicatable;
     [SerializeField] private GroundCollider groundCollider;
-    [SerializeField] private Transform _castPos;
     private ShamanConfig shamanConfig;
     private List<BaseAbility> knownAbilities = new List<BaseAbility>();
     private List<UnitCastingHandler> castingHandlers = new List<UnitCastingHandler>();
-    private ShamanPSBonus _shamanPSBonus;
-
-
-    public ShamanPSBonus ShamanPSBonus => _shamanPSBonus;
     public override StatSheet BaseStats => shamanConfig.BaseStats;
-    public EnemyTargeter EnemyTargeter { get => enemyTargeter; }
     public ShamanConfig ShamanConfig { get => shamanConfig; }
     public List<BaseAbility> KnownAbilities { get => knownAbilities; }
     public List<UnitCastingHandler> CastingHandlers { get => castingHandlers; }
-    public Transform CastPos => _castPos;
     private void OnValidate()
     {
         shamanAnimator ??= GetComponentInChildren<ShamanAnimator>();
@@ -33,15 +25,15 @@ public class Shaman : BaseUnit
     {
         shamanConfig = baseUnitConfig as ShamanConfig;
         base.Init(shamanConfig);
-        enemyTargeter.SetRadius(Stats.BonusRange);
-        Stats.OnStatChanged += enemyTargeter.AddRadius;
+        Targeter.SetRadius(Stats.BonusRange);
+        Stats.OnStatChanged += Targeter.AddRadius;
         IntializeCastingHandlers();
         Movement.OnDestenationSet += DisableAttacker;
         Movement.OnDestenationReached += EnableAttacker;
         shamanAnimator.Init(this);
         clicker.OnClick += SetSelectedShaman;
         groundCollider.Init(this);
-        //indicatable.Init(shamanConfig.UnitIcon);
+        indicatable.Init(shamanConfig.UnitIcon);
     }
 
     private void OnShamanSelect()
@@ -107,17 +99,6 @@ public class Shaman : BaseUnit
         clicker.enabled = state;
     }
 
-    public void AddPSBonus(int value)
-    {
-        _shamanPSBonus.BonusValue = value;
-        _shamanPSBonus.HasBonus = true;
-    }
-    public void RemovePSBonus()
-    {
-        _shamanPSBonus.BonusValue = 0;
-        _shamanPSBonus.HasBonus = false;
-    }
-
     private void OnDisable()
     {
         clicker.OnClick -= SetSelectedShaman;
@@ -125,10 +106,4 @@ public class Shaman : BaseUnit
         Movement.OnDestenationReached -= EnableAttacker;
     }
 
-}
-
-public struct ShamanPSBonus
-{
-    public bool HasBonus;
-    public int BonusValue;
 }

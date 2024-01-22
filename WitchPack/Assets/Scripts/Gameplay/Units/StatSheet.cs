@@ -18,7 +18,7 @@ public class StatSheet : ScriptableObject
     public BaseStat BaseDamage = new BaseStat(StatType.BaseDamage);
     public BaseStatDecimal AttackSpeed = new BaseStatDecimal(StatType.AttackSpeed);//capped at unit stats 
     public BaseStat BaseRange = new BaseStat(StatType.BaseRange);
-    public BaseStat MovementSpeed = new BaseStat(StatType.MovementSpeed);
+    public BaseStatDecimal MovementSpeed = new BaseStatDecimal(StatType.MovementSpeed);
     public BaseStat CritDamage = new BaseStat(StatType.CritDamage);
     public BaseStat CritChance = new BaseStat(StatType.CritChance);
     public BaseStatDecimal InvincibleTime = new BaseStatDecimal(StatType.InvincibleTime);

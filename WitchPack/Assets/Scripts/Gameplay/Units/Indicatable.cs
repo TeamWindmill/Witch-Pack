@@ -15,8 +15,12 @@ public class Indicatable : MonoBehaviour
     public Action OnInvisible;
 
     public Renderer Rend { get => rend; }
+    public Sprite ArtWork { get => artWork; }
+    public float Lifetime { get => lifetime;}
+    public bool Clickable { get => clickable;}
+    public Action OnClickAction { get => onClickAction;}
 
-    public void Init(Sprite art, Action action = null, float lifetime = 0)
+    public void Init(Sprite art, Action action = null, float lifetime = 0, bool clickable = false)
     {
         this.lifetime = lifetime;
         artWork = art;
@@ -57,7 +61,7 @@ public class Indicatable : MonoBehaviour
     [ContextMenu("Test Indicator")]
     public void SetCurrentIndicator()
     {
-        currentIndicator = LevelManager.Instance?.IndicatorManager.CreateIndicator(this, artWork, lifetime, clickable, onClickAction);
+        currentIndicator = LevelManager.Instance?.IndicatorManager.CreateIndicator(this);
     }
 
 

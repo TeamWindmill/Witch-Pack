@@ -22,7 +22,7 @@ public class StatBlockPanel : MonoBehaviour
         }
     }
 
-    public void UpdateStatBlocks(StatType shamanStatType, float newValue)
+    public void UpdateStatBlocks(StatType shamanStatType, int newValue)
     {
         foreach (var statBlock in _statBlocks)
         {

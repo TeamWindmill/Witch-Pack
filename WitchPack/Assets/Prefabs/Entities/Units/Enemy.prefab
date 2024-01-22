@@ -88,12 +88,13 @@ MonoBehaviour:
   autoAttack: {fileID: 11400000, guid: d8ade3c4f5a1e02449732df010cb8f20, type: 2}
   autoAttacker: {fileID: 848828296485308851}
   boxCollider: {fileID: 5393496188249262306}
+  targeter: {fileID: 8861091558735198127}
+  _castPos: {fileID: 0}
   movement: {fileID: 3601066906968062841}
   unitVisual: {fileID: 2318317557426790600}
   hasHPBar: 1
   hpBar: {fileID: 714259947031342330}
   enemyAnimator: {fileID: 4409901568874554751}
-  shamanTargeter: {fileID: 2132873035886577152}
 --- !u!114 &3601066906968062841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -360,7 +361,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6154817137924297008}
   - component: {fileID: 1386248974284480026}
-  - component: {fileID: 2132873035886577152}
+  - component: {fileID: 8861091558735198127}
   m_Layer: 9
   m_Name: targeter
   m_TagString: Untagged
@@ -448,7 +449,7 @@ PolygonCollider2D:
       - {x: 0.29296875, y: 0.40234375}
       - {x: 0.15234375, y: 0.47265625}
   m_UseDelaunayMesh: 0
---- !u!114 &2132873035886577152
+--- !u!114 &8861091558735198127
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -457,7 +458,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7838721497319768159}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e78dac5dcc88e0c49a9ca0cc7fb941c6, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b51b1d162dc0f4488db651e2bce4919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   availableTargets: []
