@@ -9,13 +9,13 @@ public class UnitStats
 
     public Action<StatType, float> OnStatChanged;
 
-    private BaseUnit owner;
+    private StatSheet _baseStats;
 
-    private StatSheet ownerBaseStats => owner.BaseStats;
+    private StatSheet ownerBaseStats => _baseStats;
 
-    public UnitStats(BaseUnit owner)
+    public UnitStats(StatSheet baseStats)
     {
-        this.owner = owner;
+        _baseStats = baseStats;
     }
 
     private int maxHp;

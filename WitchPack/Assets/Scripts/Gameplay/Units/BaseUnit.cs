@@ -55,7 +55,7 @@ public class BaseUnit : MonoBehaviour, ITargetable
 
     public virtual void Init(BaseUnitConfig givenConfig)
     {
-        stats = new UnitStats(this);
+        stats = new UnitStats(BaseStats);
         damageable = new Damageable(this);
         damageDealer = new DamageDealer(this, autoAttack);
         affector = new Affector(this);

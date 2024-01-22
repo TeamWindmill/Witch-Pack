@@ -21,14 +21,13 @@ public class StatBlockUI : MonoBehaviour
         _statBonusReductionColor = reduceColor;
         SetStatText(_baseValue,0);
     }
-    public void UpdateUI(float newValue)
+    public void UpdateUI(int newValue)
     {
         if(!HeroSelectionUI.Instance.IsActive) return;
-        var bonusValue = newValue - _baseValue;
-        SetStatText(_baseValue,bonusValue);
+        SetStatText(_baseValue,newValue);
     }
 
-    private void SetStatText(float baseValue, float bonusValue)
+    private void SetStatText(float baseValue, int bonusValue)
     {
         string statName = "";
         string modifier = "";
@@ -48,6 +47,8 @@ public class StatBlockUI : MonoBehaviour
                 break;
             case StatType.CritDamage:
                 statName = "Crit Damage";
+                baseValue += 100;
+                modifier = "%";
                 break;
             case StatType.CritChance:
                 statName = "Crit Chance";
