@@ -41,4 +41,15 @@ public class ObjectPool<T> : MonoBehaviour where T : MonoBehaviour
 
     }
 
+    public bool CheckActiveIstance()
+    {
+        foreach (var item in pooledObjects)
+        {
+            if (item.gameObject.activeInHierarchy)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }
