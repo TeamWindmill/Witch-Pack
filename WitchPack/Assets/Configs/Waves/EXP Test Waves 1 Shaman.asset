@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 82081355af3c5334cb92e806794a9fd2, type: 3}
-  m_Name: EXP Text Waves 1 Shaman
+  m_Name: EXP Test Waves 1 Shaman
   m_EditorClassIdentifier: 
   startDelayInterval: 1
   betweenBetweenWavesesInterval: 10
   waves:
-  - TotalSpawns: 4
+  - TotalSpawns: 5
     TimeBetweenIntervals: 1
     Groups:
     - Enemy: {fileID: 11400000, guid: c9729e563b1f8dc4982cbaf376195c9f, type: 2}
@@ -63,7 +63,7 @@ MonoBehaviour:
       SpawnedAtInterval: 4
       SpawnerIndex: 4
       NumSpawned: 0
-  - TotalSpawns: 1
+  - TotalSpawns: 2
     TimeBetweenIntervals: 7
     Groups:
     - Enemy: {fileID: 11400000, guid: d356efe2251b1ae4db6097a512631b25, type: 2}
@@ -72,7 +72,7 @@ MonoBehaviour:
       SpawnedAtInterval: 0
       SpawnerIndex: 4
       NumSpawned: 0
-  - TotalSpawns: 19
+  - TotalSpawns: 20
     TimeBetweenIntervals: 1
     Groups:
     - Enemy: {fileID: 11400000, guid: c9729e563b1f8dc4982cbaf376195c9f, type: 2}
@@ -123,7 +123,7 @@ MonoBehaviour:
       SpawnedAtInterval: 10
       SpawnerIndex: 4
       NumSpawned: 0
-  - TotalSpawns: 0
+  - TotalSpawns: 12
     TimeBetweenIntervals: 0.8
     Groups:
     - Enemy: {fileID: 11400000, guid: c9729e563b1f8dc4982cbaf376195c9f, type: 2}
@@ -148,5 +148,47 @@ MonoBehaviour:
       AmountPerSpawn: 1
       TotalAmount: 3
       SpawnedAtInterval: 10
+      SpawnerIndex: 4
+      NumSpawned: 0
+  - TotalSpawns: 3
+    TimeBetweenIntervals: 5
+    Groups:
+    - Enemy: {fileID: 11400000, guid: d356efe2251b1ae4db6097a512631b25, type: 2}
+      AmountPerSpawn: 1
+      TotalAmount: 1
+      SpawnedAtInterval: 0
+      SpawnerIndex: 2
+      NumSpawned: 0
+    - Enemy: {fileID: 11400000, guid: d356efe2251b1ae4db6097a512631b25, type: 2}
+      AmountPerSpawn: 1
+      TotalAmount: 1
+      SpawnedAtInterval: 1
+      SpawnerIndex: 3
+      NumSpawned: 0
+    - Enemy: {fileID: 11400000, guid: d356efe2251b1ae4db6097a512631b25, type: 2}
+      AmountPerSpawn: 1
+      TotalAmount: 1
+      SpawnedAtInterval: 2
+      SpawnerIndex: 2
+      NumSpawned: 0
+    - Enemy: {fileID: 11400000, guid: d356efe2251b1ae4db6097a512631b25, type: 2}
+      AmountPerSpawn: 1
+      TotalAmount: 1
+      SpawnedAtInterval: 3
+      SpawnerIndex: 3
+      NumSpawned: 0
+  - TotalSpawns: 0
+    TimeBetweenIntervals: 3
+    Groups:
+    - Enemy: {fileID: 11400000, guid: c9729e563b1f8dc4982cbaf376195c9f, type: 2}
+      AmountPerSpawn: 4
+      TotalAmount: 20
+      SpawnedAtInterval: 0
+      SpawnerIndex: 3
+      NumSpawned: 0
+    - Enemy: {fileID: 11400000, guid: c9729e563b1f8dc4982cbaf376195c9f, type: 2}
+      AmountPerSpawn: 4
+      TotalAmount: 20
+      SpawnedAtInterval: 0
       SpawnerIndex: 4
       NumSpawned: 0
