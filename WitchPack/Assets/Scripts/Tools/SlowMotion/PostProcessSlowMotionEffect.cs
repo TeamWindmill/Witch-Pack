@@ -29,6 +29,12 @@ public class PostProcessSlowMotionEffect : EffectTransitionLerp<PostProcessType>
                     vignette.intensity.value = value;
                 }
                 break;
+            case PostProcessType.ColorAdjustments:
+                if (_postProcessVolume.profile.TryGet<ColorAdjustments>(out var colorAdjustments))
+                {
+                    colorAdjustments.saturation.value = value;
+                }
+                break;
         }
     }
 }
@@ -36,5 +42,6 @@ public class PostProcessSlowMotionEffect : EffectTransitionLerp<PostProcessType>
 public enum PostProcessType
 {
     Bloom,
-    Vignette
+    Vignette,
+    ColorAdjustments
 }
