@@ -31,6 +31,16 @@ public class EnemySpawnData
     [ReadOnly] public int TotalSpawns;
     public float TimeBetweenIntervals;
     public List<EnemyGroup> Groups;
+       
+    public int GetTotalNumberOfEnemies()
+    {
+        int total = 0;
+        for (int i = 0; i < Groups.Count; i++)
+        {
+            total += Groups[i].TotalAmount;
+        }
+        return total;
+    }
 
     public int CalcSpawns()
     {

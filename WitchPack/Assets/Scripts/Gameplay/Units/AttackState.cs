@@ -6,7 +6,7 @@ public class AttackState : CoroutineState
 {
     public override bool IsLegal()
     {
-        if ((handler.RefUnit as Shaman).EnemyTargeter.AvailableTargets.Count >0 /*&& reached dest*/)
+        if (handler.RefUnit.Targeter.AvailableTargets.Count > 0)
         {
             return true;
         }

@@ -7,7 +7,8 @@ public class Targeter<T> : MonoBehaviour where T : Component
     [SerializeField] private List<T> availableTargets = new List<T>();
     public Action<T> OnTargetAdded;
     public Action<T> OnTargetLost;
-    
+
+    public bool HasTarget => availableTargets.Count > 0;
 
     public List<T> AvailableTargets { get => availableTargets; }
 
@@ -31,7 +32,6 @@ public class Targeter<T> : MonoBehaviour where T : Component
             availableTargets.Add(possibleTarget);
             OnTargetAdded?.Invoke(possibleTarget);
         }
-
     }
 
     private void OnTriggerExit2D(Collider2D collision)

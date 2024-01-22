@@ -1,7 +1,4 @@
 using System.Collections;
-using System.Runtime.InteropServices;
-using Sirenix.OdinInspector;
-using Unity.Mathematics;
 using UnityEngine;
 
 
@@ -28,7 +25,7 @@ public class TargetedShot : MonoBehaviour
     private void Rotate(Vector2 dir)
     {
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle-90,Vector3.forward);
+        transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -41,11 +38,11 @@ public class TargetedShot : MonoBehaviour
         }
     }
 
-/*    private void TweenShot()
-    {
-        //float tweenTime = Vector3.Distance(target.position, owner.transform.position) / (speed * GAME_TIME.GetCurrentTimeRate);
-        LeanTween.move(gameObject, target,transform.position, 0.8f).setEaseInCirc();
-    }*/
+    /*    private void TweenShot()
+        {
+            //float tweenTime = Vector3.Distance(target.position, owner.transform.position) / (speed * GAME_TIME.GetCurrentTimeRate);
+            LeanTween.move(gameObject, target,transform.position, 0.8f).setEaseInCirc();
+        }*/
 
     private IEnumerator TravelTimeCountdown()
     {
@@ -60,10 +57,9 @@ public class TargetedShot : MonoBehaviour
             counter += GAME_TIME.GameDeltaTime * speed;
             yield return new WaitForEndOfFrame();
         }
-        if (!target.gameObject.activeSelf)
-        {
-            Disable();
-        }
+        yield return new WaitForEndOfFrame();
+        Disable();
+
     }
 
     private void Disable()

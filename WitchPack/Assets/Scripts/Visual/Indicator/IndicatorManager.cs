@@ -3,12 +3,12 @@ using System;
 
 public class IndicatorManager : MonoBehaviour
 { 
-    public Indicator CreateIndicator(Indicatable target, Sprite artwork, float time, bool clickable, Action onClick)
+    public Indicator CreateIndicator(Indicatable target)
     {
         Indicator indicator = LevelManager.Instance.PoolManager.InidcatorPool.GetPooledObject();
         indicator.transform.SetParent(LevelManager.Instance.GameUi.transform);
         indicator.gameObject.SetActive(true);
-        indicator.InitIndicator(target, artwork, time, clickable, onClick);
+        indicator.InitIndicator(target, target.ArtWork, target.Lifetime, target.Clickable, target.OnClickAction);
         return indicator;
     }
 
