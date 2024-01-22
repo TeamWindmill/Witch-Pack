@@ -29,10 +29,6 @@ public class DamageDealer
         if (crit)
         {
             dmg.AddMod((Owner.Stats.CritDamage / 100) + 1);//not sure what the math is supposed to be here - ask gd
-
         }
     }
-
-
-
 }
