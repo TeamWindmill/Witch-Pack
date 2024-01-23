@@ -6,8 +6,8 @@ public class WaveCountUIHandler : CounterUIElement
 {
     public override void Init()
     {
-        base.Init();
-        ElementInit(LevelManager.Instance.CurrentLevel.WaveHandler.TotalWaves,LevelManager.Instance.CurrentLevel.WaveHandler.CurrentWave);
+        var waveHandler = LevelManager.Instance.CurrentLevel.WaveHandler;
+        ElementInit(waveHandler.TotalWaves,waveHandler.CurrentWave);
     }
     
     public override void ElementInit(int maxValue, int currentValue = -1)
