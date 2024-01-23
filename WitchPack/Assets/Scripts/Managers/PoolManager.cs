@@ -6,9 +6,11 @@ public class PoolManager : MonoBehaviour
     [SerializeField] private TargetedShotPool shamanAutoAttackPool;
     [SerializeField] private EnemyPool enemyPool;
     [SerializeField] private IndicatorPool inidcatorPool;
+    [SerializeField] private ArchedShotPool archedShotPool;
 
     public ProjectilePool TestAbilityPool { get => testAbilityPool; }
     public TargetedShotPool ShamanAutoAttackPool { get => shamanAutoAttackPool; }
     public EnemyPool EnemyPool { get => enemyPool; }
     public IndicatorPool InidcatorPool { get => inidcatorPool; }
+    public ArchedShotPool ArchedShotPool { get => archedShotPool; }
 }
