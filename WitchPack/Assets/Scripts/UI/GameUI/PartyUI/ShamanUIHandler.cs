@@ -16,6 +16,7 @@ public class ShamanUIHandler : ClickableUIElement
         _shaman = shaman;
         _splash.sprite = _shaman.ShamanConfig.UnitIcon;
         _healthBar.value = 1;
+        Show();
     }
 
     private void GoToShaman() =>

@@ -8,6 +8,6 @@ public class EndScreenEnemiesKilledUIHandler : UIElement
     public override void Show()
     {
         base.Show();
-        _countText.text = "dont know how many enemies you killed...";
+        _countText.text = LevelManager.Instance.ScoreHandler.Kills.ToString();
     }
 }

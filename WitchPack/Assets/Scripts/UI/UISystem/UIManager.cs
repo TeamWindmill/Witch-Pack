@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+[DefaultExecutionOrder(-1)]
 public class UIManager : MonoSingleton<UIManager>
 {
     private Dictionary<UIGroup, List<UIElement>> _uiGroups;
@@ -39,17 +40,6 @@ public class UIManager : MonoSingleton<UIManager>
         else
         {
             Debug.LogError("could not find UIGroup");
-        }
-    }
-
-    public void InitUIElements(UIGroup uiGroup)
-    {
-        if (_uiGroups.TryGetValue(uiGroup,out var uiElements))
-        {
-            foreach (var element in uiElements)
-            {
-                element.Init();
-            }
         }
     }
 
@@ -91,5 +81,6 @@ public enum UIGroup
     GameUI,
     MapUI,
     MenuUI,
-    EndGameUI
+    EndGameUI,
+    SelectionUI,
 }
