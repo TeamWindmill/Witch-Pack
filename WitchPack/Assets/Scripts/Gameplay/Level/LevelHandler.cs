@@ -4,6 +4,12 @@ using NavMeshPlus.Components;
 
 public class LevelHandler : MonoBehaviour
 {
+    public ParticleSystem[] WindEffectsParticleSystem => windEffectsParticleSystem;
+    public Transform[] ShamanSpawnPoints => shamanSpawnPoints;
+    public CoreTemple CoreTemple => coreTemple;
+    public CustomPath[] Paths => paths;
+    public WaveHandler WaveHandler => waveHandler;
+
     [SerializeField] private Transform[] shamanSpawnPoints;
     [SerializeField] private CustomPath[] paths;
     [SerializeField] private CoreTemple coreTemple;
@@ -12,35 +18,33 @@ public class LevelHandler : MonoBehaviour
     [SerializeField] private NavMeshSurface navMeshSurface;
     [SerializeField] private WaveHandler waveHandler;
     [SerializeField] private CameraLevelSettings cameraLevelSettings;
+    
+    private bool _tempSlowMotion; //TEMP
 
-   public ParticleSystem[] WindEffectsParticleSystem => windEffectsParticleSystem;
-   public Transform[] ShamanSpawnPoints => shamanSpawnPoints;
-   public CustomPath[] Paths { get => paths;}
-   public WaveHandler WaveHandler { get => waveHandler; }
+    public void Init()
+    {
+        GameManager.Instance.CameraHandler.SetCameraLevelSettings(cameraLevelSettings);
+        GameManager.Instance.CameraHandler.ResetCamera();
+        navMeshSurface.BuildNavMeshAsync(); //bakes navmesh
+        waveHandler.Init();
+        coreTemple.Init();
+        foreach (var powerStructure in powerStructures)
+        {
+            powerStructure.Init();
+        }
+    }
 
-   private bool _tempSlowMotion; //TEMP
-   public void Init()
-   {
-      GameManager.Instance.CameraHandler.SetCameraLevelSettings(cameraLevelSettings);
-      GameManager.Instance.CameraHandler.ResetCamera();
-      navMeshSurface.BuildNavMeshAsync();//bakes navmesh
-      waveHandler.Init();
-      coreTemple.Init();
-      foreach (var powerStructure in powerStructures)
-      {
-         powerStructure.Init();
-      }
-   }
-   public void TurnOffSpawnPoints()
-   {
-      foreach (var spawnPoint in shamanSpawnPoints)
-      {
-         if(!spawnPoint.gameObject.activeSelf) continue;
-         spawnPoint.gameObject.SetActive(false);
-      }
-   }
+    public void TurnOffSpawnPoints()
+    {
+        foreach (var spawnPoint in shamanSpawnPoints)
+        {
+            if (!spawnPoint.gameObject.activeSelf) continue;
+            spawnPoint.gameObject.SetActive(false);
+        }
+    }
+
     private void OnDrawGizmos()
     {
-       Gizmos.DrawWireCube(Vector3.zero, cameraLevelSettings.CameraBorders);
+        Gizmos.DrawWireCube(Vector3.zero, cameraLevelSettings.CameraBorders);
     }
 }

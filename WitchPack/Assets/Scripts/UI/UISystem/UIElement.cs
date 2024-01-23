@@ -1,28 +1,27 @@
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public abstract class UIElement : MonoBehaviour
+public abstract class UIElement : MonoBehaviour , IPointerEnterHandler, IPointerExitHandler
 {
     //inherit from this class if it is a ui element
-    [SerializeField, HideInInspector] protected RectTransform rectTransform;
-    [SerializeField] private bool _showOnAwake = true;
-    [SerializeField] protected UIGroup uiGroup;
-
     public RectTransform RectTransform => rectTransform;
+    
+    [SerializeField, HideInInspector] protected RectTransform rectTransform;
+    [SerializeField] private bool showOnAwake = false;
+    [SerializeField] private bool assignUIGroup = false;
+    [SerializeField,ShowIf(nameof(assignUIGroup))] protected UIGroup uiGroup;
 
-    protected virtual void Start()
+    protected bool isMouseOver;
+
+    protected virtual void Awake()
     {
-        UIManager.Instance.AddUIElement(this,uiGroup);
-        
-        if (_showOnAwake)
+        if (assignUIGroup) UIManager.Instance.AddUIElement(this,uiGroup);
+        if (showOnAwake)
             Show();
         else
             gameObject.SetActive(false);
-    }
-
-    public virtual void Init()
-    {
-        
     }
 
     public virtual void Show()
@@ -45,7 +44,20 @@ public abstract class UIElement : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (UIManager.Instance is not null)
-            UIManager.Instance.RemoveUIElement(this,uiGroup);
+        if (assignUIGroup)
+        {
+            if (UIManager.Instance is not null)
+                UIManager.Instance.RemoveUIElement(this,uiGroup);
+        }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        isMouseOver = true;
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        isMouseOver = false;
     }
 }
