@@ -90,5 +90,6 @@ public enum UIGroup
 {
     GameUI,
     MapUI,
-    MenuUI
+    MenuUI,
+    EndGameUI
 }

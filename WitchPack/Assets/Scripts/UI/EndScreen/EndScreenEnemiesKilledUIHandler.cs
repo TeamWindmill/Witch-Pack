@@ -1,13 +1,13 @@
 ﻿using TMPro;
 using UnityEngine;
 
-public class EndScreenEnemiesKilledUIHandler : MonoBehaviour
+public class EndScreenEnemiesKilledUIHandler : UIElement
 {
     [SerializeField] private TMP_Text _countText;
 
-
-    public void UpdateUIVisual()
+    public override void Show()
     {
-        //_countText.text = EnemyManager.NumberOfEnemiesKilled.ToString();
+        base.Show();
+        _countText.text = "dont know how many enemies you killed...";
     }
 }
