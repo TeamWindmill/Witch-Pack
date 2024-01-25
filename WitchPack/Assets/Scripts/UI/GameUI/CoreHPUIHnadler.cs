@@ -7,18 +7,14 @@ public class CoreHPUIHnadler : CounterUIElement
 {
     public override void Init()
     {
-        base.Init(); 
-        //ElementInit(); //get core hp
+        var core = LevelManager.Instance.CurrentLevel.CoreTemple;
+        ElementInit(core.MaxHp,core.CurHp);
+        core.OnGetHit += UpdateCoreHealth;
     }
 
-    public override void ElementInit(int maxValue, int currentValue = -1)
+    private void UpdateCoreHealth(int obj)
     {
-        base.ElementInit(maxValue, currentValue);
-    }
-
-    public override void UpdateVisual()
-    {
-        //UpdateUiData when health changes
+        UpdateUIData(obj);
     }
 
     public override void Hide()
