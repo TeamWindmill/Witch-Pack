@@ -26,10 +26,7 @@ public class ObjectPool<T> : MonoBehaviour where T : MonoBehaviour
 
     public T GetPooledObject()
     {
-        if (!Application.isPlaying)
-        {
-            return null;
-        }
+        
         foreach (var item in pooledObjects)
         {
             if (!item.gameObject.activeInHierarchy)

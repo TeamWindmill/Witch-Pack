@@ -18,12 +18,23 @@ public class ArchedShot : TargetedShot
         ability = givenAbility;
         this.target = target;
         offset = archSize;
+        if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
+        {
+            offset = new Vector2(0, offset.y * 2);
+        }
+        else
+        {
+            offset = new Vector2(offset.x * 2, 0);
+        }
         Rotate(dir);
+        Init();
+    }
 
+    private void Init()
+    {
         initialPosition = transform.position;
         allPositions = new List<Vector3>(numOfPoint);
         setup = true;
-
 
         for (var i = 0; i < numOfPoint; i++)
         {
@@ -31,11 +42,15 @@ public class ArchedShot : TargetedShot
                 target.transform.position, (float)i / numOfPoint);
             allPositions.Add(newPosition);
         }
-        //StartCoroutine(MoveAlongCurve(speed));
+        setup = true;
     }
 
     private void Update()
     {
+        if (!setup)
+        {
+            return;
+        }
         if (counter < allPositions.Count)
         {
             transform.position = Vector3.MoveTowards(transform.position, allPositions[counter], Time.deltaTime * speed);
@@ -62,21 +77,19 @@ public class ArchedShot : TargetedShot
                 3 * (control1 - start)) * t + start;
     }
 
-    private IEnumerator MoveAlongCurve(float speed)
+    private IEnumerator FixedDirMovement(Vector3 dir)
     {
-        for (int i = 0; i < allPositions.Count; i++)
+        float lerpCounter = 0f;
+        Vector2 dest = transform.position + (dir * 1.5f);
+        Vector3 startPos = transform.position;
+        while (lerpCounter < 1)
         {
-            float counter = 0f;
-            Vector3 startPos = transform.position;
-            while (counter <= 0)
-            {
-                Vector3 lerpedPos = Vector3.Lerp(startPos, allPositions[i], counter);
-                transform.position = lerpedPos;
-                counter += GAME_TIME.GameDeltaTime * speed;
-                yield return new WaitForEndOfFrame();
-            }
+            Vector3 lerpedPos = Vector3.Lerp(startPos, dest, lerpCounter);
+            transform.position = lerpedPos;
+            lerpCounter += GAME_TIME.GameDeltaTime * 5f;
+            yield return new WaitForEndOfFrame();
         }
-
+        Init();
     }
 
     protected override void Disable()
