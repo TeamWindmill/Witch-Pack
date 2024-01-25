@@ -37,17 +37,12 @@ public class StatEffectPopupHandler : MonoBehaviour
 
     public void HidePopupWindow(int powerStructureId)
     {
-        bool deleted = false;
         foreach (var popupWindowHandler in _popupWindowHandlers)
         {
             if (popupWindowHandler.ActiveEntityId == powerStructureId && popupWindowHandler.IsActive)
             {
                 popupWindowHandler.HidePopupWindow();
-                deleted = true;
             }
         }
-
-        if (!deleted)
-            Debug.LogError("Did not found the correct power structure id");
     }
 }
