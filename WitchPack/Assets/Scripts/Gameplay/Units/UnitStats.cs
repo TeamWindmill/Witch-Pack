@@ -18,6 +18,11 @@ public class UnitStats
         _baseStats = baseStats;
     }
 
+    public UnitStats()
+    {
+        
+    }
+
     private int maxHp;
     private int baseDamage;
     private float attackSpeed;
