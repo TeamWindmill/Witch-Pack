@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -39,21 +40,13 @@ public class PowerStructure : MonoBehaviour
             ring.OnShadowEnter += OnShadowRingEnter;
             ring.OnShadowExit += OnShadowRingExit;
         }
+
+        SelectionManager.Instance.OnShamanDeselected += OnShadowDeselect;
     }
-
-    private void OnValidate()
+    private void OnShadowDeselect(Shaman shaman)
     {
-        _powerStructureSpriteRenderer ??= GetComponentInChildren<SpriteRenderer>();
-        proximityRingsManager ??= GetComponentInChildren<ProximityRingsManager>();
-
-        if (_powerStructureConfig is null) return;
-
-        if (_powerStructureConfig.RingsRanges.Length != proximityRingsManager.RingHandlers.Length)
-        {
-            Debug.LogError("the number of Rings in the SO is different than the actual rings in the prefab");
-        }
-
-        _powerStructureSpriteRenderer.sprite = _powerStructureConfig.PowerStructureSprite;
+        proximityRingsManager.ToggleAllSprites(false);
+        HideUI(SelectionManager.Instance.Shadow);
     }
 
     private void OnShamanRingEnter(int ringId, Shaman shaman)
@@ -63,7 +56,6 @@ public class PowerStructure : MonoBehaviour
         var statAdditionValue = GetStatEffectValue(ringId, shaman.Stats);
         shaman.Stats.AddValueToStat(_statType,statAdditionValue);
     }
-
     private void OnShamanRingExit(int ringId, Shaman shaman)
     {
         if (_testing) Debug.Log($"shaman exited ring {ringId}");
@@ -71,7 +63,6 @@ public class PowerStructure : MonoBehaviour
         var statAdditionValue = GetStatEffectValue(ringId, shaman.Stats);
         shaman.Stats.AddValueToStat(_statType,-statAdditionValue);
     }
-
     private void OnShadowRingEnter(int ringId, Shadow shadow)
     {
         _activeShadowRingIds.Add(ringId,_powerStructureConfig.statEffect.RingValues[ringId]);
@@ -110,11 +101,10 @@ public class PowerStructure : MonoBehaviour
             HideUI(shadow);
         }
     }
-
     private void ShowUI(Shadow shadow,int ringId)
     {
         HeroSelectionUI.Instance.UpdateStatBlocks(_statType, CalculateStatValueForSelectionUI(shadow,shadow.Shaman));
-        StatEffectPopupManager.ShowPopupWindows(GetInstanceID(), _statType.ToString(), CalculateStatValueForPSUI(ringId), true, GetRingColorAlpha(ringId));
+        StatEffectPopupManager.ShowPopupWindows(GetInstanceID(), _statType.ToString(), CalculateStatValueForPSUI(), true, GetRingColorAlpha(ringId));
     }
 
     private void HideUI(Shadow shadow)
@@ -139,7 +129,7 @@ public class PowerStructure : MonoBehaviour
         return 0;
     }
 
-    private int CalculateStatValueForPSUI(int ringId)
+    private int CalculateStatValueForPSUI()
     {
         float sumRingValues = 0;
         foreach (var ring in _activeShadowRingIds)
@@ -171,5 +161,25 @@ public class PowerStructure : MonoBehaviour
         float alpha = _powerStructureConfig.DefaultSpriteAlpha - _powerStructureConfig.SpriteAlphaFade * ringId;
         color.a = alpha;
         return color;
+    }
+
+    private void OnDestroy()
+    {
+        SelectionManager.Instance.OnShamanDeselected -= OnShadowDeselect;
+    }
+    
+    private void OnValidate()
+    {
+        _powerStructureSpriteRenderer ??= GetComponentInChildren<SpriteRenderer>();
+        proximityRingsManager ??= GetComponentInChildren<ProximityRingsManager>();
+
+        if (_powerStructureConfig is null) return;
+
+        if (_powerStructureConfig.RingsRanges.Length != proximityRingsManager.RingHandlers.Length)
+        {
+            Debug.LogError("the number of Rings in the SO is different than the actual rings in the prefab");
+        }
+
+        _powerStructureSpriteRenderer.sprite = _powerStructureConfig.PowerStructureSprite;
     }
 }
