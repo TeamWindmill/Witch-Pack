@@ -125,7 +125,7 @@ public class PowerStructure : MonoBehaviour
 
     private int GetStatEffectValue(int ringId, UnitStats stats)
     {
-        var value = stats.GetStatValue(_statType);
+        var value = stats.GetBaseStatValue(_statType);
         var modifier = _powerStructureConfig.statEffect.RingValues[ringId];
         
         switch (_statModifier)
