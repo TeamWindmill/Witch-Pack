@@ -5,6 +5,12 @@ using UnityEngine.EventSystems;
 
 public class Shaman : BaseUnit
 {
+    public override StatSheet BaseStats => shamanConfig.BaseStats;
+    public ShamanConfig ShamanConfig => shamanConfig;
+    public List<BaseAbility> KnownAbilities => knownAbilities; 
+    public List<UnitCastingHandler> CastingHandlers => castingHandlers;
+    public bool MouseOverShaman => clicker.IsHover;
+    
     [SerializeField, TabGroup("Visual")] private ShamanAnimator shamanAnimator;
     [SerializeField] private ClickHelper clicker;
     [SerializeField] private Indicatable indicatable;
@@ -12,10 +18,7 @@ public class Shaman : BaseUnit
     private ShamanConfig shamanConfig;
     private List<BaseAbility> knownAbilities = new List<BaseAbility>();
     private List<UnitCastingHandler> castingHandlers = new List<UnitCastingHandler>();
-    public override StatSheet BaseStats => shamanConfig.BaseStats;
-    public ShamanConfig ShamanConfig { get => shamanConfig; }
-    public List<BaseAbility> KnownAbilities { get => knownAbilities; }
-    public List<UnitCastingHandler> CastingHandlers { get => castingHandlers; }
+   
     private void OnValidate()
     {
         shamanAnimator ??= GetComponentInChildren<ShamanAnimator>();

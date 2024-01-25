@@ -1,11 +1,12 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Shadow : MonoBehaviour
 {
     public UnitStats Stats => _stats;
-    public StatSheet BaseStats => _baseStats;
     public Shaman Shaman => _shaman;
+    public Dictionary<StatType, int> CurrentStatPSEffects => currentStatPSEffects;
 
     
     [SerializeField] private Transform rangeTransform;
@@ -13,14 +14,15 @@ public class Shadow : MonoBehaviour
     [SerializeField] private LineRenderer lineRenderer;
 
     [SerializeField] private UnitStats _stats;
-    private StatSheet _baseStats;
     private Shaman _shaman;
     private bool _isActive;
 
+    private Dictionary<StatType, int> currentStatPSEffects = new Dictionary<StatType, int>();
+
+
     public void Show(Shaman shaman)
     {
-        _baseStats = shaman.BaseStats;
-        _stats = new UnitStats(_baseStats);
+        _stats = shaman.Stats;
         spriteRenderer.sprite = shaman.ShamanConfig.UnitSprite;
         _shaman = shaman;
         rangeTransform.localScale = new Vector3(shaman.Stats.BonusRange * 2, shaman.Stats.BonusRange * 2, 0);
@@ -32,7 +34,18 @@ public class Shadow : MonoBehaviour
     {
         gameObject.SetActive(false);   
         _isActive = false;
+    }
 
+    public void SetPSStatValue(StatType statType, int value)
+    {
+        if (currentStatPSEffects.ContainsKey(statType))
+        {
+            currentStatPSEffects[statType] += value;
+        }
+        else
+        {
+            currentStatPSEffects.Add(statType,value);
+        }
     }
 
     private void Update()
@@ -46,4 +59,6 @@ public class Shadow : MonoBehaviour
             lineRenderer.SetPositions(new Vector3[] { _shaman.transform.position, transform.position });
         }
     }
+
+    
 }
