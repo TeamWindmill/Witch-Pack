@@ -3,28 +3,39 @@ using UnityEngine;
 
 public class AbilitiesHandlerUI : MonoBehaviour
 {
-    [SerializeField] private AbilityUI[] _abilityUIBlocks;
+    [SerializeField] private AbilityUI[] abilityUIBlocks;
+    [SerializeField] private AbilityUpgradePanelUI abilityUpgradePanelUI;
     
     public void Show(List<UnitCastingHandler> abilities)
     {
+        foreach (var uiBlock in abilityUIBlocks)
+        {
+            uiBlock.Hide();
+        }
+        if (abilities.Count <= 0) return;
         foreach (var ability in abilities)
         {
-            foreach (var uiBlock in _abilityUIBlocks)
+            foreach (var uiBlock in abilityUIBlocks)
             {
-                if (uiBlock.IsActive) return;
+                
+                if (uiBlock.gameObject.activeSelf) continue;
                 uiBlock.Init(ability);
-                uiBlock.Show();
+                uiBlock.OnAbilityClick += OpenUpgradePanel;
                 break;
             }
         }
+        abilityUpgradePanelUI.Hide();
     }
-
     public void Hide()
     {
-        foreach (var uiBlock in _abilityUIBlocks)
+        foreach (var uiBlock in abilityUIBlocks)
         {
-            if (!uiBlock.IsActive) return;
+            if (!uiBlock.gameObject.activeSelf) return;
             uiBlock.Hide();
         }
+    }
+    private void OpenUpgradePanel(AbilityUI abilityUI)
+    {
+        abilityUpgradePanelUI.Init(abilityUI);
     }
 }
