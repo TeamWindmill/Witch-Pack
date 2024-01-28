@@ -25,14 +25,11 @@ public class DamageDealer
         if (ReferenceEquals(ability, owner.AutoAttack))
         {
             dmg.AddFlatMod(owner.Stats.BaseDamage);
+            if (crit)
+            {
+                dmg.AddMod((Owner.Stats.CritDamage / 100) + 1);//not sure what the math is supposed to be here - ask gd
+            }
         }
-        if (crit)
-        {
-            dmg.AddMod((Owner.Stats.CritDamage / 100) + 1);//not sure what the math is supposed to be here - ask gd
-
-        }
+        
     }
-
-
-
 }

@@ -3,27 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class SelectionManager : MonoBehaviour
+public class SelectionManager : MonoSingleton<SelectionManager>
 {
     public event Action<Shaman> OnShamanMoveSelect;
     public event Action<Shaman> OnShamanInfoSelect;
     public event Action<Shaman> OnShamanDeselected;
+    public SelectionType SelectMode => _selectMode;
+    public Shaman SelectedShaman => _selectedShaman;
+    public Shadow Shadow => shadow;
 
     [SerializeField] private Shadow shadow;
-
-    public SelectionType SelectMode => _selectMode;
-
-    public Shaman SelectedShaman => _selectedShaman;
-
-    private bool _mouseOverUI => HeroSelectionUI.Instance.MouseOverUI;
+    private const int LEFT_CLICK = 0;
+    private const int RIGHT_CLICK = 1;
+    private const int MIDDLE_CLICK = 2;
+    private bool _mouseOverSelectionUI => HeroSelectionUI.Instance.MouseOverUI;
     private Shaman _selectedShaman;
     private SelectionType _selectMode;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         OnShamanMoveSelect += ShamanMoveSelect;
         OnShamanInfoSelect += ShamanInfoSelect;
-        OnShamanDeselected += ShamanMoveDeselect;
+        OnShamanDeselected += ShamanDeselect;
     }
 
     public void SetSelectedShaman(Shaman selectedShaman, SelectionType selectMode)
@@ -46,9 +48,21 @@ public class SelectionManager : MonoBehaviour
 
         if (SelectMode == SelectionType.Info)
         {
-            if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+            if (Input.GetMouseButtonDown(LEFT_CLICK))
             {
-                if (_mouseOverUI) return;
+                if (_mouseOverSelectionUI) return;
+                if (_selectedShaman.MouseOverShaman)
+                {
+                    ShamanMoveSelect(_selectedShaman);
+                    return;
+                }
+                OnShamanDeselected?.Invoke(SelectedShaman);
+                _selectedShaman = null;
+            }
+
+            if (Input.GetMouseButtonDown(RIGHT_CLICK))
+            {
+                if (_mouseOverSelectionUI || _selectedShaman.MouseOverShaman) return;
                 OnShamanDeselected?.Invoke(SelectedShaman);
                 _selectedShaman = null;
             }
@@ -56,19 +70,29 @@ public class SelectionManager : MonoBehaviour
 
         if (SelectMode == SelectionType.Movement)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (_mouseOverSelectionUI) shadow.Hide();
+            else shadow.Show(_selectedShaman);
+                
+            if (Input.GetMouseButtonDown(LEFT_CLICK))
             {
-                if (_mouseOverUI) return;
-
-                Vector3 newDest = GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+                if (_mouseOverSelectionUI || _selectedShaman.MouseOverShaman) return;
+                
+                //set destination for selected shaman
+                var newDest = GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
                 _selectedShaman.Movement.SetDest(newDest);
                 OnShamanDeselected?.Invoke(SelectedShaman);
                 _selectedShaman = null;
             }
-            else if (Input.GetMouseButtonDown(1))
+            else if (Input.GetMouseButtonDown(RIGHT_CLICK))
             {
-                if (_mouseOverUI) return;
-
+                if (_mouseOverSelectionUI) return;
+                if (_selectedShaman.MouseOverShaman)
+                {
+                    
+                    ShamanInfoSelect(_selectedShaman);
+                    return;
+                }
+                
                 OnShamanDeselected?.Invoke(SelectedShaman);
                 _selectedShaman = null;
             }
@@ -77,17 +101,32 @@ public class SelectionManager : MonoBehaviour
 
     private void ShamanMoveSelect(Shaman shaman)
     {
+        if (_selectedShaman.MouseOverShaman && _selectMode == SelectionType.Info)
+        {
+            _selectMode = SelectionType.Movement;
+            SlowMotionManager.Instance.StartSlowMotionEffects();
+            shadow.Show(shaman);
+            return;
+        }
+        
         SlowMotionManager.Instance.StartSlowMotionEffects();
-        HeroSelectionUI.Instance.Show(shaman);
         shadow.Show(shaman);
+        HeroSelectionUI.Instance.Show(shaman);
     }
 
     private void ShamanInfoSelect(Shaman shaman)
     {
+        if (_selectedShaman.MouseOverShaman && _selectMode == SelectionType.Movement)
+        {
+            _selectMode = SelectionType.Info;
+            SlowMotionManager.Instance.EndSlowMotionEffects();
+            shadow.Hide();
+        }
+        
         HeroSelectionUI.Instance.Show(shaman);
     }
 
-    private void ShamanMoveDeselect(Shaman shaman)
+    private void ShamanDeselect(Shaman shaman)
     {
         if (SelectMode == SelectionType.Info)
         {
@@ -104,6 +143,7 @@ public class SelectionManager : MonoBehaviour
 
 public enum SelectionType
 {
+    None,
     Movement,
     Info
 }

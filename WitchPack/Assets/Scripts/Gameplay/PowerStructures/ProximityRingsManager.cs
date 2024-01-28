@@ -82,11 +82,6 @@ public class ProximityRingsManager : MonoBehaviour
         }
     }
 
-    public void ToggleRingSprite(int ringId, bool state)
-    {
-        _ringHandlers[ringId].ToggleSprite(state);
-    }
-
     private void ActivateRingSprites()
     {
         if (_shamanSelected) return;
