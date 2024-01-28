@@ -65,7 +65,7 @@ public class UnitTargetHelper
 
     private BaseUnit GetTargetByDistance(List<BaseUnit> targets, TargetMod mod, List<BaseUnit> targetsToAvoid = null)
     {
-        BaseUnit cur = targets[0];
+        BaseUnit cur = targets[targets.Count-1];
         for (int i = 0; i < targets.Count; i++)
         {
             if (!ReferenceEquals(targetsToAvoid, null) && targets.Count > targetsToAvoid.Count && targetsToAvoid.Contains(targets[i]))

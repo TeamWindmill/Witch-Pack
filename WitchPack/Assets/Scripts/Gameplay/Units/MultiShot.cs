@@ -9,15 +9,24 @@ public class MultiShot : OffensiveAbility
     public override bool CastAbility(BaseUnit caster)
     {
         List<BaseUnit> foundTargets = new List<BaseUnit>();
+        int tempC = 0;
         for (int i = 0; i < numberOfShots; i++)
         {
             BaseUnit target = caster.TargetHelper.GetTarget(caster.Targeter.AvailableTargets, TargetData, foundTargets);
+            if (!foundTargets.Contains(target))
+            {
+                tempC++;
+            }
             foundTargets.Add(target);
+
             if (ReferenceEquals(target, null))
             {
                 return false;
             }
+
+            
         }
+        Debug.Log($"found {tempC} targets out of {caster.Targeter.AvailableTargets.Count}");
 
         for (int i = 0; i < numberOfShots; i++)
         {
