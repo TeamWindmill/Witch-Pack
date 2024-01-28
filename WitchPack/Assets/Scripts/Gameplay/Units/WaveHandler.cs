@@ -15,6 +15,7 @@ public class WaveHandler : MonoBehaviour
     private List<EnemySpawnData> spawnData;
     private int _currentWave;
     private bool skipFlag;
+    private int doneSpawningCounter;
     public int CurrentWave => _currentWave;
     public int TotalWaves => spawnData.Count;
 
@@ -67,32 +68,39 @@ public class WaveHandler : MonoBehaviour
 
     private IEnumerator SpawnWave(EnemySpawnData givenData)
     {
+        doneSpawningCounter = 0;
         for (int i = 0; i < givenData.TotalSpawns; i++) //loop over how many spawns there are in total
         {
             for (int j = 0; j < givenData.Groups.Count; j++)
             {
-                EnemySpawnPoint currentSpawnPoint = GetSpawnPointFromIndex(givenData.Groups[j].SpawnerIndex);
                 if (givenData.Groups[j].SpawnedAtInterval <= i + 1)
                 {
-                    for (int z = 0; z < givenData.Groups[j].AmountPerSpawn; z++)
-                    {
-                        if (givenData.Groups[j].TotalAmount <= givenData.Groups[j].NumSpawned) //if ran out of enemies to spawn break out.
-                        {
-                            break;
-                        }
-
-                        currentSpawnPoint.SpawnEnemy(givenData.Groups[j].Enemy);
-                        EnemyGroup group = givenData.Groups[j];
-                        group.NumSpawned++;
-                        givenData.Groups[j] = group;
-
-                        yield return StartCoroutine(IntervalDelay(fixedSpawnInterval));//for now
-                    }
+                    StartCoroutine(SpawnGroupInterval(givenData.Groups[j]));
                 }
             }
 
+            yield return new WaitUntil(() => doneSpawningCounter >= givenData.Groups.Count * (i + 1));
             yield return StartCoroutine(IntervalDelay(givenData.TimeBetweenIntervals));
         }
+    }
+
+    private IEnumerator SpawnGroupInterval(EnemyGroup givenGroup)
+    {
+        for (int z = 0; z < givenGroup.AmountPerSpawn; z++)
+        {
+            if (givenGroup.TotalAmount <= givenGroup.NumSpawned) //if ran out of enemies to spawn break out.
+            {
+                break;
+            }
+
+            GetSpawnPointFromIndex(givenGroup.SpawnerIndex).SpawnEnemy(givenGroup.Enemy);
+            EnemyGroup group = givenGroup;
+            group.NumSpawned++;
+            givenGroup = group;
+
+            yield return StartCoroutine(IntervalDelay(fixedSpawnInterval));
+        }
+        doneSpawningCounter++;
     }
 
 
