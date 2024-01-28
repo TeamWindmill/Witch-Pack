@@ -42,7 +42,6 @@ public class Damageable
         {
             return;
         }
-        owner.StartCoroutine(SetInvincibleFor(owner.Stats.InvincibleTime));
         //status effects addition
         foreach (var item in ability.StatusEffects)
         {
@@ -110,13 +109,6 @@ public class Damageable
         dmg.AddMod(1 - (owner.Stats.Armor / 100));
     }
 
-
-    private IEnumerator SetInvincibleFor(float duration)
-    {
-        hitable = false;
-        yield return new WaitForSeconds(duration);
-        hitable = true;
-    }
 
 
 }

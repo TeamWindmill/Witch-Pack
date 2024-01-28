@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3261136274232588628}
   - component: {fileID: 5556610855597039399}
   m_Layer: 8
-  m_Name: Kaisa
+  m_Name: MultiShotPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1901155593280489811}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8270022412761042295
@@ -46,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18afa2a3397112e4d9fee874fce6ae1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 100
   maxTravelTime: 2
   numOfPoint: 100
 --- !u!212 &3261136274232588628
@@ -56,7 +57,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7951538307925724370}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -136,3 +137,69 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!1001 &242116068346480021
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 4399582254470398416}
+    m_Modifications:
+    - target: {fileID: 1819007540379241670, guid: c371e5951796661428c78f89d85abfa2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819007540379241670, guid: c371e5951796661428c78f89d85abfa2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819007540379241670, guid: c371e5951796661428c78f89d85abfa2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819007540379241670, guid: c371e5951796661428c78f89d85abfa2, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819007540379241670, guid: c371e5951796661428c78f89d85abfa2, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819007540379241670, guid: c371e5951796661428c78f89d85abfa2, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819007540379241670, guid: c371e5951796661428c78f89d85abfa2, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819007540379241670, guid: c371e5951796661428c78f89d85abfa2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819007540379241670, guid: c371e5951796661428c78f89d85abfa2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1819007540379241670, guid: c371e5951796661428c78f89d85abfa2, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4717001669070102395, guid: c371e5951796661428c78f89d85abfa2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7355147816749225890, guid: c371e5951796661428c78f89d85abfa2, type: 3}
+      propertyPath: m_Name
+      value: Multishot Arrow
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c371e5951796661428c78f89d85abfa2, type: 3}
+--- !u!4 &1901155593280489811 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1819007540379241670, guid: c371e5951796661428c78f89d85abfa2, type: 3}
+  m_PrefabInstance: {fileID: 242116068346480021}
+  m_PrefabAsset: {fileID: 0}
