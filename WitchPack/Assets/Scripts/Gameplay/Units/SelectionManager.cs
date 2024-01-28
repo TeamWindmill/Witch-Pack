@@ -20,8 +20,9 @@ public class SelectionManager : MonoSingleton<SelectionManager>
     private Shaman _selectedShaman;
     private SelectionType _selectMode;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         OnShamanMoveSelect += ShamanMoveSelect;
         OnShamanInfoSelect += ShamanInfoSelect;
         OnShamanDeselected += ShamanDeselect;
