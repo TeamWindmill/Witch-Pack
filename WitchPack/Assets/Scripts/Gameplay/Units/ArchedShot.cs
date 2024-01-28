@@ -53,7 +53,7 @@ public class ArchedShot : TargetedShot
         }
         if (counter < allPositions.Count)
         {
-            transform.position = Vector3.MoveTowards(transform.position, allPositions[counter], GAME_TIME.GameDeltaTime * speed * 2);
+            transform.position = Vector3.MoveTowards(transform.position, allPositions[counter], GAME_TIME.GameDeltaTime * speed * 100);
             if (Vector3.Distance(transform.position, allPositions[counter]) < DistanceToTarget)
             {
                 counter++;

@@ -10,6 +10,9 @@ public class BaseAbility : ScriptableObject
     [SerializeField, Tooltip("Interval before casting in real time")] private float castTime;
     [SerializeField] private List<StatusEffectConfig> statusEffects = new List<StatusEffectConfig>();
     [SerializeField] private BaseAbility[] upgrades;
+    [SerializeField] private TargetData targetData;
+    public TargetData TargetData { get => targetData; }
+
     public Sprite Icon => icon;
     public string Name => name;
     public float Cd => cd;

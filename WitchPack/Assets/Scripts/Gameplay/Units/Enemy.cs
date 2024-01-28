@@ -9,7 +9,8 @@ public class Enemy : BaseUnit
     private PathCreator _path;
     private int _coreDamage;
     //testing 
-
+    public int Id => gameObject.GetHashCode();
+    
     private EnemyConfig enemyConfig;
     private int pointIndex;
     private float dstTravelled;
