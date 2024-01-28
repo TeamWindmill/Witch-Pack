@@ -1,6 +1,6 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
 
 public class UnitTargetHelper
 {
@@ -14,7 +14,7 @@ public class UnitTargetHelper
     }
 
 
-    public BaseUnit GetTarget(List<BaseUnit> targets, TargetData givenData, StatType stat = StatType.AttackSpeed /*only send in a stat if necessary*/)
+    public BaseUnit GetTarget(List<BaseUnit> targets, TargetData givenData, List<BaseUnit> targetsToAvoid = null, StatType stat = StatType.AttackSpeed)
     {
         if (targets.Count <= 0)
         {
@@ -24,15 +24,15 @@ public class UnitTargetHelper
         switch (givenData.Prio)
         {
             case TargetPrio.Stat:
-                target = GetTargetByStat(targets, stat, givenData.Mod);
+                target = GetTargetByStat(targets, stat, givenData.Mod, targetsToAvoid);
                 break;
             case TargetPrio.Distance:
-                target =  GetTargetByDistance(targets, givenData.Mod);
+                target = GetTargetByDistance(targets, givenData.Mod, targetsToAvoid);
                 break;
             case TargetPrio.Random:
                 target = targets[UnityEngine.Random.Range(0, targets.Count)];
                 break;
-                //add threat when Im doen adding the system
+            //add threat when Im doen adding the system
             default:
                 return targets[0];
         }
@@ -40,8 +40,7 @@ public class UnitTargetHelper
         return target;
     }
 
-
-    private BaseUnit GetTargetByStat(List<BaseUnit> targets, StatType givenStat, TargetMod mod)
+    private BaseUnit GetTargetByStat(List<BaseUnit> targets, StatType givenStat, TargetMod mod, List<BaseUnit> targetsToAvoid = null)
     {
         BaseUnit cur = targets[0];
         for (int i = 0; i < targets.Count; i++)
@@ -64,11 +63,16 @@ public class UnitTargetHelper
         return cur;
     }
 
-    private BaseUnit GetTargetByDistance(List<BaseUnit> targets, TargetMod mod)
+    private BaseUnit GetTargetByDistance(List<BaseUnit> targets, TargetMod mod, List<BaseUnit> targetsToAvoid = null)
     {
         BaseUnit cur = targets[0];
         for (int i = 0; i < targets.Count; i++)
         {
+            if (!ReferenceEquals(targetsToAvoid, null) && targets.Count > targetsToAvoid.Count && targetsToAvoid.Contains(targets[i]))
+            {
+                continue;
+            }
+
             if (mod == TargetMod.Most)
             {
                 if (Vector3.Distance(cur.transform.position, owner.transform.position) < Vector3.Distance(targets[i].transform.position, owner.transform.position))
@@ -86,6 +90,9 @@ public class UnitTargetHelper
         }
         return cur;
     }
+
+
+
 
 
 }
