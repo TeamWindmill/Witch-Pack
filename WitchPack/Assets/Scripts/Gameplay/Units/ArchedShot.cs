@@ -53,7 +53,7 @@ public class ArchedShot : TargetedShot
         }
         if (counter < allPositions.Count)
         {
-            transform.position = Vector3.MoveTowards(transform.position, allPositions[counter], Time.deltaTime * speed);
+            transform.position = Vector3.MoveTowards(transform.position, allPositions[counter], GAME_TIME.GameDeltaTime * speed * 2);
             if (Vector3.Distance(transform.position, allPositions[counter]) < DistanceToTarget)
             {
                 counter++;
@@ -75,21 +75,6 @@ public class ArchedShot : TargetedShot
     {
         return (((-start + 3 * (control1 - control2) + end) * t + (3 * (start + control2) - 6 * control1)) * t +
                 3 * (control1 - start)) * t + start;
-    }
-
-    private IEnumerator FixedDirMovement(Vector3 dir)
-    {
-        float lerpCounter = 0f;
-        Vector2 dest = transform.position + (dir * 1.5f);
-        Vector3 startPos = transform.position;
-        while (lerpCounter < 1)
-        {
-            Vector3 lerpedPos = Vector3.Lerp(startPos, dest, lerpCounter);
-            transform.position = lerpedPos;
-            lerpCounter += GAME_TIME.GameDeltaTime * 5f;
-            yield return new WaitForEndOfFrame();
-        }
-        Init();
     }
 
     protected override void Disable()
