@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_base_ability" xml:lang="en-US">
+<title>BaseAbility Class Reference</title>
+<indexterm><primary>BaseAbility</primary></indexterm>
+<para>Inheritance diagram for BaseAbility:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="class_base_ability.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><anchor xml:id="_class_base_ability_1a968e8be43ea3c4723835af42dfef1013"/>virtual bool <emphasis role="strong">CastAbility</emphasis> (<link linkend="_class_base_unit">BaseUnit</link> caster)</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_base_ability_1af22e869eeae7577fa4dd2905499413b2"/>void <emphasis role="strong">ChangeState</emphasis> (AbilityUpgradeState state)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Properties    </title>
+        <itemizedlist>
+            <listitem><para><anchor xml:id="_class_base_ability_1a5aea3aafc2682717987032d91dd0b9e0"/>Sprite <emphasis role="strong">Icon</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_base_ability_1a1321a7124bf63a58e53339ae6ecd3dbc"/>string <emphasis role="strong">Name</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_base_ability_1a44657c2d52b0d54eb612c6d1d4761059"/>float <emphasis role="strong">Cd</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_base_ability_1ad411eb286bc4eb6a1f7a979eaa259d16"/>List&lt; <link linkend="_class_status_effect_config">StatusEffectConfig</link> &gt; <emphasis role="strong">StatusEffects</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_base_ability_1acc3179013b808d10f8db1a4972409277"/>int <emphasis role="strong">Penetration</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_base_ability_1a2bad9788d0af45c6c706e7cf64409ea9"/><link linkend="_class_base_ability">BaseAbility</link>[] <emphasis role="strong">Upgrades</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_base_ability_1a4b7e806dc8b1cbc488b817c68722c02d"/>AbilityUpgradeState <emphasis role="strong">AbilityUpgradeState</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<para>
+The documentation for this class was generated from the following file:</para>
+C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs</section>

@@ -1,0 +1,399 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_g_a_m_e___t_i_m_e" kind="class" language="C#" prot="public">
+    <compoundname>GAME_TIME</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="event">
+      <memberdef kind="event" id="class_g_a_m_e___t_i_m_e_1a692f5da8ff93b7a72b3e47d57199da39" prot="public" static="yes" add="no" remove="no" raise="no">
+        <type>Action</type>
+        <definition>Action GAME_TIME.OnTimeRateChange</definition>
+        <argsstring></argsstring>
+        <name>OnTimeRateChange</name>
+        <qualifiedname>GAME_TIME.OnTimeRateChange</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" line="8" column="32" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_g_a_m_e___t_i_m_e_1a4211614293c30b6c8cec4fa27ed84f3e" prot="private" static="yes" mutable="no">
+        <type>float</type>
+        <definition>float GAME_TIME._gameTime</definition>
+        <argsstring></argsstring>
+        <name>_gameTime</name>
+        <qualifiedname>GAME_TIME._gameTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" line="10" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_a_m_e___t_i_m_e_1a2af53d7e01528b0d17493b79cd48d0c6" prot="private" static="yes" mutable="no">
+        <type>float</type>
+        <definition>float GAME_TIME._timeRate</definition>
+        <argsstring></argsstring>
+        <name>_timeRate</name>
+        <qualifiedname>GAME_TIME._timeRate</qualifiedname>
+        <initializer>= 1f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" line="11" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_a_m_e___t_i_m_e_1a9fc09a7843e4505d70ad3012e97fa8b2" prot="private" static="yes" mutable="no">
+        <type>float</type>
+        <definition>float GAME_TIME._startGameTime</definition>
+        <argsstring></argsstring>
+        <name>_startGameTime</name>
+        <qualifiedname>GAME_TIME._startGameTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" line="12" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_a_m_e___t_i_m_e_1a805c6265a66e4bd21e5764bc4b3e0d9d" prot="private" static="yes" mutable="no">
+        <type>AnimationCurve</type>
+        <definition>AnimationCurve GAME_TIME._defaultCurve</definition>
+        <argsstring></argsstring>
+        <name>_defaultCurve</name>
+        <qualifiedname>GAME_TIME._defaultCurve</qualifiedname>
+        <initializer>= AnimationCurve.Linear(0, 0, 1, 1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" line="14" column="35" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_a_m_e___t_i_m_e_1a5271c18ae9900783bf560a10ba72e4db" prot="private" static="yes" mutable="no">
+        <type>float</type>
+        <definition>float GAME_TIME._tempTimeData</definition>
+        <argsstring></argsstring>
+        <name>_tempTimeData</name>
+        <qualifiedname>GAME_TIME._tempTimeData</qualifiedname>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" line="16" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_a_m_e___t_i_m_e_1ac639cce0ec775182b0a2c50988982d04" prot="private" static="yes" mutable="no">
+        <type>MonoBehaviour</type>
+        <definition>MonoBehaviour GAME_TIME._monoBehaviour</definition>
+        <argsstring></argsstring>
+        <name>_monoBehaviour</name>
+        <qualifiedname>GAME_TIME._monoBehaviour</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" line="24" column="34" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_a_m_e___t_i_m_e_1adab72f086d4fdb8d660e09037f56f550" prot="private" static="yes" mutable="no">
+        <type>Coroutine</type>
+        <definition>Coroutine GAME_TIME._fadeCoroutine</definition>
+        <argsstring></argsstring>
+        <name>_fadeCoroutine</name>
+        <qualifiedname>GAME_TIME._fadeCoroutine</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" line="26" column="30" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_g_a_m_e___t_i_m_e_1a695183069a644d394d1616922d9371ef" prot="private" static="yes" mutable="no">
+        <type>float</type>
+        <definition>float GAME_TIME._transitionTimeCount</definition>
+        <argsstring></argsstring>
+        <name>_transitionTimeCount</name>
+        <qualifiedname>GAME_TIME._transitionTimeCount</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" line="28" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_g_a_m_e___t_i_m_e_1a00afca856ef322117a173af69fd36b22" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>float</type>
+        <definition>float GAME_TIME.TimePlayed</definition>
+        <argsstring></argsstring>
+        <name>TimePlayed</name>
+        <qualifiedname>GAME_TIME.TimePlayed</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" line="17" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_g_a_m_e___t_i_m_e_1a3f339fb178bb61748069a45bdd01fbce" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>float</type>
+        <definition>float GAME_TIME.GetCurrentTimeRate</definition>
+        <argsstring></argsstring>
+        <name>GetCurrentTimeRate</name>
+        <qualifiedname>GAME_TIME.GetCurrentTimeRate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" line="18" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_g_a_m_e___t_i_m_e_1ab035574ac9c6f2c98c9059847e29c376" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>float</type>
+        <definition>float GAME_TIME.GameTime</definition>
+        <argsstring></argsstring>
+        <name>GameTime</name>
+        <qualifiedname>GAME_TIME.GameTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" line="19" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_g_a_m_e___t_i_m_e_1a7a2f26b8bb22df9cd9ac76e7a575829d" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>float</type>
+        <definition>float GAME_TIME.GameDeltaTime</definition>
+        <argsstring></argsstring>
+        <name>GameDeltaTime</name>
+        <qualifiedname>GAME_TIME.GameDeltaTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" line="20" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_g_a_m_e___t_i_m_e_1a40f602a749178d119ca5de4741767981" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool GAME_TIME.IsTimeStopped</definition>
+        <argsstring></argsstring>
+        <name>IsTimeStopped</name>
+        <qualifiedname>GAME_TIME.IsTimeStopped</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" line="22" column="24" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_g_a_m_e___t_i_m_e_1a92336752bfd1a63fd272a2308afac406" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GAME_TIME.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>GAME_TIME.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" line="30" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" bodystart="30" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_a_m_e___t_i_m_e_1a3ed622ad27f80cd8b8e9051cf26a2d9c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GAME_TIME.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>GAME_TIME.Update</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" line="37" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" bodystart="37" bodyend="40"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_g_a_m_e___t_i_m_e_1aece43eb83e1c872a9f1fefb5c9059711" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void GAME_TIME.SetTimeStep</definition>
+        <argsstring>(float time, float transitionTime=1, AnimationCurve curve=null)</argsstring>
+        <name>SetTimeStep</name>
+        <qualifiedname>GAME_TIME.SetTimeStep</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>transitionTime</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>AnimationCurve</type>
+          <declname>curve</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" line="42" column="24" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" bodystart="42" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_a_m_e___t_i_m_e_1a9439eaf519ad7257da9988dc50fd9526" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void GAME_TIME.Play</definition>
+        <argsstring>()</argsstring>
+        <name>Play</name>
+        <qualifiedname>GAME_TIME.Play</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" line="93" column="24" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" bodystart="93" bodyend="99"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_a_m_e___t_i_m_e_1a32d5157027f472b6fa6145e480d5fb06" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void GAME_TIME.Pause</definition>
+        <argsstring>()</argsstring>
+        <name>Pause</name>
+        <qualifiedname>GAME_TIME.Pause</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" line="101" column="24" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" bodystart="101" bodyend="108"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_g_a_m_e___t_i_m_e_1ad52a7662372dbf78f03816e078690a65" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>static IEnumerator GAME_TIME.FadeTime</definition>
+        <argsstring>(float time, float transitionTime=1, AnimationCurve curve=null)</argsstring>
+        <name>FadeTime</name>
+        <qualifiedname>GAME_TIME.FadeTime</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>transitionTime</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>AnimationCurve</type>
+          <declname>curve</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" line="63" column="32" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" bodystart="63" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="class_g_a_m_e___t_i_m_e_1a2006867846ae771dbaef61aef3d63307" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void GAME_TIME.SetTime</definition>
+        <argsstring>(float timeRate)</argsstring>
+        <name>SetTime</name>
+        <qualifiedname>GAME_TIME.SetTime</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>timeRate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" line="84" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" bodystart="84" bodyend="91"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GAME_TIME</label>
+        <link refid="class_g_a_m_e___t_i_m_e"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GAME_TIME</label>
+        <link refid="class_g_a_m_e___t_i_m_e"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" line="6" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Time/GAME_TIME.cs" bodystart="7" bodyend="109"/>
+    <listofallmembers>
+      <member refid="class_g_a_m_e___t_i_m_e_1a805c6265a66e4bd21e5764bc4b3e0d9d" prot="private" virt="non-virtual"><scope>GAME_TIME</scope><name>_defaultCurve</name></member>
+      <member refid="class_g_a_m_e___t_i_m_e_1adab72f086d4fdb8d660e09037f56f550" prot="private" virt="non-virtual"><scope>GAME_TIME</scope><name>_fadeCoroutine</name></member>
+      <member refid="class_g_a_m_e___t_i_m_e_1a4211614293c30b6c8cec4fa27ed84f3e" prot="private" virt="non-virtual"><scope>GAME_TIME</scope><name>_gameTime</name></member>
+      <member refid="class_g_a_m_e___t_i_m_e_1ac639cce0ec775182b0a2c50988982d04" prot="private" virt="non-virtual"><scope>GAME_TIME</scope><name>_monoBehaviour</name></member>
+      <member refid="class_g_a_m_e___t_i_m_e_1a9fc09a7843e4505d70ad3012e97fa8b2" prot="private" virt="non-virtual"><scope>GAME_TIME</scope><name>_startGameTime</name></member>
+      <member refid="class_g_a_m_e___t_i_m_e_1a5271c18ae9900783bf560a10ba72e4db" prot="private" virt="non-virtual"><scope>GAME_TIME</scope><name>_tempTimeData</name></member>
+      <member refid="class_g_a_m_e___t_i_m_e_1a2af53d7e01528b0d17493b79cd48d0c6" prot="private" virt="non-virtual"><scope>GAME_TIME</scope><name>_timeRate</name></member>
+      <member refid="class_g_a_m_e___t_i_m_e_1a695183069a644d394d1616922d9371ef" prot="private" virt="non-virtual"><scope>GAME_TIME</scope><name>_transitionTimeCount</name></member>
+      <member refid="class_g_a_m_e___t_i_m_e_1a92336752bfd1a63fd272a2308afac406" prot="private" virt="non-virtual"><scope>GAME_TIME</scope><name>Awake</name></member>
+      <member refid="class_g_a_m_e___t_i_m_e_1ad52a7662372dbf78f03816e078690a65" prot="private" virt="non-virtual"><scope>GAME_TIME</scope><name>FadeTime</name></member>
+      <member refid="class_g_a_m_e___t_i_m_e_1a7a2f26b8bb22df9cd9ac76e7a575829d" prot="public" virt="non-virtual"><scope>GAME_TIME</scope><name>GameDeltaTime</name></member>
+      <member refid="class_g_a_m_e___t_i_m_e_1ab035574ac9c6f2c98c9059847e29c376" prot="public" virt="non-virtual"><scope>GAME_TIME</scope><name>GameTime</name></member>
+      <member refid="class_g_a_m_e___t_i_m_e_1a3f339fb178bb61748069a45bdd01fbce" prot="public" virt="non-virtual"><scope>GAME_TIME</scope><name>GetCurrentTimeRate</name></member>
+      <member refid="class_g_a_m_e___t_i_m_e_1a40f602a749178d119ca5de4741767981" prot="public" virt="non-virtual"><scope>GAME_TIME</scope><name>IsTimeStopped</name></member>
+      <member refid="class_g_a_m_e___t_i_m_e_1a692f5da8ff93b7a72b3e47d57199da39" prot="public" virt="non-virtual"><scope>GAME_TIME</scope><name>OnTimeRateChange</name></member>
+      <member refid="class_g_a_m_e___t_i_m_e_1a32d5157027f472b6fa6145e480d5fb06" prot="public" virt="non-virtual"><scope>GAME_TIME</scope><name>Pause</name></member>
+      <member refid="class_g_a_m_e___t_i_m_e_1a9439eaf519ad7257da9988dc50fd9526" prot="public" virt="non-virtual"><scope>GAME_TIME</scope><name>Play</name></member>
+      <member refid="class_g_a_m_e___t_i_m_e_1a2006867846ae771dbaef61aef3d63307" prot="private" virt="non-virtual"><scope>GAME_TIME</scope><name>SetTime</name></member>
+      <member refid="class_g_a_m_e___t_i_m_e_1aece43eb83e1c872a9f1fefb5c9059711" prot="public" virt="non-virtual"><scope>GAME_TIME</scope><name>SetTimeStep</name></member>
+      <member refid="class_g_a_m_e___t_i_m_e_1a00afca856ef322117a173af69fd36b22" prot="public" virt="non-virtual"><scope>GAME_TIME</scope><name>TimePlayed</name></member>
+      <member refid="class_g_a_m_e___t_i_m_e_1a3ed622ad27f80cd8b8e9051cf26a2d9c" prot="private" virt="non-virtual"><scope>GAME_TIME</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

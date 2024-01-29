@@ -1,0 +1,335 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_indicatable" kind="class" language="C#" prot="public">
+    <compoundname>Indicatable</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_indicatable_1a80a680a1c0c65acbf88b8f04b781c513" prot="private" static="no" mutable="no">
+        <type>Renderer</type>
+        <definition>Renderer Indicatable.rend</definition>
+        <argsstring></argsstring>
+        <name>rend</name>
+        <qualifiedname>Indicatable.rend</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" line="6" column="23" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_indicatable_1a59958525a284b043402d375912a85aaa" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Indicatable.toggleOnVis</definition>
+        <argsstring></argsstring>
+        <name>toggleOnVis</name>
+        <qualifiedname>Indicatable.toggleOnVis</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" line="7" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_indicatable_1a6a88de18eea4d17ce1b458a175a4c896" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Indicatable.clickable</definition>
+        <argsstring></argsstring>
+        <name>clickable</name>
+        <qualifiedname>Indicatable.clickable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" line="8" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_indicatable_1a7ae5785b3be9209c8ffa62589de3cd40" prot="private" static="no" mutable="no">
+        <type><ref refid="class_indicator" kindref="compound">Indicator</ref></type>
+        <definition>Indicator Indicatable.currentIndicator</definition>
+        <argsstring></argsstring>
+        <name>currentIndicator</name>
+        <qualifiedname>Indicatable.currentIndicator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" line="9" column="23" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_indicatable_1adccc5622639e0422b9583406422a1ed0" prot="private" static="no" mutable="no">
+        <type>Sprite</type>
+        <definition>Sprite Indicatable.artWork</definition>
+        <argsstring></argsstring>
+        <name>artWork</name>
+        <qualifiedname>Indicatable.artWork</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" line="10" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_indicatable_1aa968e2b213641c437b0595b56f16e546" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Indicatable.lifetime</definition>
+        <argsstring></argsstring>
+        <name>lifetime</name>
+        <qualifiedname>Indicatable.lifetime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" line="11" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_indicatable_1acb71144f0d8de2b7eda8260a6f45199a" prot="private" static="no" mutable="no">
+        <type>Action</type>
+        <definition>Action Indicatable.onClickAction</definition>
+        <argsstring></argsstring>
+        <name>onClickAction</name>
+        <qualifiedname>Indicatable.onClickAction</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" line="12" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_indicatable_1ab939167f39c324fe5a1b205a2bb8a334" prot="public" static="no" mutable="no">
+        <type>Action</type>
+        <definition>Action Indicatable.OnVisible</definition>
+        <argsstring></argsstring>
+        <name>OnVisible</name>
+        <qualifiedname>Indicatable.OnVisible</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" line="14" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_indicatable_1ab59ee79b76f4cf0ff01118e2ad3b0293" prot="public" static="no" mutable="no">
+        <type>Action</type>
+        <definition>Action Indicatable.OnInvisible</definition>
+        <argsstring></argsstring>
+        <name>OnInvisible</name>
+        <qualifiedname>Indicatable.OnInvisible</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" line="15" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_indicatable_1a0435d7540c675afc2aa2df710ff26dbd" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>Renderer</type>
+        <definition>Renderer Indicatable.Rend</definition>
+        <argsstring></argsstring>
+        <name>Rend</name>
+        <qualifiedname>Indicatable.Rend</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" line="17" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" bodystart="17" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="property" id="class_indicatable_1add3f7faf1cc961f5fd4212d4a955dc5c" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>Sprite</type>
+        <definition>Sprite Indicatable.ArtWork</definition>
+        <argsstring></argsstring>
+        <name>ArtWork</name>
+        <qualifiedname>Indicatable.ArtWork</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" line="18" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" bodystart="18" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="property" id="class_indicatable_1a748c8355d12163699b936ef0fd72a7e4" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>float</type>
+        <definition>float Indicatable.Lifetime</definition>
+        <argsstring></argsstring>
+        <name>Lifetime</name>
+        <qualifiedname>Indicatable.Lifetime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" line="19" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" bodystart="19" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="property" id="class_indicatable_1a5ea3d90c5348468ab1b7a349c7d4e13e" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool Indicatable.Clickable</definition>
+        <argsstring></argsstring>
+        <name>Clickable</name>
+        <qualifiedname>Indicatable.Clickable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" line="20" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" bodystart="20" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="property" id="class_indicatable_1adb9bf8e97b9956d7aee4a0708335f81b" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>Action</type>
+        <definition>Action Indicatable.OnClickAction</definition>
+        <argsstring></argsstring>
+        <name>OnClickAction</name>
+        <qualifiedname>Indicatable.OnClickAction</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" line="21" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" bodystart="21" bodyend="21"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_indicatable_1a4c31677f5902b9195b3683323f3aa0a7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Indicatable.Init</definition>
+        <argsstring>(Sprite art, Action action=null, float lifetime=0, bool clickable=false)</argsstring>
+        <name>Init</name>
+        <qualifiedname>Indicatable.Init</qualifiedname>
+        <param>
+          <type>Sprite</type>
+          <declname>art</declname>
+        </param>
+        <param>
+          <type>Action</type>
+          <declname>action</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>lifetime</declname>
+          <defval>0</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>clickable</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" line="23" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" bodystart="23" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="class_indicatable_1a805ddf00e89890c3e664a80dbffe3766" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Indicatable.SetCurrentIndicator</definition>
+        <argsstring>()</argsstring>
+        <name>SetCurrentIndicator</name>
+        <qualifiedname>Indicatable.SetCurrentIndicator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" line="62" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" bodystart="62" bodyend="65"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_indicatable_1aa6ce234327a93feef61b463f507a59c5" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Indicatable.OnBecameVisible</definition>
+        <argsstring>()</argsstring>
+        <name>OnBecameVisible</name>
+        <qualifiedname>Indicatable.OnBecameVisible</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" line="31" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" bodystart="31" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="class_indicatable_1a4facddf4376885975499bd90a8620044" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Indicatable.OnBecameInvisible</definition>
+        <argsstring>()</argsstring>
+        <name>OnBecameInvisible</name>
+        <qualifiedname>Indicatable.OnBecameInvisible</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" line="48" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" bodystart="48" bodyend="57"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>Indicatable</label>
+        <link refid="class_indicatable"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>Indicatable</label>
+        <link refid="class_indicatable"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" line="4" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/Indicator/Indicatable.cs" bodystart="5" bodyend="68"/>
+    <listofallmembers>
+      <member refid="class_indicatable_1adccc5622639e0422b9583406422a1ed0" prot="private" virt="non-virtual"><scope>Indicatable</scope><name>artWork</name></member>
+      <member refid="class_indicatable_1add3f7faf1cc961f5fd4212d4a955dc5c" prot="public" virt="non-virtual"><scope>Indicatable</scope><name>ArtWork</name></member>
+      <member refid="class_indicatable_1a6a88de18eea4d17ce1b458a175a4c896" prot="private" virt="non-virtual"><scope>Indicatable</scope><name>clickable</name></member>
+      <member refid="class_indicatable_1a5ea3d90c5348468ab1b7a349c7d4e13e" prot="public" virt="non-virtual"><scope>Indicatable</scope><name>Clickable</name></member>
+      <member refid="class_indicatable_1a7ae5785b3be9209c8ffa62589de3cd40" prot="private" virt="non-virtual"><scope>Indicatable</scope><name>currentIndicator</name></member>
+      <member refid="class_indicatable_1a4c31677f5902b9195b3683323f3aa0a7" prot="public" virt="non-virtual"><scope>Indicatable</scope><name>Init</name></member>
+      <member refid="class_indicatable_1aa968e2b213641c437b0595b56f16e546" prot="private" virt="non-virtual"><scope>Indicatable</scope><name>lifetime</name></member>
+      <member refid="class_indicatable_1a748c8355d12163699b936ef0fd72a7e4" prot="public" virt="non-virtual"><scope>Indicatable</scope><name>Lifetime</name></member>
+      <member refid="class_indicatable_1a4facddf4376885975499bd90a8620044" prot="private" virt="non-virtual"><scope>Indicatable</scope><name>OnBecameInvisible</name></member>
+      <member refid="class_indicatable_1aa6ce234327a93feef61b463f507a59c5" prot="private" virt="non-virtual"><scope>Indicatable</scope><name>OnBecameVisible</name></member>
+      <member refid="class_indicatable_1acb71144f0d8de2b7eda8260a6f45199a" prot="private" virt="non-virtual"><scope>Indicatable</scope><name>onClickAction</name></member>
+      <member refid="class_indicatable_1adb9bf8e97b9956d7aee4a0708335f81b" prot="public" virt="non-virtual"><scope>Indicatable</scope><name>OnClickAction</name></member>
+      <member refid="class_indicatable_1ab59ee79b76f4cf0ff01118e2ad3b0293" prot="public" virt="non-virtual"><scope>Indicatable</scope><name>OnInvisible</name></member>
+      <member refid="class_indicatable_1ab939167f39c324fe5a1b205a2bb8a334" prot="public" virt="non-virtual"><scope>Indicatable</scope><name>OnVisible</name></member>
+      <member refid="class_indicatable_1a80a680a1c0c65acbf88b8f04b781c513" prot="private" virt="non-virtual"><scope>Indicatable</scope><name>rend</name></member>
+      <member refid="class_indicatable_1a0435d7540c675afc2aa2df710ff26dbd" prot="public" virt="non-virtual"><scope>Indicatable</scope><name>Rend</name></member>
+      <member refid="class_indicatable_1a805ddf00e89890c3e664a80dbffe3766" prot="public" virt="non-virtual"><scope>Indicatable</scope><name>SetCurrentIndicator</name></member>
+      <member refid="class_indicatable_1a59958525a284b043402d375912a85aaa" prot="private" virt="non-virtual"><scope>Indicatable</scope><name>toggleOnVis</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

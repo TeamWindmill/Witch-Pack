@@ -1,0 +1,312 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_ability_upgrade_u_i" kind="class" language="C#" prot="public">
+    <compoundname>AbilityUpgradeUI</compoundname>
+    <basecompoundref refid="class_clickable_u_i_element" prot="public" virt="non-virtual">ClickableUIElement</basecompoundref>
+      <sectiondef kind="event">
+      <memberdef kind="event" id="class_ability_upgrade_u_i_1aac420ca7c5c34943377b7d2463fa987e" prot="public" static="no" add="no" remove="no" raise="no">
+        <type>Action&lt; <ref refid="class_base_ability" kindref="compound">BaseAbility</ref> &gt;</type>
+        <definition>Action&lt;BaseAbility&gt; AbilityUpgradeUI.OnAbilityClick</definition>
+        <argsstring></argsstring>
+        <name>OnAbilityClick</name>
+        <qualifiedname>AbilityUpgradeUI.OnAbilityClick</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUpgradeUI.cs" line="8" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUpgradeUI.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_ability_upgrade_u_i_1aff92256fcbc2fe9154a76bf55c150d6a" prot="private" static="no" mutable="no">
+        <type>Image</type>
+        <definition>Image AbilityUpgradeUI.bg</definition>
+        <argsstring></argsstring>
+        <name>bg</name>
+        <qualifiedname>AbilityUpgradeUI.bg</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUpgradeUI.cs" line="10" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUpgradeUI.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ability_upgrade_u_i_1a58bee6b918af7efe92bd09b28a581b6d" prot="private" static="no" mutable="no">
+        <type>Image</type>
+        <definition>Image AbilityUpgradeUI.lockedBg</definition>
+        <argsstring></argsstring>
+        <name>lockedBg</name>
+        <qualifiedname>AbilityUpgradeUI.lockedBg</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUpgradeUI.cs" line="11" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUpgradeUI.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ability_upgrade_u_i_1a6a9004e5efb40c88a2972a496f299f3b" prot="private" static="no" mutable="no">
+        <type>Image</type>
+        <definition>Image AbilityUpgradeUI.frame</definition>
+        <argsstring></argsstring>
+        <name>frame</name>
+        <qualifiedname>AbilityUpgradeUI.frame</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUpgradeUI.cs" line="12" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUpgradeUI.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ability_upgrade_u_i_1abdd58679f20db3b946013333af912974" prot="private" static="no" mutable="no">
+        <type>Image</type>
+        <definition>Image AbilityUpgradeUI.abilitySprite</definition>
+        <argsstring></argsstring>
+        <name>abilitySprite</name>
+        <qualifiedname>AbilityUpgradeUI.abilitySprite</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUpgradeUI.cs" line="13" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUpgradeUI.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ability_upgrade_u_i_1a312e830c9ca17c60016e1453bed3d3bc" prot="private" static="no" mutable="no">
+        <type>Sprite</type>
+        <definition>Sprite AbilityUpgradeUI.upgradeReadyFrameSprite</definition>
+        <argsstring></argsstring>
+        <name>upgradeReadyFrameSprite</name>
+        <qualifiedname>AbilityUpgradeUI.upgradeReadyFrameSprite</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUpgradeUI.cs" line="15" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUpgradeUI.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ability_upgrade_u_i_1a79c48d4a21f54d27cc7365e4e209090d" prot="private" static="no" mutable="no">
+        <type>Sprite</type>
+        <definition>Sprite AbilityUpgradeUI.defaultFrameSprite</definition>
+        <argsstring></argsstring>
+        <name>defaultFrameSprite</name>
+        <qualifiedname>AbilityUpgradeUI.defaultFrameSprite</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUpgradeUI.cs" line="16" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUpgradeUI.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ability_upgrade_u_i_1a71c402f23e0156e6f81420f3969116de" prot="private" static="no" mutable="no">
+        <type><ref refid="class_base_ability" kindref="compound">BaseAbility</ref></type>
+        <definition>BaseAbility AbilityUpgradeUI._baseAbility</definition>
+        <argsstring></argsstring>
+        <name>_baseAbility</name>
+        <qualifiedname>AbilityUpgradeUI._baseAbility</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUpgradeUI.cs" line="18" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUpgradeUI.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_ability_upgrade_u_i_1a6903c28ac8d31296eb619618008f91d1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AbilityUpgradeUI.Init</definition>
+        <argsstring>(BaseAbility ability)</argsstring>
+        <name>Init</name>
+        <qualifiedname>AbilityUpgradeUI.Init</qualifiedname>
+        <param>
+          <type><ref refid="class_base_ability" kindref="compound">BaseAbility</ref></type>
+          <declname>ability</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUpgradeUI.cs" line="21" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUpgradeUI.cs" bodystart="21" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ability_upgrade_u_i_1ad5f1be2321ef85dc74c2e2f82997d1a3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void AbilityUpgradeUI.Show</definition>
+        <argsstring>()</argsstring>
+        <name>Show</name>
+        <qualifiedname>AbilityUpgradeUI.Show</qualifiedname>
+        <reimplements refid="class_u_i_element_1a71cc42a801a53704f4dd442227f98af8">Show</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUpgradeUI.cs" line="27" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUpgradeUI.cs" bodystart="27" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ability_upgrade_u_i_1a96266c5ad93602c7680355e97e91ffe4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void AbilityUpgradeUI.Hide</definition>
+        <argsstring>()</argsstring>
+        <name>Hide</name>
+        <qualifiedname>AbilityUpgradeUI.Hide</qualifiedname>
+        <reimplements refid="class_u_i_element_1a24b82c821a63e118fea9f8f15f6cf160">Hide</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUpgradeUI.cs" line="47" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUpgradeUI.cs" bodystart="47" bodyend="50"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_ability_upgrade_u_i_1a381d4ff3f9ba7aa4fe2b6800b229f532" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void AbilityUpgradeUI.OnClick</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnClick</name>
+        <qualifiedname>AbilityUpgradeUI.OnClick</qualifiedname>
+        <reimplements refid="class_clickable_u_i_element_1a09584a1be77d48508280178a3dbb5351">OnClick</reimplements>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUpgradeUI.cs" line="58" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUpgradeUI.cs" bodystart="58" bodyend="71"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>AbilityUpgradeUI</label>
+        <link refid="class_ability_upgrade_u_i"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ClickableUIElement</label>
+        <link refid="class_clickable_u_i_element"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>IPointerClickHandler</label>
+      </node>
+      <node id="5">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="6">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="4">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="3">
+        <label>UIElement</label>
+        <link refid="class_u_i_element"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>AbilityUpgradeUI</label>
+        <link refid="class_ability_upgrade_u_i"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ClickableUIElement</label>
+        <link refid="class_clickable_u_i_element"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>IPointerClickHandler</label>
+      </node>
+      <node id="5">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="6">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="4">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="3">
+        <label>UIElement</label>
+        <link refid="class_u_i_element"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUpgradeUI.cs" line="6" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUpgradeUI.cs" bodystart="7" bodyend="72"/>
+    <listofallmembers>
+      <member refid="class_ability_upgrade_u_i_1a71c402f23e0156e6f81420f3969116de" prot="private" virt="non-virtual"><scope>AbilityUpgradeUI</scope><name>_baseAbility</name></member>
+      <member refid="class_ability_upgrade_u_i_1abdd58679f20db3b946013333af912974" prot="private" virt="non-virtual"><scope>AbilityUpgradeUI</scope><name>abilitySprite</name></member>
+      <member refid="class_u_i_element_1a2598524d3cda2b31cdb4e7d98c6c5929" prot="protected" virt="virtual"><scope>AbilityUpgradeUI</scope><name>Awake</name></member>
+      <member refid="class_ability_upgrade_u_i_1aff92256fcbc2fe9154a76bf55c150d6a" prot="private" virt="non-virtual"><scope>AbilityUpgradeUI</scope><name>bg</name></member>
+      <member refid="class_ability_upgrade_u_i_1a79c48d4a21f54d27cc7365e4e209090d" prot="private" virt="non-virtual"><scope>AbilityUpgradeUI</scope><name>defaultFrameSprite</name></member>
+      <member refid="class_ability_upgrade_u_i_1a6a9004e5efb40c88a2972a496f299f3b" prot="private" virt="non-virtual"><scope>AbilityUpgradeUI</scope><name>frame</name></member>
+      <member refid="class_ability_upgrade_u_i_1a96266c5ad93602c7680355e97e91ffe4" prot="public" virt="virtual"><scope>AbilityUpgradeUI</scope><name>Hide</name></member>
+      <member refid="class_ability_upgrade_u_i_1a6903c28ac8d31296eb619618008f91d1" prot="public" virt="non-virtual"><scope>AbilityUpgradeUI</scope><name>Init</name></member>
+      <member refid="class_u_i_element_1a921de5874669c81d347319daf6836d4e" prot="protected" virt="non-virtual"><scope>AbilityUpgradeUI</scope><name>isMouseOver</name></member>
+      <member refid="class_ability_upgrade_u_i_1a58bee6b918af7efe92bd09b28a581b6d" prot="private" virt="non-virtual"><scope>AbilityUpgradeUI</scope><name>lockedBg</name></member>
+      <member refid="class_ability_upgrade_u_i_1aac420ca7c5c34943377b7d2463fa987e" prot="public" virt="non-virtual"><scope>AbilityUpgradeUI</scope><name>OnAbilityClick</name></member>
+      <member refid="class_ability_upgrade_u_i_1a381d4ff3f9ba7aa4fe2b6800b229f532" prot="protected" virt="virtual"><scope>AbilityUpgradeUI</scope><name>OnClick</name></member>
+      <member refid="class_clickable_u_i_element_1ad0acfe49f88a9178cb1cdd27eec26129" prot="public" virt="non-virtual"><scope>AbilityUpgradeUI</scope><name>OnClickEvent</name></member>
+      <member refid="class_clickable_u_i_element_1a67b1c871bb67d64364dfda29ccc979fe" prot="protected" virt="virtual"><scope>AbilityUpgradeUI</scope><name>OnDisable</name></member>
+      <member refid="class_clickable_u_i_element_1a81dd5d0a87be09dfaf6221a552ca6f6f" prot="protected" virt="virtual"><scope>AbilityUpgradeUI</scope><name>OnDoubleClick</name></member>
+      <member refid="class_clickable_u_i_element_1ae69de51d56ff92c84bdb79bda89fc765" prot="public" virt="non-virtual"><scope>AbilityUpgradeUI</scope><name>OnDoubleClickEvent</name></member>
+      <member refid="class_clickable_u_i_element_1a063feae7d6c0f3d86d70272c2c5ae395" prot="public" virt="non-virtual"><scope>AbilityUpgradeUI</scope><name>OnEnter</name></member>
+      <member refid="class_clickable_u_i_element_1a02ae25a2c18d2a1e54e55c71f9314f71" prot="public" virt="non-virtual"><scope>AbilityUpgradeUI</scope><name>OnExit</name></member>
+      <member refid="class_clickable_u_i_element_1a4d7c1b5b773d280021e5ad8928b16400" prot="public" virt="non-virtual"><scope>AbilityUpgradeUI</scope><name>OnPointerClick</name></member>
+      <member refid="class_clickable_u_i_element_1a31b399415af82e73171579d81547b839" prot="public" virt="virtual"><scope>AbilityUpgradeUI</scope><name>OnPointerEnter</name></member>
+      <member refid="class_clickable_u_i_element_1a10f8b01cbe05882efec128490f892cb9" prot="public" virt="virtual"><scope>AbilityUpgradeUI</scope><name>OnPointerExit</name></member>
+      <member refid="class_u_i_element_1a6dd0e428ea7447dcf73f9c55058bef12" prot="public" virt="non-virtual"><scope>AbilityUpgradeUI</scope><name>RectTransform</name></member>
+      <member refid="class_u_i_element_1a3fee91bfa7a1d6c7234132478e09e13a" prot="protected" virt="non-virtual"><scope>AbilityUpgradeUI</scope><name>rectTransform</name></member>
+      <member refid="class_ability_upgrade_u_i_1ad5f1be2321ef85dc74c2e2f82997d1a3" prot="public" virt="virtual"><scope>AbilityUpgradeUI</scope><name>Show</name></member>
+      <member refid="class_u_i_element_1a5cec5ca3592e71bd009fb5913b1a299c" prot="protected" virt="non-virtual"><scope>AbilityUpgradeUI</scope><name>uiGroup</name></member>
+      <member refid="class_u_i_element_1ab917d89f32b29fa271cbbfb60f750a13" prot="public" virt="virtual"><scope>AbilityUpgradeUI</scope><name>UpdateVisual</name></member>
+      <member refid="class_ability_upgrade_u_i_1a312e830c9ca17c60016e1453bed3d3bc" prot="private" virt="non-virtual"><scope>AbilityUpgradeUI</scope><name>upgradeReadyFrameSprite</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

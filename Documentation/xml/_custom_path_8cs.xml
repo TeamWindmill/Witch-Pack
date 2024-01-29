@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="_custom_path_8cs" kind="file" language="C#">
+    <compoundname>CustomPath.cs</compoundname>
+    <innerclass refid="class_custom_path" prot="public">CustomPath</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using<sp/></highlight><highlight class="normal">System.Collections;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">System.Collections.Generic;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">UnityEngine;</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">Sirenix.OdinInspector;</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="class_custom_path" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_custom_path" kindref="compound">CustomPath</ref><sp/>:<sp/>MonoBehaviour</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//enemies<sp/>will<sp/>spawn<sp/>according<sp/>to<sp/>which<sp/>path<sp/>they<sp/>are<sp/>going<sp/>to<sp/>follow,<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//when<sp/>a<sp/>shaman<sp/>enters<sp/>the<sp/>enemies<sp/>detection<sp/>range<sp/>rng<sp/>to<sp/>see<sp/>if<sp/>it<sp/>aggros<sp/>it</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//when<sp/>the<sp/>shaman<sp/>target<sp/>cannot<sp/>be<sp/>detected<sp/>anymore<sp/>return<sp/>to<sp/>the<sp/>current<sp/>waypoint<sp/>on<sp/>the<sp/>assigned<sp/>path<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//assign<sp/>wayoints<sp/>from<sp/>inspecotor<sp/>-&gt;<sp/>curves<sp/>and<sp/>turns<sp/>need<sp/>to<sp/>be<sp/>expressed<sp/>with<sp/>more<sp/>wayponits<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField,<sp/>TabGroup(</highlight><highlight class="stringliteral">&quot;Way<sp/>Points&quot;</highlight><highlight class="normal">)]<sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>List&lt;Transform&gt;<sp/>waypoints<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>List&lt;Transform&gt;();</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>List&lt;Transform&gt;<sp/>Waypoints<sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>=&gt;<sp/>waypoints;<sp/>}</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/CustomPath.cs"/>
+  </compounddef>
+</doxygen>

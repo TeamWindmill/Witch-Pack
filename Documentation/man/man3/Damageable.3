@@ -1,0 +1,60 @@
+.TH "Damageable" 3 "Mon Jan 29 2024" "Version 0.096" "WitchPack" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Damageable
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBDamageable\fP (\fBBaseUnit\fP owner)"
+.br
+.ti -1c
+.RI "void \fBGetHit\fP (\fBDamageDealer\fP dealer, \fBBaseAbility\fP ability)"
+.br
+.ti -1c
+.RI "void \fBTakeDamage\fP (\fBDamageHandler\fP handler, \fBDamageDealer\fP dealer, \fBBaseAbility\fP attack)"
+.br
+.ti -1c
+.RI "void \fBTakeFlatDamage\fP (int amount)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "Action< \fBDamageable\fP, \fBDamageDealer\fP, \fBDamageHandler\fP, \fBBaseAbility\fP, bool > \fBOnGetHit\fP"
+.br
+.ti -1c
+.RI "Action< \fBDamageable\fP, \fBDamageDealer\fP, \fBDamageHandler\fP, \fBBaseAbility\fP > \fBOnDamageCalc\fP"
+.br
+.ti -1c
+.RI "Action< \fBDamageable\fP, \fBDamageDealer\fP, \fBDamageHandler\fP, \fBBaseAbility\fP > \fBOnDeath\fP"
+.br
+.ti -1c
+.RI "Action \fBOnDeathGFX\fP"
+.br
+.ti -1c
+.RI "Action< bool > \fBOnHitGFX\fP"
+.br
+.in -1c
+.SS "Properties"
+
+.in +1c
+.ti -1c
+.RI "int \fBMaxHp\fP\fC [get]\fP"
+.br
+.ti -1c
+.RI "int \fBCurrentHp\fP\fC [get]\fP"
+.br
+.ti -1c
+.RI "\fBBaseUnit\fP \fBOwner\fP\fC [get]\fP"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for WitchPack from the source code\&.

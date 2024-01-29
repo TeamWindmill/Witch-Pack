@@ -1,0 +1,60 @@
+.TH "SelectionManager" 3 "Mon Jan 29 2024" "Version 0.096" "WitchPack" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SelectionManager
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBMonoSingleton< SelectionManager >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBSetSelectedShaman\fP (\fBShaman\fP selectedShaman, SelectionType selectMode)"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "override void \fBAwake\fP ()"
+.br
+.in -1c
+.SS "Properties"
+
+.in +1c
+.ti -1c
+.RI "SelectionType \fBSelectMode\fP\fC [get]\fP"
+.br
+.ti -1c
+.RI "\fBShaman\fP \fBSelectedShaman\fP\fC [get]\fP"
+.br
+.ti -1c
+.RI "\fBShadow\fP \fBShadow\fP\fC [get]\fP"
+.br
+.in -1c
+.SS "Events"
+
+.in +1c
+.ti -1c
+.RI "Action< \fBShaman\fP > \fBOnShamanMoveSelect\fP"
+.br
+.ti -1c
+.RI "Action< \fBShaman\fP > \fBOnShamanInfoSelect\fP"
+.br
+.ti -1c
+.RI "Action< \fBShaman\fP > \fBOnShamanDeselected\fP"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "override void SelectionManager\&.Awake ()\fC [protected]\fP, \fC [virtual]\fP"
+
+.PP
+Reimplemented from \fBMonoSingleton< SelectionManager >\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for WitchPack from the source code\&.

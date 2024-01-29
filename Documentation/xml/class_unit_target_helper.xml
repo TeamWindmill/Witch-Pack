@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_unit_target_helper" kind="class" language="C#" prot="public">
+    <compoundname>UnitTargetHelper</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_unit_target_helper_1a18acc9ce1f36863d0f1e836bc95f880c" prot="private" static="no" mutable="no">
+        <type><ref refid="class_base_unit" kindref="compound">BaseUnit</ref></type>
+        <definition>BaseUnit UnitTargetHelper.owner</definition>
+        <argsstring></argsstring>
+        <name>owner</name>
+        <qualifiedname>UnitTargetHelper.owner</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/UnitTargetHelper.cs" line="7" column="22" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/UnitTargetHelper.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="event">
+      <memberdef kind="event" id="class_unit_target_helper_1a60f662051ca2334ee0a22caee146702a" prot="public" static="no" add="no" remove="no" raise="no">
+        <type>Action&lt; <ref refid="class_base_unit" kindref="compound">BaseUnit</ref> &gt;</type>
+        <definition>Action&lt;BaseUnit&gt; UnitTargetHelper.OnTarget</definition>
+        <argsstring></argsstring>
+        <name>OnTarget</name>
+        <qualifiedname>UnitTargetHelper.OnTarget</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/UnitTargetHelper.cs" line="9" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/UnitTargetHelper.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_unit_target_helper_1ae0886bd46ba52623fab997735dcbf70b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>UnitTargetHelper.UnitTargetHelper</definition>
+        <argsstring>(BaseUnit givenOwner)</argsstring>
+        <name>UnitTargetHelper</name>
+        <qualifiedname>UnitTargetHelper.UnitTargetHelper</qualifiedname>
+        <param>
+          <type><ref refid="class_base_unit" kindref="compound">BaseUnit</ref></type>
+          <declname>givenOwner</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/UnitTargetHelper.cs" line="11" column="12" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/UnitTargetHelper.cs" bodystart="11" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="class_unit_target_helper_1aba270776dd24d9b3b2f2296a1b25bd24" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_base_unit" kindref="compound">BaseUnit</ref></type>
+        <definition>BaseUnit UnitTargetHelper.GetTarget</definition>
+        <argsstring>(List&lt; BaseUnit &gt; targets, TargetData givenData, List&lt; BaseUnit &gt; targetsToAvoid=null, StatType stat=StatType.AttackSpeed)</argsstring>
+        <name>GetTarget</name>
+        <qualifiedname>UnitTargetHelper.GetTarget</qualifiedname>
+        <param>
+          <type>List&lt; <ref refid="class_base_unit" kindref="compound">BaseUnit</ref> &gt;</type>
+          <declname>targets</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_target_data" kindref="compound">TargetData</ref></type>
+          <declname>givenData</declname>
+        </param>
+        <param>
+          <type>List&lt; <ref refid="class_base_unit" kindref="compound">BaseUnit</ref> &gt;</type>
+          <declname>targetsToAvoid</declname>
+          <defval>null</defval>
+        </param>
+        <param>
+          <type>StatType</type>
+          <declname>stat</declname>
+          <defval>StatType.AttackSpeed</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/UnitTargetHelper.cs" line="17" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/UnitTargetHelper.cs" bodystart="17" bodyend="41"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_unit_target_helper_1aee560cab782af7ce72127584f9de7a9a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_base_unit" kindref="compound">BaseUnit</ref></type>
+        <definition>BaseUnit UnitTargetHelper.GetTargetByStat</definition>
+        <argsstring>(List&lt; BaseUnit &gt; targets, StatType givenStat, TargetMod mod, List&lt; BaseUnit &gt; targetsToAvoid=null)</argsstring>
+        <name>GetTargetByStat</name>
+        <qualifiedname>UnitTargetHelper.GetTargetByStat</qualifiedname>
+        <param>
+          <type>List&lt; <ref refid="class_base_unit" kindref="compound">BaseUnit</ref> &gt;</type>
+          <declname>targets</declname>
+        </param>
+        <param>
+          <type>StatType</type>
+          <declname>givenStat</declname>
+        </param>
+        <param>
+          <type>TargetMod</type>
+          <declname>mod</declname>
+        </param>
+        <param>
+          <type>List&lt; <ref refid="class_base_unit" kindref="compound">BaseUnit</ref> &gt;</type>
+          <declname>targetsToAvoid</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/UnitTargetHelper.cs" line="43" column="22" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/UnitTargetHelper.cs" bodystart="43" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="class_unit_target_helper_1af2574587c783c964b91602f460a3415c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_base_unit" kindref="compound">BaseUnit</ref></type>
+        <definition>BaseUnit UnitTargetHelper.GetTargetByDistance</definition>
+        <argsstring>(List&lt; BaseUnit &gt; targets, TargetMod mod, List&lt; BaseUnit &gt; targetsToAvoid=null)</argsstring>
+        <name>GetTargetByDistance</name>
+        <qualifiedname>UnitTargetHelper.GetTargetByDistance</qualifiedname>
+        <param>
+          <type>List&lt; <ref refid="class_base_unit" kindref="compound">BaseUnit</ref> &gt;</type>
+          <declname>targets</declname>
+        </param>
+        <param>
+          <type>TargetMod</type>
+          <declname>mod</declname>
+        </param>
+        <param>
+          <type>List&lt; <ref refid="class_base_unit" kindref="compound">BaseUnit</ref> &gt;</type>
+          <declname>targetsToAvoid</declname>
+          <defval>null</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/UnitTargetHelper.cs" line="66" column="22" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/UnitTargetHelper.cs" bodystart="66" bodyend="92"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/UnitTargetHelper.cs" line="5" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/UnitTargetHelper.cs" bodystart="6" bodyend="98"/>
+    <listofallmembers>
+      <member refid="class_unit_target_helper_1aba270776dd24d9b3b2f2296a1b25bd24" prot="public" virt="non-virtual"><scope>UnitTargetHelper</scope><name>GetTarget</name></member>
+      <member refid="class_unit_target_helper_1af2574587c783c964b91602f460a3415c" prot="private" virt="non-virtual"><scope>UnitTargetHelper</scope><name>GetTargetByDistance</name></member>
+      <member refid="class_unit_target_helper_1aee560cab782af7ce72127584f9de7a9a" prot="private" virt="non-virtual"><scope>UnitTargetHelper</scope><name>GetTargetByStat</name></member>
+      <member refid="class_unit_target_helper_1a60f662051ca2334ee0a22caee146702a" prot="public" virt="non-virtual"><scope>UnitTargetHelper</scope><name>OnTarget</name></member>
+      <member refid="class_unit_target_helper_1a18acc9ce1f36863d0f1e836bc95f880c" prot="private" virt="non-virtual"><scope>UnitTargetHelper</scope><name>owner</name></member>
+      <member refid="class_unit_target_helper_1ae0886bd46ba52623fab997735dcbf70b" prot="public" virt="non-virtual"><scope>UnitTargetHelper</scope><name>UnitTargetHelper</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

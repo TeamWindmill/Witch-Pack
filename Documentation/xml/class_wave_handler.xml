@@ -1,0 +1,356 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_wave_handler" kind="class" language="C#" prot="public">
+    <compoundname>WaveHandler</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="event">
+      <memberdef kind="event" id="class_wave_handler_1a89b1a9a509a8035de6a071819f390b80" prot="public" static="no" add="no" remove="no" raise="no">
+        <type>Action&lt; int &gt;</type>
+        <definition>Action&lt;int&gt; WaveHandler.OnWaveStart</definition>
+        <argsstring></argsstring>
+        <name>OnWaveStart</name>
+        <qualifiedname>WaveHandler.OnWaveStart</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" line="9" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="event" id="class_wave_handler_1a0511228ffae8cd7e22a509aac388f314" prot="public" static="no" add="no" remove="no" raise="no">
+        <type>Action&lt; int &gt;</type>
+        <definition>Action&lt;int&gt; WaveHandler.OnWaveEnd</definition>
+        <argsstring></argsstring>
+        <name>OnWaveEnd</name>
+        <qualifiedname>WaveHandler.OnWaveEnd</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" line="10" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_wave_handler_1a6554f674b436b26a2914ce1936e97c14" prot="private" static="no" mutable="no">
+        <type><ref refid="class_enemy_spawn_point" kindref="compound">EnemySpawnPoint</ref>[]</type>
+        <definition>EnemySpawnPoint [] WaveHandler.spawnPoints</definition>
+        <argsstring></argsstring>
+        <name>spawnPoints</name>
+        <qualifiedname>WaveHandler.spawnPoints</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" line="12" column="30" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_wave_handler_1aaacf4c6245e0916c1eff8abc720232ba" prot="private" static="no" mutable="no">
+        <type><ref refid="class_wave_data" kindref="compound">WaveData</ref></type>
+        <definition>WaveData WaveHandler.waveData</definition>
+        <argsstring></argsstring>
+        <name>waveData</name>
+        <qualifiedname>WaveHandler.waveData</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" line="13" column="23" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_wave_handler_1a446be458c20857f07ed654a2246d0eea" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float WaveHandler.fixedSpawnInterval</definition>
+        <argsstring></argsstring>
+        <name>fixedSpawnInterval</name>
+        <qualifiedname>WaveHandler.fixedSpawnInterval</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" line="14" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_wave_handler_1ad0510c2c6b090f32dd85c135c4cea524" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="class_enemy_spawn_data" kindref="compound">EnemySpawnData</ref> &gt;</type>
+        <definition>List&lt;EnemySpawnData&gt; WaveHandler.spawnData</definition>
+        <argsstring></argsstring>
+        <name>spawnData</name>
+        <qualifiedname>WaveHandler.spawnData</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" line="15" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_wave_handler_1a83d4e1aef9ff86351deef8fc47091b5d" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int WaveHandler._currentWave</definition>
+        <argsstring></argsstring>
+        <name>_currentWave</name>
+        <qualifiedname>WaveHandler._currentWave</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" line="16" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_wave_handler_1a6205be37f8df3586008fc2732da3088a" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool WaveHandler.skipFlag</definition>
+        <argsstring></argsstring>
+        <name>skipFlag</name>
+        <qualifiedname>WaveHandler.skipFlag</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" line="17" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_wave_handler_1a93959edbb37dbf8abeef604b78d5662b" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int WaveHandler.doneSpawningCounter</definition>
+        <argsstring></argsstring>
+        <name>doneSpawningCounter</name>
+        <qualifiedname>WaveHandler.doneSpawningCounter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" line="18" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_wave_handler_1a08cc09589bb19a1668f8c81a5bb4bcc7" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int WaveHandler.CurrentWave</definition>
+        <argsstring></argsstring>
+        <name>CurrentWave</name>
+        <qualifiedname>WaveHandler.CurrentWave</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" line="19" column="16" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_wave_handler_1a3e8b3a5aa57b0601c8472aaa22ead85a" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int WaveHandler.TotalWaves</definition>
+        <argsstring></argsstring>
+        <name>TotalWaves</name>
+        <qualifiedname>WaveHandler.TotalWaves</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" line="20" column="16" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_wave_handler_1a168db9fddc23e9a74009e517876a0f08" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void WaveHandler.Init</definition>
+        <argsstring>()</argsstring>
+        <name>Init</name>
+        <qualifiedname>WaveHandler.Init</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" line="23" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" bodystart="23" bodyend="39"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_wave_handler_1a3e47c1cb61c23da9d6ce64cda0580841" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator WaveHandler.StartSpawningWaves</definition>
+        <argsstring>()</argsstring>
+        <name>StartSpawningWaves</name>
+        <qualifiedname>WaveHandler.StartSpawningWaves</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" line="41" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" bodystart="41" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="class_wave_handler_1ada612fa4b1224acfd5c79148f197d8e4" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator WaveHandler.SpawnWave</definition>
+        <argsstring>(EnemySpawnData givenData)</argsstring>
+        <name>SpawnWave</name>
+        <qualifiedname>WaveHandler.SpawnWave</qualifiedname>
+        <param>
+          <type><ref refid="class_enemy_spawn_data" kindref="compound">EnemySpawnData</ref></type>
+          <declname>givenData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" line="69" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" bodystart="69" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="class_wave_handler_1ab730d951767b77c7d3bdfd8ba43d24fb" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator WaveHandler.SpawnGroupInterval</definition>
+        <argsstring>(EnemyGroup givenGroup)</argsstring>
+        <name>SpawnGroupInterval</name>
+        <qualifiedname>WaveHandler.SpawnGroupInterval</qualifiedname>
+        <param>
+          <type><ref refid="struct_enemy_group" kindref="compound">EnemyGroup</ref></type>
+          <declname>givenGroup</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" line="87" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" bodystart="87" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="class_wave_handler_1a646552e6fb8c24298ae978de4da7aac8" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_enemy_spawn_point" kindref="compound">EnemySpawnPoint</ref></type>
+        <definition>EnemySpawnPoint WaveHandler.GetSpawnPointFromIndex</definition>
+        <argsstring>(int index)</argsstring>
+        <name>GetSpawnPointFromIndex</name>
+        <qualifiedname>WaveHandler.GetSpawnPointFromIndex</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" line="107" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" bodystart="107" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="class_wave_handler_1a3640d462ae84eac65eff9dcac569cd65" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator WaveHandler.IntervalDelay</definition>
+        <argsstring>(float givenInterval)</argsstring>
+        <name>IntervalDelay</name>
+        <qualifiedname>WaveHandler.IntervalDelay</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>givenInterval</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" line="123" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" bodystart="123" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="class_wave_handler_1a5ca063b7e5817cfa983cb44fbbf2dd9c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void WaveHandler.SetIndicator</definition>
+        <argsstring>(int waveIndex, float time=0)</argsstring>
+        <name>SetIndicator</name>
+        <qualifiedname>WaveHandler.SetIndicator</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>waveIndex</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>time</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" line="138" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" bodystart="138" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="function" id="class_wave_handler_1acc1c8ffc5c18af91fba3cf0ca24da333" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void WaveHandler.SkipWaveCD</definition>
+        <argsstring>()</argsstring>
+        <name>SkipWaveCD</name>
+        <qualifiedname>WaveHandler.SkipWaveCD</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" line="143" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" bodystart="143" bodyend="146"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>WaveHandler</label>
+        <link refid="class_wave_handler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>WaveHandler</label>
+        <link refid="class_wave_handler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" line="7" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/WaveHandler.cs" bodystart="8" bodyend="148"/>
+    <listofallmembers>
+      <member refid="class_wave_handler_1a83d4e1aef9ff86351deef8fc47091b5d" prot="private" virt="non-virtual"><scope>WaveHandler</scope><name>_currentWave</name></member>
+      <member refid="class_wave_handler_1a08cc09589bb19a1668f8c81a5bb4bcc7" prot="public" virt="non-virtual"><scope>WaveHandler</scope><name>CurrentWave</name></member>
+      <member refid="class_wave_handler_1a93959edbb37dbf8abeef604b78d5662b" prot="private" virt="non-virtual"><scope>WaveHandler</scope><name>doneSpawningCounter</name></member>
+      <member refid="class_wave_handler_1a446be458c20857f07ed654a2246d0eea" prot="private" virt="non-virtual"><scope>WaveHandler</scope><name>fixedSpawnInterval</name></member>
+      <member refid="class_wave_handler_1a646552e6fb8c24298ae978de4da7aac8" prot="private" virt="non-virtual"><scope>WaveHandler</scope><name>GetSpawnPointFromIndex</name></member>
+      <member refid="class_wave_handler_1a168db9fddc23e9a74009e517876a0f08" prot="public" virt="non-virtual"><scope>WaveHandler</scope><name>Init</name></member>
+      <member refid="class_wave_handler_1a3640d462ae84eac65eff9dcac569cd65" prot="private" virt="non-virtual"><scope>WaveHandler</scope><name>IntervalDelay</name></member>
+      <member refid="class_wave_handler_1a0511228ffae8cd7e22a509aac388f314" prot="public" virt="non-virtual"><scope>WaveHandler</scope><name>OnWaveEnd</name></member>
+      <member refid="class_wave_handler_1a89b1a9a509a8035de6a071819f390b80" prot="public" virt="non-virtual"><scope>WaveHandler</scope><name>OnWaveStart</name></member>
+      <member refid="class_wave_handler_1a5ca063b7e5817cfa983cb44fbbf2dd9c" prot="private" virt="non-virtual"><scope>WaveHandler</scope><name>SetIndicator</name></member>
+      <member refid="class_wave_handler_1a6205be37f8df3586008fc2732da3088a" prot="private" virt="non-virtual"><scope>WaveHandler</scope><name>skipFlag</name></member>
+      <member refid="class_wave_handler_1acc1c8ffc5c18af91fba3cf0ca24da333" prot="private" virt="non-virtual"><scope>WaveHandler</scope><name>SkipWaveCD</name></member>
+      <member refid="class_wave_handler_1ad0510c2c6b090f32dd85c135c4cea524" prot="private" virt="non-virtual"><scope>WaveHandler</scope><name>spawnData</name></member>
+      <member refid="class_wave_handler_1ab730d951767b77c7d3bdfd8ba43d24fb" prot="private" virt="non-virtual"><scope>WaveHandler</scope><name>SpawnGroupInterval</name></member>
+      <member refid="class_wave_handler_1a6554f674b436b26a2914ce1936e97c14" prot="private" virt="non-virtual"><scope>WaveHandler</scope><name>spawnPoints</name></member>
+      <member refid="class_wave_handler_1ada612fa4b1224acfd5c79148f197d8e4" prot="private" virt="non-virtual"><scope>WaveHandler</scope><name>SpawnWave</name></member>
+      <member refid="class_wave_handler_1a3e47c1cb61c23da9d6ce64cda0580841" prot="private" virt="non-virtual"><scope>WaveHandler</scope><name>StartSpawningWaves</name></member>
+      <member refid="class_wave_handler_1a3e8b3a5aa57b0601c8472aaa22ead85a" prot="public" virt="non-virtual"><scope>WaveHandler</scope><name>TotalWaves</name></member>
+      <member refid="class_wave_handler_1aaacf4c6245e0916c1eff8abc720232ba" prot="private" virt="non-virtual"><scope>WaveHandler</scope><name>waveData</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

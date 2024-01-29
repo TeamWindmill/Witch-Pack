@@ -1,0 +1,48 @@
+.TH "AudioFilters" 3 "Mon Jan 29 2024" "Version 0.096" "WitchPack" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+AudioFilters
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBEffectTransitionLerp< AudioFilterValueType >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBInit\fP (AudioSource audioSource, AudioReverbFilter audioReverbFilter, AudioLowPassFilter audioLowPassFilter)"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "override void \fBSetValue\fP (AudioFilterValueType type, float value)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "AudioSource \fB_audioSource\fP"
+.br
+.ti -1c
+.RI "AudioReverbFilter \fB_audioReverbFilter\fP"
+.br
+.ti -1c
+.RI "AudioLowPassFilter \fB_audioLowPassFilter\fP"
+.br
+.in -1c
+.SS "Properties"
+
+.in +1c
+.ti -1c
+.RI "bool \fBIsInitialization\fP\fC [get]\fP"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for WitchPack from the source code\&.

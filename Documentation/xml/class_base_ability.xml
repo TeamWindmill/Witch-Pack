@@ -1,0 +1,334 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_base_ability" kind="class" language="C#" prot="public">
+    <compoundname>BaseAbility</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ScriptableObject</basecompoundref>
+    <derivedcompoundref refid="class_offensive_ability" prot="public" virt="non-virtual">OffensiveAbility</derivedcompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_base_ability_1acf8985598d7dec70afd40a6e2de42098" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string BaseAbility.name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <qualifiedname>BaseAbility.name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" line="6" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_ability_1a30ad217ae052bfbafdf248b4d6443e80" prot="private" static="no" mutable="no">
+        <type>Sprite</type>
+        <definition>Sprite BaseAbility.icon</definition>
+        <argsstring></argsstring>
+        <name>icon</name>
+        <qualifiedname>BaseAbility.icon</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" line="7" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_ability_1acd71cdf7b636fac07125ac8ae516f89e" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float BaseAbility.cd</definition>
+        <argsstring></argsstring>
+        <name>cd</name>
+        <qualifiedname>BaseAbility.cd</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" line="8" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_ability_1a49921d9409c62d2e3a4464e1ec7cb009" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int BaseAbility.penetration</definition>
+        <argsstring></argsstring>
+        <name>penetration</name>
+        <qualifiedname>BaseAbility.penetration</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" line="9" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_ability_1ab372ad74719d6ecd78cb8be1ed9a2b85" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float BaseAbility.castTime</definition>
+        <argsstring></argsstring>
+        <name>castTime</name>
+        <qualifiedname>BaseAbility.castTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" line="12" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_ability_1aad5b912429c44e15457c1e7314f69dc4" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="class_status_effect_config" kindref="compound">StatusEffectConfig</ref> &gt;</type>
+        <definition>List&lt;StatusEffectConfig&gt; BaseAbility.statusEffects</definition>
+        <argsstring></argsstring>
+        <name>statusEffects</name>
+        <qualifiedname>BaseAbility.statusEffects</qualifiedname>
+        <initializer>= new List&lt;<ref refid="class_status_effect_config" kindref="compound">StatusEffectConfig</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" line="14" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_ability_1a1740fea14be2b034ec9619e81fdb37ed" prot="private" static="no" mutable="no">
+        <type><ref refid="class_base_ability" kindref="compound">BaseAbility</ref>[]</type>
+        <definition>BaseAbility [] BaseAbility.upgrades</definition>
+        <argsstring></argsstring>
+        <name>upgrades</name>
+        <qualifiedname>BaseAbility.upgrades</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" line="15" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_ability_1a1f630d70491b1b3921d50637d5466933" prot="private" static="no" mutable="no">
+        <type>AbilityUpgradeState</type>
+        <definition>AbilityUpgradeState BaseAbility.abilityUpgradeState</definition>
+        <argsstring></argsstring>
+        <name>abilityUpgradeState</name>
+        <qualifiedname>BaseAbility.abilityUpgradeState</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" line="16" column="34" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_base_ability_1a5aea3aafc2682717987032d91dd0b9e0" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>Sprite</type>
+        <definition>Sprite BaseAbility.Icon</definition>
+        <argsstring></argsstring>
+        <name>Icon</name>
+        <qualifiedname>BaseAbility.Icon</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" line="18" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_base_ability_1a1321a7124bf63a58e53339ae6ecd3dbc" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>string</type>
+        <definition>string BaseAbility.Name</definition>
+        <argsstring></argsstring>
+        <name>Name</name>
+        <qualifiedname>BaseAbility.Name</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" line="19" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_base_ability_1a44657c2d52b0d54eb612c6d1d4761059" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>float</type>
+        <definition>float BaseAbility.Cd</definition>
+        <argsstring></argsstring>
+        <name>Cd</name>
+        <qualifiedname>BaseAbility.Cd</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" line="20" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_base_ability_1ad411eb286bc4eb6a1f7a979eaa259d16" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>List&lt; <ref refid="class_status_effect_config" kindref="compound">StatusEffectConfig</ref> &gt;</type>
+        <definition>List&lt;StatusEffectConfig&gt; BaseAbility.StatusEffects</definition>
+        <argsstring></argsstring>
+        <name>StatusEffects</name>
+        <qualifiedname>BaseAbility.StatusEffects</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" line="21" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_base_ability_1acc3179013b808d10f8db1a4972409277" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int BaseAbility.Penetration</definition>
+        <argsstring></argsstring>
+        <name>Penetration</name>
+        <qualifiedname>BaseAbility.Penetration</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" line="22" column="16" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_base_ability_1a2bad9788d0af45c6c706e7cf64409ea9" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_base_ability" kindref="compound">BaseAbility</ref>[]</type>
+        <definition>BaseAbility [] BaseAbility.Upgrades</definition>
+        <argsstring></argsstring>
+        <name>Upgrades</name>
+        <qualifiedname>BaseAbility.Upgrades</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" line="23" column="24" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_base_ability_1a4b7e806dc8b1cbc488b817c68722c02d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>AbilityUpgradeState</type>
+        <definition>AbilityUpgradeState BaseAbility.AbilityUpgradeState</definition>
+        <argsstring></argsstring>
+        <name>AbilityUpgradeState</name>
+        <qualifiedname>BaseAbility.AbilityUpgradeState</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" line="24" column="32" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_base_ability_1a968e8be43ea3c4723835af42dfef1013" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>virtual bool BaseAbility.CastAbility</definition>
+        <argsstring>(BaseUnit caster)</argsstring>
+        <name>CastAbility</name>
+        <qualifiedname>BaseAbility.CastAbility</qualifiedname>
+        <reimplementedby refid="class_multi_shot_1ae906b50b412c2f6e6ae8f9657b4de0fd">CastAbility</reimplementedby>
+        <reimplementedby refid="class_piercing_shot_1ab0c6daf7e8332c5d79c66c6b2cf8d564">CastAbility</reimplementedby>
+        <reimplementedby refid="class_shaman_auto_attack_1acc7974feb64aab0077dc84a2a10be5ea">CastAbility</reimplementedby>
+        <param>
+          <type><ref refid="class_base_unit" kindref="compound">BaseUnit</ref></type>
+          <declname>caster</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" line="26" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" bodystart="26" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="class_base_ability_1af22e869eeae7577fa4dd2905499413b2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BaseAbility.ChangeState</definition>
+        <argsstring>(AbilityUpgradeState state)</argsstring>
+        <name>ChangeState</name>
+        <qualifiedname>BaseAbility.ChangeState</qualifiedname>
+        <param>
+          <type>AbilityUpgradeState</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" line="31" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" bodystart="31" bodyend="34"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>BaseAbility</label>
+        <link refid="class_base_ability"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MultiShot</label>
+        <link refid="class_multi_shot"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>OffensiveAbility</label>
+        <link refid="class_offensive_ability"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>PiercingShot</label>
+        <link refid="class_piercing_shot"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="6">
+        <label>ShamanAutoAttack</label>
+        <link refid="class_shaman_auto_attack"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>BaseAbility</label>
+        <link refid="class_base_ability"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ScriptableObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" line="4" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/BaseAbility.cs" bodystart="5" bodyend="35"/>
+    <listofallmembers>
+      <member refid="class_base_ability_1a1f630d70491b1b3921d50637d5466933" prot="private" virt="non-virtual"><scope>BaseAbility</scope><name>abilityUpgradeState</name></member>
+      <member refid="class_base_ability_1a4b7e806dc8b1cbc488b817c68722c02d" prot="public" virt="non-virtual"><scope>BaseAbility</scope><name>AbilityUpgradeState</name></member>
+      <member refid="class_base_ability_1a968e8be43ea3c4723835af42dfef1013" prot="public" virt="virtual"><scope>BaseAbility</scope><name>CastAbility</name></member>
+      <member refid="class_base_ability_1ab372ad74719d6ecd78cb8be1ed9a2b85" prot="private" virt="non-virtual"><scope>BaseAbility</scope><name>castTime</name></member>
+      <member refid="class_base_ability_1acd71cdf7b636fac07125ac8ae516f89e" prot="private" virt="non-virtual"><scope>BaseAbility</scope><name>cd</name></member>
+      <member refid="class_base_ability_1a44657c2d52b0d54eb612c6d1d4761059" prot="public" virt="non-virtual"><scope>BaseAbility</scope><name>Cd</name></member>
+      <member refid="class_base_ability_1af22e869eeae7577fa4dd2905499413b2" prot="public" virt="non-virtual"><scope>BaseAbility</scope><name>ChangeState</name></member>
+      <member refid="class_base_ability_1a30ad217ae052bfbafdf248b4d6443e80" prot="private" virt="non-virtual"><scope>BaseAbility</scope><name>icon</name></member>
+      <member refid="class_base_ability_1a5aea3aafc2682717987032d91dd0b9e0" prot="public" virt="non-virtual"><scope>BaseAbility</scope><name>Icon</name></member>
+      <member refid="class_base_ability_1acf8985598d7dec70afd40a6e2de42098" prot="private" virt="non-virtual"><scope>BaseAbility</scope><name>name</name></member>
+      <member refid="class_base_ability_1a1321a7124bf63a58e53339ae6ecd3dbc" prot="public" virt="non-virtual"><scope>BaseAbility</scope><name>Name</name></member>
+      <member refid="class_base_ability_1a49921d9409c62d2e3a4464e1ec7cb009" prot="private" virt="non-virtual"><scope>BaseAbility</scope><name>penetration</name></member>
+      <member refid="class_base_ability_1acc3179013b808d10f8db1a4972409277" prot="public" virt="non-virtual"><scope>BaseAbility</scope><name>Penetration</name></member>
+      <member refid="class_base_ability_1aad5b912429c44e15457c1e7314f69dc4" prot="private" virt="non-virtual"><scope>BaseAbility</scope><name>statusEffects</name></member>
+      <member refid="class_base_ability_1ad411eb286bc4eb6a1f7a979eaa259d16" prot="public" virt="non-virtual"><scope>BaseAbility</scope><name>StatusEffects</name></member>
+      <member refid="class_base_ability_1a1740fea14be2b034ec9619e81fdb37ed" prot="private" virt="non-virtual"><scope>BaseAbility</scope><name>upgrades</name></member>
+      <member refid="class_base_ability_1a2bad9788d0af45c6c706e7cf64409ea9" prot="public" virt="non-virtual"><scope>BaseAbility</scope><name>Upgrades</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_lerp_values_handler" kind="class" language="C#" prot="public">
+    <compoundname>LerpValuesHandler</compoundname>
+    <basecompoundref refid="class_mono_singleton" prot="public" virt="non-virtual">MonoSingleton&lt; LerpValuesHandler &gt;</basecompoundref>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_lerp_values_handler_1aa9cef1dc9f2afa859e94834880754d05" prot="private" static="yes" mutable="no">
+        <type>AnimationCurve</type>
+        <definition>AnimationCurve LerpValuesHandler._defaultCurve</definition>
+        <argsstring></argsstring>
+        <name>_defaultCurve</name>
+        <qualifiedname>LerpValuesHandler._defaultCurve</qualifiedname>
+        <initializer>= AnimationCurve.Linear(0, 0, 1, 1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Lerp/LerpValuesHandler.cs" line="7" column="35" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Lerp/LerpValuesHandler.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_lerp_values_handler_1aa239c23ba8b31aff842f252246cce745" prot="private" static="no" mutable="no">
+        <type><ref refid="class_lerp_value_config" kindref="compound">LerpValueConfig</ref></type>
+        <definition>LerpValueConfig LerpValuesHandler._defaultConfig</definition>
+        <argsstring></argsstring>
+        <name>_defaultConfig</name>
+        <qualifiedname>LerpValuesHandler._defaultConfig</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Lerp/LerpValuesHandler.cs" line="8" column="30" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Lerp/LerpValuesHandler.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_lerp_values_handler_1a3c0adf61f6591d831f3abd6e7d184714" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void LerpValuesHandler.SetValueByType&lt; T &gt;</definition>
+        <argsstring>(LerpValueConfig config, T type, float currentValue, float newValue, Action&lt; T, float &gt; setter)</argsstring>
+        <name>SetValueByType&lt; T &gt;</name>
+        <qualifiedname>LerpValuesHandler.SetValueByType&lt; T &gt;</qualifiedname>
+        <param>
+          <type><ref refid="class_lerp_value_config" kindref="compound">LerpValueConfig</ref></type>
+          <declname>config</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>currentValue</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>newValue</declname>
+        </param>
+        <param>
+          <type>Action&lt; T, float &gt;</type>
+          <declname>setter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Lerp/LerpValuesHandler.cs" line="10" column="12" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Lerp/LerpValuesHandler.cs" bodystart="10" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="class_lerp_values_handler_1ab5c7cb87fccef87ae2bca0a73bb658ac" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void LerpValuesHandler.SetValueByType&lt; T &gt;</definition>
+        <argsstring>(T type, float currentValue, float newValue, Action&lt; T, float &gt; setter)</argsstring>
+        <name>SetValueByType&lt; T &gt;</name>
+        <qualifiedname>LerpValuesHandler.SetValueByType&lt; T &gt;</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>currentValue</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>newValue</declname>
+        </param>
+        <param>
+          <type>Action&lt; T, float &gt;</type>
+          <declname>setter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Lerp/LerpValuesHandler.cs" line="16" column="12" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Lerp/LerpValuesHandler.cs" bodystart="16" bodyend="19"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_lerp_values_handler_1a7f04f9b96b3f5f4f0233c1dfff31b00c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator LerpValuesHandler.LerpBetweenValues&lt; T &gt;</definition>
+        <argsstring>(LerpValueConfig config, T type, float currentValue, float newValue, Action&lt; T, float &gt; setter)</argsstring>
+        <name>LerpBetweenValues&lt; T &gt;</name>
+        <qualifiedname>LerpValuesHandler.LerpBetweenValues&lt; T &gt;</qualifiedname>
+        <param>
+          <type><ref refid="class_lerp_value_config" kindref="compound">LerpValueConfig</ref></type>
+          <declname>config</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>currentValue</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>newValue</declname>
+        </param>
+        <param>
+          <type>Action&lt; T, float &gt;</type>
+          <declname>setter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Lerp/LerpValuesHandler.cs" line="21" column="13" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Lerp/LerpValuesHandler.cs" bodystart="21" bodyend="37"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>LerpValuesHandler</label>
+        <link refid="class_lerp_values_handler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoSingleton&lt; LerpValuesHandler &gt;</label>
+        <link refid="class_mono_singleton"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>LerpValuesHandler</label>
+        <link refid="class_lerp_values_handler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoSingleton&lt; LerpValuesHandler &gt;</label>
+        <link refid="class_mono_singleton"/>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Lerp/LerpValuesHandler.cs" line="5" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Lerp/LerpValuesHandler.cs" bodystart="6" bodyend="38"/>
+    <listofallmembers>
+      <member refid="class_lerp_values_handler_1aa239c23ba8b31aff842f252246cce745" prot="private" virt="non-virtual"><scope>LerpValuesHandler</scope><name>_defaultConfig</name></member>
+      <member refid="class_lerp_values_handler_1aa9cef1dc9f2afa859e94834880754d05" prot="private" virt="non-virtual"><scope>LerpValuesHandler</scope><name>_defaultCurve</name></member>
+      <member refid="class_mono_singleton_1a04acead2ed3d970430f4c8c7716071f1" prot="protected" virt="virtual"><scope>LerpValuesHandler</scope><name>Awake</name></member>
+      <member refid="class_mono_singleton_1a5637ba1f44359d4610b5eba552ef5f57" prot="public" virt="non-virtual"><scope>LerpValuesHandler</scope><name>Instance</name></member>
+      <member refid="class_lerp_values_handler_1a7f04f9b96b3f5f4f0233c1dfff31b00c" prot="private" virt="non-virtual"><scope>LerpValuesHandler</scope><name>LerpBetweenValues&lt; T &gt;</name></member>
+      <member refid="class_mono_singleton_1af585390f9256dfc8be7c969ca9fb4d88" prot="protected" virt="virtual"><scope>LerpValuesHandler</scope><name>OnDestroy</name></member>
+      <member refid="class_lerp_values_handler_1a3c0adf61f6591d831f3abd6e7d184714" prot="public" virt="non-virtual"><scope>LerpValuesHandler</scope><name>SetValueByType&lt; T &gt;</name></member>
+      <member refid="class_lerp_values_handler_1ab5c7cb87fccef87ae2bca0a73bb658ac" prot="public" virt="non-virtual"><scope>LerpValuesHandler</scope><name>SetValueByType&lt; T &gt;</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

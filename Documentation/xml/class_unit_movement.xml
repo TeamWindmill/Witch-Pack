@@ -1,0 +1,268 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_unit_movement" kind="class" language="C#" prot="public">
+    <compoundname>UnitMovement</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_unit_movement_1a8d041632f78d9dcfb10f7a5cc904d1d5" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool UnitMovement.reachedDest</definition>
+        <argsstring></argsstring>
+        <name>reachedDest</name>
+        <qualifiedname>UnitMovement.reachedDest</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" line="7" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_unit_movement_1a3d1bfe08d59da5695da9e514e71d32f0" prot="private" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 UnitMovement.currentDest</definition>
+        <argsstring></argsstring>
+        <name>currentDest</name>
+        <qualifiedname>UnitMovement.currentDest</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" line="8" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_unit_movement_1afe4ec84f4dd3235fe660d6c9aee96591" prot="private" static="no" mutable="no">
+        <type>Coroutine</type>
+        <definition>Coroutine UnitMovement.activeMovementRoutine</definition>
+        <argsstring></argsstring>
+        <name>activeMovementRoutine</name>
+        <qualifiedname>UnitMovement.activeMovementRoutine</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" line="11" column="23" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_unit_movement_1a28152a4ebd45872ab5bc75c256f293c4" prot="private" static="no" mutable="no">
+        <type><ref refid="class_base_unit" kindref="compound">BaseUnit</ref></type>
+        <definition>BaseUnit UnitMovement.owner</definition>
+        <argsstring></argsstring>
+        <name>owner</name>
+        <qualifiedname>UnitMovement.owner</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" line="12" column="22" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_unit_movement_1add0fa78caa60f503f8fafba69b013f75" prot="private" static="no" mutable="no">
+        <type>NavMeshAgent</type>
+        <definition>NavMeshAgent UnitMovement.agent</definition>
+        <argsstring></argsstring>
+        <name>agent</name>
+        <qualifiedname>UnitMovement.agent</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" line="13" column="27" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_unit_movement_1ac8f97e9a71ce9cfcf753bcce835c9935" prot="public" static="no" mutable="no">
+        <type>Action</type>
+        <definition>Action UnitMovement.OnDestenationSet</definition>
+        <argsstring></argsstring>
+        <name>OnDestenationSet</name>
+        <qualifiedname>UnitMovement.OnDestenationSet</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" line="9" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_unit_movement_1a998eb1f1aad6f76188a8cc0aebf8402b" prot="public" static="no" mutable="no">
+        <type>Action</type>
+        <definition>Action UnitMovement.OnDestenationReached</definition>
+        <argsstring></argsstring>
+        <name>OnDestenationReached</name>
+        <qualifiedname>UnitMovement.OnDestenationReached</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" line="10" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_unit_movement_1a4e9f820f094d8731c04fee902f8e9f5f" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool UnitMovement.IsMoving</definition>
+        <argsstring></argsstring>
+        <name>IsMoving</name>
+        <qualifiedname>UnitMovement.IsMoving</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" line="16" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_unit_movement_1a5627a7a6209ab00c6660d9cfa8a676cf" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UnitMovement.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>UnitMovement.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" line="18" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" bodystart="18" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="class_unit_movement_1a9402f2841d6133860dec19f2c42d569d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UnitMovement.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>UnitMovement.Update</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" line="46" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" bodystart="46" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="class_unit_movement_1af984ed21d6ea0fecba0935b1bbe01c36" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator UnitMovement.WaitTilReached</definition>
+        <argsstring>()</argsstring>
+        <name>WaitTilReached</name>
+        <qualifiedname>UnitMovement.WaitTilReached</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" line="71" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" bodystart="71" bodyend="76"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_unit_movement_1abc76775c7ef6f8bc5bb3fe38f39950e3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UnitMovement.SetUp</definition>
+        <argsstring>(BaseUnit givenOwner)</argsstring>
+        <name>SetUp</name>
+        <qualifiedname>UnitMovement.SetUp</qualifiedname>
+        <param>
+          <type><ref refid="class_base_unit" kindref="compound">BaseUnit</ref></type>
+          <declname>givenOwner</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" line="24" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" bodystart="24" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="class_unit_movement_1a606092f5ad25a3f77797a7d8f11c099b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UnitMovement.SetDest</definition>
+        <argsstring>(Vector3 worldPos)</argsstring>
+        <name>SetDest</name>
+        <qualifiedname>UnitMovement.SetDest</qualifiedname>
+        <param>
+          <type>Vector3</type>
+          <declname>worldPos</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" line="51" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" bodystart="51" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="class_unit_movement_1a8985509cd52bd31d5305e6aa32e1856d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UnitMovement.ToggleMovement</definition>
+        <argsstring>(bool state)</argsstring>
+        <name>ToggleMovement</name>
+        <qualifiedname>UnitMovement.ToggleMovement</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" line="66" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" bodystart="66" bodyend="69"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>UnitMovement</label>
+        <link refid="class_unit_movement"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>UnitMovement</label>
+        <link refid="class_unit_movement"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" line="5" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/UnitMovement.cs" bodystart="6" bodyend="81"/>
+    <listofallmembers>
+      <member refid="class_unit_movement_1afe4ec84f4dd3235fe660d6c9aee96591" prot="private" virt="non-virtual"><scope>UnitMovement</scope><name>activeMovementRoutine</name></member>
+      <member refid="class_unit_movement_1add0fa78caa60f503f8fafba69b013f75" prot="private" virt="non-virtual"><scope>UnitMovement</scope><name>agent</name></member>
+      <member refid="class_unit_movement_1a5627a7a6209ab00c6660d9cfa8a676cf" prot="private" virt="non-virtual"><scope>UnitMovement</scope><name>Awake</name></member>
+      <member refid="class_unit_movement_1a3d1bfe08d59da5695da9e514e71d32f0" prot="private" virt="non-virtual"><scope>UnitMovement</scope><name>currentDest</name></member>
+      <member refid="class_unit_movement_1a4e9f820f094d8731c04fee902f8e9f5f" prot="public" virt="non-virtual"><scope>UnitMovement</scope><name>IsMoving</name></member>
+      <member refid="class_unit_movement_1a998eb1f1aad6f76188a8cc0aebf8402b" prot="public" virt="non-virtual"><scope>UnitMovement</scope><name>OnDestenationReached</name></member>
+      <member refid="class_unit_movement_1ac8f97e9a71ce9cfcf753bcce835c9935" prot="public" virt="non-virtual"><scope>UnitMovement</scope><name>OnDestenationSet</name></member>
+      <member refid="class_unit_movement_1a28152a4ebd45872ab5bc75c256f293c4" prot="private" virt="non-virtual"><scope>UnitMovement</scope><name>owner</name></member>
+      <member refid="class_unit_movement_1a8d041632f78d9dcfb10f7a5cc904d1d5" prot="private" virt="non-virtual"><scope>UnitMovement</scope><name>reachedDest</name></member>
+      <member refid="class_unit_movement_1a606092f5ad25a3f77797a7d8f11c099b" prot="public" virt="non-virtual"><scope>UnitMovement</scope><name>SetDest</name></member>
+      <member refid="class_unit_movement_1abc76775c7ef6f8bc5bb3fe38f39950e3" prot="public" virt="non-virtual"><scope>UnitMovement</scope><name>SetUp</name></member>
+      <member refid="class_unit_movement_1a8985509cd52bd31d5305e6aa32e1856d" prot="public" virt="non-virtual"><scope>UnitMovement</scope><name>ToggleMovement</name></member>
+      <member refid="class_unit_movement_1a9402f2841d6133860dec19f2c42d569d" prot="private" virt="non-virtual"><scope>UnitMovement</scope><name>Update</name></member>
+      <member refid="class_unit_movement_1af984ed21d6ea0fecba0935b1bbe01c36" prot="private" virt="non-virtual"><scope>UnitMovement</scope><name>WaitTilReached</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

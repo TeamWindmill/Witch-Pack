@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_time_control_u_i_handler" kind="class" language="C#" prot="public">
+    <compoundname>TimeControlUIHandler</compoundname>
+    <basecompoundref refid="class_u_i_element" prot="public" virt="non-virtual">UIElement</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_time_control_u_i_handler_1a2bc04148ccb502d780a93aee5df139b9" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="class_time_buttons_u_i" kindref="compound">TimeButtonsUI</ref> &gt;</type>
+        <definition>List&lt;TimeButtonsUI&gt; TimeControlUIHandler._timeButtons</definition>
+        <argsstring></argsstring>
+        <name>_timeButtons</name>
+        <qualifiedname>TimeControlUIHandler._timeButtons</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeControlUIHandler.cs" line="7" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeControlUIHandler.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_time_control_u_i_handler_1a011330bb9b52bde3bce38e9cc935122d" prot="private" static="no" mutable="no">
+        <type><ref refid="class_time_buttons_u_i" kindref="compound">TimeButtonsUI</ref></type>
+        <definition>TimeButtonsUI TimeControlUIHandler._currentButton</definition>
+        <argsstring></argsstring>
+        <name>_currentButton</name>
+        <qualifiedname>TimeControlUIHandler._currentButton</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeControlUIHandler.cs" line="9" column="27" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeControlUIHandler.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_time_control_u_i_handler_1a7be74245325f3f59316809405b311fc2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void TimeControlUIHandler.Show</definition>
+        <argsstring>()</argsstring>
+        <name>Show</name>
+        <qualifiedname>TimeControlUIHandler.Show</qualifiedname>
+        <reimplements refid="class_u_i_element_1a71cc42a801a53704f4dd442227f98af8">Show</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeControlUIHandler.cs" line="12" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeControlUIHandler.cs" bodystart="12" bodyend="22"/>
+      </memberdef>
+      <memberdef kind="function" id="class_time_control_u_i_handler_1a4bd83a1774846f88e685d11fc124bb98" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void TimeControlUIHandler.Hide</definition>
+        <argsstring>()</argsstring>
+        <name>Hide</name>
+        <qualifiedname>TimeControlUIHandler.Hide</qualifiedname>
+        <reimplements refid="class_u_i_element_1a24b82c821a63e118fea9f8f15f6cf160">Hide</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeControlUIHandler.cs" line="25" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeControlUIHandler.cs" bodystart="25" bodyend="30"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_time_control_u_i_handler_1a406b5708ec44cc7b73a29a593a989356" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TimeControlUIHandler.OnButtonPressed</definition>
+        <argsstring>(TimeButtonsUI timeButtonsUI)</argsstring>
+        <name>OnButtonPressed</name>
+        <qualifiedname>TimeControlUIHandler.OnButtonPressed</qualifiedname>
+        <param>
+          <type><ref refid="class_time_buttons_u_i" kindref="compound">TimeButtonsUI</ref></type>
+          <declname>timeButtonsUI</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeControlUIHandler.cs" line="32" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeControlUIHandler.cs" bodystart="32" bodyend="42"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="4">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="5">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="3">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>TimeControlUIHandler</label>
+        <link refid="class_time_control_u_i_handler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>UIElement</label>
+        <link refid="class_u_i_element"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="5">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="3">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>TimeControlUIHandler</label>
+        <link refid="class_time_control_u_i_handler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>UIElement</label>
+        <link refid="class_u_i_element"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeControlUIHandler.cs" line="5" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeControlUIHandler.cs" bodystart="6" bodyend="43"/>
+    <listofallmembers>
+      <member refid="class_time_control_u_i_handler_1a011330bb9b52bde3bce38e9cc935122d" prot="private" virt="non-virtual"><scope>TimeControlUIHandler</scope><name>_currentButton</name></member>
+      <member refid="class_time_control_u_i_handler_1a2bc04148ccb502d780a93aee5df139b9" prot="private" virt="non-virtual"><scope>TimeControlUIHandler</scope><name>_timeButtons</name></member>
+      <member refid="class_u_i_element_1a2598524d3cda2b31cdb4e7d98c6c5929" prot="protected" virt="virtual"><scope>TimeControlUIHandler</scope><name>Awake</name></member>
+      <member refid="class_time_control_u_i_handler_1a4bd83a1774846f88e685d11fc124bb98" prot="public" virt="virtual"><scope>TimeControlUIHandler</scope><name>Hide</name></member>
+      <member refid="class_u_i_element_1a921de5874669c81d347319daf6836d4e" prot="protected" virt="non-virtual"><scope>TimeControlUIHandler</scope><name>isMouseOver</name></member>
+      <member refid="class_time_control_u_i_handler_1a406b5708ec44cc7b73a29a593a989356" prot="private" virt="non-virtual"><scope>TimeControlUIHandler</scope><name>OnButtonPressed</name></member>
+      <member refid="class_u_i_element_1a4d81af31ff05165e400ba42046987059" prot="public" virt="non-virtual"><scope>TimeControlUIHandler</scope><name>OnPointerEnter</name></member>
+      <member refid="class_u_i_element_1a1406fe3ed80f0c30b0065e85c1f205c2" prot="public" virt="non-virtual"><scope>TimeControlUIHandler</scope><name>OnPointerExit</name></member>
+      <member refid="class_u_i_element_1a6dd0e428ea7447dcf73f9c55058bef12" prot="public" virt="non-virtual"><scope>TimeControlUIHandler</scope><name>RectTransform</name></member>
+      <member refid="class_u_i_element_1a3fee91bfa7a1d6c7234132478e09e13a" prot="protected" virt="non-virtual"><scope>TimeControlUIHandler</scope><name>rectTransform</name></member>
+      <member refid="class_time_control_u_i_handler_1a7be74245325f3f59316809405b311fc2" prot="public" virt="virtual"><scope>TimeControlUIHandler</scope><name>Show</name></member>
+      <member refid="class_u_i_element_1a5cec5ca3592e71bd009fb5913b1a299c" prot="protected" virt="non-virtual"><scope>TimeControlUIHandler</scope><name>uiGroup</name></member>
+      <member refid="class_u_i_element_1ab917d89f32b29fa271cbbfb60f750a13" prot="public" virt="virtual"><scope>TimeControlUIHandler</scope><name>UpdateVisual</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

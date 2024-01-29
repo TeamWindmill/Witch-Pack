@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_level_config" kind="class" language="C#" prot="public">
+    <compoundname>LevelConfig</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ScriptableObject</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_level_config_1aa787b6baa7ea948f7439e4726826abfa" prot="public" static="no" mutable="no">
+        <type><ref refid="class_shaman_config" kindref="compound">ShamanConfig</ref>[]</type>
+        <definition>ShamanConfig [] LevelConfig.Shamans</definition>
+        <argsstring></argsstring>
+        <name>Shamans</name>
+        <qualifiedname>LevelConfig.Shamans</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Configs/LevelConfig.cs" line="9" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Configs/LevelConfig.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_level_config_1abab1b28abaab1ecdc6206eb7786e47d0" prot="public" static="no" mutable="no">
+        <type><ref refid="class_level_handler" kindref="compound">LevelHandler</ref></type>
+        <definition>LevelHandler LevelConfig.levelPrefab</definition>
+        <argsstring></argsstring>
+        <name>levelPrefab</name>
+        <qualifiedname>LevelConfig.levelPrefab</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Configs/LevelConfig.cs" line="10" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Configs/LevelConfig.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>LevelConfig</label>
+        <link refid="class_level_config"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ScriptableObject</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>BaseUnitConfig</label>
+        <link refid="class_base_unit_config"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>LevelConfig</label>
+        <link refid="class_level_config"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>Shamans</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>levelPrefab</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>LevelHandler</label>
+        <link refid="class_level_handler"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="2">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="3">
+        <label>ShamanConfig</label>
+        <link refid="class_shaman_config"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Configs/LevelConfig.cs" line="6" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Configs/LevelConfig.cs" bodystart="7" bodyend="13"/>
+    <listofallmembers>
+      <member refid="class_level_config_1abab1b28abaab1ecdc6206eb7786e47d0" prot="public" virt="non-virtual"><scope>LevelConfig</scope><name>levelPrefab</name></member>
+      <member refid="class_level_config_1aa787b6baa7ea948f7439e4726826abfa" prot="public" virt="non-virtual"><scope>LevelConfig</scope><name>Shamans</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

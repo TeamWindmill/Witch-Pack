@@ -1,0 +1,182 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_coroutine_state" kind="class" language="C#" prot="public" abstract="yes">
+    <compoundname>CoroutineState</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <derivedcompoundref refid="class_attack_state" prot="public" virt="non-virtual">AttackState</derivedcompoundref>
+    <derivedcompoundref refid="class_idle_state" prot="public" virt="non-virtual">IdleState</derivedcompoundref>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_coroutine_state_1ac55ce0f73af1f5b5b12ba662981f00fe" prot="protected" static="no" mutable="no">
+        <type><ref refid="class_base_state_handler" kindref="compound">BaseStateHandler</ref></type>
+        <definition>BaseStateHandler CoroutineState.handler</definition>
+        <argsstring></argsstring>
+        <name>handler</name>
+        <qualifiedname>CoroutineState.handler</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/CoroutineState.cs" line="7" column="32" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/CoroutineState.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_coroutine_state_1a1f3a9491ebe8441e1e0b43ec3bc652ca" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int CoroutineState.priority</definition>
+        <argsstring></argsstring>
+        <name>priority</name>
+        <qualifiedname>CoroutineState.priority</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/CoroutineState.cs" line="8" column="16" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/CoroutineState.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_coroutine_state_1a35c8f2c58f132d28978270344612dc35" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CoroutineState.CacheHandler</definition>
+        <argsstring>(BaseStateHandler handler)</argsstring>
+        <name>CacheHandler</name>
+        <qualifiedname>CoroutineState.CacheHandler</qualifiedname>
+        <param>
+          <type><ref refid="class_base_state_handler" kindref="compound">BaseStateHandler</ref></type>
+          <declname>handler</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/CoroutineState.cs" line="10" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/CoroutineState.cs" bodystart="10" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="class_coroutine_state_1aed083ada431350a971894b8212775a51" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract void</type>
+        <definition>abstract void CoroutineState.OnStateEnter</definition>
+        <argsstring>()</argsstring>
+        <name>OnStateEnter</name>
+        <qualifiedname>CoroutineState.OnStateEnter</qualifiedname>
+        <reimplementedby refid="class_attack_state_1a87ebc65b436aac064adb441d6b200351">OnStateEnter</reimplementedby>
+        <reimplementedby refid="class_idle_state_1abf63069f012ddb253f2144b6b1f7b86f">OnStateEnter</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/CoroutineState.cs" line="15" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="class_coroutine_state_1ac07fa26d739007fc107b9608603d1aca" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract void</type>
+        <definition>abstract void CoroutineState.OnStateExit</definition>
+        <argsstring>()</argsstring>
+        <name>OnStateExit</name>
+        <qualifiedname>CoroutineState.OnStateExit</qualifiedname>
+        <reimplementedby refid="class_attack_state_1a9fa2ee1e01968eb8d6b968119f5ec092">OnStateExit</reimplementedby>
+        <reimplementedby refid="class_idle_state_1aea10352d66b55e0859fb03de16e0fdec">OnStateExit</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/CoroutineState.cs" line="16" column="26"/>
+      </memberdef>
+      <memberdef kind="function" id="class_coroutine_state_1a6ab03b8140b6d96349328c2bedd779cf" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract IEnumerator</type>
+        <definition>abstract IEnumerator CoroutineState.RunState</definition>
+        <argsstring>()</argsstring>
+        <name>RunState</name>
+        <qualifiedname>CoroutineState.RunState</qualifiedname>
+        <reimplementedby refid="class_attack_state_1a21e3eb06c7b899318b4e21fd6f41ce1b">RunState</reimplementedby>
+        <reimplementedby refid="class_idle_state_1ac80d5c4d9fe36721f779089938e207dd">RunState</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/CoroutineState.cs" line="17" column="33"/>
+      </memberdef>
+      <memberdef kind="function" id="class_coroutine_state_1a98849012c47186c323b5a9175a9af758" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract bool</type>
+        <definition>abstract bool CoroutineState.IsLegal</definition>
+        <argsstring>()</argsstring>
+        <name>IsLegal</name>
+        <qualifiedname>CoroutineState.IsLegal</qualifiedname>
+        <reimplementedby refid="class_attack_state_1a3cf69164a0abc11f3012c070b2e71259">IsLegal</reimplementedby>
+        <reimplementedby refid="class_idle_state_1a7bc2d69c53f576758e848eec79ce32bc">IsLegal</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/CoroutineState.cs" line="20" column="26"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>AttackState</label>
+        <link refid="class_attack_state"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>CoroutineState</label>
+        <link refid="class_coroutine_state"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>IdleState</label>
+        <link refid="class_idle_state"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>BaseStateHandler</label>
+        <link refid="class_base_state_handler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>CoroutineState</label>
+        <link refid="class_coroutine_state"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>handler</edgelabel>
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/CoroutineState.cs" line="5" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/CoroutineState.cs" bodystart="6" bodyend="21"/>
+    <listofallmembers>
+      <member refid="class_coroutine_state_1a35c8f2c58f132d28978270344612dc35" prot="public" virt="non-virtual"><scope>CoroutineState</scope><name>CacheHandler</name></member>
+      <member refid="class_coroutine_state_1ac55ce0f73af1f5b5b12ba662981f00fe" prot="protected" virt="non-virtual"><scope>CoroutineState</scope><name>handler</name></member>
+      <member refid="class_coroutine_state_1a98849012c47186c323b5a9175a9af758" prot="public" virt="pure-virtual"><scope>CoroutineState</scope><name>IsLegal</name></member>
+      <member refid="class_coroutine_state_1aed083ada431350a971894b8212775a51" prot="public" virt="pure-virtual"><scope>CoroutineState</scope><name>OnStateEnter</name></member>
+      <member refid="class_coroutine_state_1ac07fa26d739007fc107b9608603d1aca" prot="public" virt="pure-virtual"><scope>CoroutineState</scope><name>OnStateExit</name></member>
+      <member refid="class_coroutine_state_1a1f3a9491ebe8441e1e0b43ec3bc652ca" prot="public" virt="non-virtual"><scope>CoroutineState</scope><name>priority</name></member>
+      <member refid="class_coroutine_state_1a6ab03b8140b6d96349328c2bedd779cf" prot="public" virt="pure-virtual"><scope>CoroutineState</scope><name>RunState</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

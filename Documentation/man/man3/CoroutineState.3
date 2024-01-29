@@ -1,0 +1,49 @@
+.TH "CoroutineState" 3 "Mon Jan 29 2024" "Version 0.096" "WitchPack" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+CoroutineState
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits MonoBehaviour\&.
+.PP
+Inherited by \fBAttackState\fP, and \fBIdleState\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBCacheHandler\fP (\fBBaseStateHandler\fP handler)"
+.br
+.ti -1c
+.RI "abstract void \fBOnStateEnter\fP ()"
+.br
+.ti -1c
+.RI "abstract void \fBOnStateExit\fP ()"
+.br
+.ti -1c
+.RI "abstract IEnumerator \fBRunState\fP ()"
+.br
+.ti -1c
+.RI "abstract bool \fBIsLegal\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBpriority\fP"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBBaseStateHandler\fP \fBhandler\fP"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for WitchPack from the source code\&.

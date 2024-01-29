@@ -1,0 +1,245 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_targeter" kind="class" language="C#" prot="public">
+    <compoundname>Targeter</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_targeter_1adf760feb20307f0e304bf1b92bcaf956" prot="private" static="no" mutable="no">
+        <type>List&lt; T &gt;</type>
+        <definition>List&lt;T&gt; Targeter&lt; T &gt;.availableTargets</definition>
+        <argsstring></argsstring>
+        <name>availableTargets</name>
+        <qualifiedname>Targeter.availableTargets</qualifiedname>
+        <initializer>= new List&lt;T&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/Targeter.cs" line="7" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/Targeter.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_targeter_1a972e5e5510d8bf4e819427d3e986771e" prot="public" static="no" mutable="no">
+        <type>Action&lt; T &gt;</type>
+        <definition>Action&lt;T&gt; Targeter&lt; T &gt;.OnTargetAdded</definition>
+        <argsstring></argsstring>
+        <name>OnTargetAdded</name>
+        <qualifiedname>Targeter.OnTargetAdded</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/Targeter.cs" line="8" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/Targeter.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_targeter_1a379a299c321a2a415e934938d1e8c948" prot="public" static="no" mutable="no">
+        <type>Action&lt; T &gt;</type>
+        <definition>Action&lt;T&gt; Targeter&lt; T &gt;.OnTargetLost</definition>
+        <argsstring></argsstring>
+        <name>OnTargetLost</name>
+        <qualifiedname>Targeter.OnTargetLost</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/Targeter.cs" line="9" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/Targeter.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_targeter_1acab03a1e0181250ff30f4796f1b66921" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool Targeter&lt; T &gt;.HasTarget</definition>
+        <argsstring></argsstring>
+        <name>HasTarget</name>
+        <qualifiedname>Targeter.HasTarget</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/Targeter.cs" line="11" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/Targeter.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_targeter_1abcab9e1bc5ee4b70196e0fd90e106ffb" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>List&lt; T &gt;</type>
+        <definition>List&lt;T&gt; Targeter&lt; T &gt;.AvailableTargets</definition>
+        <argsstring></argsstring>
+        <name>AvailableTargets</name>
+        <qualifiedname>Targeter.AvailableTargets</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/Targeter.cs" line="13" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/Targeter.cs" bodystart="13" bodyend="13"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_targeter_1af8d853c896dab460b11abbd6efcbb3d9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Targeter&lt; T &gt;.AddRadius</definition>
+        <argsstring>(StatType statType, float value)</argsstring>
+        <name>AddRadius</name>
+        <qualifiedname>Targeter.AddRadius</qualifiedname>
+        <param>
+          <type>StatType</type>
+          <declname>statType</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/Targeter.cs" line="15" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/Targeter.cs" bodystart="15" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="class_targeter_1a8f380cfb600fdb2f181f2a5260b2aca4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Targeter&lt; T &gt;.SetRadius</definition>
+        <argsstring>(float value)</argsstring>
+        <name>SetRadius</name>
+        <qualifiedname>Targeter.SetRadius</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/Targeter.cs" line="22" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/Targeter.cs" bodystart="22" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_targeter_1a7b0eff54a6c168d0f54381ddd289352b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T Targeter&lt; T &gt;.GetClosestTarget</definition>
+        <argsstring>()</argsstring>
+        <name>GetClosestTarget</name>
+        <qualifiedname>Targeter.GetClosestTarget</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/Targeter.cs" line="47" column="14" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/Targeter.cs" bodystart="47" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="class_targeter_1a6f944c7095eaa8007e68c276dac97805" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; T &gt;</type>
+        <definition>List&lt; T &gt; Targeter&lt; T &gt;.GetAvailableTargets</definition>
+        <argsstring>(Vector3 origin, float range)</argsstring>
+        <name>GetAvailableTargets</name>
+        <qualifiedname>Targeter.GetAvailableTargets</qualifiedname>
+        <param>
+          <type>Vector3</type>
+          <declname>origin</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>range</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/Targeter.cs" line="66" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/Targeter.cs" bodystart="66" bodyend="80"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_targeter_1a4c90c4447b67967faa9436133c6964c1" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Targeter&lt; T &gt;.OnTriggerEnter2D</definition>
+        <argsstring>(Collider2D collision)</argsstring>
+        <name>OnTriggerEnter2D</name>
+        <qualifiedname>Targeter.OnTriggerEnter2D</qualifiedname>
+        <param>
+          <type>Collider2D</type>
+          <declname>collision</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/Targeter.cs" line="27" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/Targeter.cs" bodystart="27" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="class_targeter_1a0c40e3a549107fdbfff522121f8ba0d8" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Targeter&lt; T &gt;.OnTriggerExit2D</definition>
+        <argsstring>(Collider2D collision)</argsstring>
+        <name>OnTriggerExit2D</name>
+        <qualifiedname>Targeter.OnTriggerExit2D</qualifiedname>
+        <param>
+          <type>Collider2D</type>
+          <declname>collision</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/Targeter.cs" line="37" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/Targeter.cs" bodystart="37" bodyend="45"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>Targeter&lt; T &gt;</label>
+        <link refid="class_targeter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>Targeter&lt; T &gt;</label>
+        <link refid="class_targeter"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/Targeter.cs" line="5" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/Targeter.cs" bodystart="6" bodyend="81"/>
+    <listofallmembers>
+      <member refid="class_targeter_1af8d853c896dab460b11abbd6efcbb3d9" prot="public" virt="non-virtual"><scope>Targeter</scope><name>AddRadius</name></member>
+      <member refid="class_targeter_1adf760feb20307f0e304bf1b92bcaf956" prot="private" virt="non-virtual"><scope>Targeter</scope><name>availableTargets</name></member>
+      <member refid="class_targeter_1abcab9e1bc5ee4b70196e0fd90e106ffb" prot="public" virt="non-virtual"><scope>Targeter</scope><name>AvailableTargets</name></member>
+      <member refid="class_targeter_1a6f944c7095eaa8007e68c276dac97805" prot="public" virt="non-virtual"><scope>Targeter</scope><name>GetAvailableTargets</name></member>
+      <member refid="class_targeter_1a7b0eff54a6c168d0f54381ddd289352b" prot="public" virt="non-virtual"><scope>Targeter</scope><name>GetClosestTarget</name></member>
+      <member refid="class_targeter_1acab03a1e0181250ff30f4796f1b66921" prot="public" virt="non-virtual"><scope>Targeter</scope><name>HasTarget</name></member>
+      <member refid="class_targeter_1a972e5e5510d8bf4e819427d3e986771e" prot="public" virt="non-virtual"><scope>Targeter</scope><name>OnTargetAdded</name></member>
+      <member refid="class_targeter_1a379a299c321a2a415e934938d1e8c948" prot="public" virt="non-virtual"><scope>Targeter</scope><name>OnTargetLost</name></member>
+      <member refid="class_targeter_1a4c90c4447b67967faa9436133c6964c1" prot="private" virt="non-virtual"><scope>Targeter</scope><name>OnTriggerEnter2D</name></member>
+      <member refid="class_targeter_1a0c40e3a549107fdbfff522121f8ba0d8" prot="private" virt="non-virtual"><scope>Targeter</scope><name>OnTriggerExit2D</name></member>
+      <member refid="class_targeter_1a8f380cfb600fdb2f181f2a5260b2aca4" prot="public" virt="non-virtual"><scope>Targeter</scope><name>SetRadius</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
