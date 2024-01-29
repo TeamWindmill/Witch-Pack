@@ -162,11 +162,6 @@ public class PowerStructure : MonoBehaviour
         color.a = alpha;
         return color;
     }
-
-    private void OnDestroy()
-    {
-        SelectionManager.Instance.OnShamanDeselected -= OnShadowDeselect;
-    }
     
     private void OnValidate()
     {

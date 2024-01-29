@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -5,6 +6,8 @@ using UnityEngine.UI;
 
 public class HeroSelectionUI : MonoSingleton<HeroSelectionUI> , IPointerEnterHandler , IPointerExitHandler
 {
+    public event Action OnMouseEnter;
+    public event Action OnMouseExit;
     [SerializeField] private Image shamanSprite;
     [SerializeField] private TextMeshProUGUI shamanName;
     [SerializeField] private StatBlockPanel statBlockPanel;
@@ -48,10 +51,12 @@ public class HeroSelectionUI : MonoSingleton<HeroSelectionUI> , IPointerEnterHan
     public void OnPointerEnter(PointerEventData eventData)
     {
         MouseOverUI = true;
+        OnMouseEnter?.Invoke();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         MouseOverUI = false;
+        OnMouseExit?.Invoke();
     }
 }

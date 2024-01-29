@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Unity.VisualScripting;
 
 public class SelectionManager : MonoSingleton<SelectionManager>
 {
@@ -26,6 +27,12 @@ public class SelectionManager : MonoSingleton<SelectionManager>
         OnShamanMoveSelect += ShamanMoveSelect;
         OnShamanInfoSelect += ShamanInfoSelect;
         OnShamanDeselected += ShamanDeselect;
+        HeroSelectionUI.Instance.OnMouseEnter += OnSelectionUIMouseEnter;
+        HeroSelectionUI.Instance.OnMouseEnter += OnSelectionUIMouseExit;
+    }
+    private void Start()
+    {
+        shadow.Hide();
     }
 
     public void SetSelectedShaman(Shaman selectedShaman, SelectionType selectMode)
@@ -70,8 +77,7 @@ public class SelectionManager : MonoSingleton<SelectionManager>
 
         if (SelectMode == SelectionType.Movement)
         {
-            if (_mouseOverSelectionUI) shadow.Hide();
-            else shadow.Show(_selectedShaman);
+            
                 
             if (Input.GetMouseButtonDown(LEFT_CLICK))
             {
@@ -138,6 +144,16 @@ public class SelectionManager : MonoSingleton<SelectionManager>
             HeroSelectionUI.Instance.Hide();
             shadow.Hide();
         }
+    }
+    private void OnSelectionUIMouseEnter()
+    {
+        if(ReferenceEquals(_selectedShaman,null)) return;
+        shadow.Hide();
+    }
+    private void OnSelectionUIMouseExit()
+    {
+        if(ReferenceEquals(_selectedShaman,null)) return;
+        shadow.Show(_selectedShaman);
     }
 }
 
