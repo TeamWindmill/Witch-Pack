@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_damageable" xml:lang="en-US">
+<title>Damageable Class Reference</title>
+<indexterm><primary>Damageable</primary></indexterm>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><anchor xml:id="_class_damageable_1ac4e5ed3fe7cd2b44a6fc8ae7befaf293"/><emphasis role="strong">Damageable</emphasis> (<link linkend="_class_base_unit">BaseUnit</link> owner)</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_damageable_1ac5630456c5d77812c8408119fa9287da"/>void <emphasis role="strong">GetHit</emphasis> (<link linkend="_class_damage_dealer">DamageDealer</link> dealer, <link linkend="_class_base_ability">BaseAbility</link> ability)</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_damageable_1acc10d4e6d709970714ddefc06e146717"/>void <emphasis role="strong">TakeDamage</emphasis> (<link linkend="_class_damage_handler">DamageHandler</link> handler, <link linkend="_class_damage_dealer">DamageDealer</link> dealer, <link linkend="_class_base_ability">BaseAbility</link> attack)</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_damageable_1ab5bf84d66659f22fd3aa95231f5d1dda"/>void <emphasis role="strong">TakeFlatDamage</emphasis> (int amount)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><anchor xml:id="_class_damageable_1aea62e726106f1b0c9a8a233e9cb3edde"/>Action&lt; <link linkend="_class_damageable">Damageable</link>, <link linkend="_class_damage_dealer">DamageDealer</link>, <link linkend="_class_damage_handler">DamageHandler</link>, <link linkend="_class_base_ability">BaseAbility</link>, bool &gt; <emphasis role="strong">OnGetHit</emphasis></para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_damageable_1a31859f03cf2d97d36d1fa4240d37c262"/>Action&lt; <link linkend="_class_damageable">Damageable</link>, <link linkend="_class_damage_dealer">DamageDealer</link>, <link linkend="_class_damage_handler">DamageHandler</link>, <link linkend="_class_base_ability">BaseAbility</link> &gt; <emphasis role="strong">OnDamageCalc</emphasis></para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_damageable_1a0a8bd64d22df5aae954b64b4bdde1a45"/>Action&lt; <link linkend="_class_damageable">Damageable</link>, <link linkend="_class_damage_dealer">DamageDealer</link>, <link linkend="_class_damage_handler">DamageHandler</link>, <link linkend="_class_base_ability">BaseAbility</link> &gt; <emphasis role="strong">OnDeath</emphasis></para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_damageable_1a124753f94d43165a4a1632ad57ee0628"/>Action <emphasis role="strong">OnDeathGFX</emphasis></para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_damageable_1a0a9dd8a8dd2260c9cba08f3ba470576f"/>Action&lt; bool &gt; <emphasis role="strong">OnHitGFX</emphasis></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Properties    </title>
+        <itemizedlist>
+            <listitem><para><anchor xml:id="_class_damageable_1a7edc26b9cf7454580a01bc773733fd42"/>int <emphasis role="strong">MaxHp</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_damageable_1aa6ebb6d84bc67e52bacfe5bee04547fa"/>int <emphasis role="strong">CurrentHp</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_damageable_1a03b3b0f2c2ddc027ac54014bfaa04d38"/><link linkend="_class_base_unit">BaseUnit</link> <emphasis role="strong">Owner</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<para>
+The documentation for this class was generated from the following file:</para>
+C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Damageable.cs</section>

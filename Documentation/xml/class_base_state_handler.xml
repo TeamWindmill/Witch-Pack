@@ -1,0 +1,223 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_base_state_handler" kind="class" language="C#" prot="public">
+    <compoundname>BaseStateHandler</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_base_state_handler_1ac948009f255b7ca38faee0f5a1903d55" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="class_coroutine_state" kindref="compound">CoroutineState</ref> &gt;</type>
+        <definition>List&lt;CoroutineState&gt; BaseStateHandler.states</definition>
+        <argsstring></argsstring>
+        <name>states</name>
+        <qualifiedname>BaseStateHandler.states</qualifiedname>
+        <initializer>= new List&lt;<ref refid="class_coroutine_state" kindref="compound">CoroutineState</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseStateHandler.cs" line="7" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseStateHandler.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_state_handler_1a3fc1fb09741955db1492bf517540951c" prot="private" static="no" mutable="no">
+        <type><ref refid="class_base_unit" kindref="compound">BaseUnit</ref></type>
+        <definition>BaseUnit BaseStateHandler.refUnit</definition>
+        <argsstring></argsstring>
+        <name>refUnit</name>
+        <qualifiedname>BaseStateHandler.refUnit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseStateHandler.cs" line="8" column="23" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseStateHandler.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_state_handler_1adc81475868e64470148046f9c70ee6ae" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float BaseStateHandler.stateDelay</definition>
+        <argsstring></argsstring>
+        <name>stateDelay</name>
+        <qualifiedname>BaseStateHandler.stateDelay</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseStateHandler.cs" line="9" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseStateHandler.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_state_handler_1a69ed4f261eaeac4cc8eb00e138f1edd7" prot="private" static="no" mutable="no">
+        <type><ref refid="class_coroutine_state" kindref="compound">CoroutineState</ref></type>
+        <definition>CoroutineState BaseStateHandler.activeState</definition>
+        <argsstring></argsstring>
+        <name>activeState</name>
+        <qualifiedname>BaseStateHandler.activeState</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseStateHandler.cs" line="10" column="28" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseStateHandler.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_state_handler_1a73e6d4df01018ce049c8e843b030d4bd" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool BaseStateHandler.stunned</definition>
+        <argsstring></argsstring>
+        <name>stunned</name>
+        <qualifiedname>BaseStateHandler.stunned</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseStateHandler.cs" line="11" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseStateHandler.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_base_state_handler_1a691a9d43669fc01896b5e1eabbbbfd5f" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_base_unit" kindref="compound">BaseUnit</ref></type>
+        <definition>BaseUnit BaseStateHandler.RefUnit</definition>
+        <argsstring></argsstring>
+        <name>RefUnit</name>
+        <qualifiedname>BaseStateHandler.RefUnit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseStateHandler.cs" line="14" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseStateHandler.cs" bodystart="14" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="property" id="class_base_state_handler_1a67725187ce3bce2b89a1b9dce0c725bf" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool BaseStateHandler.Stunned</definition>
+        <argsstring></argsstring>
+        <name>Stunned</name>
+        <qualifiedname>BaseStateHandler.Stunned</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseStateHandler.cs" line="15" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseStateHandler.cs" bodystart="15" bodyend="15"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_base_state_handler_1add23995b272626a609c821d1b8c07868" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BaseStateHandler.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>BaseStateHandler.Start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseStateHandler.cs" line="17" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseStateHandler.cs" bodystart="17" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="class_base_state_handler_1a9dd07183a52a3396ca602d1f7c8607c3" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator BaseStateHandler.RunStateMachine</definition>
+        <argsstring>()</argsstring>
+        <name>RunStateMachine</name>
+        <qualifiedname>BaseStateHandler.RunStateMachine</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseStateHandler.cs" line="28" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseStateHandler.cs" bodystart="28" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="class_base_state_handler_1ab966e677de71c04c528eddf5493f98d0" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BaseStateHandler.SortStates</definition>
+        <argsstring>()</argsstring>
+        <name>SortStates</name>
+        <qualifiedname>BaseStateHandler.SortStates</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseStateHandler.cs" line="45" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseStateHandler.cs" bodystart="45" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="class_base_state_handler_1a6d3dec1900794ee60324126b6201ebde" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BaseStateHandler.SubscribeHandler</definition>
+        <argsstring>()</argsstring>
+        <name>SubscribeHandler</name>
+        <qualifiedname>BaseStateHandler.SubscribeHandler</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseStateHandler.cs" line="49" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseStateHandler.cs" bodystart="49" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="class_base_state_handler_1a0f140d198d26a26eb3341e73f7c520ec" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_coroutine_state" kindref="compound">CoroutineState</ref></type>
+        <definition>CoroutineState BaseStateHandler.GetNextState</definition>
+        <argsstring>()</argsstring>
+        <name>GetNextState</name>
+        <qualifiedname>BaseStateHandler.GetNextState</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseStateHandler.cs" line="57" column="28" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseStateHandler.cs" bodystart="57" bodyend="67"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>BaseStateHandler</label>
+        <link refid="class_base_state_handler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>BaseStateHandler</label>
+        <link refid="class_base_state_handler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseStateHandler.cs" line="5" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseStateHandler.cs" bodystart="6" bodyend="71"/>
+    <listofallmembers>
+      <member refid="class_base_state_handler_1a69ed4f261eaeac4cc8eb00e138f1edd7" prot="private" virt="non-virtual"><scope>BaseStateHandler</scope><name>activeState</name></member>
+      <member refid="class_base_state_handler_1a0f140d198d26a26eb3341e73f7c520ec" prot="private" virt="non-virtual"><scope>BaseStateHandler</scope><name>GetNextState</name></member>
+      <member refid="class_base_state_handler_1a3fc1fb09741955db1492bf517540951c" prot="private" virt="non-virtual"><scope>BaseStateHandler</scope><name>refUnit</name></member>
+      <member refid="class_base_state_handler_1a691a9d43669fc01896b5e1eabbbbfd5f" prot="public" virt="non-virtual"><scope>BaseStateHandler</scope><name>RefUnit</name></member>
+      <member refid="class_base_state_handler_1a9dd07183a52a3396ca602d1f7c8607c3" prot="private" virt="non-virtual"><scope>BaseStateHandler</scope><name>RunStateMachine</name></member>
+      <member refid="class_base_state_handler_1ab966e677de71c04c528eddf5493f98d0" prot="private" virt="non-virtual"><scope>BaseStateHandler</scope><name>SortStates</name></member>
+      <member refid="class_base_state_handler_1add23995b272626a609c821d1b8c07868" prot="private" virt="non-virtual"><scope>BaseStateHandler</scope><name>Start</name></member>
+      <member refid="class_base_state_handler_1adc81475868e64470148046f9c70ee6ae" prot="private" virt="non-virtual"><scope>BaseStateHandler</scope><name>stateDelay</name></member>
+      <member refid="class_base_state_handler_1ac948009f255b7ca38faee0f5a1903d55" prot="private" virt="non-virtual"><scope>BaseStateHandler</scope><name>states</name></member>
+      <member refid="class_base_state_handler_1a73e6d4df01018ce049c8e843b030d4bd" prot="private" virt="non-virtual"><scope>BaseStateHandler</scope><name>stunned</name></member>
+      <member refid="class_base_state_handler_1a67725187ce3bce2b89a1b9dce0c725bf" prot="public" virt="non-virtual"><scope>BaseStateHandler</scope><name>Stunned</name></member>
+      <member refid="class_base_state_handler_1a6d3dec1900794ee60324126b6201ebde" prot="private" virt="non-virtual"><scope>BaseStateHandler</scope><name>SubscribeHandler</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

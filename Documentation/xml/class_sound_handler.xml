@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_sound_handler" kind="class" language="C#" prot="public">
+    <compoundname>SoundHandler</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_sound_handler_1a233aae00fb8a3026a784c7cae0e4af3b" prot="private" static="no" mutable="no">
+        <type>AudioSource[]</type>
+        <definition>AudioSource [] SoundHandler._audioSources</definition>
+        <argsstring></argsstring>
+        <name>_audioSources</name>
+        <qualifiedname>SoundHandler._audioSources</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Sound/SoundHandler.cs" line="8" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Sound/SoundHandler.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_sound_handler_1ab5029819a4d2ab08ec700a9d31dc37ec" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SoundHandler.PlayAudioClip</definition>
+        <argsstring>(AudioClip audioClip, float pitch, float volume, bool loop=false)</argsstring>
+        <name>PlayAudioClip</name>
+        <qualifiedname>SoundHandler.PlayAudioClip</qualifiedname>
+        <param>
+          <type>AudioClip</type>
+          <declname>audioClip</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>pitch</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>volume</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>loop</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Sound/SoundHandler.cs" line="10" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Sound/SoundHandler.cs" bodystart="10" bodyend="33"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_sound_handler_1a4ad1bb025cdded31e87dcdc70001b83c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SoundHandler.OnValidate</definition>
+        <argsstring>()</argsstring>
+        <name>OnValidate</name>
+        <qualifiedname>SoundHandler.OnValidate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Sound/SoundHandler.cs" line="35" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Sound/SoundHandler.cs" bodystart="35" bodyend="41"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>SoundHandler</label>
+        <link refid="class_sound_handler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>SoundHandler</label>
+        <link refid="class_sound_handler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Sound/SoundHandler.cs" line="5" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Sound/SoundHandler.cs" bodystart="6" bodyend="42"/>
+    <listofallmembers>
+      <member refid="class_sound_handler_1a233aae00fb8a3026a784c7cae0e4af3b" prot="private" virt="non-virtual"><scope>SoundHandler</scope><name>_audioSources</name></member>
+      <member refid="class_sound_handler_1a4ad1bb025cdded31e87dcdc70001b83c" prot="private" virt="non-virtual"><scope>SoundHandler</scope><name>OnValidate</name></member>
+      <member refid="class_sound_handler_1ab5029819a4d2ab08ec700a9d31dc37ec" prot="public" virt="non-virtual"><scope>SoundHandler</scope><name>PlayAudioClip</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

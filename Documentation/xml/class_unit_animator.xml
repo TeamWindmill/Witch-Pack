@@ -1,0 +1,306 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_unit_animator" kind="class" language="C#" prot="public" abstract="yes">
+    <compoundname>UnitAnimator</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <derivedcompoundref refid="class_enemy_animator" prot="public" virt="non-virtual">EnemyAnimator</derivedcompoundref>
+    <derivedcompoundref refid="class_shaman_animator" prot="public" virt="non-virtual">ShamanAnimator</derivedcompoundref>
+      <sectiondef kind="event">
+      <memberdef kind="event" id="class_unit_animator_1a76fee97ceabe2712e45706cc6701d6e6" prot="public" static="no" add="no" remove="no" raise="no">
+        <type>Action</type>
+        <definition>Action UnitAnimator.OnDeathAnimationEnd</definition>
+        <argsstring></argsstring>
+        <name>OnDeathAnimationEnd</name>
+        <qualifiedname>UnitAnimator.OnDeathAnimationEnd</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" line="6" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_unit_animator_1aeed206ab10666641b730d7679b26e4e0" prot="protected" static="no" mutable="no">
+        <type>Animator</type>
+        <definition>Animator UnitAnimator.animator</definition>
+        <argsstring></argsstring>
+        <name>animator</name>
+        <qualifiedname>UnitAnimator.animator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" line="7" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_unit_animator_1adecb309f0a54fc411c3787b8cd42b6b5" prot="protected" static="no" mutable="no">
+        <type><ref refid="class_base_unit" kindref="compound">BaseUnit</ref></type>
+        <definition>BaseUnit UnitAnimator.unit</definition>
+        <argsstring></argsstring>
+        <name>unit</name>
+        <qualifiedname>UnitAnimator.unit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" line="8" column="24" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_unit_animator_1a874f2971dc44336a6edf676ae0f2feb8" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool UnitAnimator._isFlipped</definition>
+        <argsstring></argsstring>
+        <name>_isFlipped</name>
+        <qualifiedname>UnitAnimator._isFlipped</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" line="16" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_unit_animator_1a083c42c8b17bcdd0b127d664cc299044" prot="private" static="yes" mutable="no">
+        <type>readonly int</type>
+        <definition>readonly int UnitAnimator.Death</definition>
+        <argsstring></argsstring>
+        <name>Death</name>
+        <qualifiedname>UnitAnimator.Death</qualifiedname>
+        <initializer>= Animator.StringToHash(&quot;Death&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" line="17" column="33" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_unit_animator_1a1f7df90cdd9feed31624a8c454abe464" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UnitAnimator.OnValidate</definition>
+        <argsstring>()</argsstring>
+        <name>OnValidate</name>
+        <qualifiedname>UnitAnimator.OnValidate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" line="10" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" bodystart="10" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="class_unit_animator_1a33e2e8356c6fab14dd3dc10daff97680" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UnitAnimator.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>UnitAnimator.Update</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" line="58" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" bodystart="58" bodyend="61"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_unit_animator_1aec8d070db83f156812f7bb9a7852b717" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void UnitAnimator.Init</definition>
+        <argsstring>(BaseUnit unit)</argsstring>
+        <name>Init</name>
+        <qualifiedname>UnitAnimator.Init</qualifiedname>
+        <reimplementedby refid="class_enemy_animator_1a52b80db3dea0887c67efc37e1d515738">Init</reimplementedby>
+        <param>
+          <type><ref refid="class_base_unit" kindref="compound">BaseUnit</ref></type>
+          <declname>unit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" line="19" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" bodystart="19" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="class_unit_animator_1ac03875b4757788d3c760a8fa5c877cfe" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void UnitAnimator.DeathAnimationEnded</definition>
+        <argsstring>()</argsstring>
+        <name>DeathAnimationEnded</name>
+        <qualifiedname>UnitAnimator.DeathAnimationEnded</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" line="42" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" bodystart="42" bodyend="47"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_unit_animator_1ac1b8db61d92168ebb070750ea6543fef" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract void</type>
+        <definition>abstract void UnitAnimator.MoveAnimation</definition>
+        <argsstring>()</argsstring>
+        <name>MoveAnimation</name>
+        <qualifiedname>UnitAnimator.MoveAnimation</qualifiedname>
+        <reimplementedby refid="class_enemy_animator_1a277d4f5f9feea272b202ef07c2342afb">MoveAnimation</reimplementedby>
+        <reimplementedby refid="class_shaman_animator_1ac79d5188add0a18309f3d95fe30c564e">MoveAnimation</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" line="28" column="29"/>
+      </memberdef>
+      <memberdef kind="function" id="class_unit_animator_1a8738bd86d25b70068d1eabffb2a4044f" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void UnitAnimator.AttackAnimation</definition>
+        <argsstring>()</argsstring>
+        <name>AttackAnimation</name>
+        <qualifiedname>UnitAnimator.AttackAnimation</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" line="30" column="28" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" bodystart="30" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="class_unit_animator_1a22d35d50072514525ef413ad45aa22ac" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void UnitAnimator.DeathAnimation</definition>
+        <argsstring>()</argsstring>
+        <name>DeathAnimation</name>
+        <qualifiedname>UnitAnimator.DeathAnimation</qualifiedname>
+        <reimplementedby refid="class_enemy_animator_1a0365f26d53cb6cc1d100018daf2c0bd7">DeathAnimation</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" line="35" column="28" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" bodystart="35" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="class_unit_animator_1a0c7e62d0faa753b6569b732d7b562da1" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void UnitAnimator.GetHitAnimation</definition>
+        <argsstring>(bool isCrit)</argsstring>
+        <name>GetHitAnimation</name>
+        <qualifiedname>UnitAnimator.GetHitAnimation</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>isCrit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" line="49" column="28" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" bodystart="49" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="class_unit_animator_1a77b3bd45ee6b1401ff4d8c8d8cadd4b3" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void UnitAnimator.FlipAnimations</definition>
+        <argsstring>(bool state)</argsstring>
+        <name>FlipAnimations</name>
+        <qualifiedname>UnitAnimator.FlipAnimations</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" line="54" column="28" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" bodystart="54" bodyend="57"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>EnemyAnimator</label>
+        <link refid="class_enemy_animator"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="4">
+        <label>ShamanAnimator</label>
+        <link refid="class_shaman_animator"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>UnitAnimator</label>
+        <link refid="class_unit_animator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>BaseUnit</label>
+        <link refid="class_base_unit"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>ITargetable</label>
+        <link refid="interface_i_targetable"/>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>UnitAnimator</label>
+        <link refid="class_unit_animator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>unit</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" line="4" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/UnitAnimator.cs" bodystart="5" bodyend="63"/>
+    <listofallmembers>
+      <member refid="class_unit_animator_1a874f2971dc44336a6edf676ae0f2feb8" prot="private" virt="non-virtual"><scope>UnitAnimator</scope><name>_isFlipped</name></member>
+      <member refid="class_unit_animator_1aeed206ab10666641b730d7679b26e4e0" prot="protected" virt="non-virtual"><scope>UnitAnimator</scope><name>animator</name></member>
+      <member refid="class_unit_animator_1a8738bd86d25b70068d1eabffb2a4044f" prot="protected" virt="virtual"><scope>UnitAnimator</scope><name>AttackAnimation</name></member>
+      <member refid="class_unit_animator_1a083c42c8b17bcdd0b127d664cc299044" prot="private" virt="non-virtual"><scope>UnitAnimator</scope><name>Death</name></member>
+      <member refid="class_unit_animator_1a22d35d50072514525ef413ad45aa22ac" prot="protected" virt="virtual"><scope>UnitAnimator</scope><name>DeathAnimation</name></member>
+      <member refid="class_unit_animator_1ac03875b4757788d3c760a8fa5c877cfe" prot="public" virt="virtual"><scope>UnitAnimator</scope><name>DeathAnimationEnded</name></member>
+      <member refid="class_unit_animator_1a77b3bd45ee6b1401ff4d8c8d8cadd4b3" prot="protected" virt="virtual"><scope>UnitAnimator</scope><name>FlipAnimations</name></member>
+      <member refid="class_unit_animator_1a0c7e62d0faa753b6569b732d7b562da1" prot="protected" virt="virtual"><scope>UnitAnimator</scope><name>GetHitAnimation</name></member>
+      <member refid="class_unit_animator_1aec8d070db83f156812f7bb9a7852b717" prot="public" virt="virtual"><scope>UnitAnimator</scope><name>Init</name></member>
+      <member refid="class_unit_animator_1ac1b8db61d92168ebb070750ea6543fef" prot="protected" virt="pure-virtual"><scope>UnitAnimator</scope><name>MoveAnimation</name></member>
+      <member refid="class_unit_animator_1a76fee97ceabe2712e45706cc6701d6e6" prot="public" virt="non-virtual"><scope>UnitAnimator</scope><name>OnDeathAnimationEnd</name></member>
+      <member refid="class_unit_animator_1a1f7df90cdd9feed31624a8c454abe464" prot="private" virt="non-virtual"><scope>UnitAnimator</scope><name>OnValidate</name></member>
+      <member refid="class_unit_animator_1adecb309f0a54fc411c3787b8cd42b6b5" prot="protected" virt="non-virtual"><scope>UnitAnimator</scope><name>unit</name></member>
+      <member refid="class_unit_animator_1a33e2e8356c6fab14dd3dc10daff97680" prot="private" virt="non-virtual"><scope>UnitAnimator</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

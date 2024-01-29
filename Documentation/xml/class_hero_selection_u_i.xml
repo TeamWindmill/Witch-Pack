@@ -1,0 +1,318 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_hero_selection_u_i" kind="class" language="C#" prot="public">
+    <compoundname>HeroSelectionUI</compoundname>
+    <basecompoundref refid="class_mono_singleton" prot="public" virt="non-virtual">MonoSingleton&lt; HeroSelectionUI &gt;</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IPointerEnterHandler</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IPointerExitHandler</basecompoundref>
+      <sectiondef kind="event">
+      <memberdef kind="event" id="class_hero_selection_u_i_1acd87b819226c446d80bf6d0f964563dd" prot="public" static="no" add="no" remove="no" raise="no">
+        <type>Action</type>
+        <definition>Action HeroSelectionUI.OnMouseEnter</definition>
+        <argsstring></argsstring>
+        <name>OnMouseEnter</name>
+        <qualifiedname>HeroSelectionUI.OnMouseEnter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" line="9" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="event" id="class_hero_selection_u_i_1a9e6fd222fb730630067131c1e13327b0" prot="public" static="no" add="no" remove="no" raise="no">
+        <type>Action</type>
+        <definition>Action HeroSelectionUI.OnMouseExit</definition>
+        <argsstring></argsstring>
+        <name>OnMouseExit</name>
+        <qualifiedname>HeroSelectionUI.OnMouseExit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" line="10" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_hero_selection_u_i_1a98268112517d256a828478a1e7bff1e9" prot="private" static="no" mutable="no">
+        <type>Image</type>
+        <definition>Image HeroSelectionUI.shamanSprite</definition>
+        <argsstring></argsstring>
+        <name>shamanSprite</name>
+        <qualifiedname>HeroSelectionUI.shamanSprite</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" line="11" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hero_selection_u_i_1ae7b64e1629f77f134e5f39e473fa39b6" prot="private" static="no" mutable="no">
+        <type>TextMeshProUGUI</type>
+        <definition>TextMeshProUGUI HeroSelectionUI.shamanName</definition>
+        <argsstring></argsstring>
+        <name>shamanName</name>
+        <qualifiedname>HeroSelectionUI.shamanName</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" line="12" column="30" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hero_selection_u_i_1afb3e8e28830c7db26cd81e2e784a9ea0" prot="private" static="no" mutable="no">
+        <type><ref refid="class_stat_block_panel" kindref="compound">StatBlockPanel</ref></type>
+        <definition>StatBlockPanel HeroSelectionUI.statBlockPanel</definition>
+        <argsstring></argsstring>
+        <name>statBlockPanel</name>
+        <qualifiedname>HeroSelectionUI.statBlockPanel</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" line="13" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hero_selection_u_i_1a2ce9b2602a86263195fb6e436ab20a41" prot="private" static="no" mutable="no">
+        <type><ref refid="class_p_s_bonus_u_i_handler" kindref="compound">PSBonusUIHandler</ref></type>
+        <definition>PSBonusUIHandler HeroSelectionUI.psBonusUIHandler</definition>
+        <argsstring></argsstring>
+        <name>psBonusUIHandler</name>
+        <qualifiedname>HeroSelectionUI.psBonusUIHandler</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" line="14" column="31" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_hero_selection_u_i_1acf822d811fccde165e6166c12d58ad14" prot="private" static="no" mutable="no">
+        <type><ref refid="class_abilities_handler_u_i" kindref="compound">AbilitiesHandlerUI</ref></type>
+        <definition>AbilitiesHandlerUI HeroSelectionUI.abilitiesHandlerUI</definition>
+        <argsstring></argsstring>
+        <name>abilitiesHandlerUI</name>
+        <qualifiedname>HeroSelectionUI.abilitiesHandlerUI</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" line="15" column="33" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_hero_selection_u_i_1a1971d25a134d1438e4bb287a91115328" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool HeroSelectionUI.IsActive</definition>
+        <argsstring></argsstring>
+        <name>IsActive</name>
+        <qualifiedname>HeroSelectionUI.IsActive</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" line="17" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" bodystart="17" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="property" id="class_hero_selection_u_i_1a595bc9b7ab8d8102e6cb4ac32794ec91" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool HeroSelectionUI.MouseOverUI</definition>
+        <argsstring></argsstring>
+        <name>MouseOverUI</name>
+        <qualifiedname>HeroSelectionUI.MouseOverUI</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" line="18" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" bodystart="18" bodyend="18"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_hero_selection_u_i_1a8e2b5f0e75d42d477c44789df2471356" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void HeroSelectionUI.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>HeroSelectionUI.Start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" line="20" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" bodystart="20" bodyend="23"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_hero_selection_u_i_1ad4474e35e0602cf04c96a1a8de11f23c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void HeroSelectionUI.Show</definition>
+        <argsstring>(Shaman shaman)</argsstring>
+        <name>Show</name>
+        <qualifiedname>HeroSelectionUI.Show</qualifiedname>
+        <param>
+          <type><ref refid="class_shaman" kindref="compound">Shaman</ref></type>
+          <declname>shaman</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" line="25" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" bodystart="25" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hero_selection_u_i_1a7054c490457898eff76a0e3b5ccdc1e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void HeroSelectionUI.UpdateStatBlocks</definition>
+        <argsstring>(StatType shamanStatType, int newValue)</argsstring>
+        <name>UpdateStatBlocks</name>
+        <qualifiedname>HeroSelectionUI.UpdateStatBlocks</qualifiedname>
+        <param>
+          <type>StatType</type>
+          <declname>shamanStatType</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>newValue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" line="39" column="17"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hero_selection_u_i_1a207b1b4de08ee2b6bd8555d115377e97" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void HeroSelectionUI.Hide</definition>
+        <argsstring>()</argsstring>
+        <name>Hide</name>
+        <qualifiedname>HeroSelectionUI.Hide</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" line="41" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" bodystart="41" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hero_selection_u_i_1a6bcd12392aa18fe33176567690989854" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void HeroSelectionUI.OnPointerEnter</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnPointerEnter</name>
+        <qualifiedname>HeroSelectionUI.OnPointerEnter</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" line="51" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" bodystart="51" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="class_hero_selection_u_i_1a77bc9e6976c7c5cd389d713c341578f6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void HeroSelectionUI.OnPointerExit</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnPointerExit</name>
+        <qualifiedname>HeroSelectionUI.OnPointerExit</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" line="57" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" bodystart="57" bodyend="61"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>HeroSelectionUI</label>
+        <link refid="class_hero_selection_u_i"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="4">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="2">
+        <label>MonoSingleton&lt; HeroSelectionUI &gt;</label>
+        <link refid="class_mono_singleton"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>HeroSelectionUI</label>
+        <link refid="class_hero_selection_u_i"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="4">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="2">
+        <label>MonoSingleton&lt; HeroSelectionUI &gt;</label>
+        <link refid="class_mono_singleton"/>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" line="7" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/HeroSelectionUI.cs" bodystart="8" bodyend="62"/>
+    <listofallmembers>
+      <member refid="class_hero_selection_u_i_1acf822d811fccde165e6166c12d58ad14" prot="private" virt="non-virtual"><scope>HeroSelectionUI</scope><name>abilitiesHandlerUI</name></member>
+      <member refid="class_mono_singleton_1a04acead2ed3d970430f4c8c7716071f1" prot="protected" virt="virtual"><scope>HeroSelectionUI</scope><name>Awake</name></member>
+      <member refid="class_hero_selection_u_i_1a207b1b4de08ee2b6bd8555d115377e97" prot="public" virt="non-virtual"><scope>HeroSelectionUI</scope><name>Hide</name></member>
+      <member refid="class_mono_singleton_1a5637ba1f44359d4610b5eba552ef5f57" prot="public" virt="non-virtual"><scope>HeroSelectionUI</scope><name>Instance</name></member>
+      <member refid="class_hero_selection_u_i_1a1971d25a134d1438e4bb287a91115328" prot="public" virt="non-virtual"><scope>HeroSelectionUI</scope><name>IsActive</name></member>
+      <member refid="class_hero_selection_u_i_1a595bc9b7ab8d8102e6cb4ac32794ec91" prot="public" virt="non-virtual"><scope>HeroSelectionUI</scope><name>MouseOverUI</name></member>
+      <member refid="class_mono_singleton_1af585390f9256dfc8be7c969ca9fb4d88" prot="protected" virt="virtual"><scope>HeroSelectionUI</scope><name>OnDestroy</name></member>
+      <member refid="class_hero_selection_u_i_1acd87b819226c446d80bf6d0f964563dd" prot="public" virt="non-virtual"><scope>HeroSelectionUI</scope><name>OnMouseEnter</name></member>
+      <member refid="class_hero_selection_u_i_1a9e6fd222fb730630067131c1e13327b0" prot="public" virt="non-virtual"><scope>HeroSelectionUI</scope><name>OnMouseExit</name></member>
+      <member refid="class_hero_selection_u_i_1a6bcd12392aa18fe33176567690989854" prot="public" virt="non-virtual"><scope>HeroSelectionUI</scope><name>OnPointerEnter</name></member>
+      <member refid="class_hero_selection_u_i_1a77bc9e6976c7c5cd389d713c341578f6" prot="public" virt="non-virtual"><scope>HeroSelectionUI</scope><name>OnPointerExit</name></member>
+      <member refid="class_hero_selection_u_i_1a2ce9b2602a86263195fb6e436ab20a41" prot="private" virt="non-virtual"><scope>HeroSelectionUI</scope><name>psBonusUIHandler</name></member>
+      <member refid="class_hero_selection_u_i_1ae7b64e1629f77f134e5f39e473fa39b6" prot="private" virt="non-virtual"><scope>HeroSelectionUI</scope><name>shamanName</name></member>
+      <member refid="class_hero_selection_u_i_1a98268112517d256a828478a1e7bff1e9" prot="private" virt="non-virtual"><scope>HeroSelectionUI</scope><name>shamanSprite</name></member>
+      <member refid="class_hero_selection_u_i_1ad4474e35e0602cf04c96a1a8de11f23c" prot="public" virt="non-virtual"><scope>HeroSelectionUI</scope><name>Show</name></member>
+      <member refid="class_hero_selection_u_i_1a8e2b5f0e75d42d477c44789df2471356" prot="private" virt="non-virtual"><scope>HeroSelectionUI</scope><name>Start</name></member>
+      <member refid="class_hero_selection_u_i_1afb3e8e28830c7db26cd81e2e784a9ea0" prot="private" virt="non-virtual"><scope>HeroSelectionUI</scope><name>statBlockPanel</name></member>
+      <member refid="class_hero_selection_u_i_1a7054c490457898eff76a0e3b5ccdc1e5" prot="public" virt="non-virtual"><scope>HeroSelectionUI</scope><name>UpdateStatBlocks</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

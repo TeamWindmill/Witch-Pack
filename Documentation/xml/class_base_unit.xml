@@ -1,0 +1,653 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_base_unit" kind="class" language="C#" prot="public">
+    <compoundname>BaseUnit</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <basecompoundref refid="interface_i_targetable" prot="public" virt="non-virtual">ITargetable</basecompoundref>
+    <derivedcompoundref refid="class_enemy" prot="public" virt="non-virtual">Enemy</derivedcompoundref>
+    <derivedcompoundref refid="class_shaman" prot="public" virt="non-virtual">Shaman</derivedcompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_base_unit_1acf87262c4651f1dbc3cb0980f37ad51e" prot="private" static="no" mutable="no">
+        <type>UnitType</type>
+        <definition>UnitType BaseUnit.unitType</definition>
+        <argsstring></argsstring>
+        <name>unitType</name>
+        <qualifiedname>BaseUnit.unitType</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="8" column="23" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_unit_1ab2c022a99d08858434291aba675ad304" prot="private" static="no" mutable="no">
+        <type><ref refid="class_damageable" kindref="compound">Damageable</ref></type>
+        <definition>Damageable BaseUnit.damageable</definition>
+        <argsstring></argsstring>
+        <name>damageable</name>
+        <qualifiedname>BaseUnit.damageable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="9" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_unit_1a2251e5207f4d9b1039a8f900d2978388" prot="private" static="no" mutable="no">
+        <type><ref refid="class_damage_dealer" kindref="compound">DamageDealer</ref></type>
+        <definition>DamageDealer BaseUnit.damageDealer</definition>
+        <argsstring></argsstring>
+        <name>damageDealer</name>
+        <qualifiedname>BaseUnit.damageDealer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="10" column="27" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_unit_1acd95d06257aedb053e5d9f2c1440bdb6" prot="private" static="no" mutable="no">
+        <type><ref refid="class_affector" kindref="compound">Affector</ref></type>
+        <definition>Affector BaseUnit.affector</definition>
+        <argsstring></argsstring>
+        <name>affector</name>
+        <qualifiedname>BaseUnit.affector</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="11" column="23" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_unit_1afb895d8637c53911f56a7fb8a75f93b3" prot="private" static="no" mutable="no">
+        <type><ref refid="class_effectable" kindref="compound">Effectable</ref></type>
+        <definition>Effectable BaseUnit.effectable</definition>
+        <argsstring></argsstring>
+        <name>effectable</name>
+        <qualifiedname>BaseUnit.effectable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="12" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_unit_1a5aed32d6adfd35775afab7eb6b5f1ae1" prot="private" static="no" mutable="no">
+        <type><ref refid="class_offensive_ability" kindref="compound">OffensiveAbility</ref></type>
+        <definition>OffensiveAbility BaseUnit.autoAttack</definition>
+        <argsstring></argsstring>
+        <name>autoAttack</name>
+        <qualifiedname>BaseUnit.autoAttack</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="13" column="31" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_unit_1aab63defc7b5b50a88c781c13dc55e036" prot="private" static="no" mutable="no">
+        <type><ref refid="class_unit_auto_attacker" kindref="compound">UnitAutoAttacker</ref></type>
+        <definition>UnitAutoAttacker BaseUnit.autoAttacker</definition>
+        <argsstring></argsstring>
+        <name>autoAttacker</name>
+        <qualifiedname>BaseUnit.autoAttacker</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="14" column="31" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_unit_1af473ab3b9f65f1e9c7edb8ff5909f28b" prot="private" static="no" mutable="no">
+        <type>BoxCollider2D</type>
+        <definition>BoxCollider2D BaseUnit.boxCollider</definition>
+        <argsstring></argsstring>
+        <name>boxCollider</name>
+        <qualifiedname>BaseUnit.boxCollider</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="15" column="28" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_unit_1ade1b4910b5833d1e79e9bfe99138bb7d" prot="private" static="no" mutable="no">
+        <type><ref refid="class_unit_targeter" kindref="compound">UnitTargeter</ref></type>
+        <definition>UnitTargeter BaseUnit.targeter</definition>
+        <argsstring></argsstring>
+        <name>targeter</name>
+        <qualifiedname>BaseUnit.targeter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="16" column="27" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_unit_1ae1e6f4a4c3bca79a5b02e79f1eec1d9a" prot="private" static="no" mutable="no">
+        <type>Transform</type>
+        <definition>Transform BaseUnit._castPos</definition>
+        <argsstring></argsstring>
+        <name>_castPos</name>
+        <qualifiedname>BaseUnit._castPos</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="17" column="24" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_unit_1a1a5a050eb63f1789ddefc18d4a73717c" prot="private" static="no" mutable="no">
+        <type><ref refid="class_unit_target_helper" kindref="compound">UnitTargetHelper</ref></type>
+        <definition>UnitTargetHelper BaseUnit.targetHelper</definition>
+        <argsstring></argsstring>
+        <name>targetHelper</name>
+        <qualifiedname>BaseUnit.targetHelper</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="20" column="30" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_unit_1ac447759edb93816309ceac293fb3f895" prot="private" static="no" mutable="no">
+        <type><ref refid="class_unit_stats" kindref="compound">UnitStats</ref></type>
+        <definition>UnitStats BaseUnit.stats</definition>
+        <argsstring></argsstring>
+        <name>stats</name>
+        <qualifiedname>BaseUnit.stats</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="24" column="24" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_unit_1a5f4255bd4b9bde3a25e87d02cf13daf5" prot="private" static="no" mutable="no">
+        <type><ref refid="class_unit_movement" kindref="compound">UnitMovement</ref></type>
+        <definition>UnitMovement BaseUnit.movement</definition>
+        <argsstring></argsstring>
+        <name>movement</name>
+        <qualifiedname>BaseUnit.movement</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="25" column="27" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_unit_1a9bfc1d9e592ca0173b8a463d06e96193" prot="private" static="no" mutable="no">
+        <type><ref refid="class_unit_visual_handler" kindref="compound">UnitVisualHandler</ref></type>
+        <definition>UnitVisualHandler BaseUnit.unitVisual</definition>
+        <argsstring></argsstring>
+        <name>unitVisual</name>
+        <qualifiedname>BaseUnit.unitVisual</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="26" column="32" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_unit_1a727e71b242d79f04cf105fed1aad29ad" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool BaseUnit.hasHPBar</definition>
+        <argsstring></argsstring>
+        <name>hasHPBar</name>
+        <qualifiedname>BaseUnit.hasHPBar</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="29" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_unit_1a5b9b50688f2623e27b06ab23b6f3594f" prot="private" static="no" mutable="no">
+        <type><ref refid="class_h_p___bar" kindref="compound">HP_Bar</ref></type>
+        <definition>HP_Bar BaseUnit.hpBar</definition>
+        <argsstring></argsstring>
+        <name>hpBar</name>
+        <qualifiedname>BaseUnit.hpBar</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="30" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_base_unit_1a9f9b3c2514b30e32cf70aef8e0fa1087" prot="private" static="no" mutable="no">
+        <type><ref refid="class_auto_attack_handler" kindref="compound">AutoAttackHandler</ref></type>
+        <definition>AutoAttackHandler BaseUnit.autoAttackHandler</definition>
+        <argsstring></argsstring>
+        <name>autoAttackHandler</name>
+        <qualifiedname>BaseUnit.autoAttackHandler</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="33" column="31" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_base_unit_1ab74acc141f024d8e5fa491387f2fe5ee" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_h_p___bar" kindref="compound">HP_Bar</ref></type>
+        <definition>HP_Bar BaseUnit.HpBar</definition>
+        <argsstring></argsstring>
+        <name>HpBar</name>
+        <qualifiedname>BaseUnit.HpBar</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="36" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_base_unit_1a96e49f74fa54c78112198c9c2a12eb77" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_unit_visual_handler" kindref="compound">UnitVisualHandler</ref></type>
+        <definition>UnitVisualHandler BaseUnit.UnitVisual</definition>
+        <argsstring></argsstring>
+        <name>UnitVisual</name>
+        <qualifiedname>BaseUnit.UnitVisual</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="37" column="30" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_base_unit_1a62752250be6a1d1b478f2e853ad49d2f" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_damageable" kindref="compound">Damageable</ref></type>
+        <definition>Damageable BaseUnit.Damageable</definition>
+        <argsstring></argsstring>
+        <name>Damageable</name>
+        <qualifiedname>BaseUnit.Damageable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="38" column="23" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="38" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="property" id="class_base_unit_1aff04a7a19aa2b5c6d791f48f84514928" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_damage_dealer" kindref="compound">DamageDealer</ref></type>
+        <definition>DamageDealer BaseUnit.DamageDealer</definition>
+        <argsstring></argsstring>
+        <name>DamageDealer</name>
+        <qualifiedname>BaseUnit.DamageDealer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="39" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="39" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="property" id="class_base_unit_1a313386eecce1fdf58c62ad81e6b8408a" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_affector" kindref="compound">Affector</ref></type>
+        <definition>Affector BaseUnit.Affector</definition>
+        <argsstring></argsstring>
+        <name>Affector</name>
+        <qualifiedname>BaseUnit.Affector</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="40" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="40" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="property" id="class_base_unit_1a8b48d6d42c97a03a7bb3be17db38a99c" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_effectable" kindref="compound">Effectable</ref></type>
+        <definition>Effectable BaseUnit.Effectable</definition>
+        <argsstring></argsstring>
+        <name>Effectable</name>
+        <qualifiedname>BaseUnit.Effectable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="41" column="23" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="41" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="property" id="class_base_unit_1a0b30558201f1cdaa874944ec6343077b" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_stat_sheet" kindref="compound">StatSheet</ref></type>
+        <definition>virtual StatSheet BaseUnit.BaseStats</definition>
+        <argsstring></argsstring>
+        <name>BaseStats</name>
+        <qualifiedname>BaseUnit.BaseStats</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="42" column="30" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="property" id="class_base_unit_1a3f47f6959fa9b498acfd695d3bd2a090" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_unit_stats" kindref="compound">UnitStats</ref></type>
+        <definition>UnitStats BaseUnit.Stats</definition>
+        <argsstring></argsstring>
+        <name>Stats</name>
+        <qualifiedname>BaseUnit.Stats</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="43" column="22" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="43" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="property" id="class_base_unit_1a4caf48c381627131ac62c014c032b4ec" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_offensive_ability" kindref="compound">OffensiveAbility</ref></type>
+        <definition>OffensiveAbility BaseUnit.AutoAttack</definition>
+        <argsstring></argsstring>
+        <name>AutoAttack</name>
+        <qualifiedname>BaseUnit.AutoAttack</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="44" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="44" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="property" id="class_base_unit_1abea9f0e2805d78a859fc233e1c5b8b26" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_auto_attack_handler" kindref="compound">AutoAttackHandler</ref></type>
+        <definition>AutoAttackHandler BaseUnit.AutoAttackHandler</definition>
+        <argsstring></argsstring>
+        <name>AutoAttackHandler</name>
+        <qualifiedname>BaseUnit.AutoAttackHandler</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="45" column="30" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="45" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="property" id="class_base_unit_1ac1ffad5ae2e20a1d52c3b0cca382b2ac" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_unit_auto_attacker" kindref="compound">UnitAutoAttacker</ref></type>
+        <definition>UnitAutoAttacker BaseUnit.AutoAttacker</definition>
+        <argsstring></argsstring>
+        <name>AutoAttacker</name>
+        <qualifiedname>BaseUnit.AutoAttacker</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="46" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="property" id="class_base_unit_1aa317ae3934175d0f30dd029dc9dc325a" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_unit_movement" kindref="compound">UnitMovement</ref></type>
+        <definition>UnitMovement BaseUnit.Movement</definition>
+        <argsstring></argsstring>
+        <name>Movement</name>
+        <qualifiedname>BaseUnit.Movement</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="47" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="47" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="property" id="class_base_unit_1adfd5c12fc623c52b893bb17fc776517d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_unit_target_helper" kindref="compound">UnitTargetHelper</ref></type>
+        <definition>UnitTargetHelper BaseUnit.TargetHelper</definition>
+        <argsstring></argsstring>
+        <name>TargetHelper</name>
+        <qualifiedname>BaseUnit.TargetHelper</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="48" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="48" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="property" id="class_base_unit_1aa0b16f5a01dd397fa6a53d63ac24a6a5" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_unit_targeter" kindref="compound">UnitTargeter</ref></type>
+        <definition>virtual UnitTargeter BaseUnit.Targeter</definition>
+        <argsstring></argsstring>
+        <name>Targeter</name>
+        <qualifiedname>BaseUnit.Targeter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="49" column="33" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="49" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="property" id="class_base_unit_1a6d2a95685260afde1a5441a142053d4c" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>Transform</type>
+        <definition>Transform BaseUnit.CastPos</definition>
+        <argsstring></argsstring>
+        <name>CastPos</name>
+        <qualifiedname>BaseUnit.CastPos</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="50" column="22" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_base_unit_1a318afd57221249ec6faa2b130c92a8e9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void BaseUnit.Init</definition>
+        <argsstring>(BaseUnitConfig givenConfig)</argsstring>
+        <name>Init</name>
+        <qualifiedname>BaseUnit.Init</qualifiedname>
+        <reimplementedby refid="class_shaman_1a9abc0f8b9e47e6c1f413392102130166">Init</reimplementedby>
+        <reimplementedby refid="class_enemy_1aaa62e58dbeebb468aadd622fe447b00c">Init</reimplementedby>
+        <param>
+          <type><ref refid="class_base_unit_config" kindref="compound">BaseUnitConfig</ref></type>
+          <declname>givenConfig</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="56" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="56" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="class_base_unit_1a3c7b9e4ec9958bc49f2aa39fdf0f9392" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BaseUnit.ToggleCollider</definition>
+        <argsstring>(bool state)</argsstring>
+        <name>ToggleCollider</name>
+        <qualifiedname>BaseUnit.ToggleCollider</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="77" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="77" bodyend="80"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_base_unit_1a3cdf2c036c5fb75972c880487217a355" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BaseUnit.DisableAttacker</definition>
+        <argsstring>()</argsstring>
+        <name>DisableAttacker</name>
+        <qualifiedname>BaseUnit.DisableAttacker</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="82" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="82" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="class_base_unit_1a47c788d0b4375120ae2a587b20feceeb" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BaseUnit.EnableAttacker</definition>
+        <argsstring>()</argsstring>
+        <name>EnableAttacker</name>
+        <qualifiedname>BaseUnit.EnableAttacker</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="87" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="87" bodyend="90"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_base_unit_1a3e56fe63a9a3c5a0e798583c919a32c6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BaseUnit.OnDestroy</definition>
+        <argsstring>()</argsstring>
+        <name>OnDestroy</name>
+        <qualifiedname>BaseUnit.OnDestroy</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="92" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="92" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="class_base_unit_1a77905db3454353ed80f0ff0c890c6ffe" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void BaseUnit.OnValidate</definition>
+        <argsstring>()</argsstring>
+        <name>OnValidate</name>
+        <qualifiedname>BaseUnit.OnValidate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="97" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="97" bodyend="100"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>BaseUnit</label>
+        <link refid="class_base_unit"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>Enemy</label>
+        <link refid="class_enemy"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ITargetable</label>
+        <link refid="interface_i_targetable"/>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="5">
+        <label>Shaman</label>
+        <link refid="class_shaman"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>BaseUnit</label>
+        <link refid="class_base_unit"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ITargetable</label>
+        <link refid="interface_i_targetable"/>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" line="6" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs" bodystart="7" bodyend="101"/>
+    <listofallmembers>
+      <member refid="class_base_unit_1ae1e6f4a4c3bca79a5b02e79f1eec1d9a" prot="private" virt="non-virtual"><scope>BaseUnit</scope><name>_castPos</name></member>
+      <member refid="class_base_unit_1acd95d06257aedb053e5d9f2c1440bdb6" prot="private" virt="non-virtual"><scope>BaseUnit</scope><name>affector</name></member>
+      <member refid="class_base_unit_1a313386eecce1fdf58c62ad81e6b8408a" prot="public" virt="non-virtual"><scope>BaseUnit</scope><name>Affector</name></member>
+      <member refid="class_base_unit_1a5aed32d6adfd35775afab7eb6b5f1ae1" prot="private" virt="non-virtual"><scope>BaseUnit</scope><name>autoAttack</name></member>
+      <member refid="class_base_unit_1a4caf48c381627131ac62c014c032b4ec" prot="public" virt="non-virtual"><scope>BaseUnit</scope><name>AutoAttack</name></member>
+      <member refid="class_base_unit_1aab63defc7b5b50a88c781c13dc55e036" prot="private" virt="non-virtual"><scope>BaseUnit</scope><name>autoAttacker</name></member>
+      <member refid="class_base_unit_1ac1ffad5ae2e20a1d52c3b0cca382b2ac" prot="public" virt="non-virtual"><scope>BaseUnit</scope><name>AutoAttacker</name></member>
+      <member refid="class_base_unit_1a9f9b3c2514b30e32cf70aef8e0fa1087" prot="private" virt="non-virtual"><scope>BaseUnit</scope><name>autoAttackHandler</name></member>
+      <member refid="class_base_unit_1abea9f0e2805d78a859fc233e1c5b8b26" prot="public" virt="non-virtual"><scope>BaseUnit</scope><name>AutoAttackHandler</name></member>
+      <member refid="class_base_unit_1a0b30558201f1cdaa874944ec6343077b" prot="public" virt="non-virtual"><scope>BaseUnit</scope><name>BaseStats</name></member>
+      <member refid="class_base_unit_1af473ab3b9f65f1e9c7edb8ff5909f28b" prot="private" virt="non-virtual"><scope>BaseUnit</scope><name>boxCollider</name></member>
+      <member refid="class_base_unit_1a6d2a95685260afde1a5441a142053d4c" prot="public" virt="non-virtual"><scope>BaseUnit</scope><name>CastPos</name></member>
+      <member refid="class_base_unit_1a62752250be6a1d1b478f2e853ad49d2f" prot="public" virt="non-virtual"><scope>BaseUnit</scope><name>Damageable</name></member>
+      <member refid="class_base_unit_1ab2c022a99d08858434291aba675ad304" prot="private" virt="non-virtual"><scope>BaseUnit</scope><name>damageable</name></member>
+      <member refid="class_base_unit_1a2251e5207f4d9b1039a8f900d2978388" prot="private" virt="non-virtual"><scope>BaseUnit</scope><name>damageDealer</name></member>
+      <member refid="class_base_unit_1aff04a7a19aa2b5c6d791f48f84514928" prot="public" virt="non-virtual"><scope>BaseUnit</scope><name>DamageDealer</name></member>
+      <member refid="class_base_unit_1a3cdf2c036c5fb75972c880487217a355" prot="protected" virt="non-virtual"><scope>BaseUnit</scope><name>DisableAttacker</name></member>
+      <member refid="class_base_unit_1afb895d8637c53911f56a7fb8a75f93b3" prot="private" virt="non-virtual"><scope>BaseUnit</scope><name>effectable</name></member>
+      <member refid="class_base_unit_1a8b48d6d42c97a03a7bb3be17db38a99c" prot="public" virt="non-virtual"><scope>BaseUnit</scope><name>Effectable</name></member>
+      <member refid="class_base_unit_1a47c788d0b4375120ae2a587b20feceeb" prot="protected" virt="non-virtual"><scope>BaseUnit</scope><name>EnableAttacker</name></member>
+      <member refid="class_base_unit_1a727e71b242d79f04cf105fed1aad29ad" prot="private" virt="non-virtual"><scope>BaseUnit</scope><name>hasHPBar</name></member>
+      <member refid="class_base_unit_1a5b9b50688f2623e27b06ab23b6f3594f" prot="private" virt="non-virtual"><scope>BaseUnit</scope><name>hpBar</name></member>
+      <member refid="class_base_unit_1ab74acc141f024d8e5fa491387f2fe5ee" prot="public" virt="non-virtual"><scope>BaseUnit</scope><name>HpBar</name></member>
+      <member refid="class_base_unit_1a318afd57221249ec6faa2b130c92a8e9" prot="public" virt="virtual"><scope>BaseUnit</scope><name>Init</name></member>
+      <member refid="class_base_unit_1a5f4255bd4b9bde3a25e87d02cf13daf5" prot="private" virt="non-virtual"><scope>BaseUnit</scope><name>movement</name></member>
+      <member refid="class_base_unit_1aa317ae3934175d0f30dd029dc9dc325a" prot="public" virt="non-virtual"><scope>BaseUnit</scope><name>Movement</name></member>
+      <member refid="class_base_unit_1a3e56fe63a9a3c5a0e798583c919a32c6" prot="private" virt="non-virtual"><scope>BaseUnit</scope><name>OnDestroy</name></member>
+      <member refid="class_base_unit_1a77905db3454353ed80f0ff0c890c6ffe" prot="private" virt="non-virtual"><scope>BaseUnit</scope><name>OnValidate</name></member>
+      <member refid="class_base_unit_1ac447759edb93816309ceac293fb3f895" prot="private" virt="non-virtual"><scope>BaseUnit</scope><name>stats</name></member>
+      <member refid="class_base_unit_1a3f47f6959fa9b498acfd695d3bd2a090" prot="public" virt="non-virtual"><scope>BaseUnit</scope><name>Stats</name></member>
+      <member refid="class_base_unit_1aa0b16f5a01dd397fa6a53d63ac24a6a5" prot="public" virt="non-virtual"><scope>BaseUnit</scope><name>Targeter</name></member>
+      <member refid="class_base_unit_1ade1b4910b5833d1e79e9bfe99138bb7d" prot="private" virt="non-virtual"><scope>BaseUnit</scope><name>targeter</name></member>
+      <member refid="class_base_unit_1adfd5c12fc623c52b893bb17fc776517d" prot="public" virt="non-virtual"><scope>BaseUnit</scope><name>TargetHelper</name></member>
+      <member refid="class_base_unit_1a1a5a050eb63f1789ddefc18d4a73717c" prot="private" virt="non-virtual"><scope>BaseUnit</scope><name>targetHelper</name></member>
+      <member refid="class_base_unit_1a3c7b9e4ec9958bc49f2aa39fdf0f9392" prot="public" virt="non-virtual"><scope>BaseUnit</scope><name>ToggleCollider</name></member>
+      <member refid="class_base_unit_1acf87262c4651f1dbc3cb0980f37ad51e" prot="private" virt="non-virtual"><scope>BaseUnit</scope><name>unitType</name></member>
+      <member refid="class_base_unit_1a96e49f74fa54c78112198c9c2a12eb77" prot="public" virt="non-virtual"><scope>BaseUnit</scope><name>UnitVisual</name></member>
+      <member refid="class_base_unit_1a9bfc1d9e592ca0173b8a463d06e96193" prot="private" virt="non-virtual"><scope>BaseUnit</scope><name>unitVisual</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

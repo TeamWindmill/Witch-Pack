@@ -1,0 +1,420 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_level_manager" kind="class" language="C#" prot="public">
+    <compoundname>LevelManager</compoundname>
+    <basecompoundref refid="class_mono_singleton" prot="public" virt="non-virtual">MonoSingleton&lt; LevelManager &gt;</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_level_manager_1a2cc31a2475aceb6df78438828270b3c9" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_score_handler" kindref="compound">ScoreHandler</ref></type>
+        <definition>ScoreHandler LevelManager.ScoreHandler</definition>
+        <argsstring></argsstring>
+        <name>ScoreHandler</name>
+        <qualifiedname>LevelManager.ScoreHandler</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" line="8" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_level_manager_1acc958db77a76094c1eb5cbedb44f2ba9" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type><ref refid="class_level_handler" kindref="compound">LevelHandler</ref></type>
+        <definition>LevelHandler LevelManager.CurrentLevel</definition>
+        <argsstring></argsstring>
+        <name>CurrentLevel</name>
+        <qualifiedname>LevelManager.CurrentLevel</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" line="9" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" bodystart="9" bodyend="9"/>
+      </memberdef>
+      <memberdef kind="property" id="class_level_manager_1abb22e98704e6c16aabe8e62528db918a" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>List&lt; <ref refid="class_shaman" kindref="compound">Shaman</ref> &gt;</type>
+        <definition>List&lt;Shaman&gt; LevelManager.ShamanParty</definition>
+        <argsstring></argsstring>
+        <name>ShamanParty</name>
+        <qualifiedname>LevelManager.ShamanParty</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" line="10" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" bodystart="10" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="property" id="class_level_manager_1aa950b569e65ab72beeced2e29142ca2a" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool LevelManager.IsWon</definition>
+        <argsstring></argsstring>
+        <name>IsWon</name>
+        <qualifiedname>LevelManager.IsWon</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" line="11" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" bodystart="11" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="property" id="class_level_manager_1a7c46fb3fd9b339e50ffa11b21b46c8eb" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_selection_manager" kindref="compound">SelectionManager</ref></type>
+        <definition>SelectionManager LevelManager.SelectionManager</definition>
+        <argsstring></argsstring>
+        <name>SelectionManager</name>
+        <qualifiedname>LevelManager.SelectionManager</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" line="24" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" bodystart="25" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="property" id="class_level_manager_1aa5f05ee02a4eb991dd09029bb3e604e6" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_indicator_manager" kindref="compound">IndicatorManager</ref></type>
+        <definition>IndicatorManager LevelManager.IndicatorManager</definition>
+        <argsstring></argsstring>
+        <name>IndicatorManager</name>
+        <qualifiedname>LevelManager.IndicatorManager</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" line="29" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" bodystart="30" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="property" id="class_level_manager_1ae909c60789e8b178b34051da35468a29" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>Canvas</type>
+        <definition>Canvas LevelManager.GameUi</definition>
+        <argsstring></argsstring>
+        <name>GameUi</name>
+        <qualifiedname>LevelManager.GameUi</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" line="34" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" bodystart="35" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="property" id="class_level_manager_1ad73a792f08ba02c0f47097f7a6ef040f" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_pool_manager" kindref="compound">PoolManager</ref></type>
+        <definition>PoolManager LevelManager.PoolManager</definition>
+        <argsstring></argsstring>
+        <name>PoolManager</name>
+        <qualifiedname>LevelManager.PoolManager</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" line="39" column="24" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" bodystart="40" bodyend="42"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_level_manager_1a272d8e83650d0e76b6271a00934fcdcb" prot="private" static="no" mutable="no">
+        <type>Transform</type>
+        <definition>Transform LevelManager.enviromentHolder</definition>
+        <argsstring></argsstring>
+        <name>enviromentHolder</name>
+        <qualifiedname>LevelManager.enviromentHolder</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" line="14" column="24" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_level_manager_1a547eb841ea9be32a0cf66da4c7d2030f" prot="private" static="no" mutable="no">
+        <type>Transform</type>
+        <definition>Transform LevelManager.shamanHolder</definition>
+        <argsstring></argsstring>
+        <name>shamanHolder</name>
+        <qualifiedname>LevelManager.shamanHolder</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" line="15" column="24" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_level_manager_1a1d0ffdf37e34a54351be4f30f0405db7" prot="private" static="no" mutable="no">
+        <type><ref refid="class_shaman" kindref="compound">Shaman</ref></type>
+        <definition>Shaman LevelManager.shamanPrefab</definition>
+        <argsstring></argsstring>
+        <name>shamanPrefab</name>
+        <qualifiedname>LevelManager.shamanPrefab</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" line="16" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_level_manager_1aea49e4ce6b741fb2e5b00d6f41fcb6c1" prot="private" static="no" mutable="no">
+        <type><ref refid="class_party_u_i_manager" kindref="compound">PartyUIManager</ref></type>
+        <definition>PartyUIManager LevelManager.partyUIManager</definition>
+        <argsstring></argsstring>
+        <name>partyUIManager</name>
+        <qualifiedname>LevelManager.partyUIManager</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" line="17" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_level_manager_1a96ffbe19d57b8a15f6f8dfde278fe380" prot="private" static="no" mutable="no">
+        <type><ref refid="class_pool_manager" kindref="compound">PoolManager</ref></type>
+        <definition>PoolManager LevelManager.poolManager</definition>
+        <argsstring></argsstring>
+        <name>poolManager</name>
+        <qualifiedname>LevelManager.poolManager</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" line="18" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_level_manager_1a129174281be02a35b9e82a225cdbd570" prot="private" static="no" mutable="no">
+        <type><ref refid="class_selection_manager" kindref="compound">SelectionManager</ref></type>
+        <definition>SelectionManager LevelManager.selectionManager</definition>
+        <argsstring></argsstring>
+        <name>selectionManager</name>
+        <qualifiedname>LevelManager.selectionManager</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" line="19" column="31" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_level_manager_1a47ec4b9329ec58e51325f8f721da6375" prot="private" static="no" mutable="no">
+        <type><ref refid="class_indicator_manager" kindref="compound">IndicatorManager</ref></type>
+        <definition>IndicatorManager LevelManager.indicatorManager</definition>
+        <argsstring></argsstring>
+        <name>indicatorManager</name>
+        <qualifiedname>LevelManager.indicatorManager</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" line="20" column="31" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_level_manager_1aad214047fa62465b57e3542eda8ebffc" prot="private" static="no" mutable="no">
+        <type>Canvas</type>
+        <definition>Canvas LevelManager.gameUi</definition>
+        <argsstring></argsstring>
+        <name>gameUi</name>
+        <qualifiedname>LevelManager.gameUi</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" line="21" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_level_manager_1aab5c78cb5146fb20987bbb08991e8bd8" prot="private" static="no" mutable="no">
+        <type><ref refid="class_score_handler" kindref="compound">ScoreHandler</ref></type>
+        <definition>ScoreHandler LevelManager._scoreHandler</definition>
+        <argsstring></argsstring>
+        <name>_scoreHandler</name>
+        <qualifiedname>LevelManager._scoreHandler</qualifiedname>
+        <initializer>= new <ref refid="class_score_handler" kindref="compound">ScoreHandler</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" line="22" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_level_manager_1afcd5c1d3d30954925d73f22ec1d0ecce" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void LevelManager.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>LevelManager.Start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" line="44" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" bodystart="44" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="class_level_manager_1a0a2412990211b6eb63e359467e6a45a1" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void LevelManager.SpawnParty</definition>
+        <argsstring>(ShamanConfig[] shamanConfigs)</argsstring>
+        <name>SpawnParty</name>
+        <qualifiedname>LevelManager.SpawnParty</qualifiedname>
+        <param>
+          <type><ref refid="class_shaman_config" kindref="compound">ShamanConfig</ref>[]</type>
+          <declname>shamanConfigs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" line="61" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" bodystart="61" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="class_level_manager_1a3ddbc3118b776c95d5c51beebec1c477" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void LevelManager.OnEnemyKill</definition>
+        <argsstring>(Damageable arg1, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4)</argsstring>
+        <name>OnEnemyKill</name>
+        <qualifiedname>LevelManager.OnEnemyKill</qualifiedname>
+        <param>
+          <type><ref refid="class_damageable" kindref="compound">Damageable</ref></type>
+          <declname>arg1</declname>
+        </param>
+        <param>
+          <type><ref refid="class_damage_dealer" kindref="compound">DamageDealer</ref></type>
+          <declname>arg2</declname>
+        </param>
+        <param>
+          <type><ref refid="class_damage_handler" kindref="compound">DamageHandler</ref></type>
+          <declname>arg3</declname>
+        </param>
+        <param>
+          <type><ref refid="class_base_ability" kindref="compound">BaseAbility</ref></type>
+          <declname>arg4</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" line="90" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" bodystart="90" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="class_level_manager_1a97d37edd9097115f338b6135188c663c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void LevelManager.RemoveShamanFromParty</definition>
+        <argsstring>(Damageable arg1, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4)</argsstring>
+        <name>RemoveShamanFromParty</name>
+        <qualifiedname>LevelManager.RemoveShamanFromParty</qualifiedname>
+        <param>
+          <type><ref refid="class_damageable" kindref="compound">Damageable</ref></type>
+          <declname>arg1</declname>
+        </param>
+        <param>
+          <type><ref refid="class_damage_dealer" kindref="compound">DamageDealer</ref></type>
+          <declname>arg2</declname>
+        </param>
+        <param>
+          <type><ref refid="class_damage_handler" kindref="compound">DamageHandler</ref></type>
+          <declname>arg3</declname>
+        </param>
+        <param>
+          <type><ref refid="class_base_ability" kindref="compound">BaseAbility</ref></type>
+          <declname>arg4</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" line="95" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" bodystart="95" bodyend="103"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_level_manager_1adf384a82b135678edefa264abf95f396" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void LevelManager.EndLevel</definition>
+        <argsstring>(bool win)</argsstring>
+        <name>EndLevel</name>
+        <qualifiedname>LevelManager.EndLevel</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>win</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" line="55" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" bodystart="55" bodyend="59"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>LevelManager</label>
+        <link refid="class_level_manager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoSingleton&lt; LevelManager &gt;</label>
+        <link refid="class_mono_singleton"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>LevelManager</label>
+        <link refid="class_level_manager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoSingleton&lt; LevelManager &gt;</label>
+        <link refid="class_mono_singleton"/>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" line="6" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/LevelManager.cs" bodystart="7" bodyend="104"/>
+    <listofallmembers>
+      <member refid="class_level_manager_1aab5c78cb5146fb20987bbb08991e8bd8" prot="private" virt="non-virtual"><scope>LevelManager</scope><name>_scoreHandler</name></member>
+      <member refid="class_mono_singleton_1a04acead2ed3d970430f4c8c7716071f1" prot="protected" virt="virtual"><scope>LevelManager</scope><name>Awake</name></member>
+      <member refid="class_level_manager_1acc958db77a76094c1eb5cbedb44f2ba9" prot="public" virt="non-virtual"><scope>LevelManager</scope><name>CurrentLevel</name></member>
+      <member refid="class_level_manager_1adf384a82b135678edefa264abf95f396" prot="public" virt="non-virtual"><scope>LevelManager</scope><name>EndLevel</name></member>
+      <member refid="class_level_manager_1a272d8e83650d0e76b6271a00934fcdcb" prot="private" virt="non-virtual"><scope>LevelManager</scope><name>enviromentHolder</name></member>
+      <member refid="class_level_manager_1aad214047fa62465b57e3542eda8ebffc" prot="private" virt="non-virtual"><scope>LevelManager</scope><name>gameUi</name></member>
+      <member refid="class_level_manager_1ae909c60789e8b178b34051da35468a29" prot="public" virt="non-virtual"><scope>LevelManager</scope><name>GameUi</name></member>
+      <member refid="class_level_manager_1a47ec4b9329ec58e51325f8f721da6375" prot="private" virt="non-virtual"><scope>LevelManager</scope><name>indicatorManager</name></member>
+      <member refid="class_level_manager_1aa5f05ee02a4eb991dd09029bb3e604e6" prot="public" virt="non-virtual"><scope>LevelManager</scope><name>IndicatorManager</name></member>
+      <member refid="class_mono_singleton_1a5637ba1f44359d4610b5eba552ef5f57" prot="public" virt="non-virtual"><scope>LevelManager</scope><name>Instance</name></member>
+      <member refid="class_level_manager_1aa950b569e65ab72beeced2e29142ca2a" prot="public" virt="non-virtual"><scope>LevelManager</scope><name>IsWon</name></member>
+      <member refid="class_mono_singleton_1af585390f9256dfc8be7c969ca9fb4d88" prot="protected" virt="virtual"><scope>LevelManager</scope><name>OnDestroy</name></member>
+      <member refid="class_level_manager_1a3ddbc3118b776c95d5c51beebec1c477" prot="private" virt="non-virtual"><scope>LevelManager</scope><name>OnEnemyKill</name></member>
+      <member refid="class_level_manager_1aea49e4ce6b741fb2e5b00d6f41fcb6c1" prot="private" virt="non-virtual"><scope>LevelManager</scope><name>partyUIManager</name></member>
+      <member refid="class_level_manager_1a96ffbe19d57b8a15f6f8dfde278fe380" prot="private" virt="non-virtual"><scope>LevelManager</scope><name>poolManager</name></member>
+      <member refid="class_level_manager_1ad73a792f08ba02c0f47097f7a6ef040f" prot="public" virt="non-virtual"><scope>LevelManager</scope><name>PoolManager</name></member>
+      <member refid="class_level_manager_1a97d37edd9097115f338b6135188c663c" prot="private" virt="non-virtual"><scope>LevelManager</scope><name>RemoveShamanFromParty</name></member>
+      <member refid="class_level_manager_1a2cc31a2475aceb6df78438828270b3c9" prot="public" virt="non-virtual"><scope>LevelManager</scope><name>ScoreHandler</name></member>
+      <member refid="class_level_manager_1a129174281be02a35b9e82a225cdbd570" prot="private" virt="non-virtual"><scope>LevelManager</scope><name>selectionManager</name></member>
+      <member refid="class_level_manager_1a7c46fb3fd9b339e50ffa11b21b46c8eb" prot="public" virt="non-virtual"><scope>LevelManager</scope><name>SelectionManager</name></member>
+      <member refid="class_level_manager_1a547eb841ea9be32a0cf66da4c7d2030f" prot="private" virt="non-virtual"><scope>LevelManager</scope><name>shamanHolder</name></member>
+      <member refid="class_level_manager_1abb22e98704e6c16aabe8e62528db918a" prot="public" virt="non-virtual"><scope>LevelManager</scope><name>ShamanParty</name></member>
+      <member refid="class_level_manager_1a1d0ffdf37e34a54351be4f30f0405db7" prot="private" virt="non-virtual"><scope>LevelManager</scope><name>shamanPrefab</name></member>
+      <member refid="class_level_manager_1a0a2412990211b6eb63e359467e6a45a1" prot="private" virt="non-virtual"><scope>LevelManager</scope><name>SpawnParty</name></member>
+      <member refid="class_level_manager_1afcd5c1d3d30954925d73f22ec1d0ecce" prot="private" virt="non-virtual"><scope>LevelManager</scope><name>Start</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

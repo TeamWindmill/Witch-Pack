@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_base_unit" xml:lang="en-US">
+<title>BaseUnit Class Reference</title>
+<indexterm><primary>BaseUnit</primary></indexterm>
+<para>Inheritance diagram for BaseUnit:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="class_base_unit.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><anchor xml:id="_class_base_unit_1a318afd57221249ec6faa2b130c92a8e9"/>virtual void <emphasis role="strong">Init</emphasis> (<link linkend="_class_base_unit_config">BaseUnitConfig</link> givenConfig)</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_base_unit_1a3c7b9e4ec9958bc49f2aa39fdf0f9392"/>void <emphasis role="strong">ToggleCollider</emphasis> (bool state)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Protected Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><anchor xml:id="_class_base_unit_1a3cdf2c036c5fb75972c880487217a355"/>void <emphasis role="strong">DisableAttacker</emphasis> ()</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_base_unit_1a47c788d0b4375120ae2a587b20feceeb"/>void <emphasis role="strong">EnableAttacker</emphasis> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Properties    </title>
+        <itemizedlist>
+            <listitem><para><anchor xml:id="_class_base_unit_1ab74acc141f024d8e5fa491387f2fe5ee"/><link linkend="_class_h_p___bar">HP_Bar</link> <emphasis role="strong">HpBar</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_base_unit_1a96e49f74fa54c78112198c9c2a12eb77"/><link linkend="_class_unit_visual_handler">UnitVisualHandler</link> <emphasis role="strong">UnitVisual</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_base_unit_1a62752250be6a1d1b478f2e853ad49d2f"/><link linkend="_class_damageable">Damageable</link> <emphasis role="strong">Damageable</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_base_unit_1aff04a7a19aa2b5c6d791f48f84514928"/><link linkend="_class_damage_dealer">DamageDealer</link> <emphasis role="strong">DamageDealer</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_base_unit_1a313386eecce1fdf58c62ad81e6b8408a"/><link linkend="_class_affector">Affector</link> <emphasis role="strong">Affector</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_base_unit_1a8b48d6d42c97a03a7bb3be17db38a99c"/><link linkend="_class_effectable">Effectable</link> <emphasis role="strong">Effectable</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_base_unit_1a0b30558201f1cdaa874944ec6343077b"/>virtual <link linkend="_class_stat_sheet">StatSheet</link> <emphasis role="strong">BaseStats</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_base_unit_1a3f47f6959fa9b498acfd695d3bd2a090"/><link linkend="_class_unit_stats">UnitStats</link> <emphasis role="strong">Stats</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_base_unit_1a4caf48c381627131ac62c014c032b4ec"/><link linkend="_class_offensive_ability">OffensiveAbility</link> <emphasis role="strong">AutoAttack</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_base_unit_1abea9f0e2805d78a859fc233e1c5b8b26"/><link linkend="_class_auto_attack_handler">AutoAttackHandler</link> <emphasis role="strong">AutoAttackHandler</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_base_unit_1ac1ffad5ae2e20a1d52c3b0cca382b2ac"/><link linkend="_class_unit_auto_attacker">UnitAutoAttacker</link> <emphasis role="strong">AutoAttacker</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_base_unit_1aa317ae3934175d0f30dd029dc9dc325a"/><link linkend="_class_unit_movement">UnitMovement</link> <emphasis role="strong">Movement</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_base_unit_1adfd5c12fc623c52b893bb17fc776517d"/><link linkend="_class_unit_target_helper">UnitTargetHelper</link> <emphasis role="strong">TargetHelper</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_base_unit_1aa0b16f5a01dd397fa6a53d63ac24a6a5"/>virtual <link linkend="_class_unit_targeter">UnitTargeter</link> <emphasis role="strong">Targeter</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_base_unit_1a6d2a95685260afde1a5441a142053d4c"/>Transform <emphasis role="strong">CastPos</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<para>
+The documentation for this class was generated from the following file:</para>
+C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/BaseUnit.cs</section>

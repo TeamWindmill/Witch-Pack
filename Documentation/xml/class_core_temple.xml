@@ -1,0 +1,324 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_core_temple" kind="class" language="C#" prot="public">
+    <compoundname>CoreTemple</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_core_temple_1a8a916930e8c991ef8bf7c85a1792bb56" prot="public" static="no" mutable="no">
+        <type>Action</type>
+        <definition>Action CoreTemple.OnCoreDestroyed</definition>
+        <argsstring></argsstring>
+        <name>OnCoreDestroyed</name>
+        <qualifiedname>CoreTemple.OnCoreDestroyed</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" line="6" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_core_temple_1a1e5fe35b54c490be6a0a3008dc3008f5" prot="public" static="no" mutable="no">
+        <type>Action&lt; int &gt;</type>
+        <definition>Action&lt;int&gt; CoreTemple.OnGetHit</definition>
+        <argsstring></argsstring>
+        <name>OnGetHit</name>
+        <qualifiedname>CoreTemple.OnGetHit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" line="7" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_core_temple_1a32d668b04dc69eee28ea481d27f15011" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int CoreTemple.maxHp</definition>
+        <argsstring></argsstring>
+        <name>maxHp</name>
+        <qualifiedname>CoreTemple.maxHp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" line="9" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_core_temple_1abde2a3303a8931faf5da32dfcfc9167c" prot="private" static="no" mutable="no">
+        <type><ref refid="class_enemy_targeter" kindref="compound">EnemyTargeter</ref></type>
+        <definition>EnemyTargeter CoreTemple.enemyTargeter</definition>
+        <argsstring></argsstring>
+        <name>enemyTargeter</name>
+        <qualifiedname>CoreTemple.enemyTargeter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" line="10" column="28" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_core_temple_1aa6d21856d0edda9169045de8a32a4731" prot="private" static="no" mutable="no">
+        <type><ref refid="class_h_p___bar" kindref="compound">HP_Bar</ref></type>
+        <definition>HP_Bar CoreTemple.hpBar</definition>
+        <argsstring></argsstring>
+        <name>hpBar</name>
+        <qualifiedname>CoreTemple.hpBar</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" line="11" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_core_temple_1a2b66532013d985f7989d665085938aef" prot="private" static="no" mutable="no">
+        <type>Animator</type>
+        <definition>Animator CoreTemple.animator</definition>
+        <argsstring></argsstring>
+        <name>animator</name>
+        <qualifiedname>CoreTemple.animator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" line="12" column="23" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_core_temple_1a2383daee9ae42bbac14bc371c7a5b176" prot="private" static="no" mutable="no">
+        <type>Transform</type>
+        <definition>Transform CoreTemple.destroyedCore</definition>
+        <argsstring></argsstring>
+        <name>destroyedCore</name>
+        <qualifiedname>CoreTemple.destroyedCore</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" line="13" column="24" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_core_temple_1ae60818f8961f02f095ed52d607065d15" prot="private" static="no" mutable="no">
+        <type>SpriteRenderer</type>
+        <definition>SpriteRenderer CoreTemple.coreSpriteRenderer</definition>
+        <argsstring></argsstring>
+        <name>coreSpriteRenderer</name>
+        <qualifiedname>CoreTemple.coreSpriteRenderer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" line="14" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_core_temple_1aef7f5fc10bba3a1a842427d56ba32028" prot="private" static="no" mutable="no">
+        <type>ParticleSystem</type>
+        <definition>ParticleSystem CoreTemple.glowParticleSystem</definition>
+        <argsstring></argsstring>
+        <name>glowParticleSystem</name>
+        <qualifiedname>CoreTemple.glowParticleSystem</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" line="15" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_core_temple_1a4326b31ff39196e966337599dae8c5a0" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float CoreTemple.destroyAnimationsDelay</definition>
+        <argsstring></argsstring>
+        <name>destroyAnimationsDelay</name>
+        <qualifiedname>CoreTemple.destroyAnimationsDelay</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" line="16" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_core_temple_1a29290110821a5171c891e4a3c73ab05d" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int CoreTemple.curHp</definition>
+        <argsstring></argsstring>
+        <name>curHp</name>
+        <qualifiedname>CoreTemple.curHp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" line="18" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_core_temple_1acae2581ec16a12208aaa9f37c9323122" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int CoreTemple.MaxHp</definition>
+        <argsstring></argsstring>
+        <name>MaxHp</name>
+        <qualifiedname>CoreTemple.MaxHp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" line="20" column="16" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" bodystart="20" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="property" id="class_core_temple_1a1145ca5a9dc04a91a929db5aedab5047" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int CoreTemple.CurHp</definition>
+        <argsstring></argsstring>
+        <name>CurHp</name>
+        <qualifiedname>CoreTemple.CurHp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" line="21" column="16" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" bodystart="21" bodyend="21"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_core_temple_1a482b190bfbe65352c062b0c312ffe285" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CoreTemple.Init</definition>
+        <argsstring>()</argsstring>
+        <name>Init</name>
+        <qualifiedname>CoreTemple.Init</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" line="23" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" bodystart="23" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="class_core_temple_1a888bfa45e1e14f1937196f8d7eab635f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CoreTemple.TakeDamage</definition>
+        <argsstring>(int amount)</argsstring>
+        <name>TakeDamage</name>
+        <qualifiedname>CoreTemple.TakeDamage</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>amount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" line="35" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" bodystart="35" bodyend="63"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_core_temple_1a354a92f641a7870a6edd4fc557957671" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CoreTemple.OnEnemyEnter</definition>
+        <argsstring>(Enemy enemy)</argsstring>
+        <name>OnEnemyEnter</name>
+        <qualifiedname>CoreTemple.OnEnemyEnter</qualifiedname>
+        <param>
+          <type><ref refid="class_enemy" kindref="compound">Enemy</ref></type>
+          <declname>enemy</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" line="29" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" bodystart="29" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="class_core_temple_1ad45e8741fb745f773b6f87e6b45d2567" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CoreTemple.DestroyCoreAnimation</definition>
+        <argsstring>()</argsstring>
+        <name>DestroyCoreAnimation</name>
+        <qualifiedname>CoreTemple.DestroyCoreAnimation</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" line="65" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" bodystart="65" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="class_core_temple_1ac7e7a9db62b8fe0dcafaadca4e8ae498" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CoreTemple.EndGameScreen</definition>
+        <argsstring>()</argsstring>
+        <name>EndGameScreen</name>
+        <qualifiedname>CoreTemple.EndGameScreen</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" line="71" column="18"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>CoreTemple</label>
+        <link refid="class_core_temple"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>CoreTemple</label>
+        <link refid="class_core_temple"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" line="4" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CoreTemple/CoreTemple.cs" bodystart="5" bodyend="72"/>
+    <listofallmembers>
+      <member refid="class_core_temple_1a2b66532013d985f7989d665085938aef" prot="private" virt="non-virtual"><scope>CoreTemple</scope><name>animator</name></member>
+      <member refid="class_core_temple_1ae60818f8961f02f095ed52d607065d15" prot="private" virt="non-virtual"><scope>CoreTemple</scope><name>coreSpriteRenderer</name></member>
+      <member refid="class_core_temple_1a29290110821a5171c891e4a3c73ab05d" prot="private" virt="non-virtual"><scope>CoreTemple</scope><name>curHp</name></member>
+      <member refid="class_core_temple_1a1145ca5a9dc04a91a929db5aedab5047" prot="public" virt="non-virtual"><scope>CoreTemple</scope><name>CurHp</name></member>
+      <member refid="class_core_temple_1a4326b31ff39196e966337599dae8c5a0" prot="private" virt="non-virtual"><scope>CoreTemple</scope><name>destroyAnimationsDelay</name></member>
+      <member refid="class_core_temple_1ad45e8741fb745f773b6f87e6b45d2567" prot="private" virt="non-virtual"><scope>CoreTemple</scope><name>DestroyCoreAnimation</name></member>
+      <member refid="class_core_temple_1a2383daee9ae42bbac14bc371c7a5b176" prot="private" virt="non-virtual"><scope>CoreTemple</scope><name>destroyedCore</name></member>
+      <member refid="class_core_temple_1ac7e7a9db62b8fe0dcafaadca4e8ae498" prot="private" virt="non-virtual"><scope>CoreTemple</scope><name>EndGameScreen</name></member>
+      <member refid="class_core_temple_1abde2a3303a8931faf5da32dfcfc9167c" prot="private" virt="non-virtual"><scope>CoreTemple</scope><name>enemyTargeter</name></member>
+      <member refid="class_core_temple_1aef7f5fc10bba3a1a842427d56ba32028" prot="private" virt="non-virtual"><scope>CoreTemple</scope><name>glowParticleSystem</name></member>
+      <member refid="class_core_temple_1aa6d21856d0edda9169045de8a32a4731" prot="private" virt="non-virtual"><scope>CoreTemple</scope><name>hpBar</name></member>
+      <member refid="class_core_temple_1a482b190bfbe65352c062b0c312ffe285" prot="public" virt="non-virtual"><scope>CoreTemple</scope><name>Init</name></member>
+      <member refid="class_core_temple_1a32d668b04dc69eee28ea481d27f15011" prot="private" virt="non-virtual"><scope>CoreTemple</scope><name>maxHp</name></member>
+      <member refid="class_core_temple_1acae2581ec16a12208aaa9f37c9323122" prot="public" virt="non-virtual"><scope>CoreTemple</scope><name>MaxHp</name></member>
+      <member refid="class_core_temple_1a8a916930e8c991ef8bf7c85a1792bb56" prot="public" virt="non-virtual"><scope>CoreTemple</scope><name>OnCoreDestroyed</name></member>
+      <member refid="class_core_temple_1a354a92f641a7870a6edd4fc557957671" prot="private" virt="non-virtual"><scope>CoreTemple</scope><name>OnEnemyEnter</name></member>
+      <member refid="class_core_temple_1a1e5fe35b54c490be6a0a3008dc3008f5" prot="public" virt="non-virtual"><scope>CoreTemple</scope><name>OnGetHit</name></member>
+      <member refid="class_core_temple_1a888bfa45e1e14f1937196f8d7eab635f" prot="public" virt="non-virtual"><scope>CoreTemple</scope><name>TakeDamage</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

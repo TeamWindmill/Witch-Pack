@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="interface_i_targetable" kind="interface" language="C#" prot="public">
+    <compoundname>ITargetable</compoundname>
+    <derivedcompoundref refid="class_base_unit" prot="public" virt="non-virtual">BaseUnit</derivedcompoundref>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>BaseUnit</label>
+        <link refid="class_base_unit"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Enemy</label>
+        <link refid="class_enemy"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>ITargetable</label>
+        <link refid="interface_i_targetable"/>
+      </node>
+      <node id="4">
+        <label>Shaman</label>
+        <link refid="class_shaman"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/ITargetable.cs" line="5" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/ITargetable.cs" bodystart="6" bodyend="8"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

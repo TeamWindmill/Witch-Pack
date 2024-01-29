@@ -1,0 +1,60 @@
+.TH "ClickableUIElement" 3 "Mon Jan 29 2024" "Version 0.096" "WitchPack" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ClickableUIElement
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBUIElement\fP, IPointerEnterHandler, IPointerExitHandler, and IPointerClickHandler\&.
+.PP
+Inherited by \fBAbilityUI\fP, \fBAbilityUpgradeUI\fP, \fBShamanUIHandler\fP, and \fBTimeButtonsUI\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBOnPointerEnter\fP (PointerEventData eventData)"
+.br
+.ti -1c
+.RI "virtual void \fBOnPointerExit\fP (PointerEventData eventData)"
+.br
+.ti -1c
+.RI "void \fBOnPointerClick\fP (PointerEventData eventData)"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBOnClick\fP (PointerEventData eventData)"
+.br
+.ti -1c
+.RI "virtual void \fBOnDoubleClick\fP (PointerEventData eventData)"
+.br
+.ti -1c
+.RI "virtual void \fBOnDisable\fP ()"
+.br
+.in -1c
+.SS "Events"
+
+.in +1c
+.ti -1c
+.RI "Action \fBOnClickEvent\fP"
+.br
+.ti -1c
+.RI "Action \fBOnDoubleClickEvent\fP"
+.br
+.ti -1c
+.RI "Action \fBOnEnter\fP"
+.br
+.ti -1c
+.RI "Action \fBOnExit\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for WitchPack from the source code\&.

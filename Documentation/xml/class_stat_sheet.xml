@@ -1,0 +1,322 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_stat_sheet" kind="class" language="C#" prot="public">
+    <compoundname>StatSheet</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">ScriptableObject</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_stat_sheet_1ab64bf67e821a14ced2eb0b9baa1a865c" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float StatSheet.damageMitigation</definition>
+        <argsstring></argsstring>
+        <name>damageMitigation</name>
+        <qualifiedname>StatSheet.damageMitigation</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" line="7" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_stat_sheet_1a9be7385057f24976061c6f30a9899c36" prot="public" static="no" mutable="no">
+        <type><ref refid="class_base_stat" kindref="compound">BaseStat</ref></type>
+        <definition>BaseStat StatSheet.MaxHp</definition>
+        <argsstring></argsstring>
+        <name>MaxHp</name>
+        <qualifiedname>StatSheet.MaxHp</qualifiedname>
+        <initializer>= new <ref refid="class_base_stat" kindref="compound">BaseStat</ref>(StatType.MaxHp)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" line="17" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_stat_sheet_1ac07fd8fdb7c70d229e9d9f3af6b599dc" prot="public" static="no" mutable="no">
+        <type><ref refid="class_base_stat" kindref="compound">BaseStat</ref></type>
+        <definition>BaseStat StatSheet.BaseDamage</definition>
+        <argsstring></argsstring>
+        <name>BaseDamage</name>
+        <qualifiedname>StatSheet.BaseDamage</qualifiedname>
+        <initializer>= new <ref refid="class_base_stat" kindref="compound">BaseStat</ref>(StatType.BaseDamage)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" line="18" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_stat_sheet_1a9c03f30353395e6d93532c6debba9652" prot="public" static="no" mutable="no">
+        <type><ref refid="class_base_stat_decimal" kindref="compound">BaseStatDecimal</ref></type>
+        <definition>BaseStatDecimal StatSheet.AttackSpeed</definition>
+        <argsstring></argsstring>
+        <name>AttackSpeed</name>
+        <qualifiedname>StatSheet.AttackSpeed</qualifiedname>
+        <initializer>= new <ref refid="class_base_stat_decimal" kindref="compound">BaseStatDecimal</ref>(StatType.AttackSpeed)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" line="19" column="28" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_stat_sheet_1ae23d5e2724527c6d3f0dd8ee74b0c04f" prot="public" static="no" mutable="no">
+        <type><ref refid="class_base_stat" kindref="compound">BaseStat</ref></type>
+        <definition>BaseStat StatSheet.BaseRange</definition>
+        <argsstring></argsstring>
+        <name>BaseRange</name>
+        <qualifiedname>StatSheet.BaseRange</qualifiedname>
+        <initializer>= new <ref refid="class_base_stat" kindref="compound">BaseStat</ref>(StatType.BaseRange)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" line="20" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_stat_sheet_1a8e0e102df72de586c5dce08e173530ce" prot="public" static="no" mutable="no">
+        <type><ref refid="class_base_stat_decimal" kindref="compound">BaseStatDecimal</ref></type>
+        <definition>BaseStatDecimal StatSheet.MovementSpeed</definition>
+        <argsstring></argsstring>
+        <name>MovementSpeed</name>
+        <qualifiedname>StatSheet.MovementSpeed</qualifiedname>
+        <initializer>= new <ref refid="class_base_stat_decimal" kindref="compound">BaseStatDecimal</ref>(StatType.MovementSpeed)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" line="21" column="28" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_stat_sheet_1a6f7233739089404e7630c42580eff19d" prot="public" static="no" mutable="no">
+        <type><ref refid="class_base_stat" kindref="compound">BaseStat</ref></type>
+        <definition>BaseStat StatSheet.CritDamage</definition>
+        <argsstring></argsstring>
+        <name>CritDamage</name>
+        <qualifiedname>StatSheet.CritDamage</qualifiedname>
+        <initializer>= new <ref refid="class_base_stat" kindref="compound">BaseStat</ref>(StatType.CritDamage)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" line="22" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_stat_sheet_1ac4c4aad0805f45c24e804ce16c811eff" prot="public" static="no" mutable="no">
+        <type><ref refid="class_base_stat" kindref="compound">BaseStat</ref></type>
+        <definition>BaseStat StatSheet.CritChance</definition>
+        <argsstring></argsstring>
+        <name>CritChance</name>
+        <qualifiedname>StatSheet.CritChance</qualifiedname>
+        <initializer>= new <ref refid="class_base_stat" kindref="compound">BaseStat</ref>(StatType.CritChance)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" line="23" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_stat_sheet_1abaa83e173156e4a9d3d7e7d5e7b0219e" prot="public" static="no" mutable="no">
+        <type><ref refid="class_base_stat_decimal" kindref="compound">BaseStatDecimal</ref></type>
+        <definition>BaseStatDecimal StatSheet.InvincibleTime</definition>
+        <argsstring></argsstring>
+        <name>InvincibleTime</name>
+        <qualifiedname>StatSheet.InvincibleTime</qualifiedname>
+        <initializer>= new <ref refid="class_base_stat_decimal" kindref="compound">BaseStatDecimal</ref>(StatType.InvincibleTime)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" line="24" column="28" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_stat_sheet_1a227b857e257207b311b6f4ceb7f76ed5" prot="public" static="no" mutable="no">
+        <type><ref refid="class_base_stat" kindref="compound">BaseStat</ref></type>
+        <definition>BaseStat StatSheet.AbilityCooldownReduction</definition>
+        <argsstring></argsstring>
+        <name>AbilityCooldownReduction</name>
+        <qualifiedname>StatSheet.AbilityCooldownReduction</qualifiedname>
+        <initializer>= new <ref refid="class_base_stat" kindref="compound">BaseStat</ref>(StatType.AbilityCooldownReduction)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" line="25" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_stat_sheet_1ab7a236caa73c281152db956010a84bbd" prot="public" static="no" mutable="no">
+        <type><ref refid="class_base_stat" kindref="compound">BaseStat</ref></type>
+        <definition>BaseStat StatSheet.Armor</definition>
+        <argsstring></argsstring>
+        <name>Armor</name>
+        <qualifiedname>StatSheet.Armor</qualifiedname>
+        <initializer>= new <ref refid="class_base_stat" kindref="compound">BaseStat</ref>(StatType.Armor)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" line="26" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_stat_sheet_1af8e1abbbb41a7d15b485d53b3ea2726f" prot="public" static="no" mutable="no">
+        <type><ref refid="class_base_stat" kindref="compound">BaseStat</ref></type>
+        <definition>BaseStat StatSheet.HpRegen</definition>
+        <argsstring></argsstring>
+        <name>HpRegen</name>
+        <qualifiedname>StatSheet.HpRegen</qualifiedname>
+        <initializer>= new <ref refid="class_base_stat" kindref="compound">BaseStat</ref>(StatType.HpRegen)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" line="27" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_stat_sheet_1a46d7cceaca7ff8f1701f3730a282a171" prot="public" static="no" mutable="no">
+        <type><ref refid="class_base_stat" kindref="compound">BaseStat</ref></type>
+        <definition>BaseStat StatSheet.BonusStatusEffectDuration</definition>
+        <argsstring></argsstring>
+        <name>BonusStatusEffectDuration</name>
+        <qualifiedname>StatSheet.BonusStatusEffectDuration</qualifiedname>
+        <initializer>= new <ref refid="class_base_stat" kindref="compound">BaseStat</ref>(StatType.BonusStatusEffectDuration)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" line="28" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_stat_sheet_1a4f56bbf39377df425ed634fedf99d754" prot="public" static="no" mutable="no">
+        <type><ref refid="class_base_stat" kindref="compound">BaseStat</ref></type>
+        <definition>BaseStat StatSheet.AbilityProjectileSpeed</definition>
+        <argsstring></argsstring>
+        <name>AbilityProjectileSpeed</name>
+        <qualifiedname>StatSheet.AbilityProjectileSpeed</qualifiedname>
+        <initializer>= new <ref refid="class_base_stat" kindref="compound">BaseStat</ref>(StatType.AbilityProjectileSpeed)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" line="29" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_stat_sheet_1a1ba7a52374916cca3653cb77bb35e6f5" prot="public" static="no" mutable="no">
+        <type><ref refid="class_base_stat" kindref="compound">BaseStat</ref></type>
+        <definition>BaseStat StatSheet.AbilityProjectilePenetration</definition>
+        <argsstring></argsstring>
+        <name>AbilityProjectilePenetration</name>
+        <qualifiedname>StatSheet.AbilityProjectilePenetration</qualifiedname>
+        <initializer>= new <ref refid="class_base_stat" kindref="compound">BaseStat</ref>(StatType.AbilityProjectilePenetration)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" line="30" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_stat_sheet_1ad62e644616190fe483a2e49e85627770" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void StatSheet.CalcDamageMitigation</definition>
+        <argsstring>()</argsstring>
+        <name>CalcDamageMitigation</name>
+        <qualifiedname>StatSheet.CalcDamageMitigation</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" line="10" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" bodystart="10" bodyend="14"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="1">
+        <label>StatSheet</label>
+        <link refid="class_stat_sheet"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>BaseStat</label>
+        <link refid="class_base_stat"/>
+      </node>
+      <node id="4">
+        <label>BaseStatDecimal</label>
+        <link refid="class_base_stat_decimal"/>
+      </node>
+      <node id="2">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="1">
+        <label>StatSheet</label>
+        <link refid="class_stat_sheet"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>AbilityCooldownReduction</edgelabel>
+          <edgelabel>AbilityProjectilePenetration</edgelabel>
+          <edgelabel>AbilityProjectileSpeed</edgelabel>
+          <edgelabel>Armor</edgelabel>
+          <edgelabel>BaseDamage</edgelabel>
+          <edgelabel>BaseRange</edgelabel>
+          <edgelabel>BonusStatusEffectDuration</edgelabel>
+          <edgelabel>CritChance</edgelabel>
+          <edgelabel>CritDamage</edgelabel>
+          <edgelabel>HpRegen</edgelabel>
+          <edgelabel>...</edgelabel>
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>AttackSpeed</edgelabel>
+          <edgelabel>InvincibleTime</edgelabel>
+          <edgelabel>MovementSpeed</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" line="5" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatSheet.cs" bodystart="6" bodyend="32"/>
+    <listofallmembers>
+      <member refid="class_stat_sheet_1a227b857e257207b311b6f4ceb7f76ed5" prot="public" virt="non-virtual"><scope>StatSheet</scope><name>AbilityCooldownReduction</name></member>
+      <member refid="class_stat_sheet_1a1ba7a52374916cca3653cb77bb35e6f5" prot="public" virt="non-virtual"><scope>StatSheet</scope><name>AbilityProjectilePenetration</name></member>
+      <member refid="class_stat_sheet_1a4f56bbf39377df425ed634fedf99d754" prot="public" virt="non-virtual"><scope>StatSheet</scope><name>AbilityProjectileSpeed</name></member>
+      <member refid="class_stat_sheet_1ab7a236caa73c281152db956010a84bbd" prot="public" virt="non-virtual"><scope>StatSheet</scope><name>Armor</name></member>
+      <member refid="class_stat_sheet_1a9c03f30353395e6d93532c6debba9652" prot="public" virt="non-virtual"><scope>StatSheet</scope><name>AttackSpeed</name></member>
+      <member refid="class_stat_sheet_1ac07fd8fdb7c70d229e9d9f3af6b599dc" prot="public" virt="non-virtual"><scope>StatSheet</scope><name>BaseDamage</name></member>
+      <member refid="class_stat_sheet_1ae23d5e2724527c6d3f0dd8ee74b0c04f" prot="public" virt="non-virtual"><scope>StatSheet</scope><name>BaseRange</name></member>
+      <member refid="class_stat_sheet_1a46d7cceaca7ff8f1701f3730a282a171" prot="public" virt="non-virtual"><scope>StatSheet</scope><name>BonusStatusEffectDuration</name></member>
+      <member refid="class_stat_sheet_1ad62e644616190fe483a2e49e85627770" prot="public" virt="non-virtual"><scope>StatSheet</scope><name>CalcDamageMitigation</name></member>
+      <member refid="class_stat_sheet_1ac4c4aad0805f45c24e804ce16c811eff" prot="public" virt="non-virtual"><scope>StatSheet</scope><name>CritChance</name></member>
+      <member refid="class_stat_sheet_1a6f7233739089404e7630c42580eff19d" prot="public" virt="non-virtual"><scope>StatSheet</scope><name>CritDamage</name></member>
+      <member refid="class_stat_sheet_1ab64bf67e821a14ced2eb0b9baa1a865c" prot="private" virt="non-virtual"><scope>StatSheet</scope><name>damageMitigation</name></member>
+      <member refid="class_stat_sheet_1af8e1abbbb41a7d15b485d53b3ea2726f" prot="public" virt="non-virtual"><scope>StatSheet</scope><name>HpRegen</name></member>
+      <member refid="class_stat_sheet_1abaa83e173156e4a9d3d7e7d5e7b0219e" prot="public" virt="non-virtual"><scope>StatSheet</scope><name>InvincibleTime</name></member>
+      <member refid="class_stat_sheet_1a9be7385057f24976061c6f30a9899c36" prot="public" virt="non-virtual"><scope>StatSheet</scope><name>MaxHp</name></member>
+      <member refid="class_stat_sheet_1a8e0e102df72de586c5dce08e173530ce" prot="public" virt="non-virtual"><scope>StatSheet</scope><name>MovementSpeed</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

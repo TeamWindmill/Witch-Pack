@@ -1,0 +1,158 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_effectable" kind="class" language="C#" prot="public">
+    <compoundname>Effectable</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_effectable_1a8d521e3407b90af65484814c0b489100" prot="private" static="no" mutable="no">
+        <type><ref refid="class_base_unit" kindref="compound">BaseUnit</ref></type>
+        <definition>BaseUnit Effectable.owner</definition>
+        <argsstring></argsstring>
+        <name>owner</name>
+        <qualifiedname>Effectable.owner</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Effectable.cs" line="8" column="22" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Effectable.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_effectable_1a8f1b298d2fbe350ebd503f377102503f" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="class_status_effect" kindref="compound">StatusEffect</ref> &gt;</type>
+        <definition>List&lt;StatusEffect&gt; Effectable.activeEffects</definition>
+        <argsstring></argsstring>
+        <name>activeEffects</name>
+        <qualifiedname>Effectable.activeEffects</qualifiedname>
+        <initializer>= new List&lt;<ref refid="class_status_effect" kindref="compound">StatusEffect</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Effectable.cs" line="11" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Effectable.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_effectable_1a6550febcfefa6921d89ec5297518efd9" prot="public" static="no" mutable="no">
+        <type>Action&lt; <ref refid="class_effectable" kindref="compound">Effectable</ref>, <ref refid="class_affector" kindref="compound">Affector</ref>, <ref refid="class_status_effect" kindref="compound">StatusEffect</ref> &gt;</type>
+        <definition>Action&lt;Effectable, Affector, StatusEffect&gt; Effectable.OnAffected</definition>
+        <argsstring></argsstring>
+        <name>OnAffected</name>
+        <qualifiedname>Effectable.OnAffected</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Effectable.cs" line="9" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Effectable.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_effectable_1af40a9c4c24376fae404c541e01f69a52" prot="public" static="no" mutable="no">
+        <type>Action&lt; <ref refid="class_status_effect" kindref="compound">StatusEffect</ref> &gt;</type>
+        <definition>Action&lt;StatusEffect&gt; Effectable.OnEffectRemoved</definition>
+        <argsstring></argsstring>
+        <name>OnEffectRemoved</name>
+        <qualifiedname>Effectable.OnEffectRemoved</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Effectable.cs" line="10" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Effectable.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_effectable_1a1dc13d70fdbbb80d448ad9bae9bdb230" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_base_unit" kindref="compound">BaseUnit</ref></type>
+        <definition>BaseUnit Effectable.Owner</definition>
+        <argsstring></argsstring>
+        <name>Owner</name>
+        <qualifiedname>Effectable.Owner</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Effectable.cs" line="13" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Effectable.cs" bodystart="13" bodyend="13"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_effectable_1a622b59aa808d822a1653af94eca86a73" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Effectable.Effectable</definition>
+        <argsstring>(BaseUnit owner)</argsstring>
+        <name>Effectable</name>
+        <qualifiedname>Effectable.Effectable</qualifiedname>
+        <param>
+          <type><ref refid="class_base_unit" kindref="compound">BaseUnit</ref></type>
+          <declname>owner</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Effectable.cs" line="15" column="12" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Effectable.cs" bodystart="15" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_effectable_1a741f059755a77120df574bcf1762c72d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Effectable.AddEffect</definition>
+        <argsstring>(StatusEffectConfig givenEffectData, Affector affector)</argsstring>
+        <name>AddEffect</name>
+        <qualifiedname>Effectable.AddEffect</qualifiedname>
+        <param>
+          <type><ref refid="class_status_effect_config" kindref="compound">StatusEffectConfig</ref></type>
+          <declname>givenEffectData</declname>
+        </param>
+        <param>
+          <type><ref refid="class_affector" kindref="compound">Affector</ref></type>
+          <declname>affector</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Effectable.cs" line="20" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Effectable.cs" bodystart="20" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="class_effectable_1af71c323a7b802079fb06266751e31475" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Effectable.RemoveEffect</definition>
+        <argsstring>(StatusEffect effect)</argsstring>
+        <name>RemoveEffect</name>
+        <qualifiedname>Effectable.RemoveEffect</qualifiedname>
+        <param>
+          <type><ref refid="class_status_effect" kindref="compound">StatusEffect</ref></type>
+          <declname>effect</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Effectable.cs" line="38" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Effectable.cs" bodystart="38" bodyend="41"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Effectable.cs" line="6" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Effectable.cs" bodystart="7" bodyend="45"/>
+    <listofallmembers>
+      <member refid="class_effectable_1a8f1b298d2fbe350ebd503f377102503f" prot="private" virt="non-virtual"><scope>Effectable</scope><name>activeEffects</name></member>
+      <member refid="class_effectable_1a741f059755a77120df574bcf1762c72d" prot="public" virt="non-virtual"><scope>Effectable</scope><name>AddEffect</name></member>
+      <member refid="class_effectable_1a622b59aa808d822a1653af94eca86a73" prot="public" virt="non-virtual"><scope>Effectable</scope><name>Effectable</name></member>
+      <member refid="class_effectable_1a6550febcfefa6921d89ec5297518efd9" prot="public" virt="non-virtual"><scope>Effectable</scope><name>OnAffected</name></member>
+      <member refid="class_effectable_1af40a9c4c24376fae404c541e01f69a52" prot="public" virt="non-virtual"><scope>Effectable</scope><name>OnEffectRemoved</name></member>
+      <member refid="class_effectable_1a8d521e3407b90af65484814c0b489100" prot="private" virt="non-virtual"><scope>Effectable</scope><name>owner</name></member>
+      <member refid="class_effectable_1a1dc13d70fdbbb80d448ad9bae9bdb230" prot="public" virt="non-virtual"><scope>Effectable</scope><name>Owner</name></member>
+      <member refid="class_effectable_1af71c323a7b802079fb06266751e31475" prot="public" virt="non-virtual"><scope>Effectable</scope><name>RemoveEffect</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

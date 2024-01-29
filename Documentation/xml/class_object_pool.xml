@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_object_pool" kind="class" language="C#" prot="public">
+    <compoundname>ObjectPool</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <templateparamlist>
+      <param>
+        <type>T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_object_pool_1aa71c8580497b4070a808259390f90f20" prot="private" static="no" mutable="no">
+        <type>List&lt; T &gt;</type>
+        <definition>List&lt;T&gt; ObjectPool&lt; T &gt;.pooledObjects</definition>
+        <argsstring></argsstring>
+        <name>pooledObjects</name>
+        <qualifiedname>ObjectPool.pooledObjects</qualifiedname>
+        <initializer>= new List&lt;T&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/ObjectPool.cs" line="7" column="11" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/ObjectPool.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_object_pool_1a71e2e26e5633bf444ab533471a966c6f" prot="public" static="no" mutable="no">
+        <type>T</type>
+        <definition>T ObjectPool&lt; T &gt;.PrefabToPool</definition>
+        <argsstring></argsstring>
+        <name>PrefabToPool</name>
+        <qualifiedname>ObjectPool.PrefabToPool</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/ObjectPool.cs" line="8" column="14" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/ObjectPool.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_object_pool_1a59ee870ebeef27d01adbd75d73247f47" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ObjectPool&lt; T &gt;.NumToPool</definition>
+        <argsstring></argsstring>
+        <name>NumToPool</name>
+        <qualifiedname>ObjectPool.NumToPool</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/ObjectPool.cs" line="9" column="16" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/ObjectPool.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_object_pool_1a838bee2dc74a6ff6fdd0dde17c4fd1af" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="yes" privatesettable="no" protectedsettable="no">
+        <type>List&lt; T &gt;</type>
+        <definition>List&lt;T&gt; ObjectPool&lt; T &gt;.PooledObjects</definition>
+        <argsstring></argsstring>
+        <name>PooledObjects</name>
+        <qualifiedname>ObjectPool.PooledObjects</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/ObjectPool.cs" line="10" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/ObjectPool.cs" bodystart="10" bodyend="10"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_object_pool_1aeeca0d74a9135692894dfb4319a0df92" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ObjectPool&lt; T &gt;.OnDestroy</definition>
+        <argsstring>()</argsstring>
+        <name>OnDestroy</name>
+        <qualifiedname>ObjectPool.OnDestroy</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/ObjectPool.cs" line="13" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/ObjectPool.cs" bodystart="13" bodyend="16"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_object_pool_1a0c5e0393b0eed7360bf12aa8ac7afe85" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ObjectPool&lt; T &gt;.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>ObjectPool.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/ObjectPool.cs" line="17" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/ObjectPool.cs" bodystart="17" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_object_pool_1afcc5314747851c8ba656f1f2c9453d19" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T ObjectPool&lt; T &gt;.GetPooledObject</definition>
+        <argsstring>()</argsstring>
+        <name>GetPooledObject</name>
+        <qualifiedname>ObjectPool.GetPooledObject</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/ObjectPool.cs" line="27" column="14" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/ObjectPool.cs" bodystart="27" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="class_object_pool_1a56b1d7490721f4dd5820f1f0c78aaa79" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ObjectPool&lt; T &gt;.CheckActiveIstance</definition>
+        <argsstring>()</argsstring>
+        <name>CheckActiveIstance</name>
+        <qualifiedname>ObjectPool.CheckActiveIstance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/ObjectPool.cs" line="45" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/ObjectPool.cs" bodystart="45" bodyend="55"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>ObjectPool&lt; T &gt;</label>
+        <link refid="class_object_pool"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>ObjectPool&lt; T &gt;</label>
+        <link refid="class_object_pool"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/ObjectPool.cs" line="5" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/ObjectPool.cs" bodystart="6" bodyend="56"/>
+    <listofallmembers>
+      <member refid="class_object_pool_1a0c5e0393b0eed7360bf12aa8ac7afe85" prot="public" virt="non-virtual"><scope>ObjectPool</scope><name>Awake</name></member>
+      <member refid="class_object_pool_1a56b1d7490721f4dd5820f1f0c78aaa79" prot="public" virt="non-virtual"><scope>ObjectPool</scope><name>CheckActiveIstance</name></member>
+      <member refid="class_object_pool_1afcc5314747851c8ba656f1f2c9453d19" prot="public" virt="non-virtual"><scope>ObjectPool</scope><name>GetPooledObject</name></member>
+      <member refid="class_object_pool_1a59ee870ebeef27d01adbd75d73247f47" prot="public" virt="non-virtual"><scope>ObjectPool</scope><name>NumToPool</name></member>
+      <member refid="class_object_pool_1aeeca0d74a9135692894dfb4319a0df92" prot="private" virt="non-virtual"><scope>ObjectPool</scope><name>OnDestroy</name></member>
+      <member refid="class_object_pool_1aa71c8580497b4070a808259390f90f20" prot="private" virt="non-virtual"><scope>ObjectPool</scope><name>pooledObjects</name></member>
+      <member refid="class_object_pool_1a838bee2dc74a6ff6fdd0dde17c4fd1af" prot="public" virt="non-virtual"><scope>ObjectPool</scope><name>PooledObjects</name></member>
+      <member refid="class_object_pool_1a71e2e26e5633bf444ab533471a966c6f" prot="public" virt="non-virtual"><scope>ObjectPool</scope><name>PrefabToPool</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

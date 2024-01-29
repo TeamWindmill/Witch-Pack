@@ -1,0 +1,220 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_game_manager" kind="class" language="C#" prot="public">
+    <compoundname>GameManager</compoundname>
+    <basecompoundref refid="class_mono_singleton" prot="public" virt="non-virtual">MonoSingleton&lt; GameManager &gt;</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_game_manager_1a648dcd6b4d8c90b8a18c3a3ac55b850b" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type><ref refid="interface_i_scene_handler" kindref="compound">ISceneHandler</ref></type>
+        <definition>ISceneHandler GameManager.SceneHandler</definition>
+        <argsstring></argsstring>
+        <name>SceneHandler</name>
+        <qualifiedname>GameManager.SceneHandler</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/GameManager.cs" line="7" column="33" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/GameManager.cs" bodystart="7" bodyend="7"/>
+      </memberdef>
+      <memberdef kind="property" id="class_game_manager_1a3dacc37199ce6aead65ceb1e58abd28d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type><ref refid="class_level_config" kindref="compound">LevelConfig</ref></type>
+        <definition>LevelConfig GameManager.CurrentLevelConfig</definition>
+        <argsstring></argsstring>
+        <name>CurrentLevelConfig</name>
+        <qualifiedname>GameManager.CurrentLevelConfig</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/GameManager.cs" line="8" column="24" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/GameManager.cs" bodystart="8" bodyend="8"/>
+      </memberdef>
+      <memberdef kind="property" id="class_game_manager_1a93e23c3aa1a991abbcdc135298f3a3df" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type><ref refid="class_camera_handler" kindref="compound">CameraHandler</ref></type>
+        <definition>CameraHandler GameManager.CameraHandler</definition>
+        <argsstring></argsstring>
+        <name>CameraHandler</name>
+        <qualifiedname>GameManager.CameraHandler</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/GameManager.cs" line="20" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/GameManager.cs" bodystart="21" bodyend="34"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_game_manager_1a7e128c223b83906a36bd8d79a8cbcc2a" prot="private" static="no" mutable="no">
+        <type><ref refid="class_scene_handler" kindref="compound">SceneHandler</ref></type>
+        <definition>SceneHandler GameManager._sceneHandler</definition>
+        <argsstring></argsstring>
+        <name>_sceneHandler</name>
+        <qualifiedname>GameManager._sceneHandler</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/GameManager.cs" line="10" column="27" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/GameManager.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_game_manager_1a6655d940db1ade58521d15c457ee87f8" prot="private" static="no" mutable="no">
+        <type><ref refid="class_camera_handler" kindref="compound">CameraHandler</ref></type>
+        <definition>CameraHandler GameManager._cameraHandler</definition>
+        <argsstring></argsstring>
+        <name>_cameraHandler</name>
+        <qualifiedname>GameManager._cameraHandler</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/GameManager.cs" line="18" column="27" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/GameManager.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_game_manager_1a707008ca02672c2dc850ccf571a6be6d" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void GameManager.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>GameManager.Awake</qualifiedname>
+        <reimplements refid="class_mono_singleton_1a04acead2ed3d970430f4c8c7716071f1">Awake</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/GameManager.cs" line="37" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/GameManager.cs" bodystart="37" bodyend="46"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_game_manager_1a5ccfacd027ad08eeb4ff1f25a7f59c98" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GameManager.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>GameManager.Start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/GameManager.cs" line="53" column="10" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/GameManager.cs" bodystart="53" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="class_game_manager_1ac3e882d19fd86757a40a42d0c88276f3" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GameManager.OnValidate</definition>
+        <argsstring>()</argsstring>
+        <name>OnValidate</name>
+        <qualifiedname>GameManager.OnValidate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/GameManager.cs" line="65" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/GameManager.cs" bodystart="65" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="class_game_manager_1aef4f48f5406a321a27b36722495119a8" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GameManager.OnMouseDown</definition>
+        <argsstring>()</argsstring>
+        <name>OnMouseDown</name>
+        <qualifiedname>GameManager.OnMouseDown</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/GameManager.cs" line="71" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/GameManager.cs" bodystart="71" bodyend="75"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_game_manager_1a3085f6d14f21129038f360712d0aeeff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GameManager.SetLevelConfig</definition>
+        <argsstring>(LevelConfig levelConfig)</argsstring>
+        <name>SetLevelConfig</name>
+        <qualifiedname>GameManager.SetLevelConfig</qualifiedname>
+        <param>
+          <type><ref refid="class_level_config" kindref="compound">LevelConfig</ref></type>
+          <declname>levelConfig</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/GameManager.cs" line="59" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/GameManager.cs" bodystart="59" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="class_game_manager_1a040213761ca9ffc209e0e032ea43bf95" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void GameManager.Quit</definition>
+        <argsstring>()</argsstring>
+        <name>Quit</name>
+        <qualifiedname>GameManager.Quit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/GameManager.cs" line="77" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/GameManager.cs" bodystart="77" bodyend="80"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GameManager</label>
+        <link refid="class_game_manager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoSingleton&lt; GameManager &gt;</label>
+        <link refid="class_mono_singleton"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GameManager</label>
+        <link refid="class_game_manager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoSingleton&lt; GameManager &gt;</label>
+        <link refid="class_mono_singleton"/>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/GameManager.cs" line="5" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/GameManager.cs" bodystart="6" bodyend="91"/>
+    <listofallmembers>
+      <member refid="class_game_manager_1a6655d940db1ade58521d15c457ee87f8" prot="private" virt="non-virtual"><scope>GameManager</scope><name>_cameraHandler</name></member>
+      <member refid="class_game_manager_1a7e128c223b83906a36bd8d79a8cbcc2a" prot="private" virt="non-virtual"><scope>GameManager</scope><name>_sceneHandler</name></member>
+      <member refid="class_game_manager_1a707008ca02672c2dc850ccf571a6be6d" prot="protected" virt="virtual"><scope>GameManager</scope><name>Awake</name></member>
+      <member refid="class_game_manager_1a93e23c3aa1a991abbcdc135298f3a3df" prot="public" virt="non-virtual"><scope>GameManager</scope><name>CameraHandler</name></member>
+      <member refid="class_game_manager_1a3dacc37199ce6aead65ceb1e58abd28d" prot="public" virt="non-virtual"><scope>GameManager</scope><name>CurrentLevelConfig</name></member>
+      <member refid="class_mono_singleton_1a5637ba1f44359d4610b5eba552ef5f57" prot="public" virt="non-virtual"><scope>GameManager</scope><name>Instance</name></member>
+      <member refid="class_mono_singleton_1af585390f9256dfc8be7c969ca9fb4d88" prot="protected" virt="virtual"><scope>GameManager</scope><name>OnDestroy</name></member>
+      <member refid="class_game_manager_1aef4f48f5406a321a27b36722495119a8" prot="private" virt="non-virtual"><scope>GameManager</scope><name>OnMouseDown</name></member>
+      <member refid="class_game_manager_1ac3e882d19fd86757a40a42d0c88276f3" prot="private" virt="non-virtual"><scope>GameManager</scope><name>OnValidate</name></member>
+      <member refid="class_game_manager_1a040213761ca9ffc209e0e032ea43bf95" prot="public" virt="non-virtual"><scope>GameManager</scope><name>Quit</name></member>
+      <member refid="class_game_manager_1a648dcd6b4d8c90b8a18c3a3ac55b850b" prot="public" virt="non-virtual"><scope>GameManager</scope><name>SceneHandler</name></member>
+      <member refid="class_game_manager_1a3085f6d14f21129038f360712d0aeeff" prot="public" virt="non-virtual"><scope>GameManager</scope><name>SetLevelConfig</name></member>
+      <member refid="class_game_manager_1a5ccfacd027ad08eeb4ff1f25a7f59c98" prot="private" virt="non-virtual"><scope>GameManager</scope><name>Start</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

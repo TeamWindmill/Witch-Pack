@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_scene_editor_1_1_scene_editor_cache" kind="class" language="C#" prot="public">
+    <compoundname>SceneEditor::SceneEditorCache</compoundname>
+      <sectiondef kind="event">
+      <memberdef kind="event" id="class_scene_editor_1_1_scene_editor_cache_1aa26f320aa951bae2e49ea5291c4f7c1b" prot="public" static="yes" add="no" remove="no" raise="no">
+        <type>Action</type>
+        <definition>Action SceneEditor.SceneEditorCache.OnSceneDeleted</definition>
+        <argsstring></argsstring>
+        <name>OnSceneDeleted</name>
+        <qualifiedname>SceneEditor.SceneEditorCache.OnSceneDeleted</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" line="103" column="36" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_scene_editor_1_1_scene_editor_cache_1a6f0c493173463c46ad74e40722d6c0ab" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool SceneEditor.SceneEditorCache._canBeDeleted</definition>
+        <argsstring></argsstring>
+        <name>_canBeDeleted</name>
+        <qualifiedname>SceneEditor.SceneEditorCache._canBeDeleted</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" line="104" column="22" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_scene_editor_1_1_scene_editor_cache_1ab591aeb995784472eba18aa70cfa45d8" prot="private" static="no" mutable="no">
+        <type>SceneAsset</type>
+        <definition>SceneAsset SceneEditor.SceneEditorCache._current</definition>
+        <argsstring></argsstring>
+        <name>_current</name>
+        <qualifiedname>SceneEditor.SceneEditorCache._current</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" line="105" column="28" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_scene_editor_1_1_scene_editor_cache_1ac530d6d771695b56a2f0df8f53a133f4" prot="private" static="no" mutable="no">
+        <type>List&lt; Scene &gt;</type>
+        <definition>List&lt;Scene&gt; SceneEditor.SceneEditorCache._scenes</definition>
+        <argsstring></argsstring>
+        <name>_scenes</name>
+        <qualifiedname>SceneEditor.SceneEditorCache._scenes</qualifiedname>
+        <initializer>= new List&lt;Scene&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" line="106" column="22" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_scene_editor_1_1_scene_editor_cache_1a9308947910d37a61978eb0bd9074a9be" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SceneEditor.SceneEditorCache.SceneEditorCache</definition>
+        <argsstring>(bool canBeDeleted, SceneAsset scene)</argsstring>
+        <name>SceneEditorCache</name>
+        <qualifiedname>SceneEditor.SceneEditorCache.SceneEditorCache</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>canBeDeleted</declname>
+        </param>
+        <param>
+          <type>SceneAsset</type>
+          <declname>scene</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" line="108" column="16" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" bodystart="108" bodyend="112"/>
+      </memberdef>
+      <memberdef kind="function" id="class_scene_editor_1_1_scene_editor_cache_1a98c6e8e92ef12426595180c1b7b81f3b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SceneEditor.SceneEditorCache.LoadSingle</definition>
+        <argsstring>()</argsstring>
+        <name>LoadSingle</name>
+        <qualifiedname>SceneEditor.SceneEditorCache.LoadSingle</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" line="115" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" bodystart="115" bodyend="120"/>
+      </memberdef>
+      <memberdef kind="function" id="class_scene_editor_1_1_scene_editor_cache_1a6a19866f23353c841bd58fe345e04493" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SceneEditor.SceneEditorCache.LoadAdditive</definition>
+        <argsstring>()</argsstring>
+        <name>LoadAdditive</name>
+        <qualifiedname>SceneEditor.SceneEditorCache.LoadAdditive</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" line="123" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" bodystart="123" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="class_scene_editor_1_1_scene_editor_cache_1a28129e5429d71eb1015b65dd9552fe77" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SceneEditor.SceneEditorCache.Unload</definition>
+        <argsstring>()</argsstring>
+        <name>Unload</name>
+        <qualifiedname>SceneEditor.SceneEditorCache.Unload</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" line="130" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" bodystart="130" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="class_scene_editor_1_1_scene_editor_cache_1a475976ce6d94a9a4bab393fbca9a3c2e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SceneEditor.SceneEditorCache.Delete</definition>
+        <argsstring>()</argsstring>
+        <name>Delete</name>
+        <qualifiedname>SceneEditor.SceneEditorCache.Delete</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" line="139" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" bodystart="139" bodyend="156"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_scene_editor_1_1_scene_editor_cache_1a091c7465c057abaa4af88de496ab0dd2" prot="private" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SceneEditor.SceneEditorCache.Reset</definition>
+        <argsstring>()</argsstring>
+        <name>Reset</name>
+        <qualifiedname>SceneEditor.SceneEditorCache.Reset</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" line="158" column="22"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" line="101" column="11" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" bodystart="102" bodyend="159"/>
+    <listofallmembers>
+      <member refid="class_scene_editor_1_1_scene_editor_cache_1a6f0c493173463c46ad74e40722d6c0ab" prot="private" virt="non-virtual"><scope>SceneEditor::SceneEditorCache</scope><name>_canBeDeleted</name></member>
+      <member refid="class_scene_editor_1_1_scene_editor_cache_1ab591aeb995784472eba18aa70cfa45d8" prot="private" virt="non-virtual"><scope>SceneEditor::SceneEditorCache</scope><name>_current</name></member>
+      <member refid="class_scene_editor_1_1_scene_editor_cache_1ac530d6d771695b56a2f0df8f53a133f4" prot="private" virt="non-virtual"><scope>SceneEditor::SceneEditorCache</scope><name>_scenes</name></member>
+      <member refid="class_scene_editor_1_1_scene_editor_cache_1a475976ce6d94a9a4bab393fbca9a3c2e" prot="public" virt="non-virtual"><scope>SceneEditor::SceneEditorCache</scope><name>Delete</name></member>
+      <member refid="class_scene_editor_1_1_scene_editor_cache_1a6a19866f23353c841bd58fe345e04493" prot="public" virt="non-virtual"><scope>SceneEditor::SceneEditorCache</scope><name>LoadAdditive</name></member>
+      <member refid="class_scene_editor_1_1_scene_editor_cache_1a98c6e8e92ef12426595180c1b7b81f3b" prot="public" virt="non-virtual"><scope>SceneEditor::SceneEditorCache</scope><name>LoadSingle</name></member>
+      <member refid="class_scene_editor_1_1_scene_editor_cache_1aa26f320aa951bae2e49ea5291c4f7c1b" prot="public" virt="non-virtual"><scope>SceneEditor::SceneEditorCache</scope><name>OnSceneDeleted</name></member>
+      <member refid="class_scene_editor_1_1_scene_editor_cache_1a091c7465c057abaa4af88de496ab0dd2" prot="private" virt="non-virtual"><scope>SceneEditor::SceneEditorCache</scope><name>Reset</name></member>
+      <member refid="class_scene_editor_1_1_scene_editor_cache_1a9308947910d37a61978eb0bd9074a9be" prot="public" virt="non-virtual"><scope>SceneEditor::SceneEditorCache</scope><name>SceneEditorCache</name></member>
+      <member refid="class_scene_editor_1_1_scene_editor_cache_1a28129e5429d71eb1015b65dd9552fe77" prot="public" virt="non-virtual"><scope>SceneEditor::SceneEditorCache</scope><name>Unload</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

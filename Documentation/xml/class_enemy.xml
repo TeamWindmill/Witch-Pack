@@ -1,0 +1,349 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_enemy" kind="class" language="C#" prot="public">
+    <compoundname>Enemy</compoundname>
+    <basecompoundref refid="class_base_unit" prot="public" virt="non-virtual">BaseUnit</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_enemy_1a8a92f55c5156b9a78067450c73855f75" prot="private" static="no" mutable="no">
+        <type><ref refid="class_enemy_animator" kindref="compound">EnemyAnimator</ref></type>
+        <definition>EnemyAnimator Enemy.enemyAnimator</definition>
+        <argsstring></argsstring>
+        <name>enemyAnimator</name>
+        <qualifiedname>Enemy.enemyAnimator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" line="8" column="28" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_enemy_1ad29e7f40b43a0960eaec675ee5eb0567" prot="private" static="no" mutable="no">
+        <type>PathCreator</type>
+        <definition>PathCreator Enemy._path</definition>
+        <argsstring></argsstring>
+        <name>_path</name>
+        <qualifiedname>Enemy._path</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" line="9" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_enemy_1a30889fd97c8c0329092921c706600cfd" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Enemy._coreDamage</definition>
+        <argsstring></argsstring>
+        <name>_coreDamage</name>
+        <qualifiedname>Enemy._coreDamage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" line="10" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_enemy_1af552e047c176db798a1834f32ddba6f6" prot="private" static="no" mutable="no">
+        <type><ref refid="class_enemy_config" kindref="compound">EnemyConfig</ref></type>
+        <definition>EnemyConfig Enemy.enemyConfig</definition>
+        <argsstring></argsstring>
+        <name>enemyConfig</name>
+        <qualifiedname>Enemy.enemyConfig</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" line="13" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_enemy_1a795f395a96b9cc6241fbdd27ebdbe1b5" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Enemy.pointIndex</definition>
+        <argsstring></argsstring>
+        <name>pointIndex</name>
+        <qualifiedname>Enemy.pointIndex</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" line="14" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_enemy_1a8ad99ac0bb67e6a751e1b7cb7a2693b1" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Enemy.dstTravelled</definition>
+        <argsstring></argsstring>
+        <name>dstTravelled</name>
+        <qualifiedname>Enemy.dstTravelled</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" line="15" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_enemy_1ab79032fe4e71818441a39ec0e99a903e" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Enemy._isMoving</definition>
+        <argsstring></argsstring>
+        <name>_isMoving</name>
+        <qualifiedname>Enemy._isMoving</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" line="16" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_enemy_1a5dbd6c2a874ef1cc3de701184930f735" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_enemy_config" kindref="compound">EnemyConfig</ref></type>
+        <definition>EnemyConfig Enemy.EnemyConfig</definition>
+        <argsstring></argsstring>
+        <name>EnemyConfig</name>
+        <qualifiedname>Enemy.EnemyConfig</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" line="17" column="24" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" bodystart="17" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="property" id="class_enemy_1ad3272c2526a03e222a1764a09e96dbb1" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int Enemy.CoreDamage</definition>
+        <argsstring></argsstring>
+        <name>CoreDamage</name>
+        <qualifiedname>Enemy.CoreDamage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" line="18" column="16" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_enemy_1a36f0ec56edf2bc5b87243c921433de9d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool Enemy.IsMoving</definition>
+        <argsstring></argsstring>
+        <name>IsMoving</name>
+        <qualifiedname>Enemy.IsMoving</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" line="19" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_enemy_1a0e9f2f0ffef1b0d9b7f4604fb0307248" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>override <ref refid="class_stat_sheet" kindref="compound">StatSheet</ref></type>
+        <definition>override StatSheet Enemy.BaseStats</definition>
+        <argsstring></argsstring>
+        <name>BaseStats</name>
+        <qualifiedname>Enemy.BaseStats</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" line="21" column="31" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_enemy_1aa7043f31428e2fddac3dffa7f113e40f" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Enemy.OnValidate</definition>
+        <argsstring>()</argsstring>
+        <name>OnValidate</name>
+        <qualifiedname>Enemy.OnValidate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" line="22" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" bodystart="22" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_enemy_1a80560cd7c04c1c0846715740bad699d1" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Enemy.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>Enemy.Update</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" line="40" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" bodystart="40" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="class_enemy_1ade30149323264bfe22582902e7db30b8" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Enemy.SetNextDest</definition>
+        <argsstring>()</argsstring>
+        <name>SetNextDest</name>
+        <qualifiedname>Enemy.SetNextDest</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" line="52" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" bodystart="52" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="class_enemy_1a6cc320245dc7cf91f0a566f40976342a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Enemy.OnDisable</definition>
+        <argsstring>()</argsstring>
+        <name>OnDisable</name>
+        <qualifiedname>Enemy.OnDisable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" line="67" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" bodystart="67" bodyend="71"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_enemy_1aaa62e58dbeebb468aadd622fe447b00c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void Enemy.Init</definition>
+        <argsstring>(BaseUnitConfig givenConfig)</argsstring>
+        <name>Init</name>
+        <qualifiedname>Enemy.Init</qualifiedname>
+        <reimplements refid="class_base_unit_1a318afd57221249ec6faa2b130c92a8e9">Init</reimplements>
+        <param>
+          <type><ref refid="class_base_unit_config" kindref="compound">BaseUnitConfig</ref></type>
+          <declname>givenConfig</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" line="26" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" bodystart="26" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="class_enemy_1a1102137e337aecc416e4d71666b88734" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Enemy.ToggleMove</definition>
+        <argsstring>(bool state)</argsstring>
+        <name>ToggleMove</name>
+        <qualifiedname>Enemy.ToggleMove</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" line="47" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" bodystart="47" bodyend="50"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>BaseUnit</label>
+        <link refid="class_base_unit"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Enemy</label>
+        <link refid="class_enemy"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>ITargetable</label>
+        <link refid="interface_i_targetable"/>
+      </node>
+      <node id="3">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>BaseUnit</label>
+        <link refid="class_base_unit"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Enemy</label>
+        <link refid="class_enemy"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>ITargetable</label>
+        <link refid="interface_i_targetable"/>
+      </node>
+      <node id="3">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" line="6" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Enemy/Enemy.cs" bodystart="7" bodyend="74"/>
+    <listofallmembers>
+      <member refid="class_enemy_1a30889fd97c8c0329092921c706600cfd" prot="private" virt="non-virtual"><scope>Enemy</scope><name>_coreDamage</name></member>
+      <member refid="class_enemy_1ab79032fe4e71818441a39ec0e99a903e" prot="private" virt="non-virtual"><scope>Enemy</scope><name>_isMoving</name></member>
+      <member refid="class_enemy_1ad29e7f40b43a0960eaec675ee5eb0567" prot="private" virt="non-virtual"><scope>Enemy</scope><name>_path</name></member>
+      <member refid="class_base_unit_1a313386eecce1fdf58c62ad81e6b8408a" prot="public" virt="non-virtual"><scope>Enemy</scope><name>Affector</name></member>
+      <member refid="class_base_unit_1a4caf48c381627131ac62c014c032b4ec" prot="public" virt="non-virtual"><scope>Enemy</scope><name>AutoAttack</name></member>
+      <member refid="class_base_unit_1ac1ffad5ae2e20a1d52c3b0cca382b2ac" prot="public" virt="non-virtual"><scope>Enemy</scope><name>AutoAttacker</name></member>
+      <member refid="class_base_unit_1abea9f0e2805d78a859fc233e1c5b8b26" prot="public" virt="non-virtual"><scope>Enemy</scope><name>AutoAttackHandler</name></member>
+      <member refid="class_enemy_1a0e9f2f0ffef1b0d9b7f4604fb0307248" prot="public" virt="non-virtual"><scope>Enemy</scope><name>BaseStats</name></member>
+      <member refid="class_base_unit_1a6d2a95685260afde1a5441a142053d4c" prot="public" virt="non-virtual"><scope>Enemy</scope><name>CastPos</name></member>
+      <member refid="class_enemy_1ad3272c2526a03e222a1764a09e96dbb1" prot="public" virt="non-virtual"><scope>Enemy</scope><name>CoreDamage</name></member>
+      <member refid="class_base_unit_1a62752250be6a1d1b478f2e853ad49d2f" prot="public" virt="non-virtual"><scope>Enemy</scope><name>Damageable</name></member>
+      <member refid="class_base_unit_1aff04a7a19aa2b5c6d791f48f84514928" prot="public" virt="non-virtual"><scope>Enemy</scope><name>DamageDealer</name></member>
+      <member refid="class_base_unit_1a3cdf2c036c5fb75972c880487217a355" prot="protected" virt="non-virtual"><scope>Enemy</scope><name>DisableAttacker</name></member>
+      <member refid="class_enemy_1a8ad99ac0bb67e6a751e1b7cb7a2693b1" prot="private" virt="non-virtual"><scope>Enemy</scope><name>dstTravelled</name></member>
+      <member refid="class_base_unit_1a8b48d6d42c97a03a7bb3be17db38a99c" prot="public" virt="non-virtual"><scope>Enemy</scope><name>Effectable</name></member>
+      <member refid="class_base_unit_1a47c788d0b4375120ae2a587b20feceeb" prot="protected" virt="non-virtual"><scope>Enemy</scope><name>EnableAttacker</name></member>
+      <member refid="class_enemy_1a8a92f55c5156b9a78067450c73855f75" prot="private" virt="non-virtual"><scope>Enemy</scope><name>enemyAnimator</name></member>
+      <member refid="class_enemy_1af552e047c176db798a1834f32ddba6f6" prot="private" virt="non-virtual"><scope>Enemy</scope><name>enemyConfig</name></member>
+      <member refid="class_enemy_1a5dbd6c2a874ef1cc3de701184930f735" prot="public" virt="non-virtual"><scope>Enemy</scope><name>EnemyConfig</name></member>
+      <member refid="class_base_unit_1ab74acc141f024d8e5fa491387f2fe5ee" prot="public" virt="non-virtual"><scope>Enemy</scope><name>HpBar</name></member>
+      <member refid="class_enemy_1aaa62e58dbeebb468aadd622fe447b00c" prot="public" virt="virtual"><scope>Enemy</scope><name>Init</name></member>
+      <member refid="class_enemy_1a36f0ec56edf2bc5b87243c921433de9d" prot="public" virt="non-virtual"><scope>Enemy</scope><name>IsMoving</name></member>
+      <member refid="class_base_unit_1aa317ae3934175d0f30dd029dc9dc325a" prot="public" virt="non-virtual"><scope>Enemy</scope><name>Movement</name></member>
+      <member refid="class_enemy_1a6cc320245dc7cf91f0a566f40976342a" prot="private" virt="non-virtual"><scope>Enemy</scope><name>OnDisable</name></member>
+      <member refid="class_enemy_1aa7043f31428e2fddac3dffa7f113e40f" prot="private" virt="non-virtual"><scope>Enemy</scope><name>OnValidate</name></member>
+      <member refid="class_enemy_1a795f395a96b9cc6241fbdd27ebdbe1b5" prot="private" virt="non-virtual"><scope>Enemy</scope><name>pointIndex</name></member>
+      <member refid="class_enemy_1ade30149323264bfe22582902e7db30b8" prot="private" virt="non-virtual"><scope>Enemy</scope><name>SetNextDest</name></member>
+      <member refid="class_base_unit_1a3f47f6959fa9b498acfd695d3bd2a090" prot="public" virt="non-virtual"><scope>Enemy</scope><name>Stats</name></member>
+      <member refid="class_base_unit_1aa0b16f5a01dd397fa6a53d63ac24a6a5" prot="public" virt="non-virtual"><scope>Enemy</scope><name>Targeter</name></member>
+      <member refid="class_base_unit_1adfd5c12fc623c52b893bb17fc776517d" prot="public" virt="non-virtual"><scope>Enemy</scope><name>TargetHelper</name></member>
+      <member refid="class_base_unit_1a3c7b9e4ec9958bc49f2aa39fdf0f9392" prot="public" virt="non-virtual"><scope>Enemy</scope><name>ToggleCollider</name></member>
+      <member refid="class_enemy_1a1102137e337aecc416e4d71666b88734" prot="public" virt="non-virtual"><scope>Enemy</scope><name>ToggleMove</name></member>
+      <member refid="class_base_unit_1a96e49f74fa54c78112198c9c2a12eb77" prot="public" virt="non-virtual"><scope>Enemy</scope><name>UnitVisual</name></member>
+      <member refid="class_enemy_1a80560cd7c04c1c0846715740bad699d1" prot="private" virt="non-virtual"><scope>Enemy</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

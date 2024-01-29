@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_targeter" xml:lang="en-US">
+<title>Targeter&lt; T &gt; Class Template Reference</title>
+<indexterm><primary>Targeter&lt; T &gt;</primary></indexterm>
+<para>Inheritance diagram for Targeter&lt; T &gt;:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="class_targeter.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><anchor xml:id="_class_targeter_1af8d853c896dab460b11abbd6efcbb3d9"/>void <emphasis role="strong">AddRadius</emphasis> (StatType statType, float value)</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_targeter_1a8f380cfb600fdb2f181f2a5260b2aca4"/>void <emphasis role="strong">SetRadius</emphasis> (float value)</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_targeter_1a7b0eff54a6c168d0f54381ddd289352b"/>T <emphasis role="strong">GetClosestTarget</emphasis> ()</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_targeter_1a6f944c7095eaa8007e68c276dac97805"/>List&lt; T &gt; <emphasis role="strong">GetAvailableTargets</emphasis> (Vector3 origin, float range)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><anchor xml:id="_class_targeter_1a972e5e5510d8bf4e819427d3e986771e"/>Action&lt; T &gt; <emphasis role="strong">OnTargetAdded</emphasis></para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_targeter_1a379a299c321a2a415e934938d1e8c948"/>Action&lt; T &gt; <emphasis role="strong">OnTargetLost</emphasis></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Properties    </title>
+        <itemizedlist>
+            <listitem><para><anchor xml:id="_class_targeter_1acab03a1e0181250ff30f4796f1b66921"/>bool <emphasis role="strong">HasTarget</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_targeter_1abcab9e1bc5ee4b70196e0fd90e106ffb"/>List&lt; T &gt; <emphasis role="strong">AvailableTargets</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<para>
+The documentation for this class was generated from the following file:</para>
+C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Targeter/Targeter.cs</section>

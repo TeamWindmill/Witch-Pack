@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_map_manager" kind="class" language="C#" prot="public">
+    <compoundname>MapManager</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_map_manager_1a8029743fd9ba33d3d146b7814752c71f" prot="private" static="no" mutable="no">
+        <type><ref refid="class_node_object" kindref="compound">NodeObject</ref>[]</type>
+        <definition>NodeObject [] MapManager._nodeObjects</definition>
+        <argsstring></argsstring>
+        <name>_nodeObjects</name>
+        <qualifiedname>MapManager._nodeObjects</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/MapManager.cs" line="5" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/MapManager.cs" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_map_manager_1a9ee5825691f9858bc6d34a9e143aa9d1" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool MapManager._unLockAll</definition>
+        <argsstring></argsstring>
+        <name>_unLockAll</name>
+        <qualifiedname>MapManager._unLockAll</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/MapManager.cs" line="6" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/MapManager.cs" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_map_manager_1ab21ede631381ac016c1024ddd19e862a" prot="private" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 MapManager._cameraLockedPos</definition>
+        <argsstring></argsstring>
+        <name>_cameraLockedPos</name>
+        <qualifiedname>MapManager._cameraLockedPos</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/MapManager.cs" line="8" column="22" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/MapManager.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_map_manager_1a42cedcc3e26361c3c2ee4500e2af4c44" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int MapManager._cameraLockedZoom</definition>
+        <argsstring></argsstring>
+        <name>_cameraLockedZoom</name>
+        <qualifiedname>MapManager._cameraLockedZoom</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/MapManager.cs" line="9" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/MapManager.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_map_manager_1a1cac7d30e2419f31f9bf2348e824fefa" prot="private" static="no" mutable="no">
+        <type>bool[]</type>
+        <definition>bool [] MapManager._nodeLockState</definition>
+        <argsstring></argsstring>
+        <name>_nodeLockState</name>
+        <qualifiedname>MapManager._nodeLockState</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/MapManager.cs" line="11" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/MapManager.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_map_manager_1a004e56e4bbd737faef08fab1a63a5b3b" prot="private" static="no" mutable="no">
+        <type>bool[]</type>
+        <definition>bool [] MapManager._nodeCompletedState</definition>
+        <argsstring></argsstring>
+        <name>_nodeCompletedState</name>
+        <qualifiedname>MapManager._nodeCompletedState</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/MapManager.cs" line="12" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/MapManager.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_map_manager_1ad633984007048c7d63eab44aaeb0c32d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapManager.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>MapManager.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/MapManager.cs" line="14" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/MapManager.cs" bodystart="14" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="class_map_manager_1aedaf4449056a21e4e6f06d1880ce6938" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MapManager.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>MapManager.Start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/MapManager.cs" line="46" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/MapManager.cs" bodystart="46" bodyend="50"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>MapManager</label>
+        <link refid="class_map_manager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>MapManager</label>
+        <link refid="class_map_manager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/MapManager.cs" line="3" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/MapManager.cs" bodystart="4" bodyend="52"/>
+    <listofallmembers>
+      <member refid="class_map_manager_1ab21ede631381ac016c1024ddd19e862a" prot="private" virt="non-virtual"><scope>MapManager</scope><name>_cameraLockedPos</name></member>
+      <member refid="class_map_manager_1a42cedcc3e26361c3c2ee4500e2af4c44" prot="private" virt="non-virtual"><scope>MapManager</scope><name>_cameraLockedZoom</name></member>
+      <member refid="class_map_manager_1a004e56e4bbd737faef08fab1a63a5b3b" prot="private" virt="non-virtual"><scope>MapManager</scope><name>_nodeCompletedState</name></member>
+      <member refid="class_map_manager_1a1cac7d30e2419f31f9bf2348e824fefa" prot="private" virt="non-virtual"><scope>MapManager</scope><name>_nodeLockState</name></member>
+      <member refid="class_map_manager_1a8029743fd9ba33d3d146b7814752c71f" prot="private" virt="non-virtual"><scope>MapManager</scope><name>_nodeObjects</name></member>
+      <member refid="class_map_manager_1a9ee5825691f9858bc6d34a9e143aa9d1" prot="private" virt="non-virtual"><scope>MapManager</scope><name>_unLockAll</name></member>
+      <member refid="class_map_manager_1ad633984007048c7d63eab44aaeb0c32d" prot="private" virt="non-virtual"><scope>MapManager</scope><name>Awake</name></member>
+      <member refid="class_map_manager_1aedaf4449056a21e4e6f06d1880ce6938" prot="private" virt="non-virtual"><scope>MapManager</scope><name>Start</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

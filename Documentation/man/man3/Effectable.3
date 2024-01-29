@@ -1,0 +1,42 @@
+.TH "Effectable" 3 "Mon Jan 29 2024" "Version 0.096" "WitchPack" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Effectable
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBEffectable\fP (\fBBaseUnit\fP owner)"
+.br
+.ti -1c
+.RI "void \fBAddEffect\fP (\fBStatusEffectConfig\fP givenEffectData, \fBAffector\fP affector)"
+.br
+.ti -1c
+.RI "void \fBRemoveEffect\fP (\fBStatusEffect\fP effect)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "Action< \fBEffectable\fP, \fBAffector\fP, \fBStatusEffect\fP > \fBOnAffected\fP"
+.br
+.ti -1c
+.RI "Action< \fBStatusEffect\fP > \fBOnEffectRemoved\fP"
+.br
+.in -1c
+.SS "Properties"
+
+.in +1c
+.ti -1c
+.RI "\fBBaseUnit\fP \fBOwner\fP\fC [get]\fP"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for WitchPack from the source code\&.
