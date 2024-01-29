@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2200095199752453793}
   - component: {fileID: 1440390243000347013}
   m_Layer: 0
-  m_Name: AbilityUpgradeHolder
+  m_Name: AbilityUpgradeUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53,13 +53,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 2200095199752453793}
-  _showOnAwake: 1
+  showOnAwake: 0
+  assignUIGroup: 0
   uiGroup: 0
   enableDoubleClick: 0
   doubleClickSpeed: 0.5
   bg: {fileID: 7193194655767871235}
   frame: {fileID: 7049919265326746640}
-  ability: {fileID: 6542364063930400098}
+  abilitySprite: {fileID: 6542364063930400098}
   lockedBgSprite: {fileID: 1044348446, guid: 4ced2f50ce888d440b11a58694f6c45e, type: 3}
   defaultBgSprite: {fileID: 1154676700, guid: 4ced2f50ce888d440b11a58694f6c45e, type: 3}
   upgradeReadyFrameSprite: {fileID: -980794400, guid: 4ced2f50ce888d440b11a58694f6c45e, type: 3}

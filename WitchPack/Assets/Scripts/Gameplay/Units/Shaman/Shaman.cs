@@ -67,6 +67,12 @@ public class Shaman : BaseUnit
         castingHandlers.Add(new UnitCastingHandler(this, ability));
     }
 
+    public void UpgradeAbility(BaseAbility currentAbility,BaseAbility upgradedAbility)
+    {
+        var abilityIndex = knownAbilities.IndexOf(currentAbility);
+        knownAbilities[abilityIndex] = upgradedAbility;
+    }
+
     public void RemoveAbility(BaseAbility ability)
     {
         knownAbilities.Remove(ability);
