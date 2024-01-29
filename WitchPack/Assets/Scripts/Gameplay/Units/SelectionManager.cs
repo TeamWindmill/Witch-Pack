@@ -28,7 +28,7 @@ public class SelectionManager : MonoSingleton<SelectionManager>
         OnShamanInfoSelect += ShamanInfoSelect;
         OnShamanDeselected += ShamanDeselect;
         HeroSelectionUI.Instance.OnMouseEnter += OnSelectionUIMouseEnter;
-        HeroSelectionUI.Instance.OnMouseEnter += OnSelectionUIMouseExit;
+        HeroSelectionUI.Instance.OnMouseExit += OnSelectionUIMouseExit;
     }
     private void Start()
     {

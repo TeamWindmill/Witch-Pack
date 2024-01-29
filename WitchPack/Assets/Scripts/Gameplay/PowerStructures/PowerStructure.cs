@@ -150,7 +150,9 @@ public class PowerStructure : MonoBehaviour
     private int CalculateStatValueForSelectionUI(Shadow shadow, Shaman shaman)
     {
         var shamanStat = shaman.Stats.GetStatValue(_statType) - shaman.Stats.GetBaseStatValue(_statType);
-        var shadowStat = shadow.CurrentStatPSEffects[_statType];
+        var shadowStat = 0;
+        if (shadow.CurrentStatPSEffects.TryGetValue(_statType, out var value))
+            shadowStat = value;
         
         return Mathf.RoundToInt(shadowStat - shamanStat);
     }
