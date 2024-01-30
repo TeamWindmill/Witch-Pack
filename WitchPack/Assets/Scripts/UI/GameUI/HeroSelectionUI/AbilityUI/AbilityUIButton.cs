@@ -3,27 +3,30 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class AbilityUIButton : ClickableUIElement , IInit<UnitCastingHandler>
+public class AbilityUIButton : ClickableUIElement
 {
     public event Action<AbilityUIButton> OnAbilityClick;
-    public BaseAbility BaseAbility => _baseAbility;
     
     [SerializeField] private Image _abilitySpriteRenderer;
     [SerializeField] private Image _cooldownSpriteRenderer;
 
-    private UnitCastingHandler _abilityCaster;
-    private BaseAbility _baseAbility;
-
+    private UnitCastingHandler _castingHandler;
+    private BaseAbility _fatherAbility;
+    private BaseAbility _activeAbility;
     private float _abilityCd;
     private float _abilityLastCast;
     private bool _activeCd;
     
-    public void Init(UnitCastingHandler abilityCaster)
+    public void Init(BaseAbility fatherAbility,UnitCastingHandler castingHandler = null)
     {
-        _abilityCaster = abilityCaster;
-        _baseAbility = abilityCaster.Ability;
-        _abilitySpriteRenderer.sprite = abilityCaster.Ability.Icon;
-        SetCooldownData(abilityCaster);
+        _fatherAbility = fatherAbility;
+        _abilitySpriteRenderer.sprite = fatherAbility.Icon;
+        if (castingHandler is not null)
+        {
+            _castingHandler = castingHandler;
+            SetCooldownData(castingHandler);
+        }
+        else SetCooldownData();
         Show();
     }
 

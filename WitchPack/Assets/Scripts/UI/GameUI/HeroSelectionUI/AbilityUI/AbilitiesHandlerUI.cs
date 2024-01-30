@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AbilitiesHandlerUI : MonoBehaviour
 {
-    [SerializeField] private AbilityUIButton[] abilityUIBlocks;
+    [SerializeField] private AbilityUIButton[] abilityUIButtons;
     [SerializeField] private AbilityUpgradePanelUI abilityUpgradePanelUI;
 
     private Shaman _shaman;
@@ -11,20 +11,20 @@ public class AbilitiesHandlerUI : MonoBehaviour
     public void Show(Shaman shaman)
     {
         _shaman = shaman;
-        var castingHandlers = shaman.CastingHandlers; 
-        foreach (var uiBlock in abilityUIBlocks)
+        var baseAbilities = shaman.ActiveAbilities; 
+        foreach (var uiBlock in abilityUIButtons)
         {
             uiBlock.Hide();
         }
-        if (castingHandlers.Count <= 0) return;
-        foreach (var ability in castingHandlers)
+        if (baseAbilities.Count <= 0) return;
+        foreach (var ability in baseAbilities)
         {
-            foreach (var uiBlock in abilityUIBlocks)
+            foreach (var uiButton in abilityUIButtons)
             {
                 
-                if (uiBlock.gameObject.activeSelf) continue;
-                uiBlock.Init(ability);
-                uiBlock.OnAbilityClick += OpenUpgradePanel;
+                if (uiButton.gameObject.activeSelf) continue;
+                uiButton.Init(ability,shaman.GetCasterFromAbility(ability));
+                uiButton.OnAbilityClick += OpenUpgradePanel;
                 break;
             }
         }
@@ -32,14 +32,14 @@ public class AbilitiesHandlerUI : MonoBehaviour
     }
     public void Hide()
     {
-        foreach (var uiBlock in abilityUIBlocks)
+        foreach (var uiBlock in abilityUIButtons)
         {
             if (!uiBlock.gameObject.activeSelf) return;
             uiBlock.Hide();
         }
     }
-    private void OpenUpgradePanel(AbilityUIButton abilityUIButton)
+    private void OpenUpgradePanel(AbilityUIButton abilityButton)
     {
-        abilityUpgradePanelUI.Init(abilityUIButton,_shaman);
+        abilityUpgradePanelUI.Init(abilityButton);
     }
 }

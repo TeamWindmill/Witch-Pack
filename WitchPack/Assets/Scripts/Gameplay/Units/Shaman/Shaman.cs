@@ -7,7 +7,8 @@ public class Shaman : BaseUnit
 {
     public override StatSheet BaseStats => shamanConfig.BaseStats;
     public ShamanConfig ShamanConfig => shamanConfig;
-    public List<BaseAbility> KnownAbilities => knownAbilities;
+    public List<BaseAbility> ActiveAbilities => activeAbilities;
+    public List<BaseAbility> RootAbilities => rootAbilities;
     public List<UnitCastingHandler> CastingHandlers => castingHandlers;
     public bool MouseOverShaman => clicker.IsHover;
 
@@ -16,7 +17,9 @@ public class Shaman : BaseUnit
     [SerializeField] private Indicatable indicatable;
     [SerializeField] private GroundCollider groundCollider;
     private ShamanConfig shamanConfig;
-    private List<BaseAbility> knownAbilities = new List<BaseAbility>();
+    
+    private List<BaseAbility> rootAbilities = new List<BaseAbility>();
+    private List<BaseAbility> activeAbilities = new List<BaseAbility>();
     private List<UnitCastingHandler> castingHandlers = new List<UnitCastingHandler>();
 
     private void OnValidate()
@@ -54,22 +57,23 @@ public class Shaman : BaseUnit
 
     private void IntializeCastingHandlers()
     {
-        foreach (var item in ShamanConfig.KnownAbilities)
+        foreach (var ability in ShamanConfig.KnownAbilities)
         {
-            knownAbilities.Add(item);
-            castingHandlers.Add(new UnitCastingHandler(this, item));
+            rootAbilities.Add(ability);
+            activeAbilities.Add(ability);
+            castingHandlers.Add(new UnitCastingHandler(this, ability));
         }
     }
 
     public void LearnAbility(BaseAbility ability)
     {
-        knownAbilities.Add(ability);
+        activeAbilities.Add(ability);
         castingHandlers.Add(new UnitCastingHandler(this, ability));
     }
 
     public void RemoveAbility(BaseAbility ability)
     {
-        knownAbilities.Remove(ability);
+        activeAbilities.Remove(ability);
         castingHandlers.Remove(GetCasterFromAbility(ability));
     }
 

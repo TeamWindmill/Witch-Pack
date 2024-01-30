@@ -16,16 +16,14 @@ public class AbilityUpgradePanelUI : UIElement, IInit<AbilityUIButton,Shaman>
     private AbilityUIButton _abilityUIButton;
     private BaseAbility _baseAbility;
     private BaseAbility[] _abilityUpgrades;
-    private Shaman _shaman;
 
-    public void Init(AbilityUIButton abilityUIButton, Shaman shaman)
+    public void Init(AbilityUIButton abilityUIButton)
     {
-        _shaman = shaman;
         upgrades3Holder.gameObject.SetActive(false);
         upgrades2Holder.gameObject.SetActive(false);
         _abilityUIButton = abilityUIButton;
-        _baseAbility = abilityUIButton.BaseAbility;
-        _abilityUpgrades = abilityUIButton.BaseAbility.Upgrades;
+        _baseAbility = abilityUIButton.CastingHandler;
+        _abilityUpgrades = abilityUIButton.CastingHandler.Upgrades;
         titleTMP.text = _baseAbility.Name;
         baseAbilityUpgradeUIButton.OnAbilityClick += UpgradeShamanAbility;
         Show();
