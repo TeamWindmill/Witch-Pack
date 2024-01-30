@@ -20,8 +20,6 @@ public class WaveHandler : MonoBehaviour
     public int CurrentWave => _currentWave;
     public int TotalWaves => spawnData.Count;
 
-    [SerializeField] private PopupsManager popupsManager;
-
 
     public void Init()
     {

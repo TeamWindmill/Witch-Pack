@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -222,6 +222,7 @@ MonoBehaviour:
   selectionManager: {fileID: 1559208035}
   indicatorManager: {fileID: 288888826}
   gameUi: {fileID: 743365505}
+  popupsManager: {fileID: 828659898}
 --- !u!1 &121035000
 GameObject:
   m_ObjectHideFlags: 0
@@ -1113,6 +1114,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63f195ba328eda74e8bb624bbb8bc904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &828659896
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 828659897}
+  - component: {fileID: 828659898}
+  m_Layer: 0
+  m_Name: PopupsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &828659897
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828659896}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1461322451}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &828659898
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 828659896}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ea91e6fdcfac004e8b619e490441546, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numberPrefab: {fileID: 9028037156223026647, guid: f1b549762d6f348419e1c2c9a5a5f01f, type: 3}
+  _offsetMultiplier: 100
 --- !u!1 &837308235
 GameObject:
   m_ObjectHideFlags: 0
@@ -1911,6 +1958,7 @@ Transform:
   - {fileID: 990766648}
   - {fileID: 1559208034}
   - {fileID: 288888825}
+  - {fileID: 828659897}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1559208033
