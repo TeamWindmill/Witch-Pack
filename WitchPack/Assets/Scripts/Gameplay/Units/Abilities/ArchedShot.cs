@@ -61,6 +61,7 @@ public class ArchedShot : TargetedShot
         else
         {
             transform.position = target.transform.position;
+            setup = false;
         }
     }
     private Vector3 CubicCurve(Vector3 start, Vector3 control1, Vector3 control2, Vector3 end, float t)

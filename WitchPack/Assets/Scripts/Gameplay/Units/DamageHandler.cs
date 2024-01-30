@@ -43,17 +43,13 @@ public class DamageHandler
                 amount = 0;
                 break;
             }
-            if (item == 1)
-            {
-                continue;
-            }
             else if (item > 1)
             {
-                amount += (item * baseAmount) - baseAmount;//add damage
+                amount += (item * amount) - amount;//add damage
             }
             else
             {
-                amount -= baseAmount - (item * baseAmount);//reduce damage
+                amount -= amount - (item * amount);//reduce damage
             }
         }
        
