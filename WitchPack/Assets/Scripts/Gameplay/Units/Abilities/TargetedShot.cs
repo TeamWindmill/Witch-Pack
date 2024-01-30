@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 public class TargetedShot : MonoBehaviour
@@ -10,6 +11,9 @@ public class TargetedShot : MonoBehaviour
     protected BaseAbility ability;
     protected BaseUnit owner;
     protected BaseUnit target;
+
+    public UnityEvent<BaseAbility/*ability cached*/, BaseUnit/*shooter*/> OnShotHit;
+
     public void Fire(BaseUnit shooter, BaseAbility givenAbility, Vector2 dir, BaseUnit target)
     {
         owner = shooter;
@@ -58,6 +62,7 @@ public class TargetedShot : MonoBehaviour
     {
         owner = null;
         ability = null;
+        OnShotHit?.RemoveAllListeners();
         gameObject.SetActive(false);
     }
 
