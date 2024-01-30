@@ -51,7 +51,7 @@ public class Damageable
         if (ability is OffensiveAbility)
         {
             DamageHandler dmg = new DamageHandler((ability as OffensiveAbility).BaseDamage);
-            if (UnityEngine.Random.Range(0, 100) <= dealer.Owner.Stats.CritChance)
+            if (dealer.CritChance(ability))
             {
                 dealer.OnHitTarget?.Invoke(this, dealer, dmg, ability, true);
                 OnGetHit?.Invoke(this, dealer, dmg, ability, true);

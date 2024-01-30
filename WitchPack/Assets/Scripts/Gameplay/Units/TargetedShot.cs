@@ -42,7 +42,7 @@ public class TargetedShot : MonoBehaviour
         if (!ReferenceEquals(target, null) && !ReferenceEquals(ability, null) && ReferenceEquals(target, this.target))
         {
             target.Damageable.GetHit(owner.DamageDealer, ability);
-         /*   if (ricochet > 0)
+            if (ricochet > 0)
             {
                 hitTargets.Add(target);
                 hits++;
@@ -55,7 +55,7 @@ public class TargetedShot : MonoBehaviour
                         return;
                     }
                 }
-            }*/
+            }
             Disable();
         }
     }
