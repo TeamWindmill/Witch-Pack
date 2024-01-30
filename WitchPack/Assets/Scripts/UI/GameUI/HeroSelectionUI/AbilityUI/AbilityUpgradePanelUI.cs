@@ -4,42 +4,38 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class AbilityUpgradePanelUI : UIElement, IInit<AbilityUI,Shaman>
+public class AbilityUpgradePanelUI : UIElement, IInit<AbilityUIButton,Shaman>
 {
     [SerializeField] private TextMeshProUGUI titleTMP;
-    [SerializeField] private AbilityUpgradeUI baseAbilityUpgradeUI;
+    [SerializeField] private AbilityUpgradeUIButton baseAbilityUpgradeUIButton;
     [SerializeField] private Transform upgrades3Holder;
-    [SerializeField] private AbilityUpgradeUI[] abilityUpgrades3UI;
+    [SerializeField] private AbilityUpgradeUIButton[] abilityUpgrades3UI;
     [SerializeField] private Transform upgrades2Holder;
-    [SerializeField] private AbilityUpgradeUI[] abilityUpgrades2UI;
+    [SerializeField] private AbilityUpgradeUIButton[] abilityUpgrades2UI;
 
-    private Vector3 _baseAbilityUIPos;
-    private AbilityUI _abilityUI;
+    private AbilityUIButton _abilityUIButton;
     private BaseAbility _baseAbility;
     private BaseAbility[] _abilityUpgrades;
     private Shaman _shaman;
 
-    private void Start()
-    {
-        baseAbilityUpgradeUI.OnAbilityClick += UpgradeShamanAbility;
-    }
-
-    public void Init(AbilityUI abilityUI, Shaman shaman)
+    public void Init(AbilityUIButton abilityUIButton, Shaman shaman)
     {
         _shaman = shaman;
         upgrades3Holder.gameObject.SetActive(false);
         upgrades2Holder.gameObject.SetActive(false);
-        _abilityUI = abilityUI;
-        _baseAbility = abilityUI.BaseAbility;
-        _baseAbilityUIPos = abilityUI.RectTransform.position;
-        _abilityUpgrades = abilityUI.BaseAbility.Upgrades;
+        _abilityUIButton = abilityUIButton;
+        _baseAbility = abilityUIButton.BaseAbility;
+        _abilityUpgrades = abilityUIButton.BaseAbility.Upgrades;
+        titleTMP.text = _baseAbility.Name;
+        baseAbilityUpgradeUIButton.OnAbilityClick += UpgradeShamanAbility;
         Show();
     }
     public override void Show()
     {
         var position = rectTransform.position;
-        rectTransform.position = new Vector3(_abilityUI.RectTransform.position.x + (_abilityUI.RectTransform.rect.width / 2),position.y,position.z);
-        baseAbilityUpgradeUI.Init(_baseAbility);
+        rectTransform.position = new Vector3(_abilityUIButton.RectTransform.position.x + (_abilityUIButton.RectTransform.rect.width / 2),position.y,position.z);
+        
+        baseAbilityUpgradeUIButton.Init(_baseAbility);
         if (_abilityUpgrades.Length == 3)
         {
             upgrades3Holder.gameObject.SetActive(true);
@@ -70,7 +66,7 @@ public class AbilityUpgradePanelUI : UIElement, IInit<AbilityUI,Shaman>
         if (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0)) Hide();
     }
 
-    private void UpgradeShamanAbility(BaseAbility ability)
+    private void UpgradeShamanAbility(AbilityUpgradeUIButton ability)
     {
         //_shaman.UpgradeAbility(_baseAbility,ability);
     }

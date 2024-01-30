@@ -3,30 +3,33 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class AbilityUpgradeUI : ClickableUIElement
+public class AbilityUpgradeUIButton : ClickableUIElement
 {
-    public event Action<BaseAbility> OnAbilityClick;
-    
+    public event Action<AbilityUpgradeUIButton> OnAbilityClick;
+    public AbilityUpgradeState AbilityUpgradeState => _abilityUpgradeState;
+    public BaseAbility BaseAbility => _baseAbility;
+
     [SerializeField] private Image bg;
     [SerializeField] private Image lockedBg;
     [SerializeField] private Image frame;
     [SerializeField] private Image abilitySprite;
-    [Space] 
-    [SerializeField] private Sprite upgradeReadyFrameSprite;
+    [Space] [SerializeField] private Sprite upgradeReadyFrameSprite;
     [SerializeField] private Sprite defaultFrameSprite;
 
+    private AbilityUpgradeState _abilityUpgradeState;
     private BaseAbility _baseAbility;
 
 
     public void Init(BaseAbility ability)
     {
         abilitySprite.sprite = ability.Icon;
+        _baseAbility = ability;
         Show();
     }
 
-  /*  public override void Show()
+    public override void Show()
     {
-        switch (_baseAbility.AbilityUpgradeState)
+        switch (_abilityUpgradeState)
         {
             case AbilityUpgradeState.Locked:
                 lockedBg.gameObject.SetActive(true);
@@ -41,6 +44,7 @@ public class AbilityUpgradeUI : ClickableUIElement
                 frame.sprite = defaultFrameSprite;
                 break;
         }
+
         base.Show();
     }
 
@@ -49,26 +53,28 @@ public class AbilityUpgradeUI : ClickableUIElement
         base.Hide();
     }
 
-    // public void ChangeState(AbilityUpgradeState state)
-    // {
-    //     //_abilityState = state;
-    //     Show();
-    // }
+    public void ChangeState(AbilityUpgradeState state)
+    {
+        _abilityUpgradeState = state;
+        Show();
+    }
 
     protected override void OnClick(PointerEventData eventData)
     {
-        switch (_baseAbility.AbilityUpgradeState)
+        base.OnClick(eventData);
+        switch (_abilityUpgradeState)
         {
             case AbilityUpgradeState.Locked:
                 return;
             case AbilityUpgradeState.Open:
-                //upgrade ability
+                OnAbilityClick?.Invoke(this);
                 break;
             case AbilityUpgradeState.Upgraded:
                 return;
         }
+
         base.OnClick(eventData);
-    }*/
+    }
 }
 
 public enum AbilityUpgradeState

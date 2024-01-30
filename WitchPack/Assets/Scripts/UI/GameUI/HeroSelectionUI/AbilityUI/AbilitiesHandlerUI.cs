@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AbilitiesHandlerUI : MonoBehaviour
 {
-    [SerializeField] private AbilityUI[] abilityUIBlocks;
+    [SerializeField] private AbilityUIButton[] abilityUIBlocks;
     [SerializeField] private AbilityUpgradePanelUI abilityUpgradePanelUI;
 
     private Shaman _shaman;
@@ -11,13 +11,13 @@ public class AbilitiesHandlerUI : MonoBehaviour
     public void Show(Shaman shaman)
     {
         _shaman = shaman;
-        var abilities = shaman.CastingHandlers; 
+        var castingHandlers = shaman.CastingHandlers; 
         foreach (var uiBlock in abilityUIBlocks)
         {
             uiBlock.Hide();
         }
-        if (abilities.Count <= 0) return;
-        foreach (var ability in abilities)
+        if (castingHandlers.Count <= 0) return;
+        foreach (var ability in castingHandlers)
         {
             foreach (var uiBlock in abilityUIBlocks)
             {
@@ -38,8 +38,8 @@ public class AbilitiesHandlerUI : MonoBehaviour
             uiBlock.Hide();
         }
     }
-    private void OpenUpgradePanel(AbilityUI abilityUI)
+    private void OpenUpgradePanel(AbilityUIButton abilityUIButton)
     {
-        abilityUpgradePanelUI.Init(abilityUI,_shaman);
+        abilityUpgradePanelUI.Init(abilityUIButton,_shaman);
     }
 }
