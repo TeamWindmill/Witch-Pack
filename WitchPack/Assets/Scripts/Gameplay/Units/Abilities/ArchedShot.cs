@@ -62,6 +62,7 @@ public class ArchedShot : TargetedShot
         {
             transform.position = target.transform.position;
             setup = false;
+            Disable();
         }
     }
     private Vector3 CubicCurve(Vector3 start, Vector3 control1, Vector3 control2, Vector3 end, float t)
@@ -70,7 +71,7 @@ public class ArchedShot : TargetedShot
                 3 * (control1 - start)) * t + start;
     }
 
-    protected override void Disable()
+    public override void Disable()
     {
         base.Disable();
         setup = false;

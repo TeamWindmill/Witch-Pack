@@ -70,20 +70,22 @@ public class WaveHandler : MonoBehaviour
 
     private IEnumerator SpawnWave(EnemySpawnData givenData)
     {
-        doneSpawningCounter = 0;
+        
         for (int i = 0; i < givenData.TotalSpawns; i++) //loop over how many spawns there are in total
         {
-            Debug.Log("started spawning wave");
+            int currentIntervalGoal = 0;
             for (int j = 0; j < givenData.Groups.Count; j++)
             {
                 if (givenData.Groups[j].SpawnedAtInterval <= i + 1)
                 {
                     StartCoroutine(SpawnGroupInterval(givenData.Groups[j]));
+                    currentIntervalGoal++;
                 }
             }
 
-            yield return new WaitUntil(() => doneSpawningCounter >= givenData.Groups.Count * (i + 1));
+            yield return new WaitUntil(() => doneSpawningCounter >= currentIntervalGoal);
             yield return StartCoroutine(IntervalDelay(givenData.TimeBetweenIntervals));
+            doneSpawningCounter = 0;
         }
     }
 

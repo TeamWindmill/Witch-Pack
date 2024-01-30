@@ -1,19 +1,23 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 
 public class TargetedShot : MonoBehaviour
 {
-    [SerializeField] protected float speed;
+    [SerializeField] protected float initialSpeed;
     [SerializeField] private float maxTravelTime = 2f;
+    protected float speed;
     protected BaseAbility ability;
     protected BaseUnit owner;
     protected BaseUnit target;
+    protected bool remainActive;
 
     public UnityEvent<BaseAbility/*ability cached*/, BaseUnit/*shooter*/, BaseUnit /*target*/> OnShotHit;
-
+    private void Awake()
+    {
+        SetSpeed(initialSpeed);
+    }
     public void Fire(BaseUnit shooter, BaseAbility givenAbility, Vector2 dir, BaseUnit target)
     {
         owner = shooter;
@@ -36,7 +40,10 @@ public class TargetedShot : MonoBehaviour
         {
             target.Damageable.GetHit(owner.DamageDealer, ability);
             OnShotHit?.Invoke(ability, owner, target);
-            //Disable();
+            if (!remainActive)
+            {
+                Disable();
+            }
         }
     }
 
@@ -58,11 +65,22 @@ public class TargetedShot : MonoBehaviour
         Disable();
     }
 
-    protected virtual void Disable()
+    public void SetRemainActive()
+    {
+        remainActive = true;
+    }
+    public void SetSpeed(float vlaue)
+    {
+        speed = vlaue;
+    }
+
+    public virtual void Disable()
     {
         owner = null;
         ability = null;
-        //OnShotHit?.RemoveAllListeners();
+        remainActive = false;
+        SetSpeed(initialSpeed);
+        OnShotHit?.RemoveAllListeners();
         gameObject.SetActive(false);
     }
 
