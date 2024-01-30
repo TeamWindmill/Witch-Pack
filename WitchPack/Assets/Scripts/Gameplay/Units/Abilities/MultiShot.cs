@@ -6,6 +6,7 @@ public class MultiShot : OffensiveAbility
 {
     [SerializeField] private int numberOfShots;
     [SerializeField] private Vector3 offset;
+    [SerializeField] private int ricochetTimes;
     public override bool CastAbility(BaseUnit caster)
     {
         List<BaseUnit> foundTargets = new List<BaseUnit>();
