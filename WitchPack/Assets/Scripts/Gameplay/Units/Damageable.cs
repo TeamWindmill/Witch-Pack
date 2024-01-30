@@ -97,8 +97,6 @@ public class Damageable
         ClampHp();
     }
 
-
-
     private void ClampHp()
     {
         currentHp = Mathf.Clamp(currentHp, 0, MaxHp);
@@ -108,7 +106,4 @@ public class Damageable
     {
         dmg.AddMod(1 - (owner.Stats.Armor / 100));
     }
-
-
-
 }
