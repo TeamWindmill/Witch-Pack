@@ -1,0 +1,332 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_projectile" kind="class" language="C#" prot="public">
+    <compoundname>Projectile</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_projectile_1aeb153d68eb4680457c339df871e24a76" prot="private" static="no" mutable="no">
+        <type><ref refid="class_base_ability" kindref="compound">BaseAbility</ref></type>
+        <definition>BaseAbility Projectile.refAbility</definition>
+        <argsstring></argsstring>
+        <name>refAbility</name>
+        <qualifiedname>Projectile.refAbility</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" line="10" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_projectile_1a96086733b9bc4fce5af8c8774a899291" prot="private" static="no" mutable="no">
+        <type><ref refid="class_base_unit" kindref="compound">BaseUnit</ref></type>
+        <definition>BaseUnit Projectile.owner</definition>
+        <argsstring></argsstring>
+        <name>owner</name>
+        <qualifiedname>Projectile.owner</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" line="11" column="22" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_projectile_1a08b05673dcd2da844c04ad812f04b3aa" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Projectile.speed</definition>
+        <argsstring></argsstring>
+        <name>speed</name>
+        <qualifiedname>Projectile.speed</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" line="12" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_projectile_1a29bae7215f2e18a747319d08c185589d" prot="private" static="no" mutable="no">
+        <type>Rigidbody2D</type>
+        <definition>Rigidbody2D Projectile.rb</definition>
+        <argsstring></argsstring>
+        <name>rb</name>
+        <qualifiedname>Projectile.rb</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" line="13" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_projectile_1ab5322354a151820e33247f075eb758b3" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Projectile.lifeTime</definition>
+        <argsstring></argsstring>
+        <name>lifeTime</name>
+        <qualifiedname>Projectile.lifeTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" line="14" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_projectile_1aeef65cf135d94b4db3c9a41aaf6e0454" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Projectile.baseMaxNumberOfHits</definition>
+        <argsstring></argsstring>
+        <name>baseMaxNumberOfHits</name>
+        <qualifiedname>Projectile.baseMaxNumberOfHits</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" line="15" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_projectile_1adf2846d0417a97c2541e8158c8bdb0c9" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Projectile.currentNumberOfHits</definition>
+        <argsstring></argsstring>
+        <name>currentNumberOfHits</name>
+        <qualifiedname>Projectile.currentNumberOfHits</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" line="16" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_projectile_1aae33168bbedfb8d86833375fdb7a7fab" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Projectile.maxNumberOfHits</definition>
+        <argsstring></argsstring>
+        <name>maxNumberOfHits</name>
+        <qualifiedname>Projectile.maxNumberOfHits</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" line="17" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_projectile_1a666d0713e6cf9bfd6f6b55fdf8b73c56" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float Projectile.lastRate</definition>
+        <argsstring></argsstring>
+        <name>lastRate</name>
+        <qualifiedname>Projectile.lastRate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" line="18" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_projectile_1a7faa3451c94d98d5a6556ebaaed75f88" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Projectile.OnEnable</definition>
+        <argsstring>()</argsstring>
+        <name>OnEnable</name>
+        <qualifiedname>Projectile.OnEnable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" line="20" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" bodystart="20" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="class_projectile_1acbfd8b640df706c76e79d5080cf6dda1" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Projectile.OnDisable</definition>
+        <argsstring>()</argsstring>
+        <name>OnDisable</name>
+        <qualifiedname>Projectile.OnDisable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" line="24" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" bodystart="24" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="class_projectile_1ae227a9b3557155c57bd0cb2042e16fc5" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Projectile.ChangeVelocity</definition>
+        <argsstring>()</argsstring>
+        <name>ChangeVelocity</name>
+        <qualifiedname>Projectile.ChangeVelocity</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" line="39" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" bodystart="39" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="class_projectile_1a348ffc9a8d5ef5a1177d96a3f1691554" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Projectile.Rotate</definition>
+        <argsstring>(Vector2 dir)</argsstring>
+        <name>Rotate</name>
+        <qualifiedname>Projectile.Rotate</qualifiedname>
+        <param>
+          <type>Vector2</type>
+          <declname>dir</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" line="49" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" bodystart="49" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="class_projectile_1a121b6484139aab551c932ab3cdaf9c2c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Projectile.OnTriggerEnter2D</definition>
+        <argsstring>(Collider2D collision)</argsstring>
+        <name>OnTriggerEnter2D</name>
+        <qualifiedname>Projectile.OnTriggerEnter2D</qualifiedname>
+        <param>
+          <type>Collider2D</type>
+          <declname>collision</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" line="55" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" bodystart="55" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="class_projectile_1ab6cb8631410a412178ccc4a70893db26" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Projectile.Disable</definition>
+        <argsstring>()</argsstring>
+        <name>Disable</name>
+        <qualifiedname>Projectile.Disable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" line="70" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" bodystart="70" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="class_projectile_1ac81946b29b1a492ac484da921672434e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Projectile.OnValidate</definition>
+        <argsstring>()</argsstring>
+        <name>OnValidate</name>
+        <qualifiedname>Projectile.OnValidate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" line="79" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" bodystart="79" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="class_projectile_1aa37887001c0595216ff1b577f7b71f77" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator Projectile.LifeTime</definition>
+        <argsstring>()</argsstring>
+        <name>LifeTime</name>
+        <qualifiedname>Projectile.LifeTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" line="91" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" bodystart="91" bodyend="100"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_projectile_1a7504e6be51738f15e88b1bbfb513f370" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Projectile.Fire</definition>
+        <argsstring>(BaseUnit shooter, BaseAbility givenAbility, Vector2 dir)</argsstring>
+        <name>Fire</name>
+        <qualifiedname>Projectile.Fire</qualifiedname>
+        <param>
+          <type><ref refid="class_base_unit" kindref="compound">BaseUnit</ref></type>
+          <declname>shooter</declname>
+        </param>
+        <param>
+          <type><ref refid="class_base_ability" kindref="compound">BaseAbility</ref></type>
+          <declname>givenAbility</declname>
+        </param>
+        <param>
+          <type>Vector2</type>
+          <declname>dir</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" line="28" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" bodystart="28" bodyend="37"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>Projectile</label>
+        <link refid="class_projectile"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>Projectile</label>
+        <link refid="class_projectile"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" line="8" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/Projectile.cs" bodystart="9" bodyend="103"/>
+    <listofallmembers>
+      <member refid="class_projectile_1aeef65cf135d94b4db3c9a41aaf6e0454" prot="private" virt="non-virtual"><scope>Projectile</scope><name>baseMaxNumberOfHits</name></member>
+      <member refid="class_projectile_1ae227a9b3557155c57bd0cb2042e16fc5" prot="private" virt="non-virtual"><scope>Projectile</scope><name>ChangeVelocity</name></member>
+      <member refid="class_projectile_1adf2846d0417a97c2541e8158c8bdb0c9" prot="private" virt="non-virtual"><scope>Projectile</scope><name>currentNumberOfHits</name></member>
+      <member refid="class_projectile_1ab6cb8631410a412178ccc4a70893db26" prot="private" virt="non-virtual"><scope>Projectile</scope><name>Disable</name></member>
+      <member refid="class_projectile_1a7504e6be51738f15e88b1bbfb513f370" prot="public" virt="non-virtual"><scope>Projectile</scope><name>Fire</name></member>
+      <member refid="class_projectile_1a666d0713e6cf9bfd6f6b55fdf8b73c56" prot="private" virt="non-virtual"><scope>Projectile</scope><name>lastRate</name></member>
+      <member refid="class_projectile_1ab5322354a151820e33247f075eb758b3" prot="private" virt="non-virtual"><scope>Projectile</scope><name>lifeTime</name></member>
+      <member refid="class_projectile_1aa37887001c0595216ff1b577f7b71f77" prot="private" virt="non-virtual"><scope>Projectile</scope><name>LifeTime</name></member>
+      <member refid="class_projectile_1aae33168bbedfb8d86833375fdb7a7fab" prot="private" virt="non-virtual"><scope>Projectile</scope><name>maxNumberOfHits</name></member>
+      <member refid="class_projectile_1acbfd8b640df706c76e79d5080cf6dda1" prot="private" virt="non-virtual"><scope>Projectile</scope><name>OnDisable</name></member>
+      <member refid="class_projectile_1a7faa3451c94d98d5a6556ebaaed75f88" prot="private" virt="non-virtual"><scope>Projectile</scope><name>OnEnable</name></member>
+      <member refid="class_projectile_1a121b6484139aab551c932ab3cdaf9c2c" prot="private" virt="non-virtual"><scope>Projectile</scope><name>OnTriggerEnter2D</name></member>
+      <member refid="class_projectile_1ac81946b29b1a492ac484da921672434e" prot="private" virt="non-virtual"><scope>Projectile</scope><name>OnValidate</name></member>
+      <member refid="class_projectile_1a96086733b9bc4fce5af8c8774a899291" prot="private" virt="non-virtual"><scope>Projectile</scope><name>owner</name></member>
+      <member refid="class_projectile_1a29bae7215f2e18a747319d08c185589d" prot="private" virt="non-virtual"><scope>Projectile</scope><name>rb</name></member>
+      <member refid="class_projectile_1aeb153d68eb4680457c339df871e24a76" prot="private" virt="non-virtual"><scope>Projectile</scope><name>refAbility</name></member>
+      <member refid="class_projectile_1a348ffc9a8d5ef5a1177d96a3f1691554" prot="private" virt="non-virtual"><scope>Projectile</scope><name>Rotate</name></member>
+      <member refid="class_projectile_1a08b05673dcd2da844c04ad812f04b3aa" prot="private" virt="non-virtual"><scope>Projectile</scope><name>speed</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

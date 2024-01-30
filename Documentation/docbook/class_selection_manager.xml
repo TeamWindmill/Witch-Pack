@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_selection_manager" xml:lang="en-US">
+<title>SelectionManager Class Reference</title>
+<indexterm><primary>SelectionManager</primary></indexterm>
+<para>Inheritance diagram for SelectionManager:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="class_selection_manager.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><anchor xml:id="_class_selection_manager_1a500abaf195d7692940fbbeb9e35f8b5e"/>void <emphasis role="strong">SetSelectedShaman</emphasis> (<link linkend="_class_shaman">Shaman</link> selectedShaman, SelectionType selectMode)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Protected Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>override void <link linkend="_class_selection_manager_1af6d089d248f87468e84da07282d48609">Awake</link> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Properties    </title>
+        <itemizedlist>
+            <listitem><para><anchor xml:id="_class_selection_manager_1a2b7b660030f1b21012849ee0dc302e0c"/>SelectionType <emphasis role="strong">SelectMode</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_selection_manager_1ab3e6cfd307ee607335c6c7fcb4518dd6"/><link linkend="_class_shaman">Shaman</link> <emphasis role="strong">SelectedShaman</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_selection_manager_1a4e8f11be49f430d8c3ad7950669560e3"/><link linkend="_class_shadow">Shadow</link> <emphasis role="strong">Shadow</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Events    </title>
+        <itemizedlist>
+            <listitem><para><anchor xml:id="_class_selection_manager_1a0a311e14d55c7ae746453563cd027888"/>Action&lt; <link linkend="_class_shaman">Shaman</link> &gt; <emphasis role="strong">OnShamanMoveSelect</emphasis></para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_selection_manager_1a2c980675cb8904b489f3efdd27ab5342"/>Action&lt; <link linkend="_class_shaman">Shaman</link> &gt; <emphasis role="strong">OnShamanInfoSelect</emphasis></para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_selection_manager_1a01f66e53bd3bc2d174c1072e5b630da8"/>Action&lt; <link linkend="_class_shaman">Shaman</link> &gt; <emphasis role="strong">OnShamanDeselected</emphasis></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_selection_manager_1af6d089d248f87468e84da07282d48609"/><section>
+    <title>Awake()</title>
+<indexterm><primary>Awake</primary><secondary>SelectionManager</secondary></indexterm>
+<indexterm><primary>SelectionManager</primary><secondary>Awake</secondary></indexterm>
+<para><computeroutput>override void SelectionManager.Awake ( )<computeroutput>[protected]</computeroutput>, <computeroutput>[virtual]</computeroutput></computeroutput></para><para>
+Reimplemented from <link linkend="_class_mono_singleton">MonoSingleton&lt; SelectionManager &gt;</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs</section>
+</section>

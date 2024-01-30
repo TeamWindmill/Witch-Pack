@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_shaman_animator" kind="class" language="C#" prot="public">
+    <compoundname>ShamanAnimator</compoundname>
+    <basecompoundref refid="class_unit_animator" prot="public" virt="non-virtual">UnitAnimator</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_shaman_animator_1a8b8ba0cffdf6d35945405158fb75fba2" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ShamanAnimator._movementChange</definition>
+        <argsstring></argsstring>
+        <name>_movementChange</name>
+        <qualifiedname>ShamanAnimator._movementChange</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/ShamanAnimator.cs" line="4" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/ShamanAnimator.cs" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_shaman_animator_1ac79d5188add0a18309f3d95fe30c564e" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void ShamanAnimator.MoveAnimation</definition>
+        <argsstring>()</argsstring>
+        <name>MoveAnimation</name>
+        <qualifiedname>ShamanAnimator.MoveAnimation</qualifiedname>
+        <reimplements refid="class_unit_animator_1ac1b8db61d92168ebb070750ea6543fef">MoveAnimation</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/ShamanAnimator.cs" line="6" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/ShamanAnimator.cs" bodystart="6" bodyend="13"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>ShamanAnimator</label>
+        <link refid="class_shaman_animator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>UnitAnimator</label>
+        <link refid="class_unit_animator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>BaseUnit</label>
+        <link refid="class_base_unit"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>ITargetable</label>
+        <link refid="interface_i_targetable"/>
+      </node>
+      <node id="3">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>ShamanAnimator</label>
+        <link refid="class_shaman_animator"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>UnitAnimator</label>
+        <link refid="class_unit_animator"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>unit</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/ShamanAnimator.cs" line="2" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Animations/ShamanAnimator.cs" bodystart="3" bodyend="14"/>
+    <listofallmembers>
+      <member refid="class_shaman_animator_1a8b8ba0cffdf6d35945405158fb75fba2" prot="private" virt="non-virtual"><scope>ShamanAnimator</scope><name>_movementChange</name></member>
+      <member refid="class_unit_animator_1aeed206ab10666641b730d7679b26e4e0" prot="protected" virt="non-virtual"><scope>ShamanAnimator</scope><name>animator</name></member>
+      <member refid="class_unit_animator_1a8738bd86d25b70068d1eabffb2a4044f" prot="protected" virt="virtual"><scope>ShamanAnimator</scope><name>AttackAnimation</name></member>
+      <member refid="class_unit_animator_1a22d35d50072514525ef413ad45aa22ac" prot="protected" virt="virtual"><scope>ShamanAnimator</scope><name>DeathAnimation</name></member>
+      <member refid="class_unit_animator_1ac03875b4757788d3c760a8fa5c877cfe" prot="public" virt="virtual"><scope>ShamanAnimator</scope><name>DeathAnimationEnded</name></member>
+      <member refid="class_unit_animator_1a77b3bd45ee6b1401ff4d8c8d8cadd4b3" prot="protected" virt="virtual"><scope>ShamanAnimator</scope><name>FlipAnimations</name></member>
+      <member refid="class_unit_animator_1a0c7e62d0faa753b6569b732d7b562da1" prot="protected" virt="virtual"><scope>ShamanAnimator</scope><name>GetHitAnimation</name></member>
+      <member refid="class_unit_animator_1aec8d070db83f156812f7bb9a7852b717" prot="public" virt="virtual"><scope>ShamanAnimator</scope><name>Init</name></member>
+      <member refid="class_shaman_animator_1ac79d5188add0a18309f3d95fe30c564e" prot="protected" virt="virtual"><scope>ShamanAnimator</scope><name>MoveAnimation</name></member>
+      <member refid="class_unit_animator_1a76fee97ceabe2712e45706cc6701d6e6" prot="public" virt="non-virtual"><scope>ShamanAnimator</scope><name>OnDeathAnimationEnd</name></member>
+      <member refid="class_unit_animator_1adecb309f0a54fc411c3787b8cd42b6b5" prot="protected" virt="non-virtual"><scope>ShamanAnimator</scope><name>unit</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

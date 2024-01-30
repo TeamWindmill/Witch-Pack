@@ -1,0 +1,70 @@
+.TH "StatusEffect" 3 "Mon Jan 29 2024" "Version 0.096" "WitchPack" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+StatusEffect
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBStatusEffect\fP (\fBEffectable\fP host, float duration, float amount, StatType effectedStatType, StatusEffectProcess process)"
+.br
+.ti -1c
+.RI "virtual void \fBActivate\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBRemove\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBReset\fP ()"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBSubscribe\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBUnSubscribe\fP ()"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBEffectable\fP \fBhost\fP"
+.br
+.ti -1c
+.RI "float \fBcounter\fP"
+.br
+.ti -1c
+.RI "float \fBduration\fP"
+.br
+.in -1c
+.SS "Properties"
+
+.in +1c
+.ti -1c
+.RI "\fBEffectable\fP \fBHost\fP\fC [get]\fP"
+.br
+.ti -1c
+.RI "float \fBCounter\fP\fC [get]\fP"
+.br
+.ti -1c
+.RI "float \fBDuration\fP\fC [get]\fP"
+.br
+.ti -1c
+.RI "StatType \fBStatType\fP\fC [get]\fP"
+.br
+.ti -1c
+.RI "StatusEffectProcess \fBProcess\fP\fC [get]\fP"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for WitchPack from the source code\&.

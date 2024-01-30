@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-[CreateAssetMenu(fileName = "ability", menuName = "Ability/Test")]
+[CreateAssetMenu(fileName = "ability", menuName = "Ability/PiercingShot")]
 
 public class PiercingShot : OffensiveAbility
 {

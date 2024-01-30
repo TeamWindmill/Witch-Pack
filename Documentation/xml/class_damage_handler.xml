@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_damage_handler" kind="class" language="C#" prot="public">
+    <compoundname>DamageHandler</compoundname>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_damage_handler_1a86add1cf68586f40268e0e4b65a69fab" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float DamageHandler.baseAmount</definition>
+        <argsstring></argsstring>
+        <name>baseAmount</name>
+        <qualifiedname>DamageHandler.baseAmount</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/DamageHandler.cs" line="6" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/DamageHandler.cs" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_damage_handler_1a2f3816d4bb4eef4878f1b8baa413c9e2" prot="private" static="no" mutable="no">
+        <type>List&lt; float &gt;</type>
+        <definition>List&lt;float&gt; DamageHandler.mods</definition>
+        <argsstring></argsstring>
+        <name>mods</name>
+        <qualifiedname>DamageHandler.mods</qualifiedname>
+        <initializer>= new List&lt;float&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/DamageHandler.cs" line="7" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/DamageHandler.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_damage_handler_1ad395106fd732e9699e8789f459c5cdf5" prot="private" static="no" mutable="no">
+        <type>List&lt; int &gt;</type>
+        <definition>List&lt;int&gt; DamageHandler.flatMods</definition>
+        <argsstring></argsstring>
+        <name>flatMods</name>
+        <qualifiedname>DamageHandler.flatMods</qualifiedname>
+        <initializer>= new List&lt;int&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/DamageHandler.cs" line="8" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/DamageHandler.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_damage_handler_1a695df7c31743c0385741ef46df7d08d1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>DamageHandler.DamageHandler</definition>
+        <argsstring>(float baseAmount)</argsstring>
+        <name>DamageHandler</name>
+        <qualifiedname>DamageHandler.DamageHandler</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>baseAmount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/DamageHandler.cs" line="11" column="12" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/DamageHandler.cs" bodystart="11" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="class_damage_handler_1ac1862426294479439f05fa4623533655" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void DamageHandler.AddMod</definition>
+        <argsstring>(float mod)</argsstring>
+        <name>AddMod</name>
+        <qualifiedname>DamageHandler.AddMod</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>mod</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/DamageHandler.cs" line="17" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/DamageHandler.cs" bodystart="17" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="class_damage_handler_1aed1eec926e97860f12532f939c503c5b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void DamageHandler.AddFlatMod</definition>
+        <argsstring>(int flatMod)</argsstring>
+        <name>AddFlatMod</name>
+        <qualifiedname>DamageHandler.AddFlatMod</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>flatMod</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/DamageHandler.cs" line="23" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/DamageHandler.cs" bodystart="23" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="class_damage_handler_1a74b7bea619dd8da301f560f7c90f17a5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int DamageHandler.GetFinalDamage</definition>
+        <argsstring>()</argsstring>
+        <name>GetFinalDamage</name>
+        <qualifiedname>DamageHandler.GetFinalDamage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/DamageHandler.cs" line="28" column="16" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/DamageHandler.cs" bodystart="28" bodyend="56"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/DamageHandler.cs" line="4" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/DamageHandler.cs" bodystart="5" bodyend="60"/>
+    <listofallmembers>
+      <member refid="class_damage_handler_1aed1eec926e97860f12532f939c503c5b" prot="public" virt="non-virtual"><scope>DamageHandler</scope><name>AddFlatMod</name></member>
+      <member refid="class_damage_handler_1ac1862426294479439f05fa4623533655" prot="public" virt="non-virtual"><scope>DamageHandler</scope><name>AddMod</name></member>
+      <member refid="class_damage_handler_1a86add1cf68586f40268e0e4b65a69fab" prot="private" virt="non-virtual"><scope>DamageHandler</scope><name>baseAmount</name></member>
+      <member refid="class_damage_handler_1a695df7c31743c0385741ef46df7d08d1" prot="public" virt="non-virtual"><scope>DamageHandler</scope><name>DamageHandler</name></member>
+      <member refid="class_damage_handler_1ad395106fd732e9699e8789f459c5cdf5" prot="private" virt="non-virtual"><scope>DamageHandler</scope><name>flatMods</name></member>
+      <member refid="class_damage_handler_1a74b7bea619dd8da301f560f7c90f17a5" prot="public" virt="non-virtual"><scope>DamageHandler</scope><name>GetFinalDamage</name></member>
+      <member refid="class_damage_handler_1a2f3816d4bb4eef4878f1b8baa413c9e2" prot="private" virt="non-virtual"><scope>DamageHandler</scope><name>mods</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

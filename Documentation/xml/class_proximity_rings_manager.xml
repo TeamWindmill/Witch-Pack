@@ -1,0 +1,346 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_proximity_rings_manager" kind="class" language="C#" prot="public">
+    <compoundname>ProximityRingsManager</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_proximity_rings_manager_1a470c6a045f083eb70731e635e17615a4" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_proximity_ring_handler" kindref="compound">ProximityRingHandler</ref>[]</type>
+        <definition>ProximityRingHandler [] ProximityRingsManager.RingHandlers</definition>
+        <argsstring></argsstring>
+        <name>RingHandlers</name>
+        <qualifiedname>ProximityRingsManager.RingHandlers</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" line="8" column="33" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_proximity_rings_manager_1a7569d6ebe8ad55e7c7db13f2a942765c" prot="private" static="no" mutable="no">
+        <type><ref refid="class_proximity_ring_handler" kindref="compound">ProximityRingHandler</ref>[]</type>
+        <definition>ProximityRingHandler [] ProximityRingsManager._ringHandlers</definition>
+        <argsstring></argsstring>
+        <name>_ringHandlers</name>
+        <qualifiedname>ProximityRingsManager._ringHandlers</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" line="9" column="35" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_proximity_rings_manager_1a93a4ab177a8c4dc675feb5b6c25ab6f0" prot="private" static="no" mutable="no">
+        <type><ref refid="class_click_helper" kindref="compound">ClickHelper</ref></type>
+        <definition>ClickHelper ProximityRingsManager._clickHelper</definition>
+        <argsstring></argsstring>
+        <name>_clickHelper</name>
+        <qualifiedname>ProximityRingsManager._clickHelper</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" line="10" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_proximity_rings_manager_1a6fd2f38de1e0a322b2e5c25b162eb914" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ProximityRingsManager._lockSpriteToggle</definition>
+        <argsstring></argsstring>
+        <name>_lockSpriteToggle</name>
+        <qualifiedname>ProximityRingsManager._lockSpriteToggle</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" line="11" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_proximity_rings_manager_1a82e32ee6f83b79ce79f314ec50f25e74" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color ProximityRingsManager._defaultColor</definition>
+        <argsstring></argsstring>
+        <name>_defaultColor</name>
+        <qualifiedname>ProximityRingsManager._defaultColor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" line="12" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_proximity_rings_manager_1a50b76e3ed0c18f12af16d396ee6a2cca" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color ProximityRingsManager._powerStructureTypeColor</definition>
+        <argsstring></argsstring>
+        <name>_powerStructureTypeColor</name>
+        <qualifiedname>ProximityRingsManager._powerStructureTypeColor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" line="13" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_proximity_rings_manager_1a35cbc8eb1b64ef3de945e606d899673b" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ProximityRingsManager._shamanSelected</definition>
+        <argsstring></argsstring>
+        <name>_shamanSelected</name>
+        <qualifiedname>ProximityRingsManager._shamanSelected</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" line="14" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_proximity_rings_manager_1a2f0878d10a95e50045afe42b83785a7e" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; int, IDisposable &gt;</type>
+        <definition>Dictionary&lt;int, IDisposable&gt; ProximityRingsManager._activeStatusEffectOnShaman</definition>
+        <argsstring></argsstring>
+        <name>_activeStatusEffectOnShaman</name>
+        <qualifiedname>ProximityRingsManager._activeStatusEffectOnShaman</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" line="16" column="24" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_proximity_rings_manager_1afb2736b1ca885ec7aadf082e88e132ed" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ProximityRingsManager.Init</definition>
+        <argsstring>(PowerStructureConfig powerStructureConfig)</argsstring>
+        <name>Init</name>
+        <qualifiedname>ProximityRingsManager.Init</qualifiedname>
+        <param>
+          <type><ref refid="class_power_structure_config" kindref="compound">PowerStructureConfig</ref></type>
+          <declname>powerStructureConfig</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" line="19" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" bodystart="19" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="class_proximity_rings_manager_1a4b01d114602f250aa35131393edf0a6f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ProximityRingsManager.ToggleAllSprites</definition>
+        <argsstring>(bool state)</argsstring>
+        <name>ToggleAllSprites</name>
+        <qualifiedname>ProximityRingsManager.ToggleAllSprites</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" line="77" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" bodystart="77" bodyend="83"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_proximity_rings_manager_1af3fe5c2e871426c915735c4822e74ba5" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ProximityRingsManager.OnDestroy</definition>
+        <argsstring>()</argsstring>
+        <name>OnDestroy</name>
+        <qualifiedname>ProximityRingsManager.OnDestroy</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" line="40" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" bodystart="40" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="class_proximity_rings_manager_1a1a59fcaa1ae6e466db16cfc7c98a5312" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ProximityRingsManager.ChangeAllRingsColors</definition>
+        <argsstring>(Color color)</argsstring>
+        <name>ChangeAllRingsColors</name>
+        <qualifiedname>ProximityRingsManager.ChangeAllRingsColors</qualifiedname>
+        <param>
+          <type>Color</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" line="49" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" bodystart="49" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="class_proximity_rings_manager_1aac0c60e95ae9ed6ae0f388bad467aac5" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ProximityRingsManager.ScaleCircles</definition>
+        <argsstring>(float circleRange, float[] ringsRanges)</argsstring>
+        <name>ScaleCircles</name>
+        <qualifiedname>ProximityRingsManager.ScaleCircles</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>circleRange</declname>
+        </param>
+        <param>
+          <type>float[]</type>
+          <declname>ringsRanges</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" line="57" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" bodystart="57" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="class_proximity_rings_manager_1ab1bee87e4e96ce5ebd119e09fdc87be2" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ProximityRingsManager.OnShamanSelect</definition>
+        <argsstring>(Shaman shaman)</argsstring>
+        <name>OnShamanSelect</name>
+        <qualifiedname>ProximityRingsManager.OnShamanSelect</qualifiedname>
+        <param>
+          <type><ref refid="class_shaman" kindref="compound">Shaman</ref></type>
+          <declname>shaman</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" line="65" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" bodystart="65" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="class_proximity_rings_manager_1ab68d40725a7da54bb556ac71f52bd28f" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ProximityRingsManager.OnShamanDeselect</definition>
+        <argsstring>(Shaman shaman)</argsstring>
+        <name>OnShamanDeselect</name>
+        <qualifiedname>ProximityRingsManager.OnShamanDeselect</qualifiedname>
+        <param>
+          <type><ref refid="class_shaman" kindref="compound">Shaman</ref></type>
+          <declname>shaman</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" line="70" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" bodystart="70" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="class_proximity_rings_manager_1a9a461c9976606ad4550463783fc26da0" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ProximityRingsManager.ActivateRingSprites</definition>
+        <argsstring>()</argsstring>
+        <name>ActivateRingSprites</name>
+        <qualifiedname>ProximityRingsManager.ActivateRingSprites</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" line="85" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" bodystart="85" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="class_proximity_rings_manager_1ae4f157392c31ea634788cd4b87ea25ed" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ProximityRingsManager.DeactivateRingSprites</definition>
+        <argsstring>()</argsstring>
+        <name>DeactivateRingSprites</name>
+        <qualifiedname>ProximityRingsManager.DeactivateRingSprites</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" line="91" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" bodystart="91" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="class_proximity_rings_manager_1a0375564387fad19b2a381ddd5e6ef10a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ProximityRingsManager.ToggleOuterRingSprite</definition>
+        <argsstring>(bool state)</argsstring>
+        <name>ToggleOuterRingSprite</name>
+        <qualifiedname>ProximityRingsManager.ToggleOuterRingSprite</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" line="97" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" bodystart="97" bodyend="100"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>ProximityRingsManager</label>
+        <link refid="class_proximity_rings_manager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>ProximityRingsManager</label>
+        <link refid="class_proximity_rings_manager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" line="6" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/PowerStructures/ProximityRingsManager.cs" bodystart="7" bodyend="103"/>
+    <listofallmembers>
+      <member refid="class_proximity_rings_manager_1a2f0878d10a95e50045afe42b83785a7e" prot="private" virt="non-virtual"><scope>ProximityRingsManager</scope><name>_activeStatusEffectOnShaman</name></member>
+      <member refid="class_proximity_rings_manager_1a93a4ab177a8c4dc675feb5b6c25ab6f0" prot="private" virt="non-virtual"><scope>ProximityRingsManager</scope><name>_clickHelper</name></member>
+      <member refid="class_proximity_rings_manager_1a82e32ee6f83b79ce79f314ec50f25e74" prot="private" virt="non-virtual"><scope>ProximityRingsManager</scope><name>_defaultColor</name></member>
+      <member refid="class_proximity_rings_manager_1a6fd2f38de1e0a322b2e5c25b162eb914" prot="private" virt="non-virtual"><scope>ProximityRingsManager</scope><name>_lockSpriteToggle</name></member>
+      <member refid="class_proximity_rings_manager_1a50b76e3ed0c18f12af16d396ee6a2cca" prot="private" virt="non-virtual"><scope>ProximityRingsManager</scope><name>_powerStructureTypeColor</name></member>
+      <member refid="class_proximity_rings_manager_1a7569d6ebe8ad55e7c7db13f2a942765c" prot="private" virt="non-virtual"><scope>ProximityRingsManager</scope><name>_ringHandlers</name></member>
+      <member refid="class_proximity_rings_manager_1a35cbc8eb1b64ef3de945e606d899673b" prot="private" virt="non-virtual"><scope>ProximityRingsManager</scope><name>_shamanSelected</name></member>
+      <member refid="class_proximity_rings_manager_1a9a461c9976606ad4550463783fc26da0" prot="private" virt="non-virtual"><scope>ProximityRingsManager</scope><name>ActivateRingSprites</name></member>
+      <member refid="class_proximity_rings_manager_1a1a59fcaa1ae6e466db16cfc7c98a5312" prot="private" virt="non-virtual"><scope>ProximityRingsManager</scope><name>ChangeAllRingsColors</name></member>
+      <member refid="class_proximity_rings_manager_1ae4f157392c31ea634788cd4b87ea25ed" prot="private" virt="non-virtual"><scope>ProximityRingsManager</scope><name>DeactivateRingSprites</name></member>
+      <member refid="class_proximity_rings_manager_1afb2736b1ca885ec7aadf082e88e132ed" prot="public" virt="non-virtual"><scope>ProximityRingsManager</scope><name>Init</name></member>
+      <member refid="class_proximity_rings_manager_1af3fe5c2e871426c915735c4822e74ba5" prot="private" virt="non-virtual"><scope>ProximityRingsManager</scope><name>OnDestroy</name></member>
+      <member refid="class_proximity_rings_manager_1ab68d40725a7da54bb556ac71f52bd28f" prot="private" virt="non-virtual"><scope>ProximityRingsManager</scope><name>OnShamanDeselect</name></member>
+      <member refid="class_proximity_rings_manager_1ab1bee87e4e96ce5ebd119e09fdc87be2" prot="private" virt="non-virtual"><scope>ProximityRingsManager</scope><name>OnShamanSelect</name></member>
+      <member refid="class_proximity_rings_manager_1a470c6a045f083eb70731e635e17615a4" prot="public" virt="non-virtual"><scope>ProximityRingsManager</scope><name>RingHandlers</name></member>
+      <member refid="class_proximity_rings_manager_1aac0c60e95ae9ed6ae0f388bad467aac5" prot="private" virt="non-virtual"><scope>ProximityRingsManager</scope><name>ScaleCircles</name></member>
+      <member refid="class_proximity_rings_manager_1a4b01d114602f250aa35131393edf0a6f" prot="public" virt="non-virtual"><scope>ProximityRingsManager</scope><name>ToggleAllSprites</name></member>
+      <member refid="class_proximity_rings_manager_1a0375564387fad19b2a381ddd5e6ef10a" prot="private" virt="non-virtual"><scope>ProximityRingsManager</scope><name>ToggleOuterRingSprite</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

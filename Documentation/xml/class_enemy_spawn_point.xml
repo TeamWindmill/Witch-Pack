@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_enemy_spawn_point" kind="class" language="C#" prot="public">
+    <compoundname>EnemySpawnPoint</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_enemy_spawn_point_1ae118c42bc22e64b360e23fae1bf5c4e9" prot="private" static="no" mutable="no">
+        <type>PathCreator</type>
+        <definition>PathCreator EnemySpawnPoint.path</definition>
+        <argsstring></argsstring>
+        <name>path</name>
+        <qualifiedname>EnemySpawnPoint.path</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/EnemySpawnPoint.cs" line="9" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/EnemySpawnPoint.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_enemy_spawn_point_1ac2a3bbcb6f9483da2effa1d517470de6" prot="private" static="no" mutable="no">
+        <type><ref refid="class_indicatable" kindref="compound">Indicatable</ref></type>
+        <definition>Indicatable EnemySpawnPoint.indicateable</definition>
+        <argsstring></argsstring>
+        <name>indicateable</name>
+        <qualifiedname>EnemySpawnPoint.indicateable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/EnemySpawnPoint.cs" line="10" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/EnemySpawnPoint.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_enemy_spawn_point_1a4fe9fc81ca04cafeb4312c22c7fb2630" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void EnemySpawnPoint.SetIndicator</definition>
+        <argsstring>(Sprite artwork, float time, Action onClick)</argsstring>
+        <name>SetIndicator</name>
+        <qualifiedname>EnemySpawnPoint.SetIndicator</qualifiedname>
+        <param>
+          <type>Sprite</type>
+          <declname>artwork</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>time</declname>
+        </param>
+        <param>
+          <type>Action</type>
+          <declname>onClick</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/EnemySpawnPoint.cs" line="11" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/EnemySpawnPoint.cs" bodystart="11" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="class_enemy_spawn_point_1afe9894196b3d531dd36fcae31d4dbd8d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_enemy" kindref="compound">Enemy</ref></type>
+        <definition>Enemy EnemySpawnPoint.SpawnEnemy</definition>
+        <argsstring>(EnemyConfig givenConf)</argsstring>
+        <name>SpawnEnemy</name>
+        <qualifiedname>EnemySpawnPoint.SpawnEnemy</qualifiedname>
+        <param>
+          <type><ref refid="class_enemy_config" kindref="compound">EnemyConfig</ref></type>
+          <declname>givenConf</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/EnemySpawnPoint.cs" line="17" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/EnemySpawnPoint.cs" bodystart="17" bodyend="25"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>EnemySpawnPoint</label>
+        <link refid="class_enemy_spawn_point"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>EnemySpawnPoint</label>
+        <link refid="class_enemy_spawn_point"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/EnemySpawnPoint.cs" line="7" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Wave/EnemySpawnPoint.cs" bodystart="8" bodyend="29"/>
+    <listofallmembers>
+      <member refid="class_enemy_spawn_point_1ac2a3bbcb6f9483da2effa1d517470de6" prot="private" virt="non-virtual"><scope>EnemySpawnPoint</scope><name>indicateable</name></member>
+      <member refid="class_enemy_spawn_point_1ae118c42bc22e64b360e23fae1bf5c4e9" prot="private" virt="non-virtual"><scope>EnemySpawnPoint</scope><name>path</name></member>
+      <member refid="class_enemy_spawn_point_1a4fe9fc81ca04cafeb4312c22c7fb2630" prot="public" virt="non-virtual"><scope>EnemySpawnPoint</scope><name>SetIndicator</name></member>
+      <member refid="class_enemy_spawn_point_1afe9894196b3d531dd36fcae31d4dbd8d" prot="public" virt="non-virtual"><scope>EnemySpawnPoint</scope><name>SpawnEnemy</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

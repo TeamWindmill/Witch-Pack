@@ -1,0 +1,281 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_node_object" kind="class" language="C#" prot="public">
+    <compoundname>NodeObject</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_node_object_1a4c3274f7d8de88d7c447c2d909454c5f" prot="private" static="no" mutable="no">
+        <type><ref refid="class_level_config" kindref="compound">LevelConfig</ref></type>
+        <definition>LevelConfig NodeObject._levelConfig</definition>
+        <argsstring></argsstring>
+        <name>_levelConfig</name>
+        <qualifiedname>NodeObject._levelConfig</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" line="6" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_node_object_1a97fd438187e0ac6455818ac1105dded8" prot="private" static="no" mutable="no">
+        <type><ref refid="class_node_object" kindref="compound">NodeObject</ref>[]</type>
+        <definition>NodeObject [] NodeObject._nextNodes</definition>
+        <argsstring></argsstring>
+        <name>_nextNodes</name>
+        <qualifiedname>NodeObject._nextNodes</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" line="8" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_node_object_1af9ee6f647a6a4c3dec69888fc6671705" prot="private" static="no" mutable="no">
+        <type><ref refid="class_click_helper" kindref="compound">ClickHelper</ref></type>
+        <definition>ClickHelper NodeObject._clickHelper</definition>
+        <argsstring></argsstring>
+        <name>_clickHelper</name>
+        <qualifiedname>NodeObject._clickHelper</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" line="9" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_node_object_1aa0d12a06ff1434ca3aa766c9332e537e" prot="private" static="no" mutable="no">
+        <type>SpriteRenderer</type>
+        <definition>SpriteRenderer NodeObject._spriteRenderer</definition>
+        <argsstring></argsstring>
+        <name>_spriteRenderer</name>
+        <qualifiedname>NodeObject._spriteRenderer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" line="10" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_node_object_1a1e90d272c4f4603d697be1011598b5b0" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color NodeObject._winNodeColor</definition>
+        <argsstring></argsstring>
+        <name>_winNodeColor</name>
+        <qualifiedname>NodeObject._winNodeColor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" line="11" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_node_object_1ac243d470916f46e2676629c28243e10b" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color NodeObject._avilableNodeColor</definition>
+        <argsstring></argsstring>
+        <name>_avilableNodeColor</name>
+        <qualifiedname>NodeObject._avilableNodeColor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" line="12" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_node_object_1aa5a8dd748c1982b76e5b0e1a2ac31812" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool NodeObject.IsUnlock</definition>
+        <argsstring></argsstring>
+        <name>IsUnlock</name>
+        <qualifiedname>NodeObject.IsUnlock</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" line="13" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" bodystart="13" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="property" id="class_node_object_1a674f26991318b82ebd7242fdb7f524d8" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool NodeObject.IsCompleted</definition>
+        <argsstring></argsstring>
+        <name>IsCompleted</name>
+        <qualifiedname>NodeObject.IsCompleted</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" line="14" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" bodystart="14" bodyend="14"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_node_object_1a66868428bcbbce47bc01653293251c80" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void NodeObject.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>NodeObject.Start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" line="18" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" bodystart="18" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="class_node_object_1a70f4b79860c150a90839a7c723032dda" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void NodeObject.OnDestroy</definition>
+        <argsstring>()</argsstring>
+        <name>OnDestroy</name>
+        <qualifiedname>NodeObject.OnDestroy</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" line="40" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" bodystart="40" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="class_node_object_1a0109e4fcb8234b41e3b68fb365a8a944" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void NodeObject.Completed</definition>
+        <argsstring>()</argsstring>
+        <name>Completed</name>
+        <qualifiedname>NodeObject.Completed</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" line="53" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" bodystart="53" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="class_node_object_1a908c9438ff9f10eaf851176f23f549eb" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void NodeObject.OnNodeClick</definition>
+        <argsstring>(PointerEventData.InputButton button)</argsstring>
+        <name>OnNodeClick</name>
+        <qualifiedname>NodeObject.OnNodeClick</qualifiedname>
+        <param>
+          <type>PointerEventData.InputButton</type>
+          <declname>button</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" line="62" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" bodystart="62" bodyend="69"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_node_object_1afeb19a031222ad26096e2e068817d5f4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void NodeObject.Init</definition>
+        <argsstring>(bool isCompleted, bool isUnLock)</argsstring>
+        <name>Init</name>
+        <qualifiedname>NodeObject.Init</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>isCompleted</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>isUnLock</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" line="23" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" bodystart="23" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="class_node_object_1af89707b91fda8b37811e07088635f107" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void NodeObject.Lock</definition>
+        <argsstring>()</argsstring>
+        <name>Lock</name>
+        <qualifiedname>NodeObject.Lock</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" line="34" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" bodystart="34" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="class_node_object_1ae95e5c7ddbab03de7e709facaaf37fb2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void NodeObject.Unlock</definition>
+        <argsstring>()</argsstring>
+        <name>Unlock</name>
+        <qualifiedname>NodeObject.Unlock</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" line="45" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" bodystart="45" bodyend="51"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>NodeObject</label>
+        <link refid="class_node_object"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>NodeObject</label>
+        <link refid="class_node_object"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" line="4" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Map/NodeObject.cs" bodystart="5" bodyend="70"/>
+    <listofallmembers>
+      <member refid="class_node_object_1ac243d470916f46e2676629c28243e10b" prot="private" virt="non-virtual"><scope>NodeObject</scope><name>_avilableNodeColor</name></member>
+      <member refid="class_node_object_1af9ee6f647a6a4c3dec69888fc6671705" prot="private" virt="non-virtual"><scope>NodeObject</scope><name>_clickHelper</name></member>
+      <member refid="class_node_object_1a4c3274f7d8de88d7c447c2d909454c5f" prot="private" virt="non-virtual"><scope>NodeObject</scope><name>_levelConfig</name></member>
+      <member refid="class_node_object_1a97fd438187e0ac6455818ac1105dded8" prot="private" virt="non-virtual"><scope>NodeObject</scope><name>_nextNodes</name></member>
+      <member refid="class_node_object_1aa0d12a06ff1434ca3aa766c9332e537e" prot="private" virt="non-virtual"><scope>NodeObject</scope><name>_spriteRenderer</name></member>
+      <member refid="class_node_object_1a1e90d272c4f4603d697be1011598b5b0" prot="private" virt="non-virtual"><scope>NodeObject</scope><name>_winNodeColor</name></member>
+      <member refid="class_node_object_1a0109e4fcb8234b41e3b68fb365a8a944" prot="private" virt="non-virtual"><scope>NodeObject</scope><name>Completed</name></member>
+      <member refid="class_node_object_1afeb19a031222ad26096e2e068817d5f4" prot="public" virt="non-virtual"><scope>NodeObject</scope><name>Init</name></member>
+      <member refid="class_node_object_1a674f26991318b82ebd7242fdb7f524d8" prot="public" virt="non-virtual"><scope>NodeObject</scope><name>IsCompleted</name></member>
+      <member refid="class_node_object_1aa5a8dd748c1982b76e5b0e1a2ac31812" prot="public" virt="non-virtual"><scope>NodeObject</scope><name>IsUnlock</name></member>
+      <member refid="class_node_object_1af89707b91fda8b37811e07088635f107" prot="public" virt="non-virtual"><scope>NodeObject</scope><name>Lock</name></member>
+      <member refid="class_node_object_1a70f4b79860c150a90839a7c723032dda" prot="private" virt="non-virtual"><scope>NodeObject</scope><name>OnDestroy</name></member>
+      <member refid="class_node_object_1a908c9438ff9f10eaf851176f23f549eb" prot="private" virt="non-virtual"><scope>NodeObject</scope><name>OnNodeClick</name></member>
+      <member refid="class_node_object_1a66868428bcbbce47bc01653293251c80" prot="private" virt="non-virtual"><scope>NodeObject</scope><name>Start</name></member>
+      <member refid="class_node_object_1ae95e5c7ddbab03de7e709facaaf37fb2" prot="public" virt="non-virtual"><scope>NodeObject</scope><name>Unlock</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

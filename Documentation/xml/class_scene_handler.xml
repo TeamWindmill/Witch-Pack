@@ -1,0 +1,349 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_scene_handler" kind="class" language="C#" prot="public">
+    <compoundname>SceneHandler</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <basecompoundref refid="interface_i_scene_handler" prot="public" virt="non-virtual">ISceneHandler</basecompoundref>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_scene_handler_1aea26bbb53ce622796a10328c378ca339" prot="private" static="yes" mutable="no">
+        <type>const string</type>
+        <definition>const string SceneHandler.SCENE_HANDLER_LOG__GROUP</definition>
+        <argsstring></argsstring>
+        <name>SCENE_HANDLER_LOG__GROUP</name>
+        <qualifiedname>SceneHandler.SCENE_HANDLER_LOG__GROUP</qualifiedname>
+        <initializer>= &quot;SceneHandler&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" line="9" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_scene_handler_1a4510008d0328a50b1518e5b3c45b1fc2" prot="private" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int SceneHandler.PRESISTENT_SCENE_INDEX</definition>
+        <argsstring></argsstring>
+        <name>PRESISTENT_SCENE_INDEX</name>
+        <qualifiedname>SceneHandler.PRESISTENT_SCENE_INDEX</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" line="13" column="23" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_scene_handler_1abc5b1316af1ee9df0f93a34d838c0c25" prot="private" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int SceneHandler.MAIN_MENU_SCENE_INDEX</definition>
+        <argsstring></argsstring>
+        <name>MAIN_MENU_SCENE_INDEX</name>
+        <qualifiedname>SceneHandler.MAIN_MENU_SCENE_INDEX</qualifiedname>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" line="14" column="23" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_scene_handler_1ae3f3b099c56038ddf10b5bf7a2a45c7d" prot="private" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int SceneHandler.MAP_SCENE_INDEX</definition>
+        <argsstring></argsstring>
+        <name>MAP_SCENE_INDEX</name>
+        <qualifiedname>SceneHandler.MAP_SCENE_INDEX</qualifiedname>
+        <initializer>= 2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" line="15" column="23" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_scene_handler_1a9b8859765124659b121a2e2fa2d2219d" prot="private" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int SceneHandler.GAME_SCENE_INDEX</definition>
+        <argsstring></argsstring>
+        <name>GAME_SCENE_INDEX</name>
+        <qualifiedname>SceneHandler.GAME_SCENE_INDEX</qualifiedname>
+        <initializer>= 3</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" line="16" column="23" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="event">
+      <memberdef kind="event" id="class_scene_handler_1ae31e3f2db259545556f3871b95e7f8ff" prot="public" static="yes" add="no" remove="no" raise="no">
+        <type>Action&lt; SceneType &gt;</type>
+        <definition>Action&lt;SceneType&gt; SceneHandler.OnSceneLoaded</definition>
+        <argsstring></argsstring>
+        <name>OnSceneLoaded</name>
+        <qualifiedname>SceneHandler.OnSceneLoaded</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" line="11" column="32" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_scene_handler_1aa9756b74063486ff112e5e8ed167f962" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float SceneHandler._minLoadTime</definition>
+        <argsstring></argsstring>
+        <name>_minLoadTime</name>
+        <qualifiedname>SceneHandler._minLoadTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" line="18" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_scene_handler_1a7598af2e0e0dbe9ac5f7e81e40a7ffb9" prot="private" static="no" mutable="no">
+        <type><ref refid="class_loading_screen_handler" kindref="compound">LoadingScreenHandler</ref></type>
+        <definition>LoadingScreenHandler SceneHandler._loadingScreenHandler</definition>
+        <argsstring></argsstring>
+        <name>_loadingScreenHandler</name>
+        <qualifiedname>SceneHandler._loadingScreenHandler</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" line="20" column="35" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_scene_handler_1a4895a270fa92083158f321d21bffbc32" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool SceneHandler._testing</definition>
+        <argsstring></argsstring>
+        <name>_testing</name>
+        <qualifiedname>SceneHandler._testing</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" line="21" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_scene_handler_1abff1c15eed4e2a9f283d2dcde3987552" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float SceneHandler._loadTime</definition>
+        <argsstring></argsstring>
+        <name>_loadTime</name>
+        <qualifiedname>SceneHandler._loadTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" line="23" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_scene_handler_1ae5733e2b8424a83ef161a9a5a4da4137" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>Scene</type>
+        <definition>Scene SceneHandler.PresistanteScene</definition>
+        <argsstring></argsstring>
+        <name>PresistanteScene</name>
+        <qualifiedname>SceneHandler.PresistanteScene</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" line="25" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" bodystart="25" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="property" id="class_scene_handler_1ab0a97849a509858d667ce81b5b84eae2" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>Scene</type>
+        <definition>Scene SceneHandler.CurrentScene</definition>
+        <argsstring></argsstring>
+        <name>CurrentScene</name>
+        <qualifiedname>SceneHandler.CurrentScene</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" line="26" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" bodystart="26" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="property" id="class_scene_handler_1acb7b4677839fa0f294cab7e020337460" prot="public" static="yes" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SceneHandler.IsLoading</definition>
+        <argsstring></argsstring>
+        <name>IsLoading</name>
+        <qualifiedname>SceneHandler.IsLoading</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" line="28" column="24" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" bodystart="28" bodyend="28"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_scene_handler_1adf523830e9840abbc2b51cfbb30ceb76" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SceneHandler.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>SceneHandler.Start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" line="30" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" bodystart="30" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="class_scene_handler_1a46b56616a58eea1986483a167682c09a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator SceneHandler.LoadSceneAsync</definition>
+        <argsstring>(SceneType sceneType)</argsstring>
+        <name>LoadSceneAsync</name>
+        <qualifiedname>SceneHandler.LoadSceneAsync</qualifiedname>
+        <param>
+          <type>SceneType</type>
+          <declname>sceneType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" line="39" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" bodystart="39" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="class_scene_handler_1abb2468015d60f26cca85ae411c38c010" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator SceneHandler.SceneLoaderAndUnLoader</definition>
+        <argsstring>(AsyncOperation asyncOperation)</argsstring>
+        <name>SceneLoaderAndUnLoader</name>
+        <qualifiedname>SceneHandler.SceneLoaderAndUnLoader</qualifiedname>
+        <param>
+          <type>AsyncOperation</type>
+          <declname>asyncOperation</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" line="96" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" bodystart="96" bodyend="108"/>
+      </memberdef>
+      <memberdef kind="function" id="class_scene_handler_1a4010e5b808e86031501afd1b554207ba" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SceneHandler.OnValidate</definition>
+        <argsstring>()</argsstring>
+        <name>OnValidate</name>
+        <qualifiedname>SceneHandler.OnValidate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" line="115" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" bodystart="115" bodyend="119"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_scene_handler_1a6e2d4cc556ce791d250df8bb82ec3c50" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SceneHandler.LoadScene</definition>
+        <argsstring>(SceneType sceneType)</argsstring>
+        <name>LoadScene</name>
+        <qualifiedname>SceneHandler.LoadScene</qualifiedname>
+        <reimplements refid="interface_i_scene_handler_1a73f8f26c474372e2a4fa093c016ddd05">LoadScene</reimplements>
+        <param>
+          <type>SceneType</type>
+          <declname>sceneType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" line="110" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" bodystart="110" bodyend="113"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>ISceneHandler</label>
+        <link refid="interface_i_scene_handler"/>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>SceneHandler</label>
+        <link refid="class_scene_handler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>ISceneHandler</label>
+        <link refid="interface_i_scene_handler"/>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>SceneHandler</label>
+        <link refid="class_scene_handler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" line="7" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Scene/SceneHandler.cs" bodystart="8" bodyend="120"/>
+    <listofallmembers>
+      <member refid="class_scene_handler_1a7598af2e0e0dbe9ac5f7e81e40a7ffb9" prot="private" virt="non-virtual"><scope>SceneHandler</scope><name>_loadingScreenHandler</name></member>
+      <member refid="class_scene_handler_1abff1c15eed4e2a9f283d2dcde3987552" prot="private" virt="non-virtual"><scope>SceneHandler</scope><name>_loadTime</name></member>
+      <member refid="class_scene_handler_1aa9756b74063486ff112e5e8ed167f962" prot="private" virt="non-virtual"><scope>SceneHandler</scope><name>_minLoadTime</name></member>
+      <member refid="class_scene_handler_1a4895a270fa92083158f321d21bffbc32" prot="private" virt="non-virtual"><scope>SceneHandler</scope><name>_testing</name></member>
+      <member refid="class_scene_handler_1ab0a97849a509858d667ce81b5b84eae2" prot="public" virt="non-virtual"><scope>SceneHandler</scope><name>CurrentScene</name></member>
+      <member refid="class_scene_handler_1a9b8859765124659b121a2e2fa2d2219d" prot="private" virt="non-virtual"><scope>SceneHandler</scope><name>GAME_SCENE_INDEX</name></member>
+      <member refid="class_scene_handler_1acb7b4677839fa0f294cab7e020337460" prot="public" virt="non-virtual"><scope>SceneHandler</scope><name>IsLoading</name></member>
+      <member refid="class_scene_handler_1a6e2d4cc556ce791d250df8bb82ec3c50" prot="public" virt="non-virtual"><scope>SceneHandler</scope><name>LoadScene</name></member>
+      <member refid="class_scene_handler_1a46b56616a58eea1986483a167682c09a" prot="private" virt="non-virtual"><scope>SceneHandler</scope><name>LoadSceneAsync</name></member>
+      <member refid="class_scene_handler_1abc5b1316af1ee9df0f93a34d838c0c25" prot="private" virt="non-virtual"><scope>SceneHandler</scope><name>MAIN_MENU_SCENE_INDEX</name></member>
+      <member refid="class_scene_handler_1ae3f3b099c56038ddf10b5bf7a2a45c7d" prot="private" virt="non-virtual"><scope>SceneHandler</scope><name>MAP_SCENE_INDEX</name></member>
+      <member refid="class_scene_handler_1ae31e3f2db259545556f3871b95e7f8ff" prot="public" virt="non-virtual"><scope>SceneHandler</scope><name>OnSceneLoaded</name></member>
+      <member refid="class_scene_handler_1a4010e5b808e86031501afd1b554207ba" prot="private" virt="non-virtual"><scope>SceneHandler</scope><name>OnValidate</name></member>
+      <member refid="class_scene_handler_1ae5733e2b8424a83ef161a9a5a4da4137" prot="public" virt="non-virtual"><scope>SceneHandler</scope><name>PresistanteScene</name></member>
+      <member refid="class_scene_handler_1a4510008d0328a50b1518e5b3c45b1fc2" prot="private" virt="non-virtual"><scope>SceneHandler</scope><name>PRESISTENT_SCENE_INDEX</name></member>
+      <member refid="class_scene_handler_1aea26bbb53ce622796a10328c378ca339" prot="private" virt="non-virtual"><scope>SceneHandler</scope><name>SCENE_HANDLER_LOG__GROUP</name></member>
+      <member refid="class_scene_handler_1abb2468015d60f26cca85ae411c38c010" prot="private" virt="non-virtual"><scope>SceneHandler</scope><name>SceneLoaderAndUnLoader</name></member>
+      <member refid="class_scene_handler_1adf523830e9840abbc2b51cfbb30ceb76" prot="private" virt="non-virtual"><scope>SceneHandler</scope><name>Start</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

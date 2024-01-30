@@ -5,9 +5,13 @@ public class AbilitiesHandlerUI : MonoBehaviour
 {
     [SerializeField] private AbilityUI[] abilityUIBlocks;
     [SerializeField] private AbilityUpgradePanelUI abilityUpgradePanelUI;
+
+    private Shaman _shaman;
     
-    public void Show(List<UnitCastingHandler> abilities)
+    public void Show(Shaman shaman)
     {
+        _shaman = shaman;
+        var abilities = shaman.CastingHandlers; 
         foreach (var uiBlock in abilityUIBlocks)
         {
             uiBlock.Hide();
@@ -36,6 +40,6 @@ public class AbilitiesHandlerUI : MonoBehaviour
     }
     private void OpenUpgradePanel(AbilityUI abilityUI)
     {
-        abilityUpgradePanelUI.Init(abilityUI);
+        abilityUpgradePanelUI.Init(abilityUI,_shaman);
     }
 }

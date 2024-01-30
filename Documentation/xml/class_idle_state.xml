@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_idle_state" kind="class" language="C#" prot="public">
+    <compoundname>IdleState</compoundname>
+    <basecompoundref refid="class_coroutine_state" prot="public" virt="non-virtual">CoroutineState</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_idle_state_1a7bc2d69c53f576758e848eec79ce32bc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override bool</type>
+        <definition>override bool IdleState.IsLegal</definition>
+        <argsstring>()</argsstring>
+        <name>IsLegal</name>
+        <qualifiedname>IdleState.IsLegal</qualifiedname>
+        <reimplements refid="class_coroutine_state_1a98849012c47186c323b5a9175a9af758">IsLegal</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/IdleState.cs" line="7" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/IdleState.cs" bodystart="7" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="function" id="class_idle_state_1abf63069f012ddb253f2144b6b1f7b86f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void IdleState.OnStateEnter</definition>
+        <argsstring>()</argsstring>
+        <name>OnStateEnter</name>
+        <qualifiedname>IdleState.OnStateEnter</qualifiedname>
+        <reimplements refid="class_coroutine_state_1aed083ada431350a971894b8212775a51">OnStateEnter</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/IdleState.cs" line="12" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/IdleState.cs" bodystart="12" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="class_idle_state_1aea10352d66b55e0859fb03de16e0fdec" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void IdleState.OnStateExit</definition>
+        <argsstring>()</argsstring>
+        <name>OnStateExit</name>
+        <qualifiedname>IdleState.OnStateExit</qualifiedname>
+        <reimplements refid="class_coroutine_state_1ac07fa26d739007fc107b9608603d1aca">OnStateExit</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/IdleState.cs" line="16" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/IdleState.cs" bodystart="16" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_idle_state_1ac80d5c4d9fe36721f779089938e207dd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override IEnumerator</type>
+        <definition>override IEnumerator IdleState.RunState</definition>
+        <argsstring>()</argsstring>
+        <name>RunState</name>
+        <qualifiedname>IdleState.RunState</qualifiedname>
+        <reimplements refid="class_coroutine_state_1a6ab03b8140b6d96349328c2bedd779cf">RunState</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/IdleState.cs" line="20" column="33" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/IdleState.cs" bodystart="20" bodyend="23"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>CoroutineState</label>
+        <link refid="class_coroutine_state"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>IdleState</label>
+        <link refid="class_idle_state"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="4">
+        <label>BaseStateHandler</label>
+        <link refid="class_base_state_handler"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>CoroutineState</label>
+        <link refid="class_coroutine_state"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="usage">
+          <edgelabel>handler</edgelabel>
+        </childnode>
+      </node>
+      <node id="1">
+        <label>IdleState</label>
+        <link refid="class_idle_state"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/IdleState.cs" line="5" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/IdleState.cs" bodystart="6" bodyend="24"/>
+    <listofallmembers>
+      <member refid="class_coroutine_state_1a35c8f2c58f132d28978270344612dc35" prot="public" virt="non-virtual"><scope>IdleState</scope><name>CacheHandler</name></member>
+      <member refid="class_coroutine_state_1ac55ce0f73af1f5b5b12ba662981f00fe" prot="protected" virt="non-virtual"><scope>IdleState</scope><name>handler</name></member>
+      <member refid="class_idle_state_1a7bc2d69c53f576758e848eec79ce32bc" prot="public" virt="virtual"><scope>IdleState</scope><name>IsLegal</name></member>
+      <member refid="class_idle_state_1abf63069f012ddb253f2144b6b1f7b86f" prot="public" virt="virtual"><scope>IdleState</scope><name>OnStateEnter</name></member>
+      <member refid="class_idle_state_1aea10352d66b55e0859fb03de16e0fdec" prot="public" virt="virtual"><scope>IdleState</scope><name>OnStateExit</name></member>
+      <member refid="class_coroutine_state_1a1f3a9491ebe8441e1e0b43ec3bc652ca" prot="public" virt="non-virtual"><scope>IdleState</scope><name>priority</name></member>
+      <member refid="class_idle_state_1ac80d5c4d9fe36721f779089938e207dd" prot="public" virt="virtual"><scope>IdleState</scope><name>RunState</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

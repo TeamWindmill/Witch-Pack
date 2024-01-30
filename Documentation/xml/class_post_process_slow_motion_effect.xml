@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_post_process_slow_motion_effect" kind="class" language="C#" prot="public">
+    <compoundname>PostProcessSlowMotionEffect</compoundname>
+    <basecompoundref refid="class_effect_transition_lerp" prot="public" virt="non-virtual">EffectTransitionLerp&lt; PostProcessType &gt;</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_post_process_slow_motion_effect_1a2d088f75eaed818422727cc2f3823ae2" prot="private" static="no" mutable="no">
+        <type>Volume</type>
+        <definition>Volume PostProcessSlowMotionEffect._postProcessVolume</definition>
+        <argsstring></argsstring>
+        <name>_postProcessVolume</name>
+        <qualifiedname>PostProcessSlowMotionEffect._postProcessVolume</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/PostProcessSlowMotionEffect.cs" line="9" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/PostProcessSlowMotionEffect.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_post_process_slow_motion_effect_1a609321920d35debe7c90c6de3f58c68d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void PostProcessSlowMotionEffect.Init</definition>
+        <argsstring>(Volume postProcessVolume)</argsstring>
+        <name>Init</name>
+        <qualifiedname>PostProcessSlowMotionEffect.Init</qualifiedname>
+        <param>
+          <type>Volume</type>
+          <declname>postProcessVolume</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/PostProcessSlowMotionEffect.cs" line="11" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/PostProcessSlowMotionEffect.cs" bodystart="11" bodyend="14"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_post_process_slow_motion_effect_1a2daa8787cb9ee7c0a53a102105ff5bcd" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void PostProcessSlowMotionEffect.SetValue</definition>
+        <argsstring>(PostProcessType type, float value)</argsstring>
+        <name>SetValue</name>
+        <qualifiedname>PostProcessSlowMotionEffect.SetValue</qualifiedname>
+        <param>
+          <type>PostProcessType</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/PostProcessSlowMotionEffect.cs" line="16" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/PostProcessSlowMotionEffect.cs" bodystart="16" bodyend="39"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>EffectTransitionLerp&lt; PostProcessType &gt;</label>
+        <link refid="class_effect_transition_lerp"/>
+      </node>
+      <node id="1">
+        <label>PostProcessSlowMotionEffect</label>
+        <link refid="class_post_process_slow_motion_effect"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>EffectTransitionLerp&lt; PostProcessType &gt;</label>
+        <link refid="class_effect_transition_lerp"/>
+      </node>
+      <node id="1">
+        <label>PostProcessSlowMotionEffect</label>
+        <link refid="class_post_process_slow_motion_effect"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/PostProcessSlowMotionEffect.cs" line="7" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/PostProcessSlowMotionEffect.cs" bodystart="8" bodyend="40"/>
+    <listofallmembers>
+      <member refid="class_post_process_slow_motion_effect_1a2d088f75eaed818422727cc2f3823ae2" prot="private" virt="non-virtual"><scope>PostProcessSlowMotionEffect</scope><name>_postProcessVolume</name></member>
+      <member refid="class_effect_transition_lerp_1a6c41b963a8a8025195ea190f264703fb" prot="public" virt="virtual"><scope>PostProcessSlowMotionEffect</scope><name>EndTransitionEffect</name></member>
+      <member refid="class_post_process_slow_motion_effect_1a609321920d35debe7c90c6de3f58c68d" prot="public" virt="non-virtual"><scope>PostProcessSlowMotionEffect</scope><name>Init</name></member>
+      <member refid="class_post_process_slow_motion_effect_1a2daa8787cb9ee7c0a53a102105ff5bcd" prot="protected" virt="non-virtual"><scope>PostProcessSlowMotionEffect</scope><name>SetValue</name></member>
+      <member refid="class_effect_transition_lerp_1af730800ab8d6caf7d2fd149e246d6c4d" prot="protected" virt="pure-virtual" ambiguityscope="EffectTransitionLerp&lt; PostProcessType &gt;."><scope>PostProcessSlowMotionEffect</scope><name>SetValue</name></member>
+      <member refid="class_effect_transition_lerp_1a0f0dafcbb97abd5030429b7cbc786a2a" prot="public" virt="virtual"><scope>PostProcessSlowMotionEffect</scope><name>StartTransitionEffect</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

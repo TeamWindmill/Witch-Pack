@@ -1,0 +1,298 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_unit_visual_handler" kind="class" language="C#" prot="public">
+    <compoundname>UnitVisualHandler</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_unit_visual_handler_1a64cbd75abbc20b04bdb8a167a9e1f9b8" prot="public" static="no" mutable="no">
+        <type>Action&lt; bool &gt;</type>
+        <definition>Action&lt;bool&gt; UnitVisualHandler.OnSpriteFlip</definition>
+        <argsstring></argsstring>
+        <name>OnSpriteFlip</name>
+        <qualifiedname>UnitVisualHandler.OnSpriteFlip</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" line="6" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_unit_visual_handler_1a4309d7b710bd68426692fdb432ca09bc" prot="private" static="no" mutable="no">
+        <type>SpriteRenderer</type>
+        <definition>SpriteRenderer UnitVisualHandler.spriteRenderer</definition>
+        <argsstring></argsstring>
+        <name>spriteRenderer</name>
+        <qualifiedname>UnitVisualHandler.spriteRenderer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" line="8" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_unit_visual_handler_1a451562de4d2ed028b80826a405c9ebe6" prot="private" static="no" mutable="no">
+        <type>Animator</type>
+        <definition>Animator UnitVisualHandler.animator</definition>
+        <argsstring></argsstring>
+        <name>animator</name>
+        <qualifiedname>UnitVisualHandler.animator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" line="9" column="23" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_unit_visual_handler_1a41f7a3e9fa098ca320f59e45099b6635" prot="private" static="no" mutable="no">
+        <type><ref refid="class_unit_animator" kindref="compound">UnitAnimator</ref></type>
+        <definition>UnitAnimator UnitVisualHandler.unitAnimator</definition>
+        <argsstring></argsstring>
+        <name>unitAnimator</name>
+        <qualifiedname>UnitVisualHandler.unitAnimator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" line="10" column="27" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_unit_visual_handler_1ad1c3a3fa2f04c3aa8b71b9488ffb79f9" prot="private" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 UnitVisualHandler._lastPos</definition>
+        <argsstring></argsstring>
+        <name>_lastPos</name>
+        <qualifiedname>UnitVisualHandler._lastPos</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" line="14" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_unit_visual_handler_1a79f41e8f6f4f2d5f115ee991ae67bfdf" prot="private" static="no" mutable="no">
+        <type><ref refid="class_base_unit" kindref="compound">BaseUnit</ref></type>
+        <definition>BaseUnit UnitVisualHandler._baseUnit</definition>
+        <argsstring></argsstring>
+        <name>_baseUnit</name>
+        <qualifiedname>UnitVisualHandler._baseUnit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" line="15" column="22" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_unit_visual_handler_1aa65acd5e9996e305409836648ae16f8c" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>Animator</type>
+        <definition>Animator UnitVisualHandler.Animator</definition>
+        <argsstring></argsstring>
+        <name>Animator</name>
+        <qualifiedname>UnitVisualHandler.Animator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" line="11" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_unit_visual_handler_1a960f4aa2edc4fef45aef788bd5a7b8f6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UnitVisualHandler.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>UnitVisualHandler.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" line="17" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" bodystart="17" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="class_unit_visual_handler_1a72bb3d1384c22b57f3e3273f37758523" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UnitVisualHandler.OnValidate</definition>
+        <argsstring>()</argsstring>
+        <name>OnValidate</name>
+        <qualifiedname>UnitVisualHandler.OnValidate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" line="22" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" bodystart="22" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="class_unit_visual_handler_1adf03cde8c2405d64c025fa9a0981a87a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UnitVisualHandler.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>UnitVisualHandler.Update</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" line="35" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" bodystart="35" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="class_unit_visual_handler_1abea16f24a47989bfa6da8321dcd6446d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UnitVisualHandler.FlipSpriteOnAutoAttack</definition>
+        <argsstring>()</argsstring>
+        <name>FlipSpriteOnAutoAttack</name>
+        <qualifiedname>UnitVisualHandler.FlipSpriteOnAutoAttack</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" line="47" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" bodystart="47" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="class_unit_visual_handler_1aae43603bc09a32f0bea89f278318b681" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UnitVisualHandler.SpriteFlipX</definition>
+        <argsstring>(bool doFlip)</argsstring>
+        <name>SpriteFlipX</name>
+        <qualifiedname>UnitVisualHandler.SpriteFlipX</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>doFlip</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" line="53" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" bodystart="53" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="class_unit_visual_handler_1a083af545f3f4cfaefa051c70eb6f4bf4" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UnitVisualHandler.ResetSprite</definition>
+        <argsstring>()</argsstring>
+        <name>ResetSprite</name>
+        <qualifiedname>UnitVisualHandler.ResetSprite</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" line="60" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" bodystart="60" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="class_unit_visual_handler_1adc1cd538a3ee812cc9d62bd3de9547de" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UnitVisualHandler.OnBecameVisible</definition>
+        <argsstring>()</argsstring>
+        <name>OnBecameVisible</name>
+        <qualifiedname>UnitVisualHandler.OnBecameVisible</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" line="68" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" bodystart="68" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="class_unit_visual_handler_1a9a564b01d736445cbe6786141bcb9bce" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UnitVisualHandler.OnBecameInvisible</definition>
+        <argsstring>()</argsstring>
+        <name>OnBecameInvisible</name>
+        <qualifiedname>UnitVisualHandler.OnBecameInvisible</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" line="73" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" bodystart="73" bodyend="77"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_unit_visual_handler_1a34130ef0078977993ab7c826283b1af0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UnitVisualHandler.Init</definition>
+        <argsstring>(BaseUnit unit, BaseUnitConfig config)</argsstring>
+        <name>Init</name>
+        <qualifiedname>UnitVisualHandler.Init</qualifiedname>
+        <param>
+          <type><ref refid="class_base_unit" kindref="compound">BaseUnit</ref></type>
+          <declname>unit</declname>
+        </param>
+        <param>
+          <type><ref refid="class_base_unit_config" kindref="compound">BaseUnitConfig</ref></type>
+          <declname>config</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" line="29" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" bodystart="29" bodyend="33"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>UnitVisualHandler</label>
+        <link refid="class_unit_visual_handler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>UnitVisualHandler</label>
+        <link refid="class_unit_visual_handler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" line="4" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Visual/UnitVisualHandler.cs" bodystart="5" bodyend="81"/>
+    <listofallmembers>
+      <member refid="class_unit_visual_handler_1a79f41e8f6f4f2d5f115ee991ae67bfdf" prot="private" virt="non-virtual"><scope>UnitVisualHandler</scope><name>_baseUnit</name></member>
+      <member refid="class_unit_visual_handler_1ad1c3a3fa2f04c3aa8b71b9488ffb79f9" prot="private" virt="non-virtual"><scope>UnitVisualHandler</scope><name>_lastPos</name></member>
+      <member refid="class_unit_visual_handler_1a451562de4d2ed028b80826a405c9ebe6" prot="private" virt="non-virtual"><scope>UnitVisualHandler</scope><name>animator</name></member>
+      <member refid="class_unit_visual_handler_1aa65acd5e9996e305409836648ae16f8c" prot="public" virt="non-virtual"><scope>UnitVisualHandler</scope><name>Animator</name></member>
+      <member refid="class_unit_visual_handler_1a960f4aa2edc4fef45aef788bd5a7b8f6" prot="private" virt="non-virtual"><scope>UnitVisualHandler</scope><name>Awake</name></member>
+      <member refid="class_unit_visual_handler_1abea16f24a47989bfa6da8321dcd6446d" prot="private" virt="non-virtual"><scope>UnitVisualHandler</scope><name>FlipSpriteOnAutoAttack</name></member>
+      <member refid="class_unit_visual_handler_1a34130ef0078977993ab7c826283b1af0" prot="public" virt="non-virtual"><scope>UnitVisualHandler</scope><name>Init</name></member>
+      <member refid="class_unit_visual_handler_1a9a564b01d736445cbe6786141bcb9bce" prot="private" virt="non-virtual"><scope>UnitVisualHandler</scope><name>OnBecameInvisible</name></member>
+      <member refid="class_unit_visual_handler_1adc1cd538a3ee812cc9d62bd3de9547de" prot="private" virt="non-virtual"><scope>UnitVisualHandler</scope><name>OnBecameVisible</name></member>
+      <member refid="class_unit_visual_handler_1a64cbd75abbc20b04bdb8a167a9e1f9b8" prot="public" virt="non-virtual"><scope>UnitVisualHandler</scope><name>OnSpriteFlip</name></member>
+      <member refid="class_unit_visual_handler_1a72bb3d1384c22b57f3e3273f37758523" prot="private" virt="non-virtual"><scope>UnitVisualHandler</scope><name>OnValidate</name></member>
+      <member refid="class_unit_visual_handler_1a083af545f3f4cfaefa051c70eb6f4bf4" prot="private" virt="non-virtual"><scope>UnitVisualHandler</scope><name>ResetSprite</name></member>
+      <member refid="class_unit_visual_handler_1aae43603bc09a32f0bea89f278318b681" prot="private" virt="non-virtual"><scope>UnitVisualHandler</scope><name>SpriteFlipX</name></member>
+      <member refid="class_unit_visual_handler_1a4309d7b710bd68426692fdb432ca09bc" prot="private" virt="non-virtual"><scope>UnitVisualHandler</scope><name>spriteRenderer</name></member>
+      <member refid="class_unit_visual_handler_1a41f7a3e9fa098ca320f59e45099b6635" prot="private" virt="non-virtual"><scope>UnitVisualHandler</scope><name>unitAnimator</name></member>
+      <member refid="class_unit_visual_handler_1adf03cde8c2405d64c025fa9a0981a87a" prot="private" virt="non-virtual"><scope>UnitVisualHandler</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

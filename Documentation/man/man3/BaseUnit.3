@@ -1,0 +1,85 @@
+.TH "BaseUnit" 3 "Mon Jan 29 2024" "Version 0.096" "WitchPack" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+BaseUnit
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits MonoBehaviour, and \fBITargetable\fP\&.
+.PP
+Inherited by \fBEnemy\fP, and \fBShaman\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBInit\fP (\fBBaseUnitConfig\fP givenConfig)"
+.br
+.ti -1c
+.RI "void \fBToggleCollider\fP (bool state)"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBDisableAttacker\fP ()"
+.br
+.ti -1c
+.RI "void \fBEnableAttacker\fP ()"
+.br
+.in -1c
+.SS "Properties"
+
+.in +1c
+.ti -1c
+.RI "\fBHP_Bar\fP \fBHpBar\fP\fC [get]\fP"
+.br
+.ti -1c
+.RI "\fBUnitVisualHandler\fP \fBUnitVisual\fP\fC [get]\fP"
+.br
+.ti -1c
+.RI "\fBDamageable\fP \fBDamageable\fP\fC [get]\fP"
+.br
+.ti -1c
+.RI "\fBDamageDealer\fP \fBDamageDealer\fP\fC [get]\fP"
+.br
+.ti -1c
+.RI "\fBAffector\fP \fBAffector\fP\fC [get]\fP"
+.br
+.ti -1c
+.RI "\fBEffectable\fP \fBEffectable\fP\fC [get]\fP"
+.br
+.ti -1c
+.RI "virtual \fBStatSheet\fP \fBBaseStats\fP\fC [get]\fP"
+.br
+.ti -1c
+.RI "\fBUnitStats\fP \fBStats\fP\fC [get]\fP"
+.br
+.ti -1c
+.RI "\fBOffensiveAbility\fP \fBAutoAttack\fP\fC [get]\fP"
+.br
+.ti -1c
+.RI "\fBAutoAttackHandler\fP \fBAutoAttackHandler\fP\fC [get]\fP"
+.br
+.ti -1c
+.RI "\fBUnitAutoAttacker\fP \fBAutoAttacker\fP\fC [get]\fP"
+.br
+.ti -1c
+.RI "\fBUnitMovement\fP \fBMovement\fP\fC [get]\fP"
+.br
+.ti -1c
+.RI "\fBUnitTargetHelper\fP \fBTargetHelper\fP\fC [get]\fP"
+.br
+.ti -1c
+.RI "virtual \fBUnitTargeter\fP \fBTargeter\fP\fC [get]\fP"
+.br
+.ti -1c
+.RI "Transform \fBCastPos\fP\fC [get]\fP"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for WitchPack from the source code\&.

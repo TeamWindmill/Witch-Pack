@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_core_h_p_u_i_hnadler" kind="class" language="C#" prot="public">
+    <compoundname>CoreHPUIHnadler</compoundname>
+    <basecompoundref refid="class_counter_u_i_element" prot="public" virt="non-virtual">CounterUIElement</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_core_h_p_u_i_hnadler_1a9a07e45f2be7e68ca21a2d7e6fb94033" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void CoreHPUIHnadler.Init</definition>
+        <argsstring>()</argsstring>
+        <name>Init</name>
+        <qualifiedname>CoreHPUIHnadler.Init</qualifiedname>
+        <reimplements refid="class_counter_u_i_element_1a78775eb56e726927240e0249fe29e09f">Init</reimplements>
+        <briefdescription>
+<para>instantiate ElementInit  </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/CoreHPUIHnadler.cs" line="8" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/CoreHPUIHnadler.cs" bodystart="8" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="class_core_h_p_u_i_hnadler_1a65157d86afe00ddc22a5c724f85ed1f6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void CoreHPUIHnadler.Hide</definition>
+        <argsstring>()</argsstring>
+        <name>Hide</name>
+        <qualifiedname>CoreHPUIHnadler.Hide</qualifiedname>
+        <reimplements refid="class_u_i_element_1a24b82c821a63e118fea9f8f15f6cf160">Hide</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/CoreHPUIHnadler.cs" line="20" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/CoreHPUIHnadler.cs" bodystart="20" bodyend="23"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_core_h_p_u_i_hnadler_1a05b541ca23177fe81e6418b437ce186a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CoreHPUIHnadler.UpdateCoreHealth</definition>
+        <argsstring>(int obj)</argsstring>
+        <name>UpdateCoreHealth</name>
+        <qualifiedname>CoreHPUIHnadler.UpdateCoreHealth</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/CoreHPUIHnadler.cs" line="15" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/CoreHPUIHnadler.cs" bodystart="15" bodyend="18"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>CoreHPUIHnadler</label>
+        <link refid="class_core_h_p_u_i_hnadler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>CounterUIElement</label>
+        <link refid="class_counter_u_i_element"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="6">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="4">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="3">
+        <label>UIElement</label>
+        <link refid="class_u_i_element"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>CoreHPUIHnadler</label>
+        <link refid="class_core_h_p_u_i_hnadler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>CounterUIElement</label>
+        <link refid="class_counter_u_i_element"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="6">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="4">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="3">
+        <label>UIElement</label>
+        <link refid="class_u_i_element"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/CoreHPUIHnadler.cs" line="6" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/CoreHPUIHnadler.cs" bodystart="7" bodyend="24"/>
+    <listofallmembers>
+      <member refid="class_u_i_element_1a2598524d3cda2b31cdb4e7d98c6c5929" prot="protected" virt="virtual"><scope>CoreHPUIHnadler</scope><name>Awake</name></member>
+      <member refid="class_counter_u_i_element_1aee0a262e643f90bd89d04458e0fc6994" prot="public" virt="virtual"><scope>CoreHPUIHnadler</scope><name>ElementInit</name></member>
+      <member refid="class_core_h_p_u_i_hnadler_1a65157d86afe00ddc22a5c724f85ed1f6" prot="public" virt="virtual"><scope>CoreHPUIHnadler</scope><name>Hide</name></member>
+      <member refid="class_core_h_p_u_i_hnadler_1a9a07e45f2be7e68ca21a2d7e6fb94033" prot="public" virt="virtual"><scope>CoreHPUIHnadler</scope><name>Init</name></member>
+      <member refid="class_u_i_element_1a921de5874669c81d347319daf6836d4e" prot="protected" virt="non-virtual"><scope>CoreHPUIHnadler</scope><name>isMouseOver</name></member>
+      <member refid="class_u_i_element_1a4d81af31ff05165e400ba42046987059" prot="public" virt="non-virtual"><scope>CoreHPUIHnadler</scope><name>OnPointerEnter</name></member>
+      <member refid="class_u_i_element_1a1406fe3ed80f0c30b0065e85c1f205c2" prot="public" virt="non-virtual"><scope>CoreHPUIHnadler</scope><name>OnPointerExit</name></member>
+      <member refid="class_u_i_element_1a6dd0e428ea7447dcf73f9c55058bef12" prot="public" virt="non-virtual"><scope>CoreHPUIHnadler</scope><name>RectTransform</name></member>
+      <member refid="class_u_i_element_1a3fee91bfa7a1d6c7234132478e09e13a" prot="protected" virt="non-virtual"><scope>CoreHPUIHnadler</scope><name>rectTransform</name></member>
+      <member refid="class_counter_u_i_element_1aa6ad0c8e3d15ee41f9435675a761301a" prot="public" virt="virtual"><scope>CoreHPUIHnadler</scope><name>Show</name></member>
+      <member refid="class_u_i_element_1a5cec5ca3592e71bd009fb5913b1a299c" prot="protected" virt="non-virtual"><scope>CoreHPUIHnadler</scope><name>uiGroup</name></member>
+      <member refid="class_core_h_p_u_i_hnadler_1a05b541ca23177fe81e6418b437ce186a" prot="private" virt="non-virtual"><scope>CoreHPUIHnadler</scope><name>UpdateCoreHealth</name></member>
+      <member refid="class_counter_u_i_element_1a0c23ba00020e1b8d3feea895ccfcc7a7" prot="protected" virt="non-virtual"><scope>CoreHPUIHnadler</scope><name>UpdateUIData</name></member>
+      <member refid="class_counter_u_i_element_1ace6be668b848ea42765d5a022f4bbe5e" prot="public" virt="virtual"><scope>CoreHPUIHnadler</scope><name>UpdateVisual</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

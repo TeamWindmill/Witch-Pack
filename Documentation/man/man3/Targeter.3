@@ -1,0 +1,50 @@
+.TH "Targeter< T >" 3 "Mon Jan 29 2024" "Version 0.096" "WitchPack" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Targeter< T >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits MonoBehaviour\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBAddRadius\fP (StatType statType, float value)"
+.br
+.ti -1c
+.RI "void \fBSetRadius\fP (float value)"
+.br
+.ti -1c
+.RI "T \fBGetClosestTarget\fP ()"
+.br
+.ti -1c
+.RI "List< T > \fBGetAvailableTargets\fP (Vector3 origin, float range)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "Action< T > \fBOnTargetAdded\fP"
+.br
+.ti -1c
+.RI "Action< T > \fBOnTargetLost\fP"
+.br
+.in -1c
+.SS "Properties"
+
+.in +1c
+.ti -1c
+.RI "bool \fBHasTarget\fP\fC [get]\fP"
+.br
+.ti -1c
+.RI "List< T > \fBAvailableTargets\fP\fC [get]\fP"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for WitchPack from the source code\&.
