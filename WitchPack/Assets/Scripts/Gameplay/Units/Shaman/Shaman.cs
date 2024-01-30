@@ -7,10 +7,10 @@ public class Shaman : BaseUnit
 {
     public override StatSheet BaseStats => shamanConfig.BaseStats;
     public ShamanConfig ShamanConfig => shamanConfig;
-    public List<BaseAbility> KnownAbilities => knownAbilities; 
+    public List<BaseAbility> KnownAbilities => knownAbilities;
     public List<UnitCastingHandler> CastingHandlers => castingHandlers;
     public bool MouseOverShaman => clicker.IsHover;
-    
+
     [SerializeField, TabGroup("Visual")] private ShamanAnimator shamanAnimator;
     [SerializeField] private ClickHelper clicker;
     [SerializeField] private Indicatable indicatable;
@@ -18,7 +18,7 @@ public class Shaman : BaseUnit
     private ShamanConfig shamanConfig;
     private List<BaseAbility> knownAbilities = new List<BaseAbility>();
     private List<UnitCastingHandler> castingHandlers = new List<UnitCastingHandler>();
-   
+
     private void OnValidate()
     {
         shamanAnimator ??= GetComponentInChildren<ShamanAnimator>();
@@ -67,19 +67,32 @@ public class Shaman : BaseUnit
         castingHandlers.Add(new UnitCastingHandler(this, ability));
     }
 
-    public void RemoveAbility(UnitCastingHandler caster)
+    public void RemoveAbility(BaseAbility ability)
     {
-        knownAbilities.Remove(caster.Ability);
-        castingHandlers.Remove(caster);
+        knownAbilities.Remove(ability);
+        castingHandlers.Remove(GetCasterFromAbility(ability));
     }
 
     //testing
     [ContextMenu("UpgradeTest")]
-    public void UpgradeAbility()
+    public void UpgradeAbility(BaseAbility caster, BaseAbility upgrade)
     {
-        BaseAbility ability = castingHandlers[0].Ability;
-        RemoveAbility(castingHandlers[0]);
-        LearnAbility(ability.Upgrades[0]);
+        RemoveAbility(caster);
+        LearnAbility(upgrade);
+    }
+
+
+    public UnitCastingHandler GetCasterFromAbility(BaseAbility givenAbiltiy)
+    {
+        for (int i = 0; i < castingHandlers.Count; i++)
+        {
+            if (ReferenceEquals(castingHandlers[i].Ability, givenAbiltiy))
+            {
+                return castingHandlers[i];
+            }
+        }
+        Debug.LogError("Attempted to retrive a non existing caster");
+        return null;
     }
 
     private void SetSelectedShaman(PointerEventData.InputButton button)
@@ -88,14 +101,14 @@ public class Shaman : BaseUnit
         {
             if (!ReferenceEquals(LevelManager.Instance.SelectionManager.SelectedShaman, this))
             {
-                LevelManager.Instance.SelectionManager.SetSelectedShaman(this,SelectionType.Movement);
+                LevelManager.Instance.SelectionManager.SetSelectedShaman(this, SelectionType.Movement);
             }
         }
         else if (button == PointerEventData.InputButton.Right)
         {
             if (!ReferenceEquals(LevelManager.Instance.SelectionManager.SelectedShaman, this))
             {
-                LevelManager.Instance.SelectionManager.SetSelectedShaman(this,SelectionType.Info);
+                LevelManager.Instance.SelectionManager.SetSelectedShaman(this, SelectionType.Info);
             }
         }
     }

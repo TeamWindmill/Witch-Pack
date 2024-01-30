@@ -12,7 +12,7 @@ public class TargetedShot : MonoBehaviour
     protected BaseUnit owner;
     protected BaseUnit target;
 
-    public UnityEvent<BaseAbility/*ability cached*/, BaseUnit/*shooter*/> OnShotHit;
+    public UnityEvent<BaseAbility/*ability cached*/, BaseUnit/*shooter*/, BaseUnit /*target*/> OnShotHit;
 
     public void Fire(BaseUnit shooter, BaseAbility givenAbility, Vector2 dir, BaseUnit target)
     {
@@ -23,7 +23,6 @@ public class TargetedShot : MonoBehaviour
         StartCoroutine(TravelTimeCountdown());
     }
 
- 
     protected void Rotate(Vector2 dir)
     {
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -33,10 +32,11 @@ public class TargetedShot : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         BaseUnit target = collision.GetComponent<BaseUnit>();
-        if (!ReferenceEquals(target, null) && !ReferenceEquals(ability, null) && ReferenceEquals(target, this.target))
+        if (!ReferenceEquals(target, null) && ReferenceEquals(target, this.target))
         {
             target.Damageable.GetHit(owner.DamageDealer, ability);
-            Disable();
+            OnShotHit?.Invoke(ability, owner, target);
+            //Disable();
         }
     }
 
@@ -62,7 +62,7 @@ public class TargetedShot : MonoBehaviour
     {
         owner = null;
         ability = null;
-        OnShotHit?.RemoveAllListeners();
+        //OnShotHit?.RemoveAllListeners();
         gameObject.SetActive(false);
     }
 

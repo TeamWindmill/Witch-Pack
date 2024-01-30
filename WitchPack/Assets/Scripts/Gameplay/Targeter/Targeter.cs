@@ -64,15 +64,15 @@ public class Targeter<T> : MonoBehaviour where T : Component
     }
 
 
-    public List<T> GetAvailableTargets(Vector3 origin, float range)
+    public List<T> GetAvailableTargets(T origin, float range)
     {
-        Collider2D[] foundColldiers = Physics2D.OverlapCircleAll(origin, range, layer);
+        Collider2D[] foundColldiers = Physics2D.OverlapCircleAll(origin.transform.position, range, layer);
         List<T> legalTargets = new List<T>();
 
         foreach (var item in foundColldiers)
         {
             T possibleTarget = item.GetComponent<T>();
-            if (!ReferenceEquals(possibleTarget, null))
+            if (!ReferenceEquals(possibleTarget, null) && !ReferenceEquals(origin, possibleTarget))
             {
                 legalTargets.Add(possibleTarget);
             }
