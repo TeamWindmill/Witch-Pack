@@ -71,6 +71,7 @@ public class BaseUnit : MonoBehaviour
             hpBar.gameObject.SetActive(true);
             hpBar.Init(damageable.MaxHp,unitType);
             damageable.OnDamageCalc += hpBar.SetBarValue;
+            damageable.OnDamageCalc += LevelManager.Instance.PopupsManager.SpawnDamagePopup;
         }
     }
 
@@ -97,5 +98,10 @@ public class BaseUnit : MonoBehaviour
     private void OnValidate()
     {
         boxCollider ??= GetComponent<BoxCollider2D>();
+    }
+
+    protected virtual void OnDisable()
+    {
+        damageable.OnDamageCalc -= LevelManager.Instance.PopupsManager.SpawnDamagePopup;
     }
 }

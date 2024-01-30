@@ -104,8 +104,9 @@ public class Shaman : BaseUnit
         clicker.enabled = state;
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnDisable();
         clicker.OnClick -= SetSelectedShaman;
         Movement.OnDestenationSet -= DisableAttacker;
         Movement.OnDestenationReached -= EnableAttacker;
