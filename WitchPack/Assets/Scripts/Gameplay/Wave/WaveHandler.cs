@@ -9,6 +9,8 @@ public class WaveHandler : MonoBehaviour
     public event Action<int> OnWaveStart;
     public event Action<int> OnWaveEnd;
 
+
+
     [SerializeField] private EnemySpawnPoint[] spawnPoints;
     [SerializeField] private WaveData waveData; //wave data is supposed to be given to a room from the inspector in the editor and not in runtime
     [SerializeField] private float fixedSpawnInterval;

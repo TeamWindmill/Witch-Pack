@@ -10,6 +10,8 @@ public class WaveData : ScriptableObject
     [SerializeField] private float betweenBetweenWavesesInterval;//the interval between the end a wave to the beginning of the next one 
     public List<EnemySpawnData> waves = new List<EnemySpawnData>();
 
+
+
     public float BetweenWavesInterval { get => betweenBetweenWavesesInterval; }
     public float StartDelayInterval { get => startDelayInterval; }
     //public List<EnemySpawnData> Waves { get => waves; set => waves = value; }
