@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_coroutine_state" xml:lang="en-US">
+<title>CoroutineState Class Reference</title>
+<indexterm><primary>CoroutineState</primary></indexterm>
+<para>Inheritance diagram for CoroutineState:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="class_coroutine_state.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para><anchor xml:id="_class_coroutine_state_1a35c8f2c58f132d28978270344612dc35"/>void <emphasis role="strong">CacheHandler</emphasis> (<link linkend="_class_base_state_handler">BaseStateHandler</link> handler)</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_coroutine_state_1aed083ada431350a971894b8212775a51"/>abstract void <emphasis role="strong">OnStateEnter</emphasis> ()</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_coroutine_state_1ac07fa26d739007fc107b9608603d1aca"/>abstract void <emphasis role="strong">OnStateExit</emphasis> ()</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_coroutine_state_1a6ab03b8140b6d96349328c2bedd779cf"/>abstract IEnumerator <emphasis role="strong">RunState</emphasis> ()</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_coroutine_state_1a98849012c47186c323b5a9175a9af758"/>abstract bool <emphasis role="strong">IsLegal</emphasis> ()</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Public Attributes    </title>
+        <itemizedlist>
+            <listitem><para><anchor xml:id="_class_coroutine_state_1a1f3a9491ebe8441e1e0b43ec3bc652ca"/>int <emphasis role="strong">priority</emphasis></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Protected Attributes    </title>
+        <itemizedlist>
+            <listitem><para><anchor xml:id="_class_coroutine_state_1ac55ce0f73af1f5b5b12ba662981f00fe"/><link linkend="_class_base_state_handler">BaseStateHandler</link> <emphasis role="strong">handler</emphasis></para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<para>
+The documentation for this class was generated from the following file:</para>
+C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/CoroutineState.cs</section>

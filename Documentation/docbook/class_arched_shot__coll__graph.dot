@@ -1,0 +1,21 @@
+digraph "ArchedShot"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  Node1 [label="ArchedShot",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="steelblue1",style="solid"];
+  Node2 [label="TargetedShot",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$class_targeted_shot.html",tooltip=" "];
+  Node3 -> Node2 [dir="back",color="steelblue1",style="solid"];
+  Node3 [label="MonoBehaviour",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node4 -> Node2 [dir="back",color="darkorchid3",style="dashed",label=" ability" ];
+  Node4 [label="BaseAbility",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$class_base_ability.html",tooltip=" "];
+  Node5 -> Node4 [dir="back",color="steelblue1",style="solid"];
+  Node5 [label="ScriptableObject",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node6 -> Node2 [dir="back",color="darkorchid3",style="dashed",label=" owner\ntarget" ];
+  Node6 [label="BaseUnit",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$class_base_unit.html",tooltip=" "];
+  Node3 -> Node6 [dir="back",color="steelblue1",style="solid"];
+  Node7 -> Node6 [dir="back",color="steelblue1",style="solid"];
+  Node7 [label="ITargetable",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$interface_i_targetable.html",tooltip=" "];
+}

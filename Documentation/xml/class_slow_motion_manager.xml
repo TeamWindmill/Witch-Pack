@@ -1,0 +1,229 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_slow_motion_manager" kind="class" language="C#" prot="public">
+    <compoundname>SlowMotionManager</compoundname>
+    <basecompoundref refid="class_mono_singleton" prot="public" virt="non-virtual">MonoSingleton&lt; SlowMotionManager &gt;</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_slow_motion_manager_1a2f685179906e4acf2e58a71596ff63f7" prot="private" static="no" mutable="no">
+        <type><ref refid="class_audio_filters" kindref="compound">AudioFilters</ref></type>
+        <definition>AudioFilters SlowMotionManager._audioFilters</definition>
+        <argsstring></argsstring>
+        <name>_audioFilters</name>
+        <qualifiedname>SlowMotionManager._audioFilters</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/SlowMotionManager.cs" line="7" column="27" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/SlowMotionManager.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_slow_motion_manager_1ab90992b3255e0cb476c3eefff1266a7b" prot="private" static="no" mutable="no">
+        <type><ref refid="class_post_process_slow_motion_effect" kindref="compound">PostProcessSlowMotionEffect</ref></type>
+        <definition>PostProcessSlowMotionEffect SlowMotionManager._postProcessFilters</definition>
+        <argsstring></argsstring>
+        <name>_postProcessFilters</name>
+        <qualifiedname>SlowMotionManager._postProcessFilters</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/SlowMotionManager.cs" line="8" column="42" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/SlowMotionManager.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_slow_motion_manager_1a20f0abaacfb73f584a78a8b380161de6" prot="private" static="no" mutable="no">
+        <type><ref refid="class_wind_effect_handler" kindref="compound">WindEffectHandler</ref></type>
+        <definition>WindEffectHandler SlowMotionManager._windEffectHandler</definition>
+        <argsstring></argsstring>
+        <name>_windEffectHandler</name>
+        <qualifiedname>SlowMotionManager._windEffectHandler</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/SlowMotionManager.cs" line="9" column="32" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/SlowMotionManager.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_slow_motion_manager_1a345c8bad6e8acd2b5714170e3f4b1a91" prot="private" static="no" mutable="no">
+        <type>AnimationCurve</type>
+        <definition>AnimationCurve SlowMotionManager._startSlowTimeCurve</definition>
+        <argsstring></argsstring>
+        <name>_startSlowTimeCurve</name>
+        <qualifiedname>SlowMotionManager._startSlowTimeCurve</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/SlowMotionManager.cs" line="11" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/SlowMotionManager.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_slow_motion_manager_1afbc99f24394e6d1469af8623b3f999a8" prot="private" static="no" mutable="no">
+        <type>AnimationCurve</type>
+        <definition>AnimationCurve SlowMotionManager._endSlowTimeCurve</definition>
+        <argsstring></argsstring>
+        <name>_endSlowTimeCurve</name>
+        <qualifiedname>SlowMotionManager._endSlowTimeCurve</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/SlowMotionManager.cs" line="12" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/SlowMotionManager.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_slow_motion_manager_1af91d265fc12ed1bd98c642a5e3f2c3e6" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float SlowMotionManager._slowTimeTransitionTime</definition>
+        <argsstring></argsstring>
+        <name>_slowTimeTransitionTime</name>
+        <qualifiedname>SlowMotionManager._slowTimeTransitionTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/SlowMotionManager.cs" line="13" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/SlowMotionManager.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_slow_motion_manager_1a2e25ecf04ed6c6d2464e36240e2486e8" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float SlowMotionManager._slowTime</definition>
+        <argsstring></argsstring>
+        <name>_slowTime</name>
+        <qualifiedname>SlowMotionManager._slowTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/SlowMotionManager.cs" line="14" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/SlowMotionManager.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_slow_motion_manager_1ac8827fec1bdce7c1c8f5882d6a202bdb" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float SlowMotionManager._previousTimeRate</definition>
+        <argsstring></argsstring>
+        <name>_previousTimeRate</name>
+        <qualifiedname>SlowMotionManager._previousTimeRate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/SlowMotionManager.cs" line="15" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/SlowMotionManager.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_slow_motion_manager_1a0089134191337e1d3e186b575d446c7a" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SlowMotionManager.IsActive</definition>
+        <argsstring></argsstring>
+        <name>IsActive</name>
+        <qualifiedname>SlowMotionManager.IsActive</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/SlowMotionManager.cs" line="17" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/SlowMotionManager.cs" bodystart="17" bodyend="17"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_slow_motion_manager_1a03f04620c8460350d8c78c6264d9e25b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SlowMotionManager.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>SlowMotionManager.Start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/SlowMotionManager.cs" line="19" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/SlowMotionManager.cs" bodystart="19" bodyend="25"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_slow_motion_manager_1a68a0d988609bd751b00af4660912ed6f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SlowMotionManager.StartSlowMotionEffects</definition>
+        <argsstring>()</argsstring>
+        <name>StartSlowMotionEffects</name>
+        <qualifiedname>SlowMotionManager.StartSlowMotionEffects</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/SlowMotionManager.cs" line="27" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/SlowMotionManager.cs" bodystart="27" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="class_slow_motion_manager_1a4f0369dbc3f748a7650a72e95366dfbd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SlowMotionManager.EndSlowMotionEffects</definition>
+        <argsstring>()</argsstring>
+        <name>EndSlowMotionEffects</name>
+        <qualifiedname>SlowMotionManager.EndSlowMotionEffects</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/SlowMotionManager.cs" line="37" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/SlowMotionManager.cs" bodystart="37" bodyend="44"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoSingleton&lt; SlowMotionManager &gt;</label>
+        <link refid="class_mono_singleton"/>
+      </node>
+      <node id="1">
+        <label>SlowMotionManager</label>
+        <link refid="class_slow_motion_manager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>MonoSingleton&lt; SlowMotionManager &gt;</label>
+        <link refid="class_mono_singleton"/>
+      </node>
+      <node id="1">
+        <label>SlowMotionManager</label>
+        <link refid="class_slow_motion_manager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/SlowMotionManager.cs" line="5" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/SlowMotionManager.cs" bodystart="6" bodyend="45"/>
+    <listofallmembers>
+      <member refid="class_slow_motion_manager_1a2f685179906e4acf2e58a71596ff63f7" prot="private" virt="non-virtual"><scope>SlowMotionManager</scope><name>_audioFilters</name></member>
+      <member refid="class_slow_motion_manager_1afbc99f24394e6d1469af8623b3f999a8" prot="private" virt="non-virtual"><scope>SlowMotionManager</scope><name>_endSlowTimeCurve</name></member>
+      <member refid="class_slow_motion_manager_1ab90992b3255e0cb476c3eefff1266a7b" prot="private" virt="non-virtual"><scope>SlowMotionManager</scope><name>_postProcessFilters</name></member>
+      <member refid="class_slow_motion_manager_1ac8827fec1bdce7c1c8f5882d6a202bdb" prot="private" virt="non-virtual"><scope>SlowMotionManager</scope><name>_previousTimeRate</name></member>
+      <member refid="class_slow_motion_manager_1a2e25ecf04ed6c6d2464e36240e2486e8" prot="private" virt="non-virtual"><scope>SlowMotionManager</scope><name>_slowTime</name></member>
+      <member refid="class_slow_motion_manager_1af91d265fc12ed1bd98c642a5e3f2c3e6" prot="private" virt="non-virtual"><scope>SlowMotionManager</scope><name>_slowTimeTransitionTime</name></member>
+      <member refid="class_slow_motion_manager_1a345c8bad6e8acd2b5714170e3f4b1a91" prot="private" virt="non-virtual"><scope>SlowMotionManager</scope><name>_startSlowTimeCurve</name></member>
+      <member refid="class_slow_motion_manager_1a20f0abaacfb73f584a78a8b380161de6" prot="private" virt="non-virtual"><scope>SlowMotionManager</scope><name>_windEffectHandler</name></member>
+      <member refid="class_mono_singleton_1a04acead2ed3d970430f4c8c7716071f1" prot="protected" virt="virtual"><scope>SlowMotionManager</scope><name>Awake</name></member>
+      <member refid="class_slow_motion_manager_1a4f0369dbc3f748a7650a72e95366dfbd" prot="public" virt="non-virtual"><scope>SlowMotionManager</scope><name>EndSlowMotionEffects</name></member>
+      <member refid="class_mono_singleton_1a5637ba1f44359d4610b5eba552ef5f57" prot="public" virt="non-virtual"><scope>SlowMotionManager</scope><name>Instance</name></member>
+      <member refid="class_slow_motion_manager_1a0089134191337e1d3e186b575d446c7a" prot="public" virt="non-virtual"><scope>SlowMotionManager</scope><name>IsActive</name></member>
+      <member refid="class_mono_singleton_1af585390f9256dfc8be7c969ca9fb4d88" prot="protected" virt="virtual"><scope>SlowMotionManager</scope><name>OnDestroy</name></member>
+      <member refid="class_slow_motion_manager_1a03f04620c8460350d8c78c6264d9e25b" prot="private" virt="non-virtual"><scope>SlowMotionManager</scope><name>Start</name></member>
+      <member refid="class_slow_motion_manager_1a68a0d988609bd751b00af4660912ed6f" prot="public" virt="non-virtual"><scope>SlowMotionManager</scope><name>StartSlowMotionEffects</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

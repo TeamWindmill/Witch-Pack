@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_wind_effect_handler" kind="class" language="C#" prot="public">
+    <compoundname>WindEffectHandler</compoundname>
+    <basecompoundref refid="class_effect_transition_lerp" prot="public" virt="non-virtual">EffectTransitionLerp&lt; WindParticleAnimationType &gt;</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_wind_effect_handler_1a6411a08006ce2e6f7b93682e180f468f" prot="private" static="no" mutable="no">
+        <type>ParticleSystem[]</type>
+        <definition>ParticleSystem [] WindEffectHandler._windParticles</definition>
+        <argsstring></argsstring>
+        <name>_windParticles</name>
+        <qualifiedname>WindEffectHandler._windParticles</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/WindEffectHandler.cs" line="8" column="28" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/WindEffectHandler.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_wind_effect_handler_1a50e7a5d6f9d0fbca4150110c432bd744" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void WindEffectHandler.Init</definition>
+        <argsstring>(ParticleSystem[] windParticles)</argsstring>
+        <name>Init</name>
+        <qualifiedname>WindEffectHandler.Init</qualifiedname>
+        <param>
+          <type>ParticleSystem[]</type>
+          <declname>windParticles</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/WindEffectHandler.cs" line="10" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/WindEffectHandler.cs" bodystart="10" bodyend="13"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_wind_effect_handler_1aed21ed27ea60c7729fd7a86ba2d0e3ce" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void WindEffectHandler.SetValue</definition>
+        <argsstring>(WindParticleAnimationType type, float value)</argsstring>
+        <name>SetValue</name>
+        <qualifiedname>WindEffectHandler.SetValue</qualifiedname>
+        <param>
+          <type>WindParticleAnimationType</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/WindEffectHandler.cs" line="15" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/WindEffectHandler.cs" bodystart="15" bodyend="28"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>EffectTransitionLerp&lt; WindParticleAnimationType &gt;</label>
+        <link refid="class_effect_transition_lerp"/>
+      </node>
+      <node id="1">
+        <label>WindEffectHandler</label>
+        <link refid="class_wind_effect_handler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>EffectTransitionLerp&lt; WindParticleAnimationType &gt;</label>
+        <link refid="class_effect_transition_lerp"/>
+      </node>
+      <node id="1">
+        <label>WindEffectHandler</label>
+        <link refid="class_wind_effect_handler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/WindEffectHandler.cs" line="6" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/WindEffectHandler.cs" bodystart="7" bodyend="29"/>
+    <listofallmembers>
+      <member refid="class_wind_effect_handler_1a6411a08006ce2e6f7b93682e180f468f" prot="private" virt="non-virtual"><scope>WindEffectHandler</scope><name>_windParticles</name></member>
+      <member refid="class_effect_transition_lerp_1a6c41b963a8a8025195ea190f264703fb" prot="public" virt="virtual"><scope>WindEffectHandler</scope><name>EndTransitionEffect</name></member>
+      <member refid="class_wind_effect_handler_1a50e7a5d6f9d0fbca4150110c432bd744" prot="public" virt="non-virtual"><scope>WindEffectHandler</scope><name>Init</name></member>
+      <member refid="class_wind_effect_handler_1aed21ed27ea60c7729fd7a86ba2d0e3ce" prot="protected" virt="non-virtual"><scope>WindEffectHandler</scope><name>SetValue</name></member>
+      <member refid="class_effect_transition_lerp_1af730800ab8d6caf7d2fd149e246d6c4d" prot="protected" virt="pure-virtual" ambiguityscope="EffectTransitionLerp&lt; WindParticleAnimationType &gt;."><scope>WindEffectHandler</scope><name>SetValue</name></member>
+      <member refid="class_effect_transition_lerp_1a0f0dafcbb97abd5030429b7cbc786a2a" prot="public" virt="virtual"><scope>WindEffectHandler</scope><name>StartTransitionEffect</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

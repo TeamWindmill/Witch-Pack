@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_stat_effect_popup_handler" kind="class" language="C#" prot="public">
+    <compoundname>StatEffectPopupHandler</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_stat_effect_popup_handler_1a0c641e3a667717993d9a3e229c12e3db" prot="private" static="no" mutable="no">
+        <type><ref refid="class_stat_effect_popup_window_handler" kindref="compound">StatEffectPopupWindowHandler</ref>[]</type>
+        <definition>StatEffectPopupWindowHandler [] StatEffectPopupHandler._popupWindowHandlers</definition>
+        <argsstring></argsstring>
+        <name>_popupWindowHandlers</name>
+        <qualifiedname>StatEffectPopupHandler._popupWindowHandlers</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/StatEffectPopup/StatEffectPopupHandler.cs" line="6" column="43" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/StatEffectPopup/StatEffectPopupHandler.cs" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_stat_effect_popup_handler_1ab0162b6109186f79ac36fb258ef03498" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float StatEffectPopupHandler.StatEffectPopupWindowsDistance</definition>
+        <argsstring></argsstring>
+        <name>StatEffectPopupWindowsDistance</name>
+        <qualifiedname>StatEffectPopupHandler.StatEffectPopupWindowsDistance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/StatEffectPopup/StatEffectPopupHandler.cs" line="7" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/StatEffectPopup/StatEffectPopupHandler.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_stat_effect_popup_handler_1a53b6b9f2569a7a93a1bc706f5d5d322c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void StatEffectPopupHandler.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>StatEffectPopupHandler.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/StatEffectPopup/StatEffectPopupHandler.cs" line="10" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/StatEffectPopup/StatEffectPopupHandler.cs" bodystart="10" bodyend="16"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_stat_effect_popup_handler_1ada5885832a010d63b8240536591d674c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void StatEffectPopupHandler.ShowPopupWindows</definition>
+        <argsstring>(int EntityId, string statBonusText, float value, bool isPercent, Color color)</argsstring>
+        <name>ShowPopupWindows</name>
+        <qualifiedname>StatEffectPopupHandler.ShowPopupWindows</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>EntityId</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>statBonusText</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>isPercent</declname>
+        </param>
+        <param>
+          <type>Color</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/StatEffectPopup/StatEffectPopupHandler.cs" line="18" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/StatEffectPopup/StatEffectPopupHandler.cs" bodystart="18" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="class_stat_effect_popup_handler_1a5c561c7ea2755e03ee321e6a61264be8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void StatEffectPopupHandler.HidePopupWindow</definition>
+        <argsstring>(int powerStructureId)</argsstring>
+        <name>HidePopupWindow</name>
+        <qualifiedname>StatEffectPopupHandler.HidePopupWindow</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>powerStructureId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/StatEffectPopup/StatEffectPopupHandler.cs" line="38" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/StatEffectPopup/StatEffectPopupHandler.cs" bodystart="38" bodyend="47"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>StatEffectPopupHandler</label>
+        <link refid="class_stat_effect_popup_handler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>StatEffectPopupHandler</label>
+        <link refid="class_stat_effect_popup_handler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/StatEffectPopup/StatEffectPopupHandler.cs" line="4" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/StatEffectPopup/StatEffectPopupHandler.cs" bodystart="5" bodyend="48"/>
+    <listofallmembers>
+      <member refid="class_stat_effect_popup_handler_1a0c641e3a667717993d9a3e229c12e3db" prot="private" virt="non-virtual"><scope>StatEffectPopupHandler</scope><name>_popupWindowHandlers</name></member>
+      <member refid="class_stat_effect_popup_handler_1a53b6b9f2569a7a93a1bc706f5d5d322c" prot="private" virt="non-virtual"><scope>StatEffectPopupHandler</scope><name>Awake</name></member>
+      <member refid="class_stat_effect_popup_handler_1a5c561c7ea2755e03ee321e6a61264be8" prot="public" virt="non-virtual"><scope>StatEffectPopupHandler</scope><name>HidePopupWindow</name></member>
+      <member refid="class_stat_effect_popup_handler_1ada5885832a010d63b8240536591d674c" prot="public" virt="non-virtual"><scope>StatEffectPopupHandler</scope><name>ShowPopupWindows</name></member>
+      <member refid="class_stat_effect_popup_handler_1ab0162b6109186f79ac36fb258ef03498" prot="private" virt="non-virtual"><scope>StatEffectPopupHandler</scope><name>StatEffectPopupWindowsDistance</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

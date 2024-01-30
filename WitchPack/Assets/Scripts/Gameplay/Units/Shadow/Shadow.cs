@@ -17,11 +17,12 @@ public class Shadow : MonoBehaviour
     private Shaman _shaman;
     private bool _isActive;
 
-    private Dictionary<StatType, int> currentStatPSEffects = new Dictionary<StatType, int>();
+    private Dictionary<StatType, int> currentStatPSEffects;
 
 
     public void Show(Shaman shaman)
     {
+        currentStatPSEffects = new Dictionary<StatType, int>();
         _stats = shaman.Stats;
         spriteRenderer.sprite = shaman.ShamanConfig.UnitSprite;
         _shaman = shaman;

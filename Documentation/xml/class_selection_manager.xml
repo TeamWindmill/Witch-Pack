@@ -1,0 +1,408 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_selection_manager" kind="class" language="C#" prot="public">
+    <compoundname>SelectionManager</compoundname>
+    <basecompoundref refid="class_mono_singleton" prot="public" virt="non-virtual">MonoSingleton&lt; SelectionManager &gt;</basecompoundref>
+      <sectiondef kind="event">
+      <memberdef kind="event" id="class_selection_manager_1a0a311e14d55c7ae746453563cd027888" prot="public" static="no" add="no" remove="no" raise="no">
+        <type>Action&lt; <ref refid="class_shaman" kindref="compound">Shaman</ref> &gt;</type>
+        <definition>Action&lt;Shaman&gt; SelectionManager.OnShamanMoveSelect</definition>
+        <argsstring></argsstring>
+        <name>OnShamanMoveSelect</name>
+        <qualifiedname>SelectionManager.OnShamanMoveSelect</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" line="9" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="event" id="class_selection_manager_1a2c980675cb8904b489f3efdd27ab5342" prot="public" static="no" add="no" remove="no" raise="no">
+        <type>Action&lt; <ref refid="class_shaman" kindref="compound">Shaman</ref> &gt;</type>
+        <definition>Action&lt;Shaman&gt; SelectionManager.OnShamanInfoSelect</definition>
+        <argsstring></argsstring>
+        <name>OnShamanInfoSelect</name>
+        <qualifiedname>SelectionManager.OnShamanInfoSelect</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" line="10" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="event" id="class_selection_manager_1a01f66e53bd3bc2d174c1072e5b630da8" prot="public" static="no" add="no" remove="no" raise="no">
+        <type>Action&lt; <ref refid="class_shaman" kindref="compound">Shaman</ref> &gt;</type>
+        <definition>Action&lt;Shaman&gt; SelectionManager.OnShamanDeselected</definition>
+        <argsstring></argsstring>
+        <name>OnShamanDeselected</name>
+        <qualifiedname>SelectionManager.OnShamanDeselected</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" line="11" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_selection_manager_1a2b7b660030f1b21012849ee0dc302e0c" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>SelectionType</type>
+        <definition>SelectionType SelectionManager.SelectMode</definition>
+        <argsstring></argsstring>
+        <name>SelectMode</name>
+        <qualifiedname>SelectionManager.SelectMode</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" line="12" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_selection_manager_1ab3e6cfd307ee607335c6c7fcb4518dd6" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_shaman" kindref="compound">Shaman</ref></type>
+        <definition>Shaman SelectionManager.SelectedShaman</definition>
+        <argsstring></argsstring>
+        <name>SelectedShaman</name>
+        <qualifiedname>SelectionManager.SelectedShaman</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" line="13" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_selection_manager_1a4e8f11be49f430d8c3ad7950669560e3" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_shadow" kindref="compound">Shadow</ref></type>
+        <definition>Shadow SelectionManager.Shadow</definition>
+        <argsstring></argsstring>
+        <name>Shadow</name>
+        <qualifiedname>SelectionManager.Shadow</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" line="14" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_selection_manager_1abef90116c39b006a288c9f90ca3a415e" prot="private" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool SelectionManager._mouseOverSelectionUI</definition>
+        <argsstring></argsstring>
+        <name>_mouseOverSelectionUI</name>
+        <qualifiedname>SelectionManager._mouseOverSelectionUI</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" line="20" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_selection_manager_1a50ba2913924fd0dff80c8c01cbec0d94" prot="private" static="no" mutable="no">
+        <type><ref refid="class_shadow" kindref="compound">Shadow</ref></type>
+        <definition>Shadow SelectionManager.shadow</definition>
+        <argsstring></argsstring>
+        <name>shadow</name>
+        <qualifiedname>SelectionManager.shadow</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" line="16" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_selection_manager_1a702a46c1f7dd90255a7fa6614cea0287" prot="private" static="no" mutable="no">
+        <type><ref refid="class_shaman" kindref="compound">Shaman</ref></type>
+        <definition>Shaman SelectionManager._selectedShaman</definition>
+        <argsstring></argsstring>
+        <name>_selectedShaman</name>
+        <qualifiedname>SelectionManager._selectedShaman</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" line="21" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_selection_manager_1afa039962a6dce3ad2e1aea18da2c8a4f" prot="private" static="no" mutable="no">
+        <type>SelectionType</type>
+        <definition>SelectionType SelectionManager._selectMode</definition>
+        <argsstring></argsstring>
+        <name>_selectMode</name>
+        <qualifiedname>SelectionManager._selectMode</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" line="22" column="27" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_selection_manager_1a7ac5343036a5cddfcbb357014dc97ed5" prot="private" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int SelectionManager.LEFT_CLICK</definition>
+        <argsstring></argsstring>
+        <name>LEFT_CLICK</name>
+        <qualifiedname>SelectionManager.LEFT_CLICK</qualifiedname>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" line="17" column="23" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_selection_manager_1adf73fcc01e99a70060e9f62c9ac98a06" prot="private" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int SelectionManager.RIGHT_CLICK</definition>
+        <argsstring></argsstring>
+        <name>RIGHT_CLICK</name>
+        <qualifiedname>SelectionManager.RIGHT_CLICK</qualifiedname>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" line="18" column="23" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_selection_manager_1ad320beefb3f9508adc9d92f5e5205c2d" prot="private" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int SelectionManager.MIDDLE_CLICK</definition>
+        <argsstring></argsstring>
+        <name>MIDDLE_CLICK</name>
+        <qualifiedname>SelectionManager.MIDDLE_CLICK</qualifiedname>
+        <initializer>= 2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" line="19" column="23" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_selection_manager_1af6d089d248f87468e84da07282d48609" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void SelectionManager.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>SelectionManager.Awake</qualifiedname>
+        <reimplements refid="class_mono_singleton_1a04acead2ed3d970430f4c8c7716071f1">Awake</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" line="24" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" bodystart="24" bodyend="32"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_selection_manager_1a72967a2f50fa7f3bc861242cc07c7e92" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelectionManager.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>SelectionManager.Start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" line="33" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" bodystart="33" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="class_selection_manager_1a87574f3b4d8bb7e89356d075a7a04d01" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelectionManager.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>SelectionManager.Update</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" line="52" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" bodystart="52" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="class_selection_manager_1a7272440e8b065159dd8354a5a2946d19" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelectionManager.ShamanMoveSelect</definition>
+        <argsstring>(Shaman shaman)</argsstring>
+        <name>ShamanMoveSelect</name>
+        <qualifiedname>SelectionManager.ShamanMoveSelect</qualifiedname>
+        <param>
+          <type><ref refid="class_shaman" kindref="compound">Shaman</ref></type>
+          <declname>shaman</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" line="108" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" bodystart="108" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="class_selection_manager_1a1e2a79bc2985c420325f67a968a491a6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelectionManager.ShamanInfoSelect</definition>
+        <argsstring>(Shaman shaman)</argsstring>
+        <name>ShamanInfoSelect</name>
+        <qualifiedname>SelectionManager.ShamanInfoSelect</qualifiedname>
+        <param>
+          <type><ref refid="class_shaman" kindref="compound">Shaman</ref></type>
+          <declname>shaman</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" line="123" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" bodystart="123" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="class_selection_manager_1a3a76a686eeb8c6b6df9ee54e9d7d0377" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelectionManager.ShamanDeselect</definition>
+        <argsstring>(Shaman shaman)</argsstring>
+        <name>ShamanDeselect</name>
+        <qualifiedname>SelectionManager.ShamanDeselect</qualifiedname>
+        <param>
+          <type><ref refid="class_shaman" kindref="compound">Shaman</ref></type>
+          <declname>shaman</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" line="135" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" bodystart="135" bodyend="147"/>
+      </memberdef>
+      <memberdef kind="function" id="class_selection_manager_1af06708adb8f04e307f0d59aa9d757722" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelectionManager.OnSelectionUIMouseEnter</definition>
+        <argsstring>()</argsstring>
+        <name>OnSelectionUIMouseEnter</name>
+        <qualifiedname>SelectionManager.OnSelectionUIMouseEnter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" line="148" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" bodystart="148" bodyend="152"/>
+      </memberdef>
+      <memberdef kind="function" id="class_selection_manager_1afcdc5cf65edb255ac2c372f0968a4a3a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelectionManager.OnSelectionUIMouseExit</definition>
+        <argsstring>()</argsstring>
+        <name>OnSelectionUIMouseExit</name>
+        <qualifiedname>SelectionManager.OnSelectionUIMouseExit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" line="153" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" bodystart="153" bodyend="157"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_selection_manager_1a500abaf195d7692940fbbeb9e35f8b5e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SelectionManager.SetSelectedShaman</definition>
+        <argsstring>(Shaman selectedShaman, SelectionType selectMode)</argsstring>
+        <name>SetSelectedShaman</name>
+        <qualifiedname>SelectionManager.SetSelectedShaman</qualifiedname>
+        <param>
+          <type><ref refid="class_shaman" kindref="compound">Shaman</ref></type>
+          <declname>selectedShaman</declname>
+        </param>
+        <param>
+          <type>SelectionType</type>
+          <declname>selectMode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" line="38" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" bodystart="38" bodyend="50"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoSingleton&lt; SelectionManager &gt;</label>
+        <link refid="class_mono_singleton"/>
+      </node>
+      <node id="1">
+        <label>SelectionManager</label>
+        <link refid="class_selection_manager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>MonoSingleton&lt; SelectionManager &gt;</label>
+        <link refid="class_mono_singleton"/>
+      </node>
+      <node id="1">
+        <label>SelectionManager</label>
+        <link refid="class_selection_manager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" line="7" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Managers/SelectionManager.cs" bodystart="8" bodyend="158"/>
+    <listofallmembers>
+      <member refid="class_selection_manager_1abef90116c39b006a288c9f90ca3a415e" prot="private" virt="non-virtual"><scope>SelectionManager</scope><name>_mouseOverSelectionUI</name></member>
+      <member refid="class_selection_manager_1a702a46c1f7dd90255a7fa6614cea0287" prot="private" virt="non-virtual"><scope>SelectionManager</scope><name>_selectedShaman</name></member>
+      <member refid="class_selection_manager_1afa039962a6dce3ad2e1aea18da2c8a4f" prot="private" virt="non-virtual"><scope>SelectionManager</scope><name>_selectMode</name></member>
+      <member refid="class_selection_manager_1af6d089d248f87468e84da07282d48609" prot="protected" virt="virtual"><scope>SelectionManager</scope><name>Awake</name></member>
+      <member refid="class_mono_singleton_1a5637ba1f44359d4610b5eba552ef5f57" prot="public" virt="non-virtual"><scope>SelectionManager</scope><name>Instance</name></member>
+      <member refid="class_selection_manager_1a7ac5343036a5cddfcbb357014dc97ed5" prot="private" virt="non-virtual"><scope>SelectionManager</scope><name>LEFT_CLICK</name></member>
+      <member refid="class_selection_manager_1ad320beefb3f9508adc9d92f5e5205c2d" prot="private" virt="non-virtual"><scope>SelectionManager</scope><name>MIDDLE_CLICK</name></member>
+      <member refid="class_mono_singleton_1af585390f9256dfc8be7c969ca9fb4d88" prot="protected" virt="virtual"><scope>SelectionManager</scope><name>OnDestroy</name></member>
+      <member refid="class_selection_manager_1af06708adb8f04e307f0d59aa9d757722" prot="private" virt="non-virtual"><scope>SelectionManager</scope><name>OnSelectionUIMouseEnter</name></member>
+      <member refid="class_selection_manager_1afcdc5cf65edb255ac2c372f0968a4a3a" prot="private" virt="non-virtual"><scope>SelectionManager</scope><name>OnSelectionUIMouseExit</name></member>
+      <member refid="class_selection_manager_1a01f66e53bd3bc2d174c1072e5b630da8" prot="public" virt="non-virtual"><scope>SelectionManager</scope><name>OnShamanDeselected</name></member>
+      <member refid="class_selection_manager_1a2c980675cb8904b489f3efdd27ab5342" prot="public" virt="non-virtual"><scope>SelectionManager</scope><name>OnShamanInfoSelect</name></member>
+      <member refid="class_selection_manager_1a0a311e14d55c7ae746453563cd027888" prot="public" virt="non-virtual"><scope>SelectionManager</scope><name>OnShamanMoveSelect</name></member>
+      <member refid="class_selection_manager_1adf73fcc01e99a70060e9f62c9ac98a06" prot="private" virt="non-virtual"><scope>SelectionManager</scope><name>RIGHT_CLICK</name></member>
+      <member refid="class_selection_manager_1ab3e6cfd307ee607335c6c7fcb4518dd6" prot="public" virt="non-virtual"><scope>SelectionManager</scope><name>SelectedShaman</name></member>
+      <member refid="class_selection_manager_1a2b7b660030f1b21012849ee0dc302e0c" prot="public" virt="non-virtual"><scope>SelectionManager</scope><name>SelectMode</name></member>
+      <member refid="class_selection_manager_1a500abaf195d7692940fbbeb9e35f8b5e" prot="public" virt="non-virtual"><scope>SelectionManager</scope><name>SetSelectedShaman</name></member>
+      <member refid="class_selection_manager_1a4e8f11be49f430d8c3ad7950669560e3" prot="public" virt="non-virtual"><scope>SelectionManager</scope><name>Shadow</name></member>
+      <member refid="class_selection_manager_1a50ba2913924fd0dff80c8c01cbec0d94" prot="private" virt="non-virtual"><scope>SelectionManager</scope><name>shadow</name></member>
+      <member refid="class_selection_manager_1a3a76a686eeb8c6b6df9ee54e9d7d0377" prot="private" virt="non-virtual"><scope>SelectionManager</scope><name>ShamanDeselect</name></member>
+      <member refid="class_selection_manager_1a1e2a79bc2985c420325f67a968a491a6" prot="private" virt="non-virtual"><scope>SelectionManager</scope><name>ShamanInfoSelect</name></member>
+      <member refid="class_selection_manager_1a7272440e8b065159dd8354a5a2946d19" prot="private" virt="non-virtual"><scope>SelectionManager</scope><name>ShamanMoveSelect</name></member>
+      <member refid="class_selection_manager_1a72967a2f50fa7f3bc861242cc07c7e92" prot="private" virt="non-virtual"><scope>SelectionManager</scope><name>Start</name></member>
+      <member refid="class_selection_manager_1a87574f3b4d8bb7e89356d075a7a04d01" prot="private" virt="non-virtual"><scope>SelectionManager</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

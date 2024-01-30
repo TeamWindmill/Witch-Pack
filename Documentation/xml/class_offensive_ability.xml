@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_offensive_ability" kind="class" language="C#" prot="public">
+    <compoundname>OffensiveAbility</compoundname>
+    <basecompoundref refid="class_base_ability" prot="public" virt="non-virtual">BaseAbility</basecompoundref>
+    <derivedcompoundref refid="class_multi_shot" prot="public" virt="non-virtual">MultiShot</derivedcompoundref>
+    <derivedcompoundref refid="class_piercing_shot" prot="public" virt="non-virtual">PiercingShot</derivedcompoundref>
+    <derivedcompoundref refid="class_shaman_auto_attack" prot="public" virt="non-virtual">ShamanAutoAttack</derivedcompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_offensive_ability_1a79272bd6e25cff60a2c72c5ecd1daad6" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int OffensiveAbility.baseDamage</definition>
+        <argsstring></argsstring>
+        <name>baseDamage</name>
+        <qualifiedname>OffensiveAbility.baseDamage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/OffensiveAbility.cs" line="7" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/OffensiveAbility.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_offensive_ability_1a5e7bdc74053f9917b67f8328f182be3c" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float OffensiveAbility.range</definition>
+        <argsstring></argsstring>
+        <name>range</name>
+        <qualifiedname>OffensiveAbility.range</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/OffensiveAbility.cs" line="8" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/OffensiveAbility.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_offensive_ability_1a67e346205c5de57518930688bde22528" prot="private" static="no" mutable="no">
+        <type><ref refid="struct_target_data" kindref="compound">TargetData</ref></type>
+        <definition>TargetData OffensiveAbility.targetData</definition>
+        <argsstring></argsstring>
+        <name>targetData</name>
+        <qualifiedname>OffensiveAbility.targetData</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/OffensiveAbility.cs" line="9" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/OffensiveAbility.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_offensive_ability_1aa21fbc7904d0a6bd6920c329a5427fb0" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int OffensiveAbility.BaseDamage</definition>
+        <argsstring></argsstring>
+        <name>BaseDamage</name>
+        <qualifiedname>OffensiveAbility.BaseDamage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/OffensiveAbility.cs" line="10" column="16" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/OffensiveAbility.cs" bodystart="10" bodyend="10"/>
+      </memberdef>
+      <memberdef kind="property" id="class_offensive_ability_1ae9b188c13c0e5f748aa42965a00776a9" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="struct_target_data" kindref="compound">TargetData</ref></type>
+        <definition>TargetData OffensiveAbility.TargetData</definition>
+        <argsstring></argsstring>
+        <name>TargetData</name>
+        <qualifiedname>OffensiveAbility.TargetData</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/OffensiveAbility.cs" line="11" column="23" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/OffensiveAbility.cs" bodystart="11" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="property" id="class_offensive_ability_1a749d154bcc24bc345467197d498414ce" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>float</type>
+        <definition>float OffensiveAbility.Range</definition>
+        <argsstring></argsstring>
+        <name>Range</name>
+        <qualifiedname>OffensiveAbility.Range</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/OffensiveAbility.cs" line="12" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/OffensiveAbility.cs" bodystart="12" bodyend="12"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>BaseAbility</label>
+        <link refid="class_base_ability"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>MultiShot</label>
+        <link refid="class_multi_shot"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>OffensiveAbility</label>
+        <link refid="class_offensive_ability"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>PiercingShot</label>
+        <link refid="class_piercing_shot"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="6">
+        <label>ShamanAutoAttack</label>
+        <link refid="class_shaman_auto_attack"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>BaseAbility</label>
+        <link refid="class_base_ability"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>OffensiveAbility</label>
+        <link refid="class_offensive_ability"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ScriptableObject</label>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/OffensiveAbility.cs" line="5" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/OffensiveAbility.cs" bodystart="6" bodyend="13"/>
+    <listofallmembers>
+      <member refid="class_base_ability_1a4b7e806dc8b1cbc488b817c68722c02d" prot="public" virt="non-virtual"><scope>OffensiveAbility</scope><name>AbilityUpgradeState</name></member>
+      <member refid="class_offensive_ability_1a79272bd6e25cff60a2c72c5ecd1daad6" prot="private" virt="non-virtual"><scope>OffensiveAbility</scope><name>baseDamage</name></member>
+      <member refid="class_offensive_ability_1aa21fbc7904d0a6bd6920c329a5427fb0" prot="public" virt="non-virtual"><scope>OffensiveAbility</scope><name>BaseDamage</name></member>
+      <member refid="class_base_ability_1a968e8be43ea3c4723835af42dfef1013" prot="public" virt="virtual"><scope>OffensiveAbility</scope><name>CastAbility</name></member>
+      <member refid="class_base_ability_1a44657c2d52b0d54eb612c6d1d4761059" prot="public" virt="non-virtual"><scope>OffensiveAbility</scope><name>Cd</name></member>
+      <member refid="class_base_ability_1af22e869eeae7577fa4dd2905499413b2" prot="public" virt="non-virtual"><scope>OffensiveAbility</scope><name>ChangeState</name></member>
+      <member refid="class_base_ability_1a5aea3aafc2682717987032d91dd0b9e0" prot="public" virt="non-virtual"><scope>OffensiveAbility</scope><name>Icon</name></member>
+      <member refid="class_base_ability_1a1321a7124bf63a58e53339ae6ecd3dbc" prot="public" virt="non-virtual"><scope>OffensiveAbility</scope><name>Name</name></member>
+      <member refid="class_base_ability_1acc3179013b808d10f8db1a4972409277" prot="public" virt="non-virtual"><scope>OffensiveAbility</scope><name>Penetration</name></member>
+      <member refid="class_offensive_ability_1a5e7bdc74053f9917b67f8328f182be3c" prot="private" virt="non-virtual"><scope>OffensiveAbility</scope><name>range</name></member>
+      <member refid="class_offensive_ability_1a749d154bcc24bc345467197d498414ce" prot="public" virt="non-virtual"><scope>OffensiveAbility</scope><name>Range</name></member>
+      <member refid="class_base_ability_1ad411eb286bc4eb6a1f7a979eaa259d16" prot="public" virt="non-virtual"><scope>OffensiveAbility</scope><name>StatusEffects</name></member>
+      <member refid="class_offensive_ability_1a67e346205c5de57518930688bde22528" prot="private" virt="non-virtual"><scope>OffensiveAbility</scope><name>targetData</name></member>
+      <member refid="class_offensive_ability_1ae9b188c13c0e5f748aa42965a00776a9" prot="public" virt="non-virtual"><scope>OffensiveAbility</scope><name>TargetData</name></member>
+      <member refid="class_base_ability_1a2bad9788d0af45c6c706e7cf64409ea9" prot="public" virt="non-virtual"><scope>OffensiveAbility</scope><name>Upgrades</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

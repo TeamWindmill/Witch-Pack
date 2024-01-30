@@ -11,6 +11,8 @@ public class AbilityUI : ClickableUIElement , IInit<UnitCastingHandler>
 
     private UnitCastingHandler _abilityCaster;
     private BaseAbility _baseAbility;
+
+    public BaseAbility BaseAbility => _baseAbility;
     //public bool IsActive => _isActive;
    // private bool _isActive = false;
 
@@ -37,13 +39,13 @@ public class AbilityUI : ClickableUIElement , IInit<UnitCastingHandler>
     public override void Hide()
     {
         base.Hide();
-//_isActive = false;
+        //_isActive = false;
     }
 
     private void Update()
     {
-      //  if (!_isActive) return;
-       // UpdateCooldownFillAmount(_abilityCaster);
+        //  if (!_isActive) return;
+        // UpdateCooldownFillAmount(_abilityCaster);
     }
 
     protected override void OnClick(PointerEventData eventData)

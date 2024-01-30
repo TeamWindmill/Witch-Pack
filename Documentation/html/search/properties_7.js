@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['icon_0',['Icon',['../class_base_ability.html#a5aea3aafc2682717987032d91dd0b9e0',1,'BaseAbility']]],
+  ['id_1',['Id',['../class_proximity_ring_handler.html#ae450f18b61d73c033cfc8819b9ded302',1,'ProximityRingHandler']]],
+  ['indicatormanager_2',['IndicatorManager',['../class_level_manager.html#aa5f05ee02a4eb991dd09029bb3e604e6',1,'LevelManager']]],
+  ['inidcatorpool_3',['InidcatorPool',['../class_pool_manager.html#aaf40e09af59976d29a035f0a4e418cb7',1,'PoolManager']]],
+  ['instance_4',['Instance',['../class_mono_singleton.html#a5637ba1f44359d4610b5eba552ef5f57',1,'MonoSingleton']]],
+  ['invincibletime_5',['InvincibleTime',['../class_unit_stats.html#a1c0a53ce5184a27fc9c9933d16ab5b4b',1,'UnitStats']]],
+  ['isactive_6',['IsActive',['../class_slow_motion_manager.html#a0089134191337e1d3e186b575d446c7a',1,'SlowMotionManager.IsActive()'],['../class_hero_selection_u_i.html#a1971d25a134d1438e4bb287a91115328',1,'HeroSelectionUI.IsActive()'],['../class_stat_effect_popup_window_handler.html#acf49b94837432b67b6612ca095bd6dd0',1,'StatEffectPopupWindowHandler.IsActive()'],['../class_time_buttons_u_i.html#abc8b7566ab195f9414a7e3aa71f62665',1,'TimeButtonsUI.IsActive()']]],
+  ['iscompleted_7',['IsCompleted',['../class_node_object.html#a674f26991318b82ebd7242fdb7f524d8',1,'NodeObject']]],
+  ['isfadein_8',['IsFadeIn',['../class_loading_screen_handler.html#a81b8a9c4fda6bae48f1efa4eb1ab6f6d',1,'LoadingScreenHandler']]],
+  ['ishover_9',['IsHover',['../class_click_helper.html#a8b96a4da1fe0380efac47977d0fdc171',1,'ClickHelper']]],
+  ['isinitialization_10',['IsInitialization',['../class_audio_filters.html#aa7bb73f6a71df601a91db9400616976e',1,'AudioFilters']]],
+  ['isloading_11',['IsLoading',['../class_scene_handler.html#acb7b4677839fa0f294cab7e020337460',1,'SceneHandler']]],
+  ['ismoving_12',['IsMoving',['../class_enemy.html#a36f0ec56edf2bc5b87243c921433de9d',1,'Enemy.IsMoving()'],['../class_unit_movement.html#a4e9f820f094d8731c04fee902f8e9f5f',1,'UnitMovement.IsMoving()']]],
+  ['istimestopped_13',['IsTimeStopped',['../class_g_a_m_e___t_i_m_e.html#a40f602a749178d119ca5de4741767981',1,'GAME_TIME']]],
+  ['isunlock_14',['IsUnlock',['../class_node_object.html#aa5a8dd748c1982b76e5b0e1a2ac31812',1,'NodeObject']]],
+  ['iswon_15',['IsWon',['../class_level_manager.html#aa950b569e65ab72beeced2e29142ca2a',1,'LevelManager']]]
+];

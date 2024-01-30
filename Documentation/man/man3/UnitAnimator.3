@@ -1,0 +1,62 @@
+.TH "UnitAnimator" 3 "Mon Jan 29 2024" "Version 0.096" "WitchPack" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+UnitAnimator
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits MonoBehaviour\&.
+.PP
+Inherited by \fBEnemyAnimator\fP, and \fBShamanAnimator\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBInit\fP (\fBBaseUnit\fP unit)"
+.br
+.ti -1c
+.RI "virtual void \fBDeathAnimationEnded\fP ()"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "abstract void \fBMoveAnimation\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBAttackAnimation\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBDeathAnimation\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBGetHitAnimation\fP (bool isCrit)"
+.br
+.ti -1c
+.RI "virtual void \fBFlipAnimations\fP (bool state)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "Animator \fBanimator\fP"
+.br
+.ti -1c
+.RI "\fBBaseUnit\fP \fBunit\fP"
+.br
+.in -1c
+.SS "Events"
+
+.in +1c
+.ti -1c
+.RI "Action \fBOnDeathAnimationEnd\fP"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for WitchPack from the source code\&.

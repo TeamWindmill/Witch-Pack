@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_shaman_config" kind="class" language="C#" prot="public">
+    <compoundname>ShamanConfig</compoundname>
+    <basecompoundref refid="class_base_unit_config" prot="public" virt="non-virtual">BaseUnitConfig</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_shaman_config_1a170a90298bc8fb96a4e3ada929c4a05e" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="class_base_ability" kindref="compound">BaseAbility</ref> &gt;</type>
+        <definition>List&lt;BaseAbility&gt; ShamanConfig.knownAbilities</definition>
+        <argsstring></argsstring>
+        <name>knownAbilities</name>
+        <qualifiedname>ShamanConfig.knownAbilities</qualifiedname>
+        <initializer>= new List&lt;<ref refid="class_base_ability" kindref="compound">BaseAbility</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Configs/ShamanConfig.cs" line="8" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Configs/ShamanConfig.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_shaman_config_1a21bfdd687aef6faff274f4a48d0aa024" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>List&lt; <ref refid="class_base_ability" kindref="compound">BaseAbility</ref> &gt;</type>
+        <definition>List&lt;BaseAbility&gt; ShamanConfig.KnownAbilities</definition>
+        <argsstring></argsstring>
+        <name>KnownAbilities</name>
+        <qualifiedname>ShamanConfig.KnownAbilities</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Configs/ShamanConfig.cs" line="11" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Configs/ShamanConfig.cs" bodystart="11" bodyend="11"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>BaseUnitConfig</label>
+        <link refid="class_base_unit_config"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="1">
+        <label>ShamanConfig</label>
+        <link refid="class_shaman_config"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>BaseUnitConfig</label>
+        <link refid="class_base_unit_config"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="1">
+        <label>ShamanConfig</label>
+        <link refid="class_shaman_config"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Configs/ShamanConfig.cs" line="6" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Configs/ShamanConfig.cs" bodystart="7" bodyend="12"/>
+    <listofallmembers>
+      <member refid="class_base_unit_config_1a22e725af8559abb49675c91efc3efc02" prot="public" virt="non-virtual"><scope>ShamanConfig</scope><name>BaseStats</name></member>
+      <member refid="class_shaman_config_1a170a90298bc8fb96a4e3ada929c4a05e" prot="private" virt="non-virtual"><scope>ShamanConfig</scope><name>knownAbilities</name></member>
+      <member refid="class_shaman_config_1a21bfdd687aef6faff274f4a48d0aa024" prot="public" virt="non-virtual"><scope>ShamanConfig</scope><name>KnownAbilities</name></member>
+      <member refid="class_base_unit_config_1a890efc8994be310093e5173848dc7bce" prot="public" virt="non-virtual"><scope>ShamanConfig</scope><name>Name</name></member>
+      <member refid="class_base_unit_config_1a6169fcf5ca889425523295da9378f30b" prot="public" virt="non-virtual"><scope>ShamanConfig</scope><name>UnitIcon</name></member>
+      <member refid="class_base_unit_config_1a2fe4c8d8251764eed52bfe5a2e773e5c" prot="public" virt="non-virtual"><scope>ShamanConfig</scope><name>UnitSprite</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

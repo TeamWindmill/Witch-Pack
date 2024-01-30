@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_scene_editor" kind="class" language="C#" prot="public">
+    <compoundname>SceneEditor</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">OdinMenuEditorWindow</basecompoundref>
+    <innerclass refid="class_scene_editor_1_1_new_scene_class" prot="public">SceneEditor::NewSceneClass</innerclass>
+    <innerclass refid="class_scene_editor_1_1_scene_editor_cache" prot="public">SceneEditor::SceneEditorCache</innerclass>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_scene_editor_1a8ff6584458c64349956b8e64d29e84e0" prot="private" static="yes" mutable="no">
+        <type>const string</type>
+        <definition>const string SceneEditor.PRODUCTION_PATH</definition>
+        <argsstring></argsstring>
+        <name>PRODUCTION_PATH</name>
+        <qualifiedname>SceneEditor.PRODUCTION_PATH</qualifiedname>
+        <initializer>= &quot;Assets/Scenes/Production&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" line="18" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_scene_editor_1ac7a73be1dbab1b1011f2e74f09ec184f" prot="private" static="yes" mutable="no">
+        <type>const string</type>
+        <definition>const string SceneEditor.TEST_PATH</definition>
+        <argsstring></argsstring>
+        <name>TEST_PATH</name>
+        <qualifiedname>SceneEditor.TEST_PATH</qualifiedname>
+        <initializer>= &quot;Assets/Scenes/Testing&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" line="19" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_scene_editor_1a4266ed4f04c84257c2977cf3c34ce668" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void SceneEditor.OpenWindow</definition>
+        <argsstring>()</argsstring>
+        <name>OpenWindow</name>
+        <qualifiedname>SceneEditor.OpenWindow</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" line="22" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" bodystart="22" bodyend="26"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_scene_editor_1afde50e59d51a1b20a90398f4d2a5cf88" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void SceneEditor.OnEnable</definition>
+        <argsstring>()</argsstring>
+        <name>OnEnable</name>
+        <qualifiedname>SceneEditor.OnEnable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" line="28" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" bodystart="28" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="class_scene_editor_1a4987015acafdea846ac9d0a06f94a80d" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void SceneEditor.OnDestroy</definition>
+        <argsstring>()</argsstring>
+        <name>OnDestroy</name>
+        <qualifiedname>SceneEditor.OnDestroy</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" line="34" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" bodystart="34" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="class_scene_editor_1af42707ac71b5a7c0158549f01cfd1acf" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override OdinMenuTree</type>
+        <definition>override OdinMenuTree SceneEditor.BuildMenuTree</definition>
+        <argsstring>()</argsstring>
+        <name>BuildMenuTree</name>
+        <qualifiedname>SceneEditor.BuildMenuTree</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" line="40" column="37" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" bodystart="40" bodyend="70"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_scene_editor_1a21d006396fc5b7b46cf21024018db41b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string SceneEditor.Path</definition>
+        <argsstring>(SceneType path)</argsstring>
+        <name>Path</name>
+        <qualifiedname>SceneEditor.Path</qualifiedname>
+        <param>
+          <type>SceneType</type>
+          <declname>path</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" line="72" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" bodystart="72" bodyend="83"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>OdinMenuEditorWindow</label>
+      </node>
+      <node id="1">
+        <label>SceneEditor</label>
+        <link refid="class_scene_editor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>OdinMenuEditorWindow</label>
+      </node>
+      <node id="1">
+        <label>SceneEditor</label>
+        <link refid="class_scene_editor"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" line="16" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/SceneHelper.cs" bodystart="17" bodyend="160"/>
+    <listofallmembers>
+      <member refid="class_scene_editor_1af42707ac71b5a7c0158549f01cfd1acf" prot="protected" virt="non-virtual"><scope>SceneEditor</scope><name>BuildMenuTree</name></member>
+      <member refid="class_scene_editor_1a4987015acafdea846ac9d0a06f94a80d" prot="protected" virt="non-virtual"><scope>SceneEditor</scope><name>OnDestroy</name></member>
+      <member refid="class_scene_editor_1afde50e59d51a1b20a90398f4d2a5cf88" prot="protected" virt="non-virtual"><scope>SceneEditor</scope><name>OnEnable</name></member>
+      <member refid="class_scene_editor_1a4266ed4f04c84257c2977cf3c34ce668" prot="private" virt="non-virtual"><scope>SceneEditor</scope><name>OpenWindow</name></member>
+      <member refid="class_scene_editor_1a21d006396fc5b7b46cf21024018db41b" prot="public" virt="non-virtual"><scope>SceneEditor</scope><name>Path</name></member>
+      <member refid="class_scene_editor_1a8ff6584458c64349956b8e64d29e84e0" prot="private" virt="non-virtual"><scope>SceneEditor</scope><name>PRODUCTION_PATH</name></member>
+      <member refid="class_scene_editor_1ac7a73be1dbab1b1011f2e74f09ec184f" prot="private" virt="non-virtual"><scope>SceneEditor</scope><name>TEST_PATH</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

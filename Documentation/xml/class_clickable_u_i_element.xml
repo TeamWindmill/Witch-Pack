@@ -1,0 +1,384 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_clickable_u_i_element" kind="class" language="C#" prot="public">
+    <compoundname>ClickableUIElement</compoundname>
+    <basecompoundref refid="class_u_i_element" prot="public" virt="non-virtual">UIElement</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IPointerEnterHandler</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IPointerExitHandler</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IPointerClickHandler</basecompoundref>
+    <derivedcompoundref refid="class_ability_u_i" prot="public" virt="non-virtual">AbilityUI</derivedcompoundref>
+    <derivedcompoundref refid="class_ability_upgrade_u_i" prot="public" virt="non-virtual">AbilityUpgradeUI</derivedcompoundref>
+    <derivedcompoundref refid="class_shaman_u_i_handler" prot="public" virt="non-virtual">ShamanUIHandler</derivedcompoundref>
+    <derivedcompoundref refid="class_time_buttons_u_i" prot="public" virt="non-virtual">TimeButtonsUI</derivedcompoundref>
+      <sectiondef kind="event">
+      <memberdef kind="event" id="class_clickable_u_i_element_1ad0acfe49f88a9178cb1cdd27eec26129" prot="public" static="no" add="no" remove="no" raise="no">
+        <type>Action</type>
+        <definition>Action ClickableUIElement.OnClickEvent</definition>
+        <argsstring></argsstring>
+        <name>OnClickEvent</name>
+        <qualifiedname>ClickableUIElement.OnClickEvent</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" line="9" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="event" id="class_clickable_u_i_element_1ae69de51d56ff92c84bdb79bda89fc765" prot="public" static="no" add="no" remove="no" raise="no">
+        <type>Action</type>
+        <definition>Action ClickableUIElement.OnDoubleClickEvent</definition>
+        <argsstring></argsstring>
+        <name>OnDoubleClickEvent</name>
+        <qualifiedname>ClickableUIElement.OnDoubleClickEvent</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" line="10" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="event" id="class_clickable_u_i_element_1a063feae7d6c0f3d86d70272c2c5ae395" prot="public" static="no" add="no" remove="no" raise="no">
+        <type>Action</type>
+        <definition>Action ClickableUIElement.OnEnter</definition>
+        <argsstring></argsstring>
+        <name>OnEnter</name>
+        <qualifiedname>ClickableUIElement.OnEnter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" line="11" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="event" id="class_clickable_u_i_element_1a02ae25a2c18d2a1e54e55c71f9314f71" prot="public" static="no" add="no" remove="no" raise="no">
+        <type>Action</type>
+        <definition>Action ClickableUIElement.OnExit</definition>
+        <argsstring></argsstring>
+        <name>OnExit</name>
+        <qualifiedname>ClickableUIElement.OnExit</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" line="12" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_clickable_u_i_element_1a1620eb3eadbe38bbf50e22098fde3df9" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ClickableUIElement.enableDoubleClick</definition>
+        <argsstring></argsstring>
+        <name>enableDoubleClick</name>
+        <qualifiedname>ClickableUIElement.enableDoubleClick</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" line="14" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_clickable_u_i_element_1ae53c2f2b7d2c5e89cd9878eade67f6ed" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ClickableUIElement.doubleClickSpeed</definition>
+        <argsstring></argsstring>
+        <name>doubleClickSpeed</name>
+        <qualifiedname>ClickableUIElement.doubleClickSpeed</qualifiedname>
+        <initializer>= 0.5f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" line="17" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_clickable_u_i_element_1a0b9e0b15eff222e0210826654e583dcf" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ClickableUIElement._clickNum</definition>
+        <argsstring></argsstring>
+        <name>_clickNum</name>
+        <qualifiedname>ClickableUIElement._clickNum</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" line="19" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_clickable_u_i_element_1afdfde1366871adec6e24e4720e100df9" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ClickableUIElement._doubleClickTimer</definition>
+        <argsstring></argsstring>
+        <name>_doubleClickTimer</name>
+        <qualifiedname>ClickableUIElement._doubleClickTimer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" line="21" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_clickable_u_i_element_1a31b399415af82e73171579d81547b839" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ClickableUIElement.OnPointerEnter</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnPointerEnter</name>
+        <qualifiedname>ClickableUIElement.OnPointerEnter</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" line="23" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_clickable_u_i_element_1a10f8b01cbe05882efec128490f892cb9" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ClickableUIElement.OnPointerExit</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnPointerExit</name>
+        <qualifiedname>ClickableUIElement.OnPointerExit</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" line="25" column="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_clickable_u_i_element_1a4d7c1b5b773d280021e5ad8928b16400" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ClickableUIElement.OnPointerClick</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnPointerClick</name>
+        <qualifiedname>ClickableUIElement.OnPointerClick</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" line="28" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" bodystart="28" bodyend="39"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_clickable_u_i_element_1ab0d326d65a8fc27b12a4b36c6aa50ea4" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ClickableUIElement.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>ClickableUIElement.Update</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" line="41" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" bodystart="41" bodyend="53"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_clickable_u_i_element_1a09584a1be77d48508280178a3dbb5351" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ClickableUIElement.OnClick</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnClick</name>
+        <qualifiedname>ClickableUIElement.OnClick</qualifiedname>
+        <reimplementedby refid="class_ability_u_i_1a80eb55020e6849ad58af16e92db2f62e">OnClick</reimplementedby>
+        <reimplementedby refid="class_ability_upgrade_u_i_1a381d4ff3f9ba7aa4fe2b6800b229f532">OnClick</reimplementedby>
+        <reimplementedby refid="class_time_buttons_u_i_1a268fc9446d8cc55c7880ee5f9c2c916c">OnClick</reimplementedby>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" line="55" column="28" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" bodystart="55" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="class_clickable_u_i_element_1a81dd5d0a87be09dfaf6221a552ca6f6f" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ClickableUIElement.OnDoubleClick</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnDoubleClick</name>
+        <qualifiedname>ClickableUIElement.OnDoubleClick</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" line="64" column="28" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" bodystart="64" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="class_clickable_u_i_element_1a67b1c871bb67d64364dfda29ccc979fe" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void ClickableUIElement.OnDisable</definition>
+        <argsstring>()</argsstring>
+        <name>OnDisable</name>
+        <qualifiedname>ClickableUIElement.OnDisable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" line="71" column="28" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" bodystart="71" bodyend="75"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="7">
+        <label>AbilityUI</label>
+        <link refid="class_ability_u_i"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>AbilityUpgradeUI</label>
+        <link refid="class_ability_upgrade_u_i"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>ClickableUIElement</label>
+        <link refid="class_clickable_u_i_element"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>IPointerClickHandler</label>
+      </node>
+      <node id="4">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="5">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="3">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="9">
+        <label>ShamanUIHandler</label>
+        <link refid="class_shaman_u_i_handler"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>TimeButtonsUI</label>
+        <link refid="class_time_buttons_u_i"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>UIElement</label>
+        <link refid="class_u_i_element"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>ClickableUIElement</label>
+        <link refid="class_clickable_u_i_element"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>IPointerClickHandler</label>
+      </node>
+      <node id="4">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="5">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="3">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="2">
+        <label>UIElement</label>
+        <link refid="class_u_i_element"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" line="6" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/ClickableUIElement.cs" bodystart="7" bodyend="76"/>
+    <listofallmembers>
+      <member refid="class_clickable_u_i_element_1a0b9e0b15eff222e0210826654e583dcf" prot="private" virt="non-virtual"><scope>ClickableUIElement</scope><name>_clickNum</name></member>
+      <member refid="class_clickable_u_i_element_1afdfde1366871adec6e24e4720e100df9" prot="private" virt="non-virtual"><scope>ClickableUIElement</scope><name>_doubleClickTimer</name></member>
+      <member refid="class_u_i_element_1a2598524d3cda2b31cdb4e7d98c6c5929" prot="protected" virt="virtual"><scope>ClickableUIElement</scope><name>Awake</name></member>
+      <member refid="class_clickable_u_i_element_1ae53c2f2b7d2c5e89cd9878eade67f6ed" prot="private" virt="non-virtual"><scope>ClickableUIElement</scope><name>doubleClickSpeed</name></member>
+      <member refid="class_clickable_u_i_element_1a1620eb3eadbe38bbf50e22098fde3df9" prot="private" virt="non-virtual"><scope>ClickableUIElement</scope><name>enableDoubleClick</name></member>
+      <member refid="class_u_i_element_1a24b82c821a63e118fea9f8f15f6cf160" prot="public" virt="virtual"><scope>ClickableUIElement</scope><name>Hide</name></member>
+      <member refid="class_u_i_element_1a921de5874669c81d347319daf6836d4e" prot="protected" virt="non-virtual"><scope>ClickableUIElement</scope><name>isMouseOver</name></member>
+      <member refid="class_clickable_u_i_element_1a09584a1be77d48508280178a3dbb5351" prot="protected" virt="virtual"><scope>ClickableUIElement</scope><name>OnClick</name></member>
+      <member refid="class_clickable_u_i_element_1ad0acfe49f88a9178cb1cdd27eec26129" prot="public" virt="non-virtual"><scope>ClickableUIElement</scope><name>OnClickEvent</name></member>
+      <member refid="class_clickable_u_i_element_1a67b1c871bb67d64364dfda29ccc979fe" prot="protected" virt="virtual"><scope>ClickableUIElement</scope><name>OnDisable</name></member>
+      <member refid="class_clickable_u_i_element_1a81dd5d0a87be09dfaf6221a552ca6f6f" prot="protected" virt="virtual"><scope>ClickableUIElement</scope><name>OnDoubleClick</name></member>
+      <member refid="class_clickable_u_i_element_1ae69de51d56ff92c84bdb79bda89fc765" prot="public" virt="non-virtual"><scope>ClickableUIElement</scope><name>OnDoubleClickEvent</name></member>
+      <member refid="class_clickable_u_i_element_1a063feae7d6c0f3d86d70272c2c5ae395" prot="public" virt="non-virtual"><scope>ClickableUIElement</scope><name>OnEnter</name></member>
+      <member refid="class_clickable_u_i_element_1a02ae25a2c18d2a1e54e55c71f9314f71" prot="public" virt="non-virtual"><scope>ClickableUIElement</scope><name>OnExit</name></member>
+      <member refid="class_clickable_u_i_element_1a4d7c1b5b773d280021e5ad8928b16400" prot="public" virt="non-virtual"><scope>ClickableUIElement</scope><name>OnPointerClick</name></member>
+      <member refid="class_clickable_u_i_element_1a31b399415af82e73171579d81547b839" prot="public" virt="virtual"><scope>ClickableUIElement</scope><name>OnPointerEnter</name></member>
+      <member refid="class_clickable_u_i_element_1a10f8b01cbe05882efec128490f892cb9" prot="public" virt="virtual"><scope>ClickableUIElement</scope><name>OnPointerExit</name></member>
+      <member refid="class_u_i_element_1a6dd0e428ea7447dcf73f9c55058bef12" prot="public" virt="non-virtual"><scope>ClickableUIElement</scope><name>RectTransform</name></member>
+      <member refid="class_u_i_element_1a3fee91bfa7a1d6c7234132478e09e13a" prot="protected" virt="non-virtual"><scope>ClickableUIElement</scope><name>rectTransform</name></member>
+      <member refid="class_u_i_element_1a71cc42a801a53704f4dd442227f98af8" prot="public" virt="virtual"><scope>ClickableUIElement</scope><name>Show</name></member>
+      <member refid="class_u_i_element_1a5cec5ca3592e71bd009fb5913b1a299c" prot="protected" virt="non-virtual"><scope>ClickableUIElement</scope><name>uiGroup</name></member>
+      <member refid="class_clickable_u_i_element_1ab0d326d65a8fc27b12a4b36c6aa50ea4" prot="private" virt="non-virtual"><scope>ClickableUIElement</scope><name>Update</name></member>
+      <member refid="class_u_i_element_1ab917d89f32b29fa271cbbfb60f750a13" prot="public" virt="virtual"><scope>ClickableUIElement</scope><name>UpdateVisual</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

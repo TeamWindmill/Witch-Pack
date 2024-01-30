@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_shaman_auto_attack" kind="class" language="C#" prot="public">
+    <compoundname>ShamanAutoAttack</compoundname>
+    <basecompoundref refid="class_offensive_ability" prot="public" virt="non-virtual">OffensiveAbility</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_shaman_auto_attack_1acc7974feb64aab0077dc84a2a10be5ea" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override bool</type>
+        <definition>override bool ShamanAutoAttack.CastAbility</definition>
+        <argsstring>(BaseUnit caster)</argsstring>
+        <name>CastAbility</name>
+        <qualifiedname>ShamanAutoAttack.CastAbility</qualifiedname>
+        <reimplements refid="class_base_ability_1a968e8be43ea3c4723835af42dfef1013">CastAbility</reimplements>
+        <param>
+          <type><ref refid="class_base_unit" kindref="compound">BaseUnit</ref></type>
+          <declname>caster</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/ShamanAutoAttack.cs" line="8" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/ShamanAutoAttack.cs" bodystart="8" bodyend="21"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>BaseAbility</label>
+        <link refid="class_base_ability"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>OffensiveAbility</label>
+        <link refid="class_offensive_ability"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="1">
+        <label>ShamanAutoAttack</label>
+        <link refid="class_shaman_auto_attack"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>BaseAbility</label>
+        <link refid="class_base_ability"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>OffensiveAbility</label>
+        <link refid="class_offensive_ability"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="1">
+        <label>ShamanAutoAttack</label>
+        <link refid="class_shaman_auto_attack"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/ShamanAutoAttack.cs" line="6" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/ShamanAutoAttack.cs" bodystart="7" bodyend="22"/>
+    <listofallmembers>
+      <member refid="class_base_ability_1a4b7e806dc8b1cbc488b817c68722c02d" prot="public" virt="non-virtual"><scope>ShamanAutoAttack</scope><name>AbilityUpgradeState</name></member>
+      <member refid="class_offensive_ability_1aa21fbc7904d0a6bd6920c329a5427fb0" prot="public" virt="non-virtual"><scope>ShamanAutoAttack</scope><name>BaseDamage</name></member>
+      <member refid="class_shaman_auto_attack_1acc7974feb64aab0077dc84a2a10be5ea" prot="public" virt="virtual"><scope>ShamanAutoAttack</scope><name>CastAbility</name></member>
+      <member refid="class_base_ability_1a44657c2d52b0d54eb612c6d1d4761059" prot="public" virt="non-virtual"><scope>ShamanAutoAttack</scope><name>Cd</name></member>
+      <member refid="class_base_ability_1af22e869eeae7577fa4dd2905499413b2" prot="public" virt="non-virtual"><scope>ShamanAutoAttack</scope><name>ChangeState</name></member>
+      <member refid="class_base_ability_1a5aea3aafc2682717987032d91dd0b9e0" prot="public" virt="non-virtual"><scope>ShamanAutoAttack</scope><name>Icon</name></member>
+      <member refid="class_base_ability_1a1321a7124bf63a58e53339ae6ecd3dbc" prot="public" virt="non-virtual"><scope>ShamanAutoAttack</scope><name>Name</name></member>
+      <member refid="class_base_ability_1acc3179013b808d10f8db1a4972409277" prot="public" virt="non-virtual"><scope>ShamanAutoAttack</scope><name>Penetration</name></member>
+      <member refid="class_offensive_ability_1a749d154bcc24bc345467197d498414ce" prot="public" virt="non-virtual"><scope>ShamanAutoAttack</scope><name>Range</name></member>
+      <member refid="class_base_ability_1ad411eb286bc4eb6a1f7a979eaa259d16" prot="public" virt="non-virtual"><scope>ShamanAutoAttack</scope><name>StatusEffects</name></member>
+      <member refid="class_offensive_ability_1ae9b188c13c0e5f748aa42965a00776a9" prot="public" virt="non-virtual"><scope>ShamanAutoAttack</scope><name>TargetData</name></member>
+      <member refid="class_base_ability_1a2bad9788d0af45c6c706e7cf64409ea9" prot="public" virt="non-virtual"><scope>ShamanAutoAttack</scope><name>Upgrades</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
