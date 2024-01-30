@@ -1,3 +1,4 @@
+using DamageNumbersPro;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -18,6 +19,8 @@ public class WaveHandler : MonoBehaviour
     private int doneSpawningCounter;
     public int CurrentWave => _currentWave;
     public int TotalWaves => spawnData.Count;
+
+    [SerializeField] private PopupsManager popupsManager;
 
 
     public void Init()
@@ -93,7 +96,8 @@ public class WaveHandler : MonoBehaviour
                 break;
             }
 
-            GetSpawnPointFromIndex(givenGroup.SpawnerIndex).SpawnEnemy(givenGroup.Enemy);
+            Enemy spawnedEnemy = GetSpawnPointFromIndex(givenGroup.SpawnerIndex).SpawnEnemy(givenGroup.Enemy);
+            spawnedEnemy.Damageable.OnGetHit += popupsManager.SpawnDamagePopup;
             EnemyGroup group = givenGroup;
             group.NumSpawned++;
             givenGroup = group;
@@ -102,7 +106,6 @@ public class WaveHandler : MonoBehaviour
         }
         doneSpawningCounter++;
     }
-
 
     private EnemySpawnPoint GetSpawnPointFromIndex(int index)
     {
