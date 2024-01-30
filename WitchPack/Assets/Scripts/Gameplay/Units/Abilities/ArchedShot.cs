@@ -7,7 +7,6 @@ public class ArchedShot : TargetedShot
     [SerializeField] private int numOfPoint;
     private Vector3 offset;
     private const float DistanceToTarget = 1;
-
     private Vector3 initialPosition;
     private List<Vector3> allPositions;
     private bool setup;
@@ -61,14 +60,7 @@ public class ArchedShot : TargetedShot
         }
         else
         {
-            if (target.Damageable.CurrentHp > 0)
-            {
-                transform.position = target.transform.position;
-            }
-            else if(ricochet == 0)
-            {
-                Disable();
-            }
+            transform.position = target.transform.position;
         }
     }
     private Vector3 CubicCurve(Vector3 start, Vector3 control1, Vector3 control2, Vector3 end, float t)

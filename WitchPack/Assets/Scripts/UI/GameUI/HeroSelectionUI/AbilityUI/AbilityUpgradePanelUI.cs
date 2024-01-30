@@ -72,6 +72,6 @@ public class AbilityUpgradePanelUI : UIElement, IInit<AbilityUI,Shaman>
 
     private void UpgradeShamanAbility(BaseAbility ability)
     {
-        _shaman.UpgradeAbility(_baseAbility,ability);
+        //_shaman.UpgradeAbility(_baseAbility,ability);
     }
 }

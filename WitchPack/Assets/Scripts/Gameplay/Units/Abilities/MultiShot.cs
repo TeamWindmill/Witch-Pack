@@ -29,7 +29,6 @@ public class MultiShot : OffensiveAbility
 
             if (i == 0)
             {
-                shot.SetRicochet(3, 10);
                 shot.Fire(caster, this, dir.normalized, foundTargets[i], Vector3.zero);
             }
             else if (i % 2 == 0)

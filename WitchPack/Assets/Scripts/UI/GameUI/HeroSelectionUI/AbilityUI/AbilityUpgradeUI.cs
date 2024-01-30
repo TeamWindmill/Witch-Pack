@@ -24,7 +24,7 @@ public class AbilityUpgradeUI : ClickableUIElement
         Show();
     }
 
-    public override void Show()
+  /*  public override void Show()
     {
         switch (_baseAbility.AbilityUpgradeState)
         {
@@ -68,7 +68,7 @@ public class AbilityUpgradeUI : ClickableUIElement
                 return;
         }
         base.OnClick(eventData);
-    }
+    }*/
 }
 
 public enum AbilityUpgradeState
