@@ -97,7 +97,7 @@ public class WaveHandler : MonoBehaviour
             }
 
             Enemy spawnedEnemy = GetSpawnPointFromIndex(givenGroup.SpawnerIndex).SpawnEnemy(givenGroup.Enemy);
-            spawnedEnemy.Damageable.OnGetHit += popupsManager.SpawnDamagePopup;
+            spawnedEnemy.Damageable.OnDamageCalc += popupsManager.SpawnDamagePopup;
             EnemyGroup group = givenGroup;
             group.NumSpawned++;
             givenGroup = group;
