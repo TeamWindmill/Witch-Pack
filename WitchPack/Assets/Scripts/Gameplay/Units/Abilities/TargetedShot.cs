@@ -1,15 +1,19 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
 public class TargetedShot : MonoBehaviour
 {
-    //this is essentially a projectile that cannot miss 
     [SerializeField] protected float speed;
     [SerializeField] private float maxTravelTime = 2f;
     protected BaseAbility ability;
     protected BaseUnit owner;
     protected BaseUnit target;
+    protected int ricochet;
+    protected float ricochetRange;
+    private int hits;
+    private List<BaseUnit> hitTargets;
     public void Fire(BaseUnit shooter, BaseAbility givenAbility, Vector2 dir, BaseUnit target)
     {
         owner = shooter;
@@ -19,6 +23,12 @@ public class TargetedShot : MonoBehaviour
         StartCoroutine(TravelTimeCountdown());
     }
 
+    public void SetRicochet(int numberOfJumps, float ricochetRange)
+    {
+        ricochet = numberOfJumps;
+        this.ricochetRange = ricochetRange;
+        hitTargets = new List<BaseUnit>();
+    }
 
     protected void Rotate(Vector2 dir)
     {
@@ -32,6 +42,20 @@ public class TargetedShot : MonoBehaviour
         if (!ReferenceEquals(target, null) && !ReferenceEquals(ability, null) && ReferenceEquals(target, this.target))
         {
             target.Damageable.GetHit(owner.DamageDealer, ability);
+            if (ricochet > 0)
+            {
+                hitTargets.Add(target);
+                hits++;
+                if (hits <= ricochet)
+                {
+                    target = owner.TargetHelper.GetTarget(owner.Targeter.GetAvailableTargets(transform.position, ricochetRange), ability.TargetData, hitTargets);
+                    if (!ReferenceEquals(target, null))
+                    {
+                        StartCoroutine(TravelTimeCountdown());
+                        return;
+                    }
+                }
+            }
             Disable();
         }
     }
@@ -50,13 +74,20 @@ public class TargetedShot : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         yield return new WaitForEndOfFrame();
-        Disable();
+        transform.position = target.transform.position;
+        /*if (target.Damageable.CurrentHp >0)
+        {
+            Disable();
+        }*/
     }
 
     protected virtual void Disable()
     {
         owner = null;
         ability = null;
+        ricochet = 0;
+        hits = 0;
+        hitTargets?.Clear();
         gameObject.SetActive(false);
     }
 

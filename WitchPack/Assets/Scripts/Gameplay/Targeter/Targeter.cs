@@ -5,6 +5,7 @@ using UnityEngine;
 public class Targeter<T> : MonoBehaviour where T : Component
 {
     [SerializeField] private List<T> availableTargets = new List<T>();
+    [SerializeField] private LayerMask layer;
     public Action<T> OnTargetAdded;
     public Action<T> OnTargetLost;
 
@@ -65,7 +66,7 @@ public class Targeter<T> : MonoBehaviour where T : Component
 
     public List<T> GetAvailableTargets(Vector3 origin, float range)
     {
-        Collider2D[] foundColldiers = Physics2D.OverlapCircleAll(origin, range);
+        Collider2D[] foundColldiers = Physics2D.OverlapCircleAll(origin, range, layer);
         List<T> legalTargets = new List<T>();
 
         foreach (var item in foundColldiers)

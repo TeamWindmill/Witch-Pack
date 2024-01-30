@@ -67,23 +67,19 @@ public class Shaman : BaseUnit
         castingHandlers.Add(new UnitCastingHandler(this, ability));
     }
 
-    public void UpgradeAbility(BaseAbility currentAbility,BaseAbility upgradedAbility)
+    public void RemoveAbility(UnitCastingHandler caster)
     {
-        var abilityIndex = knownAbilities.IndexOf(currentAbility);
-        knownAbilities[abilityIndex] = upgradedAbility;
+        knownAbilities.Remove(caster.Ability);
+        castingHandlers.Remove(caster);
     }
 
-    public void RemoveAbility(BaseAbility ability)
+    //testing
+    [ContextMenu("UpgradeTest")]
+    public void UpgradeAbility()
     {
-        knownAbilities.Remove(ability);
-        foreach (var item in castingHandlers)
-        {
-            if (ReferenceEquals(item.Ability, ability))
-            {
-                castingHandlers.Remove(item);
-                break;
-            }
-        }
+        BaseAbility ability = castingHandlers[0].Ability;
+        RemoveAbility(castingHandlers[0]);
+        LearnAbility(ability.Upgrades[0]);
     }
 
     private void SetSelectedShaman(PointerEventData.InputButton button)

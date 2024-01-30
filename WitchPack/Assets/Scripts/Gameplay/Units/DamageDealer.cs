@@ -1,5 +1,6 @@
 using Sirenix.OdinInspector.Editor;
 using System;
+using UnityEngine;
 
 [System.Serializable]
 public class DamageDealer
@@ -19,6 +20,15 @@ public class DamageDealer
         OnHitTarget += SubscribeStatDamage;
     }
 
+
+    public bool CritChance(BaseAbility ability)
+    {
+        if (ReferenceEquals(ability, owner.AutoAttack) && UnityEngine.Random.Range(0,100) <= owner.Stats.CritChance)
+        {
+            return true;
+        }
+        return false;
+    }
 
     private void SubscribeStatDamage(Damageable target, DamageDealer dealer, DamageHandler dmg, BaseAbility ability, bool crit)
     {

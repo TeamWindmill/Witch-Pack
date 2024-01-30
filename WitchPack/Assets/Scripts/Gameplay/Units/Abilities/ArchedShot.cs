@@ -53,7 +53,7 @@ public class ArchedShot : TargetedShot
         }
         if (counter < allPositions.Count)
         {
-            transform.position = Vector3.MoveTowards(transform.position, allPositions[counter], GAME_TIME.GameDeltaTime * speed * 2);
+            transform.position = Vector3.MoveTowards(transform.position, allPositions[counter], GAME_TIME.GameDeltaTime * speed);
             if (Vector3.Distance(transform.position, allPositions[counter]) < DistanceToTarget)
             {
                 counter++;
@@ -65,7 +65,7 @@ public class ArchedShot : TargetedShot
             {
                 transform.position = target.transform.position;
             }
-            else
+            else if(ricochet == 0)
             {
                 Disable();
             }
