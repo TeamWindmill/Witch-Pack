@@ -71,6 +71,7 @@ public class WaveHandler : MonoBehaviour
         doneSpawningCounter = 0;
         for (int i = 0; i < givenData.TotalSpawns; i++) //loop over how many spawns there are in total
         {
+            Debug.Log("started spawning wave");
             for (int j = 0; j < givenData.Groups.Count; j++)
             {
                 if (givenData.Groups[j].SpawnedAtInterval <= i + 1)
@@ -92,7 +93,6 @@ public class WaveHandler : MonoBehaviour
             {
                 break;
             }
-
             GetSpawnPointFromIndex(givenGroup.SpawnerIndex).SpawnEnemy(givenGroup.Enemy);
             EnemyGroup group = givenGroup;
             group.NumSpawned++;
