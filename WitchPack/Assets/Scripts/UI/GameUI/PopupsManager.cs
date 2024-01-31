@@ -13,15 +13,12 @@ public class PopupsManager : MonoBehaviour
     private float _offsetDivider = 10;
     private Vector3 _offsetVector;
 
-    
+    public DamageNumber NumberPrefab { get => _numberPrefab; }
 
     private void Update()
     {
         _xOffset = Mathf.Sin(_sinSpeed * GAME_TIME.GameTime) * (_offsetMultiplier / _offsetDivider);
-
     }
-
-    public DamageNumber NumberPrefab { get => _numberPrefab; }
 
     public void SpawnDamagePopup(Damageable damageable, DamageDealer damageDealer, DamageHandler damage, BaseAbility ability, bool isCrit)
     {
@@ -32,5 +29,10 @@ public class PopupsManager : MonoBehaviour
             numberPopupColor = Color.yellow;
         }
         NumberPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, damage.GetFinalDamage(), numberPopupColor);
+    }
+
+    public void SpawnStatusEffectPopup(Damageable damageable, DamageDealer damageDealer, DamageHandler damage, BaseAbility ability, bool isCrit)
+    {
+
     }
 }
