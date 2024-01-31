@@ -78,8 +78,9 @@ public class Damageable
     public void TakeDamage(DamageHandler handler, DamageDealer dealer, BaseAbility attack, bool isCrit)
     {
         currentHp -= handler.GetFinalDamage();
-        Debug.Log($"{owner.gameObject} took {handler.GetFinalDamage()} damage from {dealer.Owner.name}");
+        //Debug.Log($"{owner.gameObject} took {handler.GetFinalDamage()} damage from {dealer.Owner.name}");
         OnDamageCalc?.Invoke(this,dealer,handler,attack, isCrit);
+
         if (currentHp <= 0)
         {
             OnDeath?.Invoke(this, dealer, handler, attack);

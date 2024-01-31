@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4399582254470398416}
-  - component: {fileID: 8270022412761042295}
   - component: {fileID: 3261136274232588628}
   - component: {fileID: 5556610855597039399}
+  - component: {fileID: 5594747279595605261}
   m_Layer: 8
-  m_Name: MultiShotPrefab
+  m_Name: MultiShotRicochet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35,24 +35,6 @@ Transform:
   - {fileID: 1901155593280489811}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8270022412761042295
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7951538307925724370}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18afa2a3397112e4d9fee874fce6ae1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  initialSpeed: 15
-  maxTravelTime: 2
-  OnShotHit:
-    m_PersistentCalls:
-      m_Calls: []
-  numOfPoint: 100
 --- !u!212 &3261136274232588628
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -140,6 +122,23 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &5594747279595605261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7951538307925724370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e19e720f716e044894bdd5270614778, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 3
+  maxTravelTime: 2
+  OnShotHit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &242116068346480021
 PrefabInstance:
   m_ObjectHideFlags: 0

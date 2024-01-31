@@ -10,6 +10,8 @@ public class WaveHandler : MonoBehaviour
     public event Action<int> OnWaveStart;
     public event Action<int> OnWaveEnd;
 
+
+
     [SerializeField] private EnemySpawnPoint[] spawnPoints;
     [SerializeField] private WaveData waveData; //wave data is supposed to be given to a room from the inspector in the editor and not in runtime
     [SerializeField] private float fixedSpawnInterval;
@@ -69,19 +71,22 @@ public class WaveHandler : MonoBehaviour
 
     private IEnumerator SpawnWave(EnemySpawnData givenData)
     {
-        doneSpawningCounter = 0;
+        
         for (int i = 0; i < givenData.TotalSpawns; i++) //loop over how many spawns there are in total
         {
+            int currentIntervalGoal = 0;
             for (int j = 0; j < givenData.Groups.Count; j++)
             {
                 if (givenData.Groups[j].SpawnedAtInterval <= i + 1)
                 {
                     StartCoroutine(SpawnGroupInterval(givenData.Groups[j]));
+                    currentIntervalGoal++;
                 }
             }
 
-            yield return new WaitUntil(() => doneSpawningCounter >= givenData.Groups.Count * (i + 1));
+            yield return new WaitUntil(() => doneSpawningCounter >= currentIntervalGoal);
             yield return StartCoroutine(IntervalDelay(givenData.TimeBetweenIntervals));
+            doneSpawningCounter = 0;
         }
     }
 
@@ -93,9 +98,8 @@ public class WaveHandler : MonoBehaviour
             {
                 break;
             }
+            GetSpawnPointFromIndex(givenGroup.SpawnerIndex).SpawnEnemy(givenGroup.Enemy);
 
-            Enemy spawnedEnemy = GetSpawnPointFromIndex(givenGroup.SpawnerIndex).SpawnEnemy(givenGroup.Enemy);
-            //spawnedEnemy.Damageable.OnDamageCalc += popupsManager.SpawnDamagePopup;
             EnemyGroup group = givenGroup;
             group.NumSpawned++;
             givenGroup = group;

@@ -8,6 +8,8 @@ public class EnemySpawnPoint : MonoBehaviour
 {
     [SerializeField] private PathCreator path;
     [SerializeField] private Indicatable indicateable; 
+
+
     public void SetIndicator(Sprite artwork ,float time, Action onClick)
     {
         indicateable.Init(artwork, onClick, time, true);
