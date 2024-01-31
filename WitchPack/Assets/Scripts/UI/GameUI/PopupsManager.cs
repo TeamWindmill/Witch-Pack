@@ -5,7 +5,7 @@ using DamageNumbersPro;
 
 public class PopupsManager : MonoBehaviour
 {
-    [SerializeField] private DamageNumber _numberPrefab;
+    [SerializeField] private DamageNumber popupPrefab;
     private float _xOffset;
     [SerializeField] private float _yOffset;
     [SerializeField] private float _sinSpeed;
@@ -13,7 +13,9 @@ public class PopupsManager : MonoBehaviour
     private float _offsetDivider = 10;
     private Vector3 _offsetVector;
 
-    public DamageNumber NumberPrefab { get => _numberPrefab; }
+    private Color _popupColor;
+
+    public DamageNumber PopupPrefab { get => popupPrefab; }
 
     private void Update()
     {
@@ -23,16 +25,39 @@ public class PopupsManager : MonoBehaviour
     public void SpawnDamagePopup(Damageable damageable, DamageDealer damageDealer, DamageHandler damage, BaseAbility ability, bool isCrit)
     {
         _offsetVector = new Vector3(_xOffset, _yOffset);
-        Color numberPopupColor = Color.white;
+        _popupColor = Color.white;
         if (isCrit)
         {
-            numberPopupColor = Color.yellow;
+            _popupColor = Color.red;
         }
-        NumberPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, damage.GetFinalDamage(), numberPopupColor);
+        PopupPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, damage.GetFinalDamage(), _popupColor);
     }
 
-    public void SpawnStatusEffectPopup(Damageable damageable, DamageDealer damageDealer, DamageHandler damage, BaseAbility ability, bool isCrit)
+    public void SpawnStatusEffectPopup(Effectable effectable, Affector affector, StatusEffect statusEffect)
     {
+        string statusEffectText = "";
 
+        switch(statusEffect.StatusEffectType)
+        {
+            case StatusEffectType.Root:
+                statusEffectText = "Root";
+                _popupColor = Color.green;
+                break;
+
+            case StatusEffectType.Slow:
+                statusEffectText = "Slow";
+                _popupColor = Color.yellow;
+                break;
+
+            case StatusEffectType.Charmed:
+                statusEffectText = "Charm";
+                _popupColor = Color.magenta;
+                break;
+
+            default:
+                return;
+        }
+
+        PopupPrefab.Spawn(effectable.Owner.transform.position, statusEffectText, _popupColor);
     }
 }

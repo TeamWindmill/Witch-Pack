@@ -10,15 +10,25 @@ public class StatusEffectConfig : ScriptableObject
         "Over Time means a stat will decrease every 1 second by a fixed amount until reaching the given amount 1 second before the duration ends")] 
     private StatusEffectProcess process;
     [SerializeField] private StatType statTypeAffected;//all stats you wish to affect on the target
+    [SerializeField] private StatusEffectType statusEffectType;
 
     public float Duration { get => duration; }
     public int Amount { get => amount; }
     public StatusEffectProcess Process { get => process; }
     public StatType StatTypeAffected { get => statTypeAffected; }
+    public StatusEffectType StatusEffectType { get => statusEffectType; }
 }
 
 public enum StatusEffectProcess
 {
     Instant, //change a value instantly for a duration
     OverTime//change value over a duration, every second the value will decrease or increase by a fixed amount
+}
+
+public enum StatusEffectType
+{
+    None,
+    Root,
+    Slow,
+    Charmed
 }
