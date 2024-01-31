@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using Unity.VisualScripting;
 
-public class SelectionManager : MonoSingleton<SelectionManager>
+public class SelectionManager : MonoBehaviour
 {
     public event Action<Shaman> OnShamanMoveSelect;
     public event Action<Shaman> OnShamanInfoSelect;
@@ -21,9 +21,9 @@ public class SelectionManager : MonoSingleton<SelectionManager>
     private Shaman _selectedShaman;
     private SelectionType _selectMode;
 
-    protected override void Awake()
+
+    protected void Awake()
     {
-        base.Awake();
         OnShamanMoveSelect += ShamanMoveSelect;
         OnShamanInfoSelect += ShamanInfoSelect;
         OnShamanDeselected += ShamanDeselect;

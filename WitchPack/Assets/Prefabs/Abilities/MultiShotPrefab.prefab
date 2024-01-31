@@ -47,8 +47,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18afa2a3397112e4d9fee874fce6ae1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  initialSpeed: 15
   maxTravelTime: 2
+  OnShotHit:
+    m_PersistentCalls:
+      m_Calls: []
   numOfPoint: 100
 --- !u!212 &3261136274232588628
 SpriteRenderer:
