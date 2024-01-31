@@ -16,6 +16,8 @@ public class PopupsManager : MonoBehaviour
     private Color _popupColor;
 
     string _statusEffectText;
+
+    [SerializeField] private StatusEffectTypeColorDictionary _dictionary;
     public DamageNumber PopupPrefab { get => popupPrefab; }
 
     private void Update()
@@ -39,22 +41,20 @@ public class PopupsManager : MonoBehaviour
     public void SpawnStatusEffectPopup(Effectable effectable, Affector affector, StatusEffect statusEffect)
     {
         _statusEffectText = "";
+        _popupColor = _dictionary.GetColorByStatusEffectType(statusEffect.StatusEffectType);
 
-        switch(statusEffect.StatusEffectType)
+        switch (statusEffect.StatusEffectType)
         {
             case StatusEffectType.Root:
-                _statusEffectText = "Root";
-                _popupColor = Color.green;
+                _statusEffectText = "Root";           
                 break;
 
             case StatusEffectType.Slow:
                 _statusEffectText = "Slow";
-                _popupColor = Color.yellow;
                 break;
 
-            case StatusEffectType.Charmed:
+            case StatusEffectType.Charm:
                 _statusEffectText = "Charm";
-                _popupColor = Color.magenta;
                 break;
 
             default:

@@ -30,5 +30,5 @@ public enum StatusEffectType
     None,
     Root,
     Slow,
-    Charmed
+    Charm
 }
