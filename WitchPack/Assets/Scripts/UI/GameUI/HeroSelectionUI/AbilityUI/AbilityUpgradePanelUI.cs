@@ -95,10 +95,9 @@ public class AbilityUpgradePanelUI : UIElement
     private void UpgradeShamanAbility(AbilityUpgradeUIButton abilityUpgradeButton)
     {
         var ability = abilityUpgradeButton.Ability;
-        _shaman.UpgradeAbility(_abilityUIButton.ActiveAbility,ability);
-        ability.UpgradeAbility();
         if (!ReferenceEquals(_abilityUIButton.ActiveAbility,null))
         {
+            _shaman.UpgradeAbility(_abilityUIButton.ActiveAbility,ability);
             if (_abilityUIButton.ActiveAbility.Upgrades.Length > 0)
             {
                 foreach (var upgrade in _abilityUIButton.ActiveAbility.Upgrades)
@@ -107,6 +106,10 @@ public class AbilityUpgradePanelUI : UIElement
                     upgrade.ChangeUpgradeState(AbilityUpgradeState.Locked);
                 }
             }
+        }
+        else
+        {
+            _shaman.LearnAbility(ability);
         }
         var caster = _shaman.GetCasterFromAbility(ability);
         _abilityUIButton.Init(_rootAbility,ability,caster);
