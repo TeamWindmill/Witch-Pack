@@ -7,7 +7,6 @@ public class ArchedShot : TargetedShot
     [SerializeField] private int numOfPoint;
     private Vector3 offset;
     private const float DistanceToTarget = 1;
-
     private Vector3 initialPosition;
     private List<Vector3> allPositions;
     private bool setup;
@@ -53,7 +52,7 @@ public class ArchedShot : TargetedShot
         }
         if (counter < allPositions.Count)
         {
-            transform.position = Vector3.MoveTowards(transform.position, allPositions[counter], GAME_TIME.GameDeltaTime * speed * 2);
+            transform.position = Vector3.MoveTowards(transform.position, allPositions[counter], GAME_TIME.GameDeltaTime * speed);
             if (Vector3.Distance(transform.position, allPositions[counter]) < DistanceToTarget)
             {
                 counter++;
@@ -61,14 +60,9 @@ public class ArchedShot : TargetedShot
         }
         else
         {
-            if (target.Damageable.CurrentHp > 0)
-            {
-                transform.position = target.transform.position;
-            }
-            else
-            {
-                Disable();
-            }
+            transform.position = target.transform.position;
+            setup = false;
+            Disable();
         }
     }
     private Vector3 CubicCurve(Vector3 start, Vector3 control1, Vector3 control2, Vector3 end, float t)
@@ -77,7 +71,7 @@ public class ArchedShot : TargetedShot
                 3 * (control1 - start)) * t + start;
     }
 
-    protected override void Disable()
+    public override void Disable()
     {
         base.Disable();
         setup = false;

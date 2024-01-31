@@ -16,6 +16,7 @@ public class ProximityRingsManager : MonoBehaviour
     private Dictionary<int, IDisposable> _activeStatusEffectOnShaman;
 
 
+
     public void Init(PowerStructureConfig powerStructureConfig)
     {
         float ringSpriteAlpha = powerStructureConfig.DefaultSpriteAlpha;

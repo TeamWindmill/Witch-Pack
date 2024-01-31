@@ -51,7 +51,7 @@ public class Damageable
         if (ability is OffensiveAbility)
         {
             DamageHandler dmg = new DamageHandler((ability as OffensiveAbility).BaseDamage);
-            if (UnityEngine.Random.Range(0, 100) <= dealer.Owner.Stats.CritChance)
+            if (dealer.CritChance(ability))
             {
                 dealer.OnHitTarget?.Invoke(this, dealer, dmg, ability, true);
                 OnGetHit?.Invoke(this, dealer, dmg, ability, true);
@@ -76,7 +76,7 @@ public class Damageable
     public void TakeDamage(DamageHandler handler, DamageDealer dealer, BaseAbility attack)
     {
         currentHp -= handler.GetFinalDamage();
-        Debug.Log($"{owner.gameObject} took {handler.GetFinalDamage()} damage from {dealer.Owner.name}");
+        //Debug.Log($"{owner.gameObject} took {handler.GetFinalDamage()} damage from {dealer.Owner.name}");
         OnDamageCalc?.Invoke(this,dealer,handler,attack);
         if (currentHp <= 0)
         {
@@ -97,8 +97,6 @@ public class Damageable
         ClampHp();
     }
 
-
-
     private void ClampHp()
     {
         currentHp = Mathf.Clamp(currentHp, 0, MaxHp);
@@ -108,7 +106,4 @@ public class Damageable
     {
         dmg.AddMod(1 - (owner.Stats.Armor / 100));
     }
-
-
-
 }

@@ -1,15 +1,23 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 
 public class TargetedShot : MonoBehaviour
 {
-    //this is essentially a projectile that cannot miss 
-    [SerializeField] protected float speed;
+    [SerializeField] protected float initialSpeed;
     [SerializeField] private float maxTravelTime = 2f;
+    protected float speed;
     protected BaseAbility ability;
     protected BaseUnit owner;
     protected BaseUnit target;
+    protected bool remainActive;
+
+    public UnityEvent<BaseAbility/*ability cached*/, BaseUnit/*shooter*/, BaseUnit /*target*/> OnShotHit;
+    private void Awake()
+    {
+        SetSpeed(initialSpeed);
+    }
     public void Fire(BaseUnit shooter, BaseAbility givenAbility, Vector2 dir, BaseUnit target)
     {
         owner = shooter;
@@ -18,7 +26,6 @@ public class TargetedShot : MonoBehaviour
         Rotate(dir);
         StartCoroutine(TravelTimeCountdown());
     }
-
 
     protected void Rotate(Vector2 dir)
     {
@@ -29,10 +36,14 @@ public class TargetedShot : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         BaseUnit target = collision.GetComponent<BaseUnit>();
-        if (!ReferenceEquals(target, null) && !ReferenceEquals(ability, null) && ReferenceEquals(target, this.target))
+        if (!ReferenceEquals(target, null) && ReferenceEquals(target, this.target))
         {
             target.Damageable.GetHit(owner.DamageDealer, ability);
-            Disable();
+            OnShotHit?.Invoke(ability, owner, target);
+            if (!remainActive)
+            {
+                Disable();
+            }
         }
     }
 
@@ -50,13 +61,26 @@ public class TargetedShot : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
         yield return new WaitForEndOfFrame();
+        transform.position = target.transform.position;
         Disable();
     }
 
-    protected virtual void Disable()
+    public void SetRemainActive()
+    {
+        remainActive = true;
+    }
+    public void SetSpeed(float vlaue)
+    {
+        speed = vlaue;
+    }
+
+    public virtual void Disable()
     {
         owner = null;
         ability = null;
+        remainActive = false;
+        SetSpeed(initialSpeed);
+        OnShotHit?.RemoveAllListeners();
         gameObject.SetActive(false);
     }
 

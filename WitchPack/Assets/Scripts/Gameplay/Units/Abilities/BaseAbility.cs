@@ -7,29 +7,22 @@ public class BaseAbility : ScriptableObject
     [SerializeField] private Sprite icon;
     [SerializeField] private float cd;
     [SerializeField] private int penetration;
-
-    [SerializeField, Tooltip("Interval before casting in real time")]
-    private float castTime;
-
+    [SerializeField, Tooltip("Interval before casting in real time")] private float castTime;
     [SerializeField] private List<StatusEffectConfig> statusEffects = new List<StatusEffectConfig>();
     [SerializeField] private BaseAbility[] upgrades;
-    [SerializeField] private AbilityUpgradeState abilityUpgradeState;
+    [SerializeField] private TargetData targetData;
+    public TargetData TargetData { get => targetData; }
 
     public Sprite Icon => icon;
     public string Name => name;
     public float Cd => cd;
-    public List<StatusEffectConfig> StatusEffects => statusEffects;
-    public int Penetration => penetration;
-    public BaseAbility[] Upgrades => upgrades;
-    public AbilityUpgradeState AbilityUpgradeState => abilityUpgradeState;
+    public List<StatusEffectConfig> StatusEffects { get => statusEffects; }
+    public int Penetration { get => penetration; }
+    public BaseAbility[] Upgrades { get => upgrades; }
 
     public virtual bool CastAbility(BaseUnit caster)
     {
         return true;
     }
 
-    public void ChangeState(AbilityUpgradeState state)
-    {
-        abilityUpgradeState = state;
-    }
 }

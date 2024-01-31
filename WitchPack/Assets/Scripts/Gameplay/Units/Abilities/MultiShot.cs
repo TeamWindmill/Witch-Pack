@@ -6,35 +6,31 @@ public class MultiShot : OffensiveAbility
 {
     [SerializeField] private int numberOfShots;
     [SerializeField] private Vector3 offset;
+    [SerializeField] private int ricochetTimes;//how many times the bullet will bounce between targets
+    [SerializeField] private float ricochetRange;
+    [SerializeField] private float ricochetSpeed;
+    [SerializeField] private TargetData ricochetTargeting;//specific targeting for the ricochets 
     public override bool CastAbility(BaseUnit caster)
     {
         List<BaseUnit> foundTargets = new List<BaseUnit>();
-        int tempC = 0;
         for (int i = 0; i < numberOfShots; i++)
         {
             BaseUnit target = caster.TargetHelper.GetTarget(caster.Targeter.AvailableTargets, TargetData, foundTargets);
-            if (!foundTargets.Contains(target))
-            {
-                tempC++;
-            }
+            
             foundTargets.Add(target);
 
             if (ReferenceEquals(target, null))
             {
                 return false;
-            }
-
-            
+            }   
         }
-        Debug.Log($"found {tempC} targets out of {caster.Targeter.AvailableTargets.Count}");
-
         for (int i = 0; i < numberOfShots; i++)
         {
             ArchedShot shot = LevelManager.Instance.PoolManager.ArchedShotPool.GetPooledObject();
             shot.transform.position = caster.CastPos.position;
+            RicochetHandler richocheter = new RicochetHandler(shot, ricochetTimes, ricochetTargeting, ricochetRange, ricochetSpeed);
             shot.gameObject.SetActive(true);
             Vector2 dir = foundTargets[i].transform.position - caster.transform.position;
-
             if (i == 0)
             {
                 shot.Fire(caster, this, dir.normalized, foundTargets[i], Vector3.zero);
@@ -51,4 +47,7 @@ public class MultiShot : OffensiveAbility
         return true;
 
     }
+
+
+
 }
