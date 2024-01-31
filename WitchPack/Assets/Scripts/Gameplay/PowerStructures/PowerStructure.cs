@@ -46,6 +46,8 @@ public class PowerStructure : MonoBehaviour
     private void OnShadowDeselect(Shaman shaman)
     {
         proximityRingsManager.ToggleAllSprites(false);
+        if(ReferenceEquals(SelectionManager.Instance.Shadow,null)) return;
+        if(ReferenceEquals(SelectionManager.Instance.Shadow.Shaman,null)) return;
         HideUI(SelectionManager.Instance.Shadow);
     }
 
@@ -109,8 +111,8 @@ public class PowerStructure : MonoBehaviour
 
     private void HideUI(Shadow shadow)
     {
-        StatEffectPopupManager.HidePopupWindows(GetInstanceID());
         HeroSelectionUI.Instance.UpdateStatBlocks(_statType, CalculateStatValueForSelectionUI(shadow,shadow.Shaman));
+        StatEffectPopupManager.HidePopupWindows(GetInstanceID());
     }
 
     private int GetStatEffectValue(int ringId, UnitStats stats)

@@ -16,6 +16,7 @@ public class HeroSelectionUI : MonoSingleton<HeroSelectionUI> , IPointerEnterHan
 
     public bool IsActive { get; private set; }
     public bool MouseOverUI { get; private set; }
+    public Shaman Shaman { get; private set; }
 
     private void Start()
     {
@@ -25,7 +26,7 @@ public class HeroSelectionUI : MonoSingleton<HeroSelectionUI> , IPointerEnterHan
     public void Show(Shaman shaman)
     {
         UnitStats stats = shaman.Stats;
-        
+        Shaman = shaman;
         statBlockPanel.Init(shaman);
         psBonusUIHandler.Show(stats);
         abilitiesHandlerUI.Show(shaman);

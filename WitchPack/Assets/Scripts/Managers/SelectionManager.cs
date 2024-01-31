@@ -147,11 +147,13 @@ public class SelectionManager : MonoSingleton<SelectionManager>
     }
     private void OnSelectionUIMouseEnter()
     {
+        if(SelectMode != SelectionType.Movement) return;
         if(ReferenceEquals(_selectedShaman,null)) return;
         shadow.Hide();
     }
     private void OnSelectionUIMouseExit()
     {
+        if(SelectMode != SelectionType.Movement) return;
         if(ReferenceEquals(_selectedShaman,null)) return;
         shadow.Show(_selectedShaman);
     }

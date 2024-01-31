@@ -7,29 +7,31 @@ public class AbilitiesHandlerUI : MonoBehaviour
     [SerializeField] private AbilityUpgradePanelUI abilityUpgradePanelUI;
 
     private Shaman _shaman;
-    
+
     public void Show(Shaman shaman)
     {
         _shaman = shaman;
-        var baseAbilities = shaman.ActiveAbilities; 
+        abilityUpgradePanelUI.SetShaman(shaman);
+        var rootAbilities = shaman.RootAbilities;
         foreach (var uiBlock in abilityUIButtons)
         {
             uiBlock.Hide();
         }
-        if (baseAbilities.Count <= 0) return;
-        foreach (var ability in baseAbilities)
+
+        if (rootAbilities.Count <= 0) return;
+        foreach (var rootAbility in rootAbilities)
         {
-            foreach (var uiButton in abilityUIButtons)
-            {
-                
-                if (uiButton.gameObject.activeSelf) continue;
-                uiButton.Init(ability,shaman.GetCasterFromAbility(ability));
-                uiButton.OnAbilityClick += OpenUpgradePanel;
-                break;
-            }
+            var uiButton = GetAvailableButton();
+            if (shaman.KnownAbilities.Contains(rootAbility)) rootAbility.UpgradeAbility();
+            var activeAbility = shaman.GetActiveAbilityFromRoot(rootAbility);
+            var caster = shaman.GetCasterFromAbility(rootAbility);
+            uiButton.Init(rootAbility,activeAbility, caster);
+            uiButton.OnAbilityClick += OpenUpgradePanel;
         }
+
         abilityUpgradePanelUI.Hide();
     }
+
     public void Hide()
     {
         foreach (var uiBlock in abilityUIButtons)
@@ -38,8 +40,20 @@ public class AbilitiesHandlerUI : MonoBehaviour
             uiBlock.Hide();
         }
     }
+
     private void OpenUpgradePanel(AbilityUIButton abilityButton)
     {
         abilityUpgradePanelUI.Init(abilityButton);
     }
+
+    private AbilityUIButton GetAvailableButton()
+    {
+        foreach (var uiButton in abilityUIButtons)
+        {
+            if (uiButton.gameObject.activeSelf) continue;
+            return uiButton;
+        }
+        return null;
+    }
+    
 }

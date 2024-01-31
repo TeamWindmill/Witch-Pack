@@ -6,8 +6,7 @@ using UnityEngine.UI;
 public class AbilityUpgradeUIButton : ClickableUIElement
 {
     public event Action<AbilityUpgradeUIButton> OnAbilityClick;
-    public AbilityUpgradeState AbilityUpgradeState => _abilityUpgradeState;
-    public BaseAbility BaseAbility => _baseAbility;
+    public BaseAbility Ability => _ability;
 
     [SerializeField] private Image bg;
     [SerializeField] private Image lockedBg;
@@ -16,20 +15,19 @@ public class AbilityUpgradeUIButton : ClickableUIElement
     [Space] [SerializeField] private Sprite upgradeReadyFrameSprite;
     [SerializeField] private Sprite defaultFrameSprite;
 
-    private AbilityUpgradeState _abilityUpgradeState;
-    private BaseAbility _baseAbility;
+    private BaseAbility _ability;
 
 
     public void Init(BaseAbility ability)
     {
         abilitySprite.sprite = ability.Icon;
-        _baseAbility = ability;
+        _ability = ability;
         Show();
     }
 
     public override void Show()
     {
-        switch (_abilityUpgradeState)
+        switch (_ability.AbilityUpgradeState)
         {
             case AbilityUpgradeState.Locked:
                 lockedBg.gameObject.SetActive(true);
@@ -53,16 +51,10 @@ public class AbilityUpgradeUIButton : ClickableUIElement
         base.Hide();
     }
 
-    public void ChangeState(AbilityUpgradeState state)
-    {
-        _abilityUpgradeState = state;
-        Show();
-    }
-
     protected override void OnClick(PointerEventData eventData)
     {
         base.OnClick(eventData);
-        switch (_abilityUpgradeState)
+        switch (_ability.AbilityUpgradeState)
         {
             case AbilityUpgradeState.Locked:
                 return;
@@ -72,8 +64,6 @@ public class AbilityUpgradeUIButton : ClickableUIElement
             case AbilityUpgradeState.Upgraded:
                 return;
         }
-
-        base.OnClick(eventData);
     }
 }
 

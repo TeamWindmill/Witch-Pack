@@ -6,27 +6,41 @@ using UnityEngine.UI;
 public class AbilityUIButton : ClickableUIElement
 {
     public event Action<AbilityUIButton> OnAbilityClick;
+    public BaseAbility RootAbility => _rootAbility;
+    public BaseAbility ActiveAbility => _activeAbility;
     
     [SerializeField] private Image _abilitySpriteRenderer;
     [SerializeField] private Image _cooldownSpriteRenderer;
 
     private UnitCastingHandler _castingHandler;
-    private BaseAbility _fatherAbility;
+    private BaseAbility _rootAbility;
     private BaseAbility _activeAbility;
     private float _abilityCd;
     private float _abilityLastCast;
+
+
+
     private bool _activeCd;
     
-    public void Init(BaseAbility fatherAbility,UnitCastingHandler castingHandler = null)
+    public void Init(BaseAbility rootAbility,BaseAbility activeAbility = null, UnitCastingHandler castingHandler = null)
     {
-        _fatherAbility = fatherAbility;
-        _abilitySpriteRenderer.sprite = fatherAbility.Icon;
-        if (castingHandler is not null)
+        _rootAbility = rootAbility;
+        if (ReferenceEquals(activeAbility,null))
         {
-            _castingHandler = castingHandler;
-            SetCooldownData(castingHandler);
+            _abilitySpriteRenderer.sprite = rootAbility.Icon;
+            _cooldownSpriteRenderer.fillAmount = 1;
         }
-        else SetCooldownData();
+        else
+        {
+            _activeAbility = activeAbility;
+            _abilitySpriteRenderer.sprite = activeAbility.Icon;
+            if (castingHandler is not null)
+            {
+                _castingHandler = castingHandler;
+                SetCooldownData(castingHandler);
+            }
+            else SetCooldownData();
+        }
         Show();
     }
 
