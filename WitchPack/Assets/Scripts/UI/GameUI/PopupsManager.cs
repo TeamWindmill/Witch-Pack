@@ -15,6 +15,7 @@ public class PopupsManager : MonoBehaviour
 
     private Color _popupColor;
 
+    string _statusEffectText;
     public DamageNumber PopupPrefab { get => popupPrefab; }
 
     private void Update()
@@ -24,33 +25,35 @@ public class PopupsManager : MonoBehaviour
 
     public void SpawnDamagePopup(Damageable damageable, DamageDealer damageDealer, DamageHandler damage, BaseAbility ability, bool isCrit)
     {
+        _statusEffectText = "";
         _offsetVector = new Vector3(_xOffset, _yOffset);
         _popupColor = Color.white;
         if (isCrit)
         {
             _popupColor = Color.red;
         }
-        PopupPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, damage.GetFinalDamage(), _popupColor);
+        _statusEffectText = damage.GetFinalDamage().ToString();
+        PopupPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, _statusEffectText, _popupColor);
     }
 
     public void SpawnStatusEffectPopup(Effectable effectable, Affector affector, StatusEffect statusEffect)
     {
-        string statusEffectText = "";
+        _statusEffectText = "";
 
         switch(statusEffect.StatusEffectType)
         {
             case StatusEffectType.Root:
-                statusEffectText = "Root";
+                _statusEffectText = "Root";
                 _popupColor = Color.green;
                 break;
 
             case StatusEffectType.Slow:
-                statusEffectText = "Slow";
+                _statusEffectText = "Slow";
                 _popupColor = Color.yellow;
                 break;
 
             case StatusEffectType.Charmed:
-                statusEffectText = "Charm";
+                _statusEffectText = "Charm";
                 _popupColor = Color.magenta;
                 break;
 
@@ -58,6 +61,6 @@ public class PopupsManager : MonoBehaviour
                 return;
         }
 
-        PopupPrefab.Spawn(effectable.Owner.transform.position, statusEffectText, _popupColor);
+        PopupPrefab.Spawn(effectable.Owner.transform.position, _statusEffectText, _popupColor);
     }
 }
