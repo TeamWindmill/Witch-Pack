@@ -65,8 +65,9 @@ public class Enemy : BaseUnit
 
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
+        base.OnDisable();
         Movement.OnDestenationReached -= SetNextDest;
         dstTravelled = 0;
     }

@@ -22,7 +22,6 @@ public class AbilitiesHandlerUI : MonoBehaviour
         foreach (var rootAbility in rootAbilities)
         {
             var uiButton = GetAvailableButton();
-            if (shaman.KnownAbilities.Contains(rootAbility)) rootAbility.UpgradeAbility();
             var activeAbility = shaman.GetActiveAbilityFromRoot(rootAbility);
             var caster = shaman.GetCasterFromAbility(rootAbility);
             uiButton.Init(rootAbility,activeAbility, caster);

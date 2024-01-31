@@ -10,28 +10,29 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15a9833310f9a9446ab1e1eaace27b68, type: 3}
-  m_Name: MultiShot
+  m_Name: MultiShot_EssenceShot
   m_EditorClassIdentifier: 
-  name: Multishot
-  icon: {fileID: 21300000, guid: dd545e2770efce9409a2a3bdfe8e8b30, type: 3}
+  name: Essense Shot
+  icon: {fileID: 21300000, guid: 6959f9db67e8ff5478f2b19c702de097, type: 3}
   cd: 5
   penetration: 0
   castTime: 0
   statusEffects: []
-  _upgrades:
-  - {fileID: 11400000, guid: cb2514b65dfc122468ae5be845669186, type: 2}
-  - {fileID: 11400000, guid: b9cac84295f56404687865c71ac88587, type: 2}
+  _upgrades: []
   targetData:
     Prio: 1
     Mod: 1
   baseDamage: 50
   range: 6
-  damageBoosts: []
+  damageBoosts:
+  - Type: 0
+    Threshold: 80
+    damageBonus: 25
   numberOfShots: 0
   offset: {x: 0, y: 0, z: 0}
   ricochetTimes: 0
   ricochetRange: 0
   ricochetSpeed: 0
   ricochetTargeting:
-    Prio: 4
+    Prio: 0
     Mod: 0

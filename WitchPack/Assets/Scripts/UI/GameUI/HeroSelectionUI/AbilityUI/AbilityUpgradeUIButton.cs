@@ -59,8 +59,9 @@ public class AbilityUpgradeUIButton : ClickableUIElement
             case AbilityUpgradeState.Locked:
                 return;
             case AbilityUpgradeState.Open:
+                _ability.UpgradeAbility();
                 OnAbilityClick?.Invoke(this);
-                break;
+                return;
             case AbilityUpgradeState.Upgraded:
                 return;
         }
