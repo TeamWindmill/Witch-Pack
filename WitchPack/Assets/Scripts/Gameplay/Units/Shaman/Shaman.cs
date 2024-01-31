@@ -59,12 +59,16 @@ public class Shaman : BaseUnit
         foreach (var rootAbility in shamanConfig.RootAbilities)
         {
             rootAbilities.Add(rootAbility);
+            foreach (var upgrade in rootAbility.GetUpgrades())
+            {
+                upgrade.ChangeUpgradeState(AbilityUpgradeState.Locked);
+            }
             rootAbility.ChangeUpgradeState(AbilityUpgradeState.Open);
         }
         foreach (var ability in ShamanConfig.KnownAbilities)
         {
-            knownAbilities.Add(ability);
             ability.UpgradeAbility();
+            knownAbilities.Add(ability);
             castingHandlers.Add(new UnitCastingHandler(this, ability));
         }
     }
