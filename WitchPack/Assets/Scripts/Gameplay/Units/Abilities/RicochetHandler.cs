@@ -17,7 +17,6 @@ public class RicochetHandler
         this.targetData = targetData;
         this.refShot = shot;
         this.speed = ricochetSpeed;
-        shot.SetRemainActive();
         shot.OnShotHit.AddListener(JumpToTarget);
     }
 
@@ -28,7 +27,7 @@ public class RicochetHandler
             return;
         }
         BaseUnit targat = shooter.TargetHelper.GetTarget(shooter.Targeter.GetAvailableTargets(target, jumpsRange), targetData);
-        if (ReferenceEquals(targat, null))//if no target was found
+        if (ReferenceEquals(targat, null) || target.Damageable.CurrentHp <= 0)//if no target was found or if the target is dead
         {
             refShot.Disable();
             return;
@@ -36,8 +35,8 @@ public class RicochetHandler
         Vector2 dir = targat.transform.position - target.transform.position;
         refShot.transform.position = target.transform.position;
         refShot.SetSpeed(speed);
-        refShot.gameObject.SetActive(true);
         refShot.Fire(shooter, ability, dir.normalized, targat);
+        refShot.gameObject.SetActive(true);
         jumpsLeft--;
     }
 

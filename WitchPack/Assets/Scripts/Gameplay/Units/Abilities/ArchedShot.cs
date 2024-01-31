@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -58,11 +57,15 @@ public class ArchedShot : TargetedShot
                 counter++;
             }
         }
+        else if (ReferenceEquals(target, null) || target.Damageable.CurrentHp <= 0)//if no target was found or if the target is dead
+        {
+            Disable();
+            return;
+        }
         else
         {
             transform.position = target.transform.position;
             setup = false;
-            Disable();
         }
     }
     private Vector3 CubicCurve(Vector3 start, Vector3 control1, Vector3 control2, Vector3 end, float t)

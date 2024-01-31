@@ -11,7 +11,6 @@ public class TargetedShot : MonoBehaviour
     protected BaseAbility ability;
     protected BaseUnit owner;
     protected BaseUnit target;
-    protected bool remainActive;
 
     public UnityEvent<BaseAbility/*ability cached*/, BaseUnit/*shooter*/, BaseUnit /*target*/> OnShotHit;
     private void Awake()
@@ -40,10 +39,7 @@ public class TargetedShot : MonoBehaviour
         {
             target.Damageable.GetHit(owner.DamageDealer, ability);
             OnShotHit?.Invoke(ability, owner, target);
-            if (!remainActive)
-            {
-                Disable();
-            }
+            Disable();
         }
     }
 
@@ -65,10 +61,6 @@ public class TargetedShot : MonoBehaviour
         Disable();
     }
 
-    public void SetRemainActive()
-    {
-        remainActive = true;
-    }
     public void SetSpeed(float vlaue)
     {
         speed = vlaue;
@@ -78,7 +70,6 @@ public class TargetedShot : MonoBehaviour
     {
         owner = null;
         ability = null;
-        remainActive = false;
         SetSpeed(initialSpeed);
         OnShotHit?.RemoveAllListeners();
         gameObject.SetActive(false);

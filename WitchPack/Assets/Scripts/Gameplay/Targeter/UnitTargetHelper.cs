@@ -32,6 +32,10 @@ public class UnitTargetHelper
             case TargetPrio.Random:
                 target = targets[UnityEngine.Random.Range(0, targets.Count)];
                 break;
+            case TargetPrio.DistnaceToCore:
+                target = GetTargetByDistanceToCore(targets, givenData.Mod, targetsToAvoid);
+                break;
+
             //add threat when Im doen adding the system
             default:
                 return targets[0];
@@ -42,7 +46,7 @@ public class UnitTargetHelper
 
     private BaseUnit GetTargetByStat(List<BaseUnit> targets, StatType givenStat, TargetMod mod, List<BaseUnit> targetsToAvoid = null)
     {
-        BaseUnit cur = targets[0];
+        BaseUnit cur = targets[targets.Count / 2];
         for (int i = 0; i < targets.Count; i++)
         {
             if (mod == TargetMod.Most)
@@ -65,7 +69,7 @@ public class UnitTargetHelper
 
     private BaseUnit GetTargetByDistance(List<BaseUnit> targets, TargetMod mod, List<BaseUnit> targetsToAvoid = null)
     {
-        BaseUnit cur = targets[targets.Count-1];
+        BaseUnit cur = targets[targets.Count / 2];
         for (int i = 0; i < targets.Count; i++)
         {
             if (!ReferenceEquals(targetsToAvoid, null) && targets.Count > targetsToAvoid.Count && targetsToAvoid.Contains(targets[i]))
@@ -91,7 +95,33 @@ public class UnitTargetHelper
         return cur;
     }
 
+    private BaseUnit GetTargetByDistanceToCore(List<BaseUnit> targets, TargetMod mod, List<BaseUnit> targetsToAvoid = null)
+    {
+        BaseUnit cur = targets[targets.Count / 2];
+        for (int i = 0; i < targets.Count; i++)
+        {
+            if (!ReferenceEquals(targetsToAvoid, null) && targets.Count > targetsToAvoid.Count && targetsToAvoid.Contains(targets[i]))
+            {
+                continue;
+            }
 
+            if (mod == TargetMod.Most)
+            {
+                if (Vector3.Distance(cur.transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position) < Vector3.Distance(targets[i].transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position))
+                {
+                    cur = targets[i];
+                }
+            }
+            else
+            {
+                if (Vector3.Distance(cur.transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position) > Vector3.Distance(targets[i].transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position))
+                {
+                    cur = targets[i];
+                }
+            }
+        }
+        return cur;
+    }
 
 
 
