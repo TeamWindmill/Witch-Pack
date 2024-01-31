@@ -18,6 +18,7 @@ public class PopupsManager : MonoBehaviour
     string _statusEffectText;
 
     [SerializeField] private StatusEffectTypeColorDictionary _dictionary;
+    [SerializeField] private SerializableDictionary<int, string> _dictionaryAttempt;
     public DamageNumber PopupPrefab { get => popupPrefab; }
 
     private void Update()
