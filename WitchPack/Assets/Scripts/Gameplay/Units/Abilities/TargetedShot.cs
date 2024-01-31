@@ -59,12 +59,14 @@ public class TargetedShot : MonoBehaviour
         yield return new WaitForEndOfFrame();
         transform.position = target.transform.position;
         Disable();
+
     }
 
     public void SetSpeed(float vlaue)
     {
         speed = vlaue;
     }
+
 
     public virtual void Disable()
     {

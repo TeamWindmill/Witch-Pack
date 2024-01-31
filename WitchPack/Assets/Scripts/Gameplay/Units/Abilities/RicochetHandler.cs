@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class RicochetHandler
@@ -7,7 +5,6 @@ public class RicochetHandler
     private int jumpsLeft;
     private TargetData targetData;
     private float jumpsRange;
-    private TargetedShot refShot;
     private float speed;
 
     public RicochetHandler(TargetedShot shot/*thisll be a generic shot once I get to it*/, int numberOfJumps, TargetData targetData, float jumpsRange, float ricochetSpeed)
@@ -15,29 +12,37 @@ public class RicochetHandler
         jumpsLeft = numberOfJumps;
         this.jumpsRange = jumpsRange;
         this.targetData = targetData;
-        this.refShot = shot;
         this.speed = ricochetSpeed;
         shot.OnShotHit.AddListener(JumpToTarget);
     }
 
-    public void JumpToTarget(BaseAbility ability, BaseUnit shooter, BaseUnit target)
+    public void JumpToTarget(BaseAbility ability, BaseUnit shooter, BaseUnit originalTarget)
     {
-        if (jumpsLeft <= 0)
+
+        TargetedShot shot = LevelManager.Instance.PoolManager.ArchedShotPool.GetPooledObject();
+        BaseUnit newTargat = shooter.TargetHelper.GetTarget(shooter.Targeter.GetAvailableTargets(originalTarget, jumpsRange), targetData);
+        if (ReferenceEquals(newTargat, null) || newTargat.Damageable.CurrentHp <= 0)//if no target was found or if the target is dead
         {
+            shot.Disable();
             return;
         }
-        BaseUnit targat = shooter.TargetHelper.GetTarget(shooter.Targeter.GetAvailableTargets(target, jumpsRange), targetData);
-        if (ReferenceEquals(targat, null) || target.Damageable.CurrentHp <= 0)//if no target was found or if the target is dead
-        {
-            refShot.Disable();
-            return;
-        }
-        Vector2 dir = targat.transform.position - target.transform.position;
-        refShot.transform.position = target.transform.position;
-        refShot.SetSpeed(speed);
-        refShot.Fire(shooter, ability, dir.normalized, targat);
-        refShot.gameObject.SetActive(true);
+        Vector2 dir = newTargat.transform.position - originalTarget.transform.position;
+        shot.transform.position = originalTarget.transform.position;
+        shot.SetSpeed(speed);
+        shot.gameObject.SetActive(true);
+        shot.Fire(shooter, ability, dir.normalized, newTargat);
         jumpsLeft--;
+        if (jumpsLeft > 0)
+        {
+            shot.OnShotHit.AddListener(JumpToTarget);
+            Debug.Log("jumped");
+        }
+       /* else
+        {
+            shot.Disable();
+            Debug.Log("disabled");
+            return;
+        }*/
     }
 
 

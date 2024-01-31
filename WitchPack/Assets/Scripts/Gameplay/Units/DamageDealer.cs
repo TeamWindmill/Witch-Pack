@@ -1,6 +1,4 @@
-using Sirenix.OdinInspector.Editor;
 using System;
-using UnityEngine;
 
 [System.Serializable]
 public class DamageDealer
@@ -18,12 +16,13 @@ public class DamageDealer
         this.owner = owner;
         this.autoAttack = autoAttack;
         OnHitTarget += SubscribeStatDamage;
+        OnHitTarget += SubscribeDamageBoostsFromAbility;
     }
 
 
     public bool CritChance(BaseAbility ability)
     {
-        if (ReferenceEquals(ability, owner.AutoAttack) && UnityEngine.Random.Range(0,100) <= owner.Stats.CritChance)
+        if (ReferenceEquals(ability, owner.AutoAttack) && UnityEngine.Random.Range(0, 100) <= owner.Stats.CritChance)
         {
             return true;
         }
@@ -40,6 +39,45 @@ public class DamageDealer
                 dmg.AddMod((Owner.Stats.CritDamage / 100) + 1);//not sure what the math is supposed to be here - ask gd
             }
         }
-        
+
     }
+
+    private void SubscribeDamageBoostsFromAbility(Damageable target, DamageDealer dealer, DamageHandler dmg, BaseAbility ability, bool crit)
+    {
+        if (ability is not OffensiveAbility || ReferenceEquals((ability as OffensiveAbility).DamageBoosts, null))
+        {
+            return;
+        }
+        foreach (var item in (ability as OffensiveAbility).DamageBoosts)
+        {
+            switch (item.Type)
+            {
+                case DamageBonusType.CurHp:
+                    dmg.AddMod(GetModCurHp(item, target));
+                    break;
+                case DamageBonusType.MissingHp:
+                    dmg.AddMod(GetModMissingHp(item, target));
+                    break;
+            }
+        }
+    }
+
+    private float GetModCurHp(DamageBoostData boostData, Damageable target)
+    {
+        if ((target.CurrentHp / target.MaxHp) >= (boostData.Threshold / 100))
+        {
+            return 1 + (boostData.damageBonus / 100);
+        }
+        return 1;
+    }
+
+    private float GetModMissingHp(DamageBoostData boostData, Damageable target)
+    {
+        if ((target.CurrentHp / target.MaxHp) <= (boostData.Threshold / 100))
+        {
+            return 1 + (boostData.damageBonus / 100);
+        }
+        return 1;
+    }
+
 }

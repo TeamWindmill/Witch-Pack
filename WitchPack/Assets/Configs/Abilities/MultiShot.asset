@@ -26,11 +26,15 @@ MonoBehaviour:
     Mod: 1
   baseDamage: 50
   range: 6
+  damageBoosts:
+  - Type: 0
+    Threshold: 100
+    damageBonus: 100
   numberOfShots: 3
   offset: {x: 1, y: 1, z: 0}
   ricochetTimes: 1
   ricochetRange: 8
   ricochetSpeed: 2.5
   ricochetTargeting:
-    Prio: 0
+    Prio: 4
     Mod: 0
