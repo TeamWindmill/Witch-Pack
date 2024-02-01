@@ -10,10 +10,10 @@ public class Passive : BaseAbility
 
     }
 
-    public virtual void UnsubscribePassive(BaseUnit owner)
+   /* public virtual void UnsubscribePassive(BaseUnit owner)
     {
 
     }
-
+*/
 
 }

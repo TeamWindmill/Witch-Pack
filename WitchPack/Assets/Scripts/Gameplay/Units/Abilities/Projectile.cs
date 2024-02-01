@@ -25,14 +25,14 @@ public class Projectile : MonoBehaviour
     {
         GAME_TIME.OnTimeRateChange -= ChangeVelocity;
     }
-    public void Fire(BaseUnit shooter, BaseAbility givenAbility, Vector2 dir)
+    public void Fire(BaseUnit shooter, BaseAbility givenAbility, Vector2 dir, int pen = 0)
     {
         owner = shooter;
         refAbility = givenAbility;
         Rotate(dir);
         lastRate = GAME_TIME.GetCurrentTimeRate;
         rb.velocity = dir * (speed /*+ shooter.Stats.AbilityProjectileSpeed*/) * lastRate;
-        maxNumberOfHits = baseMaxNumberOfHits + givenAbility.Penetration;
+        maxNumberOfHits = baseMaxNumberOfHits + pen;
         StartCoroutine(LifeTime());
     }
 

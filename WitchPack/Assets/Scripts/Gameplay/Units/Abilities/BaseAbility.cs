@@ -7,7 +7,6 @@ public class BaseAbility : ScriptableObject
     [SerializeField] private string name;
     [SerializeField] private Sprite icon;
     [SerializeField] private float cd;
-    [SerializeField] private int penetration;
 
     [SerializeField, Tooltip("Interval before casting in real time")]
     private float castTime;
@@ -23,7 +22,6 @@ public class BaseAbility : ScriptableObject
     public string Name => name;
     public float Cd => cd;
     public List<StatusEffectConfig> StatusEffects => statusEffects;
-    public int Penetration => penetration;
     public BaseAbility[] Upgrades => _upgrades;
     public AbilityUpgradeState AbilityUpgradeState => _abilityUpgradeState;
 

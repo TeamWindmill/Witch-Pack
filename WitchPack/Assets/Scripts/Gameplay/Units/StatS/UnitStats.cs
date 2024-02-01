@@ -1,7 +1,5 @@
 using System;
 using UnityEngine;
-using System;
-using Sirenix.OdinInspector;
 
 [System.Serializable]
 public class UnitStats
@@ -20,7 +18,7 @@ public class UnitStats
 
     public UnitStats()
     {
-        
+
     }
 
     private int maxHp;
@@ -37,7 +35,7 @@ public class UnitStats
     private int bonusStatusEffectDuration;
     private int abilityProjectileSpeed;
     private int abilityProjectilePenetration;
-    
+
     public int MaxHp { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.MaxHp.value + maxHp), 0, (ownerBaseStats.MaxHp.value + maxHp))); } }
     public int BaseDamage { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.BaseDamage.value + baseDamage), 0, (ownerBaseStats.BaseDamage.value + baseDamage))); } }
     public float AttackSpeed { get { return Mathf.Clamp((ownerBaseStats.AttackSpeed.value + attackSpeed), 0, 2f); } }
@@ -125,54 +123,70 @@ public class UnitStats
                 return 0;
         }
     }
-    public void AddValueToStat(StatType statType, int value) //can be used to reduce or increase
+    public void AddValueToStat(StatType statType, int wholeValue) //can be used to reduce or increase
     {
         switch (statType)
         {
             case StatType.MaxHp:
-                maxHp += value;
+                maxHp += wholeValue;
                 break;
             case StatType.BaseDamage:
-                baseDamage += value;
+                baseDamage += wholeValue;
                 break;
             case StatType.AttackSpeed:
-                attackSpeed += value;
+                attackSpeed += wholeValue;
                 break;
             case StatType.BaseRange:
-                baseRange += value;
+                baseRange += wholeValue;
                 break;
             case StatType.MovementSpeed:
-                movementSpeed += value;
+                movementSpeed += wholeValue;
                 break;
             case StatType.CritDamage:
-                critDamage += value;
+                critDamage += wholeValue;
                 break;
             case StatType.CritChance:
-                critChance += value;
+                critChance += wholeValue;
                 break;
             case StatType.InvincibleTime:
-                invincibleTime += value;
+                invincibleTime += wholeValue;
                 break;
             case StatType.AbilityCooldownReduction:
-                abilityCooldownReduction += value;
+                abilityCooldownReduction += wholeValue;
                 break;
             case StatType.Armor:
-                armor += value;
+                armor += wholeValue;
                 break;
             case StatType.HpRegen:
-                hpRegen += value;
+                hpRegen += wholeValue;
                 break;
             case StatType.BonusStatusEffectDuration:
-                bonusStatusEffectDuration += value;
+                bonusStatusEffectDuration += wholeValue;
                 break;
             default:
                 break;
         }
 
-        OnStatChanged?.Invoke(statType, value);
+        OnStatChanged?.Invoke(statType, wholeValue);
     }
 
+    public void AddValueToStat(StatType statType, float decimalValue) //can be used to reduce or increase
+    {
+        switch (statType)
+        {
+            case StatType.AttackSpeed:
+                attackSpeed += decimalValue;
+                break;
+            case StatType.MovementSpeed:
+                movementSpeed += decimalValue;
+                break;
+            case StatType.InvincibleTime:
+                invincibleTime += decimalValue;
+                break;
+        }
 
+        OnStatChanged?.Invoke(statType, decimalValue);
+    }
 
 
 }
