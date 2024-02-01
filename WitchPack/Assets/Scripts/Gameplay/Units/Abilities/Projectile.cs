@@ -1,7 +1,5 @@
-using UnityEngine;
-using Sirenix.OdinInspector;
-using System;
 using System.Collections;
+using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
@@ -25,14 +23,21 @@ public class Projectile : MonoBehaviour
     {
         GAME_TIME.OnTimeRateChange -= ChangeVelocity;
     }
-    public void Fire(BaseUnit shooter, BaseAbility givenAbility, Vector2 dir, int pen = 0)
+    public void Fire(BaseUnit shooter, BaseAbility givenAbility, Vector2 dir, int basePen = 0, bool includePenStat = false)
     {
         owner = shooter;
         refAbility = givenAbility;
         Rotate(dir);
         lastRate = GAME_TIME.GetCurrentTimeRate;
-        rb.velocity = dir * (speed /*+ shooter.Stats.AbilityProjectileSpeed*/) * lastRate;
-        maxNumberOfHits = baseMaxNumberOfHits + pen;
+        rb.velocity = dir * (speed) * lastRate;
+        if (includePenStat)
+        {
+            maxNumberOfHits = baseMaxNumberOfHits + shooter.Stats.AbilityProjectilePenetration + basePen;
+        }
+        else
+        {
+            maxNumberOfHits = baseMaxNumberOfHits + basePen;
+        }
         StartCoroutine(LifeTime());
     }
 
@@ -49,7 +54,7 @@ public class Projectile : MonoBehaviour
     private void Rotate(Vector2 dir)
     {
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle-90,Vector3.forward);
+        transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

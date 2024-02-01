@@ -1,8 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 [CreateAssetMenu(fileName = "ability", menuName = "Ability/PiercingShot")]
 
@@ -10,8 +6,7 @@ public class PiercingShot : OffensiveAbility
 {
     // testing simple projectile 
     [SerializeField] private int penetration;
-
-    public int Penetration { get => penetration;  }
+    public int Penetration { get => penetration; }
 
     public override bool CastAbility(BaseUnit caster)
     {
@@ -22,7 +17,7 @@ public class PiercingShot : OffensiveAbility
             newPew.transform.position = caster.transform.position;
             newPew.gameObject.SetActive(true);
             Vector2 dir = (target.transform.position - caster.transform.position) / (target.transform.position - caster.transform.position).magnitude;
-            newPew.Fire(caster, this, dir.normalized, penetration);
+            newPew.Fire(caster, this, dir.normalized, penetration, true);
             return true;
         }
         else

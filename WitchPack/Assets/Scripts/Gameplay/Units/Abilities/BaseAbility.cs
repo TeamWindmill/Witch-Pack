@@ -30,6 +30,10 @@ public class BaseAbility : ScriptableObject
         return true;
     }
 
+    public virtual void OnSetCaster(BaseUnit caster)
+    {
+
+    }
 
     public void ChangeUpgradeState(AbilityUpgradeState state)
     {

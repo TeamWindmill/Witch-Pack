@@ -71,6 +71,7 @@ public class Shaman : BaseUnit
             knownAbilities.Add(ability);
             if (ability is not Passive)
             {
+                ability.OnSetCaster(this);
                 castingHandlers.Add(new UnitCastingHandler(this, ability));
             }
             else
@@ -85,6 +86,7 @@ public class Shaman : BaseUnit
         knownAbilities.Add(ability);
         if (ability is not Passive)
         {
+            ability.OnSetCaster(this);
             castingHandlers.Add(new UnitCastingHandler(this, ability));
         }
         else
@@ -102,8 +104,6 @@ public class Shaman : BaseUnit
         }
     }
 
-    //testing
-    [ContextMenu("UpgradeTest")]
     public void UpgradeAbility(BaseAbility ability, BaseAbility upgrade)
     {
         RemoveAbility(ability);
