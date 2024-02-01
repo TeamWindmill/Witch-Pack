@@ -10,20 +10,23 @@ public class StatusEffect
     private float amount;//the amount to change each stat by (might be flat or %)
     private StatType _statType;//the stats to affect
     private StatusEffectProcess process;
+    private StatusEffectType statusEffectType;
 
     public Effectable Host { get => host; }
     public float Counter { get => counter; }
     public float Duration { get => duration; }
     public StatType StatType { get => _statType; }
     public StatusEffectProcess Process { get => process; }
+    public StatusEffectType StatusEffectType { get => statusEffectType; }
 
-    public StatusEffect(Effectable host, float duration, float amount, StatType effectedStatType, StatusEffectProcess process)
+    public StatusEffect(Effectable host, float duration, float amount, StatType effectedStatType, StatusEffectProcess process, StatusEffectType statusEffectType)
     {
         this.host = host;
         this.duration = duration;
         this.amount = amount;
         this._statType = effectedStatType;
         this.process = process;
+        this.statusEffectType = statusEffectType;
     }
 
 

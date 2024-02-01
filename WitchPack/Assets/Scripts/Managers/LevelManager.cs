@@ -20,6 +20,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     [SerializeField] private IndicatorManager indicatorManager;
     [SerializeField] private Canvas gameUi;
     private ScoreHandler _scoreHandler = new ScoreHandler();
+    [SerializeField] private PopupsManager popupsManager;
 
     public SelectionManager SelectionManager
     {
@@ -40,6 +41,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     {
         get => poolManager;
     }
+    public PopupsManager PopupsManager { get => popupsManager; }
 
     private void Start()
     {

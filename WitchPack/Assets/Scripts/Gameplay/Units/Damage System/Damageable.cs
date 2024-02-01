@@ -13,7 +13,7 @@ public class Damageable
     private bool hitable;
 
     public Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility, bool /*critical - a more generic callback*/> OnGetHit;
-    public Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility> OnDamageCalc;
+    public Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility, bool> OnDamageCalc;
     public Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility> OnDeath;
     public Action OnDeathGFX;
     public Action<bool> OnHitGFX;
@@ -56,14 +56,16 @@ public class Damageable
                 dealer.OnHitTarget?.Invoke(this, dealer, dmg, ability, true);
                 OnGetHit?.Invoke(this, dealer, dmg, ability, true);
                 OnHitGFX?.Invoke(true);
+                TakeDamage(dmg, dealer, ability, true);
             }
             else
             {
                 dealer.OnHitTarget?.Invoke(this, dealer, dmg, ability, false);
                 OnGetHit?.Invoke(this, dealer, dmg, ability, false);
                 OnHitGFX?.Invoke(false);
+                TakeDamage(dmg, dealer, ability, false);
             }
-            TakeDamage(dmg, dealer, ability);
+            
         }
         else // in case we want to make an ability that only applys status effects
         {
@@ -73,11 +75,12 @@ public class Damageable
         }
     }
 
-    public void TakeDamage(DamageHandler handler, DamageDealer dealer, BaseAbility attack)
+    public void TakeDamage(DamageHandler handler, DamageDealer dealer, BaseAbility attack, bool isCrit)
     {
         currentHp -= handler.GetFinalDamage();
         //Debug.Log($"{owner.gameObject} took {handler.GetFinalDamage()} damage from {dealer.Owner.name}");
-        OnDamageCalc?.Invoke(this,dealer,handler,attack);
+        OnDamageCalc?.Invoke(this,dealer,handler,attack, isCrit);
+
         if (currentHp <= 0)
         {
             OnDeath?.Invoke(this, dealer, handler, attack);

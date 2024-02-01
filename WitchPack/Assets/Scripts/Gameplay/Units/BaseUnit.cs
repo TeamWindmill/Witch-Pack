@@ -72,6 +72,8 @@ public class BaseUnit : MonoBehaviour
             hpBar.Init(damageable.MaxHp,unitType);
             damageable.OnDamageCalc += hpBar.SetBarValue;
         }
+        damageable.OnDamageCalc += LevelManager.Instance.PopupsManager.SpawnDamagePopup;
+        effectable.OnAffected += LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
     }
 
     public void ToggleCollider(bool state)
@@ -97,5 +99,11 @@ public class BaseUnit : MonoBehaviour
     private void OnValidate()
     {
         boxCollider ??= GetComponent<BoxCollider2D>();
+    }
+
+    protected virtual void OnDisable()
+    {
+        damageable.OnDamageCalc -= LevelManager.Instance.PopupsManager.SpawnDamagePopup;
+        effectable.OnAffected -= LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
     }
 }

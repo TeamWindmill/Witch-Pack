@@ -84,6 +84,7 @@ public class Targeter<T> : MonoBehaviour where T : Component
 public enum TargetPrio
 {
     Distance,
+    DistnaceToCore,
     Stat,
     Threatened,
     Random

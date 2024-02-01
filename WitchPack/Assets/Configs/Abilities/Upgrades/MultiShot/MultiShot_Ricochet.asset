@@ -10,19 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15a9833310f9a9446ab1e1eaace27b68, type: 3}
-  m_Name: MultiShotUpgrade2Test
+  m_Name: MultiShot_Ricochet
   m_EditorClassIdentifier: 
-  name: 
-  icon: {fileID: 21300000, guid: 6959f9db67e8ff5478f2b19c702de097, type: 3}
-  cd: 0
+  name: Ricochet
+  icon: {fileID: 21300000, guid: 3b257f3b6a34f144f88f2d6a910483ad, type: 3}
+  cd: 5
   penetration: 0
   castTime: 0
   statusEffects: []
-  upgrades: []
-  baseDamage: 0
-  range: 0
+  _upgrades: []
   targetData:
-    Prio: 0
+    Prio: 1
+    Mod: 1
+  baseDamage: 50
+  range: 6
+  damageBoosts: []
+  numberOfShots: 3
+  offset: {x: 1.5, y: 1.5, z: 0}
+  ricochetTimes: 1
+  ricochetRange: 3
+  ricochetSpeed: 2.5
+  ricochetTargeting:
+    Prio: 4
     Mod: 0
-  numberOfShots: 0
-  offset: {x: 0, y: 0, z: 0}

@@ -1,3 +1,4 @@
+using DamageNumbersPro;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -98,6 +99,7 @@ public class WaveHandler : MonoBehaviour
                 break;
             }
             GetSpawnPointFromIndex(givenGroup.SpawnerIndex).SpawnEnemy(givenGroup.Enemy);
+
             EnemyGroup group = givenGroup;
             group.NumSpawned++;
             givenGroup = group;
@@ -106,7 +108,6 @@ public class WaveHandler : MonoBehaviour
         }
         doneSpawningCounter++;
     }
-
 
     private EnemySpawnPoint GetSpawnPointFromIndex(int index)
     {
