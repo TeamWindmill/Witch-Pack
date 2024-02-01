@@ -54,6 +54,7 @@ public class ArchedShot : TargetedShot
             transform.position = Vector3.MoveTowards(transform.position, allPositions[counter], GAME_TIME.GameDeltaTime * speed);
             if (Vector3.Distance(transform.position, allPositions[counter]) < DistanceToTarget)
             {
+                //Rotate((allPositions[counter] - transform.position).normalized * -1);
                 counter++;
             }
         }
