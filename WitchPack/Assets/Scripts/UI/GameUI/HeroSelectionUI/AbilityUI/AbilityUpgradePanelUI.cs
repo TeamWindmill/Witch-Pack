@@ -50,11 +50,12 @@ public class AbilityUpgradePanelUI : UIElement
 
         Show();
     }
+
     public override void Show()
     {
         var position = rectTransform.position;
-        rectTransform.position = new Vector3(_abilityUIButton.RectTransform.position.x + (_abilityUIButton.RectTransform.rect.width / 2),position.y,position.z);
-        
+        rectTransform.position = new Vector3(_abilityUIButton.RectTransform.position.x + (_abilityUIButton.RectTransform.rect.width / 2), position.y, position.z);
+
         baseAbilityUpgradeUIButton.Init(_rootAbility);
         if (_abilityUpgrades.Count == 3)
         {
@@ -63,7 +64,7 @@ public class AbilityUpgradePanelUI : UIElement
                 abilityUpgrades3UI[i].Init(_abilityUpgrades[i]);
             }
         }
-        else if(_abilityUpgrades.Count == 2)
+        else if (_abilityUpgrades.Count == 2)
         {
             for (int i = 0; i < abilityUpgrades2UI.Length; i++)
             {
@@ -75,28 +76,23 @@ public class AbilityUpgradePanelUI : UIElement
             Debug.LogError("invalid number of upgrades");
             return;
         }
+
         base.Show();
     }
 
     public override void Hide()
     {
-        baseAbilityUpgradeUIButton.OnAbilityClick -= UpgradeShamanAbility;
-        if (upgrades2Holder.gameObject.activeSelf)
+        baseAbilityUpgradeUIButton.Hide();
+        foreach (var ability in abilityUpgrades2UI)
         {
-            foreach (var ability in abilityUpgrades2UI)
-            {
-                ability.OnAbilityClick -= UpgradeShamanAbility;
-            }
-            upgrades2Holder.gameObject.SetActive(false);
+            ability.Hide();
         }
-        else if (upgrades3Holder.gameObject.activeSelf)
+        upgrades2Holder.gameObject.SetActive(false);
+        foreach (var ability in abilityUpgrades3UI)
         {
-            foreach (var ability in abilityUpgrades3UI)
-            {
-                ability.OnAbilityClick -= UpgradeShamanAbility;
-            }
-            upgrades3Holder.gameObject.SetActive(false);
+            ability.Hide();
         }
+        upgrades3Holder.gameObject.SetActive(false);
         base.Hide();
     }
 
@@ -109,14 +105,15 @@ public class AbilityUpgradePanelUI : UIElement
     private void UpgradeShamanAbility(AbilityUpgradeUIButton abilityUpgradeButton)
     {
         var ability = abilityUpgradeButton.Ability;
-        if (!ReferenceEquals(_abilityUIButton.ActiveAbility,null))
+        if (!ReferenceEquals(_abilityUIButton.ActiveAbility, null))
         {
-            _shaman.UpgradeAbility(_abilityUIButton.ActiveAbility,ability);
+            Debug.Log($"upgraded {ability.name}");
+            _shaman.UpgradeAbility(_abilityUIButton.ActiveAbility, ability);
             if (_abilityUIButton.ActiveAbility.Upgrades.Length > 0)
             {
                 foreach (var upgrade in _abilityUIButton.ActiveAbility.Upgrades)
                 {
-                    if(upgrade == ability) continue;
+                    if (upgrade == ability) continue;
                     upgrade.ChangeUpgradeState(AbilityUpgradeState.Locked);
                 }
             }
@@ -125,8 +122,9 @@ public class AbilityUpgradePanelUI : UIElement
         {
             _shaman.LearnAbility(ability);
         }
+
         var caster = _shaman.GetCasterFromAbility(ability);
-        _abilityUIButton.Init(_rootAbility,ability,caster);
+        _abilityUIButton.Init(_rootAbility, ability, caster);
         Show();
     }
 }
