@@ -8,6 +8,7 @@ public class Enemy : BaseUnit
     [SerializeField, TabGroup("Visual")] private EnemyAnimator enemyAnimator;
     private PathCreator _path;
     private int _coreDamage;
+    private int _energyPoints;
     //testing 
     public int Id => gameObject.GetHashCode();
     
@@ -17,6 +18,7 @@ public class Enemy : BaseUnit
     private bool _isMoving;
     public EnemyConfig EnemyConfig { get => enemyConfig; }
     public int CoreDamage => _coreDamage;
+    public int EnergyPoints => _energyPoints;
     public bool IsMoving => _isMoving;
 
     public override StatSheet BaseStats => enemyConfig.BaseStats;
@@ -31,6 +33,7 @@ public class Enemy : BaseUnit
         base.Init(enemyConfig);
         _path = enemyConfig.Path;
         _coreDamage = enemyConfig.CoreDamage;
+        _energyPoints = enemyConfig.EnergyPoints;
         Targeter.SetRadius(Stats.BonusRange);
         //Movement.SetDest(givenPath.Waypoints[pointIndex].position);
         //Movement.OnDestenationReached += SetNextDest;

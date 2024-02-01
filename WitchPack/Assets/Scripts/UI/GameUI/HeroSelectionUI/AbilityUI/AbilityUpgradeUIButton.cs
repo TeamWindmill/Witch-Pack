@@ -17,12 +17,14 @@ public class AbilityUpgradeUIButton : ClickableUIElement
     [SerializeField] private Sprite defaultFrameSprite;
 
     private BaseAbility _ability;
+    private bool _hasSkillPoints;
 
 
-    public void Init(BaseAbility ability)
+    public void Init(BaseAbility ability, bool hasSkillPoints)
     {
         abilitySprite.sprite = ability.Icon;
         _ability = ability;
+        _hasSkillPoints = hasSkillPoints;
         Show();
     }
 
@@ -35,8 +37,16 @@ public class AbilityUpgradeUIButton : ClickableUIElement
                 frame.sprite = defaultFrameSprite;
                 break;
             case AbilityUpgradeState.Open:
-                lockedBg.gameObject.SetActive(false);
-                frame.sprite = upgradeReadyFrameSprite;
+                if (!_hasSkillPoints)
+                {
+                    lockedBg.gameObject.SetActive(true);
+                    frame.sprite = defaultFrameSprite;
+                }
+                else
+                {
+                    lockedBg.gameObject.SetActive(false);
+                    frame.sprite = upgradeReadyFrameSprite;
+                }
                 break;
             case AbilityUpgradeState.Upgraded:
                 lockedBg.gameObject.SetActive(false);
@@ -65,6 +75,7 @@ public class AbilityUpgradeUIButton : ClickableUIElement
             case AbilityUpgradeState.Locked:
                 return;
             case AbilityUpgradeState.Open:
+                if(!_hasSkillPoints) return;
                 _ability.UpgradeAbility();
                 OnAbilityClick?.Invoke(this);
                 Debug.Log($"clicked {_ability.name}");

@@ -26,13 +26,13 @@ public class AbilityUIButton : ClickableUIElement
 
     private bool _activeCd;
     
-    public void Init(BaseAbility rootAbility,BaseAbility activeAbility = null, UnitCastingHandler castingHandler = null)
+    public void Init(BaseAbility rootAbility,BaseAbility activeAbility = null, UnitCastingHandler castingHandler = null, bool hasSkillPoints = false)
     {
         _rootAbility = rootAbility;
         if (ReferenceEquals(activeAbility,null))
         {
             _abilitySpriteRenderer.sprite = rootAbility.Icon;
-            _frameSpriteRenderer.sprite = upgradeReadyFrameSprite;
+            _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
         }
         else
         {

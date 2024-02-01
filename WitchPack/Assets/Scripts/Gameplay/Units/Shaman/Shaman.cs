@@ -11,15 +11,19 @@ public class Shaman : BaseUnit
     public List<UnitCastingHandler> CastingHandlers => castingHandlers;
     public bool MouseOverShaman => clicker.IsHover;
     public List<BaseAbility> RootAbilities => rootAbilities;
+    public EnergyHandler EnergyHandler => energyHandler;
 
     [SerializeField, TabGroup("Visual")] private ShamanAnimator shamanAnimator;
     [SerializeField] private ClickHelper clicker;
     [SerializeField] private Indicatable indicatable;
     [SerializeField] private GroundCollider groundCollider;
+
+
     private ShamanConfig shamanConfig;
     private List<BaseAbility> rootAbilities = new List<BaseAbility>();
     private List<BaseAbility> knownAbilities = new List<BaseAbility>();
     private List<UnitCastingHandler> castingHandlers = new List<UnitCastingHandler>();
+    private EnergyHandler energyHandler = new EnergyHandler();
 
     private void OnValidate()
     {
@@ -30,6 +34,7 @@ public class Shaman : BaseUnit
     {
         shamanConfig = baseUnitConfig as ShamanConfig;
         base.Init(shamanConfig);
+        energyHandler.Init(shamanConfig);
         Targeter.SetRadius(Stats.BonusRange);
         Stats.OnStatChanged += Targeter.AddRadius;
         IntializeAbilities();
@@ -37,6 +42,7 @@ public class Shaman : BaseUnit
         Movement.OnDestenationReached += EnableAttacker;
         shamanAnimator.Init(this);
         clicker.OnClick += SetSelectedShaman;
+        DamageDealer.OnKill += energyHandler.OnEnemyKill;
         groundCollider.Init(this);
         indicatable.Init(shamanConfig.UnitIcon);
     }
@@ -63,8 +69,10 @@ public class Shaman : BaseUnit
             {
                 upgrade.ChangeUpgradeState(AbilityUpgradeState.Locked);
             }
+
             rootAbility.ChangeUpgradeState(AbilityUpgradeState.Open);
         }
+
         foreach (var ability in ShamanConfig.KnownAbilities)
         {
             ability.UpgradeAbility();
@@ -120,18 +128,21 @@ public class Shaman : BaseUnit
                 return castingHandlers[i];
             }
         }
+
         //Debug.LogError("Attempted to retrive a non existing caster");
         return null;
     }
+
     public BaseAbility GetActiveAbilityFromRoot(BaseAbility rootAbility)
     {
         if (KnownAbilities.Contains(rootAbility)) return rootAbility;
-        
+
         var upgrades = rootAbility.GetUpgrades();
         foreach (var upgrade in upgrades)
         {
             if (KnownAbilities.Contains(upgrade)) return upgrade;
         }
+
         return null;
     }
 
@@ -152,6 +163,7 @@ public class Shaman : BaseUnit
             }
         }
     }
+
     public void ToggleClicker(bool state)
     {
         clicker.enabled = state;
@@ -164,5 +176,4 @@ public class Shaman : BaseUnit
         Movement.OnDestenationSet -= DisableAttacker;
         Movement.OnDestenationReached -= EnableAttacker;
     }
-
 }
