@@ -29,7 +29,7 @@ public class HeroSelectionUI : MonoSingleton<HeroSelectionUI> , IPointerEnterHan
         UnitStats stats = shaman.Stats;
         Shaman = shaman;
         statBlockPanel.Init(shaman);
-        psBonusUIHandler.Show(stats);
+        //psBonusUIHandler.Show(stats);
         abilitiesHandlerUI.Show(shaman);
         shamanSprite.sprite = shaman.ShamanConfig.UnitIcon;
         shamanName.text = shaman.ShamanConfig.Name;
