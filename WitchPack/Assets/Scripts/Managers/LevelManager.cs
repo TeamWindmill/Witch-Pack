@@ -9,8 +9,8 @@ public class LevelManager : MonoSingleton<LevelManager>
     public LevelHandler CurrentLevel { get; private set; }
     public List<Shaman> ShamanParty { get; private set; }
     public bool IsWon { get; private set; }
-    
-    
+
+
     [SerializeField] private Transform enviromentHolder;
     [SerializeField] private Transform shamanHolder;
     [SerializeField] private Shaman shamanPrefab;
@@ -41,7 +41,11 @@ public class LevelManager : MonoSingleton<LevelManager>
     {
         get => poolManager;
     }
-    public PopupsManager PopupsManager { get => popupsManager; }
+
+    public PopupsManager PopupsManager
+    {
+        get => popupsManager;
+    }
 
     private void Start()
     {

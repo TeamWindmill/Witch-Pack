@@ -14,8 +14,7 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
     [SerializeField] private bool showOnAwake = false;
     [SerializeField] private bool assignUIGroup = false;
 
-    [SerializeField, ShowIf(nameof(assignUIGroup))]
-    protected UIGroup uiGroup;
+    [SerializeField, ShowIf(nameof(assignUIGroup))] protected UIGroup uiGroup;
 
     protected bool isMouseOver;
 
