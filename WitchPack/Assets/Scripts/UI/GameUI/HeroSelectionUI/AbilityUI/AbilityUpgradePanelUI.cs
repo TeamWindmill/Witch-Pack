@@ -56,19 +56,20 @@ public class AbilityUpgradePanelUI : UIElement
         var position = rectTransform.position;
         rectTransform.position = new Vector3(_abilityUIButton.RectTransform.position.x + (_abilityUIButton.RectTransform.rect.width / 2), position.y, position.z);
 
-        baseAbilityUpgradeUIButton.Init(_rootAbility);
+        var shamanHasSkillPoints = _shaman.EnergyHandler.AvailableSkillPoints > 0;
+        baseAbilityUpgradeUIButton.Init(_rootAbility,shamanHasSkillPoints);
         if (_abilityUpgrades.Count == 3)
         {
             for (int i = 0; i < abilityUpgrades3UI.Length; i++)
             {
-                abilityUpgrades3UI[i].Init(_abilityUpgrades[i]);
+                abilityUpgrades3UI[i].Init(_abilityUpgrades[i],shamanHasSkillPoints);
             }
         }
         else if (_abilityUpgrades.Count == 2)
         {
             for (int i = 0; i < abilityUpgrades2UI.Length; i++)
             {
-                abilityUpgrades2UI[i].Init(_abilityUpgrades[i]);
+                abilityUpgrades2UI[i].Init(_abilityUpgrades[i],shamanHasSkillPoints);
             }
         }
         else

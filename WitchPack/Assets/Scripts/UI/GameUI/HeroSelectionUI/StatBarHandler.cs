@@ -11,7 +11,7 @@ public class StatBarHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _statBarValue;
     [SerializeField] private Image _statBarFill;
 
-    private BaseUnit _shaman;
+    private Shaman _shaman;
 
     public StatBarType StatBarType => statBarType;
 
@@ -31,6 +31,9 @@ public class StatBarHandler : MonoBehaviour
                  break;
              case StatBarType.EnergyBar:
                  name = "Energy:";
+                 baseValue = shaman.EnergyHandler.MaxEnergyToNextLevel;
+                 currentValue = shaman.EnergyHandler.CurrentEnergy;
+                 shaman.EnergyHandler.OnShamanGainEnergy += UpdateStatbarEnergy;
                  break;
              default:
                  throw new ArgumentOutOfRangeException();
@@ -42,12 +45,19 @@ public class StatBarHandler : MonoBehaviour
          _statBarFill.fillAmount = currentValue / baseValue;
      }
 
+     private void UpdateStatbarEnergy(int currentEnergy, int maxEnergy)
+     {
+         _statBarBaseValue.text = maxEnergy.ToString();
+         _statBarValue.text = currentEnergy.ToString();
+         _statBarFill.fillAmount = (float)currentEnergy / maxEnergy;
+     }
+
      public void UpdateStatBarHealth(Damageable damageable, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4, bool arg5)
      {
          var currentHP = damageable.CurrentHp;
          var maxHP = damageable.MaxHp;
          _statBarValue.text = currentHP.ToString();
-         _statBarFill.fillAmount = currentHP / maxHP;
+         _statBarFill.fillAmount = (float)currentHP / maxHP;
      }
     
      public void Hide()
@@ -58,6 +68,7 @@ public class StatBarHandler : MonoBehaviour
                  _shaman.Damageable.OnGetHit -= UpdateStatBarHealth;
                  break;
              case StatBarType.EnergyBar:
+                 _shaman.EnergyHandler.OnShamanGainEnergy -= UpdateStatbarEnergy;
                  break;
              default:
                  throw new ArgumentOutOfRangeException();
