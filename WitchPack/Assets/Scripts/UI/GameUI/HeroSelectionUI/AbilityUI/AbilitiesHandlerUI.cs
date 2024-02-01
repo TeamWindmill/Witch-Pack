@@ -12,6 +12,7 @@ public class AbilitiesHandlerUI : MonoBehaviour
     {
         _shaman = shaman;
         abilityUpgradePanelUI.SetShaman(shaman);
+        shaman.EnergyHandler.OnShamanLevelUp += OnShamanLevelUp;
         var rootAbilities = shaman.RootAbilities;
         foreach (var uiBlock in abilityUIButtons)
         {
@@ -19,12 +20,13 @@ public class AbilitiesHandlerUI : MonoBehaviour
         }
 
         if (rootAbilities.Count <= 0) return;
+        var shamanHasSkillPoints = _shaman.EnergyHandler.AvailableSkillPoints > 0;
         foreach (var rootAbility in rootAbilities)
         {
             var uiButton = GetAvailableButton();
             var activeAbility = shaman.GetActiveAbilityFromRoot(rootAbility);
             var caster = shaman.GetCasterFromAbility(activeAbility);
-            uiButton.Init(rootAbility,activeAbility, caster);
+            uiButton.Init(rootAbility,activeAbility, caster,shamanHasSkillPoints);
             uiButton.OnAbilityClick += OpenUpgradePanel;
         }
 
@@ -55,5 +57,15 @@ public class AbilitiesHandlerUI : MonoBehaviour
         }
         return null;
     }
-    
+    private void OnShamanLevelUp(int obj)
+    {
+        if (abilityUpgradePanelUI.gameObject.activeSelf)
+        {
+            abilityUpgradePanelUI.Show();
+        }
+        else
+        {
+            Show(_shaman);
+        }
+    }
 }
