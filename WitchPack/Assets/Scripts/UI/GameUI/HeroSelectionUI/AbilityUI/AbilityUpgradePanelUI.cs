@@ -124,6 +124,7 @@ public class AbilityUpgradePanelUI : UIElement
             _shaman.LearnAbility(ability);
         }
 
+        _shaman.EnergyHandler.TryUseSkillPoint();
         var caster = _shaman.GetCasterFromAbility(ability);
         _abilityUIButton.Init(_rootAbility, ability, caster);
         Show();
