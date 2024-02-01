@@ -1,8 +1,10 @@
+using System;
 using UnityEngine;
 
 public class UnitCastingHandler
 {
     //manage cds, send abilities to cast -> specific interactions come from the so itself? 
+    public event Action<UnitCastingHandler> OnCast;
 
     private BaseUnit unit;
     private BaseAbility ability;
@@ -31,6 +33,7 @@ public class UnitCastingHandler
             if (ability.CastAbility(unit))
             {
                 lastCast = GAME_TIME.GameTime;
+                OnCast?.Invoke(this);
             }
         }
     }

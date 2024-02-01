@@ -33,6 +33,7 @@ public class AbilityUIButton : ClickableUIElement
         {
             _abilitySpriteRenderer.sprite = rootAbility.Icon;
             _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
+            SetCooldownData(1);
         }
         else
         {
@@ -42,15 +43,17 @@ public class AbilityUIButton : ClickableUIElement
             if (castingHandler is not null)
             {
                 _castingHandler = castingHandler;
-                SetCooldownData(castingHandler);
+                SetCooldownData(castHandler: castingHandler);
+                _castingHandler.OnCast += UpdateOnCast;
             }
-            else SetCooldownData();
+            else SetCooldownData(0);
         }
         Show();
     }
 
     public override void Hide()
     {
+        if (_castingHandler is not null) _castingHandler.OnCast -= UpdateOnCast;
         OnAbilityClick = null;
         SetCooldownData();
         base.Hide();
@@ -67,17 +70,17 @@ public class AbilityUIButton : ClickableUIElement
     }
 
     //set null for disabling the cooldown
-    private void SetCooldownData(UnitCastingHandler castingHandler = null)
+    private void SetCooldownData(float fillAmount = 0, UnitCastingHandler castHandler = null)
     {
-        if (ReferenceEquals(castingHandler, null))
+        if (ReferenceEquals(castHandler, null))
         {
-            _cooldownSpriteRenderer.fillAmount = 1;
+            _cooldownSpriteRenderer.fillAmount = fillAmount;
             _activeCd = false;
         }
         else
         {
-            _abilityCd = castingHandler.Ability.Cd;
-            _abilityLastCast = castingHandler.LastCast;
+            _abilityCd = castHandler.Ability.Cd;
+            _abilityLastCast = castHandler.LastCast;
             _activeCd = true;
         }
     }
@@ -90,8 +93,12 @@ public class AbilityUIButton : ClickableUIElement
         if (_abilityLastCast > 0)
         {
             ratio = (GAME_TIME.GameTime - _abilityLastCast) / _abilityCd;
-            if (ratio < 0) ratio = 0;
+            if (ratio >= 1) ratio = 0;
         }
         _cooldownSpriteRenderer.fillAmount = ratio;
+    }
+    private void UpdateOnCast(UnitCastingHandler castingHandler)
+    {
+        _abilityLastCast = castingHandler.LastCast;
     }
 }

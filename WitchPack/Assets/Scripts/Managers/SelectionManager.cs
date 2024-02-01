@@ -27,11 +27,12 @@ public class SelectionManager : MonoBehaviour
         OnShamanMoveSelect += ShamanMoveSelect;
         OnShamanInfoSelect += ShamanInfoSelect;
         OnShamanDeselected += ShamanDeselect;
-        HeroSelectionUI.Instance.OnMouseEnter += OnSelectionUIMouseEnter;
-        HeroSelectionUI.Instance.OnMouseExit += OnSelectionUIMouseExit;
+       
     }
     private void Start()
     {
+        HeroSelectionUI.Instance.OnMouseEnter += OnSelectionUIMouseEnter;
+        HeroSelectionUI.Instance.OnMouseExit += OnSelectionUIMouseExit;
         shadow.Hide();
     }
 
