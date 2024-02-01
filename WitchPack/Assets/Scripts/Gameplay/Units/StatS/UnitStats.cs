@@ -183,6 +183,9 @@ public class UnitStats
             case StatType.InvincibleTime:
                 invincibleTime += decimalValue;
                 break;
+            default:
+                AddValueToStat(statType, Mathf.RoundToInt(decimalValue));
+                break;
         }
 
         OnStatChanged?.Invoke(statType, decimalValue);

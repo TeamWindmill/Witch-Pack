@@ -84,7 +84,7 @@ public class Damageable
         if (currentHp <= 0)
         {
             OnDeath?.Invoke(this, dealer, handler, attack);
-            dealer.OnKill?.Invoke(this, dealer, handler, attack);
+            dealer.OnKill?.Invoke(this, dealer, handler, attack, isCrit);
             OnDeathGFX?.Invoke();
         }
         ClampHp();

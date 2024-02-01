@@ -89,7 +89,7 @@ public class LevelManager : MonoSingleton<LevelManager>
         }
     }
 
-    private void OnEnemyKill(Damageable arg1, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4)
+    private void OnEnemyKill(Damageable arg1, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4, bool crit)
     {
         _scoreHandler.UpdateScore(kills: 1);
     }
