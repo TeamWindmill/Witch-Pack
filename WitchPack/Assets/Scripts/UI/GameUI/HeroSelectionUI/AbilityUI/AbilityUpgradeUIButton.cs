@@ -12,7 +12,8 @@ public class AbilityUpgradeUIButton : ClickableUIElement
     [SerializeField] private Image lockedBg;
     [SerializeField] private Image frame;
     [SerializeField] private Image abilitySprite;
-    [Space] [SerializeField] private Sprite upgradeReadyFrameSprite;
+    [Space] 
+    [SerializeField] private Sprite upgradeReadyFrameSprite;
     [SerializeField] private Sprite defaultFrameSprite;
 
     private BaseAbility _ability;
@@ -48,6 +49,11 @@ public class AbilityUpgradeUIButton : ClickableUIElement
 
     public override void Hide()
     {
+        if (OnAbilityClick is not null)
+        {
+            OnAbilityClick = null;
+            Debug.Log($"{_ability.name} Hidden");
+        }
         base.Hide();
     }
 
@@ -61,6 +67,7 @@ public class AbilityUpgradeUIButton : ClickableUIElement
             case AbilityUpgradeState.Open:
                 _ability.UpgradeAbility();
                 OnAbilityClick?.Invoke(this);
+                Debug.Log($"clicked {_ability.name}");
                 return;
             case AbilityUpgradeState.Upgraded:
                 return;

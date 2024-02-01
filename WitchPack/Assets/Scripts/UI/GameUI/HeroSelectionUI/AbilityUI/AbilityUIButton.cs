@@ -11,7 +11,11 @@ public class AbilityUIButton : ClickableUIElement
     
     [SerializeField] private Image _abilitySpriteRenderer;
     [SerializeField] private Image _cooldownSpriteRenderer;
-
+    [SerializeField] private Image _frameSpriteRenderer;
+    [Space] 
+    [SerializeField] private Sprite upgradeReadyFrameSprite;
+    [SerializeField] private Sprite defaultFrameSprite;
+    
     private UnitCastingHandler _castingHandler;
     private BaseAbility _rootAbility;
     private BaseAbility _activeAbility;
@@ -28,12 +32,13 @@ public class AbilityUIButton : ClickableUIElement
         if (ReferenceEquals(activeAbility,null))
         {
             _abilitySpriteRenderer.sprite = rootAbility.Icon;
-            _cooldownSpriteRenderer.fillAmount = 1;
+            _frameSpriteRenderer.sprite = upgradeReadyFrameSprite;
         }
         else
         {
             _activeAbility = activeAbility;
             _abilitySpriteRenderer.sprite = activeAbility.Icon;
+            _frameSpriteRenderer.sprite = defaultFrameSprite;
             if (castingHandler is not null)
             {
                 _castingHandler = castingHandler;
@@ -46,6 +51,7 @@ public class AbilityUIButton : ClickableUIElement
 
     public override void Hide()
     {
+        OnAbilityClick = null;
         SetCooldownData();
         base.Hide();
     }
@@ -65,6 +71,7 @@ public class AbilityUIButton : ClickableUIElement
     {
         if (ReferenceEquals(castingHandler, null))
         {
+            _cooldownSpriteRenderer.fillAmount = 1;
             _activeCd = false;
         }
         else

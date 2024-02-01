@@ -44,7 +44,6 @@ public class HeroSelectionUI : MonoSingleton<HeroSelectionUI> , IPointerEnterHan
         statBlockPanel.HideStatBlocks();
         psBonusUIHandler.Hide();
         abilitiesHandlerUI.Hide();
-
         IsActive = false;
         gameObject.SetActive(false);
     }

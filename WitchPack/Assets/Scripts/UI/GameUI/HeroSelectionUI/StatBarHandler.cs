@@ -11,13 +11,13 @@ public class StatBarHandler : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _statBarValue;
     [SerializeField] private Image _statBarFill;
 
-    private BaseUnit _unit;
+    private BaseUnit _shaman;
 
     public StatBarType StatBarType => statBarType;
 
-     public void Init(BaseUnit unit)
+     public void Init(Shaman shaman)
      {
-         _unit = unit;
+         _shaman = shaman;
          string name;
          int baseValue = 0;
          int currentValue = 0;
@@ -25,9 +25,9 @@ public class StatBarHandler : MonoBehaviour
          {
              case StatBarType.HealthBar:
                  name = "Health:";
-                 baseValue = unit.Damageable.MaxHp;
-                 currentValue = unit.Damageable.CurrentHp;
-                 unit.Damageable.OnGetHit += UpdateStatBarHealth;
+                 baseValue = shaman.Damageable.MaxHp;
+                 currentValue = shaman.Damageable.CurrentHp;
+                 shaman.Damageable.OnGetHit += UpdateStatBarHealth;
                  break;
              case StatBarType.EnergyBar:
                  name = "Energy:";
@@ -55,7 +55,7 @@ public class StatBarHandler : MonoBehaviour
          switch (statBarType)
          {
              case StatBarType.HealthBar:
-                 _unit.Damageable.OnGetHit -= UpdateStatBarHealth;
+                 _shaman.Damageable.OnGetHit -= UpdateStatBarHealth;
                  break;
              case StatBarType.EnergyBar:
                  break;

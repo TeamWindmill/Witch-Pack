@@ -23,7 +23,7 @@ public class AbilitiesHandlerUI : MonoBehaviour
         {
             var uiButton = GetAvailableButton();
             var activeAbility = shaman.GetActiveAbilityFromRoot(rootAbility);
-            var caster = shaman.GetCasterFromAbility(rootAbility);
+            var caster = shaman.GetCasterFromAbility(activeAbility);
             uiButton.Init(rootAbility,activeAbility, caster);
             uiButton.OnAbilityClick += OpenUpgradePanel;
         }
@@ -33,6 +33,7 @@ public class AbilitiesHandlerUI : MonoBehaviour
 
     public void Hide()
     {
+        abilityUpgradePanelUI.Hide();
         foreach (var uiBlock in abilityUIButtons)
         {
             if (!uiBlock.gameObject.activeSelf) return;
