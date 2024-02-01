@@ -69,27 +69,44 @@ public class Shaman : BaseUnit
         {
             ability.UpgradeAbility();
             knownAbilities.Add(ability);
-            castingHandlers.Add(new UnitCastingHandler(this, ability));
+            if (ability is not Passive)
+            {
+                castingHandlers.Add(new UnitCastingHandler(this, ability));
+            }
+            else
+            {
+                (ability as Passive).SubscribePassive(this);
+            }
         }
     }
 
     public void LearnAbility(BaseAbility ability)
     {
         knownAbilities.Add(ability);
-        castingHandlers.Add(new UnitCastingHandler(this, ability));
+        if (ability is not Passive)
+        {
+            castingHandlers.Add(new UnitCastingHandler(this, ability));
+        }
+        else
+        {
+            (ability as Passive).SubscribePassive(this);
+        }
     }
 
     public void RemoveAbility(BaseAbility ability)
     {
-        knownAbilities.Remove(ability);
-        castingHandlers.Remove(GetCasterFromAbility(ability));
+        if (ability is not Passive)
+        {
+            knownAbilities.Remove(ability);
+            castingHandlers.Remove(GetCasterFromAbility(ability));
+        }
     }
 
     //testing
     [ContextMenu("UpgradeTest")]
-    public void UpgradeAbility(BaseAbility caster, BaseAbility upgrade)
+    public void UpgradeAbility(BaseAbility ability, BaseAbility upgrade)
     {
-        RemoveAbility(caster);
+        RemoveAbility(ability);
         LearnAbility(upgrade);
     }
 

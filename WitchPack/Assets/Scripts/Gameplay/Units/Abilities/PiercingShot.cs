@@ -9,6 +9,9 @@ using UnityEngine.UIElements;
 public class PiercingShot : OffensiveAbility
 {
     // testing simple projectile 
+    [SerializeField] private int penetration;
+
+    public int Penetration { get => penetration;  }
 
     public override bool CastAbility(BaseUnit caster)
     {
@@ -19,7 +22,7 @@ public class PiercingShot : OffensiveAbility
             newPew.transform.position = caster.transform.position;
             newPew.gameObject.SetActive(true);
             Vector2 dir = (target.transform.position - caster.transform.position) / (target.transform.position - caster.transform.position).magnitude;
-            newPew.Fire(caster, this, dir.normalized);
+            newPew.Fire(caster, this, dir.normalized, penetration);
             return true;
         }
         else
