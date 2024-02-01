@@ -26,7 +26,6 @@ public class ObjectPool<T> : MonoBehaviour where T : MonoBehaviour
 
     public T GetPooledObject()
     {
-        
         foreach (var item in pooledObjects)
         {
             if (!item.gameObject.activeInHierarchy)
@@ -39,7 +38,6 @@ public class ObjectPool<T> : MonoBehaviour where T : MonoBehaviour
         pooledObjects.Add(newPooledObject);
         newPooledObject.gameObject.SetActive(false);
         return newPooledObject;
-
     }
 
     public bool CheckActiveIstance()
