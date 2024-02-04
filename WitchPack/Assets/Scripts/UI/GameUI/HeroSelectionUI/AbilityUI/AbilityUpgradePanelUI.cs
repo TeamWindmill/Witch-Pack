@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class AbilityUpgradePanelUI : UIElement
 {
+    public event Action OnAbilityUpgrade;
     [SerializeField] private TextMeshProUGUI titleTMP;
     [SerializeField] private AbilityUpgradeUIButton baseAbilityUpgradeUIButton;
     [SerializeField] private Transform upgrades3Holder;
@@ -95,6 +96,7 @@ public class AbilityUpgradePanelUI : UIElement
         }
         upgrades3Holder.gameObject.SetActive(false);
         base.Hide();
+        if(_shaman is not null && _abilityUIButton is not null) AbilitiesHandlerUI.UpdateButton(_shaman,_abilityUIButton);
     }
 
     private void Update()
@@ -126,6 +128,7 @@ public class AbilityUpgradePanelUI : UIElement
 
         _shaman.EnergyHandler.TryUseSkillPoint();
         var caster = _shaman.GetCasterFromAbility(ability);
+        OnAbilityUpgrade?.Invoke();
         _abilityUIButton.Init(_rootAbility, ability, caster);
         Show();
     }

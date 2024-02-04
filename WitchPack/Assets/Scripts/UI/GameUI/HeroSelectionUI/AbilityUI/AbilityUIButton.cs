@@ -29,17 +29,16 @@ public class AbilityUIButton : ClickableUIElement
     public void Init(BaseAbility rootAbility,BaseAbility activeAbility = null, UnitCastingHandler castingHandler = null, bool hasSkillPoints = false)
     {
         _rootAbility = rootAbility;
+        _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
         if (ReferenceEquals(activeAbility,null))
         {
             _abilitySpriteRenderer.sprite = rootAbility.Icon;
-            _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
             SetCooldownData(1);
         }
         else
         {
             _activeAbility = activeAbility;
             _abilitySpriteRenderer.sprite = activeAbility.Icon;
-            _frameSpriteRenderer.sprite = defaultFrameSprite;
             if (castingHandler is not null)
             {
                 _castingHandler = castingHandler;
@@ -49,6 +48,26 @@ public class AbilityUIButton : ClickableUIElement
             else SetCooldownData(0);
         }
         Show();
+    }
+
+    public void UpdateVisual(bool hasSkillPoints)
+    {
+        _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
+        if (ReferenceEquals(_activeAbility,null))
+        {
+            _abilitySpriteRenderer.sprite = _rootAbility.Icon;
+            SetCooldownData(1);
+        }
+        else
+        {
+            _abilitySpriteRenderer.sprite = _activeAbility.Icon;
+            if (_castingHandler is not null)
+            {
+                SetCooldownData(castHandler: _castingHandler);
+            }
+            else SetCooldownData(0);
+        }
+        base.UpdateVisual();
     }
 
     public override void Hide()
