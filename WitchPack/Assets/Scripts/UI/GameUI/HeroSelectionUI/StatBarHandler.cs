@@ -18,7 +18,7 @@ public class StatBarHandler : MonoBehaviour
      public void Init(Shaman shaman)
      {
          _shaman = shaman;
-         string name;
+         string name = "";
          int baseValue = 0;
          int currentValue = 0;
          switch (statBarType)
@@ -35,14 +35,12 @@ public class StatBarHandler : MonoBehaviour
                  currentValue = shaman.EnergyHandler.CurrentEnergy;
                  shaman.EnergyHandler.OnShamanGainEnergy += UpdateStatbarEnergy;
                  break;
-             default:
-                 throw new ArgumentOutOfRangeException();
          }
 
          _statBarName.text = name;
          _statBarBaseValue.text = baseValue.ToString();
          _statBarValue.text = currentValue.ToString();
-         _statBarFill.fillAmount = currentValue / baseValue;
+         _statBarFill.fillAmount = (float)currentValue / baseValue;
      }
 
      private void UpdateStatbarEnergy(int currentEnergy, int maxEnergy)
