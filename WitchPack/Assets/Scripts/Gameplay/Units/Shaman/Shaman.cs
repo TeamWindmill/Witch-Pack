@@ -17,6 +17,7 @@ public class Shaman : BaseUnit
     [SerializeField] private ClickHelper clicker;
     [SerializeField] private Indicatable indicatable;
     [SerializeField] private GroundCollider groundCollider;
+    [SerializeField] private ParticleSystem levelUpEffect;
 
 
     private ShamanConfig shamanConfig;
@@ -43,6 +44,7 @@ public class Shaman : BaseUnit
         shamanAnimator.Init(this);
         clicker.OnClick += SetSelectedShaman;
         DamageDealer.OnKill += energyHandler.OnEnemyKill;
+        energyHandler.OnShamanLevelUp += OnLevelUpVFX;
         groundCollider.Init(this);
         indicatable.Init(shamanConfig.UnitIcon);
     }
@@ -168,7 +170,10 @@ public class Shaman : BaseUnit
     {
         clicker.enabled = state;
     }
-
+    private void OnLevelUpVFX(int obj)
+    {
+        levelUpEffect.Play();
+    }
     protected override void OnDisable()
     {
         base.OnDisable();

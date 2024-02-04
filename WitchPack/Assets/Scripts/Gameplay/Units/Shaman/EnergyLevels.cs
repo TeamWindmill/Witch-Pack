@@ -12,6 +12,7 @@ public class EnergyLevels : ScriptableObject
     [SerializeField] private int level4;
     [SerializeField] private int level5;
     [SerializeField] private int level6;
+    [SerializeField] private int maxLevel;
     
     public int Level1 => level1;
     public int Level2 => level2;
@@ -19,4 +20,5 @@ public class EnergyLevels : ScriptableObject
     public int Level4 => level4;
     public int Level5 => level5;
     public int Level6 => level6;
+    public int MaxLevel => maxLevel;
 }
