@@ -62,7 +62,7 @@ public class AbilityUpgradeUIButton : ClickableUIElement
         if (OnAbilityClick is not null)
         {
             OnAbilityClick = null;
-            Debug.Log($"{_ability.name} Hidden");
+            //Debug.Log($"{_ability.name} Hidden");
         }
         base.Hide();
     }
@@ -78,7 +78,7 @@ public class AbilityUpgradeUIButton : ClickableUIElement
                 if(!_hasSkillPoints) return;
                 _ability.UpgradeAbility();
                 OnAbilityClick?.Invoke(this);
-                Debug.Log($"clicked {_ability.name}");
+                //Debug.Log($"clicked {_ability.name}");
                 return;
             case AbilityUpgradeState.Upgraded:
                 return;

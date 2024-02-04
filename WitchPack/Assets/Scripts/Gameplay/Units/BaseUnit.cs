@@ -101,6 +101,7 @@ public class BaseUnit : MonoBehaviour
 
     protected virtual void OnDisable()
     {
+        if(ReferenceEquals(LevelManager.Instance,null)) return;
         damageable.OnDamageCalc -= LevelManager.Instance.PopupsManager.SpawnDamagePopup;
         effectable.OnAffected -= LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
     }

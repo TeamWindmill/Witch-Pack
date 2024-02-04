@@ -63,4 +63,9 @@ public class PopupsManager : MonoBehaviour
 
         PopupPrefab.Spawn(effectable.Owner.transform.position, _statusEffectText, _popupColor);
     }
+
+    public void SpawnTextPopup()
+    {
+        
+    }
 }

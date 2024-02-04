@@ -108,7 +108,7 @@ public class AbilityUpgradePanelUI : UIElement
         var ability = abilityUpgradeButton.Ability;
         if (!ReferenceEquals(_abilityUIButton.ActiveAbility, null))
         {
-            Debug.Log($"upgraded {ability.name}");
+            //Debug.Log($"upgraded {ability.name}");
             _shaman.UpgradeAbility(_abilityUIButton.ActiveAbility, ability);
             if (_abilityUIButton.ActiveAbility.Upgrades.Length > 0)
             {
