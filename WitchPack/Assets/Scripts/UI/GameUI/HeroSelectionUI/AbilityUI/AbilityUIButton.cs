@@ -50,6 +50,26 @@ public class AbilityUIButton : ClickableUIElement
         Show();
     }
 
+    public void UpdateVisual(bool hasSkillPoints)
+    {
+        _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
+        if (ReferenceEquals(_activeAbility,null))
+        {
+            _abilitySpriteRenderer.sprite = _rootAbility.Icon;
+            SetCooldownData(1);
+        }
+        else
+        {
+            _abilitySpriteRenderer.sprite = _activeAbility.Icon;
+            if (_castingHandler is not null)
+            {
+                SetCooldownData(castHandler: _castingHandler);
+            }
+            else SetCooldownData(0);
+        }
+        base.UpdateVisual();
+    }
+
     public override void Hide()
     {
         if (_castingHandler is not null) _castingHandler.OnCast -= UpdateOnCast;

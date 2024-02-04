@@ -96,6 +96,7 @@ public class AbilityUpgradePanelUI : UIElement
         }
         upgrades3Holder.gameObject.SetActive(false);
         base.Hide();
+        if(_shaman is not null && _abilityUIButton is not null) AbilitiesHandlerUI.UpdateButton(_shaman,_abilityUIButton);
     }
 
     private void Update()

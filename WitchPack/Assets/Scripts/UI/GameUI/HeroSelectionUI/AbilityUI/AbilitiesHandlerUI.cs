@@ -26,7 +26,7 @@ public class AbilitiesHandlerUI : MonoBehaviour
             var uiButton = GetAvailableButton();
             var activeAbility = shaman.GetActiveAbilityFromRoot(rootAbility);
             var caster = shaman.GetCasterFromAbility(activeAbility);
-            uiButton.Init(rootAbility, activeAbility, caster, CheckAbilityUpgradable(activeAbility));
+            uiButton.Init(rootAbility, activeAbility, caster, CheckAbilityUpgradable(shaman,activeAbility));
             uiButton.OnAbilityClick += OpenUpgradePanel;
         }
 
@@ -44,6 +44,11 @@ public class AbilitiesHandlerUI : MonoBehaviour
             if (!uiBlock.gameObject.activeSelf) return;
             uiBlock.Hide();
         }
+    }
+
+    public static void UpdateButton(Shaman shaman, AbilityUIButton button)
+    {
+        button.UpdateVisual(CheckAbilityUpgradable(shaman,button.ActiveAbility));
     }
 
     private void OpenUpgradePanel(AbilityUIButton abilityButton)
@@ -85,14 +90,14 @@ public class AbilitiesHandlerUI : MonoBehaviour
             var uiButton = GetAvailableButton();
             var activeAbility = _shaman.GetActiveAbilityFromRoot(rootAbility);
             var caster = _shaman.GetCasterFromAbility(activeAbility);
-            uiButton.Init(rootAbility, activeAbility, caster, _shaman.EnergyHandler.HasSkillPoints);
+            uiButton.Init(rootAbility, activeAbility, caster, CheckAbilityUpgradable(_shaman,activeAbility));
             uiButton.OnAbilityClick += OpenUpgradePanel;
         }
     }
 
-    private bool CheckAbilityUpgradable(BaseAbility ability)
+    private static bool CheckAbilityUpgradable(Shaman shaman, BaseAbility ability)
     {
-        if (!_shaman.EnergyHandler.HasSkillPoints) return false;
+        if (!shaman.EnergyHandler.HasSkillPoints) return false;
         if (ability is not null)
         {
             if (ability.Upgrades.Length == 0) return false;
