@@ -1,4 +1,5 @@
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class EnergyHandler 
@@ -10,6 +11,7 @@ public class EnergyHandler
     public int AvailableSkillPoints => _shamanLevel - _usedSkillPoints;
     public int MaxEnergyToNextLevel => _energyLevels[_shamanLevel-1];
     public int CurrentEnergy => _currentEnergy;
+    public bool HasSkillPoints => AvailableSkillPoints > 0;
 
     private int _shamanLevel = 1;
     private int _currentEnergy;
@@ -26,11 +28,13 @@ public class EnergyHandler
             config.EnergyLevels.Level4,
             config.EnergyLevels.Level5,
             config.EnergyLevels.Level6,
+            config.EnergyLevels.MaxLevel
         };
     }
-
-    public void GainEnergy(int energy)
+    public void GainEnergy(int energy = 0)
     {
+        if (energy == 0) energy = 25; //temp
+        if(_shamanLevel == 7) return;
         _currentEnergy += energy;
         OnShamanGainEnergy?.Invoke(_currentEnergy,MaxEnergyToNextLevel);
         if(_currentEnergy >= MaxEnergyToNextLevel) LevelUp();
@@ -50,7 +54,7 @@ public class EnergyHandler
     private void LevelUp()
     {
         _shamanLevel++;
-        _currentEnergy = 0;
+        if(_shamanLevel != 7) _currentEnergy = 0;
         OnShamanLevelUp?.Invoke(_shamanLevel);
     }
 
