@@ -13,8 +13,10 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
     [SerializeField, HideInInspector] protected RectTransform rectTransform;
     [SerializeField] private bool showOnAwake = false;
     [SerializeField] private bool assignUIGroup = false;
-
     [SerializeField, ShowIf(nameof(assignUIGroup))] protected UIGroup uiGroup;
+    [SerializeField] private bool showInfoWindow = false;
+    [SerializeField, ShowIf(nameof(showInfoWindow))] protected WindowInfo _windowInfo;
+    
 
     protected bool isMouseOver;
 
@@ -60,11 +62,19 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
     {
         isMouseOver = true;
         OnMouseEnter?.Invoke();
+        if (showInfoWindow)
+        {
+            InformationWindow.Instance.Show(this,_windowInfo);
+        }
     }
 
     public virtual void OnPointerExit(PointerEventData eventData)
     {
         isMouseOver = false;
         OnMouseExit?.Invoke();
+        if (showInfoWindow)
+        {
+            InformationWindow.Instance.Hide();
+        }
     }
 }

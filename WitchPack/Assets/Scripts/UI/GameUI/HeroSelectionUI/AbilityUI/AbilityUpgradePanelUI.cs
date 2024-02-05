@@ -30,7 +30,7 @@ public class AbilityUpgradePanelUI : UIElement
         _abilityUIButton = abilityUIButton;
         _rootAbility = abilityUIButton.RootAbility;
         _abilityUpgrades = _rootAbility.GetUpgrades();
-        titleTMP.text = _rootAbility.Name;
+        titleTMP.text = abilityUIButton.CastingHandler is null ? "Passive" : _rootAbility.Name;
         baseAbilityUpgradeUIButton.OnAbilityClick += UpgradeShamanAbility;
         if (_abilityUpgrades.Count == 3)
         {

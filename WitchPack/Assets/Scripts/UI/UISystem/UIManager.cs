@@ -5,6 +5,10 @@ using UnityEngine;
 [DefaultExecutionOrder(-1)]
 public class UIManager : MonoSingleton<UIManager>
 {
+    public InformationWindow InformationWindow => _informationWindow;
+    
+    [SerializeField] private InformationWindow _informationWindow;
+    
     private Dictionary<UIGroup, List<UIElement>> _uiGroups;
 
     protected override void Awake()

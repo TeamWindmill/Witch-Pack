@@ -8,6 +8,7 @@ public class AbilityUIButton : ClickableUIElement
     public event Action<AbilityUIButton> OnAbilityClick;
     public BaseAbility RootAbility => _rootAbility;
     public BaseAbility ActiveAbility => _activeAbility;
+    public UnitCastingHandler CastingHandler => _castingHandler;
     
     [SerializeField] private Image _abilitySpriteRenderer;
     [SerializeField] private Image _cooldownSpriteRenderer;
