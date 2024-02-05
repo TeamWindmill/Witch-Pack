@@ -8,6 +8,7 @@ public class BaseAbility : ScriptableObject
     [SerializeField] private string discription;
     [SerializeField] private Sprite icon;
     [SerializeField] private float cd;
+    [SerializeField] private bool isPassive;
 
     [SerializeField, Tooltip("Interval before casting in real time")]
     private float castTime;
@@ -23,6 +24,7 @@ public class BaseAbility : ScriptableObject
     public string Name => name;
     public string Discription => discription;
     public float Cd => cd;
+    public bool IsPassive => isPassive;
     public List<StatusEffectConfig> StatusEffects => statusEffects;
     public BaseAbility[] Upgrades => _upgrades;
     public AbilityUpgradeState AbilityUpgradeState => _abilityUpgradeState;
