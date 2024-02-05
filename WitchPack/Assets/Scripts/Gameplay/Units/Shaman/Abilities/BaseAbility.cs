@@ -5,6 +5,7 @@ using UnityEngine;
 public class BaseAbility : ScriptableObject
 {
     [SerializeField] private string name;
+    [SerializeField] private string discription;
     [SerializeField] private Sprite icon;
     [SerializeField] private float cd;
 
@@ -20,6 +21,7 @@ public class BaseAbility : ScriptableObject
     public TargetData TargetData => targetData;
     public Sprite Icon => icon;
     public string Name => name;
+    public string Discription => discription;
     public float Cd => cd;
     public List<StatusEffectConfig> StatusEffects => statusEffects;
     public BaseAbility[] Upgrades => _upgrades;

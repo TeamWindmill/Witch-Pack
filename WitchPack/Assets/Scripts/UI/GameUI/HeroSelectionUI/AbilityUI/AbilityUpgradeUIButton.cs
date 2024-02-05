@@ -25,6 +25,8 @@ public class AbilityUpgradeUIButton : ClickableUIElement
         abilitySprite.sprite = ability.Icon;
         _ability = ability;
         _hasSkillPoints = hasSkillPoints;
+        _windowInfo.Name = ability.Name;
+        _windowInfo.Discription = ability.Discription;
         Show();
     }
 
