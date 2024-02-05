@@ -6,6 +6,7 @@ public class EnergyHandler
 {
     public event Action<int> OnShamanLevelUp;
     public event Action<int,int> OnShamanGainEnergy;
+    public event Action<bool> OnShamanUpgrade;
     
     public int ShamanLevel => _shamanLevel;
     public int AvailableSkillPoints => _shamanLevel - _usedSkillPoints;
@@ -45,6 +46,7 @@ public class EnergyHandler
         if (AvailableSkillPoints > 0)
         {
             _usedSkillPoints++;
+            OnShamanUpgrade?.Invoke(HasSkillPoints);
             return true;
         }
 
