@@ -1,27 +1,25 @@
-using System;
-using PathCreation;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class Enemy : BaseUnit
 {
+    public EnemyConfig EnemyConfig { get => enemyConfig; }
+    public int CoreDamage => _coreDamage;
+    public int EnergyPoints => _energyPoints;
+    public override StatSheet BaseStats => enemyConfig.BaseStats;
+    public EnemyMovement EnemyMovement => _enemyMovement;
+
     [SerializeField, TabGroup("Visual")] private EnemyAnimator enemyAnimator;
-    private PathCreator _path;
     private int _coreDamage;
     private int _energyPoints;
     //testing 
     public int Id => gameObject.GetHashCode();
-    
+
+    private EnemyAgro _enemyAgro = new EnemyAgro();
+    private EnemyMovement _enemyMovement = new EnemyMovement();
     private EnemyConfig enemyConfig;
     private int pointIndex;
-    private float dstTravelled;
-    private bool _isMoving;
-    public EnemyConfig EnemyConfig { get => enemyConfig; }
-    public int CoreDamage => _coreDamage;
-    public int EnergyPoints => _energyPoints;
-    public bool IsMoving => _isMoving;
 
-    public override StatSheet BaseStats => enemyConfig.BaseStats;
     private void OnValidate()
     {
         enemyAnimator ??= GetComponentInChildren<EnemyAnimator>();
@@ -31,26 +29,18 @@ public class Enemy : BaseUnit
         pointIndex = 0;
         enemyConfig = givenConfig as EnemyConfig;
         base.Init(enemyConfig);
-        _path = enemyConfig.Path;
         _coreDamage = enemyConfig.CoreDamage;
         _energyPoints = enemyConfig.EnergyPoints;
         Targeter.SetRadius(Stats.BonusRange);
-        //Movement.SetDest(givenPath.Waypoints[pointIndex].position);
-        //Movement.OnDestenationReached += SetNextDest;
+        _enemyAgro.Init(this);
+        _enemyMovement.Init(this);
         enemyAnimator.Init(this);
-        ToggleMove(true);
     }
 
     private void Update()
     {
-        if(!_isMoving) return;
-        dstTravelled += Stats.MovementSpeed * GAME_TIME.GameDeltaTime;
-        transform.position = _path.path.GetPointAtDistance(dstTravelled, EndOfPathInstruction.Stop);
-    }
-
-    public void ToggleMove(bool state)
-    {
-        _isMoving = state;
+        if(Targeter.HasTarget) _enemyAgro.UpdateAgro();
+        _enemyMovement.FollowPath();
     }
 
     private void SetNextDest()
@@ -70,9 +60,9 @@ public class Enemy : BaseUnit
 
     protected override void OnDisable()
     {
-        base.OnDisable();
         Movement.OnDestenationReached -= SetNextDest;
-        dstTravelled = 0;
+        _enemyMovement.OnDisable();
+        base.OnDisable();
     }
 
     
