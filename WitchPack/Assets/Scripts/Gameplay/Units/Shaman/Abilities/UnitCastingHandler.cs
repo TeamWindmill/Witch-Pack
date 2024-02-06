@@ -19,6 +19,11 @@ public class UnitCastingHandler
         unit = owner;
         this.ability = ability;
         lastCast = GetAbilityCD() * -1;
+        if (ability.GivesEnergyPoints)
+        {
+            var shaman = owner as Shaman;
+            OnCast += shaman.EnergyHandler.OnShamanCast;
+        }
     }
 
     public float GetAbilityCD()

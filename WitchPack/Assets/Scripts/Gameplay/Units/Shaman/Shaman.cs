@@ -24,7 +24,7 @@ public class Shaman : BaseUnit
     private List<BaseAbility> rootAbilities = new List<BaseAbility>();
     private List<BaseAbility> knownAbilities = new List<BaseAbility>();
     private List<UnitCastingHandler> castingHandlers = new List<UnitCastingHandler>();
-    private EnergyHandler energyHandler = new EnergyHandler();
+    private EnergyHandler energyHandler;
 
     private void OnValidate()
     {
@@ -35,7 +35,7 @@ public class Shaman : BaseUnit
     {
         shamanConfig = baseUnitConfig as ShamanConfig;
         base.Init(shamanConfig);
-        energyHandler.Init(shamanConfig);
+        energyHandler = new EnergyHandler(this);
         Targeter.SetRadius(Stats.BonusRange);
         Stats.OnStatChanged += Targeter.AddRadius;
         IntializeAbilities();
@@ -44,6 +44,7 @@ public class Shaman : BaseUnit
         shamanAnimator.Init(this);
         clicker.OnClick += SetSelectedShaman;
         DamageDealer.OnKill += energyHandler.OnEnemyKill;
+        DamageDealer.OnAssist += energyHandler.OnEnemyAssist;
         energyHandler.OnShamanLevelUp += OnLevelUpVFX;
         groundCollider.Init(this);
         indicatable.Init(shamanConfig.UnitIcon);

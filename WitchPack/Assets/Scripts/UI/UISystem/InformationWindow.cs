@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class InformationWindow : MonoSingleton<InformationWindow>
 {
+    public bool isActive { get; private set; }
     [SerializeField] private Transform _holder;
     [SerializeField] private TextMeshProUGUI _titleTMP;
     [SerializeField] private TextMeshProUGUI _discriptionTMP;
@@ -20,13 +21,6 @@ public class InformationWindow : MonoSingleton<InformationWindow>
     }
     public void Show(UIElement uiElement, WindowInfo windowInfo)
     {
-        StartCoroutine(ShowAfterDelay(uiElement, windowInfo));
-    }
-
-    private IEnumerator ShowAfterDelay(UIElement uiElement, WindowInfo windowInfo)
-    {
-        yield return new WaitForSeconds(windowInfo.DelayTime);
-        
         _rectTransform.rect.Set(0,0,_windowSize.x,_windowSize.y);
         
         _titleTMP.text = windowInfo.Name;
@@ -38,11 +32,13 @@ public class InformationWindow : MonoSingleton<InformationWindow>
         windowPos.y += uiElementRect.height/2;
         transform.position = windowPos;
         _holder.gameObject.SetActive(true);
+        isActive = true;
     }
 
     public void Hide()
     {
         _holder.gameObject.SetActive(false);
+        isActive = false;
     }
 
     private void OnValidate()

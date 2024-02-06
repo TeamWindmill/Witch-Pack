@@ -7,6 +7,7 @@ public class DamageDealer
 
     public Action<Damageable, DamageDealer, DamageHandler, BaseAbility, bool> OnHitTarget;
     public Action<Damageable, DamageDealer, DamageHandler, BaseAbility, bool> OnKill;
+    public Action<Damageable, DamageDealer, DamageHandler, BaseAbility, bool> OnAssist;
 
     private OffensiveAbility autoAttack;
     public BaseUnit Owner { get => owner; }

@@ -32,8 +32,9 @@ public abstract class ClickableUIElement : UIElement, IPointerClickHandler
         }
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         if (_clickNum == 0 || !enableDoubleClick)
             return;
 
