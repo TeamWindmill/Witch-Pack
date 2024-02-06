@@ -34,7 +34,7 @@ public class EnemyMovement
     {
         var returnPoint = _path.path.GetClosestPointOnPath(currentPos);
         _unitMovement.SetDest(returnPoint);
-        _unitMovement.OnDestenationReached
+        //_unitMovement.OnDestenationReached
         dstTravelled = _path.path.GetClosestDistanceAlongPath(currentPos);
         
     }
