@@ -39,7 +39,7 @@ public class Enemy : BaseUnit
 
     private void Update()
     {
-        if(Targeter.HasTarget) _enemyAgro.UpdateAgro();
+        _enemyAgro.UpdateAgro();
         _enemyMovement.FollowPath();
     }
 
@@ -60,7 +60,7 @@ public class Enemy : BaseUnit
 
     protected override void OnDisable()
     {
-        Movement.OnDestenationReached -= SetNextDest;
+        Movement.OnDestinationReached -= SetNextDest;
         _enemyMovement.OnDisable();
         base.OnDisable();
     }

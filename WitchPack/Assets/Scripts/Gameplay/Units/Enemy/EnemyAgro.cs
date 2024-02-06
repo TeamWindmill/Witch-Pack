@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = System.Random;
 
-public class EnemyAgro 
+public class EnemyAgro
 {
     private Enemy _enemy;
     private BaseUnit _currentTarget;
@@ -13,7 +13,7 @@ public class EnemyAgro
     private float _timer;
     private Random _random = new System.Random();
     private bool _chasingTarget;
-    
+
     public void Init(Enemy enemy)
     {
         _enemy = enemy;
@@ -26,11 +26,14 @@ public class EnemyAgro
     {
         if (!_chasingTarget)
         {
-            _timer += GAME_TIME.GameDeltaTime;
-            if (_timer >= _agroInterval)
+            if (_enemy.Targeter.HasTarget)
             {
-                _timer = 0;
-                TryAgro();
+                _timer += GAME_TIME.GameDeltaTime;
+                if (_timer >= _agroInterval)
+                {
+                    _timer = 0;
+                    TryAgro();
+                }
             }
         }
         else
@@ -40,6 +43,7 @@ public class EnemyAgro
             {
                 _timer = 0;
                 Agro();
+                TryReturn();
             }
         }
     }
@@ -56,6 +60,11 @@ public class EnemyAgro
         }
     }
 
+    private void Agro()
+    {
+        _enemy.Movement.SetDest(_currentTarget.transform.position);
+    }
+
     private void TryReturn()
     {
         var chance = _random.NextDouble();
@@ -66,15 +75,10 @@ public class EnemyAgro
         }
     }
 
-    private void Agro()
-    {
-        _enemy.Movement.SetDest(_currentTarget.transform.position);
-    }
-
     private void Return()
     {
         _chasingTarget = false;
         _currentTarget = null;
-        
+        _enemy.EnemyMovement.ReturnToPath(_enemy.transform.position);
     }
 }

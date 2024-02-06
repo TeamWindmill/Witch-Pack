@@ -39,8 +39,8 @@ public class Shaman : BaseUnit
         Targeter.SetRadius(Stats.BonusRange);
         Stats.OnStatChanged += Targeter.AddRadius;
         IntializeAbilities();
-        Movement.OnDestenationSet += DisableAttacker;
-        Movement.OnDestenationReached += EnableAttacker;
+        Movement.OnDestinationSet += DisableAttacker;
+        Movement.OnDestinationReached += EnableAttacker;
         shamanAnimator.Init(this);
         clicker.OnClick += SetSelectedShaman;
         DamageDealer.OnKill += energyHandler.OnEnemyKill;
@@ -179,7 +179,7 @@ public class Shaman : BaseUnit
     {
         base.OnDisable();
         clicker.OnClick -= SetSelectedShaman;
-        Movement.OnDestenationSet -= DisableAttacker;
-        Movement.OnDestenationReached -= EnableAttacker;
+        Movement.OnDestinationSet -= DisableAttacker;
+        Movement.OnDestinationReached -= EnableAttacker;
     }
 }

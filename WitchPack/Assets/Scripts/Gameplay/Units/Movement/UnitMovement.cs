@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.AI;
 public class UnitMovement : MonoBehaviour
 {
+    public event Action OnDestinationSet;
+    public event Action OnDestinationReached;
+    
     private bool reachedDest;
     private Vector2 currentDest;
-    public Action OnDestenationSet;
-    public Action OnDestenationReached;
     private Coroutine activeMovementRoutine;
     private BaseUnit owner;
     [SerializeField] private NavMeshAgent agent;
@@ -54,7 +55,7 @@ public class UnitMovement : MonoBehaviour
         currentDest = transform.position;
         currentDest = worldPos;
         reachedDest = false;
-        OnDestenationSet?.Invoke();
+        OnDestinationSet?.Invoke();
         agent.destination = (Vector2)worldPos;
         if (!ReferenceEquals(activeMovementRoutine, null))
         {
@@ -72,7 +73,7 @@ public class UnitMovement : MonoBehaviour
     {
         yield return new WaitUntil(() => agent.velocity != Vector3.zero);
         yield return new WaitUntil(() =>  agent.remainingDistance <= agent.stoppingDistance);
-        OnDestenationReached?.Invoke();
+        OnDestinationReached?.Invoke();
     }
 
 
