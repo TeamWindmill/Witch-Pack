@@ -17,7 +17,7 @@ public class AttritionCounter : AbilityEventCounter
     {
         if (ReferenceEquals(ability, abilityToCount))
         {
-            if (ReferenceEquals(lastTarget, target.Owner))
+            if (ReferenceEquals(lastTarget, target.Owner)) // attacking the same target
             {
                 if(currentCount < maxStacks)
                 {
@@ -25,7 +25,7 @@ public class AttritionCounter : AbilityEventCounter
                 }
                 OnCountIncrement?.Invoke(this, target, dealer, dmg, ability);
             }
-            else
+            else // switching target
             {
                 currentCount = 0;
                 OnCountReset?.Invoke(this, target, dealer, dmg, ability);
