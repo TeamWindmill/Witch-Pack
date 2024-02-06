@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class BaseAbility : ScriptableObject
@@ -9,6 +10,8 @@ public class BaseAbility : ScriptableObject
     [SerializeField] private Sprite icon;
     [SerializeField] private float cd;
     [SerializeField] private bool isPassive;
+    [SerializeField] private bool givesEnergyPoints;
+    [SerializeField,ShowIf(nameof(givesEnergyPoints))] private int energyPoints;
 
     [SerializeField, Tooltip("Interval before casting in real time")]
     private float castTime;
@@ -25,6 +28,8 @@ public class BaseAbility : ScriptableObject
     public string Discription => discription;
     public float Cd => cd;
     public bool IsPassive => isPassive;
+    public bool GivesEnergyPoints => givesEnergyPoints;
+    public int EnergyPoints => energyPoints;
     public List<StatusEffectConfig> StatusEffects => statusEffects;
     public BaseAbility[] Upgrades => _upgrades;
     public AbilityUpgradeState AbilityUpgradeState => _abilityUpgradeState;

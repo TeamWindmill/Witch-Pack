@@ -10,8 +10,10 @@ public class AbilityUpgradePanelUI : UIElement
     [SerializeField] private TextMeshProUGUI titleTMP;
     [SerializeField] private AbilityUpgradeUIButton baseAbilityUpgradeUIButton;
     [SerializeField] private Transform upgrades3Holder;
+    [SerializeField] private Transform upgrades3BG;
     [SerializeField] private AbilityUpgradeUIButton[] abilityUpgrades3UI;
     [SerializeField] private Transform upgrades2Holder;
+    [SerializeField] private Transform upgrades2BG;
     [SerializeField] private AbilityUpgradeUIButton[] abilityUpgrades2UI;
 
     private AbilityUIButton _abilityUIButton;
@@ -34,7 +36,6 @@ public class AbilityUpgradePanelUI : UIElement
         baseAbilityUpgradeUIButton.OnAbilityClick += UpgradeShamanAbility;
         if (_abilityUpgrades.Count == 3)
         {
-            upgrades3Holder.gameObject.SetActive(true);
             foreach (var upgrade in abilityUpgrades3UI)
             {
                 upgrade.OnAbilityClick += UpgradeShamanAbility;
@@ -42,7 +43,6 @@ public class AbilityUpgradePanelUI : UIElement
         }
         else if (_abilityUpgrades.Count == 2)
         {
-            upgrades2Holder.gameObject.SetActive(true);
             foreach (var upgrade in abilityUpgrades2UI)
             {
                 upgrade.OnAbilityClick += UpgradeShamanAbility;
@@ -61,6 +61,9 @@ public class AbilityUpgradePanelUI : UIElement
         baseAbilityUpgradeUIButton.Init(_rootAbility,shamanHasSkillPoints);
         if (_abilityUpgrades.Count == 3)
         {
+            titleTMP.rectTransform.anchoredPosition = new Vector2(0,-30);
+            upgrades3BG.gameObject.SetActive(true);
+            upgrades3Holder.gameObject.SetActive(true);
             for (int i = 0; i < abilityUpgrades3UI.Length; i++)
             {
                 abilityUpgrades3UI[i].Init(_abilityUpgrades[i],shamanHasSkillPoints);
@@ -68,6 +71,9 @@ public class AbilityUpgradePanelUI : UIElement
         }
         else if (_abilityUpgrades.Count == 2)
         {
+            titleTMP.rectTransform.anchoredPosition = new Vector2(0,-120);
+            upgrades2BG.gameObject.SetActive(true);
+            upgrades2Holder.gameObject.SetActive(true);
             for (int i = 0; i < abilityUpgrades2UI.Length; i++)
             {
                 abilityUpgrades2UI[i].Init(_abilityUpgrades[i],shamanHasSkillPoints);
@@ -90,11 +96,14 @@ public class AbilityUpgradePanelUI : UIElement
             ability.Hide();
         }
         upgrades2Holder.gameObject.SetActive(false);
+        upgrades2BG.gameObject.SetActive(false);
         foreach (var ability in abilityUpgrades3UI)
         {
             ability.Hide();
         }
         upgrades3Holder.gameObject.SetActive(false);
+        upgrades3BG.gameObject.SetActive(false);
+        InformationWindow.Instance.Hide();
         base.Hide();
         if(_shaman is not null && _abilityUIButton is not null) AbilitiesHandlerUI.UpdateButton(_shaman,_abilityUIButton);
     }

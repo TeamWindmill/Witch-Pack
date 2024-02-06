@@ -1,9 +1,11 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
 public class Damageable
 {
+    private List<DamageDealer> _damageDealers = new List<DamageDealer>();
     private BaseUnit owner;
     private int currentHp;
     public int MaxHp => owner.Stats.MaxHp;
@@ -64,7 +66,7 @@ public class Damageable
                 OnHitGFX?.Invoke(false);
                 TakeDamage(dmg, dealer, ability, false);
             }
-
+            _damageDealers.Add(dealer);
         }
         else // in case we want to make an ability that only applys status effects
         {
@@ -83,8 +85,13 @@ public class Damageable
         if (currentHp <= 0)
         {
             OnDeath?.Invoke(this, dealer, handler, attack);
-            dealer.OnKill?.Invoke(this, dealer, handler, attack, isCrit);
             OnDeathGFX?.Invoke();
+            dealer.OnKill?.Invoke(this, dealer, handler, attack, isCrit);
+            foreach (var damageDealer in _damageDealers)
+            {
+                if(damageDealer == dealer) continue;
+                damageDealer.OnAssist?.Invoke(this, dealer, handler, attack, isCrit);
+            }
         }
         ClampHp();
     }

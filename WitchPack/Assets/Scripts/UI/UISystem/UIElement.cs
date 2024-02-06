@@ -19,6 +19,8 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
     
 
     protected bool isMouseOver;
+    private bool activateInfoWindow;
+    private float infoWindowDelayTimer;
 
     protected virtual void Awake()
     {
@@ -58,13 +60,27 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
         }
     }
 
+    protected virtual void Update()
+    {
+        if (activateInfoWindow)
+        {
+            infoWindowDelayTimer += Time.deltaTime;
+            if (infoWindowDelayTimer > _windowInfo.DelayTime)
+            {
+                infoWindowDelayTimer = 0;
+                InformationWindow.Instance.Show(this,_windowInfo);
+                activateInfoWindow = false;
+            }
+        }
+    }
+
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
         isMouseOver = true;
         OnMouseEnter?.Invoke();
         if (showInfoWindow)
         {
-            InformationWindow.Instance.Show(this,_windowInfo);
+            activateInfoWindow = true;
         }
     }
 
@@ -74,7 +90,8 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
         OnMouseExit?.Invoke();
         if (showInfoWindow)
         {
-            InformationWindow.Instance.Hide();
+            activateInfoWindow = false;
+            if(InformationWindow.Instance.isActive) InformationWindow.Instance.Hide();
         }
     }
 }
