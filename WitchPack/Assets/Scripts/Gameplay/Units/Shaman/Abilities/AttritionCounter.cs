@@ -6,12 +6,11 @@ using System;
 public class AttritionCounter : AbilityEventCounter
 {
     private BaseUnit lastTarget;
+    private int maxStacks;
 
-    public AttritionCounter(BaseUnit givenOwner, BaseAbility givenAbility, ref Action<Damageable, DamageDealer, DamageHandler, BaseAbility, bool> eventToSub) : base(givenOwner, givenAbility, ref eventToSub )
+    public AttritionCounter(BaseUnit givenOwner, BaseAbility givenAbility, ref Action<Damageable, DamageDealer, DamageHandler, BaseAbility, bool> eventToSub, int maxStacks) : base(givenOwner, givenAbility, ref eventToSub )
     {
-        owner = givenOwner;
-        abilityToCount = givenAbility;
-        eventToSub += EventFunc;
+        this.maxStacks = maxStacks;
     }
 
     protected override void EventFunc(Damageable target, DamageDealer dealer, DamageHandler dmg, BaseAbility ability, bool isCrit)
@@ -20,7 +19,10 @@ public class AttritionCounter : AbilityEventCounter
         {
             if (ReferenceEquals(lastTarget, target.Owner))
             {
-                currentCount++;
+                if(currentCount < maxStacks)
+                {
+                    currentCount++;
+                }
                 OnCountIncrement?.Invoke(this, target, dealer, dmg, ability);
             }
             else
