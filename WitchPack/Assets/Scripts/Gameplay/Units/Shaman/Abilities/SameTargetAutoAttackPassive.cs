@@ -7,15 +7,15 @@ public class SameTargetAutoAttackPassive : Passive
     [SerializeField, Range(1, 100)] private float damageIncreasePerShot;
     public override void SubscribePassive(BaseUnit owner)
     {
-        AbilityEventCounter evetnCounter;
+        AttritionCounter evetnCounter;
         switch (eventToCount)
         {
             case EventToCount.OnHit:
-                evetnCounter = new AbilityEventCounter(owner, owner.AutoAttack, ref owner.DamageDealer.OnHitTarget);
+                evetnCounter = new AttritionCounter(owner, owner.AutoAttack, ref owner.DamageDealer.OnHitTarget);
                 evetnCounter.OnCountIncrement += IncreaseAADamage;
                 break;
             case EventToCount.OnKill:
-                evetnCounter = new AbilityEventCounter(owner, owner.AutoAttack, ref owner.DamageDealer.OnKill);
+                evetnCounter = new AttritionCounter(owner, owner.AutoAttack, ref owner.DamageDealer.OnKill);
                 evetnCounter.OnCountIncrement += IncreaseAADamage;
                 break;
         }

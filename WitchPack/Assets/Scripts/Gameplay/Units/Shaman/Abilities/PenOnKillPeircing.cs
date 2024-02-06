@@ -7,10 +7,13 @@ using UnityEngine;
 public class PenOnKillPeircing : PiercingShot
 {
     [SerializeField] private int extraPenPerKill;
+    [SerializeField] private int numberOfKillsRequiredToIncreasePierce;
 
     public override void OnSetCaster(BaseUnit caster)
     {
-        AbilityEventCounter eventCounter = new AbilityEventCounter(caster, caster.AutoAttack, ref caster.DamageDealer.OnKill);
+        ExperiencedHunterCounter eventCounter = new ExperiencedHunterCounter(
+                                                caster, this, ref caster.DamageDealer.OnKill, 
+                                                numberOfKillsRequiredToIncreasePierce);
         eventCounter.OnCountIncrement += IncreasePen;
     }
     private void IncreasePen(AbilityEventCounter counter, Damageable target, DamageDealer dealer, DamageHandler dmg, BaseAbility ability)

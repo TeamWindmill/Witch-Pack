@@ -163,6 +163,9 @@ public class UnitStats
             case StatType.BonusStatusEffectDuration:
                 bonusStatusEffectDuration += wholeValue;
                 break;
+            case StatType.AbilityProjectilePenetration:
+                abilityProjectilePenetration += wholeValue;
+                break;
             default:
                 break;
         }
