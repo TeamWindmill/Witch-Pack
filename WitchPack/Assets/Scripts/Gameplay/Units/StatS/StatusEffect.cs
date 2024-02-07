@@ -5,21 +5,23 @@ public class StatusEffect
 {
     //inherit with buffs or debuffs. -> inherit again to create specific effects
     protected Effectable host;//the unit this ss is on
-    protected float counter;//how long until the duration is over
+    protected float timeCounter;//how long until the duration is over
     protected float duration;//ss lifetime
     private float amount;//the amount to change each stat by (might be flat or %)
     private StatType _statType;//the stats to affect
     private StatusEffectProcess process;
     private StatusEffectType statusEffectType;
+    private StatusEffectValueType statusEffectValueType;
 
     public Effectable Host { get => host; }
-    public float Counter { get => counter; }
+    public float Counter { get => timeCounter; }
     public float Duration { get => duration; }
     public StatType StatType { get => _statType; }
     public StatusEffectProcess Process { get => process; }
     public StatusEffectType StatusEffectType { get => statusEffectType; }
+    public StatusEffectValueType StatusEffectValueType { get => statusEffectValueType; }
 
-    public StatusEffect(Effectable host, float duration, float amount, StatType effectedStatType, StatusEffectProcess process, StatusEffectType statusEffectType)
+    public StatusEffect(Effectable host, float duration, float amount, StatType effectedStatType, StatusEffectProcess process, StatusEffectType statusEffectType, StatusEffectValueType valueType)
     {
         this.host = host;
         this.duration = duration;
@@ -43,7 +45,7 @@ public class StatusEffect
 
     public virtual void Reset()
     {
-        counter = 0;
+        timeCounter = 0;
     }
 
     protected virtual void Subscribe()
@@ -66,25 +68,55 @@ public class StatusEffect
 
     private IEnumerator OverTimeEffect()
     {
-        int amountToChange = Mathf.RoundToInt(amount / duration);
-        while (counter < duration)
+        float amountToChange = 0;
+        switch (statusEffectValueType)
+        {
+            case StatusEffectValueType.Flat:
+                amountToChange = Mathf.RoundToInt(amount / duration);
+                break;
+            case StatusEffectValueType.Percentage:
+                amountToChange = Mathf.RoundToInt((amount / 100) * host.Owner.Stats.GetStatValue(_statType)) / duration;
+                break;
+        }
+
+        while (timeCounter < duration)
         {
             host.Owner.Stats.AddValueToStat(StatType, amountToChange);
-            yield return new WaitForSeconds(1f);
-            counter++;
+            float counter = 0f;
+            while (counter < 1)
+            {
+                counter += GAME_TIME.GameDeltaTime;
+                yield return new WaitForEndOfFrame();
+            }
+            timeCounter++;
         }
-        host.Owner.Stats.AddValueToStat(StatType, -Mathf.RoundToInt(amount));
+        host.Owner.Stats.AddValueToStat(StatType, -amountToChange);
         Remove();
     }
     private IEnumerator InstantEffect()
     {
-        host.Owner.Stats.AddValueToStat(StatType, Mathf.RoundToInt(amount));
-        while (counter < duration)
+        float amountToChange = 0;
+        switch (statusEffectValueType)
         {
-            yield return new WaitForSeconds(1f);
-            counter++;
+            case StatusEffectValueType.Flat:
+                amountToChange = amount;
+                break;
+            case StatusEffectValueType.Percentage:
+                amountToChange = Mathf.RoundToInt((amount / 100) * host.Owner.Stats.GetStatValue(_statType));
+                break;
         }
-        host.Owner.Stats.AddValueToStat(StatType, -Mathf.RoundToInt(amount));
+        host.Owner.Stats.AddValueToStat(StatType, amountToChange);
+        while (timeCounter < duration)
+        {
+            float counter = 0f;
+            while (counter < 1)
+            {
+                counter += GAME_TIME.GameDeltaTime;
+                yield return new WaitForEndOfFrame();
+            }
+            timeCounter++;
+        }
+        host.Owner.Stats.AddValueToStat(StatType, -amountToChange);
         Remove();
     }
 }
