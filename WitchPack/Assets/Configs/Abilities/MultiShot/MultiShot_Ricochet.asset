@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: MultiShot_Ricochet
   m_EditorClassIdentifier: 
   name: Ricochet
-  discription: shot more
+  discription: Multishot now ricochets to other nearby targets
   icon: {fileID: -48363896, guid: ac38ec6e642d8824f820dcb972a41935, type: 3}
-  cd: 5
-  castTime: 0
+  cd: 6
+  castTime: 0.5
   statusEffects: []
   _upgrades: []
   targetData:
@@ -28,7 +28,7 @@ MonoBehaviour:
   numberOfShots: 3
   offset: {x: 1.5, y: 1.5, z: 0}
   ricochetTimes: 1
-  ricochetRange: 3
+  ricochetRange: 5.5
   ricochetSpeed: 2.5
   ricochetTargeting:
     Prio: 4

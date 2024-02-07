@@ -15,17 +15,17 @@ MonoBehaviour:
   startDelayInterval: 1
   betweenBetweenWavesesInterval: 12
   waves:
-  - TotalSpawns: 4
+  - TotalSpawns: 6
     TimeBetweenIntervals: 1
     Groups:
     - Enemy: {fileID: 11400000, guid: c9729e563b1f8dc4982cbaf376195c9f, type: 2}
       AmountPerSpawn: 2
-      TotalAmount: 8
+      TotalAmount: 12
       SpawnedAtInterval: 0
       SpawnerIndex: 3
       NumSpawned: 0
-  - TotalSpawns: 2
-    TimeBetweenIntervals: 6
+  - TotalSpawns: 1
+    TimeBetweenIntervals: 1
     Groups:
     - Enemy: {fileID: 11400000, guid: c9729e563b1f8dc4982cbaf376195c9f, type: 2}
       AmountPerSpawn: 5
@@ -36,7 +36,7 @@ MonoBehaviour:
     - Enemy: {fileID: 11400000, guid: c9729e563b1f8dc4982cbaf376195c9f, type: 2}
       AmountPerSpawn: 5
       TotalAmount: 5
-      SpawnedAtInterval: 2
+      SpawnedAtInterval: 0
       SpawnerIndex: 1
       NumSpawned: 0
   - TotalSpawns: 1
@@ -96,12 +96,24 @@ MonoBehaviour:
       SpawnedAtInterval: 3
       SpawnerIndex: 2
       NumSpawned: 0
-  - TotalSpawns: 6
+  - TotalSpawns: 3
     TimeBetweenIntervals: 1
     Groups:
     - Enemy: {fileID: 11400000, guid: d356efe2251b1ae4db6097a512631b25, type: 2}
       AmountPerSpawn: 1
       TotalAmount: 3
-      SpawnedAtInterval: 4
+      SpawnedAtInterval: 0
       SpawnerIndex: 4
+      NumSpawned: 0
+    - Enemy: {fileID: 11400000, guid: c9729e563b1f8dc4982cbaf376195c9f, type: 2}
+      AmountPerSpawn: 4
+      TotalAmount: 8
+      SpawnedAtInterval: 0
+      SpawnerIndex: 3
+      NumSpawned: 0
+    - Enemy: {fileID: 11400000, guid: d356efe2251b1ae4db6097a512631b25, type: 2}
+      AmountPerSpawn: 1
+      TotalAmount: 1
+      SpawnedAtInterval: 0
+      SpawnerIndex: 3
       NumSpawned: 0

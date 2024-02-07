@@ -4,10 +4,9 @@ using UnityEngine;
 using System;
 public class AbilityEventCounter 
 {
-    private BaseUnit owner;
-    private BaseAbility abilityToCount;
-    private BaseUnit lastTarget;
-    private int currentCount;
+    protected BaseUnit owner;
+    protected BaseAbility abilityToCount;
+    protected int currentCount;
 
     public Action<AbilityEventCounter, Damageable, DamageDealer, DamageHandler, BaseAbility> OnCountReset;
     public Action<AbilityEventCounter, Damageable, DamageDealer, DamageHandler, BaseAbility> OnCountIncrement;
@@ -18,25 +17,12 @@ public class AbilityEventCounter
     {
         owner = givenOwner;
         abilityToCount = givenAbility;
-        eventToSub += SameTargetCounter;
+        eventToSub += EventFunc;
     }
 
-    private void SameTargetCounter(Damageable target, DamageDealer dealer, DamageHandler dmg, BaseAbility ability, bool isCrit)
+    protected virtual void EventFunc(Damageable target, DamageDealer dealer, DamageHandler dmg, BaseAbility ability, bool isCrit)
     {
-        if (ReferenceEquals(ability, abilityToCount))
-        {
-            if (ReferenceEquals(lastTarget, target.Owner))
-            {
-                currentCount++;
-                OnCountIncrement?.Invoke(this, target, dealer, dmg, ability);
-            }
-            else
-            {
-                currentCount = 0;
-                OnCountReset?.Invoke(this, target, dealer, dmg, ability);
-                lastTarget = target.Owner;
-            }
-        }
+        
     }
 
 }
