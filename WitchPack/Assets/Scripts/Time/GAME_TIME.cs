@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -27,6 +28,10 @@ public class GAME_TIME : MonoBehaviour
 
     private static float _transitionTimeCount = 0;
 
+    private static List<Timer> _timers = new List<Timer>();
+    
+    private bool jasonstimer;
+
     private void Awake()
     {
         _monoBehaviour = this;
@@ -37,6 +42,7 @@ public class GAME_TIME : MonoBehaviour
     private void Update()
     {
         _gameTime += GameDeltaTime;
+        TickAllTimers();
     }
 
     public static void SetTimeStep(float time, float transitionTime = 1, AnimationCurve curve = null)
@@ -105,5 +111,24 @@ public class GAME_TIME : MonoBehaviour
 
         Debug.Log($"<color={ColorLogHelper.RED}>PAUSE</color>");
         SetTimeStep(0);
+    }
+
+    public static Timer AddTimer(float time, Action onTimerEnd, bool usingGameTime = false, bool removeOnTimerEnd = false)
+    {
+        var timer = new Timer(time, onTimerEnd, usingGameTime);
+        _timers.Add(timer);
+        if (removeOnTimerEnd) timer.OnTimerEnd += RemoveTimer;
+        return timer;
+    }
+
+    public static void RemoveTimer(Timer timer)
+    {
+        timer.OnTimerEnd -= RemoveTimer;
+        _timers.Remove(timer);
+    }
+
+    private void TickAllTimers()
+    {
+        _timers.ForEach(timer => timer.TimerTick());
     }
 }

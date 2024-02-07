@@ -14,7 +14,7 @@ public class EnemyMovement
     private UnitMovement _unitMovement;
     private PathCreator _path;
 
-    public void Init(Enemy enemy)
+    public EnemyMovement(Enemy enemy)
     {
         _enemy = enemy;
         _unitMovement = enemy.Movement;
@@ -27,25 +27,24 @@ public class EnemyMovement
         if(!_isMoving) return;
         dstTravelled += _enemy.Stats.MovementSpeed * GAME_TIME.GameDeltaTime;
         _enemy.transform.position = _path.path.GetPointAtDistance(dstTravelled, EndOfPathInstruction.Stop);
-        
     }
 
     public void ReturnToPath(Vector3 currentPos)
     {
         var returnPoint = _path.path.GetClosestPointOnPath(currentPos);
         _unitMovement.SetDest(returnPoint);
-        //_unitMovement.OnDestenationReached
-        dstTravelled = _path.path.GetClosestDistanceAlongPath(currentPos);
-        
+        dstTravelled = _path.path.GetClosestDistanceAlongPath(returnPoint);
+        _unitMovement.OnDestinationReached += ContinuePath;
+    }
+
+    private void ContinuePath()
+    {
+        _isMoving = true;
+        _unitMovement.ToggleMovement(false);
     }
     
     public void ToggleMove(bool state)
     {
         _isMoving = state;
-    }
-
-    public void OnDisable()
-    {
-        dstTravelled = 0;
     }
 }

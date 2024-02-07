@@ -15,8 +15,8 @@ public class Enemy : BaseUnit
     //testing 
     public int Id => gameObject.GetHashCode();
 
-    private EnemyAgro _enemyAgro = new EnemyAgro();
-    private EnemyMovement _enemyMovement = new EnemyMovement();
+    private EnemyAgro _enemyAgro;
+    private EnemyMovement _enemyMovement;
     private EnemyConfig enemyConfig;
     private int pointIndex;
 
@@ -32,14 +32,13 @@ public class Enemy : BaseUnit
         _coreDamage = enemyConfig.CoreDamage;
         _energyPoints = enemyConfig.EnergyPoints;
         Targeter.SetRadius(Stats.BonusRange);
-        _enemyAgro.Init(this);
-        _enemyMovement.Init(this);
+        _enemyAgro = new EnemyAgro(this);
+        _enemyMovement = new EnemyMovement(this);
         enemyAnimator.Init(this);
     }
 
     private void Update()
     {
-        if(Targeter.HasTarget) _enemyAgro.UpdateAgro();
         _enemyMovement.FollowPath();
     }
 
@@ -60,8 +59,8 @@ public class Enemy : BaseUnit
 
     protected override void OnDisable()
     {
-        Movement.OnDestenationReached -= SetNextDest;
-        _enemyMovement.OnDisable();
+        Movement.OnDestinationReached -= SetNextDest;
+        _enemyAgro?.OnDisable();
         base.OnDisable();
     }
 
