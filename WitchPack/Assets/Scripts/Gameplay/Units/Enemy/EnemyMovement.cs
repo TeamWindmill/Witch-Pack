@@ -14,7 +14,7 @@ public class EnemyMovement
     private UnitMovement _unitMovement;
     private PathCreator _path;
 
-    public void Init(Enemy enemy)
+    public EnemyMovement(Enemy enemy)
     {
         _enemy = enemy;
         _unitMovement = enemy.Movement;
@@ -46,10 +46,5 @@ public class EnemyMovement
     public void ToggleMove(bool state)
     {
         _isMoving = state;
-    }
-
-    public void OnDisable()
-    {
-        dstTravelled = 0;
     }
 }

@@ -5,73 +5,72 @@ using Random = System.Random;
 
 public class EnemyAgro
 {
-    private Enemy _enemy;
+    private Random _random = new System.Random();
     private BaseUnit _currentTarget;
+    private Enemy _enemy;
+    private Vector3 _lastTargetPos;
     private float _agroChance;
     private float _returnChanceModifier;
-    private float _agroInterval;
     private float _timer;
-    private Random _random = new System.Random();
     private bool _chasingTarget;
 
-    public void Init(Enemy enemy)
+    private Timer _agroTimer;
+    private Timer _chaseTimer;
+    private Timer _returnTimer;
+
+    public EnemyAgro(Enemy enemy)
     {
+        _chasingTarget = false;
         _enemy = enemy;
         _agroChance = enemy.EnemyConfig.AgroChance;
-        _agroInterval = enemy.EnemyConfig.AgroInterval;
         _returnChanceModifier = enemy.EnemyConfig.ReturnChanceModifier;
+        _agroTimer = GAME_TIME.AddTimer(enemy.EnemyConfig.AgroInterval,TryAgro,true);
+        _chaseTimer = GAME_TIME.AddTimer(enemy.EnemyConfig.ChaseInterval,Agro,true);
+        _returnTimer = GAME_TIME.AddTimer(enemy.EnemyConfig.ReturnInterval,TryReturn,true);
     }
 
-    public void UpdateAgro()
+    public void OnDisable()
     {
-        if (!_chasingTarget)
-        {
-            if (_enemy.Targeter.HasTarget)
-            {
-                _timer += GAME_TIME.GameDeltaTime;
-                if (_timer >= _agroInterval)
-                {
-                    _timer = 0;
-                    TryAgro();
-                }
-            }
-        }
-        else
-        {
-            _timer += GAME_TIME.GameDeltaTime;
-            if (_timer >= _agroInterval)
-            {
-                _timer = 0;
-                Agro();
-                TryReturn();
-            }
-        }
+        GAME_TIME.RemoveTimer(_agroTimer);
+        GAME_TIME.RemoveTimer(_chaseTimer);
+        GAME_TIME.RemoveTimer(_returnTimer);
     }
 
     private void TryAgro()
     {
-        var chance = _random.NextDouble();
-        if (chance < _agroChance)
+        if (!_chasingTarget && _enemy.Targeter.HasTarget)
         {
-            _currentTarget = _enemy.Targeter.GetClosestTarget();
-            _enemy.EnemyMovement.ToggleMove(false);
-            _chasingTarget = true;
-            Agro();
+            var chance = _random.NextDouble();
+            if (chance < _agroChance)
+            {
+                _currentTarget = _enemy.Targeter.GetClosestTarget();
+                _enemy.EnemyMovement.ToggleMove(false);
+                _enemy.Movement.ToggleMovement(true);
+                _chasingTarget = true;
+            }
         }
     }
 
     private void Agro()
     {
-        _enemy.Movement.SetDest(_currentTarget.transform.position);
+        if (_chasingTarget && !ReferenceEquals(_currentTarget, null))
+        {
+            if(_lastTargetPos == _currentTarget.transform.position) return;
+            _lastTargetPos = _currentTarget.transform.position;
+            _enemy.Movement.SetDest(_currentTarget.transform.position);
+        }
     }
 
     private void TryReturn()
     {
-        var chance = _random.NextDouble();
-        var distance = Vector3.Distance(_currentTarget.transform.position, _enemy.transform.position);
-        if (chance < _returnChanceModifier * distance)
+        if (_chasingTarget && !ReferenceEquals(_currentTarget, null))
         {
-            Return();
+            var chance = _random.NextDouble();
+            var returnChance = _returnChanceModifier * Vector3.Distance(_currentTarget.transform.position, _enemy.transform.position);
+            if (chance <  returnChance)
+            {
+                Return();
+            }
         }
     }
 
