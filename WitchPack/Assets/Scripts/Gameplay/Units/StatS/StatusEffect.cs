@@ -29,6 +29,7 @@ public class StatusEffect
         this._statType = effectedStatType;
         this.process = process;
         this.statusEffectType = statusEffectType;
+        this.statusEffectValueType = valueType;
     }
 
 
