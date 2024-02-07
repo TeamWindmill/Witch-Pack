@@ -12,6 +12,7 @@ public class StatPassive : Passive
         {
             owner.Stats.AddValueToStat(increase.Stat, increase.Value);
         }
+        HeroSelectionUI.Instance.Show((Shaman)owner); // To show the updated stats in the UI
     }
 
 }
