@@ -19,7 +19,7 @@ public class Effectable
 
     public void AddEffect(StatusEffectConfig givenEffectData, Affector affector)
     {
-        StatusEffect ss = new StatusEffect(this, givenEffectData.Duration, givenEffectData.Amount, givenEffectData.StatTypeAffected, givenEffectData.Process, givenEffectData.StatusEffectType);
+        StatusEffect ss = new StatusEffect(this, givenEffectData.Duration, givenEffectData.Amount, givenEffectData.StatTypeAffected, givenEffectData.Process, givenEffectData.StatusEffectType, givenEffectData.ValueType);
         for (int i = 0; i < activeEffects.Count; i++)//check if affected by a similar ss already
         {
             if (activeEffects[i].StatType == givenEffectData.StatTypeAffected && activeEffects[i].Process == givenEffectData.Process)
