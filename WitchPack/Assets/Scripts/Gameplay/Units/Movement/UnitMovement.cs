@@ -51,7 +51,7 @@ public class UnitMovement : MonoBehaviour
 
     public void SetDest(Vector3 worldPos)
     {
-        if(!agent.enabled) return;
+        if(!agent.enabled || !agent.isOnNavMesh) return;
         agent.velocity = Vector3.zero;
         currentDest = transform.position;
         currentDest = worldPos;
@@ -72,17 +72,22 @@ public class UnitMovement : MonoBehaviour
 
     private IEnumerator WaitTilReached()
     {
-        yield return new WaitUntil(() => agent.velocity != Vector3.zero);
-        yield return new WaitUntil(GetRemainingDistance);
+        yield return new WaitUntil(CheckVelocity);
+        yield return new WaitUntil(CheckRemainingDistance);
         OnDestinationReached?.Invoke();
     }
 
-    private bool GetRemainingDistance()
+    private bool CheckRemainingDistance()
     {
         if (!agent.enabled) return true;
         return agent.remainingDistance <= agent.stoppingDistance;
     }
 
+    private bool CheckVelocity()
+    {
+        if (!agent.enabled) return true;
+        return agent.velocity != Vector3.zero;
+    }
 
 
    

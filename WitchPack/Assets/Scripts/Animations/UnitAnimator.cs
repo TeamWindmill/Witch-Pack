@@ -35,9 +35,9 @@ public abstract class UnitAnimator : MonoBehaviour
     protected virtual void DeathAnimation()
     {
         unit.Movement.ToggleMovement(false);
+        unit.ToggleCollider(false);
         animator.SetBool(Death,true);
         animator.SetTrigger(_isFlipped ? "Death_Flipped" : "Death");
-        unit.ToggleCollider(false);
     }
     public virtual void DeathAnimationEnded()
     {
