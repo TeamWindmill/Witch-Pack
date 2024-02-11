@@ -34,7 +34,14 @@ public class BaseAbility : ScriptableObject
     public BaseAbility[] Upgrades => _upgrades;
     public AbilityUpgradeState AbilityUpgradeState => _abilityUpgradeState;
 
+    public float CastTime { get => castTime; }
+
     public virtual bool CastAbility(BaseUnit caster)
+    {
+        return true;
+    }
+
+    public virtual bool CheckCastAvailable(BaseUnit caster)
     {
         return true;
     }
@@ -73,4 +80,6 @@ public class BaseAbility : ScriptableObject
 
         return upgrades;
     }
+
+
 }

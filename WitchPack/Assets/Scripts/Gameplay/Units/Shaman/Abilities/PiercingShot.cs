@@ -27,4 +27,14 @@ public class PiercingShot : OffensiveAbility
 
     }
 
+    public override bool CheckCastAvailable(BaseUnit caster)
+    {
+        BaseUnit target = caster.TargetHelper.GetTarget(caster.Targeter.AvailableTargets, TargetData);
+        if (ReferenceEquals(target, null))
+        {
+            return false;
+        }
+        return true;
+    }
+
 }
