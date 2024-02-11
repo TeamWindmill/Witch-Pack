@@ -28,6 +28,7 @@ public class ObjectPool<T> : MonoBehaviour where T : MonoBehaviour
     {
         foreach (var item in pooledObjects)
         {
+            if (ReferenceEquals(item, null)) continue; 
             if (!item.gameObject.activeInHierarchy)
             {
                 return item;
