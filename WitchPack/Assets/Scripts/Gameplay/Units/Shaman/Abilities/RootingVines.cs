@@ -12,13 +12,14 @@ public class RootingVines : OffensiveAbility
         BaseUnit target = caster.TargetHelper.GetTarget(caster.Targeter.AvailableTargets, TargetData);    
         if (!ReferenceEquals(target, null))
         {
-            target.Damageable.GetHit(caster.DamageDealer, this);
-            List<BaseUnit> colleteral = caster.Targeter.GetAvailableTargets(target, radius);
-            foreach (var enemy in colleteral)
-            {
-                enemy.Damageable.GetHit(caster.DamageDealer, this);
-            }
+            //target.Damageable.GetHit(caster.DamageDealer, this);
+            //List<BaseUnit> colleteral = caster.Targeter.GetAvailableTargets(target, radius);
+            //foreach (var enemy in colleteral)
+            //{
+            //    enemy.Damageable.GetHit(caster.DamageDealer, this);
+            //}
             RootingVinesMono newVines = LevelManager.Instance.PoolManager.RootingVinesPool.GetPooledObject();
+            newVines.Init(caster, this);
             newVines.transform.position = target.transform.position;
             newVines.gameObject.SetActive(true);            
             return true;

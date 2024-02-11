@@ -7,6 +7,10 @@ public class RootingVinesMono : MonoBehaviour
     [SerializeField] private float lastingTime;
     [SerializeField] private float elapsedTime;
 
+    private BaseAbility refAbility;
+    private BaseUnit owner;
+    [SerializeField] private ParticleSystem rootingVinesRing;
+
     private void Update()
     {
         elapsedTime += GAME_TIME.GameDeltaTime;
@@ -14,6 +18,21 @@ public class RootingVinesMono : MonoBehaviour
         {
             elapsedTime = 0;
             gameObject.SetActive(false);
+        }
+    }
+
+    public void Init(BaseUnit owner, BaseAbility ability)
+    {
+        this.owner = owner;
+        this.refAbility = ability;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Enemy enemy = collision.GetComponent<Enemy>();
+        if (!ReferenceEquals(enemy, null))
+        {
+            enemy.Damageable.GetHit(owner.DamageDealer, refAbility);
         }
     }
 }
