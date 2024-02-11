@@ -11,4 +11,14 @@ public class ShamanAnimator : UnitAnimator
             animator.SetBool("Walking", _movementChange);
         }
     }
+
+    protected override void DeathAnimation()
+    {
+        base.DeathAnimation();
+    }
+
+    public override void DeathAnimationEnded()
+    {
+        base.DeathAnimationEnded();
+    }
 }

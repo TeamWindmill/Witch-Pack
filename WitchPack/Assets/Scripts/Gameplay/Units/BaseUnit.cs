@@ -79,12 +79,12 @@ public class BaseUnit : MonoBehaviour
         boxCollider.enabled = state;
     }
 
-    protected void DisableAttacker()
+    public void DisableAttacker()
     {
         autoAttacker.CanAttack = false;
 
     }
-    protected void EnableAttacker()
+    public void EnableAttacker()
     {
         autoAttacker.CanAttack = true;
     }

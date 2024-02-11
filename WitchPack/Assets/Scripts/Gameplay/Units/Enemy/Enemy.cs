@@ -35,31 +35,23 @@ public class Enemy : BaseUnit
         _enemyAgro = new EnemyAgro(this);
         _enemyMovement = new EnemyMovement(this);
         enemyAnimator.Init(this);
+        Damageable.OnHitGFX += GetHitSFX;
+        Damageable.OnDeathGFX += DeathSFX;
+        Movement.OnDestinationReached += EnableAttacker;
+        Movement.OnDestinationSet += DisableAttacker;
     }
-
     private void Update()
     {
         _enemyMovement.FollowPath();
     }
 
-    private void SetNextDest()
-    {
-        //pointIndex++;
-        // if (givenPath.Waypoints.Count <= pointIndex)//if reached the end of the path target nexus 
-        // {
-        //     gameObject.SetActive(false);
-        // }
-        // else
-        // {
-        //     Debug.Log("set dest");
-        //     Movement.SetDest(givenPath.Waypoints[pointIndex].position);
-        // }
-
-    }
-
+    #region SFX
+    private void GetHitSFX(bool isCrit) => SoundManager.Instance.PlayAudioClip(isCrit ? SoundEffectType.EnemyGetHitCrit : SoundEffectType.EnemyGetHit);
+    private void DeathSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.EnemyDeath);
+    
+    #endregion
     protected override void OnDisable()
     {
-        Movement.OnDestinationReached -= SetNextDest;
         _enemyAgro?.OnDisable();
         base.OnDisable();
     }
