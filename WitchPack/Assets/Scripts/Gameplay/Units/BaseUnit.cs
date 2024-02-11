@@ -1,6 +1,4 @@
-using System;
 using Sirenix.OdinInspector;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BaseUnit : MonoBehaviour
@@ -27,7 +25,7 @@ public class BaseUnit : MonoBehaviour
 
 
     [SerializeField, TabGroup("Visual")] private bool hasHPBar;
-    [SerializeField,ShowIf(nameof(hasHPBar)), TabGroup("Visual")] private HP_Bar hpBar;
+    [SerializeField, ShowIf(nameof(hasHPBar)), TabGroup("Visual")] private HP_Bar hpBar;
 
 
     private AutoAttackHandler autoAttackHandler;
@@ -69,7 +67,7 @@ public class BaseUnit : MonoBehaviour
         if (hasHPBar)
         {
             hpBar.gameObject.SetActive(true);
-            hpBar.Init(damageable.MaxHp,unitType);
+            hpBar.Init(damageable.MaxHp, unitType);
             damageable.OnDamageCalc += hpBar.SetBarValue;
         }
         damageable.OnDamageCalc += LevelManager.Instance.PopupsManager.SpawnDamagePopup;
@@ -80,7 +78,7 @@ public class BaseUnit : MonoBehaviour
     {
         boxCollider.enabled = state;
     }
-    
+
     protected void DisableAttacker()
     {
         autoAttacker.CanAttack = false;
@@ -103,6 +101,7 @@ public class BaseUnit : MonoBehaviour
 
     protected virtual void OnDisable()
     {
+        if(ReferenceEquals(LevelManager.Instance,null)) return;
         damageable.OnDamageCalc -= LevelManager.Instance.PopupsManager.SpawnDamagePopup;
         effectable.OnAffected -= LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
     }

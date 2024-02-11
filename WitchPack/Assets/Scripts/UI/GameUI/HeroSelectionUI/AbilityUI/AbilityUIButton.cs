@@ -8,10 +8,15 @@ public class AbilityUIButton : ClickableUIElement
     public event Action<AbilityUIButton> OnAbilityClick;
     public BaseAbility RootAbility => _rootAbility;
     public BaseAbility ActiveAbility => _activeAbility;
+    public UnitCastingHandler CastingHandler => _castingHandler;
     
     [SerializeField] private Image _abilitySpriteRenderer;
     [SerializeField] private Image _cooldownSpriteRenderer;
-
+    [SerializeField] private Image _frameSpriteRenderer;
+    [Space] 
+    [SerializeField] private Sprite upgradeReadyFrameSprite;
+    [SerializeField] private Sprite defaultFrameSprite;
+    
     private UnitCastingHandler _castingHandler;
     private BaseAbility _rootAbility;
     private BaseAbility _activeAbility;
@@ -22,13 +27,14 @@ public class AbilityUIButton : ClickableUIElement
 
     private bool _activeCd;
     
-    public void Init(BaseAbility rootAbility,BaseAbility activeAbility = null, UnitCastingHandler castingHandler = null)
+    public void Init(BaseAbility rootAbility,BaseAbility activeAbility = null, UnitCastingHandler castingHandler = null, bool hasSkillPoints = false)
     {
         _rootAbility = rootAbility;
+        _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
         if (ReferenceEquals(activeAbility,null))
         {
             _abilitySpriteRenderer.sprite = rootAbility.Icon;
-            _cooldownSpriteRenderer.fillAmount = 1;
+            SetCooldownData(1);
         }
         else
         {
@@ -37,15 +43,38 @@ public class AbilityUIButton : ClickableUIElement
             if (castingHandler is not null)
             {
                 _castingHandler = castingHandler;
-                SetCooldownData(castingHandler);
+                SetCooldownData(castHandler: castingHandler);
+                _castingHandler.OnCast += UpdateOnCast;
             }
-            else SetCooldownData();
+            else SetCooldownData(0);
         }
         Show();
     }
 
+    public void UpdateVisual(bool hasSkillPoints)
+    {
+        _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
+        if (ReferenceEquals(_activeAbility,null))
+        {
+            _abilitySpriteRenderer.sprite = _rootAbility.Icon;
+            SetCooldownData(1);
+        }
+        else
+        {
+            _abilitySpriteRenderer.sprite = _activeAbility.Icon;
+            if (_castingHandler is not null)
+            {
+                SetCooldownData(castHandler: _castingHandler);
+            }
+            else SetCooldownData(0);
+        }
+        base.UpdateVisual();
+    }
+
     public override void Hide()
     {
+        if (_castingHandler is not null) _castingHandler.OnCast -= UpdateOnCast;
+        OnAbilityClick = null;
         SetCooldownData();
         base.Hide();
     }
@@ -61,16 +90,17 @@ public class AbilityUIButton : ClickableUIElement
     }
 
     //set null for disabling the cooldown
-    private void SetCooldownData(UnitCastingHandler castingHandler = null)
+    private void SetCooldownData(float fillAmount = 0, UnitCastingHandler castHandler = null)
     {
-        if (ReferenceEquals(castingHandler, null))
+        if (ReferenceEquals(castHandler, null))
         {
+            _cooldownSpriteRenderer.fillAmount = fillAmount;
             _activeCd = false;
         }
         else
         {
-            _abilityCd = castingHandler.Ability.Cd;
-            _abilityLastCast = castingHandler.LastCast;
+            _abilityCd = castHandler.Ability.Cd;
+            _abilityLastCast = castHandler.LastCast;
             _activeCd = true;
         }
     }
@@ -83,8 +113,12 @@ public class AbilityUIButton : ClickableUIElement
         if (_abilityLastCast > 0)
         {
             ratio = (GAME_TIME.GameTime - _abilityLastCast) / _abilityCd;
-            if (ratio < 0) ratio = 0;
+            if (ratio >= 1) ratio = 0;
         }
         _cooldownSpriteRenderer.fillAmount = ratio;
+    }
+    private void UpdateOnCast(UnitCastingHandler castingHandler)
+    {
+        _abilityLastCast = castingHandler.LastCast;
     }
 }

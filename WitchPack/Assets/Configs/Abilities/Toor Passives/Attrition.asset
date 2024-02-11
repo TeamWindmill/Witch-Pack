@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be67637e210449a48a6f0964a48f182d, type: 3}
+  m_Name: Attrition
+  m_EditorClassIdentifier: 
+  name: Attrition
+  discription: Consecutive attacks against the same target ramp up damage. Killing
+    or Switching targets reset this damage bonus.
+  icon: {fileID: 21300000, guid: a685e3662bc8c6941af9e76f9336c500, type: 3}
+  cd: 0
+  isPassive: 1
+  castTime: 0
+  statusEffects: []
+  _upgrades: []
+  targetData:
+    Prio: 0
+    Mod: 0
+  eventToCount: 0
+  maxStacks: 10
+  damageIncreasePerShot: 10

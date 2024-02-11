@@ -12,16 +12,21 @@ public class AbilityUpgradeUIButton : ClickableUIElement
     [SerializeField] private Image lockedBg;
     [SerializeField] private Image frame;
     [SerializeField] private Image abilitySprite;
-    [Space] [SerializeField] private Sprite upgradeReadyFrameSprite;
+    [Space] 
+    [SerializeField] private Sprite upgradeReadyFrameSprite;
     [SerializeField] private Sprite defaultFrameSprite;
 
     private BaseAbility _ability;
+    private bool _hasSkillPoints;
 
 
-    public void Init(BaseAbility ability)
+    public void Init(BaseAbility ability, bool hasSkillPoints)
     {
         abilitySprite.sprite = ability.Icon;
         _ability = ability;
+        _hasSkillPoints = hasSkillPoints;
+        _windowInfo.Name = ability.Name;
+        _windowInfo.Discription = ability.Discription;
         Show();
     }
 
@@ -34,8 +39,16 @@ public class AbilityUpgradeUIButton : ClickableUIElement
                 frame.sprite = defaultFrameSprite;
                 break;
             case AbilityUpgradeState.Open:
-                lockedBg.gameObject.SetActive(false);
-                frame.sprite = upgradeReadyFrameSprite;
+                if (!_hasSkillPoints)
+                {
+                    lockedBg.gameObject.SetActive(true);
+                    frame.sprite = defaultFrameSprite;
+                }
+                else
+                {
+                    lockedBg.gameObject.SetActive(false);
+                    frame.sprite = upgradeReadyFrameSprite;
+                }
                 break;
             case AbilityUpgradeState.Upgraded:
                 lockedBg.gameObject.SetActive(false);
@@ -48,6 +61,11 @@ public class AbilityUpgradeUIButton : ClickableUIElement
 
     public override void Hide()
     {
+        if (OnAbilityClick is not null)
+        {
+            OnAbilityClick = null;
+            //Debug.Log($"{_ability.name} Hidden");
+        }
         base.Hide();
     }
 
@@ -59,8 +77,10 @@ public class AbilityUpgradeUIButton : ClickableUIElement
             case AbilityUpgradeState.Locked:
                 return;
             case AbilityUpgradeState.Open:
+                if(!_hasSkillPoints) return;
                 _ability.UpgradeAbility();
                 OnAbilityClick?.Invoke(this);
+                //Debug.Log($"clicked {_ability.name}");
                 return;
             case AbilityUpgradeState.Upgraded:
                 return;

@@ -1,7 +1,7 @@
-using DamageNumbersPro;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -31,7 +31,11 @@ public class WaveHandler : MonoBehaviour
             EnemySpawnData newWave = new EnemySpawnData();
             newWave.Groups = new List<EnemyGroup>();
 
-            newWave.Groups.AddRange(item.Groups);
+            foreach (var group in item.Groups)
+            {
+                newWave.Groups.Add(new EnemyGroup(group.Enemy, group.AmountPerSpawn, group.TotalAmount, group.SpawnedAtInterval, group.SpawnerIndex));
+            }
+            
 
             newWave.TimeBetweenIntervals = item.TimeBetweenIntervals;
             newWave.CalcSpawns();
@@ -71,7 +75,6 @@ public class WaveHandler : MonoBehaviour
 
     private IEnumerator SpawnWave(EnemySpawnData givenData)
     {
-        
         for (int i = 0; i < givenData.TotalSpawns; i++) //loop over how many spawns there are in total
         {
             int currentIntervalGoal = 0;
@@ -99,15 +102,13 @@ public class WaveHandler : MonoBehaviour
                 break;
             }
             GetSpawnPointFromIndex(givenGroup.SpawnerIndex).SpawnEnemy(givenGroup.Enemy);
-
-            EnemyGroup group = givenGroup;
-            group.NumSpawned++;
-            givenGroup = group;
+            givenGroup.NumSpawned++;
 
             yield return StartCoroutine(IntervalDelay(fixedSpawnInterval));
         }
         doneSpawningCounter++;
     }
+
 
     private EnemySpawnPoint GetSpawnPointFromIndex(int index)
     {

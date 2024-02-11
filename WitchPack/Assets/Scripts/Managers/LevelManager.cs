@@ -9,8 +9,8 @@ public class LevelManager : MonoSingleton<LevelManager>
     public LevelHandler CurrentLevel { get; private set; }
     public List<Shaman> ShamanParty { get; private set; }
     public bool IsWon { get; private set; }
-    
-    
+
+
     [SerializeField] private Transform enviromentHolder;
     [SerializeField] private Transform shamanHolder;
     [SerializeField] private Shaman shamanPrefab;
@@ -41,7 +41,11 @@ public class LevelManager : MonoSingleton<LevelManager>
     {
         get => poolManager;
     }
-    public PopupsManager PopupsManager { get => popupsManager; }
+
+    public PopupsManager PopupsManager
+    {
+        get => popupsManager;
+    }
 
     private void Start()
     {
@@ -89,7 +93,7 @@ public class LevelManager : MonoSingleton<LevelManager>
         }
     }
 
-    private void OnEnemyKill(Damageable arg1, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4)
+    private void OnEnemyKill(Damageable arg1, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4, bool crit)
     {
         _scoreHandler.UpdateScore(kills: 1);
     }

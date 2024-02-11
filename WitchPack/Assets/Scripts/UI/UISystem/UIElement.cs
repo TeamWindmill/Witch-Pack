@@ -13,11 +13,14 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
     [SerializeField, HideInInspector] protected RectTransform rectTransform;
     [SerializeField] private bool showOnAwake = false;
     [SerializeField] private bool assignUIGroup = false;
-
-    [SerializeField, ShowIf(nameof(assignUIGroup))]
-    protected UIGroup uiGroup;
+    [SerializeField, ShowIf(nameof(assignUIGroup))] protected UIGroup uiGroup;
+    [SerializeField] private bool showInfoWindow = false;
+    [SerializeField, ShowIf(nameof(showInfoWindow))] protected WindowInfo _windowInfo;
+    
 
     protected bool isMouseOver;
+    private bool activateInfoWindow;
+    private float infoWindowDelayTimer;
 
     protected virtual void Awake()
     {
@@ -57,15 +60,38 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
         }
     }
 
+    protected virtual void Update()
+    {
+        if (activateInfoWindow)
+        {
+            infoWindowDelayTimer += Time.deltaTime;
+            if (infoWindowDelayTimer > _windowInfo.DelayTime)
+            {
+                infoWindowDelayTimer = 0;
+                InformationWindow.Instance.Show(this,_windowInfo);
+                activateInfoWindow = false;
+            }
+        }
+    }
+
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
         isMouseOver = true;
         OnMouseEnter?.Invoke();
+        if (showInfoWindow)
+        {
+            activateInfoWindow = true;
+        }
     }
 
     public virtual void OnPointerExit(PointerEventData eventData)
     {
         isMouseOver = false;
         OnMouseExit?.Invoke();
+        if (showInfoWindow)
+        {
+            activateInfoWindow = false;
+            if(InformationWindow.Instance.isActive) InformationWindow.Instance.Hide();
+        }
     }
 }

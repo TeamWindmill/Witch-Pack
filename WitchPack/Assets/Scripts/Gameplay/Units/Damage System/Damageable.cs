@@ -1,10 +1,11 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
 
 [System.Serializable]
 public class Damageable
 {
+    private List<DamageDealer> _damageDealers = new List<DamageDealer>();
     private BaseUnit owner;
     private int currentHp;
     public int MaxHp => owner.Stats.MaxHp;
@@ -17,7 +18,7 @@ public class Damageable
     public Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility> OnDeath;
     public Action OnDeathGFX;
     public Action<bool> OnHitGFX;
-    
+
     //add gfx events later
 
     public BaseUnit Owner { get => owner; }
@@ -65,7 +66,7 @@ public class Damageable
                 OnHitGFX?.Invoke(false);
                 TakeDamage(dmg, dealer, ability, false);
             }
-            
+            _damageDealers.Add(dealer);
         }
         else // in case we want to make an ability that only applys status effects
         {
@@ -79,13 +80,18 @@ public class Damageable
     {
         currentHp -= handler.GetFinalDamage();
         //Debug.Log($"{owner.gameObject} took {handler.GetFinalDamage()} damage from {dealer.Owner.name}");
-        OnDamageCalc?.Invoke(this,dealer,handler,attack, isCrit);
+        OnDamageCalc?.Invoke(this, dealer, handler, attack, isCrit);
 
         if (currentHp <= 0)
         {
             OnDeath?.Invoke(this, dealer, handler, attack);
-            dealer.OnKill?.Invoke(this, dealer, handler, attack);
             OnDeathGFX?.Invoke();
+            dealer.OnKill?.Invoke(this, dealer, handler, attack, isCrit);
+            foreach (var damageDealer in _damageDealers)
+            {
+                if(damageDealer == dealer) continue;
+                damageDealer.OnAssist?.Invoke(this, dealer, handler, attack, isCrit);
+            }
         }
         ClampHp();
     }
@@ -105,7 +111,7 @@ public class Damageable
         currentHp = Mathf.Clamp(currentHp, 0, MaxHp);
     }
 
-    private void AddStatsDamageReduction(Damageable target, DamageDealer dealer, DamageHandler dmg, BaseAbility ability, bool crit )
+    private void AddStatsDamageReduction(Damageable target, DamageDealer dealer, DamageHandler dmg, BaseAbility ability, bool crit)
     {
         dmg.AddMod(1 - (owner.Stats.Armor / 100));
     }

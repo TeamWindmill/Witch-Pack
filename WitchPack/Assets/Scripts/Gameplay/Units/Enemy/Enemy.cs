@@ -1,25 +1,25 @@
-using System;
-using PathCreation;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class Enemy : BaseUnit
 {
-    [SerializeField, TabGroup("Visual")] private EnemyAnimator enemyAnimator;
-    private PathCreator _path;
-    private int _coreDamage;
-    //testing 
-    public int Id => gameObject.GetHashCode();
-    
-    private EnemyConfig enemyConfig;
-    private int pointIndex;
-    private float dstTravelled;
-    private bool _isMoving;
     public EnemyConfig EnemyConfig { get => enemyConfig; }
     public int CoreDamage => _coreDamage;
-    public bool IsMoving => _isMoving;
-
+    public int EnergyPoints => _energyPoints;
     public override StatSheet BaseStats => enemyConfig.BaseStats;
+    public EnemyMovement EnemyMovement => _enemyMovement;
+
+    [SerializeField, TabGroup("Visual")] private EnemyAnimator enemyAnimator;
+    private int _coreDamage;
+    private int _energyPoints;
+    //testing 
+    public int Id => gameObject.GetHashCode();
+
+    private EnemyAgro _enemyAgro;
+    private EnemyMovement _enemyMovement;
+    private EnemyConfig enemyConfig;
+    private int pointIndex;
+
     private void OnValidate()
     {
         enemyAnimator ??= GetComponentInChildren<EnemyAnimator>();
@@ -29,47 +29,29 @@ public class Enemy : BaseUnit
         pointIndex = 0;
         enemyConfig = givenConfig as EnemyConfig;
         base.Init(enemyConfig);
-        _path = enemyConfig.Path;
         _coreDamage = enemyConfig.CoreDamage;
+        _energyPoints = enemyConfig.EnergyPoints;
         Targeter.SetRadius(Stats.BonusRange);
-        //Movement.SetDest(givenPath.Waypoints[pointIndex].position);
-        //Movement.OnDestenationReached += SetNextDest;
+        _enemyAgro = new EnemyAgro(this);
+        _enemyMovement = new EnemyMovement(this);
         enemyAnimator.Init(this);
-        ToggleMove(true);
+        Damageable.OnHitGFX += GetHitSFX;
+        Damageable.OnDeathGFX += DeathSFX;
     }
-
     private void Update()
     {
-        if(!_isMoving) return;
-        dstTravelled += Stats.MovementSpeed * GAME_TIME.GameDeltaTime;
-        transform.position = _path.path.GetPointAtDistance(dstTravelled, EndOfPathInstruction.Stop);
+        _enemyMovement.FollowPath();
     }
 
-    public void ToggleMove(bool state)
-    {
-        _isMoving = state;
-    }
-
-    private void SetNextDest()
-    {
-        //pointIndex++;
-        // if (givenPath.Waypoints.Count <= pointIndex)//if reached the end of the path target nexus 
-        // {
-        //     gameObject.SetActive(false);
-        // }
-        // else
-        // {
-        //     Debug.Log("set dest");
-        //     Movement.SetDest(givenPath.Waypoints[pointIndex].position);
-        // }
-
-    }
-
+    #region SFX
+    private void GetHitSFX(bool isCrit) => SoundManager.Instance.PlayAudioClip(isCrit ? SoundEffectType.EnemyGetHitCrit : SoundEffectType.EnemyGetHit);
+    private void DeathSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.EnemyDeath);
+    
+    #endregion
     protected override void OnDisable()
     {
+        _enemyAgro?.OnDisable();
         base.OnDisable();
-        Movement.OnDestenationReached -= SetNextDest;
-        dstTravelled = 0;
     }
 
     

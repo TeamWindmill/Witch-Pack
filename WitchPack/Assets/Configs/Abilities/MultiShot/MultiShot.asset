@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15a9833310f9a9446ab1e1eaace27b68, type: 3}
+  m_Name: MultiShot
+  m_EditorClassIdentifier: 
+  name: Multishot
+  discription: Shoots 3 homing projectiles at nearby targets.
+  icon: {fileID: 1426186388, guid: ac38ec6e642d8824f820dcb972a41935, type: 3}
+  cd: 6
+  isPassive: 0
+  givesEnergyPoints: 0
+  energyPoints: 0
+  castTime: 0.5
+  statusEffects: []
+  _upgrades:
+  - {fileID: 11400000, guid: cb2514b65dfc122468ae5be845669186, type: 2}
+  - {fileID: 11400000, guid: b9cac84295f56404687865c71ac88587, type: 2}
+  targetData:
+    Prio: 1
+    Mod: 1
+  baseDamage: 50
+  range: 6
+  damageBoosts: []
+  numberOfShots: 3
+  offset: {x: 1.5, y: 1.5, z: 0}
+  ricochetTimes: 0
+  ricochetRange: 0
+  ricochetSpeed: 0
+  ricochetTargeting:
+    Prio: 1
+    Mod: 1

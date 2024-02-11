@@ -11,15 +11,20 @@ public class Shaman : BaseUnit
     public List<UnitCastingHandler> CastingHandlers => castingHandlers;
     public bool MouseOverShaman => clicker.IsHover;
     public List<BaseAbility> RootAbilities => rootAbilities;
+    public EnergyHandler EnergyHandler => energyHandler;
 
     [SerializeField, TabGroup("Visual")] private ShamanAnimator shamanAnimator;
     [SerializeField] private ClickHelper clicker;
     [SerializeField] private Indicatable indicatable;
     [SerializeField] private GroundCollider groundCollider;
+    [SerializeField] private ParticleSystem levelUpEffect;
+
+
     private ShamanConfig shamanConfig;
     private List<BaseAbility> rootAbilities = new List<BaseAbility>();
     private List<BaseAbility> knownAbilities = new List<BaseAbility>();
     private List<UnitCastingHandler> castingHandlers = new List<UnitCastingHandler>();
+    private EnergyHandler energyHandler;
 
     private void OnValidate()
     {
@@ -30,17 +35,31 @@ public class Shaman : BaseUnit
     {
         shamanConfig = baseUnitConfig as ShamanConfig;
         base.Init(shamanConfig);
+        energyHandler = new EnergyHandler(this);
         Targeter.SetRadius(Stats.BonusRange);
         Stats.OnStatChanged += Targeter.AddRadius;
         IntializeAbilities();
-        Movement.OnDestenationSet += DisableAttacker;
-        Movement.OnDestenationReached += EnableAttacker;
+        Movement.OnDestinationSet += DisableAttacker;
+        Movement.OnDestinationReached += EnableAttacker;
         shamanAnimator.Init(this);
         clicker.OnClick += SetSelectedShaman;
+        DamageDealer.OnKill += energyHandler.OnEnemyKill;
+        DamageDealer.OnAssist += energyHandler.OnEnemyAssist;
+        energyHandler.OnShamanLevelUp += OnLevelUpVFX;
+        AutoAttackHandler.OnAttack += AttackSFX;
         groundCollider.Init(this);
         indicatable.Init(shamanConfig.UnitIcon);
     }
 
+    
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        clicker.OnClick -= SetSelectedShaman;
+        Movement.OnDestinationSet -= DisableAttacker;
+        Movement.OnDestinationReached -= EnableAttacker;
+    }
     private void OnShamanSelect()
     {
         SlowMotionManager.Instance.StartSlowMotionEffects();
@@ -63,33 +82,52 @@ public class Shaman : BaseUnit
             {
                 upgrade.ChangeUpgradeState(AbilityUpgradeState.Locked);
             }
+
             rootAbility.ChangeUpgradeState(AbilityUpgradeState.Open);
         }
+
         foreach (var ability in ShamanConfig.KnownAbilities)
         {
             ability.UpgradeAbility();
             knownAbilities.Add(ability);
-            castingHandlers.Add(new UnitCastingHandler(this, ability));
+            if (ability is not Passive)
+            {
+                ability.OnSetCaster(this);
+                castingHandlers.Add(new UnitCastingHandler(this, ability));
+            }
+            else
+            {
+                (ability as Passive).SubscribePassive(this);
+            }
         }
     }
 
     public void LearnAbility(BaseAbility ability)
     {
         knownAbilities.Add(ability);
-        castingHandlers.Add(new UnitCastingHandler(this, ability));
+        if (ability is not Passive)
+        {
+            ability.OnSetCaster(this);
+            castingHandlers.Add(new UnitCastingHandler(this, ability));
+        }
+        else
+        {
+            (ability as Passive).SubscribePassive(this);
+        }
     }
 
     public void RemoveAbility(BaseAbility ability)
     {
-        knownAbilities.Remove(ability);
-        castingHandlers.Remove(GetCasterFromAbility(ability));
+        if (ability is not Passive)
+        {
+            knownAbilities.Remove(ability);
+            castingHandlers.Remove(GetCasterFromAbility(ability));
+        }
     }
 
-    //testing
-    [ContextMenu("UpgradeTest")]
-    public void UpgradeAbility(BaseAbility caster, BaseAbility upgrade)
+    public void UpgradeAbility(BaseAbility ability, BaseAbility upgrade)
     {
-        RemoveAbility(caster);
+        RemoveAbility(ability);
         LearnAbility(upgrade);
     }
 
@@ -103,18 +141,21 @@ public class Shaman : BaseUnit
                 return castingHandlers[i];
             }
         }
+
         //Debug.LogError("Attempted to retrive a non existing caster");
         return null;
     }
+
     public BaseAbility GetActiveAbilityFromRoot(BaseAbility rootAbility)
     {
         if (KnownAbilities.Contains(rootAbility)) return rootAbility;
-        
+
         var upgrades = rootAbility.GetUpgrades();
         foreach (var upgrade in upgrades)
         {
             if (KnownAbilities.Contains(upgrade)) return upgrade;
         }
+
         return null;
     }
 
@@ -135,17 +176,22 @@ public class Shaman : BaseUnit
             }
         }
     }
+
     public void ToggleClicker(bool state)
     {
         clicker.enabled = state;
     }
-
-    protected override void OnDisable()
+    private void OnLevelUpVFX(int obj)
     {
-        base.OnDisable();
-        clicker.OnClick -= SetSelectedShaman;
-        Movement.OnDestenationSet -= DisableAttacker;
-        Movement.OnDestenationReached -= EnableAttacker;
+        levelUpEffect.Play();
     }
 
+    #region SFX
+
+    private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.BasicAttack);
+    public void ShamanCastSFX(UnitCastingHandler obj) => SoundManager.Instance.PlayAudioClip(SoundEffectType.ShamanCast);
+
+    #endregion
+
+    
 }

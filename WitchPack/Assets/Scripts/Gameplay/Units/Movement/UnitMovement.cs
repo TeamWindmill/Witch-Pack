@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.AI;
 public class UnitMovement : MonoBehaviour
 {
+    public event Action OnDestinationSet;
+    public event Action OnDestinationReached;
+    
     private bool reachedDest;
     private Vector2 currentDest;
-    public Action OnDestenationSet;
-    public Action OnDestenationReached;
     private Coroutine activeMovementRoutine;
     private BaseUnit owner;
     [SerializeField] private NavMeshAgent agent;
@@ -50,11 +51,12 @@ public class UnitMovement : MonoBehaviour
 
     public void SetDest(Vector3 worldPos)
     {
+        if(!agent.enabled || !agent.isOnNavMesh) return;
         agent.velocity = Vector3.zero;
         currentDest = transform.position;
         currentDest = worldPos;
         reachedDest = false;
-        OnDestenationSet?.Invoke();
+        OnDestinationSet?.Invoke();
         agent.destination = (Vector2)worldPos;
         if (!ReferenceEquals(activeMovementRoutine, null))
         {
@@ -70,11 +72,22 @@ public class UnitMovement : MonoBehaviour
 
     private IEnumerator WaitTilReached()
     {
-        yield return new WaitUntil(() => agent.velocity != Vector3.zero);
-        yield return new WaitUntil(() =>  agent.remainingDistance <= agent.stoppingDistance);
-        OnDestenationReached?.Invoke();
+        yield return new WaitUntil(CheckVelocity);
+        yield return new WaitUntil(CheckRemainingDistance);
+        OnDestinationReached?.Invoke();
     }
 
+    private bool CheckRemainingDistance()
+    {
+        if (!agent.enabled) return true;
+        return agent.remainingDistance <= agent.stoppingDistance;
+    }
+
+    private bool CheckVelocity()
+    {
+        if (!agent.enabled) return true;
+        return agent.velocity != Vector3.zero;
+    }
 
 
    

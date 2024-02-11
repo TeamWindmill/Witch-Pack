@@ -6,10 +6,12 @@ using DamageNumbersPro;
 public class PopupsManager : MonoBehaviour
 {
     [SerializeField] private DamageNumber popupPrefab;
+    [SerializeField] private DamageNumber levelUpPopupPrefab;
     private float _xOffset;
     [SerializeField] private float _yOffset;
     [SerializeField] private float _sinSpeed;
     [Range(1, 100), SerializeField] private float _offsetMultiplier;
+    [SerializeField] private float _levelUpSpawnDelay;
     private float _offsetDivider = 10;
     private Vector3 _offsetVector;
 
@@ -62,5 +64,17 @@ public class PopupsManager : MonoBehaviour
         }
 
         PopupPrefab.Spawn(effectable.Owner.transform.position, _statusEffectText, _popupColor);
+    }
+
+    public void SpawnLevelUpTextPopup(Shaman shaman)
+    {
+        StartCoroutine(LevelUpSpawnDelay(shaman));
+    }
+
+    private IEnumerator LevelUpSpawnDelay(Shaman shaman)
+    {
+        yield return new WaitForSeconds(_levelUpSpawnDelay);
+        _offsetVector = new Vector3(0, _yOffset, 0);
+        levelUpPopupPrefab.Spawn(shaman.transform.position + _offsetVector);
     }
 }

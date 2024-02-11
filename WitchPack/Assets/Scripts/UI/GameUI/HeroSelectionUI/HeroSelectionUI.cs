@@ -10,6 +10,7 @@ public class HeroSelectionUI : MonoSingleton<HeroSelectionUI> , IPointerEnterHan
     public event Action OnMouseExit;
     [SerializeField] private Image shamanSprite;
     [SerializeField] private TextMeshProUGUI shamanName;
+    [SerializeField] private TextMeshProUGUI shamanLevel;
     [SerializeField] private StatBlockPanel statBlockPanel;
     [SerializeField] private PSBonusUIHandler psBonusUIHandler;
     [SerializeField] private AbilitiesHandlerUI abilitiesHandlerUI;
@@ -28,13 +29,20 @@ public class HeroSelectionUI : MonoSingleton<HeroSelectionUI> , IPointerEnterHan
         UnitStats stats = shaman.Stats;
         Shaman = shaman;
         statBlockPanel.Init(shaman);
-        psBonusUIHandler.Show(stats);
+        //psBonusUIHandler.Show(stats);
         abilitiesHandlerUI.Show(shaman);
         shamanSprite.sprite = shaman.ShamanConfig.UnitIcon;
         shamanName.text = shaman.ShamanConfig.Name;
+        shamanLevel.text = "Lvl: " + shaman.EnergyHandler.ShamanLevel;
+        shaman.EnergyHandler.OnShamanLevelUp += OnShamanLevelUp;
         
         IsActive = true;
         gameObject.SetActive(true);
+    }
+
+    private void OnShamanLevelUp(int level)
+    {
+        shamanLevel.text = "Lvl: " + level;
     }
 
     public void UpdateStatBlocks(StatType shamanStatType, int newValue) => statBlockPanel.UpdateStatBlocks(shamanStatType, newValue);
@@ -44,7 +52,6 @@ public class HeroSelectionUI : MonoSingleton<HeroSelectionUI> , IPointerEnterHan
         statBlockPanel.HideStatBlocks();
         psBonusUIHandler.Hide();
         abilitiesHandlerUI.Hide();
-
         IsActive = false;
         gameObject.SetActive(false);
     }

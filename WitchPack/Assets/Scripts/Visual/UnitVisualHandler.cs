@@ -30,8 +30,8 @@ public class UnitVisualHandler : MonoBehaviour
     {
         _baseUnit = unit;
         spriteRenderer.sprite = config.UnitSprite;
+        _baseUnit.TargetHelper.OnTarget += FlipSpriteOnTarget;
     }
-
     private void Update()
     {
         var position = (Vector2)transform.position;
@@ -42,13 +42,13 @@ public class UnitVisualHandler : MonoBehaviour
             SpriteFlipX(deltaV.x >= 0);
             _lastPos = position;
         }
+        
     }
-
-    private void FlipSpriteOnAutoAttack()
+    private void FlipSpriteOnTarget(BaseUnit target)
     {
-                
+        var distance = _baseUnit.transform.position - target.transform.position;
+        SpriteFlipX(distance.x < 0);
     }
-    
 
     private void SpriteFlipX(bool doFlip)
     {
