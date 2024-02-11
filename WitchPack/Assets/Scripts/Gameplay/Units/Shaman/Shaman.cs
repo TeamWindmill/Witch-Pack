@@ -46,10 +46,20 @@ public class Shaman : BaseUnit
         DamageDealer.OnKill += energyHandler.OnEnemyKill;
         DamageDealer.OnAssist += energyHandler.OnEnemyAssist;
         energyHandler.OnShamanLevelUp += OnLevelUpVFX;
+        AutoAttackHandler.OnAttack += AttackSFX;
         groundCollider.Init(this);
         indicatable.Init(shamanConfig.UnitIcon);
     }
 
+    
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        clicker.OnClick -= SetSelectedShaman;
+        Movement.OnDestinationSet -= DisableAttacker;
+        Movement.OnDestinationReached -= EnableAttacker;
+    }
     private void OnShamanSelect()
     {
         SlowMotionManager.Instance.StartSlowMotionEffects();
@@ -175,11 +185,13 @@ public class Shaman : BaseUnit
     {
         levelUpEffect.Play();
     }
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-        clicker.OnClick -= SetSelectedShaman;
-        Movement.OnDestinationSet -= DisableAttacker;
-        Movement.OnDestinationReached -= EnableAttacker;
-    }
+
+    #region SFX
+
+    private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.BasicAttack);
+    public void ShamanCastSFX(UnitCastingHandler obj) => SoundManager.Instance.PlayAudioClip(SoundEffectType.ShamanCast);
+
+    #endregion
+
+    
 }

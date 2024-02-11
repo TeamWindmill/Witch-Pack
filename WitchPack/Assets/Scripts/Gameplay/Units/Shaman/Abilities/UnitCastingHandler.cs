@@ -25,6 +25,7 @@ public class UnitCastingHandler
         {
             var shaman = owner as Shaman;
             OnCast += shaman.EnergyHandler.OnShamanCast;
+            OnCast += shaman.ShamanCastSFX;
         }
     }
 

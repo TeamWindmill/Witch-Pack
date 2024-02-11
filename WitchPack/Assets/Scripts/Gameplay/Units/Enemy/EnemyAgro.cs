@@ -58,6 +58,7 @@ public class EnemyAgro
             if(_lastTargetPos == _currentTarget.transform.position) return;
             _lastTargetPos = _currentTarget.transform.position;
             _enemy.Movement.SetDest(_currentTarget.transform.position);
+            
         }
     }
 

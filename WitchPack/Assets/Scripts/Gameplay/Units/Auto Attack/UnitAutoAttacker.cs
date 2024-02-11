@@ -20,16 +20,17 @@ public class UnitAutoAttacker : MonoBehaviour
         {
             return;
         }
-        if (owner is Shaman)
+        if (owner is Shaman shaman)
         {
-            foreach (var item in (owner as Shaman).CastingHandlers)
+            foreach (var item in shaman.CastingHandlers)
             {
                 item.CastAbility();
             }
-            if (!ReferenceEquals(owner.AutoAttack, null))
-            {
-                owner.AutoAttackHandler.Attack();
-            }
+            
+        }
+        if (!ReferenceEquals(owner.AutoAttack, null))
+        {
+            owner.AutoAttackHandler.Attack();
         }
       
     }
