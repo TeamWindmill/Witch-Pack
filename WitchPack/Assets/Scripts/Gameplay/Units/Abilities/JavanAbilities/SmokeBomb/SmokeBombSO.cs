@@ -1,0 +1,23 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "SmokeBomb", menuName = "Ability/SmokeBomb")]
+public class SmokeBombSO : OffensiveAbility
+{
+    public override bool CastAbility(BaseUnit caster)
+    {
+        BaseUnit target = caster.TargetHelper.GetTarget(caster.Targeter.AvailableTargets, TargetData);
+        if (!ReferenceEquals(target, null))
+        {
+            SmokeBomb smokeBomb = LevelManager.Instance.PoolManager.SmokeBombPool.GetPooledObject();
+            smokeBomb.transform.position = target.transform.position;
+            smokeBomb.gameObject.SetActive(true);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+}

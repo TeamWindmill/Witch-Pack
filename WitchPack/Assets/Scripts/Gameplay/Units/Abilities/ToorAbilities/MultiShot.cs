@@ -48,6 +48,22 @@ public class MultiShot : OffensiveAbility
 
     }
 
+    public override bool CheckCastAvailable(BaseUnit caster)
+    {
+        List<BaseUnit> foundTargets = new List<BaseUnit>();
+        for (int i = 0; i < numberOfShots; i++)
+        {
+            BaseUnit target = caster.TargetHelper.GetTarget(caster.Targeter.AvailableTargets, TargetData, foundTargets);
+
+            foundTargets.Add(target);
+
+            if (ReferenceEquals(target, null))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
 
 
 }
