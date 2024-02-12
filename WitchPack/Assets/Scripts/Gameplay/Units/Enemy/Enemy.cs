@@ -37,6 +37,8 @@ public class Enemy : BaseUnit
         enemyAnimator.Init(this);
         Damageable.OnHitGFX += GetHitSFX;
         Damageable.OnDeathGFX += DeathSFX;
+        Movement.OnDestinationReached += EnableAttacker;
+        Movement.OnDestinationSet += DisableAttacker;
     }
     private void Update()
     {

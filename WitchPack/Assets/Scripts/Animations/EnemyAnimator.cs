@@ -17,7 +17,7 @@ public class EnemyAnimator : UnitAnimator
     protected override void DeathAnimation()
     {
         base.DeathAnimation();
-        _enemy.EnemyMovement?.ToggleMove(false);
+        _enemy.EnemyMovement?.ToggleActive(false);
         _enemy.HpBar.gameObject.SetActive(false);
     }
     

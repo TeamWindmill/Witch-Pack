@@ -26,10 +26,11 @@ public class UnitAutoAttacker : MonoBehaviour
             {
                 item.CastAbility();
             }
-            if (!ReferenceEquals(shaman.AutoAttack, null))
-            {
-                shaman.AutoAttackHandler.Attack();
-            }
+            
+        }
+        if (!ReferenceEquals(owner.AutoAttack, null))
+        {
+            owner.AutoAttackHandler.Attack();
         }
       
     }

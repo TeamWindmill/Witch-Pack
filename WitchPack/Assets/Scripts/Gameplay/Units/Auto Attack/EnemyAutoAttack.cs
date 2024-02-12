@@ -1,0 +1,15 @@
+using UnityEngine;
+
+[CreateAssetMenu(fileName = "MeleeAA", menuName = "Ability/MeleeAA")]
+public class EnemyAutoAttack : OffensiveAbility
+{
+   
+   public override bool CastAbility(BaseUnit caster)
+   {
+      BaseUnit target = caster.TargetHelper.GetTarget(caster.Targeter.AvailableTargets, TargetData);
+      if (ReferenceEquals(target, null)) return false;
+      if (Vector2.Distance(target.transform.position, caster.transform.position) > caster.Movement.StoppingDistance) return false;
+      target.Damageable.GetHit(caster.DamageDealer,this);
+      return true;
+   }
+}

@@ -15,6 +15,7 @@ public class UnitMovement : MonoBehaviour
 
 
     public bool IsMoving => agent.velocity.sqrMagnitude > 0; //need to replace
+    public float StoppingDistance => agent.stoppingDistance; //need to replace
 
     private void Awake()
     {

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class UnitCastingHandler
@@ -9,6 +10,7 @@ public class UnitCastingHandler
     private BaseUnit unit;
     private BaseAbility ability;
     private float lastCast;
+    private float startedCasting;
 
     public BaseAbility Ability { get => ability; }
     public float LastCast { get => lastCast; }
@@ -36,14 +38,33 @@ public class UnitCastingHandler
     {
         if (GAME_TIME.GameTime - lastCast >= GetAbilityCD())
         {
-            if (ability.CastAbility(unit))
+            if (ability.CheckCastAvailable(Unit))
             {
-                lastCast = GAME_TIME.GameTime;
-                OnCast?.Invoke(this);
+                unit.StartCoroutine(TryCastingAbility());
             }
         }
     }
 
-
+    private IEnumerator TryCastingAbility()
+    {
+        unit.AutoAttacker.CanAttack = false;
+        float counter = 0f;
+        while (counter < ability.CastTime)
+        {
+            counter += GAME_TIME.GameDeltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        while (!unit.AutoAttacker.CanAttack)//changes when casting succesfuly or when reaching a new destenation
+        {
+            if (ability.CastAbility(unit))
+            {
+                lastCast = GAME_TIME.GameTime;
+                OnCast?.Invoke(this);
+                unit.AutoAttacker.CanAttack = true;
+            }
+            yield return new WaitForEndOfFrame();
+        }
+    }
 
 }
+

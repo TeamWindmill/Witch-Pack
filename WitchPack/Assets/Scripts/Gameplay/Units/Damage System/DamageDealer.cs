@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 [System.Serializable]
 public class DamageDealer
@@ -55,7 +56,7 @@ public class DamageDealer
             switch (item.Type)
             {
                 case DamageBonusType.CurHp:
-                    dmg.AddMod(GetModCurHp(item, target));
+                    dmg.AddFlatMod(GetModCurHp(item, target));
                     break;
                 case DamageBonusType.MissingHp:
                     dmg.AddMod(GetModMissingHp(item, target));
@@ -64,13 +65,9 @@ public class DamageDealer
         }
     }
 
-    private float GetModCurHp(DamageBoostData boostData, Damageable target)
+    private int GetModCurHp(DamageBoostData boostData, Damageable target)
     {
-        if ((target.CurrentHp / target.MaxHp) >= (boostData.Threshold / 100))
-        {
-            return 1 + (boostData.damageBonus / 100);
-        }
-        return 1;
+        return Mathf.RoundToInt((boostData.Threshold / 100) *  target.CurrentHp);
     }
 
     private float GetModMissingHp(DamageBoostData boostData, Damageable target)
