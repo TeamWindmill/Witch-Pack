@@ -8,6 +8,7 @@ public class PoisonIvyMono : RootingVinesMono
     [SerializeField] private float poisonTickRate;
     [SerializeField] private int poisonDamage;
     private DamageHandler damageHandler;
+    private Enemy lastEnemy;
 
     public override void Init(BaseUnit owner, BaseAbility ability)
     {
@@ -18,6 +19,14 @@ public class PoisonIvyMono : RootingVinesMono
     protected override void OnRoot(Enemy enemy)
     {
         base.OnRoot(enemy);
-        StartCoroutine(enemy.Damageable.TakeDamageOverTime(owner.DamageDealer, damageHandler, refAbility, false, poisonDuration, poisonTickRate));
+        lastEnemy = enemy;
+        int numberOfTicks = (int)(poisonDuration / poisonTickRate);
+        enemy.Damageable.TakeDamageOverTime(owner.DamageDealer, damageHandler, refAbility, false, numberOfTicks, poisonTickRate);
+        //StartCoroutine(enemy.Damageable.TakeDamageOverTime(owner.DamageDealer, damageHandler, refAbility, false, poisonDuration, poisonTickRate));
+    }
+
+    private void TakePoisonDamage(Enemy enemy)
+    {
+        lastEnemy.Damageable.TakeDamage(owner.DamageDealer, damageHandler, refAbility, false);
     }
 }
