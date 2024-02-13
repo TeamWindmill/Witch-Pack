@@ -106,6 +106,7 @@ public class Damageable
             }
             yield return new WaitForEndOfFrame();
         }
+        Debug.Log(elapsedTime);
     }
 
     public void TakeFlatDamage(int amount)  //DOES NOT TRIGGER EVENTS!
