@@ -37,5 +37,7 @@ public enum StatusEffectType
     None,
     Root,
     Slow,
-    Charm
+    Charm,
+    Poison,
+    Hidden,
 }

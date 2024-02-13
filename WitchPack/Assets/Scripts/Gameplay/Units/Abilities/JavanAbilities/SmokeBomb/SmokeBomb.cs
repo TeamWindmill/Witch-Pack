@@ -23,6 +23,15 @@ public class SmokeBomb : MonoBehaviour
     private SmokeBombSO _config;
     private BaseUnit _owner;
 
+    private void Awake()
+    {
+        rangeEnter.gameObject.SetActive(false);
+        rangeExit.gameObject.SetActive(false);
+        cloudsEnter.gameObject.SetActive(false);
+        cloudsIdle.gameObject.SetActive(false);
+        cloudsExit.gameObject.SetActive(false);
+    }
+
     public void SpawnBomb(SmokeBombSO config, BaseUnit owner)
     {
         _config = config;
@@ -51,14 +60,14 @@ public class SmokeBomb : MonoBehaviour
     private void OnTargetExited(GroundCollider collider)
     {
         var shaman = collider.GetComponentInParent<Shaman>();
-
-        _affectedShamans.Remove(shaman);
+        RemoveShamanEffect(shaman);
     }
     
     private void CloudsIdleAnim(PlayableDirector clip)
     {
         clip.gameObject.SetActive(false);
         cloudsIdle.gameObject.SetActive(true);
+        clip.stopped -= CloudsIdleAnim;
     }
     
 
@@ -69,6 +78,10 @@ public class SmokeBomb : MonoBehaviour
         cloudsExit.gameObject.SetActive(true);
         rangeExit.gameObject.SetActive(true);
         OnAbilityEnd?.Invoke();
+        foreach (var shaman in _affectedShamans)
+        {
+            RemoveShamanEffect(shaman.Key);
+        }
         rangeExit.stopped += OnEnd;
     }
 
@@ -78,5 +91,14 @@ public class SmokeBomb : MonoBehaviour
         rangeExit.gameObject.SetActive(false);
         gameObject.SetActive(false);
         director.stopped -= OnEnd;
+    }
+
+    private void RemoveShamanEffect(Shaman shaman)
+    {
+        if (_affectedShamans.TryGetValue(shaman,out var effect))
+        {
+            shaman.Effectable.RemoveEffect(effect);
+            _affectedShamans.Remove(shaman);
+        } 
     }
 }

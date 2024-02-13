@@ -28,6 +28,7 @@ public class StatSheet : ScriptableObject
     public BaseStat BonusStatusEffectDuration = new BaseStat(StatType.BonusStatusEffectDuration);
     public BaseStat AbilityProjectileSpeed = new BaseStat(StatType.AbilityProjectileSpeed);
     public BaseStat AbilityProjectilePenetration = new BaseStat(StatType.AbilityProjectilePenetration);
+    public BaseStatDecimal Visibility = new BaseStatDecimal(StatType.Visibility);
 
 }
 
