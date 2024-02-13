@@ -142,7 +142,7 @@ public class Damageable
 
     public void DamageTick()
     {
-        activeDoTs
+        
     }
 }
 
