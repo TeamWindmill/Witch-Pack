@@ -25,9 +25,9 @@ public class EnemyAgro
         _enemy = enemy;
         _agroChance = enemy.EnemyConfig.AgroChance;
         _returnChanceModifier = enemy.EnemyConfig.ReturnChanceModifier;
-        _agroTimer = GAME_TIME.AddTimer(enemy.EnemyConfig.AgroInterval,TryAgro,true);
-        _chaseTimer = GAME_TIME.AddTimer(enemy.EnemyConfig.ChaseInterval,Agro,true);
-        _returnTimer = GAME_TIME.AddTimer(enemy.EnemyConfig.ReturnInterval,TryReturn,true);
+        _agroTimer = GAME_TIME.AddTimer(enemy.EnemyConfig.AgroInterval,TryAgro,true,dontDestroyTimer: true);
+        _chaseTimer = GAME_TIME.AddTimer(enemy.EnemyConfig.ChaseInterval,Agro,true,dontDestroyTimer: true);
+        _returnTimer = GAME_TIME.AddTimer(enemy.EnemyConfig.ReturnInterval,TryReturn,true,dontDestroyTimer: true);
     }
 
     public void OnDisable()

@@ -39,7 +39,7 @@ public class SmokeBomb : MonoBehaviour
         rangeEnter.gameObject.SetActive(true);
         cloudsEnter.gameObject.SetActive(true);
         cloudsEnter.stopped += CloudsIdleAnim;
-        transform.localScale = new Vector3(config.Range, config.Range, 0);
+        //transform.localScale = new Vector3(config.Range, config.Range, 0);
         Invoke(nameof(EndBomb),config.Duration);
         shamanTargeter.OnTargetAdded += OnTargetEntered;
         shamanTargeter.OnTargetLost += OnTargetExited;
