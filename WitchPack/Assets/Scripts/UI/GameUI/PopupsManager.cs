@@ -31,11 +31,18 @@ public class PopupsManager : MonoBehaviour
     {
         _statusEffectText = "";
         _offsetVector = new Vector3(_xOffset, _yOffset);
+
         _popupColor = Color.white;
         if (isCrit)
         {
             _popupColor = Color.red;
         }
+        else
+        {
+
+        }
+        
+
         _statusEffectText = damage.GetFinalDamage().ToString();
         PopupPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, _statusEffectText, _popupColor);
     }

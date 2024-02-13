@@ -11,6 +11,8 @@ public class StatusEffectConfig : ScriptableObject
     [SerializeField] private StatType statTypeAffected;//all stats you wish to affect on the target
     [SerializeField] private StatusEffectType statusEffectType;
     [SerializeField] private StatusEffectValueType valueType;
+    [SerializeField] private bool shouldReturnToNormalAtEndOfDuration;
+
 
     public float Duration { get => duration; }
     public int Amount { get => amount; }
@@ -18,6 +20,7 @@ public class StatusEffectConfig : ScriptableObject
     public StatType StatTypeAffected { get => statTypeAffected; }
     public StatusEffectType StatusEffectType { get => statusEffectType; }
     public StatusEffectValueType ValueType { get => valueType; }
+    public bool ShouldReturnToNormalAtEndOfDuration { get => shouldReturnToNormalAtEndOfDuration; }
 }
 
 public enum StatusEffectProcess

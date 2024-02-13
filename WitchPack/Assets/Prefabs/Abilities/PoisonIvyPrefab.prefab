@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6088072932216854027}
-  - component: {fileID: 7373096446887305258}
   - component: {fileID: 709171752984841826}
+  - component: {fileID: 6684377353214586050}
   m_Layer: 8
-  m_Name: RootingVinesPrefab
+  m_Name: PoisonIvyPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,24 +34,6 @@ Transform:
   - {fileID: 1769731902935364185}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7373096446887305258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8905069691879237136}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2ecabc1f61fb6cf4cb1cd20af07319c2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lastingTime: 3
-  elapsedTime: 0
-  poisonDuration: 5
-  poisonTickRate: 1
-  poisonDamage: 8
-  rootingVinesRing: {fileID: 4916769561860416367}
 --- !u!60 &709171752984841826
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -117,6 +99,24 @@ PolygonCollider2D:
       - {x: 0.29296875, y: 0.40234375}
       - {x: 0.15234375, y: 0.47265625}
   m_UseDelaunayMesh: 0
+--- !u!114 &6684377353214586050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8905069691879237136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d022e6e5e8fa54e4c9fdfe1eb78ae2ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastingTime: 3
+  elapsedTime: 0
+  rootingVinesRing: {fileID: 0}
+  poisonDuration: 5
+  poisonTickRate: 0.5
+  poisonDamage: 4
 --- !u!1001 &6640954987750607404
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -217,10 +217,5 @@ PrefabInstance:
 --- !u!4 &1769731902935364185 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4946694748625221749, guid: 62dd00187a9228647b130c089199ee6e, type: 3}
-  m_PrefabInstance: {fileID: 6640954987750607404}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &4916769561860416367 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 1734649731757336899, guid: 62dd00187a9228647b130c089199ee6e, type: 3}
   m_PrefabInstance: {fileID: 6640954987750607404}
   m_PrefabAsset: {fileID: 0}
