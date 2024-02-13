@@ -15,15 +15,15 @@ public class Timer
     private int _currentTicks;
     private bool _isActive;
 
-    public Timer(float tickTime, int tickAmount, Action onTimerEnd, bool usingGameTime,bool dontDestroyTimer)
+    public Timer(TimerData timerData)
     {
         _timer = 0;
-        _tickTime = tickTime;
-        _tickAmount = tickAmount; 
+        _tickTime = timerData.TickTime;
+        _tickAmount = timerData.TickAmount; 
+        _usingGameTime = timerData.UsingGameTime;
+        _dontDestroyTimer = timerData.DontDestroyTimer;
+        _onTimerTick = timerData.OnTimerTick;
         _isActive = true;
-        _usingGameTime = usingGameTime;
-        _dontDestroyTimer = dontDestroyTimer;
-        _onTimerTick = onTimerEnd;
     }
     
     public void StartTimer() => _isActive = true;
@@ -51,11 +51,31 @@ public class Timer
             if(_dontDestroyTimer) return;
             
             _currentTicks++;
-            if (_currentTicks >= _tickAmount)
-            {
-                _isActive = false;
-                OnTimerEnd?.Invoke(this);
-            }
+            if (_currentTicks >= _tickAmount) EndTimer();
         }
+    }
+
+    protected virtual void EndTimer()
+    {
+        _isActive = false;
+        OnTimerEnd?.Invoke(this);
+    } 
+}
+
+public struct TimerData
+{
+    public readonly Action OnTimerTick;
+    public readonly float TickTime;
+    public readonly float TickAmount;
+    public readonly bool UsingGameTime;
+    public readonly bool DontDestroyTimer;
+
+    public TimerData(float tickTime, Action onTimerTick, float tickAmount = 1, bool usingGameTime = false, bool dontDestroyTimer = false)
+    {
+        OnTimerTick = onTimerTick;
+        TickTime = tickTime;
+        TickAmount = tickAmount;
+        UsingGameTime = usingGameTime;
+        DontDestroyTimer = dontDestroyTimer;
     }
 }

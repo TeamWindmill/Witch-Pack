@@ -46,15 +46,14 @@ public class SmokeBomb : MonoBehaviour
     }
     private void OnTargetEntered(GroundCollider collider)
     {
-        var shaman = collider.GetComponentInParent<Shaman>();
-
-        if (!_affectedShamans.ContainsKey(shaman))
+        var unit = collider.Unit;
+        if (unit is not Shaman shaman) return;
+        if (_affectedShamans.ContainsKey(shaman)) return;
+        
+        foreach (var statusEffect in _config.StatusEffects)
         {
-            foreach (var statusEffect in _config.StatusEffects)
-            {
-                var effect = shaman.Effectable.AddEffect(statusEffect,_owner.Affector);
-                _affectedShamans.Add(shaman,effect);
-            }
+            var effect = shaman.Effectable.AddEffect(statusEffect,_owner.Affector);
+            _affectedShamans.Add(shaman,effect);
         }
     }
     private void OnTargetExited(GroundCollider collider)
@@ -78,10 +77,6 @@ public class SmokeBomb : MonoBehaviour
         cloudsExit.gameObject.SetActive(true);
         rangeExit.gameObject.SetActive(true);
         OnAbilityEnd?.Invoke();
-        foreach (var shaman in _affectedShamans)
-        {
-            RemoveShamanEffect(shaman.Key);
-        }
         rangeExit.stopped += OnEnd;
     }
 

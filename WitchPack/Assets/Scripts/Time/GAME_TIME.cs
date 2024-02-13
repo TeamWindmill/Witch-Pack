@@ -120,7 +120,7 @@ public class GAME_TIME : MonoBehaviour
     /// <returns></returns>
     public static Timer AddTimer(float tickTime, Action onTimerEnd, bool usingGameTime = false, int ticksAmount = 1, bool dontDestroyTimer = false)
     {
-        var timer = new Timer(tickTime,ticksAmount, onTimerEnd, usingGameTime,dontDestroyTimer);
+        var timer = new Timer(new TimerData(tickTime, onTimerEnd,ticksAmount, usingGameTime, dontDestroyTimer));
         _timers.Add(timer);
         timer.OnTimerEnd += RemoveTimer;
         return timer;
