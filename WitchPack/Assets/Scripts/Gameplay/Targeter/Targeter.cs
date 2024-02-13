@@ -6,8 +6,8 @@ public class Targeter<T> : MonoBehaviour where T : Component
 {
     [SerializeField] private List<T> availableTargets = new List<T>();
     [SerializeField] private LayerMask layer;
-    public Action<T> OnTargetAdded;
-    public Action<T> OnTargetLost;
+    public event Action<T> OnTargetAdded;
+    public event Action<T> OnTargetLost;
 
     public bool HasTarget => availableTargets.Count > 0;
 
