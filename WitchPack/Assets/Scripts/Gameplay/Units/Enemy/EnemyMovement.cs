@@ -43,6 +43,7 @@ public class EnemyMovement
     private void ContinuePath()
     {
         if(!_isActive) return;
+        _enemy.EnemyAgro.EnemyReturnedToPath();
         _isMoving = true;
         _unitMovement.ToggleMovement(false);
     }
