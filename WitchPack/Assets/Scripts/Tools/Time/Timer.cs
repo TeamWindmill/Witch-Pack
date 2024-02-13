@@ -58,7 +58,11 @@ public class Timer
             }
         }
     }
-    protected virtual void OnTimerTick() => _onTimerTick?.Invoke();
+    protected virtual void OnTimerTick()
+    {
+        if (_onTimerTick is null) return;
+        _onTimerTick?.Invoke();
+    }
     protected virtual void OnEndTimer() => OnTimerEnd?.Invoke(this);
 }
 
@@ -70,7 +74,7 @@ public struct TimerData
     public readonly bool UsingGameTime;
     public readonly bool DontDestroyTimer;
 
-    public TimerData(float tickTime, Action onTimerTick, float tickAmount = 1, bool usingGameTime = false, bool dontDestroyTimer = false)
+    public TimerData(float tickTime, Action onTimerTick = null, float tickAmount = 1, bool usingGameTime = false, bool dontDestroyTimer = false)
     {
         OnTimerTick = onTimerTick;
         TickTime = tickTime;

@@ -21,12 +21,11 @@ public class PoisonIvyMono : RootingVinesMono
         base.OnRoot(enemy);
         lastEnemy = enemy;
         int numberOfTicks = (int)(poisonDuration / poisonTickRate);
-        enemy.Damageable.TakeDamageOverTime(owner.DamageDealer, damageHandler, refAbility, false, numberOfTicks, poisonTickRate);
+        //enemy.Damageable.TakeDamageOverTime(owner.DamageDealer, damageHandler, refAbility, false, numberOfTicks, poisonTickRate);
         //StartCoroutine(enemy.Damageable.TakeDamageOverTime(owner.DamageDealer, damageHandler, refAbility, false, poisonDuration, poisonTickRate));
-    }
+        TimerData timerData = new TimerData(poisonTickRate, tickAmount: numberOfTicks, usingGameTime: true);
+        DotTimer dotTimer = new DotTimer(timerData, enemy.Damageable.TakeDamage, owner.DamageDealer, damageHandler, refAbility, false);
 
-    private void TakePoisonDamage(Enemy enemy)
-    {
-        lastEnemy.Damageable.TakeDamage(owner.DamageDealer, damageHandler, refAbility, false);
+        GAME_TIME.AddTimer(dotTimer);
     }
 }

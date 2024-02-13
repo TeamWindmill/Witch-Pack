@@ -125,7 +125,13 @@ public class GAME_TIME : MonoBehaviour
         timer.OnTimerEnd += RemoveTimer;
         return timer;
     }
-    
+    public static Timer AddTimer(Timer timer)
+    {
+        _timers.Add(timer);
+        timer.OnTimerEnd += RemoveTimer;
+        return timer;
+    }
+
     /// <summary>
     /// use this Function if the timer is set to dont destroy
     /// </summary>

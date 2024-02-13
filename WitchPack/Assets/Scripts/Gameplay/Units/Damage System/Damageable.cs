@@ -20,8 +20,6 @@ public class Damageable
     public Action OnDeathGFX;
     public Action<bool> OnHitGFX;
 
-    private List<DamageOverTimeData> activeDoTs;
-
     //add gfx events later
 
     public BaseUnit Owner { get => owner; }
@@ -33,7 +31,6 @@ public class Damageable
         currentHp = MaxHp;
         OnGetHit += AddStatsDamageReduction;
         OnDeathGFX += DisableGo;
-        activeDoTs = new List<DamageOverTimeData>();
     }
 
     private void DisableGo()
@@ -132,39 +129,11 @@ public class Damageable
         dmg.AddMod(1 - (owner.Stats.Armor / 100));
     }
 
-    public void TakeDamageOverTime(DamageDealer dealer, DamageHandler damage, BaseAbility ability, bool isCrit, int numberOfTicks, float tickTime)
-    {
-
-        DamageOverTimeData damageOverTime = new DamageOverTimeData(dealer, damage, ability, isCrit);
-        activeDoTs.Add(damageOverTime);
-        GAME_TIME.AddTimer(tickTime, DamageTick, true, numberOfTicks);
-    }
-
     public void DamageTick()
     {
         
     }
 }
 
-public struct DamageOverTimeData
-{
-    private DamageDealer damageDealer;
-    private DamageHandler damage;
-    private BaseAbility ability; 
-    bool isCrit;
 
-    public DamageDealer DamageDealer { get => damageDealer;  }
-    public DamageHandler Damage { get => damage;}
-    public BaseAbility Ability { get => ability; }
-    public bool IsCrit { get => isCrit; }
-
-    public DamageOverTimeData(DamageDealer damageDealer, DamageHandler damage, BaseAbility ability, bool isCrit)
-    {
-        this.damageDealer = damageDealer;
-        this.damage = damage;
-        this.ability = ability;
-        this.isCrit = isCrit;    
-    }
-
-}
 
