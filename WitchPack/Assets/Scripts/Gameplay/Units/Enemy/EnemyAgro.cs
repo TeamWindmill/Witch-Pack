@@ -13,6 +13,7 @@ public class EnemyAgro
     private float _returnChanceModifier;
     private float _timer;
     private bool _chasingTarget;
+    private bool _returningToPath;
 
     private Timer _agroTimer;
     private Timer _chaseTimer;
@@ -58,7 +59,6 @@ public class EnemyAgro
             if(_lastTargetPos == _currentTarget.transform.position) return;
             _lastTargetPos = _currentTarget.transform.position;
             _enemy.Movement.SetDest(_currentTarget.transform.position);
-            
         }
     }
 
@@ -77,8 +77,11 @@ public class EnemyAgro
 
     private void Return()
     {
+        _returningToPath = true;
         _chasingTarget = false;
         _currentTarget = null;
         _enemy.EnemyMovement.ReturnToPath(_enemy.transform.position);
     }
+
+    public void EnemyReturnedToPath() => _returningToPath = false;
 }

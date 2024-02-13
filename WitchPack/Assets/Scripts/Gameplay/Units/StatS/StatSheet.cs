@@ -46,8 +46,8 @@ public enum StatType
     HpRegen,//amount of health resotred every second
     BonusStatusEffectDuration,//fixed duration added for every effect applied by unit
     AbilityProjectileSpeed,//if an ability is projectile quicken it by this amount
-    AbilityProjectilePenetration//the amount of times a projectile ability can hit targets before disabling
-
+    AbilityProjectilePenetration,//the amount of times a projectile ability can hit targets before disabling
+    Visibility,
 }
 
 [System.Serializable]

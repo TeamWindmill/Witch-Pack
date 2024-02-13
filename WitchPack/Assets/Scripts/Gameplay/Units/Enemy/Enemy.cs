@@ -8,6 +8,7 @@ public class Enemy : BaseUnit
     public int EnergyPoints => _energyPoints;
     public override StatSheet BaseStats => enemyConfig.BaseStats;
     public EnemyMovement EnemyMovement => _enemyMovement;
+    public EnemyAgro EnemyAgro => _enemyAgro;
 
     [SerializeField, TabGroup("Visual")] private EnemyAnimator enemyAnimator;
     private int _coreDamage;
