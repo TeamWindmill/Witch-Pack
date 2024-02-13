@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,9 +8,11 @@ public class RootingVinesMono : MonoBehaviour
     [SerializeField] private float lastingTime;
     [SerializeField] private float elapsedTime;
 
-    private BaseAbility refAbility;
-    private BaseUnit owner;
+    protected BaseAbility refAbility;
+    protected BaseUnit owner;
     [SerializeField] private ParticleSystem rootingVinesRing;
+    
+    
 
     private void Update()
     {
@@ -21,10 +24,15 @@ public class RootingVinesMono : MonoBehaviour
         }
     }
 
-    public void Init(BaseUnit owner, BaseAbility ability)
+    public virtual void Init(BaseUnit owner, BaseAbility ability)
     {
         this.owner = owner;
         this.refAbility = ability;
+    }
+
+    protected virtual void OnRoot(Enemy enemy)
+    {
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -33,6 +41,8 @@ public class RootingVinesMono : MonoBehaviour
         if (!ReferenceEquals(enemy, null))
         {
             enemy.Damageable.GetHit(owner.DamageDealer, refAbility);
+            OnRoot(enemy);
+            
         }
     }
 }

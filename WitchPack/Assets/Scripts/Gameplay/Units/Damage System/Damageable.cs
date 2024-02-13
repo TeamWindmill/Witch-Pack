@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -52,20 +53,10 @@ public class Damageable
         if (ability is OffensiveAbility)
         {
             DamageHandler dmg = new DamageHandler((ability as OffensiveAbility).BaseDamage);
-            if (dealer.CritChance(ability))
-            {
-                dealer.OnHitTarget?.Invoke(this, dealer, dmg, ability, true);
-                OnGetHit?.Invoke(this, dealer, dmg, ability, true);
-                OnHitGFX?.Invoke(true);
-                TakeDamage(dmg, dealer, ability, true);
-            }
-            else
-            {
-                dealer.OnHitTarget?.Invoke(this, dealer, dmg, ability, false);
-                OnGetHit?.Invoke(this, dealer, dmg, ability, false);
-                OnHitGFX?.Invoke(false);
-                TakeDamage(dmg, dealer, ability, false);
-            }
+            bool isCrit = dealer.CritChance(ability);
+
+            TakeDamage(dealer, dmg, ability, isCrit);
+
             _damageDealers.Add(dealer);
         }
         else // in case we want to make an ability that only applys status effects
@@ -76,24 +67,45 @@ public class Damageable
         }
     }
 
-    public void TakeDamage(DamageHandler handler, DamageDealer dealer, BaseAbility attack, bool isCrit)
+    public void TakeDamage(DamageDealer dealer, DamageHandler damage, BaseAbility ability, bool isCrit)
     {
-        currentHp -= handler.GetFinalDamage();
+        dealer.OnHitTarget?.Invoke(this, dealer, damage, ability, isCrit);
+        OnGetHit?.Invoke(this, dealer, damage, ability, isCrit);
+        OnHitGFX?.Invoke(isCrit);
+
+        currentHp -= damage.GetFinalDamage();
         //Debug.Log($"{owner.gameObject} took {handler.GetFinalDamage()} damage from {dealer.Owner.name}");
-        OnDamageCalc?.Invoke(this, dealer, handler, attack, isCrit);
+        OnDamageCalc?.Invoke(this, dealer, damage, ability, isCrit);
 
         if (currentHp <= 0)
         {
-            OnDeath?.Invoke(this, dealer, handler, attack);
+            OnDeath?.Invoke(this, dealer, damage, ability);
             OnDeathGFX?.Invoke();
-            dealer.OnKill?.Invoke(this, dealer, handler, attack, isCrit);
+            dealer.OnKill?.Invoke(this, dealer, damage, ability, isCrit);
             foreach (var damageDealer in _damageDealers)
             {
                 if(damageDealer == dealer) continue;
-                damageDealer.OnAssist?.Invoke(this, dealer, handler, attack, isCrit);
+                damageDealer.OnAssist?.Invoke(this, dealer, damage, ability, isCrit);
             }
         }
         ClampHp();
+    }
+
+    public IEnumerator TakeDamageOverTime(DamageDealer dealer, DamageHandler damage, BaseAbility ability, bool isCrit, float duration, float tickRate)
+    {
+        float elapsedTime = 0;
+        float tickTimer = 0;
+        while(elapsedTime < duration)
+        {
+            elapsedTime += GAME_TIME.GameDeltaTime;
+            tickTimer += GAME_TIME.GameDeltaTime;
+            if(tickTimer >= tickRate)
+            {
+                tickTimer = 0;
+                TakeDamage(dealer, damage, ability, isCrit);
+            }
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     public void TakeFlatDamage(int amount)  //DOES NOT TRIGGER EVENTS!
