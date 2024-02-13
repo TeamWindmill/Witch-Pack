@@ -36,12 +36,7 @@ public class PopupsManager : MonoBehaviour
         if (isCrit)
         {
             _popupColor = Color.red;
-        }
-        else
-        {
-
-        }
-        
+        }        
 
         _statusEffectText = damage.GetFinalDamage().ToString();
         PopupPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, _statusEffectText, _popupColor);
@@ -52,23 +47,7 @@ public class PopupsManager : MonoBehaviour
         _statusEffectText = "";
         _popupColor = _dictionary.GetColorByStatusEffectType(statusEffect.StatusEffectType);
 
-        switch (statusEffect.StatusEffectType)
-        {
-            case StatusEffectType.Root:
-                _statusEffectText = "Root";           
-                break;
-
-            case StatusEffectType.Slow:
-                _statusEffectText = "Slow";
-                break;
-
-            case StatusEffectType.Charm:
-                _statusEffectText = "Charm";
-                break;
-
-            default:
-                return;
-        }
+        _statusEffectText = statusEffect.StatusEffectType.ToString();
 
         PopupPrefab.Spawn(effectable.Owner.transform.position, _statusEffectText, _popupColor);
     }
