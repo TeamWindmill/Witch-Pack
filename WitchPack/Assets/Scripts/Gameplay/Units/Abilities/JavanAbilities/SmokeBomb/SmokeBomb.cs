@@ -13,16 +13,13 @@ public class SmokeBomb : MonoBehaviour
     [SerializeField] private PlayableDirector cloudsIdle;
     [SerializeField] private PlayableDirector cloudsExit;
 
-    private void OnEnable()
-    {
-        SpawnBomb();
-    }
-
-    void SpawnBomb()
+    public void SpawnBomb(SmokeBombSO config)
     {
         rangeEnter.gameObject.SetActive(true);
         cloudsEnter.gameObject.SetActive(true);
         cloudsEnter.stopped += CloudsIdleAnim;
+        transform.localScale = new Vector3(config.Range, config.Range, 0);
+        Invoke(nameof(EndBomb),config.Duration);
     }
 
     private void CloudsIdleAnim(PlayableDirector clip)
@@ -30,12 +27,18 @@ public class SmokeBomb : MonoBehaviour
         clip.gameObject.SetActive(false);
         cloudsIdle.gameObject.SetActive(true);
     }
+    
 
-    void EndBomb()
+    private void EndBomb()
     {
         cloudsIdle.gameObject.SetActive(false);
         rangeEnter.gameObject.SetActive(false);
         cloudsExit.gameObject.SetActive(true);
         rangeExit.gameObject.SetActive(true);
+        rangeExit.stopped += (p) =>
+        {
+            rangeExit.gameObject.SetActive(false);
+            //gameObject.SetActive(false);
+        };
     }
 }

@@ -5,6 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "SmokeBomb", menuName = "Ability/SmokeBomb")]
 public class SmokeBombSO : OffensiveAbility
 {
+    public float Duration => _duration;
+
+    [SerializeField] private float _duration;
     public override bool CastAbility(BaseUnit caster)
     {
         BaseUnit target = caster.TargetHelper.GetTarget(caster.Targeter.AvailableTargets, TargetData);
@@ -13,6 +16,7 @@ public class SmokeBombSO : OffensiveAbility
             SmokeBomb smokeBomb = LevelManager.Instance.PoolManager.SmokeBombPool.GetPooledObject();
             smokeBomb.transform.position = target.transform.position;
             smokeBomb.gameObject.SetActive(true);
+            smokeBomb.SpawnBomb(this);
             return true;
         }
         else
