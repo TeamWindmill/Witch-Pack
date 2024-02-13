@@ -16,7 +16,7 @@ public class SmokeBombSO : OffensiveAbility
             SmokeBomb smokeBomb = LevelManager.Instance.PoolManager.SmokeBombPool.GetPooledObject();
             smokeBomb.transform.position = target.transform.position;
             smokeBomb.gameObject.SetActive(true);
-            smokeBomb.SpawnBomb(this);
+            smokeBomb.SpawnBomb(this,caster);
             return true;
         }
         else
