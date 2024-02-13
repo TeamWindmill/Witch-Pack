@@ -41,5 +41,6 @@ public enum StatusEffectType
     Root,
     Slow,
     Charm,
-    Poison
+    Poison,
+    Hidden,
 }
