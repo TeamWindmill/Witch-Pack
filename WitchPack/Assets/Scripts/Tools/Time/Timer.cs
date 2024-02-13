@@ -46,20 +46,20 @@ public class Timer
         if (_timer >= _tickTime)
         {
             _timer = 0;
-            _onTimerTick?.Invoke();
-            
+
+            OnTimerTick();
             if(_dontDestroyTimer) return;
             
             _currentTicks++;
-            if (_currentTicks >= _tickAmount) EndTimer();
+            if (_currentTicks >= _tickAmount)
+            {
+                _isActive = false;
+                OnEndTimer();
+            }
         }
     }
-
-    protected virtual void EndTimer()
-    {
-        _isActive = false;
-        OnTimerEnd?.Invoke(this);
-    } 
+    protected virtual void OnTimerTick() => _onTimerTick?.Invoke();
+    protected virtual void OnEndTimer() => OnTimerEnd?.Invoke(this);
 }
 
 public struct TimerData
