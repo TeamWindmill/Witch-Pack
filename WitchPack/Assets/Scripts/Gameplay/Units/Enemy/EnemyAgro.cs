@@ -42,9 +42,11 @@ public class EnemyAgro
         if (!_chasingTarget && _enemy.Targeter.HasTarget)
         {
             var chance = _random.NextDouble();
-            if (chance < _agroChance)
+            _currentTarget = _enemy.Targeter.GetClosestTarget();
+            var visibilityModifer = 1 - _currentTarget.Stats.Visibility;
+            if (chance < _agroChance * visibilityModifer)
             {
-                _currentTarget = _enemy.Targeter.GetClosestTarget();
+                
                 _enemy.EnemyMovement.ToggleMove(false);
                 _enemy.Movement.ToggleMovement(true);
                 _chasingTarget = true;
