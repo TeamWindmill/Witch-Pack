@@ -17,7 +17,7 @@ public class Effectable
         this.owner = owner;
     }
 
-    public void AddEffect(StatusEffectConfig givenEffectData, Affector affector)
+    public StatusEffect AddEffect(StatusEffectConfig givenEffectData, Affector affector)
     {
         StatusEffect ss = new StatusEffect(this, givenEffectData.Duration, givenEffectData.Amount, givenEffectData.StatTypeAffected, givenEffectData.Process, givenEffectData.StatusEffectType, givenEffectData.ValueType);
         for (int i = 0; i < activeEffects.Count; i++)//check if affected by a similar ss already
@@ -27,12 +27,13 @@ public class Effectable
                 activeEffects[i] = ss;
                 ss.Reset();
                 ss.Activate();
-                return;
+                return ss;
             }
         }
         activeEffects.Add(ss);
         ss.Activate();
         OnAffected?.Invoke(this, affector, ss);
+        return ss;
     }
 
     public void RemoveEffect(StatusEffect effect)
