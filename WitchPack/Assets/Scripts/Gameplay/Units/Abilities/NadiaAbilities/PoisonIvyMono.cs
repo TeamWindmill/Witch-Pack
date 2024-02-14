@@ -26,6 +26,6 @@ public class PoisonIvyMono : RootingVinesMono
         TimerData timerData = new TimerData(poisonTickRate, tickAmount: numberOfTicks, usingGameTime: true);
         DotTimer dotTimer = new DotTimer(timerData, enemy.Damageable.TakeDamage, owner.DamageDealer, damageHandler, refAbility, false);
 
-        GAME_TIME.AddTimer(dotTimer);
+        TimerManager.Instance.AddTimer(dotTimer);
     }
 }
