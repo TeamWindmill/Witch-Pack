@@ -43,10 +43,10 @@ public class EnemyAgro
         {
             var chance = _random.NextDouble();
             _currentTarget = _enemy.Targeter.GetClosestTarget();
-            var visibilityModifer = 1 - _currentTarget.Stats.Visibility;
-            if (chance < _agroChance * visibilityModifer)
+            if(_currentTarget.Stats.Visibility == 1) return;
+            if (chance < _agroChance)
             {
-                
+                _currentTarget.Stats.AddValueToStat(StatType.ThreatLevel,1);
                 _enemy.EnemyMovement.ToggleMove(false);
                 _enemy.Movement.ToggleMovement(true);
                 _chasingTarget = true;
@@ -58,6 +58,11 @@ public class EnemyAgro
     {
         if (_chasingTarget && !ReferenceEquals(_currentTarget, null))
         {
+            if (_currentTarget.Stats.Visibility == 1)
+            {
+                Return();
+                return;
+            }
             if(_lastTargetPos == _currentTarget.transform.position) return;
             _lastTargetPos = _currentTarget.transform.position;
             _enemy.Movement.SetDest(_currentTarget.transform.position);
@@ -79,6 +84,7 @@ public class EnemyAgro
 
     private void Return()
     {
+        _currentTarget.Stats.AddValueToStat(StatType.ThreatLevel,-1);
         _returningToPath = true;
         _chasingTarget = false;
         _currentTarget = null;

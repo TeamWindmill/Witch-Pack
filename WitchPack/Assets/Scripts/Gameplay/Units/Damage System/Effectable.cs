@@ -39,6 +39,7 @@ public class Effectable
     public void RemoveEffect(StatusEffect effect)
     {
         activeEffects.Remove(effect);
+        OnEffectRemoved?.Invoke(effect);
     }
 
    

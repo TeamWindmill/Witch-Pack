@@ -35,6 +35,9 @@ public class UnitTargetHelper
             case TargetPrio.DistnaceToCore:
                 target = GetTargetByDistanceToCore(targets, givenData.Mod, targetsToAvoid);
                 break;
+            case TargetPrio.Threatened:
+                target = GetTargetByThreat(targets, givenData.Mod, targetsToAvoid);
+                break;
 
             //add threat when Im doen adding the system
             default:
@@ -42,6 +45,34 @@ public class UnitTargetHelper
         }
         OnTarget?.Invoke(target);
         return target;
+    }
+
+    private BaseUnit GetTargetByThreat(List<BaseUnit> targets, TargetMod mod, List<BaseUnit> targetsToAvoid)
+    {
+        BaseUnit cur = targets[targets.Count / 2];
+        for (int i = 0; i < targets.Count; i++)
+        {
+            if (!ReferenceEquals(targetsToAvoid, null) && targets.Count > targetsToAvoid.Count && targetsToAvoid.Contains(targets[i]))
+            {
+                continue;
+            }
+
+            if (mod == TargetMod.Most)
+            {
+                if (cur.Stats.ThreatLevel < targets[i].Stats.ThreatLevel)
+                {
+                    cur = targets[i];
+                }
+            }
+            else
+            {
+                if (cur.Stats.ThreatLevel > targets[i].Stats.ThreatLevel)
+                {
+                    cur = targets[i];
+                } 
+            }
+        }
+        return cur;
     }
 
     private BaseUnit GetTargetByStat(List<BaseUnit> targets, StatType givenStat, TargetMod mod, List<BaseUnit> targetsToAvoid = null)

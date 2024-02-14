@@ -92,7 +92,7 @@ public class SmokeBomb : MonoBehaviour
     {
         if (_affectedShamans.TryGetValue(shaman,out var effect))
         {
-            shaman.Effectable.RemoveEffect(effect);
+            effect.RemoveEffectFromShaman();
             _affectedShamans.Remove(shaman);
         } 
     }
