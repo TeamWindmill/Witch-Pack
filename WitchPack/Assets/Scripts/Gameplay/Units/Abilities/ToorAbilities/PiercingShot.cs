@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PiercingShot : OffensiveAbility
 {
-    // testing simple projectile 
+    // testing simple projectile pls
     [SerializeField] private int penetration;
     public int Penetration { get => penetration; }
 
