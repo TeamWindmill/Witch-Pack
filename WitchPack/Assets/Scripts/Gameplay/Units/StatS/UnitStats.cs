@@ -21,21 +21,22 @@ public class UnitStats
 
     }
 
-    private int maxHp;
-    private int baseDamage;
-    private float attackSpeed;
-    private int baseRange;
-    private float movementSpeed;
-    private int critDamage;
-    private int critChance;
-    private float invincibleTime;
-    private int abilityCooldownReduction;
-    private int armor;
-    private int hpRegen;
-    private int bonusStatusEffectDuration;
-    private int abilityProjectileSpeed;
-    private int abilityProjectilePenetration;
-    private float visibility;
+    [SerializeField] private int maxHp;
+    [SerializeField] private int baseDamage;
+    [SerializeField] private float attackSpeed;
+    [SerializeField] private int baseRange;
+    [SerializeField] private float movementSpeed;
+    [SerializeField] private int critDamage;
+    [SerializeField] private int critChance;
+    [SerializeField] private float invincibleTime;
+    [SerializeField] private int abilityCooldownReduction;
+    [SerializeField] private int armor;
+    [SerializeField] private int hpRegen;
+    [SerializeField] private int bonusStatusEffectDuration;
+    [SerializeField] private int abilityProjectileSpeed;
+    [SerializeField] private int abilityProjectilePenetration;
+    [SerializeField] private int visibility;
+    [SerializeField] private int threatLevel;
 
     public int MaxHp { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.MaxHp.value + maxHp), 0, (ownerBaseStats.MaxHp.value + maxHp))); } }
     public int BaseDamage { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.BaseDamage.value + baseDamage), 0, (ownerBaseStats.BaseDamage.value + baseDamage))); } }
@@ -51,7 +52,8 @@ public class UnitStats
     public int BonusStatusEffectDuration { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.BonusStatusEffectDuration.value + bonusStatusEffectDuration), 0, (ownerBaseStats.BonusStatusEffectDuration.value + bonusStatusEffectDuration))); } }
     public int AbilityProjectileSpeed { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.AbilityProjectileSpeed.value + abilityProjectileSpeed), 0, (ownerBaseStats.AbilityProjectileSpeed.value + abilityProjectileSpeed))); } }
     public int AbilityProjectilePenetration { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.AbilityProjectilePenetration.value + abilityProjectilePenetration), 0, (ownerBaseStats.AbilityProjectilePenetration.value + abilityProjectilePenetration))); } }
-    public float Visibility { get { return Mathf.Clamp((ownerBaseStats.Visibility.value + visibility), 0, 1); } }
+    public int Visibility { get { return Mathf.Clamp((ownerBaseStats.Visibility.value + visibility), 0, 1); } }
+    public int ThreatLevel { get { return Mathf.Clamp((ownerBaseStats.ThreatLevel.value + threatLevel), 0, ownerBaseStats.ThreatLevel.value + threatLevel); } }
 
     public float GetStatValue(StatType statTypeId)
     {
@@ -85,6 +87,10 @@ public class UnitStats
                 return AbilityProjectileSpeed;
             case StatType.AbilityProjectilePenetration:
                 return AbilityProjectilePenetration;
+            case StatType.Visibility:
+                return Visibility;
+            case StatType.ThreatLevel:
+                return ThreatLevel;
             default:
                 return 0;
         }
@@ -121,6 +127,10 @@ public class UnitStats
                 return ownerBaseStats.AbilityProjectileSpeed.value;
             case StatType.AbilityProjectilePenetration:
                 return ownerBaseStats.AbilityProjectilePenetration.value;
+            case StatType.Visibility:
+                return ownerBaseStats.Visibility.value;
+            case StatType.ThreatLevel:
+                return ownerBaseStats.ThreatLevel.value;
             default:
                 return 0;
         }
@@ -168,7 +178,12 @@ public class UnitStats
             case StatType.AbilityProjectilePenetration:
                 abilityProjectilePenetration += wholeValue;
                 break;
-            
+            case StatType.Visibility:
+                visibility += wholeValue;
+                break;
+            case StatType.ThreatLevel:
+                threatLevel += wholeValue;
+                break;
             default:
                 break;
         }
@@ -189,9 +204,7 @@ public class UnitStats
             case StatType.InvincibleTime:
                 invincibleTime += decimalValue;
                 break;
-            case StatType.Visibility:
-                visibility += decimalValue;
-                break;
+            
             default:
                 AddValueToStat(statType, Mathf.RoundToInt(decimalValue));
                 break;
