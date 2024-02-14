@@ -6,7 +6,7 @@ public class MultiShot : OffensiveAbility
 {
     [SerializeField] private int numberOfShots;
     [SerializeField] private Vector3 offset;
-    [SerializeField] private int ricochetTimes;//how many times the bullet will bounce between targets
+    [SerializeField] private int ricochetTimes; //how many times the bullet will bounce between targets
     [SerializeField] private float ricochetRange;
     [SerializeField] private float ricochetSpeed;
     [SerializeField] private TargetData ricochetTargeting;//specific targeting for the ricochets 
