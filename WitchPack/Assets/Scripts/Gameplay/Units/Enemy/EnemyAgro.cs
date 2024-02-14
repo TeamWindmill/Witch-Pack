@@ -39,10 +39,10 @@ public class EnemyAgro
 
     private void TryAgro()
     {
-        if (!_chasingTarget && _enemy.Targeter.HasTarget)
+        if (!_chasingTarget && _enemy.ShamanTargeter.HasTarget)
         {
             var chance = _random.NextDouble();
-            _currentTarget = _enemy.Targeter.GetClosestTarget();
+            _currentTarget = _enemy.ShamanTargeter.GetClosestTarget();
             if(_currentTarget.Stats.Visibility == 1) return;
             if (chance < _agroChance)
             {

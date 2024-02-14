@@ -12,10 +12,10 @@ public class MultiShot : OffensiveAbility
     [SerializeField] private TargetData ricochetTargeting;//specific targeting for the ricochets 
     public override bool CastAbility(BaseUnit caster)
     {
-        List<BaseUnit> foundTargets = new List<BaseUnit>();
+        List<Enemy> foundTargets = new List<Enemy>();
         for (int i = 0; i < numberOfShots; i++)
         {
-            BaseUnit target = caster.TargetHelper.GetTarget(caster.Targeter.AvailableTargets, TargetData, foundTargets);
+            Enemy target = caster.EnemyTargetHelper.GetTarget(TargetData, foundTargets);
             
             foundTargets.Add(target);
 
@@ -50,10 +50,10 @@ public class MultiShot : OffensiveAbility
 
     public override bool CheckCastAvailable(BaseUnit caster)
     {
-        List<BaseUnit> foundTargets = new List<BaseUnit>();
+        List<Enemy> foundTargets = new List<Enemy>();
         for (int i = 0; i < numberOfShots; i++)
         {
-            BaseUnit target = caster.TargetHelper.GetTarget(caster.Targeter.AvailableTargets, TargetData, foundTargets);
+            Enemy target = caster.EnemyTargetHelper.GetTarget(TargetData, foundTargets);
 
             foundTargets.Add(target);
 

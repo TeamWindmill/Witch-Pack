@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RicochetHandler
@@ -20,7 +21,9 @@ public class RicochetHandler
     {
 
         TargetedShot shot = LevelManager.Instance.PoolManager.ArchedShotPool.GetPooledObject();
-        BaseUnit newTargat = shooter.TargetHelper.GetTarget(shooter.Targeter.GetAvailableTargets(originalTarget, jumpsRange), targetData);
+        Enemy originalEnemy = originalTarget as Enemy;
+        List<Enemy> enemies = shooter.EnemyTargeter.GetAvailableTargets(originalEnemy, jumpsRange);
+        Enemy newTargat = shooter.EnemyTargetHelper.GetTarget(enemies, targetData);
         if (ReferenceEquals(newTargat, null) || newTargat.Damageable.CurrentHp <= 0)//if no target was found or if the target is dead
         {
             shot.Disable();

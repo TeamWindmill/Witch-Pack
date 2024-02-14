@@ -2,25 +2,34 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitTargetHelper
+public class UnitTargetHelper<T> where T: BaseUnit
 {
     private BaseUnit owner;
 
     public event Action<BaseUnit> OnTarget;
 
-    public UnitTargetHelper(BaseUnit givenOwner)
+    private List<T> targets;
+
+    public UnitTargetHelper(Targeter<T> targeter, BaseUnit givenOwner)
     {
         owner = givenOwner;
+        targets = targeter.AvailableTargets;
+        
     }
 
 
-    public BaseUnit GetTarget(List<BaseUnit> targets, TargetData givenData, List<BaseUnit> targetsToAvoid = null, StatType stat = StatType.AttackSpeed)
+    public T GetTarget(TargetData givenData, List<T> targetsToAvoid = null, StatType stat = StatType.AttackSpeed)
+    {
+        return GetTarget(targets, givenData, targetsToAvoid, stat);
+    }
+
+    public T GetTarget(List<T> targets, TargetData givenData, List<T> targetsToAvoid = null, StatType stat = StatType.AttackSpeed)
     {
         if (targets.Count <= 0)
         {
             return null;
         }
-        BaseUnit target;
+        T target;
         switch (givenData.Prio)
         {
             case TargetPrio.Stat:
@@ -47,9 +56,9 @@ public class UnitTargetHelper
         return target;
     }
 
-    private BaseUnit GetTargetByThreat(List<BaseUnit> targets, TargetMod mod, List<BaseUnit> targetsToAvoid)
+    private T GetTargetByThreat(List<T> targets, TargetMod mod, List<T> targetsToAvoid)
     {
-        BaseUnit cur = targets[targets.Count / 2];
+        T cur = targets[targets.Count / 2];
         for (int i = 0; i < targets.Count; i++)
         {
             if (!ReferenceEquals(targetsToAvoid, null) && targets.Count > targetsToAvoid.Count && targetsToAvoid.Contains(targets[i]))
@@ -75,9 +84,9 @@ public class UnitTargetHelper
         return cur;
     }
 
-    private BaseUnit GetTargetByStat(List<BaseUnit> targets, StatType givenStat, TargetMod mod, List<BaseUnit> targetsToAvoid = null)
+    private T GetTargetByStat(List<T> targets, StatType givenStat, TargetMod mod, List<T> targetsToAvoid = null)
     {
-        BaseUnit cur = targets[targets.Count / 2];
+        T cur = targets[targets.Count / 2];
         for (int i = 0; i < targets.Count; i++)
         {
             if (mod == TargetMod.Most)
@@ -98,9 +107,9 @@ public class UnitTargetHelper
         return cur;
     }
 
-    private BaseUnit GetTargetByDistance(List<BaseUnit> targets, TargetMod mod, List<BaseUnit> targetsToAvoid = null)
+    private T GetTargetByDistance(List<T> targets, TargetMod mod, List<T> targetsToAvoid = null)
     {
-        BaseUnit cur = targets[targets.Count / 2];
+        T cur = targets[targets.Count / 2];
         for (int i = 0; i < targets.Count; i++)
         {
             if (!ReferenceEquals(targetsToAvoid, null) && targets.Count > targetsToAvoid.Count && targetsToAvoid.Contains(targets[i]))
@@ -126,9 +135,9 @@ public class UnitTargetHelper
         return cur;
     }
 
-    private BaseUnit GetTargetByDistanceToCore(List<BaseUnit> targets, TargetMod mod, List<BaseUnit> targetsToAvoid = null)
+    private T GetTargetByDistanceToCore(List<T> targets, TargetMod mod, List<T> targetsToAvoid = null)
     {
-        BaseUnit cur = targets[targets.Count / 2];
+        T cur = targets[targets.Count / 2];
         for (int i = 0; i < targets.Count; i++)
         {
             if (!ReferenceEquals(targetsToAvoid, null) && targets.Count > targetsToAvoid.Count && targetsToAvoid.Contains(targets[i]))

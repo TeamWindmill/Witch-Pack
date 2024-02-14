@@ -10,7 +10,7 @@ public class PiercingShot : OffensiveAbility
 
     public override bool CastAbility(BaseUnit caster)
     {
-        BaseUnit target = caster.TargetHelper.GetTarget(caster.Targeter.AvailableTargets, TargetData);
+        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
         if (!ReferenceEquals(target, null))
         {
             Projectile newPew = LevelManager.Instance.PoolManager.TestAbilityPool.GetPooledObject();
@@ -29,7 +29,7 @@ public class PiercingShot : OffensiveAbility
 
     public override bool CheckCastAvailable(BaseUnit caster)
     {
-        BaseUnit target = caster.TargetHelper.GetTarget(caster.Targeter.AvailableTargets, TargetData);
+        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
         if (ReferenceEquals(target, null))
         {
             return false;

@@ -8,7 +8,7 @@ public class PoisonIvy : OffensiveAbility
 {
     public override bool CastAbility(BaseUnit caster)
     {
-        BaseUnit target = caster.TargetHelper.GetTarget(caster.Targeter.AvailableTargets, TargetData);
+        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
         if (!ReferenceEquals(target, null))
         {
             //target.Damageable.GetHit(caster.DamageDealer, this);

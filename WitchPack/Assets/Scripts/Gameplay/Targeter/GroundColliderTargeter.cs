@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShamanTargeter : Targeter<Shaman>
+public class GroundColliderTargeter : Targeter<GroundCollider>
 {
-   
-
-
+    
 }
