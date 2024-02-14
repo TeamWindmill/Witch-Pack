@@ -112,15 +112,30 @@ public class GAME_TIME : MonoBehaviour
         Debug.Log($"<color={ColorLogHelper.RED}>PAUSE</color>");
         SetTimeStep(0);
     }
-
-    public static Timer AddTimer(float time, Action onTimerEnd, bool usingGameTime = false, bool removeOnTimerEnd = false)
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="dontDestroyTimer">if true use the RemoveTimer Method</param>
+    /// <returns></returns>
+    public static Timer AddTimer(float tickTime, Action onTimerEnd, bool usingGameTime = false, int ticksAmount = 1, bool dontDestroyTimer = false)
     {
-        var timer = new Timer(time, onTimerEnd, usingGameTime);
+        var timer = new Timer(new TimerData(tickTime, onTimerEnd,ticksAmount, usingGameTime, dontDestroyTimer));
         _timers.Add(timer);
-        if (removeOnTimerEnd) timer.OnTimerEnd += RemoveTimer;
+        timer.OnTimerEnd += RemoveTimer;
+        return timer;
+    }
+    public static Timer AddTimer(Timer timer)
+    {
+        _timers.Add(timer);
+        timer.OnTimerEnd += RemoveTimer;
         return timer;
     }
 
+    /// <summary>
+    /// use this Function if the timer is set to dont destroy
+    /// </summary>
+    /// <param name="timer"></param>
     public static void RemoveTimer(Timer timer)
     {
         timer.OnTimerEnd -= RemoveTimer;

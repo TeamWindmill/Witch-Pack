@@ -12,6 +12,7 @@ public class StatusEffect
     private StatusEffectProcess process;
     private StatusEffectType statusEffectType;
     private StatusEffectValueType statusEffectValueType;
+    private bool shouldReturnToNormalAtEndOfDuration;
 
     public Effectable Host { get => host; }
     public float Counter { get => timeCounter; }
@@ -21,7 +22,7 @@ public class StatusEffect
     public StatusEffectType StatusEffectType { get => statusEffectType; }
     public StatusEffectValueType StatusEffectValueType { get => statusEffectValueType; }
 
-    public StatusEffect(Effectable host, float duration, float amount, StatType effectedStatType, StatusEffectProcess process, StatusEffectType statusEffectType, StatusEffectValueType valueType)
+    public StatusEffect(Effectable host, float duration, float amount, StatType effectedStatType, StatusEffectProcess process, StatusEffectType statusEffectType, StatusEffectValueType valueType, bool shouldReturnToNormalAtEndOfDuration)
     {
         this.host = host;
         this.duration = duration;
@@ -29,6 +30,8 @@ public class StatusEffect
         this._statType = effectedStatType;
         this.process = process;
         this.statusEffectType = statusEffectType;
+        this.statusEffectValueType = valueType;
+        this.shouldReturnToNormalAtEndOfDuration = shouldReturnToNormalAtEndOfDuration;
     }
 
 
@@ -90,7 +93,10 @@ public class StatusEffect
             }
             timeCounter++;
         }
-        host.Owner.Stats.AddValueToStat(StatType, -amountToChange);
+        if(shouldReturnToNormalAtEndOfDuration)
+        {
+            host.Owner.Stats.AddValueToStat(StatType, -amountToChange);
+        }
         Remove();
     }
     private IEnumerator InstantEffect()
@@ -116,7 +122,10 @@ public class StatusEffect
             }
             timeCounter++;
         }
-        host.Owner.Stats.AddValueToStat(StatType, -amountToChange);
+        if(shouldReturnToNormalAtEndOfDuration)
+        {
+            host.Owner.Stats.AddValueToStat(StatType, -amountToChange);
+        }        
         Remove();
     }
 }

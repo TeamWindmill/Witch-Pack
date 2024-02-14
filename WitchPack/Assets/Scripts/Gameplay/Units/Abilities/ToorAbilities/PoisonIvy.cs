@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ability", menuName = "Ability/RootingVines")]
+[CreateAssetMenu(fileName = "ability", menuName = "Ability/PoisonIvy")]
 
-public class RootingVines : OffensiveAbility
+public class PoisonIvy : OffensiveAbility
 {
     [SerializeField] private float radius;
     public override bool CastAbility(BaseUnit caster)
     {
-        BaseUnit target = caster.TargetHelper.GetTarget(caster.Targeter.AvailableTargets, TargetData);    
+        BaseUnit target = caster.TargetHelper.GetTarget(caster.Targeter.AvailableTargets, TargetData);
         if (!ReferenceEquals(target, null))
         {
             //target.Damageable.GetHit(caster.DamageDealer, this);
@@ -18,10 +18,10 @@ public class RootingVines : OffensiveAbility
             //{
             //    enemy.Damageable.GetHit(caster.DamageDealer, this);
             //}
-            RootingVinesMono newVines = LevelManager.Instance.PoolManager.RootingVinesPool.GetPooledObject();
-            newVines.Init(caster, this);
-            newVines.transform.position = target.transform.position;
-            newVines.gameObject.SetActive(true);            
+            PoisonIvyMono newIvyPoison = LevelManager.Instance.PoolManager.PoisonIvyPool.GetPooledObject();
+            newIvyPoison.Init(caster, this);
+            newIvyPoison.transform.position = target.transform.position;
+            newIvyPoison.gameObject.SetActive(true);
             return true;
         }
         else

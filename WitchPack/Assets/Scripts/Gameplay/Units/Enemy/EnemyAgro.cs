@@ -25,9 +25,9 @@ public class EnemyAgro
         _enemy = enemy;
         _agroChance = enemy.EnemyConfig.AgroChance;
         _returnChanceModifier = enemy.EnemyConfig.ReturnChanceModifier;
-        _agroTimer = GAME_TIME.AddTimer(enemy.EnemyConfig.AgroInterval,TryAgro,true);
-        _chaseTimer = GAME_TIME.AddTimer(enemy.EnemyConfig.ChaseInterval,Agro,true);
-        _returnTimer = GAME_TIME.AddTimer(enemy.EnemyConfig.ReturnInterval,TryReturn,true);
+        _agroTimer = GAME_TIME.AddTimer(enemy.EnemyConfig.AgroInterval,TryAgro,true,dontDestroyTimer: true);
+        _chaseTimer = GAME_TIME.AddTimer(enemy.EnemyConfig.ChaseInterval,Agro,true,dontDestroyTimer: true);
+        _returnTimer = GAME_TIME.AddTimer(enemy.EnemyConfig.ReturnInterval,TryReturn,true,dontDestroyTimer: true);
     }
 
     public void OnDisable()
@@ -42,9 +42,11 @@ public class EnemyAgro
         if (!_chasingTarget && _enemy.Targeter.HasTarget)
         {
             var chance = _random.NextDouble();
-            if (chance < _agroChance)
+            _currentTarget = _enemy.Targeter.GetClosestTarget();
+            var visibilityModifer = 1 - _currentTarget.Stats.Visibility;
+            if (chance < _agroChance * visibilityModifer)
             {
-                _currentTarget = _enemy.Targeter.GetClosestTarget();
+                
                 _enemy.EnemyMovement.ToggleMove(false);
                 _enemy.Movement.ToggleMovement(true);
                 _chasingTarget = true;
