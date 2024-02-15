@@ -12,6 +12,7 @@ public class StatBlockUI : MonoBehaviour
     private Color _statBonusReductionColor;
 
     private float _baseValue;
+    private float _bonusValue;
     public StatType StatTypeId => statTypeId;
     
     public void Init(float currentValue, Color addColor, Color reduceColor)
@@ -21,13 +22,21 @@ public class StatBlockUI : MonoBehaviour
         _statBonusReductionColor = reduceColor;
         SetStatText(_baseValue,0);
     }
-    public void UpdateUI(int newValue)
+    public void UpdateUI(float newValue)
     {
         if(!HeroSelectionUI.Instance.IsActive) return;
-        SetStatText(_baseValue,newValue);
+        _bonusValue = newValue;
+        SetStatText(_baseValue,_bonusValue);
     }
 
-    private void SetStatText(float baseValue, int bonusValue)
+    public void UpdateBaseStat(float delta)
+    {
+        if(!HeroSelectionUI.Instance.IsActive) return;
+        _baseValue += delta;
+        SetStatText(_baseValue, _bonusValue);
+    }
+
+    private void SetStatText(float baseValue, float bonusValue)
     {
         string statName = "";
         string modifier = "";

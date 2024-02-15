@@ -8,8 +8,12 @@ public class StatBlockPanel : MonoBehaviour
     [SerializeField] private Color _statBonusAdditionColor;
     [SerializeField] private Color _statBonusReductionColor;
 
+    private Shaman _shaman;
+
     public void Init(Shaman shaman)
     {
+        _shaman = shaman;
+        _shaman.Stats.OnStatChanged += OnBaseStatChange;
         foreach (var statBlock in _statBlocks)
         {
             var statValue = shaman.Stats.GetStatValue(statBlock.StatTypeId);
@@ -22,7 +26,15 @@ public class StatBlockPanel : MonoBehaviour
         }
     }
 
-    public void UpdateStatBlocks(StatType shamanStatType, int newValue)
+    private void OnBaseStatChange(StatType statType, float delta)
+    {
+        foreach (var statBlock in _statBlocks)
+        {
+            if(statBlock.StatTypeId == statType) statBlock.UpdateBaseStat(delta);
+        }
+    }
+
+    public void UpdateStatBlocks(StatType shamanStatType, float newValue)
     {
         foreach (var statBlock in _statBlocks)
         {
@@ -35,6 +47,8 @@ public class StatBlockPanel : MonoBehaviour
 
     public void HideStatBlocks()
     {
+        _shaman.Stats.OnStatChanged -= OnBaseStatChange;
+
         foreach (var statBarHandler in _statBarHandlers)
         {
             statBarHandler.Hide();

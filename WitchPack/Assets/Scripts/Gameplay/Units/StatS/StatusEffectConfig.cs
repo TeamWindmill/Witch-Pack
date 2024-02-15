@@ -4,7 +4,7 @@ using UnityEngine;
 public class StatusEffectConfig : ScriptableObject
 {
     [SerializeField] private float duration;//every status effects only works for a duration
-    [SerializeField] private int amount;//this might be useless 
+    [SerializeField] private float amount;//this might be useless 
     [SerializeField, Tooltip("Instant means a stat will change by the amount given for a duration then return to normal, " +
         "Over Time means a stat will decrease every 1 second by a fixed amount until reaching the given amount 1 second before the duration ends")]
     private StatusEffectProcess process;
@@ -15,7 +15,7 @@ public class StatusEffectConfig : ScriptableObject
 
 
     public float Duration { get => duration; }
-    public int Amount { get => amount; }
+    public float Amount { get => amount; }
     public StatusEffectProcess Process { get => process; }
     public StatType StatTypeAffected { get => statTypeAffected; }
     public StatusEffectType StatusEffectType { get => statusEffectType; }
@@ -31,8 +31,9 @@ public enum StatusEffectProcess
 
 public enum StatusEffectValueType
 {
-    Flat,
-    Percentage
+    FlatToInt,
+    Percentage,
+    FlatToFloat,
 }
 
 public enum StatusEffectType
