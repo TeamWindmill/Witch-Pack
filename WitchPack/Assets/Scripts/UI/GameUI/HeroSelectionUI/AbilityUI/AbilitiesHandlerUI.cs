@@ -53,6 +53,7 @@ public class AbilitiesHandlerUI : MonoBehaviour
 
     private void OpenUpgradePanel(AbilityUIButton abilityButton)
     {
+        SoundManager.Instance.PlayAudioClip(SoundEffectType.OpenUpgradeTree);
         abilityUpgradePanelUI.Init(abilityButton);
     }
 
