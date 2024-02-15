@@ -6,6 +6,7 @@ public class UnitCastingHandler
 {
     //manage cds, send abilities to cast -> specific interactions come from the so itself? 
     public event Action<UnitCastingHandler> OnCast;
+    public event Action<SoundEffectType> OnCastGFX;
 
     private BaseUnit unit;
     private BaseAbility ability;
@@ -25,7 +26,7 @@ public class UnitCastingHandler
         {
             var shaman = owner as Shaman;
             OnCast += shaman.EnergyHandler.OnShamanCast;
-            OnCast += shaman.ShamanCastSFX;
+            OnCastGFX += shaman.ShamanCastSFX;
         }
     }
 
@@ -60,6 +61,7 @@ public class UnitCastingHandler
             {
                 lastCast = GAME_TIME.GameTime;
                 OnCast?.Invoke(this);
+                OnCastGFX?.Invoke(ability.SoundEffectType);
                 unit.AutoAttacker.CanAttack = true;
             }
             yield return new WaitForEndOfFrame();

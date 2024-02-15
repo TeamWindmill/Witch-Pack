@@ -39,6 +39,7 @@ public class Enemy : BaseUnit
         enemyAnimator.Init(this);
         Damageable.OnHitGFX += GetHitSFX;
         Damageable.OnDeathGFX += DeathSFX;
+        AutoAttackHandler.OnAttack += AttackSFX;
         Movement.OnDestinationReached += EnableAttacker;
         Movement.OnDestinationSet += DisableAttacker;
     }
@@ -50,6 +51,7 @@ public class Enemy : BaseUnit
     #region SFX
     private void GetHitSFX(bool isCrit) => SoundManager.Instance.PlayAudioClip(isCrit ? SoundEffectType.EnemyGetHitCrit : SoundEffectType.EnemyGetHit);
     private void DeathSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.EnemyDeath);
+    private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.EnemyAttack);
     
     #endregion
     protected override void OnDisable()

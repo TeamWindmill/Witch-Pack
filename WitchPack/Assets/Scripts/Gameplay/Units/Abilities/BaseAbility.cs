@@ -12,6 +12,7 @@ public class BaseAbility : ScriptableObject
     [SerializeField] private bool isPassive;
     [SerializeField] private bool givesEnergyPoints;
     [SerializeField,ShowIf(nameof(givesEnergyPoints))] private int energyPoints;
+    [SerializeField] private SoundEffectType soundEffectType;
 
     [SerializeField, Tooltip("Interval before casting in real time")]
     private float castTime;
@@ -33,6 +34,8 @@ public class BaseAbility : ScriptableObject
     public List<StatusEffectConfig> StatusEffects => statusEffects;
     public BaseAbility[] Upgrades => _upgrades;
     public AbilityUpgradeState AbilityUpgradeState => _abilityUpgradeState;
+    public SoundEffectType SoundEffectType => soundEffectType;
+
 
     public float CastTime { get => castTime; }
 

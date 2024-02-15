@@ -8,7 +8,13 @@ public class SoundManager : MonoSingleton<SoundManager>
 {
     [SerializeField] private bool _testing;
     [SerializeField] private AudioSource[] _audioSources;
+    [SerializeField] private SoundsConfig _soundsConfig;
     [SerializeField] private SoundEffect[] _soundEffects;
+
+    private void Start()
+    {
+        _soundEffects = _soundsConfig.SoundEffects;
+    }
 
     public void PlayAudioClip(SoundEffectType soundEffectType, float pitch = 1, float volume = 1, bool loop = false)
     {
@@ -22,7 +28,7 @@ public class SoundManager : MonoSingleton<SoundManager>
             break;
         }
 
-        if (audioSource == null)
+        if (ReferenceEquals(audioSource,null))
         {
             Debug.LogWarning("did not find any available audio source");
             return;
@@ -31,9 +37,11 @@ public class SoundManager : MonoSingleton<SoundManager>
         AudioClip audioClip = null;
         foreach (var soundEffect in _soundEffects)
         {
-            if (soundEffect.Type != soundEffectType) continue;
-            audioClip = soundEffect.Clip;
-            break;
+            if (soundEffect.Type == soundEffectType)
+            {
+                audioClip = soundEffect.Clip;
+                break;
+            }
         }
 
         if (audioClip == null)
@@ -63,37 +71,3 @@ public class SoundManager : MonoSingleton<SoundManager>
     }
 }
 
-[Serializable]
-public struct SoundEffect
-{
-    public SoundEffectType Type;
-    public AudioClip Clip;
-}
-
-public enum SoundEffectType
-{
-    //Projectile Sounds
-    BasicAttack,
-    CriticalAttack, //?
-    
-    //Enemies
-    EnemyGetHit,
-    EnemyGetHitCrit,
-    EnemyDeath,
-    EnemyAttack,
-    EnemyWalk, //?
-    
-    //Shamans
-    ShamanGetHit, //with male and female?
-    ShamanGetHitCrit,
-    ShamanDeathMale,
-    ShamanDeathFemale,
-    ShamanCast,
-    
-    //Abilities
-    PiercingShot,
-    RootingVines,
-    SmokeBomb,
-    Heal,
-    
-}
