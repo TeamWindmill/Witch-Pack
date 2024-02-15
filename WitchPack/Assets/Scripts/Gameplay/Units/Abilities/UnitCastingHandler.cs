@@ -8,61 +8,61 @@ public class UnitCastingHandler
     public event Action<UnitCastingHandler> OnCast;
     public event Action<SoundEffectType> OnCastGFX;
 
-    private BaseUnit unit;
+    private Shaman shaman;
     private BaseAbility ability;
     private float lastCast;
     private float startedCasting;
 
     public BaseAbility Ability { get => ability; }
     public float LastCast { get => lastCast; }
-    public BaseUnit Unit { get => unit; }
+    public Shaman Shaman { get => shaman; }
 
     public UnitCastingHandler(BaseUnit owner, BaseAbility ability)
     {
-        unit = owner;
+        shaman = owner as Shaman;
         this.ability = ability;
         lastCast = GetAbilityCD() * -1;
+        OnCastGFX += shaman.ShamanCastSFX;
         if (ability.GivesEnergyPoints)
         {
-            var shaman = owner as Shaman;
+            
             OnCast += shaman.EnergyHandler.OnShamanCast;
-            OnCastGFX += shaman.ShamanCastSFX;
         }
     }
 
     public float GetAbilityCD()
     {
-        return ability.Cd * (1 - unit.Stats.AbilityCooldownReduction / 100);
+        return ability.Cd * (1 - shaman.Stats.AbilityCooldownReduction / 100);
     }
 
     public void CastAbility()
     {
         if (GAME_TIME.GameTime - lastCast >= GetAbilityCD())
         {
-            if (ability.CheckCastAvailable(Unit))
+            if (ability.CheckCastAvailable(Shaman))
             {
-                unit.StartCoroutine(TryCastingAbility());
+                shaman.StartCoroutine(TryCastingAbility());
             }
         }
     }
 
     private IEnumerator TryCastingAbility()
     {
-        unit.AutoAttacker.CanAttack = false;
+        shaman.AutoAttacker.CanAttack = false;
         float counter = 0f;
         while (counter < ability.CastTime)
         {
             counter += GAME_TIME.GameDeltaTime;
             yield return new WaitForEndOfFrame();
         }
-        while (!unit.AutoAttacker.CanAttack)//changes when casting succesfuly or when reaching a new destenation
+        while (!shaman.AutoAttacker.CanAttack)//changes when casting succesfuly or when reaching a new destenation
         {
-            if (ability.CastAbility(unit))
+            if (ability.CastAbility(shaman))
             {
                 lastCast = GAME_TIME.GameTime;
                 OnCast?.Invoke(this);
                 OnCastGFX?.Invoke(ability.SoundEffectType);
-                unit.AutoAttacker.CanAttack = true;
+                shaman.AutoAttacker.CanAttack = true;
             }
             yield return new WaitForEndOfFrame();
         }
