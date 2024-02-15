@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Serialization;
-using Random = System.Random;
+using Random = UnityEngine.Random;
 
 
 public class SoundManager : MonoSingleton<SoundManager>
@@ -13,7 +13,6 @@ public class SoundManager : MonoSingleton<SoundManager>
     [SerializeField] private SoundsConfig _soundsConfig;
     private Dictionary<SoundEffectCategory, SoundEffect[]> _soundEffects;
 
-    private Random _random = new Random();
 
     private void Start()
     {
@@ -39,19 +38,20 @@ public class SoundManager : MonoSingleton<SoundManager>
         }
 
         AudioClip audioClip = null;
-        // GetSoundsByCategory(_soundEffects);
-        // foreach (var soundEffect in _soundEffects)
-        // {
-        //     if (soundEffect.Type == soundEffectType)
-        //     {
-        //         if(soundEffect.Variations)
-        //             audioClip = soundEffect.Clips[_random.Next(0,soundEffect.Clips.Length)];
-        //         else
-        //             audioClip = soundEffect.Clip;
-        //         break;
-        //     }
-        // }
-
+        var category = GetCategoryBySound(soundEffectType);
+        if (_soundEffects.TryGetValue(category,out var soundEffects))
+        {
+            foreach (var soundEffect in soundEffects)
+            {
+                if (soundEffect.Type == soundEffectType)
+                {
+                    audioClip = soundEffect.ClipVariations ? soundEffect.Clips[Random.Range(0,soundEffect.Clips.Length)] : soundEffect.Clip;
+                    if (soundEffect.VolumeVariations) volume = Random.Range(soundEffect.VolumeValues.x,soundEffect.VolumeValues.y);
+                    break;
+                }
+            }
+        }
+       
         if (ReferenceEquals(audioClip,null))
         {
             if (_testing)
@@ -69,15 +69,43 @@ public class SoundManager : MonoSingleton<SoundManager>
         audioSource.volume = volume;
         audioSource.Play();
     }
-    // public SoundEffect[] GetCategoryBySound(SoundEffectType soundEffectType)
-    // {
-    //     if (_soundEffects.TryGetValue(category, out var value))
-    //     {
-    //         return value;
-    //     }
-    //     Debug.LogError("sound category not found");
-    //     return null;
-    // }
+    public SoundEffectCategory GetCategoryBySound(SoundEffectType soundEffectType)
+    {
+        switch (soundEffectType)
+        {
+            case SoundEffectType.EnemyGetHit:
+            case SoundEffectType.EnemyGetHitCrit:
+            case SoundEffectType.EnemyDeath:
+            case SoundEffectType.EnemyAttack:
+            case SoundEffectType.EnemyWalk:
+                return SoundEffectCategory.Enemy;
+            case SoundEffectType.ShamanGetHitMale:
+            case SoundEffectType.ShamanGetHitFemale:
+            case SoundEffectType.ShamanDeathMale:
+            case SoundEffectType.ShamanDeathFemale:
+            case SoundEffectType.ShamanCast:
+            case SoundEffectType.ShamanLevelUp:
+                return SoundEffectCategory.Shaman;
+            case SoundEffectType.BasicAttack:
+            case SoundEffectType.PiercingShot:
+            case SoundEffectType.MultiShot:
+            case SoundEffectType.RootingVines:
+            case SoundEffectType.Heal:
+            case SoundEffectType.SmokeBomb:
+            case SoundEffectType.Charm:
+                return SoundEffectCategory.Abilities;
+            case SoundEffectType.CoreGetHit:
+            case SoundEffectType.CoreDestroyed:
+                return SoundEffectCategory.Core;
+            case SoundEffectType.UpgradeAbility:
+            case SoundEffectType.OpenUpgradeTree:
+            case SoundEffectType.MenuClick:
+            case SoundEffectType.Victory:
+                return SoundEffectCategory.UI;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(soundEffectType), soundEffectType, null);
+        }
+    }
 
     private void OnValidate()
     {
