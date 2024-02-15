@@ -82,6 +82,7 @@ public class BaseUnit : MonoBehaviour
         }
         damageable.OnDamageCalc += LevelManager.Instance.PopupsManager.SpawnDamagePopup;
         effectable.OnAffected += LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
+        effectable.OnAffectedGFX += unitVisual.EffectHandler.PlayEffect;
     }
 
     public void ToggleCollider(bool state)
