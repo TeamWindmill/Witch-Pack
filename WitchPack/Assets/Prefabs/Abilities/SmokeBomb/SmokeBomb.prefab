@@ -77,6 +77,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7364442341755095084}
   - component: {fileID: 8952517543661881636}
+  - component: {fileID: 4719930457893257899}
   m_Layer: 17
   m_Name: SmokeBomb
   m_TagString: Untagged
@@ -114,13 +115,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb6d59fca0d17f24bb9f06be71b6e992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shamanTargeter: {fileID: 7013334745108567609}
-  enemyTargeter: {fileID: 5610462441526923203}
+  _targeter: {fileID: 8883180853403129723}
   rangeEnter: {fileID: 4741265469758743983}
   rangeExit: {fileID: 6537312590833903722}
   cloudsEnter: {fileID: 1094270457530976917}
   cloudsIdle: {fileID: 6790781224514806174}
   cloudsExit: {fileID: 3900812335497638083}
+--- !u!210 &4719930457893257899
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8901440362174484338}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 5
+  m_SortAtRoot: 0
 --- !u!1001 &1882776750036877250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -508,17 +520,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3514109266292176445, guid: 05fec0a2918812545ae3f8132224d2f4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7013334745108567609}
-    - targetCorrespondingSourceObject: {fileID: 3514109266292176445, guid: 05fec0a2918812545ae3f8132224d2f4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5610462441526923203}
+      addedObject: {fileID: 8883180853403129723}
   m_SourcePrefab: {fileID: 100100000, guid: 05fec0a2918812545ae3f8132224d2f4, type: 3}
 --- !u!1 &686039004529941290 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3514109266292176445, guid: 05fec0a2918812545ae3f8132224d2f4, type: 3}
   m_PrefabInstance: {fileID: 4125810819324783895}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7013334745108567609
+--- !u!114 &8883180853403129723
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -527,23 +536,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 686039004529941290}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e78dac5dcc88e0c49a9ca0cc7fb941c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  availableTargets: []
-  layer:
-    serializedVersion: 2
-    m_Bits: 0
---- !u!114 &5610462441526923203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 686039004529941290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2858346e747d17b45905ca3c82817068, type: 3}
+  m_Script: {fileID: 11500000, guid: 667829e21f460fc4db6b3c14534079c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   availableTargets: []
