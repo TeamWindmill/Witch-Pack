@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -10,7 +11,7 @@ public class SoundManager : MonoSingleton<SoundManager>
     [SerializeField] private bool _testing;
     [SerializeField] private AudioSource[] _audioSources;
     [SerializeField] private SoundsConfig _soundsConfig;
-    [SerializeField] private SoundEffect[] _soundEffects;
+    private Dictionary<SoundEffectCategory, SoundEffect[]> _soundEffects;
 
     private Random _random = new Random();
 
@@ -38,20 +39,20 @@ public class SoundManager : MonoSingleton<SoundManager>
         }
 
         AudioClip audioClip = null;
-        foreach (var soundEffect in _soundEffects)
-        {
-            if (soundEffect.Type == soundEffectType)
-            {
-                if(soundEffect.Variations)
-                    audioClip = soundEffect.Clips[_random.Next(0,soundEffect.Clips.Length)];
-                else
-                    audioClip = soundEffect.Clip;
-                    
-                break;
-            }
-        }
+        // GetSoundsByCategory(_soundEffects);
+        // foreach (var soundEffect in _soundEffects)
+        // {
+        //     if (soundEffect.Type == soundEffectType)
+        //     {
+        //         if(soundEffect.Variations)
+        //             audioClip = soundEffect.Clips[_random.Next(0,soundEffect.Clips.Length)];
+        //         else
+        //             audioClip = soundEffect.Clip;
+        //         break;
+        //     }
+        // }
 
-        if (audioClip == null)
+        if (ReferenceEquals(audioClip,null))
         {
             if (_testing)
             {
@@ -68,6 +69,15 @@ public class SoundManager : MonoSingleton<SoundManager>
         audioSource.volume = volume;
         audioSource.Play();
     }
+    // public SoundEffect[] GetCategoryBySound(SoundEffectType soundEffectType)
+    // {
+    //     if (_soundEffects.TryGetValue(category, out var value))
+    //     {
+    //         return value;
+    //     }
+    //     Debug.LogError("sound category not found");
+    //     return null;
+    // }
 
     private void OnValidate()
     {
