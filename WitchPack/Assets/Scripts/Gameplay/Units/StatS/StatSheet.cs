@@ -28,7 +28,8 @@ public class StatSheet : ScriptableObject
     public BaseStat BonusStatusEffectDuration = new BaseStat(StatType.BonusStatusEffectDuration);
     public BaseStat AbilityProjectileSpeed = new BaseStat(StatType.AbilityProjectileSpeed);
     public BaseStat AbilityProjectilePenetration = new BaseStat(StatType.AbilityProjectilePenetration);
-    public BaseStatDecimal Visibility = new BaseStatDecimal(StatType.Visibility);
+    public BaseStat Visibility = new BaseStat(StatType.Visibility);
+    public BaseStat ThreatLevel = new BaseStat(StatType.ThreatLevel);
 
 }
 
@@ -49,6 +50,7 @@ public enum StatType
     AbilityProjectileSpeed,//if an ability is projectile quicken it by this amount
     AbilityProjectilePenetration,//the amount of times a projectile ability can hit targets before disabling
     Visibility,
+    ThreatLevel,
 }
 
 [System.Serializable]

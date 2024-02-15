@@ -41,8 +41,8 @@ public class SmokeBomb : MonoBehaviour
         cloudsEnter.stopped += CloudsIdleAnim;
         //transform.localScale = new Vector3(config.Range, config.Range, 0);
         Invoke(nameof(EndBomb),config.Duration);
-        shamanTargeter.OnTargetAdded += OnTargetEntered;
-        shamanTargeter.OnTargetLost += OnTargetExited;
+        //shamanTargeter.OnTargetAdded += OnTargetEntered;
+        //shamanTargeter.OnTargetLost += OnTargetExited;
     }
     private void OnTargetEntered(GroundCollider collider)
     {
@@ -92,7 +92,7 @@ public class SmokeBomb : MonoBehaviour
     {
         if (_affectedShamans.TryGetValue(shaman,out var effect))
         {
-            shaman.Effectable.RemoveEffect(effect);
+            effect.RemoveEffectFromShaman();
             _affectedShamans.Remove(shaman);
         } 
     }

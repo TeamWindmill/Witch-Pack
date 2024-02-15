@@ -7,7 +7,7 @@ public class ShamanAutoAttack : OffensiveAbility
 {
     public override bool CastAbility(BaseUnit caster)
     {
-        BaseUnit target = caster.TargetHelper.GetTarget(caster.Targeter.AvailableTargets, TargetData);
+        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
         if (ReferenceEquals(target, null))
         {
             return false;

@@ -10,7 +10,7 @@ public class SmokeBombSO : OffensiveAbility
     [SerializeField] private float _duration;
     public override bool CastAbility(BaseUnit caster)
     {
-        BaseUnit target = caster.TargetHelper.GetTarget(caster.Targeter.AvailableTargets, TargetData);
+        BaseUnit target = caster.ShamanTargetHelper.GetTarget(TargetData);
         if (!ReferenceEquals(target, null))
         {
             SmokeBomb smokeBomb = LevelManager.Instance.PoolManager.SmokeBombPool.GetPooledObject();

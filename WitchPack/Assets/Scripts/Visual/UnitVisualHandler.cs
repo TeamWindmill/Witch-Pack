@@ -30,7 +30,8 @@ public class UnitVisualHandler : MonoBehaviour
     {
         _baseUnit = unit;
         spriteRenderer.sprite = config.UnitSprite;
-        _baseUnit.TargetHelper.OnTarget += FlipSpriteOnTarget;
+        _baseUnit.EnemyTargetHelper.OnTarget += FlipSpriteOnTarget;
+        _baseUnit.ShamanTargetHelper.OnTarget += FlipSpriteOnTarget;
     }
     private void Update()
     {

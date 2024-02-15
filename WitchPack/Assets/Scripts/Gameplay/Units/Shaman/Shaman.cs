@@ -36,8 +36,10 @@ public class Shaman : BaseUnit
         shamanConfig = baseUnitConfig as ShamanConfig;
         base.Init(shamanConfig);
         energyHandler = new EnergyHandler(this);
-        Targeter.SetRadius(Stats.BonusRange);
-        Stats.OnStatChanged += Targeter.AddRadius;
+        EnemyTargeter.SetRadius(Stats.BonusRange);
+        ShamanTargeter.SetRadius(Stats.BonusRange);
+        Stats.OnStatChanged += EnemyTargeter.AddRadius;
+        Stats.OnStatChanged += ShamanTargeter.AddRadius;
         IntializeAbilities();
         Movement.OnDestinationSet += DisableAttacker;
         Movement.OnDestinationReached += EnableAttacker;

@@ -13,6 +13,7 @@ public class StatusEffect
     private StatusEffectType statusEffectType;
     private StatusEffectValueType statusEffectValueType;
     private bool shouldReturnToNormalAtEndOfDuration;
+    private float _statValue;
 
     public Effectable Host { get => host; }
     public float Counter { get => timeCounter; }
@@ -44,8 +45,13 @@ public class StatusEffect
     {
         UnSubscribe();
         host.RemoveEffect(this);
+        
     }
 
+    public void RemoveEffectFromShaman()
+    {
+        host?.Owner.Stats.AddValueToStat(StatType, -_statValue);
+    }
     public virtual void Reset()
     {
         timeCounter = 0;
@@ -71,20 +77,20 @@ public class StatusEffect
 
     private IEnumerator OverTimeEffect()
     {
-        float amountToChange = 0;
+        _statValue = 0;
         switch (statusEffectValueType)
         {
             case StatusEffectValueType.Flat:
-                amountToChange = Mathf.RoundToInt(amount / duration);
+                _statValue = Mathf.RoundToInt(amount / duration);
                 break;
             case StatusEffectValueType.Percentage:
-                amountToChange = Mathf.RoundToInt((amount / 100) * host.Owner.Stats.GetStatValue(_statType)) / duration;
+                _statValue = Mathf.RoundToInt((amount / 100) * host.Owner.Stats.GetStatValue(_statType)) / duration;
                 break;
         }
 
         while (timeCounter < duration)
         {
-            host.Owner.Stats.AddValueToStat(StatType, amountToChange);
+            host.Owner.Stats.AddValueToStat(StatType, _statValue);
             float counter = 0f;
             while (counter < 1)
             {
@@ -95,23 +101,23 @@ public class StatusEffect
         }
         if(shouldReturnToNormalAtEndOfDuration)
         {
-            host.Owner.Stats.AddValueToStat(StatType, -amountToChange);
+            host.Owner.Stats.AddValueToStat(StatType, -_statValue);
         }
         Remove();
     }
     private IEnumerator InstantEffect()
     {
-        float amountToChange = 0;
+        _statValue = 0;
         switch (statusEffectValueType)
         {
             case StatusEffectValueType.Flat:
-                amountToChange = amount;
+                _statValue = amount;
                 break;
             case StatusEffectValueType.Percentage:
-                amountToChange = Mathf.RoundToInt((amount / 100) * host.Owner.Stats.GetStatValue(_statType));
+                _statValue = Mathf.RoundToInt((amount / 100) * host.Owner.Stats.GetStatValue(_statType));
                 break;
         }
-        host.Owner.Stats.AddValueToStat(StatType, amountToChange);
+        host.Owner.Stats.AddValueToStat(StatType, _statValue);
         while (timeCounter < duration)
         {
             float counter = 0f;
@@ -124,7 +130,7 @@ public class StatusEffect
         }
         if(shouldReturnToNormalAtEndOfDuration)
         {
-            host.Owner.Stats.AddValueToStat(StatType, -amountToChange);
+            host.Owner.Stats.AddValueToStat(StatType, -_statValue);
         }        
         Remove();
     }

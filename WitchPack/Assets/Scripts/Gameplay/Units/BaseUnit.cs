@@ -11,11 +11,13 @@ public class BaseUnit : MonoBehaviour
     [SerializeField, TabGroup("Combat")] private OffensiveAbility autoAttack;
     [SerializeField, TabGroup("Combat")] private UnitAutoAttacker autoAttacker;
     [SerializeField, TabGroup("Combat")] private BoxCollider2D boxCollider;
-    [SerializeField] private UnitTargeter targeter;
     [SerializeField] private Transform _castPos;
 
+    [SerializeField] private EnemyTargeter enemyTargeter;
+    [SerializeField] private ShamanTargeter shamanTargeter;
 
-    private UnitTargetHelper targetHelper;
+    private UnitTargetHelper<Shaman> shamanTargetHelper;
+    private UnitTargetHelper<Enemy> enemyTargetHelper;
 
 
 
@@ -43,9 +45,16 @@ public class BaseUnit : MonoBehaviour
     public AutoAttackHandler AutoAttackHandler { get => autoAttackHandler; }
     public UnitAutoAttacker AutoAttacker { get => autoAttacker; }
     public UnitMovement Movement { get => movement; }
-    public UnitTargetHelper TargetHelper { get => targetHelper; }
-    public virtual UnitTargeter Targeter { get => targeter; }
+    
     public Transform CastPos => _castPos;
+
+    public EnemyTargeter EnemyTargeter { get => enemyTargeter; }
+    public ShamanTargeter ShamanTargeter { get => shamanTargeter; }
+    public UnitTargetHelper<Shaman> ShamanTargetHelper { get => shamanTargetHelper; }
+    public UnitTargetHelper<Enemy> EnemyTargetHelper { get => enemyTargetHelper; }
+
+
+
 
 
     //movement comp
@@ -59,7 +68,8 @@ public class BaseUnit : MonoBehaviour
         affector = new Affector(this);
         effectable = new Effectable(this);
         autoAttackHandler = new AutoAttackHandler(this, autoAttack);
-        targetHelper = new UnitTargetHelper(this);
+        shamanTargetHelper = new UnitTargetHelper<Shaman>(ShamanTargeter, this);
+        enemyTargetHelper = new UnitTargetHelper<Enemy>(EnemyTargeter, this);
         AutoAttacker.SetUp(this);
         Movement.SetUp(this);
         unitVisual.Init(this, givenConfig);
