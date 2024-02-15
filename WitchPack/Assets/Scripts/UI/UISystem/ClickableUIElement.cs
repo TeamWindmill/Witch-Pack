@@ -52,7 +52,7 @@ public abstract class ClickableUIElement : UIElement, IPointerClickHandler
         OnClickEvent?.Invoke();
 
         if (!enableDoubleClick) return;
-
+        
         _clickNum++;
         _doubleClickTimer = doubleClickSpeed;
     }
