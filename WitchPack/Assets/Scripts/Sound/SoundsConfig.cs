@@ -20,7 +20,9 @@ public class SoundsConfig : ScriptableObject
 public struct SoundEffect
 {
     public SoundEffectType Type;
-    public AudioClip Clip;
+    public bool Variations;
+    [HideIf(nameof(Variations))]public AudioClip Clip;
+    [ShowIf(nameof(Variations))]public AudioClip[] Clips;
 }
 public enum SoundEffectType
 {

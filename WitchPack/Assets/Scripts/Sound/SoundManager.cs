@@ -2,6 +2,7 @@
 using System.Text;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = System.Random;
 
 
 public class SoundManager : MonoSingleton<SoundManager>
@@ -10,6 +11,8 @@ public class SoundManager : MonoSingleton<SoundManager>
     [SerializeField] private AudioSource[] _audioSources;
     [SerializeField] private SoundsConfig _soundsConfig;
     [SerializeField] private SoundEffect[] _soundEffects;
+
+    private Random _random = new Random();
 
     private void Start()
     {
@@ -39,7 +42,11 @@ public class SoundManager : MonoSingleton<SoundManager>
         {
             if (soundEffect.Type == soundEffectType)
             {
-                audioClip = soundEffect.Clip;
+                if(soundEffect.Variations)
+                    audioClip = soundEffect.Clips[_random.Next(0,soundEffect.Clips.Length)];
+                else
+                    audioClip = soundEffect.Clip;
+                    
                 break;
             }
         }
