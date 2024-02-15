@@ -9,8 +9,7 @@ public class SmokeBomb : MonoBehaviour
 {
     public event Action OnAbilityEnd;
     
-    [SerializeField] private ShamanTargeter shamanTargeter;
-    [SerializeField] private EnemyTargeter enemyTargeter;
+    [SerializeField] private GroundColliderTargeter _targeter;
     
     [Header("Timelines")]
     [SerializeField] private PlayableDirector rangeEnter;
@@ -19,7 +18,7 @@ public class SmokeBomb : MonoBehaviour
     [SerializeField] private PlayableDirector cloudsIdle;
     [SerializeField] private PlayableDirector cloudsExit;
 
-    private Dictionary<Shaman,StatusEffect> _affectedShamans = new Dictionary<Shaman,StatusEffect>();
+    private Dictionary<Shaman,StatusEffect[]> _affectedShamans = new Dictionary<Shaman,StatusEffect[]>();
     private SmokeBombSO _config;
     private BaseUnit _owner;
 
@@ -41,20 +40,21 @@ public class SmokeBomb : MonoBehaviour
         cloudsEnter.stopped += CloudsIdleAnim;
         //transform.localScale = new Vector3(config.Range, config.Range, 0);
         Invoke(nameof(EndBomb),config.Duration);
-        //shamanTargeter.OnTargetAdded += OnTargetEntered;
-        //shamanTargeter.OnTargetLost += OnTargetExited;
+        _targeter.OnTargetAdded += OnTargetEntered;
+        _targeter.OnTargetLost += OnTargetExited;
     }
     private void OnTargetEntered(GroundCollider collider)
     {
         var unit = collider.Unit;
         if (unit is not Shaman shaman) return;
         if (_affectedShamans.ContainsKey(shaman)) return;
-        
-        foreach (var statusEffect in _config.StatusEffects)
+
+        StatusEffect[] statusEffects = new StatusEffect[_config.StatusEffects.Count];
+        for (int i = 0; i < _config.StatusEffects.Count; i++)
         {
-            var effect = shaman.Effectable.AddEffect(statusEffect,_owner.Affector);
-            _affectedShamans.Add(shaman,effect);
+            statusEffects[i] = shaman.Effectable.AddEffect(_config.StatusEffects[i],_owner.Affector);
         }
+        _affectedShamans.Add(shaman,statusEffects);
     }
     private void OnTargetExited(GroundCollider collider)
     {
@@ -90,10 +90,13 @@ public class SmokeBomb : MonoBehaviour
 
     private void RemoveShamanEffect(Shaman shaman)
     {
-        if (_affectedShamans.TryGetValue(shaman,out var effect))
+        if (_affectedShamans.TryGetValue(shaman,out var statusEffects))
         {
-            effect.RemoveEffectFromShaman();
-            _affectedShamans.Remove(shaman);
+            foreach (var effect in statusEffects)
+            {
+                effect.RemoveEffectFromShaman();
+                _affectedShamans.Remove(shaman);
+            }
         } 
     }
 }

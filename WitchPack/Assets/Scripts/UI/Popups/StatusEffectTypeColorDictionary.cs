@@ -12,6 +12,7 @@ public class StatusEffectTypeColorDictionary : ScriptableObject
     {
         foreach (StatusEffectTypeColorPair pair in StatusEffectTypeColorList)
         {
+            
             if(pair.StatusEffectType == givenType)
             {
                 return pair.Color;
