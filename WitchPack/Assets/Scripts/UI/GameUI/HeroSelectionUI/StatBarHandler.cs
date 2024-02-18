@@ -24,11 +24,12 @@ public class StatBarHandler : MonoBehaviour
          switch (statBarType)
          {
              case StatBarType.HealthBar:
-                 name = "Health:";
-                 baseValue = shaman.Damageable.MaxHp;
-                 currentValue = shaman.Damageable.CurrentHp;
-                 shaman.Damageable.OnGetHit += UpdateStatBarHealth;
-                 break;
+                name = "Health:";
+                baseValue = shaman.Damageable.MaxHp;
+                currentValue = shaman.Damageable.CurrentHp;
+                shaman.Damageable.OnGetHit += UpdateStatBarHealth;
+                shaman.Damageable.OnHeal += UpdateStatBarHealthBasedOnShaman;
+                break;
              case StatBarType.EnergyBar:
                  name = "Energy:";
                  baseValue = shaman.EnergyHandler.MaxEnergyToNextLevel;
@@ -57,14 +58,20 @@ public class StatBarHandler : MonoBehaviour
          _statBarValue.text = currentHP.ToString();
          _statBarFill.fillAmount = (float)currentHP / maxHP;
      }
+
+    public void UpdateStatBarHealthBasedOnShaman(float uselessAmount)
+    {
+        UpdateStatBarHealth(_shaman.Damageable, null, null, null, false);
+    }
     
      public void Hide()
      {
          switch (statBarType)
          {
              case StatBarType.HealthBar:
-                 _shaman.Damageable.OnGetHit -= UpdateStatBarHealth;
-                 break;
+                _shaman.Damageable.OnGetHit -= UpdateStatBarHealth;
+                _shaman.Damageable.OnHeal -= UpdateStatBarHealthBasedOnShaman;
+                break;
              case StatBarType.EnergyBar:
                  _shaman.EnergyHandler.OnShamanGainEnergy -= UpdateStatbarEnergy;
                  break;

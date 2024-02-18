@@ -44,4 +44,6 @@ public enum StatusEffectType
     Charm,
     Poison,
     Hidden,
+    Inspired,
+    
 }

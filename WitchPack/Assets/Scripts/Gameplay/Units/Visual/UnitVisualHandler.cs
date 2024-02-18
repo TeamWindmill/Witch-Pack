@@ -4,11 +4,13 @@ using UnityEngine;
 public class UnitVisualHandler : MonoBehaviour
 {
     public Action<bool> OnSpriteFlip;
-    
-    [HideInInspector,SerializeField] private SpriteRenderer spriteRenderer;
-    [HideInInspector,SerializeField] private Animator animator;
-    [HideInInspector,SerializeField] private UnitAnimator unitAnimator;
     public Animator Animator => animator;
+    public UnitEffectHandler EffectHandler => effectHandler;
+    
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Animator animator;
+    [SerializeField] private UnitAnimator unitAnimator;
+    [SerializeField] private UnitEffectHandler effectHandler;
 
 
     private Vector2 _lastPos;
@@ -17,13 +19,6 @@ public class UnitVisualHandler : MonoBehaviour
     private void Awake()
     {
         unitAnimator.OnDeathAnimationEnd += ResetSprite;
-    }
-
-    private void OnValidate()
-    {
-        spriteRenderer ??= GetComponent<SpriteRenderer>();
-        unitAnimator ??= GetComponent<UnitAnimator>();
-        animator ??= GetComponent<Animator>();
     }
 
     public void Init(BaseUnit unit, BaseUnitConfig config)
