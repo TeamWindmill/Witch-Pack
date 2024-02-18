@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HP_Bar : MonoBehaviour
 {
+    [SerializeField] BaseUnit owner;
     [SerializeField] Transform fillSprite;
     [SerializeField] SpriteRenderer fillSpriteRenderer;
     [SerializeField] float drainDuration;
@@ -92,6 +93,11 @@ public class HP_Bar : MonoBehaviour
         var ratio = arg1.CurrentHp / _maxValue;
         if (ratio < 0) ratio = 0;
         fillSprite.localScale = new Vector3(ratio, _originalScale.y, _originalScale.z);
+    }
+
+    public void SetBarBasedOnOwner(float uselessAmount)
+    {
+        SetBarValue(owner.Damageable, null, null, null, false);
     }
 }
 
