@@ -12,17 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 432ef5572b8ef0641a9ee1a7002d5110, type: 3}
   m_Name: Turtle Skin
   m_EditorClassIdentifier: 
-  name: 
+  name: Turtle Skin
   discription: 
   icon: {fileID: 0}
   cd: 0
-  isPassive: 0
+  isPassive: 1
   givesEnergyPoints: 0
   energyPoints: 0
+  soundEffectType: 0
   castTime: 0
   statusEffects: []
-  _upgrades: []
+  _upgrades:
+  - {fileID: 11400000, guid: 87d1ab61f248de1489bc88cfb37a4e6f, type: 2}
+  - {fileID: 11400000, guid: c4c37e8346e2c1141a40a230063fbce7, type: 2}
   targetData:
     Prio: 0
     Mod: 0
-  statIncreases: []
+  statIncreases:
+  - Stat: 9
+    Value: 10
