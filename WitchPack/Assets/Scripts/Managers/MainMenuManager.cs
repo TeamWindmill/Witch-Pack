@@ -1,17 +1,16 @@
 ﻿using UnityEngine;
 
-namespace Tzipory.GameplayLogic.Managers.MainMenuMangers
+public class MainMenuManager : MonoBehaviour
 {
-    public class MainMenuManager : MonoBehaviour
+    public void Play()
     {
-        public void Play()
-        {
-            GameManager.SceneHandler.LoadScene(SceneType.Map);
-        }
+        SoundManager.Instance.PlayAudioClip(SoundEffectType.MenuClick);
+        GameManager.SceneHandler.LoadScene(SceneType.Map);
+    }
 
-        public void Quit()
-        {
-            GameManager.Instance.Quit();
-        }
+    public void Quit()
+    {
+        SoundManager.Instance.PlayAudioClip(SoundEffectType.MenuClick);
+        GameManager.Instance.Quit();
     }
 }

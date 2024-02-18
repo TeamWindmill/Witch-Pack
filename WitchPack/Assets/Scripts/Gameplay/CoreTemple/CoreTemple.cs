@@ -36,11 +36,12 @@ public class CoreTemple : MonoBehaviour
     {
         curHp -= amount;
         OnGetHit?.Invoke(amount);
+        SoundManager.Instance.PlayAudioClip(SoundEffectType.CoreGetHit);
         hpBar.SetBarValue(curHp);
         if (curHp <= 0)
         {
             OnCoreDestroyed?.Invoke();
-            // destroy anim
+            SoundManager.Instance.PlayAudioClip(SoundEffectType.CoreDestroyed);
             destroyedCore.gameObject.SetActive(true);
             coreSpriteRenderer.enabled = false;
             glowParticleSystem.Play();

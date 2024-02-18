@@ -38,19 +38,23 @@ public class Shaman : BaseUnit
         energyHandler = new EnergyHandler(this);
         EnemyTargeter.SetRadius(Stats.BonusRange);
         ShamanTargeter.SetRadius(Stats.BonusRange);
+        IntializeAbilities();
+        shamanAnimator.Init(this);
+        groundCollider.Init(this);
+        indicatable.Init(shamanConfig.UnitIcon);
+        #region Events
         Stats.OnStatChanged += EnemyTargeter.AddRadius;
         Stats.OnStatChanged += ShamanTargeter.AddRadius;
-        IntializeAbilities();
         Movement.OnDestinationSet += DisableAttacker;
         Movement.OnDestinationReached += EnableAttacker;
-        shamanAnimator.Init(this);
         clicker.OnClick += SetSelectedShaman;
         DamageDealer.OnKill += energyHandler.OnEnemyKill;
         DamageDealer.OnAssist += energyHandler.OnEnemyAssist;
-        energyHandler.OnShamanLevelUp += OnLevelUpVFX;
+        energyHandler.OnShamanLevelUp += OnLevelUpGFX;
+        Damageable.OnHitGFX += OnHitSFX;
+        Damageable.OnDeathGFX += DeathSFX;
         AutoAttackHandler.OnAttack += AttackSFX;
-        groundCollider.Init(this);
-        indicatable.Init(shamanConfig.UnitIcon);
+        #endregion
     }
 
     
@@ -183,15 +187,18 @@ public class Shaman : BaseUnit
     {
         clicker.enabled = state;
     }
-    private void OnLevelUpVFX(int obj)
-    {
-        levelUpEffect.Play();
-    }
+    
 
     #region SFX
-
+    private void OnLevelUpGFX(int obj)
+    {
+        levelUpEffect.Play();
+        SoundManager.Instance.PlayAudioClip(SoundEffectType.ShamanLevelUp);
+    }
+    private void OnHitSFX(bool isCrit) => SoundManager.Instance.PlayAudioClip(shamanConfig.IsMale? SoundEffectType.ShamanGetHitMale : SoundEffectType.ShamanGetHitFemale);
+    private void DeathSFX() => SoundManager.Instance.PlayAudioClip(shamanConfig.IsMale? SoundEffectType.ShamanDeathMale : SoundEffectType.ShamanDeathFemale);
     private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.BasicAttack);
-    public void ShamanCastSFX(UnitCastingHandler obj) => SoundManager.Instance.PlayAudioClip(SoundEffectType.ShamanCast);
+    public void ShamanCastSFX(SoundEffectType soundEffect) => SoundManager.Instance.PlayAudioClip(soundEffect);
 
     #endregion
 

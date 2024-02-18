@@ -80,15 +80,18 @@ public class StatusEffect
         _statValue = 0;
         switch (statusEffectValueType)
         {
-            case StatusEffectValueType.Flat:
+            case StatusEffectValueType.FlatToInt:
                 _statValue = Mathf.RoundToInt(amount / duration);
                 break;
             case StatusEffectValueType.Percentage:
                 _statValue = Mathf.RoundToInt((amount / 100) * host.Owner.Stats.GetStatValue(_statType)) / duration;
                 break;
+            case StatusEffectValueType.FlatToFloat:
+                _statValue = amount / duration;
+                break;
         }
 
-        while (timeCounter < duration)
+        while (timeCounter <= duration)
         {
             host.Owner.Stats.AddValueToStat(StatType, _statValue);
             float counter = 0f;
@@ -110,11 +113,14 @@ public class StatusEffect
         _statValue = 0;
         switch (statusEffectValueType)
         {
-            case StatusEffectValueType.Flat:
-                _statValue = amount;
+            case StatusEffectValueType.FlatToInt:
+                _statValue = Mathf.RoundToInt(amount);
                 break;
             case StatusEffectValueType.Percentage:
                 _statValue = Mathf.RoundToInt((amount / 100) * host.Owner.Stats.GetStatValue(_statType));
+                break;
+            case StatusEffectValueType.FlatToFloat:
+                _statValue = amount;
                 break;
         }
         host.Owner.Stats.AddValueToStat(StatType, _statValue);
