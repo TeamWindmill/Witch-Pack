@@ -19,6 +19,7 @@ public class Damageable
     public Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility> OnDeath;
     public Action OnDeathGFX;
     public Action<bool> OnHitGFX;
+    public Action<float, BaseAbility> OnHeal;
 
     //add gfx events later
 
@@ -65,6 +66,22 @@ public class Damageable
             OnGetHit?.Invoke(this, dealer, null, ability, false);
             OnHitGFX?.Invoke(false);
         }
+    }
+
+    public void Heal(int healAmount, BaseAbility ability)
+    {
+        
+        if(!ability.Equals(null))
+        {
+            //status effects addition
+            foreach (var item in ability.StatusEffects)
+            {
+                owner.Effectable.AddEffect(item, Owner.Affector);
+            }
+        }       
+
+        currentHp = Mathf.Clamp(currentHp + healAmount, 0, MaxHp);
+        OnHeal?.Invoke(healAmount, ability);
     }
 
     public void TakeDamage(DamageDealer dealer, DamageHandler damage, BaseAbility ability, bool isCrit)
@@ -133,6 +150,8 @@ public class Damageable
     {
         
     }
+
+   
 }
 
 

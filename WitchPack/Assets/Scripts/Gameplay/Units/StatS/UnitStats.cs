@@ -48,7 +48,21 @@ public class UnitStats
     public float InvincibleTime { get { return Mathf.Clamp((ownerBaseStats.InvincibleTime.value + invincibleTime), 0, 0.5f); } }
     public int AbilityCooldownReduction { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.AbilityCooldownReduction.value + abilityCooldownReduction), 0, (ownerBaseStats.AbilityCooldownReduction.value + abilityCooldownReduction))); } }
     public int Armor { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.Armor.value + armor), 0, (ownerBaseStats.Armor.value + armor))); } }
-    public int HpRegen { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.HpRegen.value + hpRegen), 0, (ownerBaseStats.HpRegen.value + hpRegen))); } }
+    public int HpRegen 
+    { 
+        get 
+        {
+            return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.HpRegen.value + hpRegen), 0, (ownerBaseStats.HpRegen.value + hpRegen))); 
+        }
+        private set
+        {
+            hpRegen += value;
+            if(hpRegen > 0)
+            {
+                //Timer regenTimer = new Timer(new TimerData(1, Heal));
+            }
+        }
+    }
     public int BonusStatusEffectDuration { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.BonusStatusEffectDuration.value + bonusStatusEffectDuration), 0, (ownerBaseStats.BonusStatusEffectDuration.value + bonusStatusEffectDuration))); } }
     public int AbilityProjectileSpeed { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.AbilityProjectileSpeed.value + abilityProjectileSpeed), 0, (ownerBaseStats.AbilityProjectileSpeed.value + abilityProjectileSpeed))); } }
     public int AbilityProjectilePenetration { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.AbilityProjectilePenetration.value + abilityProjectilePenetration), 0, (ownerBaseStats.AbilityProjectilePenetration.value + abilityProjectilePenetration))); } }
@@ -170,7 +184,7 @@ public class UnitStats
                 armor += wholeValue;
                 break;
             case StatType.HpRegen:
-                hpRegen += wholeValue;
+                HpRegen += wholeValue;
                 break;
             case StatType.BonusStatusEffectDuration:
                 bonusStatusEffectDuration += wholeValue;
