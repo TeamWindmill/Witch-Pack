@@ -450,6 +450,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 1985950817653077848}
   animator: {fileID: 2438517714681042483}
   unitAnimator: {fileID: 4409901568874554751}
+  effectHandler: {fileID: 0}
 --- !u!114 &4409901568874554751
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -606,6 +607,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7322326726869760072}
     m_Modifications:
+    - target: {fileID: 753731943303979882, guid: d9811e9856b31b04cbf763f6941cacd5, type: 3}
+      propertyPath: owner
+      value: 
+      objectReference: {fileID: 3988689875388376819}
     - target: {fileID: 2482432304323612586, guid: d9811e9856b31b04cbf763f6941cacd5, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
