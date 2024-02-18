@@ -24,20 +24,18 @@ public class UnitEffectHandler : MonoBehaviour
         {
             if (effectVisual.StatusEffectType == statusEffectType)
             {
-                effectable.OnEffectRemovedGFX += DisableEffect;
                 effectVisual.Effect.gameObject.SetActive(true);
                 return;
             }
         }
     }
 
-    private void DisableEffect(StatusEffectType statusEffectType)
+    public void DisableEffect(StatusEffectType statusEffectType)
     {
         foreach (var effectVisual in _statusEffectVisuals)
         {
             if (effectVisual.StatusEffectType == statusEffectType)
             {
-                _effectable.OnEffectRemovedGFX -= DisableEffect;
                 effectVisual.Effect.gameObject.SetActive(false);
                 return;
             }
