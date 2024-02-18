@@ -82,7 +82,11 @@ public class BaseUnit : MonoBehaviour
         }
         damageable.OnDamageCalc += LevelManager.Instance.PopupsManager.SpawnDamagePopup;
         effectable.OnAffected += LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
-        effectable.OnAffectedGFX += unitVisual.EffectHandler.PlayEffect;
+        stats.OnHpRegenChange += damageable.SetRegenerationTimer;
+        if(unitVisual.EffectHandler)
+        { 
+            effectable.OnAffectedGFX += unitVisual.EffectHandler.PlayEffect;
+        }
     }
 
     public void ToggleCollider(bool state)
@@ -103,6 +107,8 @@ public class BaseUnit : MonoBehaviour
     private void OnDestroy()
     {
         if (hasHPBar) damageable.OnDamageCalc -= hpBar.SetBarValue;
+
+        stats.OnHpRegenChange -= damageable.SetRegenerationTimer;
     }
 
     private void OnValidate()

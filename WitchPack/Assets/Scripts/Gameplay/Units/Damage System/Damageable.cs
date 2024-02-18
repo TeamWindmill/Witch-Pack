@@ -14,12 +14,14 @@ public class Damageable
 
     private bool hitable;
 
+    Timer regenTimer;
+
     public Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility, bool /*critical - a more generic callback*/> OnGetHit;
     public Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility, bool> OnDamageCalc;
     public Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility> OnDeath;
     public Action OnDeathGFX;
     public Action<bool> OnHitGFX;
-    public Action<float, BaseAbility> OnHeal;
+    public Action<float> OnHeal;
 
     //add gfx events later
 
@@ -68,20 +70,15 @@ public class Damageable
         }
     }
 
-    public void Heal(int healAmount, BaseAbility ability)
+    public void Heal(int healAmount)
     {
-        
-        if(!ability.Equals(null))
-        {
-            //status effects addition
-            foreach (var item in ability.StatusEffects)
-            {
-                owner.Effectable.AddEffect(item, Owner.Affector);
-            }
-        }       
-
         currentHp = Mathf.Clamp(currentHp + healAmount, 0, MaxHp);
-        OnHeal?.Invoke(healAmount, ability);
+        OnHeal?.Invoke(healAmount);
+    }
+
+    public void RegenHp()
+    {
+        Heal(owner.Stats.HpRegen);
     }
 
     public void TakeDamage(DamageDealer dealer, DamageHandler damage, BaseAbility ability, bool isCrit)
@@ -149,6 +146,21 @@ public class Damageable
     public void DamageTick()
     {
         
+    }
+
+    public void SetRegenerationTimer()
+    {
+        if(regenTimer != null)
+        {
+            TimerManager.Instance.RemoveTimer(regenTimer);
+            regenTimer = null;
+        }        
+
+        if (Owner.Stats.HpRegen > 0)
+        {
+            regenTimer = new Timer(new TimerData(1, RegenHp, 1, true, true));
+            TimerManager.Instance.AddTimer(regenTimer);
+        }
     }
 
    

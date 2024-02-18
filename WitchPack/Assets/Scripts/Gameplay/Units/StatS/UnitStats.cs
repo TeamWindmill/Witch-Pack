@@ -11,6 +11,8 @@ public class UnitStats
 
     private StatSheet ownerBaseStats => _baseStats;
 
+    public Action OnHpRegenChange;
+
     public UnitStats(StatSheet baseStats)
     {
         _baseStats = baseStats;
@@ -57,10 +59,8 @@ public class UnitStats
         private set
         {
             hpRegen += value;
-            if(hpRegen > 0)
-            {
-                //Timer regenTimer = new Timer(new TimerData(1, Heal));
-            }
+            OnHpRegenChange?.Invoke();
+            
         }
     }
     public int BonusStatusEffectDuration { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.BonusStatusEffectDuration.value + bonusStatusEffectDuration), 0, (ownerBaseStats.BonusStatusEffectDuration.value + bonusStatusEffectDuration))); } }
@@ -228,4 +228,16 @@ public class UnitStats
     }
 
 
+}
+
+public struct HealData
+{
+    float healAmount;
+    BaseAbility abilityRef;
+
+    public HealData(float healAmount, BaseAbility abilityRef)
+    {
+        this.healAmount = healAmount;
+        this.abilityRef = abilityRef;
+    }
 }
