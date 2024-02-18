@@ -19,8 +19,8 @@ public class SmokeBomb : MonoBehaviour
     [SerializeField] private PlayableDirector cloudsExit;
 
     private Dictionary<Shaman,StatusEffect[]> _affectedShamans = new Dictionary<Shaman,StatusEffect[]>();
-    private SmokeBombSO _config;
-    private BaseUnit _owner;
+    protected SmokeBombSO _ability;
+    protected BaseUnit _owner;
 
     private void Awake()
     {
@@ -31,28 +31,28 @@ public class SmokeBomb : MonoBehaviour
         cloudsExit.gameObject.SetActive(false);
     }
 
-    public void SpawnBomb(SmokeBombSO config, BaseUnit owner)
+    public virtual void SpawnBomb(SmokeBombSO config, BaseUnit owner)
     {
-        _config = config;
+        _ability = config;
         _owner = owner;
         rangeEnter.gameObject.SetActive(true);
         cloudsEnter.gameObject.SetActive(true);
         cloudsEnter.stopped += CloudsIdleAnim;
-        //transform.localScale = new Vector3(config.Range, config.Range, 0);
+        transform.localScale = new Vector3(config.Range, config.Range, 0);
         Invoke(nameof(EndBomb),config.Duration);
         _targeter.OnTargetAdded += OnTargetEntered;
         _targeter.OnTargetLost += OnTargetExited;
     }
-    private void OnTargetEntered(GroundCollider collider)
+    protected virtual void OnTargetEntered(GroundCollider collider)
     {
         var unit = collider.Unit;
         if (unit is not Shaman shaman) return;
         if (_affectedShamans.ContainsKey(shaman)) return;
 
-        StatusEffect[] statusEffects = new StatusEffect[_config.StatusEffects.Count];
-        for (int i = 0; i < _config.StatusEffects.Count; i++)
+        StatusEffect[] statusEffects = new StatusEffect[_ability.StatusEffects.Count];
+        for (int i = 0; i < _ability.StatusEffects.Count; i++)
         {
-            statusEffects[i] = shaman.Effectable.AddEffect(_config.StatusEffects[i],_owner.Affector);
+            statusEffects[i] = shaman.Effectable.AddEffect(_ability.StatusEffects[i],_owner.Affector);
         }
         _affectedShamans.Add(shaman,statusEffects);
     }
@@ -94,7 +94,7 @@ public class SmokeBomb : MonoBehaviour
         {
             foreach (var effect in statusEffects)
             {
-                effect.RemoveEffectFromShaman();
+                effect.Remove();
                 _affectedShamans.Remove(shaman);
             }
         } 

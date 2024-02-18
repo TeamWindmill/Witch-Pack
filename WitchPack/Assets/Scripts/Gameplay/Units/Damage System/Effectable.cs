@@ -21,7 +21,7 @@ public class Effectable
 
     public StatusEffect AddEffect(StatusEffectConfig givenEffectData, Affector affector)
     {
-        StatusEffect ss = new StatusEffect(this, givenEffectData.Duration, givenEffectData.Amount, givenEffectData.StatTypeAffected, givenEffectData.Process, givenEffectData.StatusEffectType, givenEffectData.ValueType, givenEffectData.ShouldReturnToNormalAtEndOfDuration);
+        StatusEffect ss = new StatusEffect(this, givenEffectData.Duration, givenEffectData.Amount, givenEffectData.StatTypeAffected, givenEffectData.Process, givenEffectData.StatusEffectType, givenEffectData.ValueType);
         for (int i = 0; i < activeEffects.Count; i++)//check if affected by a similar ss already
         {
             if (activeEffects[i].StatType == givenEffectData.StatTypeAffected && activeEffects[i].Process == givenEffectData.Process)
@@ -45,7 +45,4 @@ public class Effectable
         OnEffectRemoved?.Invoke(effect);
         OnEffectRemovedGFX?.Invoke(effect.StatusEffectType);
     }
-
-   
-
 }
