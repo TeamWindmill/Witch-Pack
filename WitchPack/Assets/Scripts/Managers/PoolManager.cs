@@ -9,6 +9,7 @@ public class PoolManager : MonoBehaviour
     [SerializeField] private IndicatorPool inidcatorPool;
     [SerializeField] private ArchedShotPool archedShotPool;
     [SerializeField] private SmokeBombPool smokeBombPool;
+    [SerializeField] private HighImpactPool highImpactPool;
     [SerializeField] private PoisonIvyPool poisonIvyPool;
 
     public ProjectilePool TestAbilityPool { get => testAbilityPool; }
@@ -18,6 +19,8 @@ public class PoolManager : MonoBehaviour
     public ArchedShotPool ArchedShotPool { get => archedShotPool; }
     public RootingVinesPool RootingVinesPool { get => rootingVinesPool; }
     public SmokeBombPool SmokeBombPool => smokeBombPool;
+
+    public HighImpactPool HighImpactPool => highImpactPool;
 
     public PoisonIvyPool PoisonIvyPool { get => poisonIvyPool; }
 }

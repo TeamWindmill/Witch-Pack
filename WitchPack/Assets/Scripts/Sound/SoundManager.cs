@@ -45,7 +45,7 @@ public class SoundManager : MonoSingleton<SoundManager>
             {
                 if (soundEffect.Type == soundEffectType)
                 {
-                    audioClip = soundEffect.ClipVariations ? soundEffect.Clips[Random.Range(0,soundEffect.Clips.Length)] : soundEffect.Clip;
+                    audioClip = soundEffect.ClipVariations ? soundEffect.ProvideRandomClip() : soundEffect.Clip;
                     if (soundEffect.VolumeVariations) volume = Random.Range(soundEffect.VolumeValues.x,soundEffect.VolumeValues.y);
                     break;
                 }
@@ -92,6 +92,7 @@ public class SoundManager : MonoSingleton<SoundManager>
             case SoundEffectType.RootingVines:
             case SoundEffectType.Heal:
             case SoundEffectType.SmokeBomb:
+            case SoundEffectType.HighImpactSmokeBomb:
             case SoundEffectType.Charm:
                 return SoundEffectCategory.Abilities;
             case SoundEffectType.CoreGetHit:
@@ -101,6 +102,7 @@ public class SoundManager : MonoSingleton<SoundManager>
             case SoundEffectType.OpenUpgradeTree:
             case SoundEffectType.MenuClick:
             case SoundEffectType.Victory:
+            case SoundEffectType.LockedAbility:
                 return SoundEffectCategory.UI;
             default:
                 throw new ArgumentOutOfRangeException(nameof(soundEffectType), soundEffectType, null);
