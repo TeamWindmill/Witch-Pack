@@ -2,19 +2,22 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class HighImpactSmokeBomb : SmokeBomb
 {
     [SerializeField] private ParticleSystem _explosionParticleSystem;
     private bool _explosionActive = true;
-    private float _explosionTimer;
-    private const float _explosionTime = 0.5f;
+    private float _explosionTimer = 0;
+    private const float _explosionTime = 1;
     
     
     public override void SpawnBomb(SmokeBombSO config, BaseUnit owner)
     {
         base.SpawnBomb(config, owner);
         _explosionParticleSystem.gameObject.SetActive(true);
+        _explosionTimer = 0;
+        _explosionActive = true;
         StartCoroutine(ExplosionTimer());
     }
 
@@ -38,5 +41,11 @@ public class HighImpactSmokeBomb : SmokeBomb
             if (_explosionTimer >= _explosionTime) _explosionActive = false;
             yield return new WaitForEndOfFrame();
         }
+    }
+
+    protected override void OnEnd(PlayableDirector director)
+    {
+        _explosionParticleSystem.gameObject.SetActive(false);
+        base.OnEnd(director);
     }
 }

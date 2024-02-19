@@ -52,13 +52,13 @@ public class UnitTargetHelper<T> where T: BaseUnit
             default:
                 return targets[0];
         }
-        OnTarget?.Invoke(target);
+        if(!ReferenceEquals(target,null)) OnTarget?.Invoke(target);
         return target;
     }
 
     private T GetTargetByThreat(List<T> targets, TargetMod mod, List<T> targetsToAvoid)
     {
-        T cur = targets[targets.Count / 2];
+        T cur = null;
         for (int i = 0; i < targets.Count; i++)
         {
             if (!ReferenceEquals(targetsToAvoid, null) && targets.Count > targetsToAvoid.Count && targetsToAvoid.Contains(targets[i]))
@@ -66,6 +66,9 @@ public class UnitTargetHelper<T> where T: BaseUnit
                 continue;
             }
 
+            if (targets[i].Stats.ThreatLevel <= 0) continue;
+            else cur = targets[i];
+            
             if (mod == TargetMod.Most)
             {
                 if (cur.Stats.ThreatLevel < targets[i].Stats.ThreatLevel)
