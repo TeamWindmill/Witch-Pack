@@ -10,6 +10,7 @@ public class PoolManager : MonoBehaviour
     [SerializeField] private ArchedShotPool archedShotPool;
     [SerializeField] private SmokeBombPool smokeBombPool;
     [SerializeField] private PoisonIvyPool poisonIvyPool;
+    [SerializeField] private HealingWeedsPool healingWeedsPool;
 
     public ProjectilePool TestAbilityPool { get => testAbilityPool; }
     public TargetedShotPool ShamanAutoAttackPool { get => shamanAutoAttackPool; }
@@ -20,4 +21,5 @@ public class PoolManager : MonoBehaviour
     public SmokeBombPool SmokeBombPool => smokeBombPool;
 
     public PoisonIvyPool PoisonIvyPool { get => poisonIvyPool; }
+    public HealingWeedsPool HealingWeedsPool { get => healingWeedsPool; }
 }
