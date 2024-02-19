@@ -5,14 +5,16 @@ using UnityEngine;
 
 public class HighImpactSmokeBomb : SmokeBomb
 {
+    [SerializeField] private ParticleSystem _explosionParticleSystem;
     private bool _explosionActive = true;
     private float _explosionTimer;
-    private const float _explosionTime = 0.1f;
+    private const float _explosionTime = 0.5f;
     
     
     public override void SpawnBomb(SmokeBombSO config, BaseUnit owner)
     {
         base.SpawnBomb(config, owner);
+        _explosionParticleSystem.gameObject.SetActive(true);
         StartCoroutine(ExplosionTimer());
     }
 
