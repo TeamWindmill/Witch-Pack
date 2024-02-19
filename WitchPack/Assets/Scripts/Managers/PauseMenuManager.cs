@@ -70,14 +70,14 @@ public class PauseMenuManager : MonoBehaviour
     public void ReturnToMap()
     {
         SoundManager.Instance.PlayAudioClip(SoundEffectType.MenuClick);
-        BgMusicManager.Instance.StopFadeMusic();
+        BgMusicManager.Instance.PlayMusic(MusicClip.MenuMusic);
         _canvas.gameObject.SetActive(false);
         GameManager.SceneHandler.LoadScene(SceneType.Map);
     }
 
     public void Quit()
     {
-        BgMusicManager.Instance.StopFadeMusic();
+        BgMusicManager.Instance.StopMusic();
         SoundManager.Instance.PlayAudioClip(SoundEffectType.MenuClick);
         GameManager.Instance.Quit();
     }

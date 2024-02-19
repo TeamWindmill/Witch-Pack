@@ -26,11 +26,12 @@ public class SoundsConfig : ScriptableObject
     [SerializeField,TabGroup("UI")] private SoundEffect[] _uiSoundEffects;
 }
 [Serializable]
-public struct SoundEffect
+public class SoundEffect
 {
     public SoundEffectType Type;
     public bool ClipVariations;
     public bool VolumeVariations;
+    public bool HighPriority;
     [HideIf(nameof(ClipVariations))]public AudioClip Clip;
     [ShowIf(nameof(ClipVariations))]public AudioClip[] Clips;
     [ShowIf(nameof(VolumeVariations)),MinMaxSlider(0,1)]public Vector2 VolumeValues;
