@@ -54,7 +54,7 @@ public class LevelManager : MonoSingleton<LevelManager>
         CurrentLevel.Init();
         SpawnParty(levelConfig.Shamans);
         CurrentLevel.TurnOffSpawnPoints();
-        BgMusicManager.Instance.StartFadeMusic();
+        BgMusicManager.Instance.PlayMusic(MusicClip.GameMusic);
         UIManager.Instance.ShowUIGroup(UIGroup.GameUI);
     }
 
