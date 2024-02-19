@@ -11,6 +11,7 @@ public class BaseUnit : MonoBehaviour
     [SerializeField, TabGroup("Combat")] private OffensiveAbility autoAttack;
     [SerializeField, TabGroup("Combat")] private UnitAutoAttacker autoAttacker;
     [SerializeField, TabGroup("Combat")] private BoxCollider2D boxCollider;
+    [SerializeField, TabGroup("Combat")] private GroundCollider groundCollider;
     [SerializeField] private Transform _castPos;
 
     [SerializeField] private EnemyTargeter enemyTargeter;
@@ -72,6 +73,7 @@ public class BaseUnit : MonoBehaviour
         enemyTargetHelper = new UnitTargetHelper<Enemy>(EnemyTargeter, this);
         AutoAttacker.SetUp(this);
         Movement.SetUp(this);
+        groundCollider.Init(this);
         unitVisual.Init(this, givenConfig);
         ToggleCollider(true);
         if (hasHPBar)
@@ -87,6 +89,7 @@ public class BaseUnit : MonoBehaviour
         if(unitVisual.EffectHandler)
         { 
             effectable.OnAffectedGFX += unitVisual.EffectHandler.PlayEffect;
+            effectable.OnEffectRemovedGFX += unitVisual.EffectHandler.DisableEffect;
         }
     }
 
