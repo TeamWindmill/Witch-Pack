@@ -16,7 +16,6 @@ public class Shaman : BaseUnit
     [SerializeField, TabGroup("Visual")] private ShamanAnimator shamanAnimator;
     [SerializeField] private ClickHelper clicker;
     [SerializeField] private Indicatable indicatable;
-    [SerializeField] private GroundCollider groundCollider;
     [SerializeField] private ParticleSystem levelUpEffect;
 
 
@@ -40,7 +39,6 @@ public class Shaman : BaseUnit
         ShamanTargeter.SetRadius(Stats.BonusRange);
         IntializeAbilities();
         shamanAnimator.Init(this);
-        groundCollider.Init(this);
         indicatable.Init(shamanConfig.UnitIcon);
         #region Events
         Stats.OnStatChanged += EnemyTargeter.AddRadius;
