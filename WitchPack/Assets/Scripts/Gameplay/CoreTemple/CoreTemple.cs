@@ -41,6 +41,7 @@ public class CoreTemple : MonoBehaviour
         if (curHp <= 0)
         {
             OnCoreDestroyed?.Invoke();
+            BgMusicManager.Instance.StopFadeMusic();
             SoundManager.Instance.PlayAudioClip(SoundEffectType.CoreDestroyed);
             destroyedCore.gameObject.SetActive(true);
             coreSpriteRenderer.enabled = false;

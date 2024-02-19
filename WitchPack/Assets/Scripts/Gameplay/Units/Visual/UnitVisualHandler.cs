@@ -21,7 +21,7 @@ public class UnitVisualHandler : MonoBehaviour
         unitAnimator.OnDeathAnimationEnd += ResetSprite;
     }
 
-    public void Init(BaseUnit unit, BaseUnitConfig config)
+    public virtual void Init(BaseUnit unit, BaseUnitConfig config)
     {
         _baseUnit = unit;
         spriteRenderer.sprite = config.UnitSprite;
@@ -40,13 +40,13 @@ public class UnitVisualHandler : MonoBehaviour
         }
         
     }
-    private void FlipSpriteOnTarget(BaseUnit target)
+    protected virtual void FlipSpriteOnTarget(BaseUnit target)
     {
         var distance = _baseUnit.transform.position - target.transform.position;
         SpriteFlipX(distance.x < 0);
     }
 
-    private void SpriteFlipX(bool doFlip)
+    protected void SpriteFlipX(bool doFlip)
     {
         spriteRenderer.flipX = doFlip;
         OnSpriteFlip?.Invoke(doFlip);
