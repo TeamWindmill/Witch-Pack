@@ -2,18 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Passive : BaseAbility
+public abstract class Passive : BaseAbility
 {
 
-    public virtual void SubscribePassive(BaseUnit owner)
-    {
+    public abstract void SubscribePassive(BaseUnit owner);
 
-    }
+    /* public virtual void UnsubscribePassive(BaseUnit owner)
+     {
 
-   /* public virtual void UnsubscribePassive(BaseUnit owner)
-    {
-
-    }
-*/
+     }
+ */
 
 }
