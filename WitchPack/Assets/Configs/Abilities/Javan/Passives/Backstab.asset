@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 432ef5572b8ef0641a9ee1a7002d5110, type: 3}
-  m_Name: FastHands
+  m_Script: {fileID: 11500000, guid: d332ad6f8dce8d64c824e5c4f10686a6, type: 3}
+  m_Name: Backstab
   m_EditorClassIdentifier: 
-  name: Fast Hands
-  discription: + attack speed
+  name: Backstab
+  discription: increase crit chance when inside smoke bomb
   icon: {fileID: -70214969, guid: 2a862c0ebda887f42a111fbbce4d7fc0, type: 3}
   cd: 0
   isPassive: 1
@@ -23,12 +23,11 @@ MonoBehaviour:
   soundEffectType: 0
   castTime: 0
   statusEffects: []
-  _upgrades:
-  - {fileID: 11400000, guid: 8f95e15918809034c83c8a9fff2acb74, type: 2}
-  - {fileID: 11400000, guid: 7add2b47021dbcd4493f1a677a7abeff, type: 2}
+  _upgrades: []
   targetData:
     Prio: 0
     Mod: 0
   statIncreases:
-  - Stat: 2
-    Value: -0.15
+  - Stat: 6
+    Value: 5
+  _conditionalStatusEffect: {fileID: 11400000, guid: 8750043a8d6bd874c9cbf473fc75907f, type: 2}

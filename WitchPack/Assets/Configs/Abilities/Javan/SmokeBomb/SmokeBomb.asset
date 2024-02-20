@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: SmokeBomb
   m_EditorClassIdentifier: 
   name: Smoke Bomb
-  discription: 
+  discription: Give allies inside the area hidden effect
   icon: {fileID: 1108142957, guid: bc5335bd6010ad24b9dcf7a94d8d3f31, type: 3}
-  cd: 6
+  cd: 20
   isPassive: 0
   givesEnergyPoints: 0
   energyPoints: 0
   soundEffectType: 16
-  castTime: 0
+  castTime: 1
   statusEffects:
   - {fileID: 11400000, guid: 8750043a8d6bd874c9cbf473fc75907f, type: 2}
   _upgrades:
@@ -29,6 +29,6 @@ MonoBehaviour:
     Prio: 3
     Mod: 0
   baseDamage: 0
-  range: 1
+  range: 0.7
   damageBoosts: []
-  _duration: 4
+  _duration: 6

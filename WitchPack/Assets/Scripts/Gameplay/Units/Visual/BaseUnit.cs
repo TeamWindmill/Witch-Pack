@@ -109,6 +109,13 @@ public class BaseUnit : MonoBehaviour
         autoAttacker.CanAttack = true;
     }
 
+    public void OnDeathAnimation()
+    {
+        Movement.ToggleMovement(false);
+        ToggleCollider(false);
+        damageable.ToggleHitable(false);
+    }
+
     private void OnDestroy()
     {
         if (hasHPBar) damageable.OnDamageCalc -= hpBar.SetBarValue;
