@@ -45,7 +45,7 @@ public class HeroSelectionUI : MonoSingleton<HeroSelectionUI> , IPointerEnterHan
         shamanLevel.text = "Lvl: " + level;
     }
 
-    public void UpdateStatBlocks(StatType shamanStatType, int newValue) => statBlockPanel.UpdateStatBlocks(shamanStatType, newValue);
+    public void UpdateStatBlocks(StatType shamanStatType, float newValue) => statBlockPanel.UpdateStatBlocks(shamanStatType, newValue);
 
     public void Hide()
     {

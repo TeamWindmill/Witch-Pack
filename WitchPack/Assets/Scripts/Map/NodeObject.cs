@@ -62,7 +62,7 @@ public class NodeObject : MonoBehaviour
     private void OnNodeClick(PointerEventData.InputButton button)
     {
         if (button != PointerEventData.InputButton.Left) return;
-        
+        SoundManager.Instance.PlayAudioClip(SoundEffectType.MenuClick);
         GameManager.Instance.SetLevelConfig(_levelConfig);
        // set party data
         GameManager.SceneHandler.LoadScene(SceneType.Game);

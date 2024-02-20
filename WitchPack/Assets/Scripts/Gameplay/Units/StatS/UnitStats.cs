@@ -11,6 +11,8 @@ public class UnitStats
 
     private StatSheet ownerBaseStats => _baseStats;
 
+    public Action OnHpRegenChange;
+
     public UnitStats(StatSheet baseStats)
     {
         _baseStats = baseStats;
@@ -48,7 +50,19 @@ public class UnitStats
     public float InvincibleTime { get { return Mathf.Clamp((ownerBaseStats.InvincibleTime.value + invincibleTime), 0, 0.5f); } }
     public int AbilityCooldownReduction { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.AbilityCooldownReduction.value + abilityCooldownReduction), 0, (ownerBaseStats.AbilityCooldownReduction.value + abilityCooldownReduction))); } }
     public int Armor { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.Armor.value + armor), 0, (ownerBaseStats.Armor.value + armor))); } }
-    public int HpRegen { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.HpRegen.value + hpRegen), 0, (ownerBaseStats.HpRegen.value + hpRegen))); } }
+    public int HpRegen 
+    { 
+        get 
+        {
+            return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.HpRegen.value + hpRegen), 0, (ownerBaseStats.HpRegen.value + hpRegen))); 
+        }
+        private set
+        {
+            hpRegen += value;
+            OnHpRegenChange?.Invoke();
+            
+        }
+    }
     public int BonusStatusEffectDuration { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.BonusStatusEffectDuration.value + bonusStatusEffectDuration), 0, (ownerBaseStats.BonusStatusEffectDuration.value + bonusStatusEffectDuration))); } }
     public int AbilityProjectileSpeed { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.AbilityProjectileSpeed.value + abilityProjectileSpeed), 0, (ownerBaseStats.AbilityProjectileSpeed.value + abilityProjectileSpeed))); } }
     public int AbilityProjectilePenetration { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.AbilityProjectilePenetration.value + abilityProjectilePenetration), 0, (ownerBaseStats.AbilityProjectilePenetration.value + abilityProjectilePenetration))); } }
@@ -170,7 +184,7 @@ public class UnitStats
                 armor += wholeValue;
                 break;
             case StatType.HpRegen:
-                hpRegen += wholeValue;
+                HpRegen += wholeValue;
                 break;
             case StatType.BonusStatusEffectDuration:
                 bonusStatusEffectDuration += wholeValue;
@@ -214,4 +228,16 @@ public class UnitStats
     }
 
 
+}
+
+public struct HealData
+{
+    float healAmount;
+    BaseAbility abilityRef;
+
+    public HealData(float healAmount, BaseAbility abilityRef)
+    {
+        this.healAmount = healAmount;
+        this.abilityRef = abilityRef;
+    }
 }

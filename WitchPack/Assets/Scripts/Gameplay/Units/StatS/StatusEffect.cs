@@ -12,7 +12,6 @@ public class StatusEffect
     private StatusEffectProcess process;
     private StatusEffectType statusEffectType;
     private StatusEffectValueType statusEffectValueType;
-    private bool shouldReturnToNormalAtEndOfDuration;
     private float _statValue;
 
     public Effectable Host { get => host; }
@@ -23,7 +22,7 @@ public class StatusEffect
     public StatusEffectType StatusEffectType { get => statusEffectType; }
     public StatusEffectValueType StatusEffectValueType { get => statusEffectValueType; }
 
-    public StatusEffect(Effectable host, float duration, float amount, StatType effectedStatType, StatusEffectProcess process, StatusEffectType statusEffectType, StatusEffectValueType valueType, bool shouldReturnToNormalAtEndOfDuration)
+    public StatusEffect(Effectable host, float duration, float amount, StatType effectedStatType, StatusEffectProcess process, StatusEffectType statusEffectType, StatusEffectValueType valueType)
     {
         this.host = host;
         this.duration = duration;
@@ -32,24 +31,28 @@ public class StatusEffect
         this.process = process;
         this.statusEffectType = statusEffectType;
         this.statusEffectValueType = valueType;
-        this.shouldReturnToNormalAtEndOfDuration = shouldReturnToNormalAtEndOfDuration;
     }
 
 
     public virtual void Activate()
     {
-        Subscribe();
+        switch (process)
+        {
+            case StatusEffectProcess.InstantWithDuration:
+                host.Owner.StartCoroutine(InstantEffect());
+                break;
+            case StatusEffectProcess.OverTime:
+                host.Owner.StartCoroutine(OverTimeEffect());
+                break;
+            case StatusEffectProcess.InstantWithoutDuration:
+                InstantEffectWithoutDuration();
+                break;
+        }
     }
 
     public virtual void Remove()
     {
-        UnSubscribe();
         host.RemoveEffect(this);
-        
-    }
-
-    public void RemoveEffectFromShaman()
-    {
         host?.Owner.Stats.AddValueToStat(StatType, -_statValue);
     }
     public virtual void Reset()
@@ -57,38 +60,41 @@ public class StatusEffect
         timeCounter = 0;
     }
 
-    protected virtual void Subscribe()
+    private void InstantEffectWithoutDuration()
     {
-        switch (process)
+        _statValue = 0;
+        switch (statusEffectValueType)
         {
-            case StatusEffectProcess.Instant:
-                host.Owner.StartCoroutine(InstantEffect());
+            case StatusEffectValueType.FlatToInt:
+                _statValue = Mathf.RoundToInt(amount);
                 break;
-            case StatusEffectProcess.OverTime:
-                host.Owner.StartCoroutine(OverTimeEffect());
+            case StatusEffectValueType.Percentage:
+                _statValue = Mathf.RoundToInt((amount / 100) * host.Owner.Stats.GetStatValue(_statType));
+                break;
+            case StatusEffectValueType.FlatToFloat:
+                _statValue = amount;
                 break;
         }
+        host.Owner.Stats.AddValueToStat(StatType, _statValue);
+        
     }
-    protected virtual void UnSubscribe()
-    {
-
-    }
-
-
     private IEnumerator OverTimeEffect()
     {
         _statValue = 0;
         switch (statusEffectValueType)
         {
-            case StatusEffectValueType.Flat:
+            case StatusEffectValueType.FlatToInt:
                 _statValue = Mathf.RoundToInt(amount / duration);
                 break;
             case StatusEffectValueType.Percentage:
                 _statValue = Mathf.RoundToInt((amount / 100) * host.Owner.Stats.GetStatValue(_statType)) / duration;
                 break;
+            case StatusEffectValueType.FlatToFloat:
+                _statValue = amount / duration;
+                break;
         }
 
-        while (timeCounter < duration)
+        while (timeCounter <= duration)
         {
             host.Owner.Stats.AddValueToStat(StatType, _statValue);
             float counter = 0f;
@@ -99,10 +105,6 @@ public class StatusEffect
             }
             timeCounter++;
         }
-        if(shouldReturnToNormalAtEndOfDuration)
-        {
-            host.Owner.Stats.AddValueToStat(StatType, -_statValue);
-        }
         Remove();
     }
     private IEnumerator InstantEffect()
@@ -110,11 +112,14 @@ public class StatusEffect
         _statValue = 0;
         switch (statusEffectValueType)
         {
-            case StatusEffectValueType.Flat:
-                _statValue = amount;
+            case StatusEffectValueType.FlatToInt:
+                _statValue = Mathf.RoundToInt(amount);
                 break;
             case StatusEffectValueType.Percentage:
                 _statValue = Mathf.RoundToInt((amount / 100) * host.Owner.Stats.GetStatValue(_statType));
+                break;
+            case StatusEffectValueType.FlatToFloat:
+                _statValue = amount;
                 break;
         }
         host.Owner.Stats.AddValueToStat(StatType, _statValue);
@@ -128,10 +133,6 @@ public class StatusEffect
             }
             timeCounter++;
         }
-        if(shouldReturnToNormalAtEndOfDuration)
-        {
-            host.Owner.Stats.AddValueToStat(StatType, -_statValue);
-        }        
         Remove();
     }
 }

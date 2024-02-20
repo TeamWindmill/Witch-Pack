@@ -46,8 +46,16 @@ public class ProximityRingHandler : MonoBehaviour
     }
     private void OnShadowExitTargeter(Shadow obj) => OnShadowExit?.Invoke(Id,obj);
     private void OnShadowEnterTargeter(Shadow obj) =>OnShadowEnter?.Invoke(Id,obj);
-    private void OnShamanExitTargeter(GroundCollider obj) =>OnShamanExit?.Invoke(Id,obj.Unit as Shaman);
-    private void OnShamanEnterTargeter(GroundCollider obj) =>OnShamanEnter?.Invoke(Id,obj.Unit as Shaman);
+    private void OnShamanExitTargeter(GroundCollider obj) 
+    {
+        if (obj.Unit is Shaman shaman)
+            OnShamanExit?.Invoke(Id,shaman);
+    }
+    private void OnShamanEnterTargeter(GroundCollider obj)
+    {
+        if (obj.Unit is Shaman shaman)
+            OnShamanEnter?.Invoke(Id,shaman);
+    }
     
     
 }

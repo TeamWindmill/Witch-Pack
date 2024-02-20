@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2761802967959841762}
+  - component: {fileID: 8506006930118535775}
   m_Layer: 17
   m_Name: Smoke Bomb Range
   m_TagString: Untagged
@@ -33,6 +34,18 @@ Transform:
   - {fileID: 670222102865840405}
   m_Father: {fileID: 7364442341755095084}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &8506006930118535775
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056421739797466172}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &2805396558220922475
 GameObject:
   m_ObjectHideFlags: 0
@@ -42,6 +55,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1480168114741877926}
+  - component: {fileID: 6972495888065968399}
   m_Layer: 17
   m_Name: Somke Bomb Clouds
   m_TagString: Untagged
@@ -67,6 +81,18 @@ Transform:
   - {fileID: 6208695031232232670}
   m_Father: {fileID: 7364442341755095084}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!210 &6972495888065968399
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2805396558220922475}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 5
+  m_SortAtRoot: 0
 --- !u!1 &8901440362174484338
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,8 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb6d59fca0d17f24bb9f06be71b6e992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shamanTargeter: {fileID: 7013334745108567609}
-  enemyTargeter: {fileID: 5610462441526923203}
+  _targeter: {fileID: 8883180853403129723}
   rangeEnter: {fileID: 4741265469758743983}
   rangeExit: {fileID: 6537312590833903722}
   cloudsEnter: {fileID: 1094270457530976917}
@@ -508,17 +533,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3514109266292176445, guid: 05fec0a2918812545ae3f8132224d2f4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7013334745108567609}
-    - targetCorrespondingSourceObject: {fileID: 3514109266292176445, guid: 05fec0a2918812545ae3f8132224d2f4, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5610462441526923203}
+      addedObject: {fileID: 8883180853403129723}
   m_SourcePrefab: {fileID: 100100000, guid: 05fec0a2918812545ae3f8132224d2f4, type: 3}
 --- !u!1 &686039004529941290 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3514109266292176445, guid: 05fec0a2918812545ae3f8132224d2f4, type: 3}
   m_PrefabInstance: {fileID: 4125810819324783895}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7013334745108567609
+--- !u!114 &8883180853403129723
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -527,23 +549,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 686039004529941290}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e78dac5dcc88e0c49a9ca0cc7fb941c6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  availableTargets: []
-  layer:
-    serializedVersion: 2
-    m_Bits: 0
---- !u!114 &5610462441526923203
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 686039004529941290}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2858346e747d17b45905ca3c82817068, type: 3}
+  m_Script: {fileID: 11500000, guid: 667829e21f460fc4db6b3c14534079c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   availableTargets: []

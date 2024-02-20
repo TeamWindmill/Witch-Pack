@@ -7,7 +7,9 @@ public class Effectable
 {
     private BaseUnit owner;
     public Action<Effectable, Affector, StatusEffect> OnAffected;
+    public Action<Effectable,StatusEffectType> OnAffectedGFX;
     public Action<StatusEffect> OnEffectRemoved;
+    public Action<StatusEffectType> OnEffectRemovedGFX;
     private List<StatusEffect> activeEffects = new List<StatusEffect>();
 
     public BaseUnit Owner { get => owner;}
@@ -19,7 +21,7 @@ public class Effectable
 
     public StatusEffect AddEffect(StatusEffectConfig givenEffectData, Affector affector)
     {
-        StatusEffect ss = new StatusEffect(this, givenEffectData.Duration, givenEffectData.Amount, givenEffectData.StatTypeAffected, givenEffectData.Process, givenEffectData.StatusEffectType, givenEffectData.ValueType, givenEffectData.ShouldReturnToNormalAtEndOfDuration);
+        StatusEffect ss = new StatusEffect(this, givenEffectData.Duration, givenEffectData.Amount, givenEffectData.StatTypeAffected, givenEffectData.Process, givenEffectData.StatusEffectType, givenEffectData.ValueType);
         for (int i = 0; i < activeEffects.Count; i++)//check if affected by a similar ss already
         {
             if (activeEffects[i].StatType == givenEffectData.StatTypeAffected && activeEffects[i].Process == givenEffectData.Process)
@@ -33,6 +35,7 @@ public class Effectable
         activeEffects.Add(ss);
         ss.Activate();
         OnAffected?.Invoke(this, affector, ss);
+        OnAffectedGFX?.Invoke(this,givenEffectData.StatusEffectType);
         return ss;
     }
 
@@ -40,8 +43,6 @@ public class Effectable
     {
         activeEffects.Remove(effect);
         OnEffectRemoved?.Invoke(effect);
+        OnEffectRemovedGFX?.Invoke(effect.StatusEffectType);
     }
-
-   
-
 }

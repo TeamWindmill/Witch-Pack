@@ -75,14 +75,16 @@ public class AbilityUpgradeUIButton : ClickableUIElement
         switch (_ability.AbilityUpgradeState)
         {
             case AbilityUpgradeState.Locked:
+                SoundManager.Instance.PlayAudioClip(SoundEffectType.MenuClick);
                 return;
             case AbilityUpgradeState.Open:
                 if(!_hasSkillPoints) return;
                 _ability.UpgradeAbility();
                 OnAbilityClick?.Invoke(this);
-                //Debug.Log($"clicked {_ability.name}");
+                SoundManager.Instance.PlayAudioClip(SoundEffectType.UpgradeAbility);
                 return;
             case AbilityUpgradeState.Upgraded:
+                SoundManager.Instance.PlayAudioClip(SoundEffectType.MenuClick);
                 return;
         }
     }
