@@ -58,8 +58,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitType: 0
   autoAttack: {fileID: 11400000, guid: d8ade3c4f5a1e02449732df010cb8f20, type: 2}
-  autoAttacker: {fileID: 3965648085528756686}
+  _autoCaster: {fileID: 3965648085528756686}
   boxCollider: {fileID: 3464479959116816041}
+  groundCollider: {fileID: 3402771583666480079}
   _castPos: {fileID: 7923560994105219183}
   enemyTargeter: {fileID: 4671891764483534921}
   shamanTargeter: {fileID: 643734768296118702}
@@ -87,7 +88,6 @@ MonoBehaviour:
   shamanAnimator: {fileID: 7099561053656345452}
   clicker: {fileID: 1861919391548874701}
   indicatable: {fileID: 2569011272749710196}
-  groundCollider: {fileID: 3402771583666480079}
   levelUpEffect: {fileID: 3889933701843178220}
 --- !u!50 &7156522581338340880
 Rigidbody2D:
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5883ae61bbc70ec41b382e8af413e753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CanAttack: 1
+  CanCast: 0
 --- !u!114 &1678831272390562764
 MonoBehaviour:
   m_ObjectHideFlags: 0

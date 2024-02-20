@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitAutoAttacker : MonoBehaviour
+public class UnitAutoCaster : MonoBehaviour
 {
     private BaseUnit owner;
 
-    public bool CanAttack;
+    public bool CanCast;
     public void SetUp(BaseUnit givenOwner)
     {
         owner = givenOwner;
@@ -16,15 +16,15 @@ public class UnitAutoAttacker : MonoBehaviour
     //turn comp on and off to attack;
     private void Update()
     {
-        if (!CanAttack)
+        if (!CanCast)
         {
             return;
         }
         if (owner is Shaman shaman)
         {
-            foreach (var item in shaman.CastingHandlers)
+            foreach (var castingHandler in shaman.CastingHandlers)
             {
-                item.CastAbility();
+                castingHandler.CastAbility();
             }
         }
         if (!ReferenceEquals(owner.AutoAttack, null))

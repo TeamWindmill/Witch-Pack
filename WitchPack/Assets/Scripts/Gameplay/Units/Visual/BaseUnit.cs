@@ -9,7 +9,7 @@ public class BaseUnit : MonoBehaviour
     [SerializeField, TabGroup("Combat")] private Affector affector;
     [SerializeField, TabGroup("Combat")] private Effectable effectable;
     [SerializeField, TabGroup("Combat")] private OffensiveAbility autoAttack;
-    [SerializeField, TabGroup("Combat")] private UnitAutoAttacker autoAttacker;
+    [SerializeField, TabGroup("Combat")] private UnitAutoCaster _autoCaster;
     [SerializeField, TabGroup("Combat")] private BoxCollider2D boxCollider;
     [SerializeField, TabGroup("Combat")] private GroundCollider groundCollider;
     [SerializeField] private Transform _castPos;
@@ -44,7 +44,7 @@ public class BaseUnit : MonoBehaviour
     public UnitStats Stats { get => stats; }
     public OffensiveAbility AutoAttack { get => autoAttack; }
     public AutoAttackHandler AutoAttackHandler { get => autoAttackHandler; }
-    public UnitAutoAttacker AutoAttacker { get => autoAttacker; }
+    public UnitAutoCaster AutoCaster { get => _autoCaster; }
     public UnitMovement Movement { get => movement; }
     
     public Transform CastPos => _castPos;
@@ -71,7 +71,7 @@ public class BaseUnit : MonoBehaviour
         autoAttackHandler = new AutoAttackHandler(this, autoAttack);
         shamanTargetHelper = new UnitTargetHelper<Shaman>(ShamanTargeter, this);
         enemyTargetHelper = new UnitTargetHelper<Enemy>(EnemyTargeter, this);
-        AutoAttacker.SetUp(this);
+        AutoCaster.SetUp(this);
         Movement.SetUp(this);
         groundCollider.Init(this);
         unitVisual.Init(this, givenConfig);
@@ -100,12 +100,12 @@ public class BaseUnit : MonoBehaviour
 
     public void DisableAttacker()
     {
-        autoAttacker.CanAttack = false;
+        _autoCaster.CanCast = false;
 
     }
     public void EnableAttacker()
     {
-        autoAttacker.CanAttack = true;
+        _autoCaster.CanCast = true;
     }
 
     public void OnDeathAnimation()

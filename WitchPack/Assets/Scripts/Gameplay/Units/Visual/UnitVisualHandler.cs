@@ -35,7 +35,7 @@ public class UnitVisualHandler : MonoBehaviour
 
         if (deltaV.sqrMagnitude >= 0.1f) //flip sprite according to movement
         {
-            SpriteFlipX(deltaV.x >= 0);
+            FlipX(deltaV.x >= 0);
             _lastPos = position;
         }
         
@@ -43,12 +43,16 @@ public class UnitVisualHandler : MonoBehaviour
     protected virtual void FlipSpriteOnTarget(BaseUnit target)
     {
         var distance = _baseUnit.transform.position - target.transform.position;
-        SpriteFlipX(distance.x < 0);
+        FlipX(distance.x < 0);
     }
 
-    protected void SpriteFlipX(bool doFlip)
+    protected void FlipX(bool doFlip)
     {
-        spriteRenderer.flipX = doFlip;
+        var scale = transform.localScale;
+        scale.x = doFlip ? -1 : 1;
+        transform.localScale = scale;
+        Debug.Log("local scale: " + transform.localScale);
+        //spriteRenderer.flipX = doFlip;
         OnSpriteFlip?.Invoke(doFlip);
         //_silhouette.flipX = doFlip;
     }

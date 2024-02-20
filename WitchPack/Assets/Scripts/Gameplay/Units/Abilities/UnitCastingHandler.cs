@@ -47,21 +47,21 @@ public class UnitCastingHandler
 
     private IEnumerator TryCastingAbility()
     {
-        shaman.AutoAttacker.CanAttack = false;
+        shaman.AutoCaster.CanCast = false;
         float counter = 0f;
         while (counter < ability.CastTime)
         {
             counter += GAME_TIME.GameDeltaTime;
             yield return new WaitForEndOfFrame();
         }
-        while (!shaman.AutoAttacker.CanAttack)//changes when casting succesfuly or when reaching a new destenation
+        while (!shaman.AutoCaster.CanCast)//changes when casting succesfuly or when reaching a new destenation
         {
             if (ability.CastAbility(shaman))
             {
                 lastCast = GAME_TIME.GameTime;
                 OnCast?.Invoke(this);
                 OnCastGFX?.Invoke(ability.SoundEffectType);
-                shaman.AutoAttacker.CanAttack = true;
+                shaman.AutoCaster.CanCast = true;
             }
             yield return new WaitForEndOfFrame();
         }
