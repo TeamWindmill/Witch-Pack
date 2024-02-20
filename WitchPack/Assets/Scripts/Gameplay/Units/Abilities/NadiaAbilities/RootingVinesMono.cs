@@ -10,7 +10,6 @@ public class RootingVinesMono : MonoBehaviour
 
     protected BaseAbility refAbility;
     protected BaseUnit owner;
-    [SerializeField] private ParticleSystem rootingVinesRing;
     
     
 
