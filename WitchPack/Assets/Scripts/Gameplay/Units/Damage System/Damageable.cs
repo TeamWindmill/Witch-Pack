@@ -21,7 +21,7 @@ public class Damageable
     public Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility> OnDeath;
     public Action OnDeathGFX;
     public Action<bool> OnHitGFX;
-    public Action<float> OnHeal;
+    public Action<Damageable, float> OnHeal;
 
     //add gfx events later
 
@@ -72,8 +72,11 @@ public class Damageable
 
     public void Heal(int healAmount)
     {
-        currentHp = Mathf.Clamp(currentHp + healAmount, 0, MaxHp);
-        OnHeal?.Invoke(healAmount);
+        if(currentHp < MaxHp)
+        {
+            currentHp = Mathf.Clamp(currentHp + healAmount, 0, MaxHp);
+            OnHeal?.Invoke(this, healAmount);
+        }        
     }
 
     public void RegenHp()

@@ -84,6 +84,7 @@ public class BaseUnit : MonoBehaviour
             damageable.OnHeal += hpBar.SetBarBasedOnOwner;
         }
         damageable.OnDamageCalc += LevelManager.Instance.PopupsManager.SpawnDamagePopup;
+        damageable.OnHeal += LevelManager.Instance.PopupsManager.SpawnHealPopup;
         effectable.OnAffected += LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
         stats.OnHpRegenChange += damageable.SetRegenerationTimer;
         if(unitVisual.EffectHandler)
@@ -124,6 +125,7 @@ public class BaseUnit : MonoBehaviour
     {
         if(ReferenceEquals(LevelManager.Instance,null)) return;
         damageable.OnDamageCalc -= LevelManager.Instance.PopupsManager.SpawnDamagePopup;
+        damageable.OnHeal -= LevelManager.Instance.PopupsManager.SpawnHealPopup;
         effectable.OnAffected -= LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
         damageable.OnHeal -= hpBar.SetBarBasedOnOwner;
     }

@@ -95,9 +95,9 @@ public class HP_Bar : MonoBehaviour
         fillSprite.localScale = new Vector3(ratio, _originalScale.y, _originalScale.z);
     }
 
-    public void SetBarBasedOnOwner(float uselessAmount)
+    public void SetBarBasedOnOwner(Damageable damageable, float uselessAmount)
     {
-        SetBarValue(owner.Damageable, null, null, null, false);
+        SetBarValue(damageable, null, null, null, false);
     }
 }
 
