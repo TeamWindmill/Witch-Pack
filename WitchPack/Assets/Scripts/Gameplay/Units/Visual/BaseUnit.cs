@@ -86,7 +86,7 @@ public class BaseUnit : MonoBehaviour
         damageable.OnDamageCalc += LevelManager.Instance.PopupsManager.SpawnDamagePopup;
         damageable.OnHeal += LevelManager.Instance.PopupsManager.SpawnHealPopup;
         effectable.OnAffected += LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
-        stats.OnHpRegenChange += damageable.SetRegenerationTimer;
+        damageable.SetRegenerationTimer();
         if(unitVisual.EffectHandler)
         { 
             effectable.OnAffectedGFX += unitVisual.EffectHandler.PlayEffect;

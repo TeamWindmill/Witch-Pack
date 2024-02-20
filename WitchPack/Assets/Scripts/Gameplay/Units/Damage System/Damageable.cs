@@ -72,7 +72,7 @@ public class Damageable
 
     public void Heal(int healAmount)
     {
-        if(currentHp < MaxHp)
+        if(currentHp < MaxHp && healAmount > 0)
         {
             currentHp = Mathf.Clamp(currentHp + healAmount, 0, MaxHp);
             OnHeal?.Invoke(this, healAmount);
@@ -153,17 +153,8 @@ public class Damageable
 
     public void SetRegenerationTimer()
     {
-        if(regenTimer != null)
-        {
-            TimerManager.Instance.RemoveTimer(regenTimer);
-            regenTimer = null;
-        }        
-
-        if (Owner.Stats.HpRegen > 0)
-        {
-            regenTimer = new Timer(new TimerData(1, RegenHp, 1, true, true));
-            TimerManager.Instance.AddTimer(regenTimer);
-        }
+        regenTimer = new Timer(new TimerData(1, RegenHp, 1, true, true));
+        TimerManager.Instance.AddTimer(regenTimer);
     }
 
    
