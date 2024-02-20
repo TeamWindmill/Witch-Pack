@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eb122e50d8b41ac95146fd9dd98d896, type: 3}
+  m_Name: HighImpact
+  m_EditorClassIdentifier: 
+  name: High Impact
+  discription: Smoke bomb deals high damage on Impact, and has reduced CD.
+  icon: {fileID: 1108142957, guid: bc5335bd6010ad24b9dcf7a94d8d3f31, type: 3}
+  cd: 6
+  isPassive: 0
+  givesEnergyPoints: 0
+  energyPoints: 0
+  soundEffectType: 25
+  castTime: 0
+  statusEffects:
+  - {fileID: 11400000, guid: 8750043a8d6bd874c9cbf473fc75907f, type: 2}
+  _upgrades: []
+  targetData:
+    Prio: 0
+    Mod: 0
+  baseDamage: 50
+  range: 2
+  damageBoosts: []
+  _duration: 4

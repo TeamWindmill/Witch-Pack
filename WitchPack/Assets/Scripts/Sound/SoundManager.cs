@@ -9,7 +9,8 @@ using Random = UnityEngine.Random;
 public class SoundManager : MonoSingleton<SoundManager>
 {
     [SerializeField] private bool _testing;
-    [SerializeField] private AudioSource[] _audioSources;
+    [SerializeField] private AudioSource[] _lowPriorityAudioSources;
+    [SerializeField] private AudioSource[] _highPriorityAudioSources;
     [SerializeField] private SoundsConfig _soundsConfig;
     private Dictionary<SoundEffectCategory, SoundEffect[]> _soundEffects;
 
@@ -21,38 +22,20 @@ public class SoundManager : MonoSingleton<SoundManager>
 
     public void PlayAudioClip(SoundEffectType soundEffectType, float pitch = 1, float volume = 1, bool loop = false)
     {
-        AudioSource audioSource = null;
+        SoundEffect soundEffect = GetSoundEffect(soundEffectType);
 
-        foreach (var source in _audioSources)
+        if (soundEffect is null)
         {
-            if (source.isPlaying) continue;
-
-            audioSource = source;
-            break;
-        }
-
-        if (ReferenceEquals(audioSource,null))
-        {
-            Debug.LogWarning("did not find any available audio source");
+            Debug.LogWarning("did not find any matching sound effect in SoundManager");
             return;
         }
+        
+        #region audioClip
+        
+        AudioClip audioClip = soundEffect.ClipVariations ? soundEffect.ProvideRandomClip() : soundEffect.Clip;
+        if (soundEffect.VolumeVariations) volume = Random.Range(soundEffect.VolumeValues.x, soundEffect.VolumeValues.y);
 
-        AudioClip audioClip = null;
-        var category = GetCategoryBySound(soundEffectType);
-        if (_soundEffects.TryGetValue(category,out var soundEffects))
-        {
-            foreach (var soundEffect in soundEffects)
-            {
-                if (soundEffect.Type == soundEffectType)
-                {
-                    audioClip = soundEffect.ClipVariations ? soundEffect.Clips[Random.Range(0,soundEffect.Clips.Length)] : soundEffect.Clip;
-                    if (soundEffect.VolumeVariations) volume = Random.Range(soundEffect.VolumeValues.x,soundEffect.VolumeValues.y);
-                    break;
-                }
-            }
-        }
-       
-        if (ReferenceEquals(audioClip,null))
+        if (ReferenceEquals(audioClip, null))
         {
             if (_testing)
             {
@@ -60,8 +43,42 @@ public class SoundManager : MonoSingleton<SoundManager>
                 Debug.Log($"{title} Playing {soundEffectType} Sound Effect");
             }
             else Debug.LogWarning("did not find any matching audio clips in sound handler");
+
             return;
         }
+        #endregion
+
+        #region audioSource
+
+        AudioSource audioSource = null;
+
+        if (soundEffect.HighPriority)
+        {
+            foreach (var source in _highPriorityAudioSources)
+            {
+                if (source.isPlaying) continue;
+        
+                audioSource = source;
+                break;
+            }
+        }
+        else
+        {
+            foreach (var source in _lowPriorityAudioSources)
+            {
+                if (source.isPlaying) continue;
+        
+                audioSource = source;
+                break;
+            }
+        }
+        
+        if (ReferenceEquals(audioSource, null))
+        {
+            Debug.LogWarning("did not find any available audio source");
+            return;
+        }
+        #endregion
 
         audioSource.clip = audioClip;
         audioSource.loop = loop;
@@ -69,7 +86,24 @@ public class SoundManager : MonoSingleton<SoundManager>
         audioSource.volume = volume;
         audioSource.Play();
     }
-    public SoundEffectCategory GetCategoryBySound(SoundEffectType soundEffectType)
+
+    private SoundEffect GetSoundEffect(SoundEffectType soundEffectType)
+    {
+        var category = GetCategoryBySound(soundEffectType);
+        if (_soundEffects.TryGetValue(category, out var soundEffects))
+        {
+            foreach (var effect in soundEffects)
+            {
+                if (effect.Type == soundEffectType)
+                {
+                    return effect;
+                }
+            }
+        }
+
+        return null;
+    }
+    private SoundEffectCategory GetCategoryBySound(SoundEffectType soundEffectType)
     {
         switch (soundEffectType)
         {
@@ -92,6 +126,7 @@ public class SoundManager : MonoSingleton<SoundManager>
             case SoundEffectType.RootingVines:
             case SoundEffectType.Heal:
             case SoundEffectType.SmokeBomb:
+            case SoundEffectType.HighImpactSmokeBomb:
             case SoundEffectType.Charm:
                 return SoundEffectCategory.Abilities;
             case SoundEffectType.CoreGetHit:
@@ -101,18 +136,10 @@ public class SoundManager : MonoSingleton<SoundManager>
             case SoundEffectType.OpenUpgradeTree:
             case SoundEffectType.MenuClick:
             case SoundEffectType.Victory:
+            case SoundEffectType.LockedAbility:
                 return SoundEffectCategory.UI;
             default:
                 throw new ArgumentOutOfRangeException(nameof(soundEffectType), soundEffectType, null);
         }
     }
-
-    private void OnValidate()
-    {
-        if (_audioSources == null || _audioSources.Length == 0)
-        {
-            _audioSources = GetComponents<AudioSource>();
-        }
-    }
 }
-

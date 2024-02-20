@@ -1,9 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
-using UnityEngine.Timeline;
 
 public class SmokeBomb : MonoBehaviour
 {
@@ -58,8 +56,17 @@ public class SmokeBomb : MonoBehaviour
     }
     private void OnTargetExited(GroundCollider collider)
     {
-        var shaman = collider.GetComponentInParent<Shaman>();
-        RemoveShamanEffect(shaman);
+        if (collider.Unit is Shaman shaman)
+        {
+            if (_affectedShamans.TryGetValue(shaman,out var statusEffects))
+            {
+                foreach (var effect in statusEffects)
+                {
+                    effect.Remove();
+                }
+                _affectedShamans.Remove(shaman);
+            } 
+        }
     }
     
     private void CloudsIdleAnim(PlayableDirector clip)
@@ -80,23 +87,13 @@ public class SmokeBomb : MonoBehaviour
         rangeExit.stopped += OnEnd;
     }
 
-    private void OnEnd(PlayableDirector director)
+    protected virtual void OnEnd(PlayableDirector director)
     {
         cloudsExit.gameObject.SetActive(false);
         rangeExit.gameObject.SetActive(false);
         gameObject.SetActive(false);
         director.stopped -= OnEnd;
-    }
-
-    private void RemoveShamanEffect(Shaman shaman)
-    {
-        if (_affectedShamans.TryGetValue(shaman,out var statusEffects))
-        {
-            foreach (var effect in statusEffects)
-            {
-                effect.Remove();
-                _affectedShamans.Remove(shaman);
-            }
-        } 
+        _targeter.OnTargetAdded -= OnTargetEntered;
+        _targeter.OnTargetLost -= OnTargetExited;
     }
 }
