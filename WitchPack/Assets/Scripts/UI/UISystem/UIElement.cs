@@ -9,6 +9,7 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
     public event Action OnMouseEnter;
     public event Action OnMouseExit;
     public RectTransform RectTransform => rectTransform;
+    public bool isMouseOver { get; private set; }
 
     [SerializeField, HideInInspector] protected RectTransform rectTransform;
     [SerializeField] private bool showOnAwake = false;
@@ -18,7 +19,6 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
     [SerializeField, ShowIf(nameof(showInfoWindow))] protected WindowInfo _windowInfo;
     
 
-    protected bool isMouseOver;
     
 
     protected virtual void Awake()

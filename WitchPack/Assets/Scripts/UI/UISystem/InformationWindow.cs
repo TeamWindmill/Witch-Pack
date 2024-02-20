@@ -48,8 +48,9 @@ public class InformationWindow : MonoSingleton<InformationWindow>
 
     public void Hide()
     {
-        _holder.gameObject.SetActive(false);
+        _activeShowRequest = false;
         isActive = false;
+        _holder.gameObject.SetActive(false);
     }
 
     private void OnValidate()
@@ -65,7 +66,7 @@ public class InformationWindow : MonoSingleton<InformationWindow>
             if (infoWindowDelayTimer > _delayTime)
             {
                 infoWindowDelayTimer = 0;
-                Show(_currentUIElement,_currentWindowInfo);
+                if(_currentUIElement.isMouseOver) Show(_currentUIElement,_currentWindowInfo);
                 _activeShowRequest = false;
             }
         }
