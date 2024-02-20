@@ -22,10 +22,9 @@ public class UnitCastingHandler
         shaman = owner as Shaman;
         this.ability = ability;
         lastCast = GetAbilityCD() * -1;
-        OnCastGFX += shaman.ShamanCastSFX;
+        if(ability.HasSfx) OnCastGFX += shaman.ShamanCastSFX;
         if (ability.GivesEnergyPoints)
         {
-            
             OnCast += shaman.EnergyHandler.OnShamanCast;
         }
     }
