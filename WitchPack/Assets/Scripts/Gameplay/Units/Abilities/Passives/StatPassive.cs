@@ -4,7 +4,7 @@ using UnityEngine;
 public class StatPassive : Passive
 {
 
-    [SerializeField] private StatValue[] statIncreases;
+    [SerializeField] protected StatValue[] statIncreases;
 
     public override void SubscribePassive(BaseUnit owner)
     {
@@ -12,7 +12,7 @@ public class StatPassive : Passive
         {
             owner.Stats.AddValueToStat(increase.Stat, increase.Value);
         }
-        HeroSelectionUI.Instance.Show((Shaman)owner); // To show the updated stats in the UI
+        //HeroSelectionUI.Instance.Show((Shaman)owner); // To show the updated stats in the UI
     }
 
 }

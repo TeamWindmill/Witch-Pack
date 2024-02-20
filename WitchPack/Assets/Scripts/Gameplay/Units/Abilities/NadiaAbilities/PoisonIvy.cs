@@ -11,12 +11,6 @@ public class PoisonIvy : OffensiveAbility
         BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
         if (!ReferenceEquals(target, null))
         {
-            //target.Damageable.GetHit(caster.DamageDealer, this);
-            //List<BaseUnit> colleteral = caster.Targeter.GetAvailableTargets(target, radius);
-            //foreach (var enemy in colleteral)
-            //{
-            //    enemy.Damageable.GetHit(caster.DamageDealer, this);
-            //}
             PoisonIvyMono newIvyPoison = LevelManager.Instance.PoolManager.PoisonIvyPool.GetPooledObject();
             newIvyPoison.Init(caster, this);
             newIvyPoison.transform.position = target.transform.position;

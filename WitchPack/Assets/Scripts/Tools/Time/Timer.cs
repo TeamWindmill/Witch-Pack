@@ -80,6 +80,8 @@ public class Timer<T> : ITimer
     private bool _isActive;
     private T _data;
 
+    public T Data { get => _data; }
+
     public Timer(TimerData<T> timerData)
     {
         _timer = 0;

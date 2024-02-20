@@ -109,14 +109,14 @@ public class Shaman : BaseUnit
     public void LearnAbility(BaseAbility ability)
     {
         knownAbilities.Add(ability);
-        if (ability is not Passive)
+        if (ability is not Passive passive)
         {
             ability.OnSetCaster(this);
             castingHandlers.Add(new UnitCastingHandler(this, ability));
         }
         else
         {
-            (ability as Passive).SubscribePassive(this);
+            passive.SubscribePassive(this);
         }
     }
 
