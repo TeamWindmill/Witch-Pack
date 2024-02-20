@@ -1,7 +1,9 @@
+using Sirenix.OdinInspector;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class UnitEffectHandler : MonoBehaviour
 {
@@ -11,20 +13,20 @@ public class UnitEffectHandler : MonoBehaviour
 
     private void Start()
     {
-        foreach (var effectVisual in _statusEffectVisuals)
+        foreach (StatusEffectVisual effectVisual in _statusEffectVisuals)
         {
-            effectVisual.Effect.gameObject.SetActive(false);
+            effectVisual.SetOffAllVisualGameObjects();
         }
     }
 
     public void PlayEffect(Effectable effectable,StatusEffectType statusEffectType)
     {
         _effectable = effectable;
-        foreach (var effectVisual in _statusEffectVisuals)
+        foreach (StatusEffectVisual effectVisual in _statusEffectVisuals)
         {
             if (effectVisual.StatusEffectType == statusEffectType)
-            {
-                effectVisual.Effect.gameObject.SetActive(true);
+            {                
+                effectVisual.GetGameObject().SetActive(true);                            
                 return;
             }
         }
@@ -32,13 +34,21 @@ public class UnitEffectHandler : MonoBehaviour
 
     public void DisableEffect(StatusEffectType statusEffectType)
     {
-        foreach (var effectVisual in _statusEffectVisuals)
+        foreach (StatusEffectVisual effectVisual in _statusEffectVisuals)
         {
             if (effectVisual.StatusEffectType == statusEffectType)
             {
-                effectVisual.Effect.gameObject.SetActive(false);
+                effectVisual.GetGameObject().SetActive(false);
                 return;
             }
+        }
+    }
+
+    public void DisableAllEffects()
+    {
+        foreach (StatusEffectVisual effectVisual in _statusEffectVisuals)
+        {
+            effectVisual.SetOffAllVisualGameObjects();
         }
     }
 }
@@ -47,5 +57,24 @@ public class UnitEffectHandler : MonoBehaviour
 public struct StatusEffectVisual
 {
     public StatusEffectType StatusEffectType;
-    public ParticleSystem Effect;
+    [SerializeField] public List<GameObject> visualGameObjects;
+
+    public GameObject GetGameObject()
+    {
+        int index = 0;
+        if(visualGameObjects.Count > 1)
+        {
+            index = new System.Random().Next(0, visualGameObjects.Count); // Gets a random go from the list if there's more than one option
+        }
+
+        return visualGameObjects[index];
+    }
+
+    public void SetOffAllVisualGameObjects()
+    {
+        foreach (GameObject go in visualGameObjects)
+        {
+            go.SetActive(false);
+        }
+    }
 }

@@ -40,10 +40,11 @@ public enum StatusEffectType
 {
     None,
     Root,
+    LongerRoot,
+    PoisonRoot,
+    HealingRoot,
     Slow,
     Charm,
-    Poison,
     Hidden,
-    Inspired,
-    
+    Inspired,   
 }
