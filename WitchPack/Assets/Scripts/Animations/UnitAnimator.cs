@@ -14,7 +14,7 @@ public abstract class UnitAnimator : MonoBehaviour
 
 
     private bool _isFlipped;
-    private static readonly int Death = Animator.StringToHash("Death");
+    private static readonly int Death = Animator.StringToHash("Dead");
 
     public virtual void Init(BaseUnit unit)
     {
@@ -23,6 +23,7 @@ public abstract class UnitAnimator : MonoBehaviour
         this.unit.Damageable.OnDeathGFX += DeathAnimation;
         this.unit.UnitVisual.OnSpriteFlip += FlipAnimations;
         this.unit.AutoAttackHandler.OnAttack += AttackAnimation;
+        animator.SetBool(Death,false);
     }
 
     protected abstract void MoveAnimation();
@@ -34,14 +35,12 @@ public abstract class UnitAnimator : MonoBehaviour
 
     protected virtual void DeathAnimation()
     {
-        unit.Movement.ToggleMovement(false);
-        unit.ToggleCollider(false);
+        unit.OnDeathAnimation();
         animator.SetBool(Death,true);
         animator.SetTrigger(_isFlipped ? "Death_Flipped" : "Death");
     }
     public virtual void DeathAnimationEnded()
     {
-        animator.SetBool(Death,false);
         unit.gameObject.SetActive(false);
         OnDeathAnimationEnd?.Invoke();
     }

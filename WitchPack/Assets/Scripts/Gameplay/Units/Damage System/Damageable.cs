@@ -33,12 +33,6 @@ public class Damageable
         hitable = true;
         currentHp = MaxHp;
         OnGetHit += AddStatsDamageReduction;
-        OnDeathGFX += DisableGo;
-    }
-
-    private void DisableGo()
-    {
-        //Owner.gameObject.SetActive(false);
     }
 
     public void GetHit(DamageDealer dealer, BaseAbility ability)
@@ -83,6 +77,7 @@ public class Damageable
 
     public void TakeDamage(DamageDealer dealer, DamageHandler damage, BaseAbility ability, bool isCrit)
     {
+        if(!hitable) return;
         dealer.OnHitTarget?.Invoke(this, dealer, damage, ability, isCrit);
         OnGetHit?.Invoke(this, dealer, damage, ability, isCrit);
         OnHitGFX?.Invoke(isCrit);
@@ -163,7 +158,10 @@ public class Damageable
         }
     }
 
-   
+    public void ToggleHitable(bool state)
+    {
+        hitable = state;
+    }
 }
 
 
