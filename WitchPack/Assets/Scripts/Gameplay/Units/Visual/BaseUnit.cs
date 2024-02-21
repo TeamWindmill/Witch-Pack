@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -19,6 +21,7 @@ public class BaseUnit : MonoBehaviour
 
     private UnitTargetHelper<Shaman> shamanTargetHelper;
     private UnitTargetHelper<Enemy> enemyTargetHelper;
+    protected List<AbilityCaster> castingHandlers = new List<AbilityCaster>();
 
 
 
@@ -46,17 +49,12 @@ public class BaseUnit : MonoBehaviour
     public AutoAttackHandler AutoAttackHandler { get => autoAttackHandler; }
     public UnitAutoCaster AutoCaster { get => _autoCaster; }
     public UnitMovement Movement { get => movement; }
-    
+    public List<AbilityCaster> CastingHandlers => castingHandlers;
     public Transform CastPos => _castPos;
-
     public EnemyTargeter EnemyTargeter { get => enemyTargeter; }
     public ShamanTargeter ShamanTargeter { get => shamanTargeter; }
     public UnitTargetHelper<Shaman> ShamanTargetHelper { get => shamanTargetHelper; }
     public UnitTargetHelper<Enemy> EnemyTargetHelper { get => enemyTargetHelper; }
-
-
-
-
 
     //movement comp
     //state machine -> heros and enemies essentially work the same only heroes can be told where to go, everything else is automatic 
@@ -71,7 +69,7 @@ public class BaseUnit : MonoBehaviour
         autoAttackHandler = new AutoAttackHandler(this, autoAttack);
         shamanTargetHelper = new UnitTargetHelper<Shaman>(ShamanTargeter, this);
         enemyTargetHelper = new UnitTargetHelper<Enemy>(EnemyTargeter, this);
-        AutoCaster.SetUp(this);
+        AutoCaster.Init(this);
         Movement.SetUp(this);
         groundCollider.Init(this);
         unitVisual.Init(this, givenConfig);
@@ -93,20 +91,26 @@ public class BaseUnit : MonoBehaviour
             effectable.OnEffectRemovedGFX += unitVisual.EffectHandler.DisableEffect;
         }
     }
-
+    protected virtual void OnDisable() //unsubscribe to events
+    {
+        if(ReferenceEquals(LevelManager.Instance,null)) return;
+        damageable.OnDamageCalc -= LevelManager.Instance.PopupsManager.SpawnDamagePopup;
+        damageable.OnHeal -= LevelManager.Instance.PopupsManager.SpawnHealPopup;
+        effectable.OnAffected -= LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
+        if (hasHPBar)
+        {
+            damageable.OnDamageCalc -= hpBar.SetBarValue;
+            damageable.OnHeal -= hpBar.SetBarBasedOnOwner;
+        }
+        if(unitVisual.EffectHandler)
+        { 
+            effectable.OnAffectedGFX -= unitVisual.EffectHandler.PlayEffect;
+            effectable.OnEffectRemovedGFX -= unitVisual.EffectHandler.DisableEffect;
+        }
+    }
     public void ToggleCollider(bool state)
     {
         boxCollider.enabled = state;
-    }
-
-    public void DisableAttacker()
-    {
-        _autoCaster.CanCast = false;
-
-    }
-    public void EnableAttacker()
-    {
-        _autoCaster.CanCast = true;
     }
 
     public void OnDeathAnimation()
@@ -116,24 +120,10 @@ public class BaseUnit : MonoBehaviour
         damageable.ToggleHitable(false);
     }
 
-    private void OnDestroy()
-    {
-        if (hasHPBar) damageable.OnDamageCalc -= hpBar.SetBarValue;
-
-        stats.OnHpRegenChange -= damageable.SetRegenerationTimer;
-    }
-
     private void OnValidate()
     {
         boxCollider ??= GetComponent<BoxCollider2D>();
     }
 
-    protected virtual void OnDisable()
-    {
-        if(ReferenceEquals(LevelManager.Instance,null)) return;
-        damageable.OnDamageCalc -= LevelManager.Instance.PopupsManager.SpawnDamagePopup;
-        damageable.OnHeal -= LevelManager.Instance.PopupsManager.SpawnHealPopup;
-        effectable.OnAffected -= LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
-        damageable.OnHeal -= hpBar.SetBarBasedOnOwner;
-    }
+    
 }

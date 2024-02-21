@@ -8,7 +8,6 @@ public class Shaman : BaseUnit
     public override StatSheet BaseStats => shamanConfig.BaseStats;
     public ShamanConfig ShamanConfig => shamanConfig;
     public List<BaseAbility> KnownAbilities => knownAbilities;
-    public List<UnitCastingHandler> CastingHandlers => castingHandlers;
     public bool MouseOverShaman => clicker.IsHover;
     public List<BaseAbility> RootAbilities => rootAbilities;
     public EnergyHandler EnergyHandler => energyHandler;
@@ -22,7 +21,6 @@ public class Shaman : BaseUnit
     private ShamanConfig shamanConfig;
     private List<BaseAbility> rootAbilities = new List<BaseAbility>();
     private List<BaseAbility> knownAbilities = new List<BaseAbility>();
-    private List<UnitCastingHandler> castingHandlers = new List<UnitCastingHandler>();
     private EnergyHandler energyHandler;
 
     private void OnValidate()
@@ -40,11 +38,13 @@ public class Shaman : BaseUnit
         IntializeAbilities();
         shamanAnimator.Init(this);
         indicatable.Init(shamanConfig.UnitIcon);
+        
         #region Events
+        // no need to unsubscribe because shaman gets destroyed between levels
         Stats.OnStatChanged += EnemyTargeter.AddRadius;
         Stats.OnStatChanged += ShamanTargeter.AddRadius;
-        Movement.OnDestinationSet += DisableAttacker;
-        Movement.OnDestinationReached += EnableAttacker;
+        Movement.OnDestinationSet += AutoCaster.DisableCaster;
+        Movement.OnDestinationReached += AutoCaster.EnableCaster;
         clicker.OnClick += SetSelectedShaman;
         DamageDealer.OnKill += energyHandler.OnEnemyKill;
         DamageDealer.OnAssist += energyHandler.OnEnemyAssist;
@@ -54,28 +54,6 @@ public class Shaman : BaseUnit
         AutoAttackHandler.OnAttack += AttackSFX;
         #endregion
     }
-
-    
-
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-        clicker.OnClick -= SetSelectedShaman;
-        Movement.OnDestinationSet -= DisableAttacker;
-        Movement.OnDestinationReached -= EnableAttacker;
-    }
-    private void OnShamanSelect()
-    {
-        SlowMotionManager.Instance.StartSlowMotionEffects();
-        HeroSelectionUI.Instance.Show(this);
-    }
-
-    private void OnShamanDeselect()
-    {
-        SlowMotionManager.Instance.EndSlowMotionEffects();
-        HeroSelectionUI.Instance.Hide();
-    }
-
 
     private void IntializeAbilities()
     {
@@ -97,7 +75,7 @@ public class Shaman : BaseUnit
             if (ability is not Passive)
             {
                 ability.OnSetCaster(this);
-                castingHandlers.Add(new UnitCastingHandler(this, ability));
+                castingHandlers.Add(new AbilityCaster(this, ability));
             }
             else
             {
@@ -112,7 +90,7 @@ public class Shaman : BaseUnit
         if (ability is not Passive passive)
         {
             ability.OnSetCaster(this);
-            castingHandlers.Add(new UnitCastingHandler(this, ability));
+            castingHandlers.Add(new AbilityCaster(this, ability));
         }
         else
         {
@@ -136,7 +114,7 @@ public class Shaman : BaseUnit
     }
 
 
-    public UnitCastingHandler GetCasterFromAbility(BaseAbility givenAbiltiy)
+    public AbilityCaster GetCasterFromAbility(BaseAbility givenAbiltiy)
     {
         for (int i = 0; i < castingHandlers.Count; i++)
         {
@@ -196,7 +174,7 @@ public class Shaman : BaseUnit
     private void OnHitSFX(bool isCrit) => SoundManager.Instance.PlayAudioClip(shamanConfig.IsMale? SoundEffectType.ShamanGetHitMale : SoundEffectType.ShamanGetHitFemale);
     private void DeathSFX() => SoundManager.Instance.PlayAudioClip(shamanConfig.IsMale? SoundEffectType.ShamanDeathMale : SoundEffectType.ShamanDeathFemale);
     private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.BasicAttack);
-    public void ShamanCastSFX(SoundEffectType soundEffect) => SoundManager.Instance.PlayAudioClip(soundEffect);
+    public void ShamanCastGfx(BaseAbility ability) => SoundManager.Instance.PlayAudioClip(ability.SoundEffectType);
 
     #endregion
 

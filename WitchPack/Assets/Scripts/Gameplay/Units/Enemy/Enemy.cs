@@ -37,11 +37,28 @@ public class Enemy : BaseUnit
         _enemyAgro = new EnemyAgro(this);
         _enemyMovement = new EnemyMovement(this);
         enemyAnimator.Init(this);
+
+        #region Events
+        //remember to unsubscribe in OnDisable!!!
+        
         Damageable.OnHitGFX += GetHitSFX;
         Damageable.OnDeathGFX += DeathSFX;
         AutoAttackHandler.OnAttack += AttackSFX;
-        Movement.OnDestinationReached += EnableAttacker;
-        Movement.OnDestinationSet += DisableAttacker;
+        Movement.OnDestinationSet += AutoCaster.DisableCaster;
+        Movement.OnDestinationReached += AutoCaster.EnableCaster;
+
+        #endregion
+        
+    }
+    protected override void OnDisable()
+    {
+        _enemyAgro?.OnDisable();
+        base.OnDisable();
+        Damageable.OnHitGFX -= GetHitSFX;
+        Damageable.OnDeathGFX -= DeathSFX;
+        AutoAttackHandler.OnAttack -= AttackSFX;
+        Movement.OnDestinationSet -= AutoCaster.DisableCaster;
+        Movement.OnDestinationReached -= AutoCaster.EnableCaster;
     }
     private void Update()
     {
@@ -54,11 +71,7 @@ public class Enemy : BaseUnit
     private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.EnemyAttack);
     
     #endregion
-    protected override void OnDisable()
-    {
-        _enemyAgro?.OnDisable();
-        base.OnDisable();
-    }
+    
 
     
 }

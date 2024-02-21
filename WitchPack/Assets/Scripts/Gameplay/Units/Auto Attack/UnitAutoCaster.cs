@@ -5,33 +5,61 @@ using UnityEngine;
 
 public class UnitAutoCaster : MonoBehaviour
 {
-    private BaseUnit owner;
+    public bool CanCast { get; private set; }
 
-    public bool CanCast;
-    public void SetUp(BaseUnit givenOwner)
+    private BaseUnit owner;
+    private Queue<ICaster> _queuedAbilities = new Queue<ICaster>();
+    private float _castTimer;
+    private float _currentCastTime;
+
+    public void Init(BaseUnit givenOwner)
     {
         owner = givenOwner;
+        _queuedAbilities.Enqueue(givenOwner.AutoAttackHandler);
+        foreach (var castingHandler in givenOwner.CastingHandlers)
+        {
+            _queuedAbilities.Enqueue(castingHandler);
+        }
+        EnableCaster();
     }
 
-    //turn comp on and off to attack;
     private void Update()
     {
-        if (!CanCast)
+        if(!CanCast) return;
+        if (_queuedAbilities.Count <= 0) return;
+        if (_currentCastTime > _castTimer)
         {
-            return;
-        }
-        if (owner is Shaman shaman)
-        {
-            foreach (var castingHandler in shaman.CastingHandlers)
+            var caster = _queuedAbilities.Dequeue();
+            if (caster.CastAbility())
             {
-                castingHandler.CastAbility();
+                TimerManager.Instance.AddTimer<ICaster>(caster.GetCooldown(),caster,EnqueueAbility,true);
+                _currentCastTime = caster.Ability.CastTime;
+                _castTimer = 0;
+                caster.LastCast = GAME_TIME.GameDeltaTime;
+            }
+            else
+            {
+                _queuedAbilities.Enqueue(caster);
             }
         }
-        if (!ReferenceEquals(owner.AutoAttack, null))
+        else
         {
-            owner.AutoAttackHandler.Attack();
+            _castTimer += GAME_TIME.GameDeltaTime;
         }
-      
     }
 
+    private void EnqueueAbility(ICaster caster)
+    {
+        _queuedAbilities.Enqueue(caster);
+    }
+
+    public void EnableCaster()
+    {
+        CanCast = true;
+    }
+    public void DisableCaster()
+    {
+        CanCast = false;
+        _castTimer = 0;
+    }
 }
