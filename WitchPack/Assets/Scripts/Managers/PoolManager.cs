@@ -11,6 +11,7 @@ public class PoolManager : MonoBehaviour
     [SerializeField] private SmokeBombPool smokeBombPool;
     [SerializeField] private HighImpactPool highImpactPool;
     [SerializeField] private PoisonIvyPool poisonIvyPool;
+    [SerializeField] private HealingWeedsPool healingWeedsPool;
 
     public ProjectilePool TestAbilityPool { get => testAbilityPool; }
     public TargetedShotPool ShamanAutoAttackPool { get => shamanAutoAttackPool; }
@@ -23,4 +24,5 @@ public class PoolManager : MonoBehaviour
     public HighImpactPool HighImpactPool => highImpactPool;
 
     public PoisonIvyPool PoisonIvyPool { get => poisonIvyPool; }
+    public HealingWeedsPool HealingWeedsPool { get => healingWeedsPool; }
 }

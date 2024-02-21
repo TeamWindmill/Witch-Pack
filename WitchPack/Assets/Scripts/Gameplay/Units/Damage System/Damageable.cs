@@ -21,7 +21,7 @@ public class Damageable
     public Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility> OnDeath;
     public Action OnDeathGFX;
     public Action<bool> OnHitGFX;
-    public Action<float> OnHeal;
+    public Action<Damageable, float> OnHeal;
 
     //add gfx events later
 
@@ -33,12 +33,6 @@ public class Damageable
         hitable = true;
         currentHp = MaxHp;
         OnGetHit += AddStatsDamageReduction;
-        OnDeathGFX += DisableGo;
-    }
-
-    private void DisableGo()
-    {
-        //Owner.gameObject.SetActive(false);
     }
 
     public void GetHit(DamageDealer dealer, BaseAbility ability)
@@ -72,8 +66,11 @@ public class Damageable
 
     public void Heal(int healAmount)
     {
-        currentHp = Mathf.Clamp(currentHp + healAmount, 0, MaxHp);
-        OnHeal?.Invoke(healAmount);
+        if(currentHp < MaxHp && healAmount > 0)
+        {
+            currentHp = Mathf.Clamp(currentHp + healAmount, 0, MaxHp);
+            OnHeal?.Invoke(this, healAmount);
+        }        
     }
 
     public void RegenHp()
@@ -83,6 +80,7 @@ public class Damageable
 
     public void TakeDamage(DamageDealer dealer, DamageHandler damage, BaseAbility ability, bool isCrit)
     {
+        if(!hitable) return;
         dealer.OnHitTarget?.Invoke(this, dealer, damage, ability, isCrit);
         OnGetHit?.Invoke(this, dealer, damage, ability, isCrit);
         OnHitGFX?.Invoke(isCrit);
@@ -150,20 +148,14 @@ public class Damageable
 
     public void SetRegenerationTimer()
     {
-        if(regenTimer != null)
-        {
-            TimerManager.Instance.RemoveTimer(regenTimer);
-            regenTimer = null;
-        }        
-
-        if (Owner.Stats.HpRegen > 0)
-        {
-            regenTimer = new Timer(new TimerData(1, RegenHp, 1, true, true));
-            TimerManager.Instance.AddTimer(regenTimer);
-        }
+        regenTimer = new Timer(new TimerData(1, RegenHp, 1, true, true));
+        TimerManager.Instance.AddTimer(regenTimer);
     }
 
-   
+    public void ToggleHitable(bool state)
+    {
+        hitable = state;
+    }
 }
 
 

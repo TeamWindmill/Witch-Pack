@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AoePassive : StatPassive
+public class HealingWeedsPool : ObjectPool<HealingWeedsMono>
 {
     
 }

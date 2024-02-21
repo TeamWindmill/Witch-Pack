@@ -11,9 +11,9 @@ public class EnemyConfig : BaseUnitConfig
     [SerializeField] private int energyPoints;
 
     [TabGroup("Agro"), SerializeField, Range(0, 1)] private float agroChance; 
-    [TabGroup("Agro"), SerializeField] private float agroInterval; 
-    [TabGroup("Agro"), SerializeField] private float returnInterval; 
-    [TabGroup("Agro"), SerializeField] private float chaseInterval; 
+    [TabGroup("Agro"),Tooltip("How many seconds before checking if there is a target to chase"), SerializeField] private float agroInterval; 
+    [TabGroup("Agro"),Tooltip("How many seconds before checking if should return to lane"), SerializeField] private float returnInterval; 
+    [TabGroup("Agro"),Tooltip("How many seconds before setting a new destination"), SerializeField] private float chaseInterval; 
     [TabGroup("Agro"), SerializeField, Range(0,0.2f)] private float returnChanceModifier; 
     public int CoreDamage => coreDamage;
     public int EnergyPoints => energyPoints;

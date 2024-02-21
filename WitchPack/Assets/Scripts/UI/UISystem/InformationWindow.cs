@@ -12,14 +12,25 @@ public class InformationWindow : MonoSingleton<InformationWindow>
     [SerializeField] private TextMeshProUGUI _discriptionTMP;
     [Space] 
     [SerializeField] private Vector2 _windowSize;
+    [SerializeField] private float _delayTime;
 
     private RectTransform _rectTransform;
-
+    private float infoWindowDelayTimer;
+    private bool _activeShowRequest;
+    private UIElement _currentUIElement;
+    private WindowInfo _currentWindowInfo;
     private void Start()
     {
         _holder.gameObject.SetActive(false);
     }
-    public void Show(UIElement uiElement, WindowInfo windowInfo)
+    public void RequestShow(UIElement uiElement, WindowInfo windowInfo)
+    {
+        _currentUIElement = uiElement;
+        _currentWindowInfo = windowInfo;
+        _activeShowRequest = true;
+    }
+
+    private void Show(UIElement uiElement, WindowInfo windowInfo)
     {
         _rectTransform.rect.Set(0,0,_windowSize.x,_windowSize.y);
         
@@ -37,13 +48,28 @@ public class InformationWindow : MonoSingleton<InformationWindow>
 
     public void Hide()
     {
-        _holder.gameObject.SetActive(false);
+        _activeShowRequest = false;
         isActive = false;
+        _holder.gameObject.SetActive(false);
     }
 
     private void OnValidate()
     {
         _rectTransform ??= GetComponent<RectTransform>();
+    }
+
+    private void Update()
+    {
+        if (_activeShowRequest)
+        {
+            infoWindowDelayTimer += Time.deltaTime;
+            if (infoWindowDelayTimer > _delayTime)
+            {
+                infoWindowDelayTimer = 0;
+                if(_currentUIElement.isMouseOver) Show(_currentUIElement,_currentWindowInfo);
+                _activeShowRequest = false;
+            }
+        }
     }
 }
 
@@ -52,5 +78,4 @@ public struct WindowInfo
 {
     public string Name;
     public string Discription;
-    public float DelayTime;
 }

@@ -59,9 +59,9 @@ public class StatBarHandler : MonoBehaviour
          _statBarFill.fillAmount = (float)currentHP / maxHP;
      }
 
-    public void UpdateStatBarHealthBasedOnShaman(float uselessAmount)
+    public void UpdateStatBarHealthBasedOnShaman(Damageable damageable, float uselessAmount)
     {
-        UpdateStatBarHealth(_shaman.Damageable, null, null, null, false);
+        UpdateStatBarHealth(damageable, null, null, null, false);
     }
     
      public void Hide()
