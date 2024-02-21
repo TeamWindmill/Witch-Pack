@@ -7,6 +7,7 @@ public class PopupsManager : MonoBehaviour
 {
     [SerializeField] private DamageNumber popupPrefab;
     [SerializeField] private DamageNumber levelUpPopupPrefab;
+    [SerializeField] private DamageNumber healPopupPrefab;
     private float _xOffset;
     [SerializeField] private float _yOffset;
     [SerializeField] private float _sinSpeed;
@@ -17,7 +18,7 @@ public class PopupsManager : MonoBehaviour
 
     private Color _popupColor;
 
-    string _statusEffectText;
+    string _popupText;
 
     [SerializeField] private StatusEffectTypeColorDictionary _dictionary;
     public DamageNumber PopupPrefab { get => popupPrefab; }
@@ -29,7 +30,7 @@ public class PopupsManager : MonoBehaviour
 
     public void SpawnDamagePopup(Damageable damageable, DamageDealer damageDealer, DamageHandler damage, BaseAbility ability, bool isCrit)
     {
-        _statusEffectText = "";
+        _popupText = "";
         _offsetVector = new Vector3(_xOffset, _yOffset);
 
         _popupColor = Color.white;
@@ -38,8 +39,8 @@ public class PopupsManager : MonoBehaviour
             _popupColor = Color.red;
         }        
 
-        _statusEffectText = damage.GetFinalDamage().ToString();
-        PopupPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, _statusEffectText, _popupColor);
+        _popupText = damage.GetFinalDamage().ToString();
+        PopupPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, _popupText, _popupColor);
     }
 
     public void SpawnStatusEffectPopup(Effectable effectable, Affector affector, StatusEffect statusEffect)
@@ -48,10 +49,17 @@ public class PopupsManager : MonoBehaviour
         
         _popupColor = _dictionary.GetColorByStatusEffectType(statusEffect.StatusEffectType);
 
-        _statusEffectText = "";
-        _statusEffectText = statusEffect.StatusEffectType.ToString();
+        _popupText = "";
+        _popupText = statusEffect.StatusEffectType.ToString();
 
-        PopupPrefab.Spawn(effectable.Owner.transform.position, _statusEffectText, _popupColor);
+        PopupPrefab.Spawn(effectable.Owner.transform.position, _popupText, _popupColor);
+    }
+
+    public void SpawnHealPopup(Damageable damageable, float healAmount)
+    {
+        _popupText = healAmount.ToString();
+
+        healPopupPrefab.Spawn(damageable.Owner.transform.position, _popupText);
     }
 
     public void SpawnLevelUpTextPopup(Shaman shaman)
