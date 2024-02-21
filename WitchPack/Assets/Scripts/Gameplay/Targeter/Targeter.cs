@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -81,16 +82,18 @@ public class Targeter<T> : MonoBehaviour where T : Component
     }
 }
 
-public enum TargetPrio
+public enum TargetPriority
 {
     Distance,
     DistnaceToCore,
     Stat,
     Threatened,
+    CurrentHP,
+    CurrentHPPrecentage,
     Random
 }
 
-public enum TargetMod
+public enum TargetModifier
 {
     Most,
     Least
@@ -99,6 +102,7 @@ public enum TargetMod
 [System.Serializable]
 public struct TargetData
 {
-    public TargetPrio Prio;
-    public TargetMod Mod;
+    public TargetPriority Priority;
+    public TargetModifier Modifier;
+    [ShowIf(nameof(Priority), TargetPriority.Stat)]public StatType StatType;
 }
