@@ -38,7 +38,7 @@ public class UnitEffectHandler : MonoBehaviour
         {
             if (effectVisual.StatusEffectType == statusEffectType)
             {
-                effectVisual.GetGameObject().SetActive(false);
+                effectVisual.SetOffAllVisualGameObjects();
                 return;
             }
         }
