@@ -134,7 +134,7 @@ public class WaveHandler : MonoBehaviour
             if (skipFlag)
             {
                 skipFlag = false;
-                break;
+               break; //caused first enemy in the first wave to spawn on top of the second enemy
             }
             counter += GAME_TIME.GameDeltaTime;
             yield return new WaitForEndOfFrame();
