@@ -26,22 +26,22 @@ public class MultiShot : OffensiveAbility
         }
         for (int i = 0; i < numberOfShots; i++)
         {
-            ArchedShot shot = LevelManager.Instance.PoolManager.ArchedShotPool.GetPooledObject();
-            shot.transform.position = caster.CastPos.position;
-            RicochetHandler richocheter = new RicochetHandler(shot, ricochetTimes, ricochetTargeting, ricochetRange, ricochetSpeed);
-            shot.gameObject.SetActive(true);
+            MultiShotMono shotMono = LevelManager.Instance.PoolManager.MultiShotPool.GetPooledObject();
+            shotMono.transform.position = caster.CastPos.position;
+            RicochetHandler richocheter = new RicochetHandler(shotMono, ricochetTimes, ricochetTargeting, ricochetRange, ricochetSpeed);
+            shotMono.gameObject.SetActive(true);
             Vector2 dir = foundTargets[i].transform.position - caster.transform.position;
             if (i == 0)
             {
-                shot.Fire(caster, this, dir.normalized, foundTargets[i], Vector3.zero);
+                shotMono.Fire(caster, this, dir.normalized, foundTargets[i], Vector3.zero);
             }
             else if (i % 2 == 0)
             {
-                shot.Fire(caster, this, dir.normalized, foundTargets[i], offset);
+                shotMono.Fire(caster, this, dir.normalized, foundTargets[i], offset);
             }
             else
             {
-                shot.Fire(caster, this, dir.normalized, foundTargets[i], -offset);
+                shotMono.Fire(caster, this, dir.normalized, foundTargets[i], -offset);
             }
         }
         return true;

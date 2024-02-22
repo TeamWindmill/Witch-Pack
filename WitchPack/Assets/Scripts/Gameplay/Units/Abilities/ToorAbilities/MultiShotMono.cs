@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArchedShot : TargetedShot
+public class MultiShotMono : ShamanAutoAttackMono
 {
     [SerializeField] private int numOfPoint;
     private Vector3 offset;

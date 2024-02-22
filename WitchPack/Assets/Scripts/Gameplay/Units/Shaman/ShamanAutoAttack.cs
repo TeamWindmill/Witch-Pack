@@ -12,7 +12,7 @@ public class ShamanAutoAttack : OffensiveAbility
         {
             return false;
         }
-        TargetedShot newPew = LevelManager.Instance.PoolManager.ShamanAutoAttackPool.GetPooledObject();
+        ShamanAutoAttackMono newPew = LevelManager.Instance.PoolManager.ShamanAutoAttackPool.GetPooledObject();
         newPew.transform.position = caster.CastPos.transform.position;
         newPew.gameObject.SetActive(true);
         Vector2 dir = (target.transform.position - caster.transform.position).normalized;
