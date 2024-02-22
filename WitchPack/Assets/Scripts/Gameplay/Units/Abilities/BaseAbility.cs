@@ -5,18 +5,17 @@ using UnityEngine;
 
 public class BaseAbility : ScriptableObject
 {
+    [Header("Base Ability")]
     [SerializeField] private string name;
     [SerializeField] private string discription;
     [SerializeField] private Sprite icon;
+    [SerializeField, Tooltip("Interval before casting in real time")] private float castTime;
     [SerializeField] private float cd;
-    [SerializeField] private bool isPassive;
     [SerializeField] private bool givesEnergyPoints;
     [SerializeField,ShowIf(nameof(givesEnergyPoints))] private int energyPoints;
     [SerializeField] private bool _hasSFX = true;
     [SerializeField,ShowIf(nameof(_hasSFX))] private SoundEffectType soundEffectType;
 
-    [SerializeField, Tooltip("Interval before casting in real time")]
-    private float castTime;
 
     [SerializeField] private List<StatusEffectConfig> statusEffects = new List<StatusEffectConfig>();
     [SerializeField] private BaseAbility[] _upgrades;
@@ -29,7 +28,6 @@ public class BaseAbility : ScriptableObject
     public string Name => name;
     public string Discription => discription;
     public float Cd => cd;
-    public bool IsPassive => isPassive;
     public bool GivesEnergyPoints => givesEnergyPoints;
     public int EnergyPoints => energyPoints;
     public List<StatusEffectConfig> StatusEffects => statusEffects;

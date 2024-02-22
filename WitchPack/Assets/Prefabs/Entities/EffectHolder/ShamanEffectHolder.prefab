@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8142528682571179321}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -0.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -47,8 +47,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _statusEffectVisuals:
-  - StatusEffectType: 6
-    Effect: {fileID: 1603326800935907318}
+  - StatusEffectType: 8
+    visualGameObjects:
+    - {fileID: 5871008421668359031}
 --- !u!1001 &3434797934810493155
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -71,11 +72,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8141907217016800475, guid: a1dbf4cecab78ef40bcbb8529eb65fa0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.017
       objectReference: {fileID: 0}
     - target: {fileID: 8141907217016800475, guid: a1dbf4cecab78ef40bcbb8529eb65fa0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.588
       objectReference: {fileID: 0}
     - target: {fileID: 8141907217016800475, guid: a1dbf4cecab78ef40bcbb8529eb65fa0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -185,8 +186,8 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4347012295807208414, guid: 59b1812703cc1cb40b348d60ed0627af, type: 3}
   m_PrefabInstance: {fileID: 4213955652191420069}
   m_PrefabAsset: {fileID: 0}
---- !u!198 &1603326800935907318 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 3187092155059114323, guid: 59b1812703cc1cb40b348d60ed0627af, type: 3}
+--- !u!1 &5871008421668359031 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7710436732952442322, guid: 59b1812703cc1cb40b348d60ed0627af, type: 3}
   m_PrefabInstance: {fileID: 4213955652191420069}
   m_PrefabAsset: {fileID: 0}
