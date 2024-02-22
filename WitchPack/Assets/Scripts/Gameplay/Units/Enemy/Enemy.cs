@@ -56,7 +56,7 @@ public class Enemy : BaseUnit
         base.OnDisable();
         Damageable.OnHitGFX -= GetHitSFX;
         Damageable.OnDeathGFX -= DeathSFX;
-        AutoAttackHandler.OnAttack -= AttackSFX;
+        if (AutoAttackHandler != null) AutoAttackHandler.OnAttack -= AttackSFX;
         Movement.OnDestinationSet -= AutoCaster.DisableCaster;
         Movement.OnDestinationReached -= AutoCaster.EnableCaster;
     }

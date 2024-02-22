@@ -8,18 +8,19 @@ public class UnitAutoCaster : MonoBehaviour
     public bool CanCast { get; private set; }
 
     private BaseUnit owner;
-    private Queue<ICaster> _queuedAbilities = new Queue<ICaster>();
+    private Queue<ICaster> _queuedAbilities;
     private float _castTimer;
     private float _currentCastTime;
 
     public void Init(BaseUnit givenOwner)
     {
+        _queuedAbilities = new Queue<ICaster>();
         owner = givenOwner;
-        _queuedAbilities.Enqueue(givenOwner.AutoAttackHandler);
         foreach (var castingHandler in givenOwner.CastingHandlers)
         {
             _queuedAbilities.Enqueue(castingHandler);
         }
+        _queuedAbilities.Enqueue(givenOwner.AutoAttackHandler);
         EnableCaster();
     }
 
@@ -27,7 +28,7 @@ public class UnitAutoCaster : MonoBehaviour
     {
         if(!CanCast) return;
         if (_queuedAbilities.Count <= 0) return;
-        if (_currentCastTime > _castTimer)
+        if (_castTimer > _currentCastTime)
         {
             var caster = _queuedAbilities.Dequeue();
             if (caster.CastAbility())

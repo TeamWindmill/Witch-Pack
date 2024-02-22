@@ -82,6 +82,7 @@ public class Shaman : BaseUnit
                 (ability as Passive).SubscribePassive(this);
             }
         }
+        AutoCaster.Init(this);
     }
 
     public void LearnAbility(BaseAbility ability)
@@ -96,6 +97,8 @@ public class Shaman : BaseUnit
         {
             passive.SubscribePassive(this);
         }
+        AutoCaster.Init(this);
+
     }
 
     public void RemoveAbility(BaseAbility ability)

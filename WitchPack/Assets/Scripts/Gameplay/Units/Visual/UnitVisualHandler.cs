@@ -51,8 +51,8 @@ public class UnitVisualHandler : MonoBehaviour
         var scale = transform.localScale;
         scale.x = doFlip ? -1 : 1;
         transform.localScale = scale;
-        Debug.Log("local scale: " + transform.localScale);
-        //spriteRenderer.flipX = doFlip;
+        //Debug.Log("local scale: " + transform.localScale);
+        spriteRenderer.flipX = doFlip;
         OnSpriteFlip?.Invoke(doFlip);
         //_silhouette.flipX = doFlip;
     }
