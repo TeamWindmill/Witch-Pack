@@ -16,7 +16,7 @@ public class UnitVisualHandler : MonoBehaviour
     private Vector2 _lastPos;
     private BaseUnit _baseUnit;
 
-    private void Awake()
+    private void Start()
     {
         unitAnimator.OnDeathAnimationEnd += ResetSprite;
     }
