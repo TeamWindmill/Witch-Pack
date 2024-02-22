@@ -19,13 +19,15 @@ MonoBehaviour:
   isPassive: 0
   givesEnergyPoints: 0
   energyPoints: 0
+  _hasSFX: 1
   soundEffectType: 13
   castTime: 0.5
   statusEffects: []
   _upgrades: []
   targetData:
-    Prio: 1
-    Mod: 1
+    Priority: 1
+    Modifier: 1
+    StatType: 0
   baseDamage: 50
   range: 6
   damageBoosts: []
@@ -35,5 +37,6 @@ MonoBehaviour:
   ricochetRange: 5.5
   ricochetSpeed: 2.5
   ricochetTargeting:
-    Prio: 4
-    Mod: 0
+    Priority: 0
+    Modifier: 0
+    StatType: 0
