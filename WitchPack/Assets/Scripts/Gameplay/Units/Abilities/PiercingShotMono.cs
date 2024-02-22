@@ -31,6 +31,10 @@ public class PiercingShotMono : MonoBehaviour
     private void OnEnable()
     {
         GAME_TIME.OnTimeRateChange += ChangeVelocity;
+        _basicPiercingShot.gameObject.SetActive(false);
+        _MarksmanPiercingShot.gameObject.SetActive(false);
+        _ExperiencedHunterPiercingShot.gameObject.SetActive(false);
+        _QuickShotPiercingShot.gameObject.SetActive(false);
     }
     private void OnDisable()
     {
