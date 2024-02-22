@@ -13,7 +13,7 @@ public class UnitMovement : MonoBehaviour
     private BaseUnit owner;
     [SerializeField] private NavMeshAgent agent;
 
-
+    public NavMeshAgent Agent => agent;
     public bool IsMoving => agent.velocity.sqrMagnitude > 0; //need to replace
     public float StoppingDistance => agent.stoppingDistance; //need to replace
 
@@ -58,6 +58,7 @@ public class UnitMovement : MonoBehaviour
         currentDest = worldPos;
         reachedDest = false;
         OnDestinationSet?.Invoke();
+        if(owner is Shaman) Debug.Log("DestinationSet");
         agent.destination = (Vector2)worldPos;
         if (!ReferenceEquals(activeMovementRoutine, null))
         {
@@ -76,6 +77,7 @@ public class UnitMovement : MonoBehaviour
         yield return new WaitUntil(CheckVelocity);
         yield return new WaitUntil(CheckRemainingDistance);
         OnDestinationReached?.Invoke();
+        if(owner is Shaman) Debug.Log("DestinationReached");
     }
 
     private bool CheckRemainingDistance()

@@ -84,8 +84,8 @@ public class EnergyHandler
         }
         GainEnergy(enemy.EnergyPoints * 1); //might change it to a different percent later on
     }
-    public void OnShamanCast(UnitCastingHandler castingHandler)
+    public void OnShamanCast(AbilityCaster caster)
     {
-        GainEnergy(castingHandler.Ability.EnergyPoints); 
+        GainEnergy(caster.Ability.EnergyPoints); 
     }
 }
