@@ -60,6 +60,7 @@ MonoBehaviour:
   autoAttack: {fileID: 11400000, guid: d8ade3c4f5a1e02449732df010cb8f20, type: 2}
   autoAttacker: {fileID: 3965648085528756686}
   boxCollider: {fileID: 3464479959116816041}
+  groundCollider: {fileID: 3402771583666480079}
   _castPos: {fileID: 7923560994105219183}
   enemyTargeter: {fileID: 4671891764483534921}
   shamanTargeter: {fileID: 643734768296118702}
@@ -87,7 +88,6 @@ MonoBehaviour:
   shamanAnimator: {fileID: 7099561053656345452}
   clicker: {fileID: 1861919391548874701}
   indicatable: {fileID: 2569011272749710196}
-  groundCollider: {fileID: 3402771583666480079}
   levelUpEffect: {fileID: 3889933701843178220}
 --- !u!50 &7156522581338340880
 Rigidbody2D:
@@ -794,6 +794,14 @@ PrefabInstance:
     - target: {fileID: 5864218355553877530, guid: b9011938b2e9b754080332e2aa3b56d5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869968535823987768, guid: b9011938b2e9b754080332e2aa3b56d5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.017
+      objectReference: {fileID: 0}
+    - target: {fileID: 6869968535823987768, guid: b9011938b2e9b754080332e2aa3b56d5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.588
       objectReference: {fileID: 0}
     - target: {fileID: 8142528682571179321, guid: b9011938b2e9b754080332e2aa3b56d5, type: 3}
       propertyPath: m_Name
