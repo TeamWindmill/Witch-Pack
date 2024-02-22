@@ -56,7 +56,6 @@ public class UnitStats
         {
             hpRegen = value;
             OnHpRegenChange?.Invoke();
-            
         }
     }
     public int BonusStatusEffectDuration { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.BonusStatusEffectDuration.value + bonusStatusEffectDuration), 0, (ownerBaseStats.BonusStatusEffectDuration.value + bonusStatusEffectDuration))); } }
@@ -179,8 +178,6 @@ public class UnitStats
                 break;
             case StatType.ThreatLevel:
                 threatLevel += wholeValue;
-                break;
-            default:
                 break;
         }
 

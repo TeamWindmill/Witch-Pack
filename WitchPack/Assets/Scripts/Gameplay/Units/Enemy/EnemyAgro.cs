@@ -32,7 +32,7 @@ public class EnemyAgro
 
     public void OnDisable()
     {
-        if(_currentTarget != null) _currentTarget.Stats.AddValueToStat(StatType.ThreatLevel,-1);
+        if(_currentTarget != null && _chasingTarget) _currentTarget.Stats.AddValueToStat(StatType.ThreatLevel,-1);
         if(TimerManager.Instance is null) return;
         TimerManager.Instance.RemoveTimer(_agroTimer);
         TimerManager.Instance.RemoveTimer(_chaseTimer);

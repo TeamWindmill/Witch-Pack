@@ -84,7 +84,7 @@ public class BaseUnit : MonoBehaviour
 
         damageable.OnDamageCalc += LevelManager.Instance.PopupsManager.SpawnDamagePopup;
         damageable.OnHeal += LevelManager.Instance.PopupsManager.SpawnHealPopup;
-        effectable.OnAffected += LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
+        effectable.OnAffectedGFX += LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
 
         effectable.OnAffectedGFX += unitVisual.EffectHandler.PlayEffect;
         effectable.OnEffectRemovedGFX += unitVisual.EffectHandler.DisableEffect;
@@ -95,7 +95,7 @@ public class BaseUnit : MonoBehaviour
         if (ReferenceEquals(LevelManager.Instance, null)) return;
         damageable.OnDamageCalc -= LevelManager.Instance.PopupsManager.SpawnDamagePopup;
         damageable.OnHeal -= LevelManager.Instance.PopupsManager.SpawnHealPopup;
-        effectable.OnAffected -= LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
+        effectable.OnAffectedGFX -= LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
         if (hasHPBar)
         {
             damageable.OnDamageCalc -= hpBar.SetBarValue;

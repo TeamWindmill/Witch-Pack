@@ -10,7 +10,7 @@ public class StatPassive : Passive
     {
         foreach (StatValue increase in statIncreases)
         {
-            owner.Stats.AddValueToStat(increase.Stat, increase.Value);
+            owner.Stats.AddValueToStat(increase.StatType, increase.Value);
         }
         //HeroSelectionUI.Instance.Show((Shaman)owner); // To show the updated stats in the UI
     }
@@ -20,7 +20,7 @@ public class StatPassive : Passive
 [System.Serializable]
 public struct StatValue
 {
-    public StatType Stat;
+    public StatType StatType;
     public float Value;
 }
 
