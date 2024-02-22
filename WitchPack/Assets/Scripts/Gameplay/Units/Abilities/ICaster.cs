@@ -1,7 +1,7 @@
 public interface ICaster
 {
     public BaseAbility Ability { get; }
-    public float LastCast { get; set; }
+    public float LastCast { get;}
     public bool CastAbility();
     public float GetCooldown();
 }

@@ -66,7 +66,7 @@ public class UnitVisualHandler : MonoBehaviour
         Color color = Color.white;
         color.a = 1;
         spriteRenderer.color = color;
-        spriteRenderer.transform.localScale = Vector3.one;
+        animator.gameObject.transform.localScale = Vector3.one;
     }
 
     private void OnBecameVisible()

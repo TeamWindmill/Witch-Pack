@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class TimerManager : MonoSingleton<TimerManager>
 {
-    private List<ITimer> _timers = new List<ITimer>();
-    private List<ITimer> _queuedTimersToAdd = new List<ITimer>();
-    private List<ITimer> _queuedTimersToRemove = new List<ITimer>();
+    private readonly List<ITimer> _timers = new List<ITimer>();
+    private readonly List<ITimer> _queuedTimersToAdd = new List<ITimer>();
+    private readonly List<ITimer> _queuedTimersToRemove = new List<ITimer>();
 
     private void Update()
     {
@@ -25,7 +25,7 @@ public class TimerManager : MonoSingleton<TimerManager>
     }
     private void RemoveQueuedTimers()
     {
-        _queuedTimersToRemove.ForEach(queuedTimer => _timers.Add(queuedTimer));
+        _queuedTimersToRemove.ForEach(queuedTimer => _timers.Remove(queuedTimer));
         _queuedTimersToAdd.Clear();
     }
 
@@ -72,12 +72,12 @@ public class TimerManager : MonoSingleton<TimerManager>
     public void RemoveTimer(Timer timer)
     {
         timer.OnTimerEnd -= RemoveTimer;
-        _queuedTimersToRemove.Remove(timer);
+        _queuedTimersToRemove.Add(timer);
     }
     public void RemoveTimer<T>(Timer<T> timer)
     {
         timer.OnTimerEnd -= RemoveTimer;
-        _queuedTimersToRemove.Remove(timer);
+        _queuedTimersToRemove.Add(timer);
     }
     
 }

@@ -199,7 +199,7 @@ public class UnitStats
                 break;
             default:
                 AddValueToStat(statType, Mathf.RoundToInt(decimalValue));
-                break;
+                return;
         }
 
         OnStatChanged?.Invoke(statType, decimalValue);

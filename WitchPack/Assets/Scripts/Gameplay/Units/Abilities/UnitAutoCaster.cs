@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.Utilities;
 using UnityEngine;
 
 public class UnitAutoCaster : MonoBehaviour
@@ -9,11 +10,13 @@ public class UnitAutoCaster : MonoBehaviour
 
     private BaseUnit owner;
     private Queue<ICaster> _queuedAbilities;
+    private List<ICaster> _abilitiesOnCooldown = new List<ICaster>();
     private float _castTimer;
     private float _currentCastTime;
 
     public void Init(BaseUnit givenOwner)
     {
+        if(_abilitiesOnCooldown.Count > 0) _abilitiesOnCooldown.Clear();
         _queuedAbilities = new Queue<ICaster>();
         owner = givenOwner;
         foreach (var castingHandler in givenOwner.CastingHandlers)
@@ -34,9 +37,9 @@ public class UnitAutoCaster : MonoBehaviour
             if (caster.CastAbility())
             {
                 TimerManager.Instance.AddTimer<ICaster>(caster.GetCooldown(),caster,EnqueueAbility,true);
+                _abilitiesOnCooldown.Add(caster);
                 _currentCastTime = caster.Ability.CastTime;
                 _castTimer = 0;
-                caster.LastCast = GAME_TIME.GameDeltaTime;
             }
             else
             {
@@ -51,6 +54,8 @@ public class UnitAutoCaster : MonoBehaviour
 
     private void EnqueueAbility(ICaster caster)
     {
+        if (!_abilitiesOnCooldown.Contains(caster)) return;
+        _abilitiesOnCooldown.Remove(caster);
         _queuedAbilities.Enqueue(caster);
     }
 

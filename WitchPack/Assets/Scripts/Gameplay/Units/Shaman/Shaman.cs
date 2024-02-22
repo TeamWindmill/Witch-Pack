@@ -34,7 +34,6 @@ public class Shaman : BaseUnit
         base.Init(shamanConfig);
         energyHandler = new EnergyHandler(this);
         EnemyTargeter.SetRadius(Stats.BonusRange);
-        ShamanTargeter.SetRadius(Stats.BonusRange);
         IntializeAbilities();
         shamanAnimator.Init(this);
         indicatable.Init(shamanConfig.UnitIcon);
@@ -42,7 +41,6 @@ public class Shaman : BaseUnit
         #region Events
         // no need to unsubscribe because shaman gets destroyed between levels
         Stats.OnStatChanged += EnemyTargeter.AddRadius;
-        Stats.OnStatChanged += ShamanTargeter.AddRadius;
         Movement.OnDestinationSet += AutoCaster.DisableCaster;
         Movement.OnDestinationReached += AutoCaster.EnableCaster;
         clicker.OnClick += SetSelectedShaman;
