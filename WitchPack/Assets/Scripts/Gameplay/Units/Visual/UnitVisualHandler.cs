@@ -48,11 +48,15 @@ public class UnitVisualHandler : MonoBehaviour
 
     protected void FlipX(bool doFlip)
     {
-        var scale = transform.localScale;
-        scale.x = doFlip ? -1 : 1;
+        var scale = new Vector3()
+        {
+            x = doFlip ? -1 : 1,
+            y = transform.localScale.y,
+            z = transform.localScale.z,
+        };
         transform.localScale = scale;
         //Debug.Log("local scale: " + transform.localScale);
-        spriteRenderer.flipX = doFlip;
+        //spriteRenderer.flipX = doFlip;
         OnSpriteFlip?.Invoke(doFlip);
         //_silhouette.flipX = doFlip;
     }
