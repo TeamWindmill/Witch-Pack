@@ -34,17 +34,17 @@ public class TimerManager : MonoSingleton<TimerManager>
     /// </summary>
     /// <param name="dontDestroyTimer">if true use the RemoveTimer Method</param>
     /// <returns></returns>
-    public Timer AddTimer(float tickTime, Action onTimerEnd, bool usingGameTime = false, int ticksAmount = 1, bool dontDestroyTimer = false)
+    public Timer AddTimer(float tickTime, Action onTimerTick, bool usingGameTime = false, int ticksAmount = 1, bool dontDestroyTimer = false)
     {
-        var timerData = new TimerData(tickTime, onTimerEnd, ticksAmount, usingGameTime, dontDestroyTimer);
+        var timerData = new TimerData(tickTime, onTimerTick, ticksAmount, usingGameTime, dontDestroyTimer);
         var timer = new Timer(timerData);
         _queuedTimersToAdd.Add(timer);
         timer.OnTimerEnd += RemoveTimer;
         return timer;
     }
-    public Timer<T> AddTimer<T>(float tickTime,T data, Action<T> onTimerEnd, bool usingGameTime = false, int ticksAmount = 1, bool dontDestroyTimer = false)
+    public Timer<T> AddTimer<T>(float tickTime,T data, Action<T> onTimerTick, bool usingGameTime = false, int ticksAmount = 1, bool dontDestroyTimer = false)
     {
-        var timerData = new TimerData<T>(tickTime, data, onTimerEnd, ticksAmount, usingGameTime, dontDestroyTimer);
+        var timerData = new TimerData<T>(tickTime, data, onTimerTick, ticksAmount, usingGameTime, dontDestroyTimer);
         var timer = new Timer<T>(timerData);
         _queuedTimersToAdd.Add(timer);
         timer.OnTimerEnd += RemoveTimer;

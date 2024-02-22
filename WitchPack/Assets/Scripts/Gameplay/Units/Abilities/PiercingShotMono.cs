@@ -3,17 +3,30 @@ using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class Projectile : MonoBehaviour
+public class PiercingShotMono : MonoBehaviour
 {
-    private BaseAbility refAbility;
-    private BaseUnit owner;
-    [SerializeField] private float speed;
+    private const string BASIC_PIERCING_SHOT = "Piercing Shot";
+    private const string MARKSMAN = "Marksman";
+    private const string EXPERIENCED_HUNTER = "Experienced Hunter";
+    private const string QUICK_SHOT = "Quick Shot";
+    
+    [Header("refs")]
+    [SerializeField] private ParticleSystem _basicPiercingShot;
+    [SerializeField] private ParticleSystem _MarksmanPiercingShot;
+    [SerializeField] private ParticleSystem _ExperiencedHunterPiercingShot;
+    [SerializeField] private ParticleSystem _QuickShotPiercingShot;
     [SerializeField] private Rigidbody2D rb;
+    
+    [Header("variables")]
+    [SerializeField] private float speed;
     [SerializeField] private float lifeTime;
+    
     private int baseMaxNumberOfHits;
     private int currentNumberOfHits;
     private int maxNumberOfHits;
     private float lastRate;
+    private BaseAbility refAbility;
+    private BaseUnit owner;
 
     private void OnEnable()
     {
@@ -25,6 +38,7 @@ public class Projectile : MonoBehaviour
     }
     public void Fire(BaseUnit shooter, BaseAbility givenAbility, Vector2 dir, int basePen = 0, bool includePenStat = false)
     {
+        EnableVisuals(givenAbility);
         owner = shooter;
         refAbility = givenAbility;
         Rotate(dir);
@@ -39,6 +53,25 @@ public class Projectile : MonoBehaviour
             maxNumberOfHits = baseMaxNumberOfHits + basePen;
         }
         StartCoroutine(LifeTime());
+    }
+
+    private void EnableVisuals(BaseAbility givenAbility)
+    {
+        switch (givenAbility.Name)
+        {
+            case BASIC_PIERCING_SHOT:
+                _basicPiercingShot.gameObject.SetActive(true);
+                break;
+            case MARKSMAN:
+                _MarksmanPiercingShot.gameObject.SetActive(true);
+                break;
+            case EXPERIENCED_HUNTER:
+                _ExperiencedHunterPiercingShot.gameObject.SetActive(true);
+                break;
+            case QUICK_SHOT:
+                _QuickShotPiercingShot.gameObject.SetActive(true);
+                break;
+        }
     }
 
     private void ChangeVelocity()

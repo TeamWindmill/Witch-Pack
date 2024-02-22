@@ -8,7 +8,7 @@ public class AbilityUIButton : ClickableUIElement
     public event Action<AbilityUIButton> OnAbilityClick;
     public BaseAbility RootAbility => _rootAbility;
     public BaseAbility ActiveAbility => _activeAbility;
-    public UnitCastingHandler CastingHandler => _castingHandler;
+    public AbilityCaster Caster => _caster;
     
     [SerializeField] private Image _abilitySpriteRenderer;
     [SerializeField] private Image _cooldownSpriteRenderer;
@@ -17,7 +17,7 @@ public class AbilityUIButton : ClickableUIElement
     [SerializeField] private Sprite upgradeReadyFrameSprite;
     [SerializeField] private Sprite defaultFrameSprite;
     
-    private UnitCastingHandler _castingHandler;
+    private AbilityCaster _caster;
     private BaseAbility _rootAbility;
     private BaseAbility _activeAbility;
     private float _abilityCd;
@@ -27,7 +27,7 @@ public class AbilityUIButton : ClickableUIElement
 
     private bool _activeCd;
     
-    public void Init(BaseAbility rootAbility,BaseAbility activeAbility = null, UnitCastingHandler castingHandler = null, bool hasSkillPoints = false)
+    public void Init(BaseAbility rootAbility,BaseAbility activeAbility = null, AbilityCaster caster = null, bool hasSkillPoints = false)
     {
         _rootAbility = rootAbility;
         _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
@@ -40,11 +40,11 @@ public class AbilityUIButton : ClickableUIElement
         {
             _activeAbility = activeAbility;
             _abilitySpriteRenderer.sprite = activeAbility.Icon;
-            if (castingHandler is not null)
+            if (caster is not null)
             {
-                _castingHandler = castingHandler;
-                SetCooldownData(castHandler: castingHandler);
-                _castingHandler.OnCast += UpdateOnCast;
+                _caster = caster;
+                SetCooldownData(castHandler: caster);
+                _caster.OnCast += UpdateOnCast;
             }
             else SetCooldownData(0);
         }
@@ -62,9 +62,9 @@ public class AbilityUIButton : ClickableUIElement
         else
         {
             _abilitySpriteRenderer.sprite = _activeAbility.Icon;
-            if (_castingHandler is not null)
+            if (_caster is not null)
             {
-                SetCooldownData(castHandler: _castingHandler);
+                SetCooldownData(castHandler: _caster);
             }
             else SetCooldownData(0);
         }
@@ -73,7 +73,7 @@ public class AbilityUIButton : ClickableUIElement
 
     public override void Hide()
     {
-        if (_castingHandler is not null) _castingHandler.OnCast -= UpdateOnCast;
+        if (_caster is not null) _caster.OnCast -= UpdateOnCast;
         OnAbilityClick = null;
         SetCooldownData();
         base.Hide();
@@ -90,7 +90,7 @@ public class AbilityUIButton : ClickableUIElement
     }
 
     //set null for disabling the cooldown
-    private void SetCooldownData(float fillAmount = 0, UnitCastingHandler castHandler = null)
+    private void SetCooldownData(float fillAmount = 0, AbilityCaster castHandler = null)
     {
         if (ReferenceEquals(castHandler, null))
         {
@@ -117,8 +117,8 @@ public class AbilityUIButton : ClickableUIElement
         }
         _cooldownSpriteRenderer.fillAmount = ratio;
     }
-    private void UpdateOnCast(UnitCastingHandler castingHandler)
+    private void UpdateOnCast(AbilityCaster caster)
     {
-        _abilityLastCast = castingHandler.LastCast;
+        _abilityLastCast = caster.LastCast;
     }
 }

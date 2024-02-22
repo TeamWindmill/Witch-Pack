@@ -42,7 +42,7 @@ public class EnemyMovement
 
     private void ContinuePath()
     {
-        if(!_isActive) return;
+        if(!_isActive || !_unitMovement.Agent.enabled) return;
         _enemy.EnemyAgro.EnemyReturnedToPath();
         _isMoving = true;
         _unitMovement.ToggleMovement(false);

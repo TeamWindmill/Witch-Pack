@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
-public class TargetedShot : MonoBehaviour
+public class ShamanAutoAttackMono : MonoBehaviour
 {
     [SerializeField] protected float initialSpeed;
     [SerializeField] private float maxTravelTime = 2f;
