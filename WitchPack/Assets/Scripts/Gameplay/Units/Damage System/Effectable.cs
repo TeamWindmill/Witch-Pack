@@ -36,7 +36,7 @@ public class Effectable
         activeEffects.Add(ss);
         ss.Activate();
         OnAffected?.Invoke(this, affector, ss);
-        OnAffectedGFX?.Invoke(this,givenEffectData.StatusEffectType);
+        OnAffectedGFX?.Invoke(this,givenEffectData.StatusEffectType); // maybe also added this to the if above? line 32
         return ss;
     }
 
