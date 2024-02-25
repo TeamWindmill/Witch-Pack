@@ -33,6 +33,7 @@ public class Heal : BaseAbility
             if(caster.Damageable.CurrentHp < caster.Stats.MaxHp) // check if caster is injured
             {
                 HealTarget(caster as Shaman, caster);
+                return true;
             }
             return false;
         }
