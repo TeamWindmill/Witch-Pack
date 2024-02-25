@@ -17,8 +17,6 @@ public class Shaman : BaseUnit
     [SerializeField] private Indicatable indicatable;
     [SerializeField] private ParticleSystem levelUpEffect;
     [SerializeField] private ParticleSystem healEffect;
-    [SerializeField] private ParticleSystem auraOfSwiftnessEffect;
-    [SerializeField] private ParticleSystem overhealEffect;
 
 
     private ShamanConfig shamanConfig;
