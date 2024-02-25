@@ -15,20 +15,24 @@ MonoBehaviour:
   name: Courage
   discription: Small increase to damage  for each nearby Shaman and Charmed enemy.
   icon: {fileID: -70214969, guid: 2a862c0ebda887f42a111fbbce4d7fc0, type: 3}
+  castTime: 0
   cd: 0
-  isPassive: 1
   givesEnergyPoints: 0
   energyPoints: 0
   _hasSFX: 0
   soundEffectType: 0
-  castTime: 0
   statusEffects: []
   _upgrades: []
   targetData:
-    Prio: 0
-    Mod: 0
-  statIncreases:
-  - Stat: 1
-    Value: 10
-  _affectsEnemies: 0
-  _affectsShamans: 1
+    Priority: 0
+    Modifier: 0
+    StatType: 0
+  _statsIncrease:
+  - StatType: 1
+    Value: 5
+  _affectedByEnemies: 1
+  _affectedByEnemiesWithStatusEffect: 1
+  _enemyStatusEffect: 6
+  _affectedByShamans: 1
+  _affectedByShamansWithStatusEffect: 0
+  _shamanStatusEffect: 0

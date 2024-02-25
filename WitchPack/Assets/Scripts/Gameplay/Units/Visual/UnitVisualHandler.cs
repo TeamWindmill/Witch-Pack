@@ -25,6 +25,7 @@ public class UnitVisualHandler : MonoBehaviour
     {
         _baseUnit = unit;
         spriteRenderer.sprite = config.UnitSprite;
+        effectHandler.Init();
         _baseUnit.EnemyTargetHelper.OnTarget += FlipSpriteOnTarget;
         _baseUnit.ShamanTargetHelper.OnTarget += FlipSpriteOnTarget;
     }
@@ -66,7 +67,7 @@ public class UnitVisualHandler : MonoBehaviour
         Color color = Color.white;
         color.a = 1;
         spriteRenderer.color = color;
-        spriteRenderer.transform.localScale = Vector3.one;
+        animator.gameObject.transform.localScale = Vector3.one;
     }
 
     private void OnBecameVisible()
