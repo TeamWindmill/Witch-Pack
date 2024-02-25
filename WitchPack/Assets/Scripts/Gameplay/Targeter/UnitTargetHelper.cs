@@ -121,14 +121,14 @@ public class UnitTargetHelper<T> where T: BaseUnit
         {
             if (mod == TargetModifier.Most)
             {
-                if (cur.Damageable.CurrentHp/ cur.Stats.GetStatValue(StatType.MaxHp) < targets[i].Damageable.CurrentHp / cur.Stats.GetStatValue(StatType.MaxHp))
+                if (cur.Damageable.CurrentHp/ cur.Stats.GetStatValue(StatType.MaxHp) < targets[i].Damageable.CurrentHp / targets[i].Stats.GetStatValue(StatType.MaxHp))
                 {
                     cur = targets[i];
                 }
             }
             else
             {
-                if (cur.Damageable.CurrentHp / cur.Stats.GetStatValue(StatType.MaxHp) > targets[i].Damageable.CurrentHp / cur.Stats.GetStatValue(StatType.MaxHp))
+                if (cur.Damageable.CurrentHp / cur.Stats.GetStatValue(StatType.MaxHp) > targets[i].Damageable.CurrentHp / targets[i].Stats.GetStatValue(StatType.MaxHp))
                 {
                     cur = targets[i];
                 }
