@@ -9,11 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3591a7a019640064aa28faca6f55398d, type: 3}
-  m_Name: Heal
+  m_Script: {fileID: 11500000, guid: 869224aa6f25bdc46a0b9f460a721a08, type: 3}
+  m_Name: BlessingOfSwiftness
   m_EditorClassIdentifier: 
-  name: Heal
-  discription: Heals a wounded Shaman
+  name: Blessing of Swiftness
+  discription: Heals the target and grants it extra attack speed for a short while.
   icon: {fileID: 21300000, guid: a0db763ba950667428f64cfbbf90c309, type: 3}
   castTime: 1
   cd: 7
@@ -22,11 +22,10 @@ MonoBehaviour:
   _hasSFX: 1
   soundEffectType: 0
   statusEffects: []
-  _upgrades:
-  - {fileID: 11400000, guid: a375fee6a9a1909459661c3f78f6da65, type: 2}
-  - {fileID: 11400000, guid: 7bffac782568f71458ae230b8f3ade8d, type: 2}
+  _upgrades: []
   targetData:
-    Priority: 5
-    Modifier: 1
+    Priority: 0
+    Modifier: 0
     StatType: 0
   healAmount: 50
+  attackSpeedBoost: {fileID: 11400000, guid: 567b497dff865f94888ff136e0534474, type: 2}

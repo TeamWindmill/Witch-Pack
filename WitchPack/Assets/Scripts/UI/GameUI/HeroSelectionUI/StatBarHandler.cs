@@ -56,6 +56,7 @@ public class StatBarHandler : MonoBehaviour
          var currentHP = damageable.CurrentHp;
          var maxHP = damageable.MaxHp;
          _statBarValue.text = currentHP.ToString();
+        _statBarBaseValue.text = maxHP.ToString();
          _statBarFill.fillAmount = (float)currentHP / maxHP;
      }
 
