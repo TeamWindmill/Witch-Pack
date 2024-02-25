@@ -11,7 +11,7 @@ public class UnitEffectHandler : MonoBehaviour
 
     private Effectable _effectable;
 
-    private void Start()
+    public void Init()
     {
         foreach (StatusEffectVisual effectVisual in _statusEffectVisuals)
         {
