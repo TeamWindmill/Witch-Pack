@@ -18,7 +18,6 @@ public class BaseUnit : MonoBehaviour
     [SerializeField, TabGroup("Combat")] private GroundCollider groundCollider;
     [SerializeField, TabGroup("Stats")] private UnitStats stats;
     [SerializeField, TabGroup("Movement")] private UnitMovement movement;
-    [SerializeField, TabGroup("Visual")] private UnitVisualHandler unitVisual;
     [SerializeField, TabGroup("Visual")] private bool hasHPBar;
     [SerializeField, ShowIf(nameof(hasHPBar)), TabGroup("Visual")] private HP_Bar hpBar;
     [SerializeField, TabGroup("Combat")] private Transform _castPos;
@@ -38,7 +37,7 @@ public class BaseUnit : MonoBehaviour
     
     #region Public
     public HP_Bar HpBar => hpBar;
-    public UnitVisualHandler UnitVisual => unitVisual;
+    
     public Damageable Damageable => damageable;
     public DamageDealer DamageDealer => damageDealer;
     public Affector Affector => affector;
@@ -71,7 +70,7 @@ public class BaseUnit : MonoBehaviour
         AutoCaster.Init(this);
         Movement.SetUp(this);
         groundCollider.Init(this);
-        unitVisual.Init(this, givenConfig);
+        
         ToggleCollider(true);
         damageable.SetRegenerationTimer();
         if (hasHPBar)
@@ -86,8 +85,7 @@ public class BaseUnit : MonoBehaviour
         damageable.OnHeal += LevelManager.Instance.PopupsManager.SpawnHealPopup;
         effectable.OnAffectedGFX += LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
 
-        effectable.OnAffectedGFX += unitVisual.EffectHandler.PlayEffect;
-        effectable.OnEffectRemovedGFX += unitVisual.EffectHandler.DisableEffect;
+        
     }
 
     protected virtual void OnDisable() //unsubscribe to events
@@ -102,8 +100,7 @@ public class BaseUnit : MonoBehaviour
             damageable.OnHeal -= hpBar.SetBarBasedOnOwner;
         }
 
-        effectable.OnAffectedGFX -= unitVisual.EffectHandler.PlayEffect;
-        effectable.OnEffectRemovedGFX -= unitVisual.EffectHandler.DisableEffect;
+        
     }
 
     public void ToggleCollider(bool state)

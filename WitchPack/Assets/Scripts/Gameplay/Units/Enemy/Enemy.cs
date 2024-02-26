@@ -3,12 +3,15 @@ using UnityEngine;
 
 public class Enemy : BaseUnit
 {
+    [SerializeField, TabGroup("Visual")] private EnemyVisualHandler unitVisual;
+
     public EnemyConfig EnemyConfig { get => enemyConfig; }
     public int CoreDamage => _coreDamage;
     public int EnergyPoints => _energyPoints;
     public override StatSheet BaseStats => enemyConfig.BaseStats;
     public EnemyMovement EnemyMovement => _enemyMovement;
     public EnemyAgro EnemyAgro => _enemyAgro;
+    public EnemyVisualHandler UnitVisual => unitVisual;
 
     [SerializeField, TabGroup("Visual")] private EnemyAnimator enemyAnimator;
     private int _coreDamage;
@@ -37,10 +40,13 @@ public class Enemy : BaseUnit
         _enemyAgro = new EnemyAgro(this);
         _enemyMovement = new EnemyMovement(this);
         enemyAnimator.Init(this);
+        unitVisual.Init(this, givenConfig);
+        Effectable.OnAffectedGFX += unitVisual.EffectHandler.PlayEffect;
+        Effectable.OnEffectRemovedGFX += unitVisual.EffectHandler.DisableEffect;
 
         #region Events
         //remember to unsubscribe in OnDisable!!!
-        
+
         Damageable.OnHitGFX += GetHitSFX;
         Damageable.OnDeathGFX += DeathSFX;
         AutoAttackHandler.OnAttack += AttackSFX;
@@ -59,6 +65,8 @@ public class Enemy : BaseUnit
         if (AutoAttackHandler != null) AutoAttackHandler.OnAttack -= AttackSFX;
         Movement.OnDestinationSet -= AutoCaster.DisableCaster;
         Movement.OnDestinationReached -= AutoCaster.EnableCaster;
+        Effectable.OnAffectedGFX -= unitVisual.EffectHandler.PlayEffect;
+        Effectable.OnEffectRemovedGFX -= unitVisual.EffectHandler.DisableEffect;
     }
     private void Update()
     {

@@ -1,7 +1,11 @@
 
+using UnityEngine;
+
 public class EnemyVisualHandler : UnitVisualHandler
 {
     private Enemy _enemy;
+
+    [SerializeField] private PoisonIvyVisuals PoisonIvyVisuals;
     public override void Init(BaseUnit unit, BaseUnitConfig config)
     {
         base.Init(unit, config);

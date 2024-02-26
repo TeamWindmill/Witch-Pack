@@ -7,6 +7,7 @@ public class EnemyAnimator : UnitAnimator
     {
         base.Init(unit);
         _enemy = unit as Enemy;
+        _enemy.UnitVisual.OnSpriteFlip += FlipAnimations;
     }
 
     protected override void MoveAnimation()
