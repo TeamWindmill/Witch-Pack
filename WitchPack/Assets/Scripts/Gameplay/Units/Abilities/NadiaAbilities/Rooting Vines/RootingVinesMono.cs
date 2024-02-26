@@ -7,6 +7,7 @@ public class RootingVinesMono : MonoBehaviour
 {
     [SerializeField] private float lastingTime;
     [SerializeField] private float elapsedTime;
+    [SerializeField] private GroundColliderTargeter groundColliderTargeter;
 
     protected BaseAbility refAbility;
     protected BaseUnit owner;
@@ -20,6 +21,7 @@ public class RootingVinesMono : MonoBehaviour
         {
             elapsedTime = 0;
             gameObject.SetActive(false);
+            groundColliderTargeter.OnTargetAdded -= OnTargetEntered;
         }
     }
 
@@ -27,6 +29,7 @@ public class RootingVinesMono : MonoBehaviour
     {
         this.owner = owner;
         this.refAbility = ability;
+        groundColliderTargeter.OnTargetAdded += OnTargetEntered;
     }
 
     protected virtual void OnRoot(Enemy enemy)
@@ -34,14 +37,15 @@ public class RootingVinesMono : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTargetEntered(GroundCollider collider)
     {
-        Enemy enemy = collision.GetComponent<Enemy>();
-        if (!ReferenceEquals(enemy, null))
+        if(collider.Unit is Enemy enemy)
         {
-            enemy.Damageable.GetHit(owner.DamageDealer, refAbility);
-            OnRoot(enemy);
-            
+            if (!ReferenceEquals(enemy, null))
+            {
+                enemy.Damageable.GetHit(owner.DamageDealer, refAbility);
+                OnRoot(enemy);
+            }
         }
     }
 }

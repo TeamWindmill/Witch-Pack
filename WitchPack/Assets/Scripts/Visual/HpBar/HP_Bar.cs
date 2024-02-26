@@ -88,9 +88,10 @@ public class HP_Bar : MonoBehaviour
         }
     }
 
-    public void SetBarValue(Damageable arg1, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4, bool isCrit)
+    public void SetBarValue(Damageable damageable, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4, bool isCrit)
     {
-        var ratio = arg1.CurrentHp / _maxValue;
+        _maxValue = damageable.MaxHp;
+        float ratio = damageable.CurrentHp / _maxValue;
         if (ratio < 0) ratio = 0;
         fillSprite.localScale = new Vector3(ratio, _originalScale.y, _originalScale.z);
     }

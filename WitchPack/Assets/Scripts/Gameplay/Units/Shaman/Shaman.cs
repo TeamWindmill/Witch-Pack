@@ -16,12 +16,15 @@ public class Shaman : BaseUnit
     [SerializeField] private ClickHelper clicker;
     [SerializeField] private Indicatable indicatable;
     [SerializeField] private ParticleSystem levelUpEffect;
+    [SerializeField] private ParticleSystem healEffect;
 
 
     private ShamanConfig shamanConfig;
     private List<BaseAbility> rootAbilities = new List<BaseAbility>();
     private List<BaseAbility> knownAbilities = new List<BaseAbility>();
     private EnergyHandler energyHandler;
+
+    public ParticleSystem HealEffect { get => healEffect; }
 
     private void OnValidate()
     {
