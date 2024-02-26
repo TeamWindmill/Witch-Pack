@@ -6,6 +6,14 @@ using UnityEngine;
 
 public class PoisonIvy : OffensiveAbility
 {
+    [SerializeField] private float poisonDuration;
+    [SerializeField] private float poisonTickRate;
+    [SerializeField] private int poisonDamage;
+
+    public float PoisonDuration { get => poisonDuration; }
+    public float PoisonTickRate { get => poisonTickRate; }
+    public int PoisonDamage { get => poisonDamage; }
+
     public override bool CastAbility(BaseUnit caster)
     {
         BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
