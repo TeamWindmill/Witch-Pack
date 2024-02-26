@@ -13,7 +13,6 @@ public class Shaman : BaseUnit
     public List<BaseAbility> RootAbilities => rootAbilities;
     public EnergyHandler EnergyHandler => energyHandler;
     public ShamanVisualHandler ShamanVisualHandler => shamanVisualHandler;
-    public ParticleSystem HealEffect { get => healEffect; }
 
     #endregion
 
@@ -23,7 +22,6 @@ public class Shaman : BaseUnit
     [SerializeField] private ClickHelper clicker;
     [SerializeField] private Indicatable indicatable;
     [SerializeField] private ParticleSystem levelUpEffect;
-    [SerializeField] private ParticleSystem healEffect;
     #endregion
 
     #region private

@@ -42,6 +42,6 @@ public class Heal : BaseAbility
     protected virtual void HealTarget(Shaman target, BaseUnit caster)
     {
         target.Damageable.Heal(healAmount);
-        target.HealEffect.Play();
+        target.ShamanVisualHandler.HealEffect.Play();
     }
 }
