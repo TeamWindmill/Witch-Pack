@@ -37,7 +37,12 @@ public class PopupsManager : MonoBehaviour
         if (isCrit)
         {
             _popupColor = Color.red;
-        }        
+        }
+        if(ability.HasPopupColor)
+        {
+            _popupColor = ability.PopupColor;
+        }
+        
 
         _popupText = damage.GetFinalDamage().ToString();
         PopupPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, _popupText, _popupColor);

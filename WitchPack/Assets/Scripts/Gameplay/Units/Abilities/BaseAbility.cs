@@ -22,6 +22,11 @@ public class BaseAbility : ScriptableObject
     [SerializeField] private TargetData targetData;
     private AbilityUpgradeState _abilityUpgradeState;
 
+    [SerializeField] private bool hasPopupColor;
+    [SerializeField, ShowIf(nameof(hasPopupColor))] private Color popupColor;
+    public bool HasPopupColor { get => hasPopupColor; }
+    public Color PopupColor { get => popupColor; }
+
 
     public TargetData TargetData => targetData;
     public Sprite Icon => icon;
