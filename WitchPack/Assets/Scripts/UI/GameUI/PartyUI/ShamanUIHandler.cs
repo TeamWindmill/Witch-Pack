@@ -47,6 +47,7 @@ public class ShamanUIHandler : ClickableUIElement
 
     private void ShamanDeathUI(Damageable arg1, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4)
     {
+        _frame.sprite = defaultFrameSprite;
         var lowAlphaColor = _splash.color;
         lowAlphaColor.a = spriteDeathAlpha;
         _splash.color = lowAlphaColor;
@@ -57,6 +58,10 @@ public class ShamanUIHandler : ClickableUIElement
     private void OnShamanUpgrade(bool hasSkillPoints) => 
         _frame.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
 
-    private void GoToShaman() =>
+    private void GoToShaman()
+    {
+        if(_shaman.Damageable.IsDead) return;
         GameManager.Instance.CameraHandler.SetCameraPosition(_shaman.transform.position);
+    }
+        
 }
