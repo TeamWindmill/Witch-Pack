@@ -1,4 +1,6 @@
 
+using UnityEngine;
+
 public class EnemyVisualHandler : UnitVisualHandler
 {
     private Enemy _enemy;
@@ -12,5 +14,13 @@ public class EnemyVisualHandler : UnitVisualHandler
     {
         if (_enemy.EnemyMovement.IsMoving) return;
         base.FlipSpriteOnTarget(target);
+    }
+
+    protected override void OnUnitDeath()
+    {
+        Color color = Color.white;
+        color.a = 1;
+        spriteRenderer.color = color;
+        animator.gameObject.transform.localScale = Vector3.one;
     }
 }
