@@ -5,7 +5,10 @@ public class EnemyVisualHandler : UnitVisualHandler
 {
     private Enemy _enemy;
 
-    [SerializeField] private PoisonIvyVisuals PoisonIvyVisuals;
+    [SerializeField] private PoisonIvyVisuals poisonIvyVisuals;
+
+    public PoisonIvyVisuals PoisonIvyVisuals { get => poisonIvyVisuals; }
+
     public override void Init(BaseUnit unit, BaseUnitConfig config)
     {
         base.Init(unit, config);

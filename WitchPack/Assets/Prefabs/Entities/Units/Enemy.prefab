@@ -108,12 +108,12 @@ MonoBehaviour:
     visibility: 0
     threatLevel: 0
   movement: {fileID: 3601066906968062841}
-  unitVisual: {fileID: 1306432118746893170}
   hasHPBar: 1
   hpBar: {fileID: 714259947031342330}
   _castPos: {fileID: 0}
   enemyTargeter: {fileID: 4802130652673612735}
   shamanTargeter: {fileID: 7103957453635066382}
+  unitVisual: {fileID: 1306432118746893170}
   enemyAnimator: {fileID: 4409901568874554751}
 --- !u!114 &3601066906968062841
 MonoBehaviour:
@@ -335,6 +335,7 @@ MonoBehaviour:
   animator: {fileID: 2438517714681042483}
   unitAnimator: {fileID: 4409901568874554751}
   effectHandler: {fileID: 5234276808004912882}
+  poisonIvyVisuals: {fileID: 8588847760030490799}
 --- !u!1 &3980311502499608710
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,7 +816,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2797736818602604711, guid: b5bb9c231e62ec1469111c8b32054327, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.179
       objectReference: {fileID: 0}
     - target: {fileID: 2797736818602604711, guid: b5bb9c231e62ec1469111c8b32054327, type: 3}
       propertyPath: m_LocalPosition.z
@@ -859,6 +860,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2797736818602604711, guid: b5bb9c231e62ec1469111c8b32054327, type: 3}
   m_PrefabInstance: {fileID: 3690609627216537944}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8588847760030490799 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4901634307617327607, guid: b5bb9c231e62ec1469111c8b32054327, type: 3}
+  m_PrefabInstance: {fileID: 3690609627216537944}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18b1d1f922461e4bb6a90f05ce631ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &7709910988759335498
 PrefabInstance:
   m_ObjectHideFlags: 0
