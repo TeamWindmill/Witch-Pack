@@ -84,7 +84,7 @@ public class Shaman : BaseUnit
             if (ability is not Passive)
             {
                 ability.OnSetCaster(this);
-                castingHandlers.Add(new AbilityCaster(this, ability));
+                castingHandlers.Add(new AbilityCaster(this, ability as OffensiveAbility));
             }
             else
             {
@@ -100,7 +100,7 @@ public class Shaman : BaseUnit
         if (ability is not Passive passive)
         {
             ability.OnSetCaster(this);
-            castingHandlers.Add(new AbilityCaster(this, ability));
+            castingHandlers.Add(new AbilityCaster(this, ability as OffensiveAbility));
         }
         else
         {

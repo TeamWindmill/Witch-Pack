@@ -23,4 +23,10 @@ public class RootingVines : OffensiveAbility
         }
 
     }
+
+    public override bool CheckCastAvailable(BaseUnit caster)
+    {
+        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
+        return !ReferenceEquals(target, null);
+    }
 }

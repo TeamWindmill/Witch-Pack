@@ -5,13 +5,13 @@ public class AbilityCaster : ICaster
     
     public event Action<AbilityCaster> OnCast;
     public event Action<BaseAbility> OnCastGFX;
-    public BaseAbility Ability { get => _ability; }
+    public OffensiveAbility Ability { get => _ability; }
     public float LastCast { get; private set; }
     
     private readonly Shaman _shaman;
-    private readonly BaseAbility _ability;
+    private readonly OffensiveAbility _ability;
 
-    public AbilityCaster(BaseUnit owner, BaseAbility ability)
+    public AbilityCaster(BaseUnit owner, OffensiveAbility ability)
     {
         if (owner is Shaman shaman)
         {
@@ -39,6 +39,11 @@ public class AbilityCaster : ICaster
         {
             return false;
         }
+    }
+
+    public bool CheckCastAvailable()
+    {
+        return _ability.CheckCastAvailable(_shaman);
     }
 
     public float GetCooldown() => _ability.Cd;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ability", menuName = "Ability/Heal/Heal")]
-public class Heal : BaseAbility
+public class Heal : OffensiveAbility
 {
     [SerializeField] protected int healAmount;
 
@@ -33,6 +33,36 @@ public class Heal : BaseAbility
             if(caster.Damageable.CurrentHp < caster.Stats.MaxHp) // check if caster is injured
             {
                 HealTarget(caster as Shaman, caster);
+                return true;
+            }
+            return false;
+        }
+    }
+
+    public override bool CheckCastAvailable(BaseUnit caster)
+    {
+        Shaman target = caster.ShamanTargetHelper.GetTarget(TargetData); 
+        if (!ReferenceEquals(target, null)) // any shaman in range?
+        {
+            // Check if caster has lower hp (ratio) than lowest hp target
+            float casterCurrentHpRatio = caster.Damageable.CurrentHp / caster.Stats.MaxHp;
+            float targetCurrentHpRatio = target.Damageable.CurrentHp / target.Stats.MaxHp;
+            if (casterCurrentHpRatio < targetCurrentHpRatio)
+            {
+                target = caster as Shaman;
+            }
+
+            if(target.Damageable.CurrentHp == target.Damageable.MaxHp)
+            {
+                return false;
+            }
+
+            return true;
+        }
+        else // no other injured shamans
+        {
+            if(caster.Damageable.CurrentHp < caster.Stats.MaxHp) // check if caster is injured
+            {
                 return true;
             }
             return false;
