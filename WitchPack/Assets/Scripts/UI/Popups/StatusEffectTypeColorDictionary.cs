@@ -6,29 +6,29 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "StatusEffectTypeColorDictionary", menuName = "StatusEffectTypeColorDictionary")]
 public class StatusEffectTypeColorDictionary : ScriptableObject
 {
-    public List<StatusEffectTypeColorPair> StatusEffectTypeColorList;
+    public List<StatusEffectTypeVisualData> DataList;
 
-    public Color GetColorByStatusEffectType(StatusEffectType givenType)
+    public StatusEffectTypeVisualData GetData(StatusEffectType givenType)
     {
-        foreach (StatusEffectTypeColorPair pair in StatusEffectTypeColorList)
+        foreach (StatusEffectTypeVisualData data in DataList)
         {
             
-            if(pair.StatusEffectType == givenType)
+            if(data.StatusEffectType == givenType)
             {
-                return pair.Color;
+                return data;
             }
         }
 
         throw new Exception("Status Effect Type Not Found");
     }
 
-    public StatusEffectType GetStatusEffectTypeByColor(Color givenColor)
+    public StatusEffectTypeVisualData GetData(Color givenColor)
     {
-        foreach (StatusEffectTypeColorPair pair in StatusEffectTypeColorList)
+        foreach (StatusEffectTypeVisualData data in DataList)
         {
-            if (pair.Color == givenColor)
+            if (data.Color == givenColor)
             {
-                return pair.StatusEffectType;
+                return data;
             }
         }
 
@@ -38,11 +38,13 @@ public class StatusEffectTypeColorDictionary : ScriptableObject
 
 
 [Serializable]
-public class StatusEffectTypeColorPair
+public class StatusEffectTypeVisualData
 {
     [SerializeField] private StatusEffectType statusEffectType;
     [SerializeField] private Color color;
+    [SerializeField] private string name;
 
     public StatusEffectType StatusEffectType { get => statusEffectType; }
     public Color Color { get => color; }
+    public string Name { get => name; }
 }
