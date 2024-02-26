@@ -77,19 +77,16 @@ MonoBehaviour:
     visibility: 0
     threatLevel: 0
   movement: {fileID: 1678831272390562764}
-  unitVisual: {fileID: 1972548795772543696}
   hasHPBar: 1
   hpBar: {fileID: 6607112471978238696}
   _castPos: {fileID: 7923560994105219183}
   enemyTargeter: {fileID: 4671891764483534921}
   shamanTargeter: {fileID: 643734768296118702}
   shamanAnimator: {fileID: 7099561053656345452}
+  shamanVisualHandler: {fileID: 1972548795772543696}
   clicker: {fileID: 1861919391548874701}
   indicatable: {fileID: 2569011272749710196}
   levelUpEffect: {fileID: 3889933701843178220}
-  healEffect: {fileID: 7706983395085086201}
-  auraOfSwiftnessEffect: {fileID: 7894628895454472019}
-  overhealEffect: {fileID: 1069853737544288448}
 --- !u!50 &7156522581338340880
 Rigidbody2D:
   serializedVersion: 4
@@ -296,12 +293,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: f4e62ad13a5770c44aac2a924dab6155, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3355cd740a70d7948bedc53012fd3e2a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.3653333, y: 1.3653333}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -316,13 +313,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1877012767650632788}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e54a3e46499a5b4ba7e18b83ae87bf6, type: 3}
+  m_Script: {fileID: 11500000, guid: 55cefa8c882f43cda245139082d280ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 5260549790128730764}
   animator: {fileID: 2313241048133495088}
   unitAnimator: {fileID: 7099561053656345452}
   effectHandler: {fileID: 4117343034996269665}
+  healEffect: {fileID: 7706983395085086201}
+  overhealEffect: {fileID: 1069853737544288448}
 --- !u!1 &4111876999086526196
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,7 +822,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2476126798506837176, guid: b9011938b2e9b754080332e2aa3b56d5, type: 3}
       propertyPath: _statusEffectVisuals.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2476126798506837176, guid: b9011938b2e9b754080332e2aa3b56d5, type: 3}
       propertyPath: _statusEffectVisuals.Array.data[1].StatusEffectType
@@ -982,11 +981,6 @@ PrefabInstance:
 --- !u!4 &1505722273024787217 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 597715859595821762, guid: e3cf0efa63361344d9aa36dcc54152f5, type: 3}
-  m_PrefabInstance: {fileID: 2066841091631137235}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &7894628895454472019 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8152005856217785984, guid: e3cf0efa63361344d9aa36dcc54152f5, type: 3}
   m_PrefabInstance: {fileID: 2066841091631137235}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &8168006027243160463 stripped

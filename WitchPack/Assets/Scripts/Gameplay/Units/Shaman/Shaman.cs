@@ -5,26 +5,31 @@ using UnityEngine.EventSystems;
 
 public class Shaman : BaseUnit
 {
+    #region public
     public override StatSheet BaseStats => shamanConfig.BaseStats;
     public ShamanConfig ShamanConfig => shamanConfig;
     public List<BaseAbility> KnownAbilities => knownAbilities;
     public bool MouseOverShaman => clicker.IsHover;
     public List<BaseAbility> RootAbilities => rootAbilities;
     public EnergyHandler EnergyHandler => energyHandler;
+    public ShamanVisualHandler ShamanVisualHandler => shamanVisualHandler;
 
+    #endregion
+
+    #region serialized
     [SerializeField, TabGroup("Visual")] private ShamanAnimator shamanAnimator;
+    [SerializeField, TabGroup("Visual")] private ShamanVisualHandler shamanVisualHandler;
     [SerializeField] private ClickHelper clicker;
     [SerializeField] private Indicatable indicatable;
     [SerializeField] private ParticleSystem levelUpEffect;
-    [SerializeField] private ParticleSystem healEffect;
+    #endregion
 
-
+    #region private
     private ShamanConfig shamanConfig;
     private List<BaseAbility> rootAbilities = new List<BaseAbility>();
     private List<BaseAbility> knownAbilities = new List<BaseAbility>();
     private EnergyHandler energyHandler;
-
-    public ParticleSystem HealEffect { get => healEffect; }
+    #endregion
 
     private void OnValidate()
     {
@@ -40,6 +45,7 @@ public class Shaman : BaseUnit
         IntializeAbilities();
         shamanAnimator.Init(this);
         indicatable.Init(shamanConfig.UnitIcon);
+        shamanVisualHandler.Init(this,baseUnitConfig);
         
         #region Events
         // no need to unsubscribe because shaman gets destroyed between levels

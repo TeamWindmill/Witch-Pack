@@ -1,24 +1,24 @@
 using System;
 using UnityEngine;
 
-public class UnitVisualHandler : MonoBehaviour
+public abstract class UnitVisualHandler : MonoBehaviour
 {
     public Action<bool> OnSpriteFlip;
     public Animator Animator => animator;
     public UnitEffectHandler EffectHandler => effectHandler;
     
-    [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private Animator animator;
+    [SerializeField] protected SpriteRenderer spriteRenderer;
+    [SerializeField] protected Animator animator;
     [SerializeField] private UnitAnimator unitAnimator;
     [SerializeField] private UnitEffectHandler effectHandler;
 
 
     private Vector2 _lastPos;
-    private BaseUnit _baseUnit;
+    protected BaseUnit _baseUnit;
 
     private void Start()
     {
-        unitAnimator.OnDeathAnimationEnd += ResetSprite;
+        unitAnimator.OnDeathAnimationEnd += OnUnitDeath;
     }
 
     public virtual void Init(BaseUnit unit, BaseUnitConfig config)
@@ -47,28 +47,22 @@ public class UnitVisualHandler : MonoBehaviour
         FlipX(distance.x < 0);
     }
 
-    protected void FlipX(bool doFlip)
+    private void FlipX(bool doFlip)
     {
+        var localScale = transform.localScale;
         var scale = new Vector3()
         {
             x = doFlip ? -1 : 1,
-            y = transform.localScale.y,
-            z = transform.localScale.z,
+            y = localScale.y,
+            z = localScale.z,
         };
-        transform.localScale = scale;
-        //Debug.Log("local scale: " + transform.localScale);
-        //spriteRenderer.flipX = doFlip;
+        localScale = scale;
+        transform.localScale = localScale;
         OnSpriteFlip?.Invoke(doFlip);
-        //_silhouette.flipX = doFlip;
     }
 
-    private void ResetSprite()
-    {
-        Color color = Color.white;
-        color.a = 1;
-        spriteRenderer.color = color;
-        animator.gameObject.transform.localScale = Vector3.one;
-    }
+    protected abstract void OnUnitDeath();
+
 
     private void OnBecameVisible()
     {
@@ -80,7 +74,4 @@ public class UnitVisualHandler : MonoBehaviour
         //send message to indicator sys
 
     }
-
-
-
 }

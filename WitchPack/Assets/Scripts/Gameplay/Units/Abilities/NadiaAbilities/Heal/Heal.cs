@@ -13,8 +13,10 @@ public class Heal : BaseAbility
         if (!ReferenceEquals(target, null)) // any shaman in range?
         {
             // Check if caster has lower hp (ratio) than lowest hp target
-            float casterCurrentHpRatio = caster.Damageable.CurrentHp / caster.Stats.MaxHp;
-            float targetCurrentHpRatio = target.Damageable.CurrentHp / target.Stats.MaxHp;
+            float maxHp = caster.Stats.MaxHp;
+            float casterCurrentHpRatio = caster.Damageable.CurrentHp / maxHp;
+            maxHp = target.Stats.MaxHp;
+            float targetCurrentHpRatio = target.Damageable.CurrentHp / maxHp;
             if (casterCurrentHpRatio < targetCurrentHpRatio)
             {
                 target = caster as Shaman;
@@ -42,6 +44,6 @@ public class Heal : BaseAbility
     protected virtual void HealTarget(Shaman target, BaseUnit caster)
     {
         target.Damageable.Heal(healAmount);
-        target.HealEffect.Play();
+        target.ShamanVisualHandler.HealEffect.Play();
     }
 }
