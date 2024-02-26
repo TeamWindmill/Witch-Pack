@@ -47,6 +47,7 @@ public class Shaman : BaseUnit
         IntializeAbilities();
         shamanAnimator.Init(this);
         indicatable.Init(shamanConfig.UnitIcon);
+        shamanVisualHandler.Init(this,baseUnitConfig);
         
         #region Events
         // no need to unsubscribe because shaman gets destroyed between levels
