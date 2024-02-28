@@ -113,6 +113,7 @@ public class BaseUnit : MonoBehaviour
         Movement.ToggleMovement(false);
         ToggleCollider(false);
         damageable.ToggleHitable(false);
+        _autoCaster.DisableCaster();
     }
 
     private void OnValidate()

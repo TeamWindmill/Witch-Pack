@@ -52,20 +52,23 @@ public class PopupsManager : MonoBehaviour
     {
         if(statusEffectType == StatusEffectType.None) return;
 
+        _offsetVector = new Vector3(0, _yOffset);
+
         StatusEffectTypeVisualData data = _dictionary.GetData(statusEffectType);
         _popupColor = data.Color;
 
         _popupText = "";
         _popupText = data.Name;
 
-        PopupPrefab.Spawn(effectable.Owner.transform.position, _popupText, _popupColor);
+        PopupPrefab.Spawn(effectable.Owner.transform.position + _offsetVector, _popupText, _popupColor);
     }
 
     public void SpawnHealPopup(Damageable damageable, float healAmount)
     {
         _popupText = healAmount.ToString();
+        _offsetVector = new Vector3(0, _yOffset);
 
-        healPopupPrefab.Spawn(damageable.Owner.transform.position, _popupText);
+        healPopupPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, _popupText);
     }
 
     public void SpawnLevelUpTextPopup(Shaman shaman)
