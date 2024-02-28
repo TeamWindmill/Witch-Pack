@@ -15,20 +15,21 @@ MonoBehaviour:
   name: Inspire
   discription: Allies inside the smoke recieve bonus attack speed and movement speed.
   icon: {fileID: 1108142957, guid: bc5335bd6010ad24b9dcf7a94d8d3f31, type: 3}
+  castTime: 3
   cd: 20
-  isPassive: 0
   givesEnergyPoints: 0
   energyPoints: 0
+  _hasSFX: 1
   soundEffectType: 16
-  castTime: 1
   statusEffects:
   - {fileID: 11400000, guid: 8750043a8d6bd874c9cbf473fc75907f, type: 2}
   - {fileID: 11400000, guid: b2e16247ebd4dcb4b871c0608d5d0db5, type: 2}
   - {fileID: 11400000, guid: aa91ee66e42a5464bb7113037aa799d4, type: 2}
   _upgrades: []
   targetData:
-    Prio: 3
-    Mod: 0
+    Priority: 0
+    Modifier: 0
+    StatType: 0
   baseDamage: 0
   range: 2
   damageBoosts: []

@@ -9,6 +9,7 @@ public class BlessingOfSwiftness : Heal
     protected override void HealTarget(Shaman target, BaseUnit caster)
     {
         target.Damageable.Heal(healAmount);
+        target.ShamanVisualHandler.HealEffect.Play();
         target.Effectable.AddEffect(attackSpeedBoost, caster.Affector);
     }
 }

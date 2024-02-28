@@ -6,13 +6,14 @@ using UnityEngine;
 
 public class RootingVines : OffensiveAbility
 {
+    [SerializeField] private float lastingTime;
     public override bool CastAbility(BaseUnit caster)
     {
         BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);    
         if (!ReferenceEquals(target, null))
         {
             RootingVinesMono newVines = LevelManager.Instance.PoolManager.RootingVinesPool.GetPooledObject();
-            newVines.Init(caster, this);
+            newVines.Init(caster, this, lastingTime);
             newVines.transform.position = target.transform.position;
             newVines.gameObject.SetActive(true);
             return true;

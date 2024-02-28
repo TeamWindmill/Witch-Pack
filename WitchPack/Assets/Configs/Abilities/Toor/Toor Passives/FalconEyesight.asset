@@ -15,16 +15,22 @@ MonoBehaviour:
   name: Falcon Eyesight
   discription: Increases Range by 2
   icon: {fileID: 21300000, guid: a5c90f99aa40b5348b62ab872070f684, type: 3}
-  cd: 0
-  isPassive: 1
   castTime: 0
+  cd: 0
+  givesEnergyPoints: 0
+  energyPoints: 0
+  _hasSFX: 1
+  soundEffectType: 0
   statusEffects: []
   _upgrades:
   - {fileID: 11400000, guid: e95f065a901acd84b9e7de3103391257, type: 2}
   - {fileID: 11400000, guid: bea3c57d5751c7c499a794f7cf673e60, type: 2}
   targetData:
-    Prio: 0
-    Mod: 0
+    Priority: 0
+    Modifier: 0
+    StatType: 0
+  hasPopupColor: 0
+  popupColor: {r: 0, g: 0, b: 0, a: 0}
   statIncreases:
-  - Stat: 3
+  - StatType: 3
     Value: 2
