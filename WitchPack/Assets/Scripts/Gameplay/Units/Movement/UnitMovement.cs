@@ -7,8 +7,7 @@ public class UnitMovement : MonoBehaviour
     public event Action OnDestinationSet;
     public event Action OnDestinationReached;
     
-    private bool reachedDest;
-    private Vector2 currentDest;
+    private Vector3 currentDest;
     private Coroutine activeMovementRoutine;
     private BaseUnit owner;
     [SerializeField] private NavMeshAgent agent;
@@ -16,6 +15,8 @@ public class UnitMovement : MonoBehaviour
     public NavMeshAgent Agent => agent;
     public bool IsMoving => agent.velocity.sqrMagnitude > 0; //need to replace
     public float StoppingDistance => agent.stoppingDistance; //need to replace
+
+    public Vector3 CurrentDestination => currentDest;
 
     private void Awake()
     {
@@ -54,17 +55,16 @@ public class UnitMovement : MonoBehaviour
     {
         if(!agent.enabled || !agent.isOnNavMesh) return;
         agent.velocity = Vector3.zero;
-        currentDest = transform.position;
         currentDest = worldPos;
-        reachedDest = false;
         OnDestinationSet?.Invoke();
         if(owner is Shaman) Debug.Log("DestinationSet");
-        agent.destination = (Vector2)worldPos;
+        agent.SetDestination(worldPos);
         if (!ReferenceEquals(activeMovementRoutine, null))
         {
             StopCoroutine(activeMovementRoutine);
         }
         activeMovementRoutine = StartCoroutine(WaitTilReached());
+        
     }
 
     public void ToggleMovement(bool state)

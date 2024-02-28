@@ -26,24 +26,24 @@ public class EnemyMovement
     
     public void FollowPath()
     {
-        if(!_isMoving || !_isActive) return;
+        //if(!_isMoving || !_isActive) return;
         dstTravelled += _enemy.Stats.MovementSpeed * GAME_TIME.GameDeltaTime;
         _enemy.transform.position = _path.path.GetPointAtDistance(dstTravelled, EndOfPathInstruction.Stop);
     }
 
-    public void ReturnToPath(Vector3 currentPos)
+    public void ReturnToPath()
     {
-        if(!_isActive) return;
-        var returnPoint = _path.path.GetClosestPointOnPath(currentPos);
+        //if(!_isActive) return;
+        var returnPoint = _path.path.GetClosestPointOnPath(_enemy.transform.position);
         _unitMovement.SetDest(returnPoint);
-        dstTravelled = _path.path.GetClosestDistanceAlongPath(returnPoint);
-        _unitMovement.OnDestinationReached += ContinuePath;
+        //dstTravelled = _path.path.GetClosestDistanceAlongPath(returnPoint);
+        //_unitMovement.OnDestinationReached += ContinuePath;
     }
 
     private void ContinuePath()
     {
-        if(!_isActive || !_unitMovement.Agent.enabled) return;
-        _enemy.EnemyAgro.EnemyReturnedToPath();
+        //if(!_isActive || !_unitMovement.Agent.enabled) return;
+        _enemy.EnemyAI.EnemyReturnedToPath();
         _isMoving = true;
         _unitMovement.ToggleMovement(false);
     }
