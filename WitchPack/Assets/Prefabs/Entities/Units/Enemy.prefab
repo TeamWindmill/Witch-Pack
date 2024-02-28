@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 3988689875388376819}
   - component: {fileID: 3601066906968062841}
   - component: {fileID: 848828296485308851}
+  - component: {fileID: 4332121327867558694}
   - component: {fileID: 3887715021770713362}
   - component: {fileID: 5393496188249262306}
   - component: {fileID: 112427466382881516}
@@ -114,6 +115,7 @@ MonoBehaviour:
   enemyTargeter: {fileID: 4802130652673612735}
   shamanTargeter: {fileID: 7103957453635066382}
   unitVisual: {fileID: 1306432118746893170}
+  stateMachine: {fileID: 4332121327867558694}
   enemyAnimator: {fileID: 4409901568874554751}
 --- !u!114 &3601066906968062841
 MonoBehaviour:
@@ -140,6 +142,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5883ae61bbc70ec41b382e8af413e753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4332121327867558694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2845323102242863708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84c00ac9a9eb4e3a93549b624a5263dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _initialState: {fileID: 11400000, guid: eea4e89af702a934cad9e3c77ad9107d, type: 2}
 --- !u!195 &3887715021770713362
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -316,7 +331,7 @@ SpriteRenderer:
   m_Size: {x: 1.2047058, y: 1.2047058}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &1306432118746893170
