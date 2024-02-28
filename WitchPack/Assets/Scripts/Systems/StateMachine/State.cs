@@ -13,7 +13,10 @@ namespace Systems.StateMachine
         {
             foreach (var action in Actions)
                 action.Execute(machine);
+        }
 
+        public override void Transition(BaseStateMachine machine)
+        {
             foreach(var transition in Transitions)
                 transition.Execute(machine);
         }

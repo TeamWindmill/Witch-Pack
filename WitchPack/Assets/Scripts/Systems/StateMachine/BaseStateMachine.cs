@@ -6,12 +6,13 @@ namespace Systems.StateMachine
 {
     public class BaseStateMachine : MonoBehaviour
     {
-        public BaseState CurrentState { get; set; }
+        public BaseState CurrentState;
         public Enemy Owner { get; private set; } 
         
         [SerializeField] private BaseState _initialState;
         private bool _initialized;
-        private float _intervalTimer;
+        private float _executionIntervalTimer;
+        private float _transitionIntervalTimer;
         
 
         public void Init(Enemy owner)
@@ -24,14 +25,23 @@ namespace Systems.StateMachine
         private void Update()
         {
             if(!_initialized) return;
-            if (_intervalTimer < CurrentState.StateCheckInterval)
+            if (_executionIntervalTimer >= CurrentState.ExecuteInterval)
             {
                 CurrentState.Execute(this);
-                _intervalTimer = 0;
+                _executionIntervalTimer = 0;
             }
             else
             {
-                _intervalTimer += GAME_TIME.GameDeltaTime;
+                _executionIntervalTimer += GAME_TIME.GameDeltaTime;
+            }
+            if (_transitionIntervalTimer >= CurrentState.TransitionInterval)
+            {
+                CurrentState.Transition(this);
+                _transitionIntervalTimer = 0;
+            }
+            else
+            {
+                _transitionIntervalTimer += GAME_TIME.GameDeltaTime;
             }
         }
 

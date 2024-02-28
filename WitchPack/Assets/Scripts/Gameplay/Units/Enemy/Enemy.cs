@@ -13,7 +13,7 @@ public class Enemy : BaseUnit
     public int EnergyPoints => _energyPoints;
     public override StatSheet BaseStats => enemyConfig.BaseStats;
     public EnemyMovement EnemyMovement => _enemyMovement;
-    public EnemyAI EnemyAI => _enemyAI;
+    public EnemyAgro EnemyAgro => _enemyAgro;
     public EnemyVisualHandler UnitVisual => unitVisual;
     public PathCreator Path => _path;
 
@@ -23,7 +23,7 @@ public class Enemy : BaseUnit
     //testing 
     public int Id => gameObject.GetHashCode();
 
-    private EnemyAI _enemyAI;
+    private EnemyAgro _enemyAgro;
     private EnemyMovement _enemyMovement;
     private EnemyConfig enemyConfig;
     private PathCreator _path;
@@ -44,6 +44,7 @@ public class Enemy : BaseUnit
         _energyPoints = enemyConfig.EnergyPoints;
         ShamanTargeter.SetRadius(Stats.BonusRange);
         EnemyTargeter.SetRadius(Stats.BonusRange);
+        _enemyAgro = new EnemyAgro();
         stateMachine.Init(this);
         _enemyMovement = new EnemyMovement(this);
         enemyAnimator.Init(this);
@@ -65,7 +66,7 @@ public class Enemy : BaseUnit
     }
     protected override void OnDisable()
     {
-        _enemyAI?.OnDisable();
+        //_enemyAI?.OnDisable();
         base.OnDisable();
         Damageable.OnHitGFX -= GetHitSFX;
         Damageable.OnDeathGFX -= DeathSFX;
@@ -74,10 +75,6 @@ public class Enemy : BaseUnit
         Movement.OnDestinationReached -= AutoCaster.EnableCaster;
         Effectable.OnAffectedGFX -= unitVisual.EffectHandler.PlayEffect;
         Effectable.OnEffectRemovedGFX -= unitVisual.EffectHandler.DisableEffect;
-    }
-    private void Update()
-    {
-        _enemyMovement.FollowPath();
     }
 
     #region SFX

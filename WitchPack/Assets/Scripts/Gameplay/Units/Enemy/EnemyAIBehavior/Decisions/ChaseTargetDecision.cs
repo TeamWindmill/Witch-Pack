@@ -12,6 +12,8 @@ public class ChaseTargetDecision : Decision
             var rand = Random.Range(0f, 1f);
             if (rand < _chaseChance)
             {
+                machine.Owner.EnemyAgro.CurrentTarget = machine.Owner.ShamanTargeter.GetClosestTarget();
+                machine.Owner.Movement.Agent.stoppingDistance = machine.Owner.Movement.DefaultStoppingDistance;
                 return true;
             }
         }

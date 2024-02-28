@@ -14,7 +14,7 @@ public class UnitMovement : MonoBehaviour
 
     public NavMeshAgent Agent => agent;
     public bool IsMoving => agent.velocity.sqrMagnitude > 0; //need to replace
-    public float StoppingDistance => agent.stoppingDistance; //need to replace
+    public float DefaultStoppingDistance; 
 
     public Vector3 CurrentDestination => currentDest;
 
@@ -22,6 +22,7 @@ public class UnitMovement : MonoBehaviour
     {
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        DefaultStoppingDistance = agent.stoppingDistance;
     }
 
     public void SetUp(BaseUnit givenOwner)
@@ -30,35 +31,18 @@ public class UnitMovement : MonoBehaviour
         ToggleMovement(true);
     }
 
-   /* public void SetSpeed(float value)
-    {
-        agent.speed = value;
-        //agent.acceleration = agent.speed;
-    }
-
-
-    public void AddSpeed(StatType stat, float value)
-    {
-        if (stat == StatType.MovementSpeed)
-        {
-            agent.speed += value;
-            //agent.acceleration = agent.speed;
-        }
-    }*/
-
     private void Update()
     {
         agent.speed = owner.Stats.MovementSpeed * GAME_TIME.GetCurrentTimeRate;
     }
 
-    public void SetDest(Vector3 worldPos)
+    public void SetDestination(Vector3 worldPos)
     {
-        if(!agent.enabled || !agent.isOnNavMesh) return;
-        agent.velocity = Vector3.zero;
+        if(!agent.isOnNavMesh) return;
         currentDest = worldPos;
         OnDestinationSet?.Invoke();
         if(owner is Shaman) Debug.Log("DestinationSet");
-        agent.SetDestination(worldPos);
+        agent.destination = (Vector2)worldPos;
         if (!ReferenceEquals(activeMovementRoutine, null))
         {
             StopCoroutine(activeMovementRoutine);
@@ -66,6 +50,7 @@ public class UnitMovement : MonoBehaviour
         activeMovementRoutine = StartCoroutine(WaitTilReached());
         
     }
+
 
     public void ToggleMovement(bool state)
     {

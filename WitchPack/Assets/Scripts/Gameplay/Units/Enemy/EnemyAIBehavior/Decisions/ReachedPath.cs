@@ -8,8 +8,8 @@ public class ReachedPath : Decision
     
     public override bool Decide(BaseStateMachine machine)
     {
-        var movementAgent = machine.Owner.Movement;
-        if(movementAgent.CurrentDestination == machine.Owner.transform.position)
+        var agent = machine.Owner.Movement.Agent;
+        if(agent.remainingDistance <= agent.stoppingDistance)
         {
             return true;
         }
