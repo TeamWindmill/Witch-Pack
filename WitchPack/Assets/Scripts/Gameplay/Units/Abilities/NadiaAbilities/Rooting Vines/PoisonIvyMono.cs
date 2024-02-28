@@ -6,9 +6,9 @@ public class PoisonIvyMono : RootingVinesMono
 {
     private DamageHandler damageHandler;
     private PoisonIvy poison;
-    public override void Init(BaseUnit owner, BaseAbility ability)
+    public override void Init(BaseUnit owner, BaseAbility ability, float lastingTime)
     {
-        base.Init(owner, ability);
+        base.Init(owner, ability, lastingTime);
         poison = ability as PoisonIvy;
         damageHandler = new DamageHandler(poison.PoisonDamage);
     }
