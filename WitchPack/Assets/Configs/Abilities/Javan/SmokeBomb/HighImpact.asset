@@ -15,18 +15,19 @@ MonoBehaviour:
   name: High Impact
   discription: Deals damage on Impact, and has reduced CD.
   icon: {fileID: 1108142957, guid: bc5335bd6010ad24b9dcf7a94d8d3f31, type: 3}
+  castTime: 3
   cd: 15
-  isPassive: 0
   givesEnergyPoints: 0
   energyPoints: 0
+  _hasSFX: 1
   soundEffectType: 25
-  castTime: 1
   statusEffects:
   - {fileID: 11400000, guid: 8750043a8d6bd874c9cbf473fc75907f, type: 2}
   _upgrades: []
   targetData:
-    Prio: 0
-    Mod: 0
+    Priority: 0
+    Modifier: 0
+    StatType: 0
   baseDamage: 100
   range: 2
   damageBoosts: []
