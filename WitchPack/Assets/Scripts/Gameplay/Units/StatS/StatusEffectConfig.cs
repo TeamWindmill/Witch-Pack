@@ -48,5 +48,7 @@ public enum StatusEffectType
     Hidden,
     Inspired,
     AttackSpeedBoost,
+    HealthRegen,
+    MovementSpeed,
     PermanentMaxHealthBonus
 }
