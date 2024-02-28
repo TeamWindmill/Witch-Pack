@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class OffensiveAbility : BaseAbility
 {
+    [Header("Offensive Ability")]
     [SerializeField] private int baseDamage;
     [SerializeField] private float range;
     [SerializeField] private DamageBoostData[] damageBoosts;
-    public int BaseDamage { get => baseDamage; }
-    public float Range { get => range; }
-    public DamageBoostData[] DamageBoosts { get => damageBoosts; }
+    public int BaseDamage => baseDamage;
+    public float Range => range;
+    public DamageBoostData[] DamageBoosts => damageBoosts;
 }
 
 public enum DamageBonusType

@@ -11,6 +11,7 @@ public class Damageable
     private int currentHp;
     public int MaxHp => owner.Stats.MaxHp;
     public int CurrentHp => currentHp;
+    public bool IsDead => currentHp <= 0;
 
     private bool hitable;
 
@@ -138,7 +139,8 @@ public class Damageable
 
     private void AddStatsDamageReduction(Damageable target, DamageDealer dealer, DamageHandler dmg, BaseAbility ability, bool crit)
     {
-        dmg.AddMod(1 - (owner.Stats.Armor / 100));
+        float damageReductionModifier = 100f / (owner.Stats.Armor + 100f);
+        dmg.AddMod(damageReductionModifier);
     }
 
     public void DamageTick()

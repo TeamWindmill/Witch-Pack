@@ -19,6 +19,7 @@ MonoBehaviour:
   isPassive: 0
   givesEnergyPoints: 0
   energyPoints: 0
+  _hasSFX: 1
   soundEffectType: 13
   castTime: 0.5
   statusEffects: []
@@ -26,8 +27,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: cb2514b65dfc122468ae5be845669186, type: 2}
   - {fileID: 11400000, guid: b9cac84295f56404687865c71ac88587, type: 2}
   targetData:
-    Prio: 1
-    Mod: 1
+    Priority: 1
+    Modifier: 1
+    StatType: 0
   baseDamage: 50
   range: 6
   damageBoosts: []
@@ -37,5 +39,6 @@ MonoBehaviour:
   ricochetRange: 0
   ricochetSpeed: 0
   ricochetTargeting:
-    Prio: 1
-    Mod: 1
+    Priority: 0
+    Modifier: 0
+    StatType: 0

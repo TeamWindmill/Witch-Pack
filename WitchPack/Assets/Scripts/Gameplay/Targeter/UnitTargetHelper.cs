@@ -18,34 +18,40 @@ public class UnitTargetHelper<T> where T: BaseUnit
     }
 
 
-    public T GetTarget(TargetData givenData, List<T> targetsToAvoid = null, StatType stat = StatType.AttackSpeed)
+    public T GetTarget(TargetData givenData, List<T> targetsToAvoid = null)
     {
-        return GetTarget(targets, givenData, targetsToAvoid, stat);
+        return GetTarget(targets, givenData, targetsToAvoid);
     }
 
-    public T GetTarget(List<T> targets, TargetData givenData, List<T> targetsToAvoid = null, StatType stat = StatType.AttackSpeed)
+    public T GetTarget(List<T> targets, TargetData givenData, List<T> targetsToAvoid = null)
     {
         if (targets.Count <= 0)
         {
             return null;
         }
         T target;
-        switch (givenData.Prio)
+        switch (givenData.Priority)
         {
-            case TargetPrio.Stat:
-                target = GetTargetByStat(targets, stat, givenData.Mod, targetsToAvoid);
+            case TargetPriority.Stat:
+                target = GetTargetByStat(targets, givenData.StatType, givenData.Modifier, targetsToAvoid);
                 break;
-            case TargetPrio.Distance:
-                target = GetTargetByDistance(targets, givenData.Mod, targetsToAvoid);
+            case TargetPriority.Distance:
+                target = GetTargetByDistance(targets, givenData.Modifier, targetsToAvoid);
                 break;
-            case TargetPrio.Random:
+            case TargetPriority.Random:
                 target = targets[UnityEngine.Random.Range(0, targets.Count)];
                 break;
-            case TargetPrio.DistnaceToCore:
-                target = GetTargetByDistanceToCore(targets, givenData.Mod, targetsToAvoid);
+            case TargetPriority.DistnaceToCore:
+                target = GetTargetByDistanceToCore(targets, givenData.Modifier, targetsToAvoid);
                 break;
-            case TargetPrio.Threatened:
-                target = GetTargetByThreat(targets, givenData.Mod, targetsToAvoid);
+            case TargetPriority.Threatened:
+                target = GetTargetByThreat(targets, givenData.Modifier, targetsToAvoid);
+                break;
+            case TargetPriority.CurrentHP:
+                target = GetTargetByHP(targets, givenData.Modifier, targetsToAvoid);
+                break;
+            case TargetPriority.CurrentHPPrecentage:
+                target = GetTargetByHPPrecentage(targets, givenData.Modifier, targetsToAvoid);
                 break;
 
             //add threat when Im doen adding the system
@@ -56,7 +62,7 @@ public class UnitTargetHelper<T> where T: BaseUnit
         return target;
     }
 
-    private T GetTargetByThreat(List<T> targets, TargetMod mod, List<T> targetsToAvoid)
+    private T GetTargetByThreat(List<T> targets, TargetModifier mod, List<T> targetsToAvoid)
     {
         T cur = null;
         for (int i = 0; i < targets.Count; i++)
@@ -69,7 +75,7 @@ public class UnitTargetHelper<T> where T: BaseUnit
             if (targets[i].Stats.ThreatLevel <= 0) continue;
             else cur = targets[i];
             
-            if (mod == TargetMod.Most)
+            if (mod == TargetModifier.Most)
             {
                 if (cur.Stats.ThreatLevel < targets[i].Stats.ThreatLevel)
                 {
@@ -86,13 +92,56 @@ public class UnitTargetHelper<T> where T: BaseUnit
         }
         return cur;
     }
-
-    private T GetTargetByStat(List<T> targets, StatType givenStat, TargetMod mod, List<T> targetsToAvoid = null)
+    private T GetTargetByHP(List<T> targets, TargetModifier mod, List<T> targetsToAvoid = null)
     {
         T cur = targets[targets.Count / 2];
         for (int i = 0; i < targets.Count; i++)
         {
-            if (mod == TargetMod.Most)
+            if (mod == TargetModifier.Most)
+            {
+                if (cur.Damageable.CurrentHp < targets[i].Damageable.CurrentHp)
+                {
+                    cur = targets[i];
+                }
+            }
+            else
+            {
+                if (cur.Damageable.CurrentHp > targets[i].Damageable.CurrentHp)
+                {
+                    cur = targets[i];
+                }
+            }
+        }
+        return cur;
+    }
+    private T GetTargetByHPPrecentage(List<T> targets, TargetModifier mod, List<T> targetsToAvoid = null)
+    {
+        T cur = targets[targets.Count / 2];
+        for (int i = 0; i < targets.Count; i++)
+        {
+            if (mod == TargetModifier.Most)
+            {
+                if (cur.Damageable.CurrentHp/ cur.Stats.GetStatValue(StatType.MaxHp) < targets[i].Damageable.CurrentHp / targets[i].Stats.GetStatValue(StatType.MaxHp))
+                {
+                    cur = targets[i];
+                }
+            }
+            else
+            {
+                if (cur.Damageable.CurrentHp / cur.Stats.GetStatValue(StatType.MaxHp) > targets[i].Damageable.CurrentHp / targets[i].Stats.GetStatValue(StatType.MaxHp))
+                {
+                    cur = targets[i];
+                }
+            }
+        }
+        return cur;
+    }
+    private T GetTargetByStat(List<T> targets, StatType givenStat, TargetModifier mod, List<T> targetsToAvoid = null)
+    {
+        T cur = targets[targets.Count / 2];
+        for (int i = 0; i < targets.Count; i++)
+        {
+            if (mod == TargetModifier.Most)
             {
                 if (cur.Stats.GetStatValue(givenStat) < targets[i].Stats.GetStatValue(givenStat))
                 {
@@ -110,7 +159,7 @@ public class UnitTargetHelper<T> where T: BaseUnit
         return cur;
     }
 
-    private T GetTargetByDistance(List<T> targets, TargetMod mod, List<T> targetsToAvoid = null)
+    private T GetTargetByDistance(List<T> targets, TargetModifier mod, List<T> targetsToAvoid = null)
     {
         T cur = targets[targets.Count / 2];
         for (int i = 0; i < targets.Count; i++)
@@ -120,7 +169,7 @@ public class UnitTargetHelper<T> where T: BaseUnit
                 continue;
             }
 
-            if (mod == TargetMod.Most)
+            if (mod == TargetModifier.Most)
             {
                 if (Vector3.Distance(cur.transform.position, owner.transform.position) < Vector3.Distance(targets[i].transform.position, owner.transform.position))
                 {
@@ -138,7 +187,7 @@ public class UnitTargetHelper<T> where T: BaseUnit
         return cur;
     }
 
-    private T GetTargetByDistanceToCore(List<T> targets, TargetMod mod, List<T> targetsToAvoid = null)
+    private T GetTargetByDistanceToCore(List<T> targets, TargetModifier mod, List<T> targetsToAvoid = null)
     {
         T cur = targets[targets.Count / 2];
         for (int i = 0; i < targets.Count; i++)
@@ -148,7 +197,7 @@ public class UnitTargetHelper<T> where T: BaseUnit
                 continue;
             }
 
-            if (mod == TargetMod.Most)
+            if (mod == TargetModifier.Most)
             {
                 if (Vector3.Distance(cur.transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position) < Vector3.Distance(targets[i].transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position))
                 {

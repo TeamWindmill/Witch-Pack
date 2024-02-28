@@ -13,7 +13,7 @@ public class PiercingShot : OffensiveAbility
         BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
         if (!ReferenceEquals(target, null))
         {
-            Projectile newPew = LevelManager.Instance.PoolManager.TestAbilityPool.GetPooledObject();
+            PiercingShotMono newPew = LevelManager.Instance.PoolManager.PiercingShotPool.GetPooledObject();
             newPew.transform.position = caster.transform.position;
             newPew.gameObject.SetActive(true);
             Vector2 dir = (target.transform.position - caster.transform.position) / (target.transform.position - caster.transform.position).magnitude;
