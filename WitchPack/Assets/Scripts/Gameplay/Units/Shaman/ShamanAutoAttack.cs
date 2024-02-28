@@ -19,4 +19,10 @@ public class ShamanAutoAttack : OffensiveAbility
         newPew.Fire(caster, this, dir.normalized, target);
         return true;
     }
+
+    public override bool CheckCastAvailable(BaseUnit caster)
+    {
+        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
+        return !ReferenceEquals(target, null);
+    }
 }

@@ -23,4 +23,10 @@ public class HealingWeeds : OffensiveAbility
             return false;
         }
     }
+
+    public override bool CheckCastAvailable(BaseUnit caster)
+    {
+        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
+        return !ReferenceEquals(target, null);
+    }
 }

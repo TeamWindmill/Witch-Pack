@@ -12,4 +12,10 @@ public class EnemyAutoAttack : OffensiveAbility
       target.Damageable.GetHit(caster.DamageDealer,this);
       return true;
    }
+
+   public override bool CheckCastAvailable(BaseUnit caster)
+   {
+      BaseUnit target = caster.ShamanTargetHelper.GetTarget(TargetData);
+      return !ReferenceEquals(target, null);
+   }
 }

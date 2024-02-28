@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class BaseAbility : ScriptableObject
+public abstract class BaseAbility : ScriptableObject
 {
     [Header("Base Ability")]
     [SerializeField] private string name;
@@ -46,15 +46,7 @@ public class BaseAbility : ScriptableObject
 
     public float CastTime { get => castTime; }
 
-    public virtual bool CastAbility(BaseUnit caster)
-    {
-        return true;
-    }
 
-    public virtual bool CheckCastAvailable(BaseUnit caster)
-    {
-        return true;
-    }
 
     public virtual void OnSetCaster(BaseUnit caster)
     {

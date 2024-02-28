@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class UnitAutoCaster : MonoBehaviour
 {
+    public event Action<BaseAbility> OnCastTimeStart;
+    public event Action<BaseAbility> OnCastTimeEnd;
     public bool CanCast { get; private set; }
 
     private BaseUnit owner;
@@ -31,25 +33,32 @@ public class UnitAutoCaster : MonoBehaviour
     {
         if(!CanCast) return;
         if (_queuedAbilities.Count <= 0) return;
-        if (_castTimer > _currentCastTime)
+        var caster = _queuedAbilities.Peek();
+        if (caster.CheckCastAvailable())
         {
-            var caster = _queuedAbilities.Dequeue();
-            if (caster.CastAbility())
+            if (_castTimer > caster.Ability.CastTime)
             {
-                TimerManager.Instance.AddTimer<ICaster>(caster.GetCooldown(),caster,EnqueueAbility,true);
-                _abilitiesOnCooldown.Add(caster);
-                _currentCastTime = caster.Ability.CastTime;
-                _castTimer = 0;
+                if (caster.CastAbility())
+                {
+                    TimerManager.Instance.AddTimer<ICaster>(caster.GetCooldown(),caster,EnqueueAbility,true);
+                    _abilitiesOnCooldown.Add(caster);
+                    _queuedAbilities.Dequeue();
+                    _castTimer = 0;
+                }
             }
             else
             {
-                _queuedAbilities.Enqueue(caster);
+                _castTimer += GAME_TIME.GameDeltaTime;
             }
         }
         else
         {
-            _castTimer += GAME_TIME.GameDeltaTime;
+            _castTimer = 0;
+            _queuedAbilities.Dequeue();
+            _queuedAbilities.Enqueue(caster);
         }
+
+        
     }
 
     private void EnqueueAbility(ICaster caster)
