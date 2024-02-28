@@ -86,7 +86,7 @@ public class SelectionManager : MonoBehaviour
                 
                 //set destination for selected shaman
                 var newDest = GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
-                _selectedShaman.Movement.SetDest(newDest);
+                _selectedShaman.Movement.SetDestination(newDest);
                 OnShamanDeselected?.Invoke(SelectedShaman);
                 _selectedShaman = null;
             }
