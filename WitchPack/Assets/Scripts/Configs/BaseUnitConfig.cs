@@ -1,8 +1,7 @@
 using UnityEngine;
 
-public class BaseUnitConfig : ScriptableObject
+public class BaseUnitConfig : BaseConfig
 {
-    [SerializeField] private string name;
     [SerializeField] private StatSheet baseStats;
     [SerializeField] private Sprite unitSprite;
     [SerializeField] private Sprite unitIcon;
