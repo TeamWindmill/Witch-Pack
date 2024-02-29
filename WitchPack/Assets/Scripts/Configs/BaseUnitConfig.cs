@@ -1,10 +1,14 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class BaseUnitConfig : BaseConfig
 {
-    [SerializeField] private StatSheet baseStats;
     [SerializeField] private Sprite unitSprite;
+    
     [SerializeField] private Sprite unitIcon;
+    
+    [SerializeField] 
+    private StatSheet baseStats;
 
     public string Name => name;
     public Sprite UnitSprite => unitSprite;
