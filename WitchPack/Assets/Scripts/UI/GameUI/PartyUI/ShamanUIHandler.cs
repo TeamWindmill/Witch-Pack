@@ -60,7 +60,7 @@ public class ShamanUIHandler : ClickableUIElement
 
     private void GoToShaman()
     {
-        if(_shaman.Damageable.IsDead) return;
+        if(_shaman.IsDead) return;
         GameManager.Instance.CameraHandler.SetCameraPosition(_shaman.transform.position);
     }
         

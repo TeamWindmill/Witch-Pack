@@ -115,7 +115,7 @@ MonoBehaviour:
   enemyTargeter: {fileID: 4802130652673612735}
   shamanTargeter: {fileID: 7103957453635066382}
   unitVisual: {fileID: 1306432118746893170}
-  stateMachine: {fileID: 4332121327867558694}
+  enemyAI: {fileID: 4332121327867558694}
   enemyAnimator: {fileID: 4409901568874554751}
 --- !u!114 &3601066906968062841
 MonoBehaviour:
@@ -151,10 +151,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2845323102242863708}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84c00ac9a9eb4e3a93549b624a5263dd, type: 3}
+  m_Script: {fileID: 11500000, guid: a3d96e3283ba3a244b2b39de78eec26c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initialState: {fileID: 11400000, guid: eea4e89af702a934cad9e3c77ad9107d, type: 2}
+  _states:
+  - {fileID: 11400000, guid: 76217b73687085a46a9c53cead10db7b, type: 2}
+  - {fileID: 11400000, guid: d0b7c2485fa250e4994c7c70535bcd02, type: 2}
+  - {fileID: 11400000, guid: 1a5310a6775d987499fa0ba33cfdfeea, type: 2}
+  _activeState: {fileID: 11400000, guid: 76217b73687085a46a9c53cead10db7b, type: 2}
+  CurrentTarget: {fileID: 0}
 --- !u!195 &3887715021770713362
 NavMeshAgent:
   m_ObjectHideFlags: 0
