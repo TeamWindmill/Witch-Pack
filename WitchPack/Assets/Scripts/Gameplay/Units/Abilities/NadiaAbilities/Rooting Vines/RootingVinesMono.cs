@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class RootingVinesMono : MonoBehaviour
 {
-    [SerializeField] private float lastingTime;
-    [SerializeField] private float elapsedTime;
+    private float ringLastingTime;
+    private float elapsedTime;
     [SerializeField] private GroundColliderTargeter groundColliderTargeter;
 
     protected BaseAbility refAbility;
@@ -17,7 +17,7 @@ public class RootingVinesMono : MonoBehaviour
     private void Update()
     {
         elapsedTime += GAME_TIME.GameDeltaTime;
-        if(elapsedTime >= lastingTime)
+        if(elapsedTime >= ringLastingTime)
         {
             elapsedTime = 0;
             gameObject.SetActive(false);
@@ -25,8 +25,9 @@ public class RootingVinesMono : MonoBehaviour
         }
     }
 
-    public virtual void Init(BaseUnit owner, BaseAbility ability)
+    public virtual void Init(BaseUnit owner, BaseAbility ability, float lastingTime)
     {
+        ringLastingTime = lastingTime;
         this.owner = owner;
         this.refAbility = ability;
         groundColliderTargeter.OnTargetAdded += OnTargetEntered;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class OffensiveAbility : BaseAbility
+public abstract class OffensiveAbility : BaseAbility
 {
     [Header("Offensive Ability")]
     [SerializeField] private int baseDamage;
@@ -9,6 +9,8 @@ public class OffensiveAbility : BaseAbility
     public int BaseDamage => baseDamage;
     public float Range => range;
     public DamageBoostData[] DamageBoosts => damageBoosts;
+    public abstract bool CastAbility(BaseUnit caster);
+    public abstract bool CheckCastAvailable(BaseUnit caster);
 }
 
 public enum DamageBonusType

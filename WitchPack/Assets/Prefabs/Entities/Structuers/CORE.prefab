@@ -14876,8 +14876,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 913d2888535dec24ba1229839d8ff747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 20
-  enemyTargeter: {fileID: 3909402266356872530}
+  maxHp: 10
+  enemyGroundCollider: {fileID: 3190880965736817959}
   hpBar: {fileID: 4111116889428995083}
   animator: {fileID: 9140744131601393012}
   destroyedCore: {fileID: 7847266078205252350}
@@ -29806,8 +29806,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4657213697310375374}
-  - component: {fileID: 3909402266356872530}
   - component: {fileID: 2038494610182818865}
+  - component: {fileID: 3190880965736817959}
   m_Layer: 16
   m_Name: ProximityRingTargeting
   m_TagString: Untagged
@@ -29824,32 +29824,16 @@ RectTransform:
   m_GameObject: {fileID: 6778048021347155575}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
-  m_LocalScale: {x: 5.18, y: 3.5847743, z: 3.5847743}
+  m_LocalScale: {x: 3.92, y: 2.35, z: 1.0280613}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 2769440070172495311}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3909402266356872530
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6778048021347155575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2858346e747d17b45905ca3c82817068, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  availableTargets: []
-  layer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!60 &2038494610182818865
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -29915,6 +29899,22 @@ PolygonCollider2D:
       - {x: 0.29296875, y: 0.40234375}
       - {x: 0.15234375, y: 0.47265625}
   m_UseDelaunayMesh: 0
+--- !u!114 &3190880965736817959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6778048021347155575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 667829e21f460fc4db6b3c14534079c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  availableTargets: []
+  layer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &7370608817371671731
 GameObject:
   m_ObjectHideFlags: 0
