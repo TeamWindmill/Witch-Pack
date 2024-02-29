@@ -1,9 +1,12 @@
+using PathCreation;
 using Sirenix.OdinInspector;
+using Systems.StateMachine;
 using UnityEngine;
 
 public class Enemy : BaseUnit
 {
     [SerializeField, TabGroup("Visual")] private EnemyVisualHandler unitVisual;
+    [SerializeField, TabGroup("Combat")] private BaseStateMachine stateMachine;
 
     public EnemyConfig EnemyConfig { get => enemyConfig; }
     public int CoreDamage => _coreDamage;
@@ -12,6 +15,7 @@ public class Enemy : BaseUnit
     public EnemyMovement EnemyMovement => _enemyMovement;
     public EnemyAgro EnemyAgro => _enemyAgro;
     public EnemyVisualHandler UnitVisual => unitVisual;
+    public PathCreator Path => _path;
 
     [SerializeField, TabGroup("Visual")] private EnemyAnimator enemyAnimator;
     private int _coreDamage;
@@ -22,7 +26,9 @@ public class Enemy : BaseUnit
     private EnemyAgro _enemyAgro;
     private EnemyMovement _enemyMovement;
     private EnemyConfig enemyConfig;
+    private PathCreator _path;
     private int pointIndex;
+
 
     private void OnValidate()
     {
@@ -33,11 +39,13 @@ public class Enemy : BaseUnit
         pointIndex = 0;
         enemyConfig = givenConfig as EnemyConfig;
         base.Init(enemyConfig);
+        _path = enemyConfig.Path;
         _coreDamage = enemyConfig.CoreDamage;
         _energyPoints = enemyConfig.EnergyPoints;
         ShamanTargeter.SetRadius(Stats.BonusRange);
         EnemyTargeter.SetRadius(Stats.BonusRange);
-        _enemyAgro = new EnemyAgro(this);
+        _enemyAgro = new EnemyAgro();
+        stateMachine.Init(this);
         _enemyMovement = new EnemyMovement(this);
         enemyAnimator.Init(this);
         unitVisual.Init(this, givenConfig);
@@ -58,7 +66,7 @@ public class Enemy : BaseUnit
     }
     protected override void OnDisable()
     {
-        _enemyAgro?.OnDisable();
+        //_enemyAI?.OnDisable();
         base.OnDisable();
         Damageable.OnHitGFX -= GetHitSFX;
         Damageable.OnDeathGFX -= DeathSFX;
@@ -67,10 +75,6 @@ public class Enemy : BaseUnit
         Movement.OnDestinationReached -= AutoCaster.EnableCaster;
         Effectable.OnAffectedGFX -= unitVisual.EffectHandler.PlayEffect;
         Effectable.OnEffectRemovedGFX -= unitVisual.EffectHandler.DisableEffect;
-    }
-    private void Update()
-    {
-        _enemyMovement.FollowPath();
     }
 
     #region SFX

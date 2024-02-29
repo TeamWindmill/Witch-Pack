@@ -46,7 +46,9 @@ public class Shaman : BaseUnit
         shamanAnimator.Init(this);
         indicatable.Init(shamanConfig.UnitIcon);
         shamanVisualHandler.Init(this,baseUnitConfig);
-        
+        Effectable.OnAffectedGFX += ShamanVisualHandler.EffectHandler.PlayEffect;
+        Effectable.OnEffectRemovedGFX += ShamanVisualHandler.EffectHandler.DisableEffect;
+
         #region Events
         // no need to unsubscribe because shaman gets destroyed between levels
         Stats.OnStatChanged += EnemyTargeter.AddRadius;
@@ -188,5 +190,11 @@ public class Shaman : BaseUnit
 
     #endregion
 
-    
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        Effectable.OnAffectedGFX -= ShamanVisualHandler.EffectHandler.PlayEffect;
+        Effectable.OnEffectRemovedGFX -= ShamanVisualHandler.EffectHandler.DisableEffect;
+    }
+
 }

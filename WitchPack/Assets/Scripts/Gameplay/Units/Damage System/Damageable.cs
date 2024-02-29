@@ -15,14 +15,15 @@ public class Damageable
 
     private bool hitable;
 
+
     Timer regenTimer;
 
-    public Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility, bool /*critical - a more generic callback*/> OnGetHit;
-    public Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility, bool> OnDamageCalc;
-    public Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility> OnDeath;
-    public Action OnDeathGFX;
-    public Action<bool> OnHitGFX;
-    public Action<Damageable, float> OnHeal;
+    public event Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility, bool /*critical - a more generic callback*/> OnGetHit;
+    public event Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility, bool> OnDamageCalc;
+    public event Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility> OnDeath;
+    public event Action OnDeathGFX;
+    public event Action<bool> OnHitGFX;
+    public event Action<Damageable, float> OnHeal;
 
     //add gfx events later
 
