@@ -11,7 +11,6 @@ public class Damageable
     private int currentHp;
     public int MaxHp => owner.Stats.MaxHp;
     public int CurrentHp => currentHp;
-    public bool IsDead => currentHp <= 0;
 
     private bool hitable;
 
