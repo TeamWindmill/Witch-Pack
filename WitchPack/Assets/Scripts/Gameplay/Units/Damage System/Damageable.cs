@@ -102,6 +102,7 @@ public class Damageable
         OnDeath?.Invoke(this, dealer, damage, ability);
         OnDeathGFX?.Invoke();
         dealer.OnKill?.Invoke(this, dealer, damage, ability, isCrit);
+        owner.ClearUnitTImers();
         foreach (var damageDealer in _damageDealers)
         {
             if (damageDealer == dealer) continue;
