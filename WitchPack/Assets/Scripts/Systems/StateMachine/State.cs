@@ -1,24 +1,15 @@
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 namespace Systems.StateMachine
 {
-    [CreateAssetMenu(menuName = "StateMachine/State", fileName = "State")]
-    public class State : BaseState
+    public abstract class State<T> : ScriptableObject where T : MonoBehaviour
     {
-        public List<StateAction> Actions = new List<StateAction>();
-        public List<Transition> Transitions = new List<Transition>();
-
-        public override void Execute(BaseStateMachine machine)
-        {
-            foreach (var action in Actions)
-                action.Execute(machine);
-        }
-
-        public override void Transition(BaseStateMachine machine)
-        {
-            foreach(var transition in Transitions)
-                transition.Execute(machine);
-        }
+        public event Action<State<T>> StateEnter;
+        public event Action<State<T>> StateExit;
+        public virtual void Enter(T parent) => StateEnter?.Invoke(this);
+        public abstract void UpdateState(T parent);
+        public abstract void ChangeState(T parent);
+        public virtual void Exit(T parent) => StateExit?.Invoke(this);
     }
 }

@@ -6,14 +6,14 @@ using UnityEngine;
 public class Enemy : BaseUnit
 {
     [SerializeField, TabGroup("Visual")] private EnemyVisualHandler unitVisual;
-    [SerializeField, TabGroup("Combat")] private BaseStateMachine stateMachine;
+    [SerializeField, TabGroup("Combat")] private EnemyAI enemyAI;
 
     public EnemyConfig EnemyConfig { get => enemyConfig; }
     public int CoreDamage => _coreDamage;
     public int EnergyPoints => _energyPoints;
     public override StatSheet BaseStats => enemyConfig.BaseStats;
     public EnemyMovement EnemyMovement => _enemyMovement;
-    public EnemyAgro EnemyAgro => _enemyAgro;
+    public EnemyAI EnemyAI => enemyAI;
     public EnemyVisualHandler UnitVisual => unitVisual;
     public PathCreator Path => _path;
 
@@ -23,7 +23,6 @@ public class Enemy : BaseUnit
     //testing 
     public int Id => gameObject.GetHashCode();
 
-    private EnemyAgro _enemyAgro;
     private EnemyMovement _enemyMovement;
     private EnemyConfig enemyConfig;
     private PathCreator _path;
@@ -44,11 +43,10 @@ public class Enemy : BaseUnit
         _energyPoints = enemyConfig.EnergyPoints;
         ShamanTargeter.SetRadius(Stats.BonusRange);
         EnemyTargeter.SetRadius(Stats.BonusRange);
-        _enemyAgro = new EnemyAgro();
-        stateMachine.Init(this);
         _enemyMovement = new EnemyMovement(this);
         enemyAnimator.Init(this);
         unitVisual.Init(this, givenConfig);
+        enemyAI.Init(this);
         Effectable.OnAffectedGFX += unitVisual.EffectHandler.PlayEffect;
         Effectable.OnEffectRemovedGFX += unitVisual.EffectHandler.DisableEffect;
 
