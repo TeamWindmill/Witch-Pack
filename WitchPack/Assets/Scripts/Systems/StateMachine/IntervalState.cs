@@ -5,11 +5,11 @@ namespace Systems.StateMachine
 {
     public abstract class IntervalState<T> : State<T> where T : MonoBehaviour
     {
-        [SerializeField,BoxGroup("Interval State")] private bool _usingGameTime;
-        [SerializeField,BoxGroup("Interval State"), Tooltip("seconds between execution method")] private float _executionInterval;
-        [SerializeField,BoxGroup("Interval State"), Tooltip("seconds between state check method")] private float _stateCheckInterval;
-        private float _executionTimer;
-        private float _stateCheckTimer;
+        [SerializeField,BoxGroup("Interval State")] protected bool _usingGameTime;
+        [SerializeField,BoxGroup("Interval State"), Tooltip("seconds between execution method")] protected float _executionInterval;
+        [SerializeField,BoxGroup("Interval State"), Tooltip("seconds between state check method")] protected float _stateCheckInterval;
+        protected float _executionTimer;
+        protected float _stateCheckTimer;
 
         public override void Enter(T parent)
         {
@@ -18,7 +18,7 @@ namespace Systems.StateMachine
             base.Enter(parent);
         }
 
-        public sealed override void UpdateState(T parent)
+        public override void UpdateState(T parent)
         {
             if (_executionTimer >= _executionInterval)
             {
@@ -31,7 +31,7 @@ namespace Systems.StateMachine
             }
         }
         protected abstract void IntervalUpdate(T parent);
-        public sealed override void ChangeState(T parent)
+        public override void ChangeState(T parent)
         {
             if (_stateCheckTimer >= _stateCheckInterval)
             {
