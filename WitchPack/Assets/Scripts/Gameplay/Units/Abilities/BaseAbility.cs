@@ -5,25 +5,41 @@ using UnityEngine;
 
 public abstract class BaseAbility : ScriptableObject
 {
-    [Header("Base Ability")]
-    [SerializeField] private string name;
-    [SerializeField] private string discription;
+    [HideLabel, PreviewField(55,ObjectFieldAlignment.Left)]
+    [BoxGroup("General Settings")]
+    [HorizontalGroup("General Settings/Split",width:70)]
     [SerializeField] private Sprite icon;
-    [SerializeField, Tooltip("Interval before casting in real time")] private float castTime;
-    [SerializeField] private float cd;
-    [SerializeField] private bool givesEnergyPoints;
-    [SerializeField,ShowIf(nameof(givesEnergyPoints))] private int energyPoints;
-    [SerializeField] private bool _hasSFX = true;
-    [SerializeField,ShowIf(nameof(_hasSFX))] private SoundEffectType soundEffectType;
+    
+    [BoxGroup("General Settings")]
+    [LabelWidth(50)]
+    [VerticalGroup("General Settings/Split/Right")]
+    [HorizontalGroup("General Settings/Split")]
+    [SerializeField] private string name;
+    
+    [BoxGroup("General Settings")]
+    [TextArea(4, 14)]
+    [HorizontalGroup("General Settings/Split")]
+    [VerticalGroup("General Settings/Split/Right")]
+    [SerializeField] private string discription;
+    
+    
+    
+    [BoxGroup("Casting")][SerializeField, Tooltip("Interval before casting in real time")] private float castTime;
+    [BoxGroup("Casting")][SerializeField] private float cd;
+    [BoxGroup("Casting")][SerializeField] private bool givesEnergyPoints;
+    [BoxGroup("Casting")][SerializeField,ShowIf(nameof(givesEnergyPoints))] private int energyPoints;
+    
+    [BoxGroup("Sound")][SerializeField] private bool _hasSFX = true;
+    [BoxGroup("Sound")][SerializeField,ShowIf(nameof(_hasSFX))] private SoundEffectType soundEffectType;
 
 
-    [SerializeField] private List<StatusEffectConfig> statusEffects = new List<StatusEffectConfig>();
-    [SerializeField] private BaseAbility[] _upgrades;
-    [SerializeField] private TargetData targetData;
+    [BoxGroup("Casting")][SerializeField] private List<StatusEffectConfig> statusEffects = new List<StatusEffectConfig>();
+    [BoxGroup("Casting")][SerializeField] private BaseAbility[] _upgrades;
+    [BoxGroup("Casting")][SerializeField] private TargetData targetData;
     private AbilityUpgradeState _abilityUpgradeState;
 
-    [SerializeField] private bool hasPopupColor;
-    [SerializeField, ShowIf(nameof(hasPopupColor))] private Color popupColor;
+    [BoxGroup("Popup")][SerializeField] private bool hasPopupColor;
+    [BoxGroup("Popup")][SerializeField, ShowIf(nameof(hasPopupColor))] private Color popupColor;
     public bool HasPopupColor { get => hasPopupColor; }
     public Color PopupColor { get => popupColor; }
 
