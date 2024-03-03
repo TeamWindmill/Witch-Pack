@@ -35,6 +35,8 @@ public class CoreTemple : MonoBehaviour
     public void TakeDamage(int amount)
     {
         curHp -= amount;
+        if(curHp <0)
+            curHp = 0;
         OnGetHit?.Invoke(amount);
         SoundManager.Instance.PlayAudioClip(SoundEffectType.CoreGetHit);
         hpBar.SetBarValue(curHp);
