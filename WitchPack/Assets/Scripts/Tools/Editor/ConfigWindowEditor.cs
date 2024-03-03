@@ -64,7 +64,7 @@ public class ConfigWindowEditor : OdinMenuEditorWindow
     protected override void OnDestroy()
     {
         base.OnDestroy();
-        _createNewConfigDatas.OnDestroy();
+        //_createNewConfigDatas.OnDestroy();
     }
 
     public class CreateNewConfigDatas
