@@ -62,7 +62,7 @@ public class Enemy : BaseUnit
         #endregion
         
     }
-    protected override void OnDisable()
+    protected override void OnDisable() //enemy death
     {
         //_enemyAI?.OnDisable();
         base.OnDisable();

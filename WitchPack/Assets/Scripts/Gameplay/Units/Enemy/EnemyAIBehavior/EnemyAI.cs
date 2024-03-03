@@ -1,10 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Sirenix.Serialization;
 using Systems.StateMachine;
-using UnityEngine;
-using Random = System.Random;
 
 public class EnemyAI : BaseStateMachine<EnemyAI>
 {
