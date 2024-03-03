@@ -17,7 +17,7 @@ public class EnemyVisualHandler : UnitVisualHandler
 
     protected override void FlipSpriteOnTarget(BaseUnit target)
     {
-        if (_enemy.EnemyMovement.IsMoving) return;
+        if (_enemy.EnemyAI.ActiveState is FollowPath) return;
         base.FlipSpriteOnTarget(target);
     }
 

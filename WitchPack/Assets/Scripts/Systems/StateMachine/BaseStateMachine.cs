@@ -1,53 +1,51 @@
 using System;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Systems.StateMachine
 {
-    public class BaseStateMachine : MonoBehaviour
+    public abstract class BaseStateMachine<T> : MonoBehaviour where T : MonoBehaviour
     {
-        public BaseState CurrentState;
-        public Enemy Owner { get; private set; } 
+        public State<T> ActiveState => _activeState;
         
-        [SerializeField] private BaseState _initialState;
-        private bool _initialized;
-        private float _executionIntervalTimer;
-        private float _transitionIntervalTimer;
+        [ShowInInspector] protected State<T> _activeState;
         
-
-        public void Init(Enemy owner)
+        private Dictionary<Type, State<T>> _stateByType = new ();
+        private bool _isActive;
+        
+        protected void BaseInit(List<State<T>> states)
         {
-            Owner = owner;
-            CurrentState = _initialState;
-            _initialized = true;
+            _stateByType = new ();
+            foreach (var state in states)
+            {
+                _stateByType.Add(state.GetType(), state);
+            }
+
+            _activeState = states[0];
+            _isActive = true;
         }
+
+        public void SetState(Type newStateType)
+        {
+            if (_activeState != null)
+            {
+                _activeState.Exit(this as T);
+            }
+
+            _activeState = _stateByType[newStateType];
+            _activeState.Enter(this as T);
+        }
+
+        public void Resume() => _isActive = true;
+        public void Stop() => _isActive = false;
 
         private void Update()
         {
-            if(!_initialized) return;
-            if (_executionIntervalTimer >= CurrentState.ExecuteInterval)
-            {
-                CurrentState.Execute(this);
-                _executionIntervalTimer = 0;
-            }
-            else
-            {
-                _executionIntervalTimer += GAME_TIME.GameDeltaTime;
-            }
-            if (_transitionIntervalTimer >= CurrentState.TransitionInterval)
-            {
-                CurrentState.Transition(this);
-                _transitionIntervalTimer = 0;
-            }
-            else
-            {
-                _transitionIntervalTimer += GAME_TIME.GameDeltaTime;
-            }
-        }
-
-        private void OnDisable()
-        {
-            _initialized = false;
+            if (!_isActive) return;
+            _activeState.UpdateState(this as T);
+            _activeState.ChangeState(this as T);
         }
     }
+    
 }
