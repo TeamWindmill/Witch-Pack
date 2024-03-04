@@ -15,7 +15,8 @@ public class UnitMovement : MonoBehaviour
     [SerializeField] private NavMeshAgent agent;
 
     public NavMeshAgent Agent => agent;
-    public bool IsMoving => agent.velocity.sqrMagnitude > 0; //need to replace
+    public bool IsMoving => agent.velocity.sqrMagnitude > 0; 
+    public bool IsActive => agent.enabled; 
 
     public Vector3 CurrentDestination => currentDest;
 

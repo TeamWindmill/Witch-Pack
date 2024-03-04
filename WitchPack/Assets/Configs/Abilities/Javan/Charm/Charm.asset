@@ -9,19 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 858949ca3866f444e9f7fe2fc1f46c5a, type: 3}
-  m_Name: MeleeAA
+  m_Script: {fileID: 11500000, guid: 81bc54a6909644928fc8b5cc15bd5412, type: 3}
+  m_Name: Charm
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
-  name: 
-  discription: 
-  castTime: 0
-  cd: 0
+  icon: {fileID: -752824034, guid: 2a7c4b265cb330049b7a4441903b7bef, type: 3}
+  name: Charm
+  discription: its a Charm you stupid
+  castTime: 1
+  cd: 10
   givesEnergyPoints: 0
   energyPoints: 0
   _hasSFX: 1
-  soundEffectType: 0
-  statusEffects: []
+  soundEffectType: 17
+  statusEffects:
+  - {fileID: 11400000, guid: 39092aed8284fc846810b096363ef12f, type: 2}
   _upgrades: []
   targetData:
     Priority: 0
@@ -32,3 +33,4 @@ MonoBehaviour:
   baseDamage: 0
   range: 0
   damageBoosts: []
+  _charmedState: {fileID: 11400000, guid: d598f106f9f50114c96da9cffaa8a569, type: 2}

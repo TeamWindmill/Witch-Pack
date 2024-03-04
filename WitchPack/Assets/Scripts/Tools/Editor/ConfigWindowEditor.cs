@@ -34,6 +34,7 @@ public class ConfigWindowEditor : OdinMenuEditorWindow
         tree.AddAllAssetsAtPath("Abilities/Nadia/Heal","Assets/Configs/Abilities/Nadia/Heal",typeof(BaseAbility));
         tree.AddAllAssetsAtPath("Abilities/Nadia/Passives","Assets/Configs/Abilities/Nadia/Passives",typeof(BaseAbility));
         tree.AddAllAssetsAtPath("Abilities/Javan/SmokeBomb","Assets/Configs/Abilities/Javan/SmokeBomb",typeof(BaseAbility));
+        tree.AddAllAssetsAtPath("Abilities/Javan/Charm","Assets/Configs/Abilities/Javan/Charm",typeof(BaseAbility));
         tree.AddAllAssetsAtPath("Abilities/Javan/Passives","Assets/Configs/Abilities/Javan/Passives",typeof(BaseAbility));
         tree.AddAllAssetsAtPath("Abilities/StatusEffects/Roots","Assets/Configs/Abilities/StatusEffects/Roots",typeof(StatusEffectConfig));
         tree.AddAllAssetsAtPath("Abilities/StatusEffects/SmokeBomb","Assets/Configs/Abilities/StatusEffects/SmokeBomb",typeof(StatusEffectConfig));
