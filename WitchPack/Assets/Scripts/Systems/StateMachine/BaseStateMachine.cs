@@ -9,7 +9,7 @@ namespace Systems.StateMachine
     {
         public State<T> ActiveState => _activeState;
         
-        [ShowInInspector] protected State<T> _activeState;
+        protected State<T> _activeState;
         
         private Dictionary<Type, State<T>> _stateByType = new ();
         private bool _isActive;

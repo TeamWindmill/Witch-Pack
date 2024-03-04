@@ -177,6 +177,7 @@ public class UnitTargetHelper<T> where T: BaseUnit
             }
             
             if(this.targets[i].IsDead) continue;
+            if(this.targets[i].Effectable.ContainsStatusEffect(StatusEffectType.Charm)) continue;
 
 
             if (mod == TargetModifier.Most)
