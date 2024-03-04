@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 869224aa6f25bdc46a0b9f460a721a08, type: 3}
   m_Name: BlessingOfSwiftness
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: a0db763ba950667428f64cfbbf90c309, type: 3}
   name: Blessing of Swiftness
   discription: Heals the target and grants it extra attack speed for a short while.
-  icon: {fileID: 21300000, guid: a0db763ba950667428f64cfbbf90c309, type: 3}
   castTime: 1
   cd: 12
   givesEnergyPoints: 1
-  energyPoints: 10
+  energyPoints: 2
   _hasSFX: 1
   soundEffectType: 0
   statusEffects: []
@@ -27,6 +27,8 @@ MonoBehaviour:
     Priority: 5
     Modifier: 1
     StatType: 0
+  hasPopupColor: 0
+  popupColor: {r: 0, g: 0, b: 0, a: 0}
   baseDamage: 0
   range: 0
   damageBoosts: []
