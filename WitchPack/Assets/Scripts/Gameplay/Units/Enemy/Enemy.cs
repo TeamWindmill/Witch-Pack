@@ -56,8 +56,8 @@ public class Enemy : BaseUnit
         Damageable.OnHitGFX += GetHitSFX;
         Damageable.OnDeathGFX += DeathSFX;
         AutoAttackHandler.OnAttack += AttackSFX;
-        Movement.OnDestinationSet += AutoCaster.DisableCaster;
-        Movement.OnDestinationReached += AutoCaster.EnableCaster;
+        //Movement.OnDestinationSet += AutoCaster.DisableCaster;
+        //Movement.OnDestinationReached += AutoCaster.EnableCaster;
 
         #endregion
         

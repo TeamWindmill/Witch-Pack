@@ -40,7 +40,7 @@ public class UnitAutoCaster : MonoBehaviour
             {
                 if (caster.CastAbility())
                 {
-                    TimerManager.Instance.AddTimer<ICaster>(caster.GetCooldown(),caster,EnqueueAbility,true);
+                    TimerManager.Instance.AddTimer(caster.GetCooldown(),caster,EnqueueAbility,true);
                     _abilitiesOnCooldown.Add(caster);
                     _queuedAbilities.Dequeue();
                     _castTimer = 0;

@@ -1,7 +1,10 @@
+using Sirenix.OdinInspector;
+using Sirenix.Serialization;
 using Systems.StateMachine;
 
 public class EnemyAI : BaseStateMachine<EnemyAI>
 {
+    public State<EnemyAI> ActiveState => _activeState;
     public Enemy Enemy { get; private set; }
     public BaseUnit CurrentTarget { get; private set; }
     public float AgroChance => _agroChance;

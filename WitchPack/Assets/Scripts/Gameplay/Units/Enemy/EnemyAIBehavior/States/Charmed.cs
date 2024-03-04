@@ -7,22 +7,15 @@ public class Charmed : State<EnemyAI>
     public override void Enter(EnemyAI parent)
     {
         base.Enter(parent);
-        
+        if(!parent.Enemy.Movement.IsActive)
+            parent.Enemy.Movement.ToggleMovement(true);
     }
     public override void UpdateState(EnemyAI parent)
     {
         var target = parent.Enemy.EnemyTargeter.GetClosestTarget();
         if (!ReferenceEquals(target, null))
         {
-            if(!parent.Enemy.Movement.IsActive)
-                parent.Enemy.Movement.ToggleMovement(true);
-            
             parent.Enemy.Movement.SetDestination(target.transform.position);
-        }
-        else
-        {
-            if(parent.Enemy.Movement.IsActive)
-                parent.Enemy.Movement.ToggleMovement(false);
         }
     }
 
@@ -37,5 +30,7 @@ public class Charmed : State<EnemyAI>
     public override void Exit(EnemyAI parent)
     {
         base.Exit(parent);
+        if(parent.Enemy.Movement.IsActive)
+            parent.Enemy.Movement.ToggleMovement(false);
     }
 }

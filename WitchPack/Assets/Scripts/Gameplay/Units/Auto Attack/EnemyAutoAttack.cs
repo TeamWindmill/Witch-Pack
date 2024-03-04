@@ -16,7 +16,7 @@ public class EnemyAutoAttack : OffensiveAbility
          target = caster.ShamanTargetHelper.GetTarget(TargetData);
       }
       if (ReferenceEquals(target, null)) return false;
-      if (Vector2.Distance(target.transform.position, caster.transform.position) > caster.Movement.DefaultStoppingDistance) return false;
+      if (Vector2.Distance(target.transform.position, caster.transform.position) > caster.Movement.DefaultStoppingDistance + 1) return false;
       target.Damageable.GetHit(caster.DamageDealer,this);
       return true;
    }
