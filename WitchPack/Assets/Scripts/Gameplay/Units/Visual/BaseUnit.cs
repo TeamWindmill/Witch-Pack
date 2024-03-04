@@ -36,8 +36,8 @@ public class BaseUnit : MonoBehaviour
     #endregion
     
     #region Public
+    public bool IsDead => damageable.CurrentHp <= 0;
     public HP_Bar HpBar => hpBar;
-    
     public Damageable Damageable => damageable;
     public DamageDealer DamageDealer => damageDealer;
     public Affector Affector => affector;

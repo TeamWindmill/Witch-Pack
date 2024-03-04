@@ -50,7 +50,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 7933654236203843487}
-  _showOnAwake: 1
+  showOnAwake: 0
+  assignUIGroup: 0
+  uiGroup: 0
+  showInfoWindow: 0
+  _windowInfo:
+    Name: 
+    Discription: 
   _timeButtons:
   - {fileID: 8052745526889941195}
   - {fileID: 1973688188902217454}
@@ -242,7 +248,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1031062802988753102, guid: 9d56c0e77adbf7449b5c9338488b2fdb, type: 3}
       propertyPath: time
-      value: 1.25
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3756413196770786474, guid: 9d56c0e77adbf7449b5c9338488b2fdb, type: 3}
       propertyPath: m_Sprite
@@ -363,7 +369,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1031062802988753102, guid: 9d56c0e77adbf7449b5c9338488b2fdb, type: 3}
       propertyPath: time
-      value: 1.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3756413196770786474, guid: 9d56c0e77adbf7449b5c9338488b2fdb, type: 3}
       propertyPath: m_Sprite

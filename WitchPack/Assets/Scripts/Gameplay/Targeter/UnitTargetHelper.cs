@@ -71,9 +71,10 @@ public class UnitTargetHelper<T> where T: BaseUnit
             {
                 continue;
             }
+            if(this.targets[i].IsDead) continue;
 
             if (targets[i].Stats.ThreatLevel <= 0) continue;
-            else cur = targets[i];
+            cur = targets[i];
             
             if (mod == TargetModifier.Most)
             {
@@ -97,6 +98,8 @@ public class UnitTargetHelper<T> where T: BaseUnit
         T cur = targets[targets.Count / 2];
         for (int i = 0; i < targets.Count; i++)
         {
+            if(this.targets[i].IsDead) continue;
+
             if (mod == TargetModifier.Most)
             {
                 if (cur.Damageable.CurrentHp < targets[i].Damageable.CurrentHp)
@@ -119,6 +122,8 @@ public class UnitTargetHelper<T> where T: BaseUnit
         T cur = targets[targets.Count / 2];
         for (int i = 0; i < targets.Count; i++)
         {
+            if(this.targets[i].IsDead) continue;
+
             if (mod == TargetModifier.Most)
             {
                 if (cur.Damageable.CurrentHp/ cur.Stats.GetStatValue(StatType.MaxHp) < targets[i].Damageable.CurrentHp / targets[i].Stats.GetStatValue(StatType.MaxHp))
@@ -141,6 +146,8 @@ public class UnitTargetHelper<T> where T: BaseUnit
         T cur = targets[targets.Count / 2];
         for (int i = 0; i < targets.Count; i++)
         {
+            if(this.targets[i].IsDead) continue;
+
             if (mod == TargetModifier.Most)
             {
                 if (cur.Stats.GetStatValue(givenStat) < targets[i].Stats.GetStatValue(givenStat))
@@ -168,6 +175,10 @@ public class UnitTargetHelper<T> where T: BaseUnit
             {
                 continue;
             }
+            
+            if(this.targets[i].IsDead) continue;
+            if(this.targets[i].Effectable.ContainsStatusEffect(StatusEffectType.Charm)) continue;
+
 
             if (mod == TargetModifier.Most)
             {
@@ -196,6 +207,9 @@ public class UnitTargetHelper<T> where T: BaseUnit
             {
                 continue;
             }
+            
+            if(this.targets[i].IsDead) continue;
+
 
             if (mod == TargetModifier.Most)
             {

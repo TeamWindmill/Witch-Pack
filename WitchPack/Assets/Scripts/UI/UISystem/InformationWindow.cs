@@ -10,11 +10,11 @@ public class InformationWindow : MonoSingleton<InformationWindow>
     [SerializeField] private Transform _holder;
     [SerializeField] private TextMeshProUGUI _titleTMP;
     [SerializeField] private TextMeshProUGUI _discriptionTMP;
+    [SerializeField]private RectTransform _rectTransform;
     [Space] 
     [SerializeField] private Vector2 _windowSize;
     [SerializeField] private float _delayTime;
 
-    private RectTransform _rectTransform;
     private float infoWindowDelayTimer;
     private bool _activeShowRequest;
     private UIElement _currentUIElement;

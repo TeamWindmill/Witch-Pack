@@ -1,8 +1,12 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class StatusEffect
 {
+    public event Action<Effectable,StatusEffect> Started;
+    public event Action<Effectable,StatusEffect> Ended;
+    
     //inherit with buffs or debuffs. -> inherit again to create specific effects
     protected Effectable host;//the unit this ss is on
     protected float timeCounter;//how long until the duration is over
@@ -48,12 +52,14 @@ public class StatusEffect
                 InstantEffectWithoutDuration();
                 break;
         }
+        Started?.Invoke(host,this);
     }
 
     public virtual void Remove()
     {
         host.RemoveEffect(this);
         host?.Owner.Stats.AddValueToStat(StatType, -_statValue);
+        Ended?.Invoke(host,this);
     }
     public virtual void Reset()
     {

@@ -1,11 +1,11 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public abstract class OffensiveAbility : BaseAbility
 {
-    [Header("Offensive Ability")]
-    [SerializeField] private int baseDamage;
-    [SerializeField] private float range;
-    [SerializeField] private DamageBoostData[] damageBoosts;
+    [BoxGroup("Offensive Ability")][SerializeField] private int baseDamage;
+    [BoxGroup("Offensive Ability")][SerializeField] private float range;
+    [BoxGroup("Offensive Ability")][SerializeField] private DamageBoostData[] damageBoosts;
     public int BaseDamage => baseDamage;
     public float Range => range;
     public DamageBoostData[] DamageBoosts => damageBoosts;

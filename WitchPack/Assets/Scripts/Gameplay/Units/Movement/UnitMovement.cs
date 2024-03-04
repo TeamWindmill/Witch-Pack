@@ -7,14 +7,16 @@ public class UnitMovement : MonoBehaviour
     public event Action OnDestinationSet;
     public event Action OnDestinationReached;
     
+    public float DefaultStoppingDistance { get; private set; }
+    
     private Vector3 currentDest;
     private Coroutine activeMovementRoutine;
     private BaseUnit owner;
     [SerializeField] private NavMeshAgent agent;
 
     public NavMeshAgent Agent => agent;
-    public bool IsMoving => agent.velocity.sqrMagnitude > 0; //need to replace
-    public float DefaultStoppingDistance; 
+    public bool IsMoving => agent.velocity.sqrMagnitude > 0; 
+    public bool IsActive => agent.enabled; 
 
     public Vector3 CurrentDestination => currentDest;
 
@@ -38,7 +40,7 @@ public class UnitMovement : MonoBehaviour
 
     public void SetDestination(Vector3 worldPos)
     {
-        if(!agent.isOnNavMesh) return;
+        if(!agent.isOnNavMesh || !agent.enabled) return;
         currentDest = worldPos;
         OnDestinationSet?.Invoke();
         if(owner is Shaman) Debug.Log("DestinationSet");
