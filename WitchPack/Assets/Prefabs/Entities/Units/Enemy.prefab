@@ -976,6 +976,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Frenzy VFX Holder
       objectReference: {fileID: 0}
+    - target: {fileID: 4531957828299861306, guid: 61c52df821174f24680f73f855e85099, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8905380943561430313, guid: 61c52df821174f24680f73f855e85099, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.061
@@ -1025,6 +1029,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 61c52df821174f24680f73f855e85099, type: 3}
+--- !u!1 &398532031497268389 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4531957828299861306, guid: 61c52df821174f24680f73f855e85099, type: 3}
+  m_PrefabInstance: {fileID: 4279371167113888159}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4680688818441704630 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8905380943561430313, guid: 61c52df821174f24680f73f855e85099, type: 3}
@@ -1096,6 +1105,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5082007235877362451, guid: 398bc94ae9bfc214881d7546678f8457, type: 3}
   m_PrefabInstance: {fileID: 7430785560235441997}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7754667873668417021 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 901117126445415088, guid: 398bc94ae9bfc214881d7546678f8457, type: 3}
+  m_PrefabInstance: {fileID: 7430785560235441997}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7709910988759335498
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1109,6 +1123,26 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2476126798506837176, guid: 1db2272ef36852042be1af8e6b61433b, type: 3}
+      propertyPath: _statusEffectVisuals.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476126798506837176, guid: 1db2272ef36852042be1af8e6b61433b, type: 3}
+      propertyPath: _statusEffectVisuals.Array.data[4].StatusEffectType
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476126798506837176, guid: 1db2272ef36852042be1af8e6b61433b, type: 3}
+      propertyPath: _statusEffectVisuals.Array.data[5].StatusEffectType
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476126798506837176, guid: 1db2272ef36852042be1af8e6b61433b, type: 3}
+      propertyPath: _statusEffectVisuals.Array.data[4].visualGameObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476126798506837176, guid: 1db2272ef36852042be1af8e6b61433b, type: 3}
+      propertyPath: _statusEffectVisuals.Array.data[5].visualGameObjects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2476126798506837176, guid: 1db2272ef36852042be1af8e6b61433b, type: 3}
       propertyPath: _statusEffectVisuals.Array.data[2].visualGameObjects.Array.data[0]
       value: 
       objectReference: {fileID: 3844495470898255647}
@@ -1116,6 +1150,14 @@ PrefabInstance:
       propertyPath: _statusEffectVisuals.Array.data[2].visualGameObjects.Array.data[1]
       value: 
       objectReference: {fileID: 5162866174621991071}
+    - target: {fileID: 2476126798506837176, guid: 1db2272ef36852042be1af8e6b61433b, type: 3}
+      propertyPath: _statusEffectVisuals.Array.data[4].visualGameObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 7754667873668417021}
+    - target: {fileID: 2476126798506837176, guid: 1db2272ef36852042be1af8e6b61433b, type: 3}
+      propertyPath: _statusEffectVisuals.Array.data[5].visualGameObjects.Array.data[0]
+      value: 
+      objectReference: {fileID: 398532031497268389}
     - target: {fileID: 3663892183877667548, guid: 1db2272ef36852042be1af8e6b61433b, type: 3}
       propertyPath: m_IsActive
       value: 0

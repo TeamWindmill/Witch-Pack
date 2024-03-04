@@ -1,7 +1,6 @@
 using System;
 
 
-[System.Serializable]
 public class Affector
 {
     private BaseUnit owner;
