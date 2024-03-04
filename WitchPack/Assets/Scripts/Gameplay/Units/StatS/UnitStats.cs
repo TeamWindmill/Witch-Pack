@@ -26,7 +26,7 @@ public class UnitStats
     [SerializeField] private int maxHp;
     [SerializeField] private int baseDamage;
     [SerializeField] private float attackSpeed;
-    [SerializeField] private int baseRange;
+    [SerializeField] private float  baseRange;
     [SerializeField] private float movementSpeed;
     [SerializeField] private int critDamage;
     [SerializeField] private int critChance;
@@ -41,7 +41,7 @@ public class UnitStats
     public int MaxHp { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.MaxHp.value + maxHp), 0, (ownerBaseStats.MaxHp.value + maxHp))); } }
     public int BaseDamage { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.BaseDamage.value + baseDamage), 0, (ownerBaseStats.BaseDamage.value + baseDamage))); } }
     public float AttackSpeed { get { return Mathf.Clamp((ownerBaseStats.AttackSpeed.value + attackSpeed), 0, 2f); } }
-    public int BonusRange { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.BaseRange.value + baseRange), 0, (ownerBaseStats.BaseRange.value + baseRange))); } }
+    public float BonusRange { get { return Mathf.Clamp((ownerBaseStats.BaseRange.value + baseRange), 0, (ownerBaseStats.BaseRange.value + baseRange)); } }
     public float MovementSpeed { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.MovementSpeed.value + movementSpeed), 0, (ownerBaseStats.MovementSpeed.value + movementSpeed))); } }
     public int CritDamage { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.CritDamage.value + critDamage), 0, (ownerBaseStats.CritDamage.value + critDamage))); } }
     public int CritChance { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.CritChance.value + critChance), 0, (ownerBaseStats.CritChance.value + critChance))); } }
@@ -149,9 +149,6 @@ public class UnitStats
             case StatType.AttackSpeed:
                 attackSpeed += wholeValue;
                 break;
-            case StatType.BaseRange:
-                baseRange += wholeValue;
-                break;
             case StatType.MovementSpeed:
                 movementSpeed += wholeValue;
                 break;
@@ -194,15 +191,15 @@ public class UnitStats
             case StatType.MovementSpeed:
                 movementSpeed += decimalValue;
                 break;
+            case StatType.BaseRange:
+                baseRange += decimalValue;
+                break;
             default:
                 AddValueToStat(statType, Mathf.RoundToInt(decimalValue));
                 return;
         }
-
         OnStatChanged?.Invoke(statType, decimalValue);
     }
-
-
 }
 
 public struct HealData
