@@ -48,12 +48,12 @@ public class Damageable
             owner.Effectable.AddEffect(item, dealer.Owner.Affector);
         }
 
-        if (ability is OffensiveAbility)
+        if (ability is OffensiveAbility offensiveAbility)
         {
-            DamageHandler dmg = new DamageHandler((ability as OffensiveAbility).BaseDamage);
-            bool isCrit = dealer.CritChance(ability);
+            DamageHandler dmg = new DamageHandler(offensiveAbility.BaseDamage);
+            bool isCrit = dealer.CritChance(offensiveAbility);
 
-            TakeDamage(dealer, dmg, ability, isCrit);
+            TakeDamage(dealer, dmg, offensiveAbility, isCrit);
 
             _damageDealers.Add(dealer);
         }
