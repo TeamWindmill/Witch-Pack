@@ -6,4 +6,6 @@ public interface ITimer
     public void TimerTick();
 
     public void RemoveThisTimer();
+
+    public void AddThisTimer();
 }

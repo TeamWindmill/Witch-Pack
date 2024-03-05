@@ -43,7 +43,6 @@ public class UnitMovement : MonoBehaviour
         if(!agent.isOnNavMesh || !agent.enabled) return;
         currentDest = worldPos;
         OnDestinationSet?.Invoke();
-        if(owner is Shaman) Debug.Log("DestinationSet");
         agent.destination = (Vector2)worldPos;
         if (!ReferenceEquals(activeMovementRoutine, null))
         {
@@ -64,7 +63,6 @@ public class UnitMovement : MonoBehaviour
         yield return new WaitUntil(CheckVelocity);
         yield return new WaitUntil(CheckRemainingDistance);
         OnDestinationReached?.Invoke();
-        if(owner is Shaman) Debug.Log("DestinationReached");
     }
 
     private bool CheckRemainingDistance()

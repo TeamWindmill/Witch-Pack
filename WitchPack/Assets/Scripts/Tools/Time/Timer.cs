@@ -69,6 +69,11 @@ public class Timer : ITimer
     {
         TimerManager.Instance.RemoveTimer(this);
     }
+
+    public void AddThisTimer()
+    {
+        TimerManager.Instance.AddTimer(this);
+    }
 }
 public class Timer<T> : ITimer
 {
@@ -141,6 +146,11 @@ public class Timer<T> : ITimer
     public void RemoveThisTimer()
     {
         TimerManager.Instance.RemoveTimer<T>(this);
+    }
+
+    public void AddThisTimer()
+    {
+        TimerManager.Instance.AddTimer<T>(this);
     }
 }
 
