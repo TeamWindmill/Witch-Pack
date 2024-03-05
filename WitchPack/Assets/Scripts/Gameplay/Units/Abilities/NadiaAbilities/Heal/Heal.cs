@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ability", menuName = "Ability/Heal/Heal")]
-public class Heal : OffensiveAbility
+public class Heal : CastingAbility
 {
     [SerializeField] protected int healAmount;
 

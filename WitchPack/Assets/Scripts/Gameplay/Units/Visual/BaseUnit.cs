@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
+using Gameplay.Units.Abilities;
 using Sirenix.OdinInspector;
+using Tools.Helpers;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class BaseUnit : MonoBehaviour
+public class BaseUnit : MonoBehaviour, IInitialize<BaseUnitConfig>
 {
     #region Serialized
     
@@ -45,7 +48,7 @@ public class BaseUnit : MonoBehaviour
     public Effectable Effectable => effectable;
     public virtual StatSheet BaseStats => null;
     public UnitStats Stats => stats;
-    public OffensiveAbility AutoAttack => autoAttack;
+    public CastingAbility AutoAttack => autoAttack;
     public AutoAttackHandler AutoAttackHandler => autoAttackHandler;
     public UnitAutoCaster AutoCaster => _autoCaster;
     public UnitMovement Movement => movement;
@@ -57,6 +60,7 @@ public class BaseUnit : MonoBehaviour
     public UnitTargetHelper<Enemy> EnemyTargetHelper => enemyTargetHelper;
 
     public List<ITimer> UnitTimers { get => unitTimers; }
+    public bool Initialized { get; protected set; }
 
     #endregion
 
@@ -87,10 +91,11 @@ public class BaseUnit : MonoBehaviour
 
         damageable.OnDamageCalc += LevelManager.Instance.PopupsManager.SpawnDamagePopup;
         damageable.OnHeal += LevelManager.Instance.PopupsManager.SpawnHealPopup;
-        effectable.OnAffectedGFX += LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
+        effectable.OnAffected += LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
 
-        
     }
+
+
 
     protected virtual void OnDisable() //unsubscribe to events
     {
@@ -99,7 +104,7 @@ public class BaseUnit : MonoBehaviour
         if (ReferenceEquals(effectable, null)) return;
         damageable.OnDamageCalc -= LevelManager.Instance.PopupsManager.SpawnDamagePopup;
         damageable.OnHeal -= LevelManager.Instance.PopupsManager.SpawnHealPopup;
-        effectable.OnAffectedGFX -= LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
+        effectable.OnAffected -= LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
         if (hasHPBar)
         {
             damageable.OnDamageCalc -= hpBar.SetBarValue;

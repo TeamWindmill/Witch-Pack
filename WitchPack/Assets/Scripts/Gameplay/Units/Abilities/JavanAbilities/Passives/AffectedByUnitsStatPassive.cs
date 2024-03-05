@@ -21,7 +21,7 @@ public class AffectedByUnitsStatPassive : Passive
     {
         _owner = owner;
         if (_affectedByEnemies) owner.EnemyTargeter.OnTargetAdded += enemy => ChangeStatByEnemy(enemy,true);
-        if (_affectedByEnemies) owner.EnemyTargeter.OnTargetLost += enemy => ChangeStatByEnemy(enemy,true);
+        if (_affectedByEnemies) owner.EnemyTargeter.OnTargetLost += enemy => ChangeStatByEnemy(enemy,false);
         if (_affectedByShamans) owner.ShamanTargeter.OnTargetAdded += shaman => ChangeStatByShaman(shaman,true);
         if (_affectedByShamans) owner.ShamanTargeter.OnTargetLost += shaman => ChangeStatByShaman(shaman,false);
     }

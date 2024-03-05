@@ -51,14 +51,13 @@ public class PopupsManager : MonoBehaviour
         _popupText = damage.GetFinalDamage().ToString();
         PopupPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, _popupText, _popupColor);
     }
-
-    public void SpawnStatusEffectPopup(Effectable effectable, StatusEffectType statusEffectType)
+    public void SpawnStatusEffectPopup(Effectable effectable, Affector affector, StatusEffect statusEffect)
     {
-        if(statusEffectType == StatusEffectType.None) return;
+        if(statusEffect.StatusEffectType == StatusEffectType.None) return;
 
         _offsetVector = new Vector3(0, _yOffset);
 
-        StatusEffectTypeVisualData data = _dictionary.GetData(statusEffectType);
+        StatusEffectTypeVisualData data = _dictionary.GetData(statusEffect.StatusEffectType);
         _popupColor = data.Color;
 
         _popupText = "";
