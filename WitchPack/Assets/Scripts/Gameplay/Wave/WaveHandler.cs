@@ -51,7 +51,6 @@ public class WaveHandler : MonoBehaviour
         //create start indicator 
         SetIndicator(0);
         yield return new WaitUntil(() => skipFlag);
-        EnemySpawnPoint spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
         for (int i = 0; i < spawnData.Count; i++)
         {
             spawnData[i].CalcSpawns();
@@ -95,13 +94,14 @@ public class WaveHandler : MonoBehaviour
 
     private IEnumerator SpawnGroupInterval(EnemyGroup givenGroup)
     {
+        EnemySpawnPoint spawnPoint = GetSpawnPointFromIndex(givenGroup.SpawnerIndex);
         for (int z = 0; z < givenGroup.AmountPerSpawn; z++)
         {
             if (givenGroup.TotalAmount <= givenGroup.NumSpawned) //if ran out of enemies to spawn break out.
             {
                 break;
-            }
-            GetSpawnPointFromIndex(givenGroup.SpawnerIndex).SpawnEnemy(givenGroup.Enemy);
+            }           
+            spawnPoint.SpawnEnemy(givenGroup.Enemy);
             givenGroup.NumSpawned++;
 
             yield return StartCoroutine(IntervalDelay(fixedSpawnInterval));
