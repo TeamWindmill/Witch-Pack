@@ -7,7 +7,7 @@ public class EnemyAutoAttack : OffensiveAbility
    public override bool CastAbility(BaseUnit caster)
    {
       BaseUnit target;
-      if(caster.Effectable.ContainsStatusEffect(StatusEffectType.Charm))
+      if(caster.Effectable.ContainsStatusEffect(StatusEffectType.Charm) || caster.Effectable.ContainsStatusEffect(StatusEffectType.Frenzy))
       {
          target = caster.EnemyTargetHelper.GetTarget(TargetData);
       }
@@ -16,7 +16,7 @@ public class EnemyAutoAttack : OffensiveAbility
          target = caster.ShamanTargetHelper.GetTarget(TargetData);
       }
       if (ReferenceEquals(target, null)) return false;
-      if (Vector2.Distance(target.transform.position, caster.transform.position) > caster.Movement.DefaultStoppingDistance + 1) return false;
+      if (Vector2.Distance(target.transform.position, caster.transform.position) > caster.Movement.DefaultStoppingDistance) return false;
       target.Damageable.GetHit(caster.DamageDealer,this);
       return true;
    }
@@ -24,7 +24,7 @@ public class EnemyAutoAttack : OffensiveAbility
    public override bool CheckCastAvailable(BaseUnit caster)
    {
       BaseUnit target;
-      if(caster.Effectable.ContainsStatusEffect(StatusEffectType.Charm))
+      if(caster.Effectable.ContainsStatusEffect(StatusEffectType.Charm) || caster.Effectable.ContainsStatusEffect(StatusEffectType.Frenzy))
       {
          target = caster.EnemyTargetHelper.GetTarget(TargetData);
       }

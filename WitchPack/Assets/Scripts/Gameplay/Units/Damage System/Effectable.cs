@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class Effectable
 {
     public event Action<Effectable, Affector, StatusEffect> OnAffected;
