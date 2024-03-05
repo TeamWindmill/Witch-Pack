@@ -1,13 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface IInit<T>
+namespace Tools.Helpers
 {
-    public abstract void Init(T obj);
-}
+    public interface IInitialize<T>
+    {
+        public abstract void Init(T obj);
+        public bool Initialized { get; }
+    }
 
-public interface IInit<T1,T2>
-{
-    public abstract void Init(T1 obj1,T2 obj2);
+    public interface IInitialize<T1,T2>
+    {
+        public abstract void Init(T1 obj1,T2 obj2);
+        public bool Initialized { get; }
+    }
+    public interface IInitialize<T1,T2,T3>
+    {
+        public abstract void Init(T1 obj1,T2 obj2,T3 obj3);
+        public bool Initialized { get; }
+    }
 }

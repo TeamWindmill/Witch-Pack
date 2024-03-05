@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Gameplay.Units.Abilities;
 using UnityEngine;
 
 public class Damageable
@@ -35,18 +36,18 @@ public class Damageable
         OnGetHit += AddStatsDamageReduction;
     }
 
-    public void GetHit(DamageDealer dealer, BaseAbility ability)
+    public void GetHit(DamageDealer dealer, CastingAbility ability)
     {
         if (!hitable)
         {
             return;
         }
-        //status effects addition
+        
         foreach (var item in ability.StatusEffects)
         {
             owner.Effectable.AddEffect(item, dealer.Owner.Affector);
         }
-
+        
         if (ability is OffensiveAbility offensiveAbility)
         {
             DamageHandler dmg = new DamageHandler(offensiveAbility.BaseDamage);
@@ -78,7 +79,7 @@ public class Damageable
         Heal(owner.Stats.HpRegen);
     }
 
-    public void TakeDamage(DamageDealer dealer, DamageHandler damage, BaseAbility ability, bool isCrit)
+    public void TakeDamage(DamageDealer dealer, DamageHandler damage, OffensiveAbility ability, bool isCrit)
     {
         if(!hitable) return;
         dealer.OnHitTarget?.Invoke(this, dealer, damage, ability, isCrit);
@@ -96,7 +97,7 @@ public class Damageable
         ClampHp();
     }
 
-    private void Die(DamageDealer dealer, DamageHandler damage, BaseAbility ability, bool isCrit)
+    private void Die(DamageDealer dealer, DamageHandler damage, OffensiveAbility ability, bool isCrit)
     {
         OnDeath?.Invoke(this, dealer, damage, ability);
         OnDeathGFX?.Invoke();
@@ -109,7 +110,7 @@ public class Damageable
         }
     }
 
-    public IEnumerator TakeDamageOverTime(DamageDealer dealer, DamageHandler damage, BaseAbility ability, bool isCrit, float duration, float tickRate)
+    public IEnumerator TakeDamageOverTime(DamageDealer dealer, DamageHandler damage, OffensiveAbility ability, bool isCrit, float duration, float tickRate)
     {
         float elapsedTime = 0;
         float tickTimer = 0;

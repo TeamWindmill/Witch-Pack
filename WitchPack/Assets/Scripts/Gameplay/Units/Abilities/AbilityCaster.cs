@@ -4,14 +4,14 @@ public class AbilityCaster : ICaster
 {
     
     public event Action<AbilityCaster> OnCast;
-    public event Action<BaseAbility> OnCastGFX;
-    public OffensiveAbility Ability { get => _ability; }
+    public event Action<CastingAbility> OnCastGFX;
+    public CastingAbility Ability { get => _ability; }
     public float LastCast { get; private set; }
     
     private readonly Shaman _shaman;
-    private readonly OffensiveAbility _ability;
+    private readonly CastingAbility _ability;
 
-    public AbilityCaster(BaseUnit owner, OffensiveAbility ability)
+    public AbilityCaster(BaseUnit owner, CastingAbility ability)
     {
         if (owner is Shaman shaman)
         {
