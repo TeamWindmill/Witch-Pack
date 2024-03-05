@@ -9,19 +9,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 397bd49a0b873c749a99a21a1401c825, type: 3}
-  m_Name: ShamanAutoAttack
+  m_Script: {fileID: 11500000, guid: 81bc54a6909644928fc8b5cc15bd5412, type: 3}
+  m_Name: Charmer
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
-  name: 
-  discription: 
-  castTime: 0.25
-  cd: 0
+  icon: {fileID: 21300000, guid: 7af17d76993ff0e48a8f20c282ad59a8, type: 3}
+  name: Charmer
+  discription: longer duration
+  castTime: 1
+  cd: 10
   givesEnergyPoints: 0
   energyPoints: 0
   _hasSFX: 1
-  soundEffectType: 0
-  statusEffects: []
+  soundEffectType: 17
+  statusEffects:
+  - {fileID: 11400000, guid: 016c261613ef25042ac6d5bea3aaf894, type: 2}
   _upgrades: []
   targetData:
     Priority: 0
@@ -32,3 +33,4 @@ MonoBehaviour:
   baseDamage: 0
   range: 0
   damageBoosts: []
+  _charmedState: {fileID: 11400000, guid: d598f106f9f50114c96da9cffaa8a569, type: 2}

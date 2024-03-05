@@ -8,10 +8,10 @@ public class BaseUnit : MonoBehaviour
     #region Serialized
     
     [SerializeField] private UnitType unitType;
-    [SerializeField, TabGroup("Combat")] private Damageable damageable;
-    [SerializeField, TabGroup("Combat")] private DamageDealer damageDealer;
-    [SerializeField, TabGroup("Combat")] private Affector affector;
-    [SerializeField, TabGroup("Combat")] private Effectable effectable;
+    [TabGroup("Combat")] private Damageable damageable;
+    [TabGroup("Combat")] private DamageDealer damageDealer;
+    [TabGroup("Combat")] private Affector affector;
+    [TabGroup("Combat")] private Effectable effectable;
     [SerializeField, TabGroup("Combat")] private OffensiveAbility autoAttack;
     [SerializeField, TabGroup("Combat")] private UnitAutoCaster _autoCaster;
     [SerializeField, TabGroup("Combat")] private BoxCollider2D boxCollider;
@@ -95,6 +95,8 @@ public class BaseUnit : MonoBehaviour
     protected virtual void OnDisable() //unsubscribe to events
     {
         if (ReferenceEquals(LevelManager.Instance, null)) return;
+        if (ReferenceEquals(damageable, null)) return;
+        if (ReferenceEquals(effectable, null)) return;
         damageable.OnDamageCalc -= LevelManager.Instance.PopupsManager.SpawnDamagePopup;
         damageable.OnHeal -= LevelManager.Instance.PopupsManager.SpawnHealPopup;
         effectable.OnAffectedGFX -= LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;

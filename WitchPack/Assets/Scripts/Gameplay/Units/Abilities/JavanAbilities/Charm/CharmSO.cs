@@ -6,14 +6,14 @@ public class CharmSO : OffensiveAbility
     [SerializeField] private Charmed _charmedState;
     public override bool CastAbility(BaseUnit caster)
     {
-        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
+        Enemy target = caster.EnemyTargetHelper.GetTarget(TargetData);
         
         if (!ReferenceEquals(target, null))
         {
             foreach (var statusEffect in StatusEffects)
             {
-                ((Enemy)target).EnemyAI.SetState(typeof(Charmed));
-                if (!target.Effectable.ContainsStatusEffect(StatusEffectType.Charm))
+                target.EnemyAI.SetState(typeof(Charmed));
+                if (!target.Effectable.ContainsStatusEffect(statusEffect.StatusEffectType))
                 {
                     var effect = target.Effectable.AddEffect(statusEffect, caster.Affector);
                     effect.Ended += _charmedState.EndCharm;
