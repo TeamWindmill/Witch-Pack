@@ -40,6 +40,7 @@ public class PoisonIvyMono : RootingVinesMono
     private void EnemyTakePoisonDamage(Enemy enemy)
     {
         damage = new DamageHandler(poison.PoisonDamage);
+        damage.SetPopupColor(poison.PoisonPopupColor);
         enemy.Damageable.TakeDamage(owner.DamageDealer, damage, refAbility, false);
     }
 

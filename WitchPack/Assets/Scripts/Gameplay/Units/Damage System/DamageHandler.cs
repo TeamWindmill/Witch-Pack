@@ -7,6 +7,11 @@ public class DamageHandler
     private List<float> mods = new List<float>();
     private List<int> flatMods = new List<int>();
 
+    private bool hasPopupColor;
+    private Color popupColor;
+
+    public bool HasPopupColor { get => hasPopupColor; }
+    public Color PopupColor { get => popupColor; }
 
     public DamageHandler(float baseAmount)
     {
@@ -56,6 +61,15 @@ public class DamageHandler
         return Mathf.RoundToInt(Mathf.Clamp(amount, 0, amount));
     }
 
+    public void SetPopupColor(Color color)
+    {
+        hasPopupColor = true;
+        popupColor = color;
+    }
 
+    public void SetNoPopupColor()
+    {
+        hasPopupColor = false;
+    }
 
 }

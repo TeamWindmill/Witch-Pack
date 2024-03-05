@@ -38,7 +38,11 @@ public class PopupsManager : MonoBehaviour
         {
             _popupColor = Color.red;
         }
-        if(ability.HasPopupColor)
+        else if(damage.HasPopupColor)
+        {
+            _popupColor = damage.PopupColor;
+        }
+        else if(ability.HasPopupColor)
         {
             _popupColor = ability.PopupColor;
         }

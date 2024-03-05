@@ -10,10 +10,12 @@ public class PoisonIvy : OffensiveAbility
     [SerializeField] private float poisonDuration;
     [SerializeField] private float poisonTickRate;
     [SerializeField] private int poisonDamage;
+    [SerializeField] private Color poisonPopupColor;
 
     public float PoisonDuration { get => poisonDuration; }
     public float PoisonTickRate { get => poisonTickRate; }
     public int PoisonDamage { get => poisonDamage; }
+    public Color PoisonPopupColor { get => poisonPopupColor; }
 
     public override bool CastAbility(BaseUnit caster)
     {
