@@ -1,3 +1,4 @@
+using Gameplay.Units.Abilities;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "MeleeAA", menuName = "Ability/MeleeAA")]
@@ -7,9 +8,9 @@ public class EnemyAutoAttack : OffensiveAbility
    public override bool CastAbility(BaseUnit caster)
    {
       BaseUnit target;
-      if(caster.Effectable.ContainsStatusEffect(StatusEffectType.Charm) || caster.Effectable.ContainsStatusEffect(StatusEffectType.Frenzy))
+      if(caster.Effectable.ContainsStatusEffect(StatusEffectType.Charm))
       {
-         target = caster.EnemyTargetHelper.GetTarget(TargetData);
+         target = caster.EnemyTargetHelper.GetTarget(TargetData,LevelManager.Instance.CharmedEnemies);
       }
       else
       {
@@ -24,9 +25,9 @@ public class EnemyAutoAttack : OffensiveAbility
    public override bool CheckCastAvailable(BaseUnit caster)
    {
       BaseUnit target;
-      if(caster.Effectable.ContainsStatusEffect(StatusEffectType.Charm) || caster.Effectable.ContainsStatusEffect(StatusEffectType.Frenzy))
+      if(caster.Effectable.ContainsStatusEffect(StatusEffectType.Charm))
       {
-         target = caster.EnemyTargetHelper.GetTarget(TargetData);
+         target = caster.EnemyTargetHelper.GetTarget(TargetData,LevelManager.Instance.CharmedEnemies);
       }
       else
       {

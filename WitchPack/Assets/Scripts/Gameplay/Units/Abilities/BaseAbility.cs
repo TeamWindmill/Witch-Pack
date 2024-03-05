@@ -21,48 +21,19 @@ public abstract class BaseAbility : ScriptableObject
     [HorizontalGroup("General Settings/Split")]
     [VerticalGroup("General Settings/Split/Right")]
     [SerializeField] private string discription;
-    
-    
-    
-    [BoxGroup("Casting")][SerializeField, Tooltip("Interval before casting in real time")] private float castTime;
-    [BoxGroup("Casting")][SerializeField] private float cd;
-    [BoxGroup("Casting")][SerializeField] private bool givesEnergyPoints;
-    [BoxGroup("Casting")][SerializeField,ShowIf(nameof(givesEnergyPoints))] private int energyPoints;
-    
-    [BoxGroup("Sound")][SerializeField] private bool _hasSFX = true;
-    [BoxGroup("Sound")][SerializeField,ShowIf(nameof(_hasSFX))] private SoundEffectType soundEffectType;
 
+    [BoxGroup("Skill Tree")][SerializeField] private BaseAbility[] _upgrades;
+    [BoxGroup("Damage Popup Numbers")][SerializeField] private bool hasPopupColor;
+    [BoxGroup("Damage Popup Numbers")][SerializeField, ShowIf(nameof(hasPopupColor))] private Color popupColor;
 
-    [BoxGroup("Casting")][SerializeField] private List<StatusEffectConfig> statusEffects = new List<StatusEffectConfig>();
-    [BoxGroup("Casting")][SerializeField] private BaseAbility[] _upgrades;
-    [BoxGroup("Casting")][SerializeField] private TargetData targetData;
     private AbilityUpgradeState _abilityUpgradeState;
-
-    [BoxGroup("Popup")][SerializeField] private bool hasPopupColor;
-    [BoxGroup("Popup")][SerializeField, ShowIf(nameof(hasPopupColor))] private Color popupColor;
     public bool HasPopupColor { get => hasPopupColor; }
     public Color PopupColor { get => popupColor; }
-
-
-    public TargetData TargetData => targetData;
     public Sprite Icon => icon;
     public string Name => name;
     public string Discription => discription;
-    public float Cd => cd;
-    public bool GivesEnergyPoints => givesEnergyPoints;
-    public int EnergyPoints => energyPoints;
-    public List<StatusEffectConfig> StatusEffects => statusEffects;
     public BaseAbility[] Upgrades => _upgrades;
     public AbilityUpgradeState AbilityUpgradeState => _abilityUpgradeState;
-
-    public bool HasSfx => _hasSFX;
-
-    public SoundEffectType SoundEffectType => soundEffectType;
-
-
-    public float CastTime { get => castTime; }
-
-
 
     public virtual void OnSetCaster(BaseUnit caster)
     {

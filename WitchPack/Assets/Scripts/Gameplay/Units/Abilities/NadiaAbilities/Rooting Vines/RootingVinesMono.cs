@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Gameplay.Units.Abilities;
 using UnityEngine;
 
 public class RootingVinesMono : MonoBehaviour
@@ -9,7 +10,7 @@ public class RootingVinesMono : MonoBehaviour
     private float elapsedTime;
     [SerializeField] private GroundColliderTargeter groundColliderTargeter;
 
-    protected BaseAbility refAbility;
+    protected OffensiveAbility refAbility;
     protected BaseUnit owner;
     
     
@@ -25,11 +26,11 @@ public class RootingVinesMono : MonoBehaviour
         }
     }
 
-    public virtual void Init(BaseUnit owner, BaseAbility ability, float lastingTime)
+    public virtual void Init(BaseUnit owner, OffensiveAbility ability, float lastingTime)
     {
         ringLastingTime = lastingTime;
         this.owner = owner;
-        this.refAbility = ability;
+        refAbility = ability;
         groundColliderTargeter.OnTargetAdded += OnTargetEntered;
     }
 

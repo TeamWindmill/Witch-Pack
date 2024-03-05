@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Gameplay.Units.Abilities;
 using UnityEngine;
 
 public class PoisonIvyMono : RootingVinesMono
@@ -8,7 +9,7 @@ public class PoisonIvyMono : RootingVinesMono
     private PoisonIvy poison;
 
     DamageHandler damage;
-    public override void Init(BaseUnit owner, BaseAbility ability, float lastingTime)
+    public override void Init(BaseUnit owner, OffensiveAbility ability, float lastingTime)
     {
         base.Init(owner, ability, lastingTime);
         poison = ability as PoisonIvy;

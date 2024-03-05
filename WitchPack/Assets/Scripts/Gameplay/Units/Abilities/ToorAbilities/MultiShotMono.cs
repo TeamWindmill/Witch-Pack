@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Gameplay.Units.Abilities;
 using UnityEngine;
 
 public class MultiShotMono : ShamanAutoAttackMono
@@ -10,7 +11,7 @@ public class MultiShotMono : ShamanAutoAttackMono
     private List<Vector3> allPositions;
     private bool setup;
     private int counter = 0;
-    public void Fire(BaseUnit shooter, BaseAbility givenAbility, Vector2 dir, BaseUnit target, Vector3 archSize)
+    public void Fire(BaseUnit shooter, OffensiveAbility givenAbility, Vector2 dir, BaseUnit target, Vector3 archSize)
     {
         owner = shooter;
         ability = givenAbility;
