@@ -95,6 +95,8 @@ public class BaseUnit : MonoBehaviour
     protected virtual void OnDisable() //unsubscribe to events
     {
         if (ReferenceEquals(LevelManager.Instance, null)) return;
+        if (ReferenceEquals(damageable, null)) return;
+        if (ReferenceEquals(effectable, null)) return;
         damageable.OnDamageCalc -= LevelManager.Instance.PopupsManager.SpawnDamagePopup;
         damageable.OnHeal -= LevelManager.Instance.PopupsManager.SpawnHealPopup;
         effectable.OnAffectedGFX -= LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
