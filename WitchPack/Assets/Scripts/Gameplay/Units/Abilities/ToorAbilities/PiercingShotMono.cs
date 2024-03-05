@@ -1,4 +1,5 @@
 using System.Collections;
+using Gameplay.Units.Abilities;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
@@ -25,7 +26,7 @@ public class PiercingShotMono : MonoBehaviour
     private int currentNumberOfHits;
     private int maxNumberOfHits;
     private float lastRate;
-    private BaseAbility refAbility;
+    private OffensiveAbility refAbility;
     private BaseUnit owner;
 
     private void OnEnable()
@@ -40,7 +41,7 @@ public class PiercingShotMono : MonoBehaviour
     {
         GAME_TIME.OnTimeRateChange -= ChangeVelocity;
     }
-    public void Fire(BaseUnit shooter, BaseAbility givenAbility, Vector2 dir, int basePen = 0, bool includePenStat = false)
+    public void Fire(BaseUnit shooter, OffensiveAbility givenAbility, Vector2 dir, int basePen = 0, bool includePenStat = false)
     {
         EnableVisuals(givenAbility);
         owner = shooter;

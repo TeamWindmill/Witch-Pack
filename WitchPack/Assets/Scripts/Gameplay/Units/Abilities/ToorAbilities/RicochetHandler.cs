@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Gameplay.Units.Abilities;
 using UnityEngine;
 
 public class RicochetHandler
@@ -17,7 +18,7 @@ public class RicochetHandler
         shot.OnShotHit.AddListener(JumpToTarget);
     }
 
-    public void JumpToTarget(BaseAbility ability, BaseUnit shooter, BaseUnit originalTarget)
+    public void JumpToTarget(OffensiveAbility ability, BaseUnit shooter, BaseUnit originalTarget)
     {
 
         ShamanAutoAttackMono shot = LevelManager.Instance.PoolManager.MultiShotPool.GetPooledObject();

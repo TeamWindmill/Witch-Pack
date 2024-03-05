@@ -6,7 +6,7 @@ using System;
 public class ExperiencedHunterCounter : AbilityEventCounter
 {
     private int numberOfKillsRequiredToIncreasePierce;
-    public ExperiencedHunterCounter(BaseUnit givenOwner, BaseAbility givenAbility, ref Action<Damageable, DamageDealer, DamageHandler, BaseAbility, bool> eventToSub, int numberOfKillsRequiredToIncreasePierce) : base(givenOwner, givenAbility, ref eventToSub)
+    public ExperiencedHunterCounter(BaseUnit givenOwner, BaseAbility givenAbility, ref Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> eventToSub, int numberOfKillsRequiredToIncreasePierce) : base(givenOwner, givenAbility, ref eventToSub)
     {
         this.numberOfKillsRequiredToIncreasePierce = numberOfKillsRequiredToIncreasePierce;        
     }

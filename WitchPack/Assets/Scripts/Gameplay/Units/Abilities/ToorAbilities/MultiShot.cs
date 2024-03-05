@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Gameplay.Units.Abilities;
 
 [CreateAssetMenu(fileName = "MultiShot", menuName = "Ability/MultiShot")]
 public class MultiShot : OffensiveAbility

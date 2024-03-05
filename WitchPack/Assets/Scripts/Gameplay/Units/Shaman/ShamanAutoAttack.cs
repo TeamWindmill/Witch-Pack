@@ -1,13 +1,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Gameplay.Units.Abilities;
 
 [CreateAssetMenu(fileName = "ShamanAA", menuName = "Ability/ShamanAA")]
 public class ShamanAutoAttack : OffensiveAbility
 {
     public override bool CastAbility(BaseUnit caster)
     {
-        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
+        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData,LevelManager.Instance.CharmedEnemies);
         if (ReferenceEquals(target, null))
         {
             return false;
@@ -22,7 +23,7 @@ public class ShamanAutoAttack : OffensiveAbility
 
     public override bool CheckCastAvailable(BaseUnit caster)
     {
-        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
+        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData,LevelManager.Instance.CharmedEnemies);
         return !ReferenceEquals(target, null);
     }
 }

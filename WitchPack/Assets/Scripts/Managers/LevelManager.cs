@@ -8,6 +8,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     public ScoreHandler ScoreHandler => _scoreHandler;
     public LevelHandler CurrentLevel { get; private set; }
     public List<Shaman> ShamanParty { get; private set; }
+    public List<Enemy> CharmedEnemies { get; set; } = new();
     public bool IsWon { get; private set; }
 
 

@@ -4,7 +4,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "StateMachine/States/FollowPath", fileName = "FollowPath")]
 public class FollowPath : IntervalState<EnemyAI>
 {
-    
+    public override void Enter(EnemyAI parent)
+    {
+        parent.Enemy.Movement.ToggleMovement(false);
+        base.Enter(parent);
+    }
 
     protected override void IntervalUpdate(EnemyAI parent)
     {
@@ -27,5 +31,9 @@ public class FollowPath : IntervalState<EnemyAI>
         }
     }
 
-   
+    public override void Exit(EnemyAI parent)
+    {
+        parent.Enemy.Movement.ToggleMovement(true);
+        base.Exit(parent);
+    }
 }
