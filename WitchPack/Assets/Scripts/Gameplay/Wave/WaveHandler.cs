@@ -65,30 +65,62 @@ public class WaveHandler : MonoBehaviour
             else // if a wave other than the last one finished spawning set up the next wave. 
             {
                 SetIndicator(i, waveData.BetweenWavesInterval);
-                yield return StartCoroutine(IntervalDelay(waveData.BetweenWavesInterval));
+                yield return StartCoroutine(WaveDelay(waveData.BetweenWavesInterval));
             }
         }
         LevelManager.Instance.EndLevel(true);
     }
 
 
+    //private IEnumerator SpawnWave(EnemySpawnData givenData)
+    //{
+    //    for (int i = 0; i < givenData.TotalSpawns; i++) //loop over how many spawns there are in total
+    //    {
+    //        for (int j = 0; j < givenData.Groups.Count; j++)
+    //        {
+    //            if(i >= givenData.Groups[j].SpawnedAtInterval)
+    //            {
+    //                StartCoroutine(SpawnGroup(givenData.Groups[j]));
+    //            }
+    //        }
+
+    //        yield return StartCoroutine(IntervalDelay(givenData.TimeBetweenIntervals));
+    //    }
+    //}
+
     private IEnumerator SpawnWave(EnemySpawnData givenData)
     {
-        for (int i = 0; i < givenData.TotalSpawns; i++) //loop over how many spawns there are in total
+        bool waveCompletedSpawning = false;
+        int currentInterval = 0;
+
+        foreach (EnemyGroup group in givenData.Groups)
         {
-            int currentIntervalGoal = 0;
-            for (int j = 0; j < givenData.Groups.Count; j++)
+            group.CompletedSpawning = false;
+        }
+
+        while (!waveCompletedSpawning)
+        {
+            waveCompletedSpawning = true;
+
+            for (int i = 0; i < givenData.Groups.Count; i++)
             {
-                if (givenData.Groups[j].SpawnedAtInterval <= i + 1)
+                if (givenData.Groups[i].CompletedSpawning)
                 {
-                    StartCoroutine(SpawnGroupInterval(givenData.Groups[j]));
-                    currentIntervalGoal++;
+                    continue; // no need to spawn any more
+                }
+                else
+                {
+                    waveCompletedSpawning = false;
+                }
+
+                if (currentInterval >= givenData.Groups[i].SpawnedAtInterval)
+                {
+                    StartCoroutine(SpawnGroupInterval(givenData.Groups[i]));
                 }
             }
 
-            yield return new WaitUntil(() => doneSpawningCounter >= currentIntervalGoal);
+            currentInterval++;
             yield return StartCoroutine(IntervalDelay(givenData.TimeBetweenIntervals));
-            doneSpawningCounter = 0;
         }
     }
 
@@ -106,7 +138,11 @@ public class WaveHandler : MonoBehaviour
 
             yield return StartCoroutine(IntervalDelay(fixedSpawnInterval));
         }
-        doneSpawningCounter++;
+
+        if (givenGroup.TotalAmount <= givenGroup.NumSpawned) //if ran out of enemies to spawn break out.
+        {
+            givenGroup.CompletedSpawning = true;
+        }
     }
 
 
@@ -131,10 +167,20 @@ public class WaveHandler : MonoBehaviour
         float counter = 0f;
         while (counter < givenInterval)
         {
+            counter += GAME_TIME.GameDeltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    private IEnumerator WaveDelay(float givenInterval)
+    {
+        float counter = 0f;
+        while (counter < givenInterval)
+        {
             if (skipFlag)
             {
                 skipFlag = false;
-               break; //caused first enemy in the first wave to spawn on top of the second enemy
+                break; //caused first enemy in the first wave to spawn on top of the second enemy
             }
             counter += GAME_TIME.GameDeltaTime;
             yield return new WaitForEndOfFrame();
