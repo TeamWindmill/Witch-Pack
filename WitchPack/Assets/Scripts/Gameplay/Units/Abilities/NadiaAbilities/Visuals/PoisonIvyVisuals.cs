@@ -17,8 +17,7 @@ public class PoisonIvyVisuals : MonoBehaviour
         elapsedTime += GAME_TIME.GameDeltaTime;
         if(elapsedTime >= duration)
         {
-            elapsedTime = 0;
-            gameObject.SetActive(false);
+            StopPoisonParticle();
         }
     }
 
@@ -27,6 +26,12 @@ public class PoisonIvyVisuals : MonoBehaviour
         elapsedTime = 0;
         this.duration = duration;
         this.gameObject.SetActive(true);
+    }
+
+    public void StopPoisonParticle()
+    {
+        elapsedTime = 0;
+        gameObject.SetActive(false);
     }
 
 
