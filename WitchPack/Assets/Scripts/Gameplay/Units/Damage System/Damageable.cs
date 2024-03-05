@@ -91,16 +91,22 @@ public class Damageable
 
         if (currentHp <= 0)
         {
-            OnDeath?.Invoke(this, dealer, damage, ability);
-            OnDeathGFX?.Invoke();
-            dealer.OnKill?.Invoke(this, dealer, damage, ability, isCrit);
-            foreach (var damageDealer in _damageDealers)
-            {
-                if(damageDealer == dealer) continue;
-                damageDealer.OnAssist?.Invoke(this, dealer, damage, ability, isCrit);
-            }
+            Die(dealer, damage, ability, isCrit);
         }
         ClampHp();
+    }
+
+    private void Die(DamageDealer dealer, DamageHandler damage, BaseAbility ability, bool isCrit)
+    {
+        OnDeath?.Invoke(this, dealer, damage, ability);
+        OnDeathGFX?.Invoke();
+        dealer.OnKill?.Invoke(this, dealer, damage, ability, isCrit);
+        owner.ClearUnitTImers();
+        foreach (var damageDealer in _damageDealers)
+        {
+            if (damageDealer == dealer) continue;
+            damageDealer.OnAssist?.Invoke(this, dealer, damage, ability, isCrit);
+        }
     }
 
     public IEnumerator TakeDamageOverTime(DamageDealer dealer, DamageHandler damage, BaseAbility ability, bool isCrit, float duration, float tickRate)

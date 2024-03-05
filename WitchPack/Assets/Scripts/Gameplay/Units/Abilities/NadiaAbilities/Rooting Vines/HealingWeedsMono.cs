@@ -17,6 +17,7 @@ public class HealingWeedsMono : RootingVinesMono
         Timer<Enemy> timer = new Timer<Enemy>(timerData);
         timer.OnTimerEnd += RemoveHerbalWeeds;
         TimerManager.Instance.AddTimer<Enemy>(timer);
+        enemy.UnitTimers.Add(timer);
     }
 
     private void RemoveHerbalWeeds(Timer<Enemy> timer)

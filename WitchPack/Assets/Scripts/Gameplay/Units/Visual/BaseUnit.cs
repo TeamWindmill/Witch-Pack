@@ -32,6 +32,7 @@ public class BaseUnit : MonoBehaviour
     private UnitTargetHelper<Shaman> shamanTargetHelper;
     private UnitTargetHelper<Enemy> enemyTargetHelper;
     private AutoAttackHandler autoAttackHandler;
+    private List<ITimer> unitTimers;
 
     #endregion
     
@@ -55,6 +56,8 @@ public class BaseUnit : MonoBehaviour
     public UnitTargetHelper<Shaman> ShamanTargetHelper => shamanTargetHelper;
     public UnitTargetHelper<Enemy> EnemyTargetHelper => enemyTargetHelper;
 
+    public List<ITimer> UnitTimers { get => unitTimers; }
+
     #endregion
 
     public virtual void Init(BaseUnitConfig givenConfig)
@@ -67,6 +70,7 @@ public class BaseUnit : MonoBehaviour
         autoAttackHandler = new AutoAttackHandler(this, autoAttack);
         shamanTargetHelper = new UnitTargetHelper<Shaman>(ShamanTargeter, this);
         enemyTargetHelper = new UnitTargetHelper<Enemy>(EnemyTargeter, this);
+        unitTimers = new List<ITimer>();
         AutoCaster.Init(this);
         Movement.SetUp(this);
         groundCollider.Init(this);
@@ -114,6 +118,16 @@ public class BaseUnit : MonoBehaviour
         ToggleCollider(false);
         damageable.ToggleHitable(false);
         _autoCaster.DisableCaster();
+    }
+
+    public void ClearUnitTImers()
+    {
+        foreach (ITimer iTimer in UnitTimers)
+        {
+            iTimer.RemoveThisTimer();
+        }
+
+        UnitTimers.Clear();
     }
 
     private void OnValidate()
