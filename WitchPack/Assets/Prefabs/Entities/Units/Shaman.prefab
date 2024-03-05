@@ -81,8 +81,8 @@ MonoBehaviour:
   hasHPBar: 1
   hpBar: {fileID: 6607112471978238696}
   _castPos: {fileID: 7923560994105219183}
-  enemyTargeter: {fileID: 4671891764483534921}
-  shamanTargeter: {fileID: 643734768296118702}
+  enemyTargeter: {fileID: 8850258218455859015}
+  shamanTargeter: {fileID: 2651341387618119756}
   shamanAnimator: {fileID: 7099561053656345452}
   shamanVisualHandler: {fileID: 1972548795772543696}
   clicker: {fileID: 1861919391548874701}
@@ -367,7 +367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5721003753136217539}
   - component: {fileID: 4578788197242187036}
-  - component: {fileID: 4671891764483534921}
+  - component: {fileID: 8850258218455859015}
   m_Layer: 8
   m_Name: EnemyTargeter
   m_TagString: Untagged
@@ -455,7 +455,7 @@ PolygonCollider2D:
       - {x: 0.29296875, y: 0.40234375}
       - {x: 0.15234375, y: 0.47265625}
   m_UseDelaunayMesh: 0
---- !u!114 &4671891764483534921
+--- !u!114 &8850258218455859015
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -700,7 +700,7 @@ MonoBehaviour:
   rend: {fileID: 5260549790128730764}
   toggleOnVis: 1
   clickable: 0
---- !u!1 &7138561361895139615
+--- !u!1 &7840211628596734684
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -708,23 +708,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1482658402490536693}
-  - component: {fileID: 4780562881867149208}
-  - component: {fileID: 643734768296118702}
-  m_Layer: 9
+  - component: {fileID: 1881230487886873783}
+  - component: {fileID: 5135308924227987900}
+  - component: {fileID: 2651341387618119756}
+  m_Layer: 8
   m_Name: ShamanTargeter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1482658402490536693
+--- !u!4 &1881230487886873783
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7138561361895139615}
+  m_GameObject: {fileID: 7840211628596734684}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -733,13 +733,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3103789755118433854}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &4780562881867149208
+--- !u!60 &5135308924227987900
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7138561361895139615}
+  m_GameObject: {fileID: 7840211628596734684}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -798,13 +798,13 @@ PolygonCollider2D:
       - {x: 0.29296875, y: 0.40234375}
       - {x: 0.15234375, y: 0.47265625}
   m_UseDelaunayMesh: 0
---- !u!114 &643734768296118702
+--- !u!114 &2651341387618119756
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7138561361895139615}
+  m_GameObject: {fileID: 7840211628596734684}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e78dac5dcc88e0c49a9ca0cc7fb941c6, type: 3}
@@ -813,7 +813,7 @@ MonoBehaviour:
   availableTargets: []
   layer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!1 &8671966536731905977
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,7 +844,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5721003753136217539}
-  - {fileID: 1482658402490536693}
+  - {fileID: 1881230487886873783}
   m_Father: {fileID: 8122201396031876073}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &9194236563995916466

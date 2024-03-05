@@ -66,6 +66,9 @@ public class Enemy : BaseUnit
     {
         //_enemyAI?.OnDisable();
         base.OnDisable();
+        if (ReferenceEquals(LevelManager.Instance, null)) return;
+        if (ReferenceEquals(Damageable, null)) return;
+        if (ReferenceEquals(Effectable, null)) return;
         Damageable.OnHitGFX -= GetHitSFX;
         Damageable.OnDeathGFX -= DeathSFX;
         if (AutoAttackHandler != null) AutoAttackHandler.OnAttack -= AttackSFX;

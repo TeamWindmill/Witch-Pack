@@ -25,7 +25,7 @@ public class Charmed : State<EnemyAI>
     }
     public void EndCharm(Effectable parent,StatusEffect statusEffect)
     {
-        (parent.Owner as Enemy)?.EnemyAI.SetState(typeof(FollowPath));
+        (parent.Owner as Enemy)?.EnemyAI.SetState(typeof(ReturnToPath));
     }
     public override void Exit(EnemyAI parent)
     {

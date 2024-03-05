@@ -72,7 +72,6 @@ public class ChaseTarget : IntervalState<EnemyAI>
 
         if (rand < parent.ReturnChance)
         {
-            parent.Enemy.Movement.Agent.stoppingDistance = 0;
             parent.SetState(typeof(ReturnToPath));
         }
     }
