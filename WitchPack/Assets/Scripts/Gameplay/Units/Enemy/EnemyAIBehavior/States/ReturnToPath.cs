@@ -7,7 +7,7 @@ public class ReturnToPath : State<EnemyAI>
     public override void Enter(EnemyAI parent)
     {
         base.Enter(parent);
-        parent.Enemy.Movement.Agent.stoppingDistance = 0;
+        parent.Enemy.Movement.Agent.stoppingDistance = 0.1f;
     }
 
     public override void UpdateState(EnemyAI parent)
