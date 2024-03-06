@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class TimerManager : MonoSingleton<TimerManager>
 {
-    private List<ITimer> _timers = new List<ITimer>();
-    private List<ITimer> _queuedTimersToAdd = new List<ITimer>();
-    private List<ITimer> _queuedTimersToRemove = new List<ITimer>();
+    private readonly List<ITimer> _timers = new List<ITimer>();
+    private readonly List<ITimer> _queuedTimersToAdd = new List<ITimer>();
+    private readonly List<ITimer> _queuedTimersToRemove = new List<ITimer>();
 
     private void Update()
     {
@@ -25,7 +25,7 @@ public class TimerManager : MonoSingleton<TimerManager>
     }
     private void RemoveQueuedTimers()
     {
-        _queuedTimersToRemove.ForEach(queuedTimer => _timers.Add(queuedTimer));
+        _queuedTimersToRemove.ForEach(queuedTimer => _timers.Remove(queuedTimer));
         _queuedTimersToAdd.Clear();
     }
 
@@ -34,17 +34,17 @@ public class TimerManager : MonoSingleton<TimerManager>
     /// </summary>
     /// <param name="dontDestroyTimer">if true use the RemoveTimer Method</param>
     /// <returns></returns>
-    public Timer AddTimer(float tickTime, Action onTimerEnd, bool usingGameTime = false, int ticksAmount = 1, bool dontDestroyTimer = false)
+    public Timer AddTimer(float tickTime, Action onTimerTick, bool usingGameTime = false, int ticksAmount = 1, bool dontDestroyTimer = false)
     {
-        var timerData = new TimerData(tickTime, onTimerEnd, ticksAmount, usingGameTime, dontDestroyTimer);
+        var timerData = new TimerData(tickTime, onTimerTick, ticksAmount, usingGameTime, dontDestroyTimer);
         var timer = new Timer(timerData);
         _queuedTimersToAdd.Add(timer);
         timer.OnTimerEnd += RemoveTimer;
         return timer;
     }
-    public Timer<T> AddTimer<T>(float tickTime,T data, Action<T> onTimerEnd, bool usingGameTime = false, int ticksAmount = 1, bool dontDestroyTimer = false)
+    public Timer<T> AddTimer<T>(float tickTime,T data, Action<T> onTimerTick, bool usingGameTime = false, int ticksAmount = 1, bool dontDestroyTimer = false)
     {
-        var timerData = new TimerData<T>(tickTime, data, onTimerEnd, ticksAmount, usingGameTime, dontDestroyTimer);
+        var timerData = new TimerData<T>(tickTime, data, onTimerTick, ticksAmount, usingGameTime, dontDestroyTimer);
         var timer = new Timer<T>(timerData);
         _queuedTimersToAdd.Add(timer);
         timer.OnTimerEnd += RemoveTimer;
@@ -72,12 +72,12 @@ public class TimerManager : MonoSingleton<TimerManager>
     public void RemoveTimer(Timer timer)
     {
         timer.OnTimerEnd -= RemoveTimer;
-        _queuedTimersToRemove.Remove(timer);
+        _queuedTimersToRemove.Add(timer);
     }
     public void RemoveTimer<T>(Timer<T> timer)
     {
         timer.OnTimerEnd -= RemoveTimer;
-        _queuedTimersToRemove.Remove(timer);
+        _queuedTimersToRemove.Add(timer);
     }
     
 }

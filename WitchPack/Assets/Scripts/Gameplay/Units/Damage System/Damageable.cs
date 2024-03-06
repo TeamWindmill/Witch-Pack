@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class Damageable
 {
     private List<DamageDealer> _damageDealers = new List<DamageDealer>();
@@ -14,14 +13,15 @@ public class Damageable
 
     private bool hitable;
 
+
     Timer regenTimer;
 
-    public Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility, bool /*critical - a more generic callback*/> OnGetHit;
-    public Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility, bool> OnDamageCalc;
-    public Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility> OnDeath;
-    public Action OnDeathGFX;
-    public Action<bool> OnHitGFX;
-    public Action<Damageable, float> OnHeal;
+    public event Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility, bool /*critical - a more generic callback*/> OnGetHit;
+    public event Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility, bool> OnDamageCalc;
+    public event Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility> OnDeath;
+    public event Action OnDeathGFX;
+    public event Action<bool> OnHitGFX;
+    public event Action<Damageable, float> OnHeal;
 
     //add gfx events later
 
@@ -35,24 +35,24 @@ public class Damageable
         OnGetHit += AddStatsDamageReduction;
     }
 
-    public void GetHit(DamageDealer dealer, BaseAbility ability)
+    public void GetHit(DamageDealer dealer, CastingAbility ability)
     {
         if (!hitable)
         {
             return;
         }
-        //status effects addition
+        
         foreach (var item in ability.StatusEffects)
         {
             owner.Effectable.AddEffect(item, dealer.Owner.Affector);
         }
-
-        if (ability is OffensiveAbility)
+        
+        if (ability is OffensiveAbility offensiveAbility)
         {
-            DamageHandler dmg = new DamageHandler((ability as OffensiveAbility).BaseDamage);
-            bool isCrit = dealer.CritChance(ability);
+            DamageHandler dmg = new DamageHandler(offensiveAbility.BaseDamage);
+            bool isCrit = dealer.CritChance(offensiveAbility);
 
-            TakeDamage(dealer, dmg, ability, isCrit);
+            TakeDamage(dealer, dmg, offensiveAbility, isCrit);
 
             _damageDealers.Add(dealer);
         }
@@ -78,7 +78,7 @@ public class Damageable
         Heal(owner.Stats.HpRegen);
     }
 
-    public void TakeDamage(DamageDealer dealer, DamageHandler damage, BaseAbility ability, bool isCrit)
+    public void TakeDamage(DamageDealer dealer, DamageHandler damage, OffensiveAbility ability, bool isCrit)
     {
         if(!hitable) return;
         dealer.OnHitTarget?.Invoke(this, dealer, damage, ability, isCrit);
@@ -91,19 +91,25 @@ public class Damageable
 
         if (currentHp <= 0)
         {
-            OnDeath?.Invoke(this, dealer, damage, ability);
-            OnDeathGFX?.Invoke();
-            dealer.OnKill?.Invoke(this, dealer, damage, ability, isCrit);
-            foreach (var damageDealer in _damageDealers)
-            {
-                if(damageDealer == dealer) continue;
-                damageDealer.OnAssist?.Invoke(this, dealer, damage, ability, isCrit);
-            }
+            Die(dealer, damage, ability, isCrit);
         }
         ClampHp();
     }
 
-    public IEnumerator TakeDamageOverTime(DamageDealer dealer, DamageHandler damage, BaseAbility ability, bool isCrit, float duration, float tickRate)
+    private void Die(DamageDealer dealer, DamageHandler damage, OffensiveAbility ability, bool isCrit)
+    {
+        OnDeath?.Invoke(this, dealer, damage, ability);
+        OnDeathGFX?.Invoke();
+        dealer.OnKill?.Invoke(this, dealer, damage, ability, isCrit);
+        owner.ClearUnitTImers();
+        foreach (var damageDealer in _damageDealers)
+        {
+            if (damageDealer == dealer) continue;
+            damageDealer.OnAssist?.Invoke(this, dealer, damage, ability, isCrit);
+        }
+    }
+
+    public IEnumerator TakeDamageOverTime(DamageDealer dealer, DamageHandler damage, OffensiveAbility ability, bool isCrit, float duration, float tickRate)
     {
         float elapsedTime = 0;
         float tickTimer = 0;
@@ -138,7 +144,8 @@ public class Damageable
 
     private void AddStatsDamageReduction(Damageable target, DamageDealer dealer, DamageHandler dmg, BaseAbility ability, bool crit)
     {
-        dmg.AddMod(1 - (owner.Stats.Armor / 100));
+        float damageReductionModifier = 100f / (owner.Stats.Armor + 100f);
+        dmg.AddMod(damageReductionModifier);
     }
 
     public void DamageTick()

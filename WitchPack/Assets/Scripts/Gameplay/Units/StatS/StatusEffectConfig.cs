@@ -46,5 +46,9 @@ public enum StatusEffectType
     Slow,
     Charm,
     Hidden,
-    Inspired,   
+    Inspired,
+    AttackSpeedBoost,
+    HealthRegen,
+    MovementSpeed,
+    PermanentMaxHealthBonus,
 }

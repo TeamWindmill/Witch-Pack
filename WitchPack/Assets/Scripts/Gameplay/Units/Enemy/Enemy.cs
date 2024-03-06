@@ -1,14 +1,21 @@
+using PathCreation;
 using Sirenix.OdinInspector;
+using Systems.StateMachine;
 using UnityEngine;
 
 public class Enemy : BaseUnit
 {
+    [SerializeField, TabGroup("Visual")] private EnemyVisualHandler unitVisual;
+    [SerializeField, TabGroup("Combat")] private EnemyAI enemyAI;
+
     public EnemyConfig EnemyConfig { get => enemyConfig; }
     public int CoreDamage => _coreDamage;
     public int EnergyPoints => _energyPoints;
     public override StatSheet BaseStats => enemyConfig.BaseStats;
     public EnemyMovement EnemyMovement => _enemyMovement;
-    public EnemyAgro EnemyAgro => _enemyAgro;
+    public EnemyAI EnemyAI => enemyAI;
+    public EnemyVisualHandler UnitVisual => unitVisual;
+    public PathCreator Path => _path;
 
     [SerializeField, TabGroup("Visual")] private EnemyAnimator enemyAnimator;
     private int _coreDamage;
@@ -16,10 +23,11 @@ public class Enemy : BaseUnit
     //testing 
     public int Id => gameObject.GetHashCode();
 
-    private EnemyAgro _enemyAgro;
     private EnemyMovement _enemyMovement;
     private EnemyConfig enemyConfig;
+    private PathCreator _path;
     private int pointIndex;
+
 
     private void OnValidate()
     {
@@ -30,22 +38,47 @@ public class Enemy : BaseUnit
         pointIndex = 0;
         enemyConfig = givenConfig as EnemyConfig;
         base.Init(enemyConfig);
+        _path = enemyConfig.Path;
         _coreDamage = enemyConfig.CoreDamage;
         _energyPoints = enemyConfig.EnergyPoints;
         ShamanTargeter.SetRadius(Stats.BonusRange);
         EnemyTargeter.SetRadius(Stats.BonusRange);
-        _enemyAgro = new EnemyAgro(this);
         _enemyMovement = new EnemyMovement(this);
         enemyAnimator.Init(this);
+        unitVisual.Init(this, givenConfig);
+        enemyAI.Init(this);
+        Effectable.OnAffectedVFX += unitVisual.EffectHandler.PlayEffect;
+        Effectable.OnEffectRemovedVFX += unitVisual.EffectHandler.DisableEffect;
+        
+
+        #region Events
+        //remember to unsubscribe in OnDisable!!!
+
         Damageable.OnHitGFX += GetHitSFX;
         Damageable.OnDeathGFX += DeathSFX;
         AutoAttackHandler.OnAttack += AttackSFX;
-        Movement.OnDestinationReached += EnableAttacker;
-        Movement.OnDestinationSet += DisableAttacker;
+        //Movement.OnDestinationSet += AutoCaster.DisableCaster;
+        //Movement.OnDestinationReached += AutoCaster.EnableCaster;
+
+        #endregion
+        
+        Initialized = true;
     }
-    private void Update()
+    protected override void OnDisable() //enemy death
     {
-        _enemyMovement.FollowPath();
+        base.OnDisable();
+        if(!Initialized) return;
+        if (ReferenceEquals(LevelManager.Instance, null)) return;
+        enemyAI.OnDisable();
+        Damageable.OnHitGFX -= GetHitSFX;
+        Damageable.OnDeathGFX -= DeathSFX;
+        if (AutoAttackHandler != null) AutoAttackHandler.OnAttack -= AttackSFX;
+        Movement.OnDestinationSet -= AutoCaster.DisableCaster;
+        Movement.OnDestinationReached -= AutoCaster.EnableCaster;
+        Effectable.OnAffectedVFX -= unitVisual.EffectHandler.PlayEffect;
+        Effectable.OnEffectRemovedVFX -= unitVisual.EffectHandler.DisableEffect;
+
+        Initialized = false;
     }
 
     #region SFX
@@ -54,11 +87,7 @@ public class Enemy : BaseUnit
     private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.EnemyAttack);
     
     #endregion
-    protected override void OnDisable()
-    {
-        _enemyAgro?.OnDisable();
-        base.OnDisable();
-    }
+    
 
     
 }

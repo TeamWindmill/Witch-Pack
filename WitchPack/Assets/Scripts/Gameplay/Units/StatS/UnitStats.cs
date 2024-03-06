@@ -26,12 +26,10 @@ public class UnitStats
     [SerializeField] private int maxHp;
     [SerializeField] private int baseDamage;
     [SerializeField] private float attackSpeed;
-    [SerializeField] private int baseRange;
+    [SerializeField] private float  baseRange;
     [SerializeField] private float movementSpeed;
     [SerializeField] private int critDamage;
     [SerializeField] private int critChance;
-    [SerializeField] private float invincibleTime;
-    [SerializeField] private int abilityCooldownReduction;
     [SerializeField] private int armor;
     [SerializeField] private int hpRegen;
     [SerializeField] private int bonusStatusEffectDuration;
@@ -43,12 +41,10 @@ public class UnitStats
     public int MaxHp { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.MaxHp.value + maxHp), 0, (ownerBaseStats.MaxHp.value + maxHp))); } }
     public int BaseDamage { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.BaseDamage.value + baseDamage), 0, (ownerBaseStats.BaseDamage.value + baseDamage))); } }
     public float AttackSpeed { get { return Mathf.Clamp((ownerBaseStats.AttackSpeed.value + attackSpeed), 0, 2f); } }
-    public int BonusRange { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.BaseRange.value + baseRange), 0, (ownerBaseStats.BaseRange.value + baseRange))); } }
+    public float BonusRange { get { return Mathf.Clamp((ownerBaseStats.BaseRange.value + baseRange), 0, (ownerBaseStats.BaseRange.value + baseRange)); } }
     public float MovementSpeed { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.MovementSpeed.value + movementSpeed), 0, (ownerBaseStats.MovementSpeed.value + movementSpeed))); } }
     public int CritDamage { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.CritDamage.value + critDamage), 0, (ownerBaseStats.CritDamage.value + critDamage))); } }
     public int CritChance { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.CritChance.value + critChance), 0, (ownerBaseStats.CritChance.value + critChance))); } }
-    public float InvincibleTime { get { return Mathf.Clamp((ownerBaseStats.InvincibleTime.value + invincibleTime), 0, 0.5f); } }
-    public int AbilityCooldownReduction { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.AbilityCooldownReduction.value + abilityCooldownReduction), 0, (ownerBaseStats.AbilityCooldownReduction.value + abilityCooldownReduction))); } }
     public int Armor { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.Armor.value + armor), 0, (ownerBaseStats.Armor.value + armor))); } }
     public int HpRegen 
     { 
@@ -60,7 +56,6 @@ public class UnitStats
         {
             hpRegen = value;
             OnHpRegenChange?.Invoke();
-            
         }
     }
     public int BonusStatusEffectDuration { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.BonusStatusEffectDuration.value + bonusStatusEffectDuration), 0, (ownerBaseStats.BonusStatusEffectDuration.value + bonusStatusEffectDuration))); } }
@@ -87,10 +82,6 @@ public class UnitStats
                 return CritDamage;
             case StatType.CritChance:
                 return CritChance;
-            case StatType.InvincibleTime:
-                return InvincibleTime;
-            case StatType.AbilityCooldownReduction:
-                return AbilityCooldownReduction;
             case StatType.Armor:
                 return Armor;
             case StatType.HpRegen:
@@ -127,10 +118,6 @@ public class UnitStats
                 return ownerBaseStats.CritDamage.value;
             case StatType.CritChance:
                 return ownerBaseStats.CritChance.value;
-            case StatType.InvincibleTime:
-                return ownerBaseStats.InvincibleTime.value;
-            case StatType.AbilityCooldownReduction:
-                return ownerBaseStats.AbilityCooldownReduction.value;
             case StatType.Armor:
                 return ownerBaseStats.Armor.value;
             case StatType.HpRegen:
@@ -162,9 +149,6 @@ public class UnitStats
             case StatType.AttackSpeed:
                 attackSpeed += wholeValue;
                 break;
-            case StatType.BaseRange:
-                baseRange += wholeValue;
-                break;
             case StatType.MovementSpeed:
                 movementSpeed += wholeValue;
                 break;
@@ -173,12 +157,6 @@ public class UnitStats
                 break;
             case StatType.CritChance:
                 critChance += wholeValue;
-                break;
-            case StatType.InvincibleTime:
-                invincibleTime += wholeValue;
-                break;
-            case StatType.AbilityCooldownReduction:
-                abilityCooldownReduction += wholeValue;
                 break;
             case StatType.Armor:
                 armor += wholeValue;
@@ -198,8 +176,6 @@ public class UnitStats
             case StatType.ThreatLevel:
                 threatLevel += wholeValue;
                 break;
-            default:
-                break;
         }
 
         OnStatChanged?.Invoke(statType, wholeValue);
@@ -215,19 +191,15 @@ public class UnitStats
             case StatType.MovementSpeed:
                 movementSpeed += decimalValue;
                 break;
-            case StatType.InvincibleTime:
-                invincibleTime += decimalValue;
+            case StatType.BaseRange:
+                baseRange += decimalValue;
                 break;
-            
             default:
                 AddValueToStat(statType, Mathf.RoundToInt(decimalValue));
-                break;
+                return;
         }
-
         OnStatChanged?.Invoke(statType, decimalValue);
     }
-
-
 }
 
 public struct HealData

@@ -92,6 +92,11 @@ public enum SoundEffectType
     //late additions
     HighImpactSmokeBomb,
     InspiredSmokeBomb,
-    
-    
+    MultiShotRicochet,
+    ExperiencedHunterLevelUp,
+    PoisonIvy,
+    HealingWeeds,
+    BlessingOfSwiftness,
+    OverHeal,
+    Frenzy
 }

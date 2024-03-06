@@ -37,15 +37,25 @@ public class PopupsManager : MonoBehaviour
         if (isCrit)
         {
             _popupColor = Color.red;
-        }        
+        }
+        else if(damage.HasPopupColor)
+        {
+            _popupColor = damage.PopupColor;
+        }
+        else if(ability.HasPopupColor)
+        {
+            _popupColor = ability.PopupColor;
+        }
+        
 
         _popupText = damage.GetFinalDamage().ToString();
         PopupPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, _popupText, _popupColor);
     }
-
     public void SpawnStatusEffectPopup(Effectable effectable, Affector affector, StatusEffect statusEffect)
     {
         if(statusEffect.StatusEffectType == StatusEffectType.None) return;
+
+        _offsetVector = new Vector3(0, _yOffset);
 
         StatusEffectTypeVisualData data = _dictionary.GetData(statusEffect.StatusEffectType);
         _popupColor = data.Color;
@@ -53,14 +63,15 @@ public class PopupsManager : MonoBehaviour
         _popupText = "";
         _popupText = data.Name;
 
-        PopupPrefab.Spawn(effectable.Owner.transform.position, _popupText, _popupColor);
+        PopupPrefab.Spawn(effectable.Owner.transform.position + _offsetVector, _popupText, _popupColor);
     }
 
     public void SpawnHealPopup(Damageable damageable, float healAmount)
     {
         _popupText = healAmount.ToString();
+        _offsetVector = new Vector3(0, _yOffset);
 
-        healPopupPrefab.Spawn(damageable.Owner.transform.position, _popupText);
+        healPopupPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, _popupText);
     }
 
     public void SpawnLevelUpTextPopup(Shaman shaman)

@@ -1,41 +1,36 @@
 using System;
-using System.Linq;
-using UnityEngine;
 
-public class AutoAttackHandler
+public class AutoAttackHandler : ICaster
 {
-    public Action OnAttack;
+    public event Action OnAttack;
+    public CastingAbility Ability => _ability;
+    public float LastCast { get; set; }
 
-    private BaseUnit unit;
-    private BaseAbility ability;
-    private float lastCast;
+    private readonly BaseUnit _unit;
+    private readonly CastingAbility _ability;
 
-    public BaseAbility Ability { get => ability; }
-    public float LastCast { get => lastCast; }
-    public BaseUnit Unit { get => unit; }
-    public AutoAttackHandler(BaseUnit owner, BaseAbility ability)
+    public AutoAttackHandler(BaseUnit owner, CastingAbility ability)
     {
-        unit = owner;
-        this.ability = ability;
-        lastCast = GetAACD() * -1;
-    }
-  
-    public float GetAACD()
-    {
-        return 1 / unit.Stats.AttackSpeed;
+        _unit = owner;
+        _ability = ability;
     }
 
-    public void Attack()
+    public bool CastAbility()
     {
-        if (GAME_TIME.GameTime - lastCast >= GetAACD())
+        if (_ability.CastAbility(_unit))
         {
-            if (ability.CastAbility(unit))
-            {
-                lastCast = GAME_TIME.GameTime;
-                OnAttack?.Invoke();
-            }
+            OnAttack?.Invoke();
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
-
+    public float GetCooldown() => 1 / _unit.Stats.AttackSpeed;
+    public bool CheckCastAvailable()
+    {
+        return _ability.CheckCastAvailable(_unit);
+    }
 }

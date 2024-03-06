@@ -17,12 +17,10 @@ public class StatSheet : ScriptableObject
     public BaseStat MaxHp = new BaseStat(StatType.MaxHp);
     public BaseStat BaseDamage = new BaseStat(StatType.BaseDamage);
     public BaseStatDecimal AttackSpeed = new BaseStatDecimal(StatType.AttackSpeed);//capped at unit stats 
-    public BaseStat BaseRange = new BaseStat(StatType.BaseRange);
+    public BaseStatDecimal BaseRange = new BaseStatDecimal(StatType.BaseRange);
     public BaseStatDecimal MovementSpeed = new BaseStatDecimal(StatType.MovementSpeed);
     public BaseStat CritDamage = new BaseStat(StatType.CritDamage);
     public BaseStat CritChance = new BaseStat(StatType.CritChance);
-    public BaseStatDecimal InvincibleTime = new BaseStatDecimal(StatType.InvincibleTime);
-    public BaseStat AbilityCooldownReduction = new BaseStat(StatType.AbilityCooldownReduction);
     public BaseStat Armor = new BaseStat(StatType.Armor);
     public BaseStat HpRegen = new BaseStat(StatType.HpRegen);
     public BaseStat BonusStatusEffectDuration = new BaseStat(StatType.BonusStatusEffectDuration);

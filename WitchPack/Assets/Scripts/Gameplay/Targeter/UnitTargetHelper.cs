@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class UnitTargetHelper<T> where T: BaseUnit
 {
-    private BaseUnit owner;
-
     public event Action<BaseUnit> OnTarget;
 
-    private List<T> targets;
+
+    protected BaseUnit owner;
+    protected List<T> targets;
 
     public UnitTargetHelper(Targeter<T> targeter, BaseUnit givenOwner)
     {
@@ -64,16 +64,18 @@ public class UnitTargetHelper<T> where T: BaseUnit
 
     private T GetTargetByThreat(List<T> targets, TargetModifier mod, List<T> targetsToAvoid)
     {
-        T cur = null;
+        T cur = targets[targets.Count/2];
         for (int i = 0; i < targets.Count; i++)
         {
-            if (!ReferenceEquals(targetsToAvoid, null) && targets.Count > targetsToAvoid.Count && targetsToAvoid.Contains(targets[i]))
+            if (!ReferenceEquals(targetsToAvoid, null)  && targetsToAvoid.Contains(targets[i]))
             {
+                if (cur == this.targets[i]) cur = null;
                 continue;
             }
+            
+            if(this.targets[i].IsDead) continue;
 
             if (targets[i].Stats.ThreatLevel <= 0) continue;
-            else cur = targets[i];
             
             if (mod == TargetModifier.Most)
             {
@@ -94,21 +96,32 @@ public class UnitTargetHelper<T> where T: BaseUnit
     }
     private T GetTargetByHP(List<T> targets, TargetModifier mod, List<T> targetsToAvoid = null)
     {
-        T cur = targets[targets.Count / 2];
+        T cur = targets[targets.Count/2];
         for (int i = 0; i < targets.Count; i++)
         {
-            if (mod == TargetModifier.Most)
+            if (!ReferenceEquals(targetsToAvoid, null) && targetsToAvoid.Contains(targets[i]))
             {
-                if (cur.Damageable.CurrentHp < targets[i].Damageable.CurrentHp)
-                {
-                    cur = targets[i];
-                }
+                if (cur == this.targets[i]) cur = null;
+                continue;
             }
-            else
+            
+            if(this.targets[i].IsDead) continue;
+            
+            if (!ReferenceEquals(cur, null))
             {
-                if (cur.Damageable.CurrentHp > targets[i].Damageable.CurrentHp)
+                if (mod == TargetModifier.Most)
                 {
-                    cur = targets[i];
+                    if (cur.Damageable.CurrentHp < targets[i].Damageable.CurrentHp)
+                    {
+                        cur = targets[i];
+                    }
+                }
+                else
+                {
+                    if (cur.Damageable.CurrentHp > targets[i].Damageable.CurrentHp)
+                    {
+                        cur = targets[i];
+                    }
                 }
             }
         }
@@ -116,21 +129,32 @@ public class UnitTargetHelper<T> where T: BaseUnit
     }
     private T GetTargetByHPPrecentage(List<T> targets, TargetModifier mod, List<T> targetsToAvoid = null)
     {
-        T cur = targets[targets.Count / 2];
+        T cur = targets[targets.Count/2];
         for (int i = 0; i < targets.Count; i++)
         {
-            if (mod == TargetModifier.Most)
+            if (!ReferenceEquals(targetsToAvoid, null) && targetsToAvoid.Contains(targets[i]))
             {
-                if (cur.Damageable.CurrentHp/ cur.Stats.GetStatValue(StatType.MaxHp) < targets[i].Damageable.CurrentHp / cur.Stats.GetStatValue(StatType.MaxHp))
-                {
-                    cur = targets[i];
-                }
+                if (cur == this.targets[i]) cur = null;
+                continue;
             }
-            else
+            
+            if(this.targets[i].IsDead) continue;
+            
+            if (!ReferenceEquals(cur, null))
             {
-                if (cur.Damageable.CurrentHp / cur.Stats.GetStatValue(StatType.MaxHp) > targets[i].Damageable.CurrentHp / cur.Stats.GetStatValue(StatType.MaxHp))
+                if (mod == TargetModifier.Most)
                 {
-                    cur = targets[i];
+                    if (cur.Damageable.CurrentHp / cur.Stats.GetStatValue(StatType.MaxHp) < targets[i].Damageable.CurrentHp / targets[i].Stats.GetStatValue(StatType.MaxHp))
+                    {
+                        cur = targets[i];
+                    }
+                }
+                else
+                {
+                    if (cur.Damageable.CurrentHp / cur.Stats.GetStatValue(StatType.MaxHp) > targets[i].Damageable.CurrentHp / targets[i].Stats.GetStatValue(StatType.MaxHp))
+                    {
+                        cur = targets[i];
+                    }
                 }
             }
         }
@@ -138,21 +162,32 @@ public class UnitTargetHelper<T> where T: BaseUnit
     }
     private T GetTargetByStat(List<T> targets, StatType givenStat, TargetModifier mod, List<T> targetsToAvoid = null)
     {
-        T cur = targets[targets.Count / 2];
+        T cur = targets[targets.Count/2];
         for (int i = 0; i < targets.Count; i++)
         {
-            if (mod == TargetModifier.Most)
+            if (!ReferenceEquals(targetsToAvoid, null) && targetsToAvoid.Contains(targets[i]))
             {
-                if (cur.Stats.GetStatValue(givenStat) < targets[i].Stats.GetStatValue(givenStat))
-                {
-                    cur = targets[i];
-                }
+                if (cur == this.targets[i]) cur = null;
+                continue;
             }
-            else
+            
+            if(this.targets[i].IsDead) continue;
+            
+            if (!ReferenceEquals(cur, null))
             {
-                if (cur.Stats.GetStatValue(givenStat) > targets[i].Stats.GetStatValue(givenStat))
+                if (mod == TargetModifier.Most)
                 {
-                    cur = targets[i];
+                    if (cur.Stats.GetStatValue(givenStat) < targets[i].Stats.GetStatValue(givenStat))
+                    {
+                        cur = targets[i];
+                    }
+                }
+                else
+                {
+                    if (cur.Stats.GetStatValue(givenStat) > targets[i].Stats.GetStatValue(givenStat))
+                    {
+                        cur = targets[i];
+                    }
                 }
             }
         }
@@ -161,26 +196,32 @@ public class UnitTargetHelper<T> where T: BaseUnit
 
     private T GetTargetByDistance(List<T> targets, TargetModifier mod, List<T> targetsToAvoid = null)
     {
-        T cur = targets[targets.Count / 2];
+        T cur = targets[targets.Count/2];
         for (int i = 0; i < targets.Count; i++)
         {
-            if (!ReferenceEquals(targetsToAvoid, null) && targets.Count > targetsToAvoid.Count && targetsToAvoid.Contains(targets[i]))
+            if (!ReferenceEquals(targetsToAvoid, null)  && targetsToAvoid.Contains(targets[i]))
             {
+                if (cur == this.targets[i]) cur = null;
                 continue;
             }
+            
+            if(this.targets[i].IsDead) continue;
 
-            if (mod == TargetModifier.Most)
+            if (!ReferenceEquals(cur, null))
             {
-                if (Vector3.Distance(cur.transform.position, owner.transform.position) < Vector3.Distance(targets[i].transform.position, owner.transform.position))
+                if (mod == TargetModifier.Most)
                 {
-                    cur = targets[i];
+                    if (Vector3.Distance(cur.transform.position, owner.transform.position) < Vector3.Distance(targets[i].transform.position, owner.transform.position))
+                    {
+                        cur = targets[i];
+                    }
                 }
-            }
-            else
-            {
-                if (Vector3.Distance(cur.transform.position, owner.transform.position) > Vector3.Distance(targets[i].transform.position, owner.transform.position))
+                else
                 {
-                    cur = targets[i];
+                    if (Vector3.Distance(cur.transform.position, owner.transform.position) > Vector3.Distance(targets[i].transform.position, owner.transform.position))
+                    {
+                        cur = targets[i];
+                    }
                 }
             }
         }
@@ -189,26 +230,32 @@ public class UnitTargetHelper<T> where T: BaseUnit
 
     private T GetTargetByDistanceToCore(List<T> targets, TargetModifier mod, List<T> targetsToAvoid = null)
     {
-        T cur = targets[targets.Count / 2];
+        T cur = targets[targets.Count/2];
         for (int i = 0; i < targets.Count; i++)
         {
-            if (!ReferenceEquals(targetsToAvoid, null) && targets.Count > targetsToAvoid.Count && targetsToAvoid.Contains(targets[i]))
+            if (!ReferenceEquals(targetsToAvoid, null) && targetsToAvoid.Contains(targets[i]))
             {
+                if (cur == this.targets[i]) cur = null;
                 continue;
             }
+            
+            if(this.targets[i].IsDead) continue;
 
-            if (mod == TargetModifier.Most)
+            if (!ReferenceEquals(cur, null))
             {
-                if (Vector3.Distance(cur.transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position) < Vector3.Distance(targets[i].transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position))
+                if (mod == TargetModifier.Most)
                 {
-                    cur = targets[i];
+                    if (Vector3.Distance(cur.transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position) < Vector3.Distance(targets[i].transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position))
+                    {
+                        cur = targets[i];
+                    }
                 }
-            }
-            else
-            {
-                if (Vector3.Distance(cur.transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position) > Vector3.Distance(targets[i].transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position))
+                else
                 {
-                    cur = targets[i];
+                    if (Vector3.Distance(cur.transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position) > Vector3.Distance(targets[i].transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position))
+                    {
+                        cur = targets[i];
+                    }
                 }
             }
         }

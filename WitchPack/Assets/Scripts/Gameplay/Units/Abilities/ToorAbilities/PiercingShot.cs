@@ -10,10 +10,10 @@ public class PiercingShot : OffensiveAbility
 
     public override bool CastAbility(BaseUnit caster)
     {
-        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
+        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData,LevelManager.Instance.CharmedEnemies);
         if (!ReferenceEquals(target, null))
         {
-            Projectile newPew = LevelManager.Instance.PoolManager.TestAbilityPool.GetPooledObject();
+            PiercingShotMono newPew = LevelManager.Instance.PoolManager.PiercingShotPool.GetPooledObject();
             newPew.transform.position = caster.transform.position;
             newPew.gameObject.SetActive(true);
             Vector2 dir = (target.transform.position - caster.transform.position) / (target.transform.position - caster.transform.position).magnitude;
@@ -29,12 +29,8 @@ public class PiercingShot : OffensiveAbility
 
     public override bool CheckCastAvailable(BaseUnit caster)
     {
-        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
-        if (ReferenceEquals(target, null))
-        {
-            return false;
-        }
-        return true;
+        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData,LevelManager.Instance.CharmedEnemies);
+        return !ReferenceEquals(target, null);
     }
 
 }

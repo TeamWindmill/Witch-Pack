@@ -8,7 +8,7 @@ public class RicochetHandler
     private float jumpsRange;
     private float speed;
 
-    public RicochetHandler(TargetedShot shot/*thisll be a generic shot once I get to it*/, int numberOfJumps, TargetData targetData, float jumpsRange, float ricochetSpeed)
+    public RicochetHandler(ShamanAutoAttackMono shot/*thisll be a generic shot once I get to it*/, int numberOfJumps, TargetData targetData, float jumpsRange, float ricochetSpeed)
     {
         jumpsLeft = numberOfJumps;
         this.jumpsRange = jumpsRange;
@@ -17,10 +17,10 @@ public class RicochetHandler
         shot.OnShotHit.AddListener(JumpToTarget);
     }
 
-    public void JumpToTarget(BaseAbility ability, BaseUnit shooter, BaseUnit originalTarget)
+    public void JumpToTarget(OffensiveAbility ability, BaseUnit shooter, BaseUnit originalTarget)
     {
 
-        TargetedShot shot = LevelManager.Instance.PoolManager.ArchedShotPool.GetPooledObject();
+        ShamanAutoAttackMono shot = LevelManager.Instance.PoolManager.MultiShotPool.GetPooledObject();
         Enemy originalEnemy = originalTarget as Enemy;
         List<Enemy> enemies = shooter.EnemyTargeter.GetAvailableTargets(originalEnemy, jumpsRange);
         Enemy newTargat = shooter.EnemyTargetHelper.GetTarget(enemies, targetData);

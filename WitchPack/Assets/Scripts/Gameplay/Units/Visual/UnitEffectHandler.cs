@@ -1,52 +1,80 @@
-using Sirenix.OdinInspector;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Playables;
 
 public class UnitEffectHandler : MonoBehaviour
 {
-    [SerializeField] private StatusEffectVisual[] _statusEffectVisuals;
+    [SerializeField] private EffectVisual<StatusEffectType>[] _statusEffectVisuals;
+    [SerializeField] private EffectVisual<CastingHandsEffectType>[] _castingHandsVisuals;
 
-    private Effectable _effectable;
+    
 
-    private void Start()
+    public virtual void Init(BaseUnitConfig config)
     {
-        foreach (StatusEffectVisual effectVisual in _statusEffectVisuals)
+        DisableAllEffects();
+    }
+
+    public void PlayEffect<T>(T effectType) where T : Enum
+    {
+        switch (effectType)
         {
-            effectVisual.SetOffAllVisualGameObjects();
+            case StatusEffectType statusEffectType:
+                foreach (var effectVisual in _statusEffectVisuals)
+                {
+                    if (effectVisual.StatusEffectType == statusEffectType)
+                    {                
+                        effectVisual.GetGameObject().SetActive(true);                            
+                        return;
+                    }
+                }
+                break;
+            case CastingHandsEffectType castingHandsEffectType:
+                foreach (var effectVisual in _castingHandsVisuals)
+                {
+                    if (effectVisual.StatusEffectType == castingHandsEffectType)
+                    {                
+                        effectVisual.GetGameObject().SetActive(true);                            
+                        return;
+                    }
+                }
+                break;
         }
     }
 
-    public void PlayEffect(Effectable effectable,StatusEffectType statusEffectType)
+    public void DisableEffect<T>(T effectType) where T : Enum
     {
-        _effectable = effectable;
-        foreach (StatusEffectVisual effectVisual in _statusEffectVisuals)
+        switch (effectType)
         {
-            if (effectVisual.StatusEffectType == statusEffectType)
-            {                
-                effectVisual.GetGameObject().SetActive(true);                            
-                return;
-            }
-        }
-    }
-
-    public void DisableEffect(StatusEffectType statusEffectType)
-    {
-        foreach (StatusEffectVisual effectVisual in _statusEffectVisuals)
-        {
-            if (effectVisual.StatusEffectType == statusEffectType)
-            {
-                effectVisual.SetOffAllVisualGameObjects();
-                return;
-            }
+            case StatusEffectType statusEffectType:
+                foreach (var effectVisual in _statusEffectVisuals)
+                {
+                    if (effectVisual.StatusEffectType == statusEffectType)
+                    {
+                        effectVisual.SetOffAllVisualGameObjects();
+                        return;
+                    }
+                }
+                break;
+            case CastingHandsEffectType castingHandsEffectType:
+                foreach (var effectVisual in _castingHandsVisuals)
+                {
+                    if (effectVisual.StatusEffectType == castingHandsEffectType)
+                    {
+                        effectVisual.SetOffAllVisualGameObjects();
+                        return;
+                    }
+                }
+                break;
         }
     }
 
     public void DisableAllEffects()
     {
-        foreach (StatusEffectVisual effectVisual in _statusEffectVisuals)
+        foreach (var effectVisual in _statusEffectVisuals)
+        {
+            effectVisual.SetOffAllVisualGameObjects();
+        }
+        foreach (var effectVisual in _castingHandsVisuals)
         {
             effectVisual.SetOffAllVisualGameObjects();
         }
@@ -54,9 +82,9 @@ public class UnitEffectHandler : MonoBehaviour
 }
 
 [Serializable]
-public struct StatusEffectVisual
+public struct EffectVisual<T> where T : Enum
 {
-    public StatusEffectType StatusEffectType;
+    public T StatusEffectType;
     [SerializeField] public List<GameObject> visualGameObjects;
 
     public GameObject GetGameObject()
@@ -77,4 +105,15 @@ public struct StatusEffectVisual
             go.SetActive(false);
         }
     }
+}
+
+public enum CastingHandsEffectType
+{
+    Orange,
+    Yellow,
+    Blue,
+    Red,
+    Turquoise,
+    Green,
+    GreenYellow,
 }

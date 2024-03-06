@@ -7,7 +7,7 @@ public class CoreTemple : MonoBehaviour
     public Action<int> OnGetHit;
     
     [SerializeField] private int maxHp;
-    [SerializeField] private EnemyTargeter enemyTargeter;
+    [SerializeField] private GroundColliderTargeter enemyGroundCollider;
     [SerializeField] private HP_Bar hpBar;
     [SerializeField] private Animator animator;
     [SerializeField] private Transform destroyedCore;
@@ -23,18 +23,20 @@ public class CoreTemple : MonoBehaviour
     public void Init()
     {
         curHp = maxHp;
-        enemyTargeter.OnTargetAdded += OnEnemyEnter;
+        enemyGroundCollider.OnTargetAdded += OnEnemyEnter;
         hpBar.Init(maxHp,UnitType.Temple);
     }
-    private void OnEnemyEnter(Enemy enemy)
+    private void OnEnemyEnter(GroundCollider collider)
     {
-        enemy.Damageable.TakeFlatDamage(enemy.Damageable.CurrentHp);
-        TakeDamage(enemy.CoreDamage);
+        collider.Unit.Damageable.TakeFlatDamage(collider.Unit.Damageable.CurrentHp);
+        TakeDamage((collider.Unit as Enemy).CoreDamage);
     }
 
     public void TakeDamage(int amount)
     {
         curHp -= amount;
+        if(curHp <0)
+            curHp = 0;
         OnGetHit?.Invoke(amount);
         SoundManager.Instance.PlayAudioClip(SoundEffectType.CoreGetHit);
         hpBar.SetBarValue(curHp);

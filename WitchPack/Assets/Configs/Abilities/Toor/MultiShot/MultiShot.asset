@@ -12,26 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a9833310f9a9446ab1e1eaace27b68, type: 3}
   m_Name: MultiShot
   m_EditorClassIdentifier: 
-  name: Multishot
-  discription: Shoots 3 homing projectiles at nearby targets.
   icon: {fileID: 1426186388, guid: ac38ec6e642d8824f820dcb972a41935, type: 3}
-  cd: 6
-  isPassive: 0
-  givesEnergyPoints: 0
-  energyPoints: 0
-  _hasSFX: 1
-  soundEffectType: 13
-  castTime: 0.5
-  statusEffects: []
+  name: Multishot
+  discription: Shoots 3 homing projectiles at nearby targets
   _upgrades:
   - {fileID: 11400000, guid: cb2514b65dfc122468ae5be845669186, type: 2}
   - {fileID: 11400000, guid: b9cac84295f56404687865c71ac88587, type: 2}
+  hasPopupColor: 0
+  popupColor: {r: 0, g: 0, b: 0, a: 0}
+  castTime: 1
+  cd: 6
+  range: 6
+  givesEnergyPoints: 0
+  energyPoints: 0
+  statusEffects: []
   targetData:
     Priority: 1
     Modifier: 1
     StatType: 0
+  _hasCastVisual: 1
+  castVisualColor: 0
+  _hasSFX: 1
+  soundEffectType: 13
   baseDamage: 50
-  range: 6
   damageBoosts: []
   numberOfShots: 3
   offset: {x: 1.5, y: 1.5, z: 0}

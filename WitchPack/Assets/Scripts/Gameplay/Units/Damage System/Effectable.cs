@@ -2,22 +2,22 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class Effectable
 {
-    private BaseUnit owner;
-    public Action<Effectable, Affector, StatusEffect> OnAffected;
-    public Action<Effectable,StatusEffectType> OnAffectedGFX;
-    public Action<StatusEffect> OnEffectRemoved;
-    public Action<StatusEffectType> OnEffectRemovedGFX;
-    private List<StatusEffect> activeEffects = new List<StatusEffect>();
+    public event Action<Effectable, Affector, StatusEffect> OnAffected;
+    public event Action<StatusEffectType> OnAffectedVFX;
+    public event Action<StatusEffect> OnEffectRemoved;
+    public event Action<StatusEffectType> OnEffectRemovedVFX;
+    public BaseUnit Owner => _owner;
+    public List<StatusEffect> ActiveEffects => activeEffects;
 
-    public BaseUnit Owner { get => owner;}
+    private List<StatusEffect> activeEffects = new List<StatusEffect>();
+    private BaseUnit _owner;
 
     public Effectable(BaseUnit owner)
-    {
-        this.owner = owner;
-    }
+    { 
+        _owner = owner;
+    } 
 
     public StatusEffect AddEffect(StatusEffectConfig givenEffectData, Affector affector)
     {
@@ -35,7 +35,7 @@ public class Effectable
         activeEffects.Add(ss);
         ss.Activate();
         OnAffected?.Invoke(this, affector, ss);
-        OnAffectedGFX?.Invoke(this,givenEffectData.StatusEffectType);
+        OnAffectedVFX?.Invoke(givenEffectData.StatusEffectType); // maybe also added this to the if above? line 32
         return ss;
     }
 
@@ -43,6 +43,16 @@ public class Effectable
     {
         activeEffects.Remove(effect);
         OnEffectRemoved?.Invoke(effect);
-        OnEffectRemovedGFX?.Invoke(effect.StatusEffectType);
+        OnEffectRemovedVFX?.Invoke(effect.StatusEffectType);
+    }
+
+    public bool ContainsStatusEffect(StatusEffectType statusEffectType)
+    {
+        foreach (var statusEffect in ActiveEffects)
+        {
+            if (statusEffect.StatusEffectType == statusEffectType) return true;
+        }
+
+        return false;
     }
 }

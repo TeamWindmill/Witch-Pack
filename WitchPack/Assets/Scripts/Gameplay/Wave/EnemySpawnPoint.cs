@@ -22,7 +22,7 @@ public class EnemySpawnPoint : MonoBehaviour
     {
         Enemy enemy = LevelManager.Instance.PoolManager.EnemyPool.GetPooledObject();
         enemy.transform.position = transform.position;
-        //enemy.gameObject.SetActive(true);
+        enemy.gameObject.SetActive(true);
         givenConf.Path = path;
         enemy.Init(givenConf);
         queuedEnemies.Enqueue(enemy);
@@ -30,14 +30,14 @@ public class EnemySpawnPoint : MonoBehaviour
     }
 
 
-    private void Update()
-    {
-        if (queuedEnemies.Count > 0 && GAME_TIME.TimePlayed - lastSpawned >= 0.4f)
-        {
-            queuedEnemies.Dequeue().gameObject.SetActive(true);
-            lastSpawned = Time.time;
-        }
-    }
+    //private void Update()
+    //{
+    //    if (queuedEnemies.Count > 0 && GAME_TIME.TimePlayed - lastSpawned >= 0.4f)
+    //    {
+    //        queuedEnemies.Dequeue().gameObject.SetActive(true);
+    //        lastSpawned = Time.time;
+    //    }
+    //}
 
     
 }

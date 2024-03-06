@@ -64,6 +64,16 @@ public class Timer : ITimer
         _onTimerTick?.Invoke();
     }
     protected virtual void OnEndTimer() => OnTimerEnd?.Invoke(this);
+
+    public void RemoveThisTimer()
+    {
+        TimerManager.Instance.RemoveTimer(this);
+    }
+
+    public void AddThisTimer()
+    {
+        TimerManager.Instance.AddTimer(this);
+    }
 }
 public class Timer<T> : ITimer
 {
@@ -132,6 +142,16 @@ public class Timer<T> : ITimer
         _onTimerTick?.Invoke(_data);
     }
     protected virtual void OnEndTimer() => OnTimerEnd?.Invoke(this);
+
+    public void RemoveThisTimer()
+    {
+        TimerManager.Instance.RemoveTimer<T>(this);
+    }
+
+    public void AddThisTimer()
+    {
+        TimerManager.Instance.AddTimer<T>(this);
+    }
 }
 
 public struct TimerData

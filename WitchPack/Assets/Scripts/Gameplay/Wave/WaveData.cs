@@ -7,12 +7,12 @@ using UnityEngine;
 public class WaveData : ScriptableObject
 {
     [SerializeField] private float startDelayInterval;//the interval between the end a wave to the beginning of the next one 
-    [SerializeField] private float betweenBetweenWavesesInterval;//the interval between the end a wave to the beginning of the next one 
+    [SerializeField] private float betweenWavesInterval;//the interval between the end a wave to the beginning of the next one 
     public List<EnemySpawnData> waves = new List<EnemySpawnData>();
 
 
 
-    public float BetweenWavesInterval { get => betweenBetweenWavesesInterval; }
+    public float BetweenWavesInterval { get => betweenWavesInterval; }
     public float StartDelayInterval { get => startDelayInterval; }
     //public List<EnemySpawnData> Waves { get => waves; set => waves = value; }
 
@@ -72,6 +72,9 @@ public class EnemyGroup
         " If the number is higher than the highest index the spawner will be set to the highest index")]
     public int SpawnerIndex;
     [ReadOnly] public int NumSpawned;
+
+    private bool completedSpawning;
+    public bool CompletedSpawning { get => completedSpawning; set => completedSpawning = value; }
 
     public EnemyGroup(EnemyConfig givenEnemy, int amountPerSpawn, int totalAmount, int spawnInterval, int spawnerIndex)
     {

@@ -5,25 +5,31 @@ using UnityEngine.EventSystems;
 
 public class Shaman : BaseUnit
 {
+    #region public
     public override StatSheet BaseStats => shamanConfig.BaseStats;
     public ShamanConfig ShamanConfig => shamanConfig;
     public List<BaseAbility> KnownAbilities => knownAbilities;
-    public List<UnitCastingHandler> CastingHandlers => castingHandlers;
     public bool MouseOverShaman => clicker.IsHover;
     public List<BaseAbility> RootAbilities => rootAbilities;
     public EnergyHandler EnergyHandler => energyHandler;
+    public ShamanVisualHandler ShamanVisualHandler => shamanVisualHandler;
 
+    #endregion
+
+    #region serialized
     [SerializeField, TabGroup("Visual")] private ShamanAnimator shamanAnimator;
+    [SerializeField, TabGroup("Visual")] private ShamanVisualHandler shamanVisualHandler;
     [SerializeField] private ClickHelper clicker;
     [SerializeField] private Indicatable indicatable;
     [SerializeField] private ParticleSystem levelUpEffect;
+    #endregion
 
-
+    #region private
     private ShamanConfig shamanConfig;
     private List<BaseAbility> rootAbilities = new List<BaseAbility>();
     private List<BaseAbility> knownAbilities = new List<BaseAbility>();
-    private List<UnitCastingHandler> castingHandlers = new List<UnitCastingHandler>();
     private EnergyHandler energyHandler;
+    #endregion
 
     private void OnValidate()
     {
@@ -36,15 +42,17 @@ public class Shaman : BaseUnit
         base.Init(shamanConfig);
         energyHandler = new EnergyHandler(this);
         EnemyTargeter.SetRadius(Stats.BonusRange);
-        ShamanTargeter.SetRadius(Stats.BonusRange);
         IntializeAbilities();
         shamanAnimator.Init(this);
         indicatable.Init(shamanConfig.UnitIcon);
+        shamanVisualHandler.Init(this,baseUnitConfig);
+        
+
         #region Events
+        // no need to unsubscribe because shaman gets destroyed between levels
         Stats.OnStatChanged += EnemyTargeter.AddRadius;
-        Stats.OnStatChanged += ShamanTargeter.AddRadius;
-        Movement.OnDestinationSet += DisableAttacker;
-        Movement.OnDestinationReached += EnableAttacker;
+        Movement.OnDestinationSet += AutoCaster.DisableCaster;
+        Movement.OnDestinationReached += AutoCaster.EnableCaster;
         clicker.OnClick += SetSelectedShaman;
         DamageDealer.OnKill += energyHandler.OnEnemyKill;
         DamageDealer.OnAssist += energyHandler.OnEnemyAssist;
@@ -52,30 +60,14 @@ public class Shaman : BaseUnit
         Damageable.OnHitGFX += OnHitSFX;
         Damageable.OnDeathGFX += DeathSFX;
         AutoAttackHandler.OnAttack += AttackSFX;
+        Effectable.OnAffectedVFX += ShamanVisualHandler.EffectHandler.PlayEffect;
+        Effectable.OnEffectRemovedVFX += ShamanVisualHandler.EffectHandler.DisableEffect;
+        AutoCaster.CastTimeStartVFX += ShamanVisualHandler.EffectHandler.PlayEffect;
+        AutoCaster.CastTimeEndVFX += ShamanVisualHandler.EffectHandler.DisableEffect;
         #endregion
-    }
 
-    
-
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-        clicker.OnClick -= SetSelectedShaman;
-        Movement.OnDestinationSet -= DisableAttacker;
-        Movement.OnDestinationReached -= EnableAttacker;
+        Initialized = true;
     }
-    private void OnShamanSelect()
-    {
-        SlowMotionManager.Instance.StartSlowMotionEffects();
-        HeroSelectionUI.Instance.Show(this);
-    }
-
-    private void OnShamanDeselect()
-    {
-        SlowMotionManager.Instance.EndSlowMotionEffects();
-        HeroSelectionUI.Instance.Hide();
-    }
-
 
     private void IntializeAbilities()
     {
@@ -97,13 +89,14 @@ public class Shaman : BaseUnit
             if (ability is not Passive)
             {
                 ability.OnSetCaster(this);
-                castingHandlers.Add(new UnitCastingHandler(this, ability));
+                castingHandlers.Add(new AbilityCaster(this, ability as CastingAbility));
             }
             else
             {
                 (ability as Passive).SubscribePassive(this);
             }
         }
+        AutoCaster.Init(this);
     }
 
     public void LearnAbility(BaseAbility ability)
@@ -112,12 +105,14 @@ public class Shaman : BaseUnit
         if (ability is not Passive passive)
         {
             ability.OnSetCaster(this);
-            castingHandlers.Add(new UnitCastingHandler(this, ability));
+            castingHandlers.Add(new AbilityCaster(this, ability as CastingAbility));
         }
         else
         {
             passive.SubscribePassive(this);
         }
+        AutoCaster.Init(this);
+
     }
 
     public void RemoveAbility(BaseAbility ability)
@@ -136,7 +131,7 @@ public class Shaman : BaseUnit
     }
 
 
-    public UnitCastingHandler GetCasterFromAbility(BaseAbility givenAbiltiy)
+    public AbilityCaster GetCasterFromAbility(BaseAbility givenAbiltiy)
     {
         for (int i = 0; i < castingHandlers.Count; i++)
         {
@@ -196,9 +191,17 @@ public class Shaman : BaseUnit
     private void OnHitSFX(bool isCrit) => SoundManager.Instance.PlayAudioClip(shamanConfig.IsMale? SoundEffectType.ShamanGetHitMale : SoundEffectType.ShamanGetHitFemale);
     private void DeathSFX() => SoundManager.Instance.PlayAudioClip(shamanConfig.IsMale? SoundEffectType.ShamanDeathMale : SoundEffectType.ShamanDeathFemale);
     private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.BasicAttack);
-    public void ShamanCastSFX(SoundEffectType soundEffect) => SoundManager.Instance.PlayAudioClip(soundEffect);
+    public void ShamanCastGfx(CastingAbility ability) => SoundManager.Instance.PlayAudioClip(ability.SoundEffectType);
 
     #endregion
 
-    
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        Effectable.OnAffectedVFX -= ShamanVisualHandler.EffectHandler.PlayEffect;
+        Effectable.OnEffectRemovedVFX -= ShamanVisualHandler.EffectHandler.DisableEffect;
+        AutoCaster.CastTimeStartVFX -= ShamanVisualHandler.EffectHandler.PlayEffect;
+        AutoCaster.CastTimeEndVFX -= ShamanVisualHandler.EffectHandler.DisableEffect;
+    }
+
 }

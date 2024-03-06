@@ -46,25 +46,6 @@ public class Targeter<T> : MonoBehaviour where T : Component
         }
     }
 
-    public T GetClosestTarget()
-    {
-        if (availableTargets.Count <= 0)
-        {
-            return null;
-        }
-        T closest = availableTargets[0];
-        float dist = Vector2.Distance(transform.position, closest.transform.position);
-        foreach (var item in availableTargets)
-        {
-            if (Vector2.Distance(transform.position, item.transform.position) <= dist)
-            {
-                closest = item;
-            }
-        }
-        return closest;
-    }
-
-
     public List<T> GetAvailableTargets(T origin, float range)
     {
         Collider2D[] foundColldiers = Physics2D.OverlapCircleAll(origin.transform.position, range, layer);

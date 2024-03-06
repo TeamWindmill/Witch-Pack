@@ -1,65 +1,65 @@
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using Tools.Helpers;
 using UnityEngine;
 
-public class BaseUnit : MonoBehaviour
+public class BaseUnit : MonoBehaviour, IInitialize<BaseUnitConfig>
 {
+    #region Serialized
+    
     [SerializeField] private UnitType unitType;
-    [SerializeField, TabGroup("Combat")] private Damageable damageable;
-    [SerializeField, TabGroup("Combat")] private DamageDealer damageDealer;
-    [SerializeField, TabGroup("Combat")] private Affector affector;
-    [SerializeField, TabGroup("Combat")] private Effectable effectable;
+    [TabGroup("Combat")] private Damageable damageable;
+    [TabGroup("Combat")] private DamageDealer damageDealer;
+    [TabGroup("Combat")] private Affector affector;
+    [TabGroup("Combat")] private Effectable effectable;
     [SerializeField, TabGroup("Combat")] private OffensiveAbility autoAttack;
-    [SerializeField, TabGroup("Combat")] private UnitAutoAttacker autoAttacker;
+    [SerializeField, TabGroup("Combat")] private UnitAutoCaster _autoCaster;
     [SerializeField, TabGroup("Combat")] private BoxCollider2D boxCollider;
     [SerializeField, TabGroup("Combat")] private GroundCollider groundCollider;
-    [SerializeField] private Transform _castPos;
-
-    [SerializeField] private EnemyTargeter enemyTargeter;
-    [SerializeField] private ShamanTargeter shamanTargeter;
-
-    private UnitTargetHelper<Shaman> shamanTargetHelper;
-    private UnitTargetHelper<Enemy> enemyTargetHelper;
-
-
-
     [SerializeField, TabGroup("Stats")] private UnitStats stats;
     [SerializeField, TabGroup("Movement")] private UnitMovement movement;
-    [SerializeField, TabGroup("Visual")] private UnitVisualHandler unitVisual;
-
-
     [SerializeField, TabGroup("Visual")] private bool hasHPBar;
     [SerializeField, ShowIf(nameof(hasHPBar)), TabGroup("Visual")] private HP_Bar hpBar;
-
-
-    private AutoAttackHandler autoAttackHandler;
-
-
-    public HP_Bar HpBar => hpBar;
-    public UnitVisualHandler UnitVisual => unitVisual;
-    public Damageable Damageable { get => damageable; }
-    public DamageDealer DamageDealer { get => damageDealer; }
-    public Affector Affector { get => affector; }
-    public Effectable Effectable { get => effectable; }
-    public virtual StatSheet BaseStats { get { return null; } }
-    public UnitStats Stats { get => stats; }
-    public OffensiveAbility AutoAttack { get => autoAttack; }
-    public AutoAttackHandler AutoAttackHandler { get => autoAttackHandler; }
-    public UnitAutoAttacker AutoAttacker { get => autoAttacker; }
-    public UnitMovement Movement { get => movement; }
+    [SerializeField, TabGroup("Combat")] private Transform _castPos;
+    [SerializeField, TabGroup("Targeter")] private EnemyTargeter enemyTargeter;
+    [SerializeField, TabGroup("Targeter")] private ShamanTargeter shamanTargeter;
     
+    #endregion
+
+    #region Private
+
+    protected List<AbilityCaster> castingHandlers = new List<AbilityCaster>();
+    private UnitTargetHelper<Shaman> shamanTargetHelper;
+    private UnitTargetHelper<Enemy> enemyTargetHelper;
+    private AutoAttackHandler autoAttackHandler;
+    private List<ITimer> unitTimers;
+
+    #endregion
+    
+    #region Public
+    public bool IsDead => damageable.CurrentHp <= 0;
+    public HP_Bar HpBar => hpBar;
+    public Damageable Damageable => damageable;
+    public DamageDealer DamageDealer => damageDealer;
+    public Affector Affector => affector;
+    public Effectable Effectable => effectable;
+    public virtual StatSheet BaseStats => null;
+    public UnitStats Stats => stats;
+    public CastingAbility AutoAttack => autoAttack;
+    public AutoAttackHandler AutoAttackHandler => autoAttackHandler;
+    public UnitAutoCaster AutoCaster => _autoCaster;
+    public UnitMovement Movement => movement;
+    public List<AbilityCaster> CastingHandlers => castingHandlers;
     public Transform CastPos => _castPos;
+    public EnemyTargeter EnemyTargeter => enemyTargeter;
+    public ShamanTargeter ShamanTargeter => shamanTargeter;
+    public UnitTargetHelper<Shaman> ShamanTargetHelper => shamanTargetHelper;
+    public UnitTargetHelper<Enemy> EnemyTargetHelper => enemyTargetHelper;
 
-    public EnemyTargeter EnemyTargeter { get => enemyTargeter; }
-    public ShamanTargeter ShamanTargeter { get => shamanTargeter; }
-    public UnitTargetHelper<Shaman> ShamanTargetHelper { get => shamanTargetHelper; }
-    public UnitTargetHelper<Enemy> EnemyTargetHelper { get => enemyTargetHelper; }
+    public List<ITimer> UnitTimers { get => unitTimers; }
+    public bool Initialized { get; protected set; }
 
-
-
-
-
-    //movement comp
-    //state machine -> heros and enemies essentially work the same only heroes can be told where to go, everything else is automatic 
+    #endregion
 
     public virtual void Init(BaseUnitConfig givenConfig)
     {
@@ -71,11 +71,13 @@ public class BaseUnit : MonoBehaviour
         autoAttackHandler = new AutoAttackHandler(this, autoAttack);
         shamanTargetHelper = new UnitTargetHelper<Shaman>(ShamanTargeter, this);
         enemyTargetHelper = new UnitTargetHelper<Enemy>(EnemyTargeter, this);
-        AutoAttacker.SetUp(this);
+        unitTimers = new List<ITimer>();
+        AutoCaster.Init(this);
         Movement.SetUp(this);
         groundCollider.Init(this);
-        unitVisual.Init(this, givenConfig);
+        
         ToggleCollider(true);
+        damageable.SetRegenerationTimer();
         if (hasHPBar)
         {
             hpBar.gameObject.SetActive(true);
@@ -83,15 +85,30 @@ public class BaseUnit : MonoBehaviour
             damageable.OnDamageCalc += hpBar.SetBarValue;
             damageable.OnHeal += hpBar.SetBarBasedOnOwner;
         }
+
         damageable.OnDamageCalc += LevelManager.Instance.PopupsManager.SpawnDamagePopup;
         damageable.OnHeal += LevelManager.Instance.PopupsManager.SpawnHealPopup;
         effectable.OnAffected += LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
-        damageable.SetRegenerationTimer();
-        if(unitVisual.EffectHandler)
-        { 
-            effectable.OnAffectedGFX += unitVisual.EffectHandler.PlayEffect;
-            effectable.OnEffectRemovedGFX += unitVisual.EffectHandler.DisableEffect;
+
+    }
+
+
+
+    protected virtual void OnDisable() //unsubscribe to events
+    {
+        if (ReferenceEquals(LevelManager.Instance, null)) return;
+        if (ReferenceEquals(damageable, null)) return;
+        if (ReferenceEquals(effectable, null)) return;
+        damageable.OnDamageCalc -= LevelManager.Instance.PopupsManager.SpawnDamagePopup;
+        damageable.OnHeal -= LevelManager.Instance.PopupsManager.SpawnHealPopup;
+        effectable.OnAffected -= LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
+        if (hasHPBar)
+        {
+            damageable.OnDamageCalc -= hpBar.SetBarValue;
+            damageable.OnHeal -= hpBar.SetBarBasedOnOwner;
         }
+
+        
     }
 
     public void ToggleCollider(bool state)
@@ -99,43 +116,26 @@ public class BaseUnit : MonoBehaviour
         boxCollider.enabled = state;
     }
 
-    public void DisableAttacker()
-    {
-        autoAttacker.CanAttack = false;
-
-    }
-    public void EnableAttacker()
-    {
-        autoAttacker.CanAttack = true;
-    }
-
     public void OnDeathAnimation()
     {
         Movement.ToggleMovement(false);
         ToggleCollider(false);
         damageable.ToggleHitable(false);
+        _autoCaster.DisableCaster();
     }
 
-    private void OnDestroy()
+    public void ClearUnitTImers()
     {
-        if (hasHPBar) damageable.OnDamageCalc -= hpBar.SetBarValue;
+        foreach (ITimer iTimer in UnitTimers)
+        {
+            iTimer.RemoveThisTimer();
+        }
 
-        stats.OnHpRegenChange -= damageable.SetRegenerationTimer;
+        UnitTimers.Clear();
     }
 
     private void OnValidate()
     {
         boxCollider ??= GetComponent<BoxCollider2D>();
-    }
-
-    protected virtual void OnDisable()
-    {
-        if(ReferenceEquals(LevelManager.Instance,null)) return;
-
-        unitVisual.EffectHandler.DisableAllEffects();
-        damageable.OnDamageCalc -= LevelManager.Instance.PopupsManager.SpawnDamagePopup;
-        damageable.OnHeal -= LevelManager.Instance.PopupsManager.SpawnHealPopup;
-        effectable.OnAffected -= LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
-        damageable.OnHeal -= hpBar.SetBarBasedOnOwner;
     }
 }

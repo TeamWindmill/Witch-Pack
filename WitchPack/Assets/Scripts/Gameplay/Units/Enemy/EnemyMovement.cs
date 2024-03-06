@@ -6,54 +6,29 @@ using UnityEngine;
 
 public class EnemyMovement 
 {
-    public bool IsMoving => _isMoving;
 
-    private float dstTravelled;
-    private bool _isMoving;
-    private bool _isActive;
-    private Enemy _enemy;
-    private UnitMovement _unitMovement;
-    private PathCreator _path;
+    private float _dstTravelled;
+    private readonly Enemy _enemy;
+    private readonly UnitMovement _unitMovement;
+    private readonly PathCreator _path;
 
     public EnemyMovement(Enemy enemy)
     {
         _enemy = enemy;
         _unitMovement = enemy.Movement;
         _path = enemy.EnemyConfig.Path;
-        ToggleMove(true);
-        ToggleActive(true);
     }
     
     public void FollowPath()
     {
-        if(!_isMoving || !_isActive) return;
-        dstTravelled += _enemy.Stats.MovementSpeed * GAME_TIME.GameDeltaTime;
-        _enemy.transform.position = _path.path.GetPointAtDistance(dstTravelled, EndOfPathInstruction.Stop);
+        _dstTravelled += _enemy.Stats.MovementSpeed * GAME_TIME.GameDeltaTime;
+        _enemy.transform.position = _path.path.GetPointAtDistance(_dstTravelled, EndOfPathInstruction.Stop);
     }
 
-    public void ReturnToPath(Vector3 currentPos)
+    public void ReturnToPath()
     {
-        if(!_isActive) return;
-        var returnPoint = _path.path.GetClosestPointOnPath(currentPos);
-        _unitMovement.SetDest(returnPoint);
-        dstTravelled = _path.path.GetClosestDistanceAlongPath(returnPoint);
-        _unitMovement.OnDestinationReached += ContinuePath;
-    }
-
-    private void ContinuePath()
-    {
-        if(!_isActive) return;
-        _enemy.EnemyAgro.EnemyReturnedToPath();
-        _isMoving = true;
-        _unitMovement.ToggleMovement(false);
-    }
-    
-    public void ToggleMove(bool state)
-    {
-        _isMoving = state;
-    }
-    public void ToggleActive(bool state)
-    {
-        _isActive = state;
+        var returnPoint = _path.path.GetClosestPointOnPath(_enemy.transform.position);
+        _unitMovement.SetDestination(returnPoint);
+        _dstTravelled = _path.path.GetClosestDistanceAlongPath(returnPoint);
     }
 }

@@ -11,17 +11,44 @@ public class SmokeBombSO : OffensiveAbility
     public override bool CastAbility(BaseUnit caster)
     {
         BaseUnit target = caster.ShamanTargetHelper.GetTarget(TargetData);
+        
         if (!ReferenceEquals(target, null))
         {
-            SmokeBomb smokeBomb = LevelManager.Instance.PoolManager.SmokeBombPool.GetPooledObject();
-            smokeBomb.transform.position = target.transform.position;
-            smokeBomb.gameObject.SetActive(true);
-            smokeBomb.SpawnBomb(this,caster);
+            if (caster.Stats.ThreatLevel > target.Stats.ThreatLevel) target = caster;
+            if (target.Stats.ThreatLevel <= 0) return false;
+            return Cast(caster, target);
+        }
+        else
+        {
+            if(caster.Stats.ThreatLevel > 0) return Cast(caster, caster);
+            else return false;
+        }
+    }
+
+    public override bool CheckCastAvailable(BaseUnit caster)
+    {
+        BaseUnit target = caster.ShamanTargetHelper.GetTarget(TargetData);
+        
+        if (!ReferenceEquals(target, null))
+        {
+            if (caster.Stats.ThreatLevel > target.Stats.ThreatLevel) target = caster;
+            if (target.Stats.ThreatLevel <= 0) return false;
             return true;
         }
         else
         {
-            return false;
+            if(caster.Stats.ThreatLevel > 0) return true;
+            else return false;
         }
+
+    }
+
+    private bool Cast(BaseUnit caster, BaseUnit target)
+    {
+        SmokeBomb smokeBomb = LevelManager.Instance.PoolManager.SmokeBombPool.GetPooledObject();
+        smokeBomb.transform.position = target.transform.position;
+        smokeBomb.gameObject.SetActive(true);
+        smokeBomb.SpawnBomb(this,caster);
+        return true;
     }
 }

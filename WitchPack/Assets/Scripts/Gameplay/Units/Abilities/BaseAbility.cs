@@ -3,55 +3,37 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class BaseAbility : ScriptableObject
+public abstract class BaseAbility : ScriptableObject
 {
-    [SerializeField] private string name;
-    [SerializeField] private string discription;
+    [HideLabel, PreviewField(55,ObjectFieldAlignment.Left)]
+    [BoxGroup("General Settings")]
+    [HorizontalGroup("General Settings/Split",width:70)]
     [SerializeField] private Sprite icon;
-    [SerializeField] private float cd;
-    [SerializeField] private bool isPassive;
-    [SerializeField] private bool givesEnergyPoints;
-    [SerializeField,ShowIf(nameof(givesEnergyPoints))] private int energyPoints;
-    [SerializeField] private bool _hasSFX = true;
-    [SerializeField,ShowIf(nameof(_hasSFX))] private SoundEffectType soundEffectType;
+    
+    [BoxGroup("General Settings")]
+    [LabelWidth(50)]
+    [VerticalGroup("General Settings/Split/Right")]
+    [HorizontalGroup("General Settings/Split")]
+    [SerializeField] private string name;
+    
+    [BoxGroup("General Settings")]
+    [TextArea(4, 14)]
+    [HorizontalGroup("General Settings/Split")]
+    [VerticalGroup("General Settings/Split/Right")]
+    [SerializeField] private string discription;
 
-    [SerializeField, Tooltip("Interval before casting in real time")]
-    private float castTime;
+    [BoxGroup("Skill Tree")][SerializeField] private BaseAbility[] _upgrades;
+    [BoxGroup("Damage Popup Numbers")][SerializeField] private bool hasPopupColor;
+    [BoxGroup("Damage Popup Numbers")][SerializeField, ShowIf(nameof(hasPopupColor))] private Color popupColor;
 
-    [SerializeField] private List<StatusEffectConfig> statusEffects = new List<StatusEffectConfig>();
-    [SerializeField] private BaseAbility[] _upgrades;
-    [SerializeField] private TargetData targetData;
     private AbilityUpgradeState _abilityUpgradeState;
-
-
-    public TargetData TargetData => targetData;
+    public bool HasPopupColor { get => hasPopupColor; }
+    public Color PopupColor { get => popupColor; }
     public Sprite Icon => icon;
     public string Name => name;
     public string Discription => discription;
-    public float Cd => cd;
-    public bool IsPassive => isPassive;
-    public bool GivesEnergyPoints => givesEnergyPoints;
-    public int EnergyPoints => energyPoints;
-    public List<StatusEffectConfig> StatusEffects => statusEffects;
     public BaseAbility[] Upgrades => _upgrades;
     public AbilityUpgradeState AbilityUpgradeState => _abilityUpgradeState;
-
-    public bool HasSfx => _hasSFX;
-
-    public SoundEffectType SoundEffectType => soundEffectType;
-
-
-    public float CastTime { get => castTime; }
-
-    public virtual bool CastAbility(BaseUnit caster)
-    {
-        return true;
-    }
-
-    public virtual bool CheckCastAvailable(BaseUnit caster)
-    {
-        return true;
-    }
 
     public virtual void OnSetCaster(BaseUnit caster)
     {
