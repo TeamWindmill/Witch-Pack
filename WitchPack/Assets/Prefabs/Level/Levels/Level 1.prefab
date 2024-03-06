@@ -700,7 +700,6 @@ GameObject:
   - component: {fileID: 8991111791567003915}
   - component: {fileID: 772577259468376679}
   - component: {fileID: 5901821650403430697}
-  - component: {fileID: 5401018201420013648}
   m_Layer: 0
   m_Name: Navmesh
   m_TagString: Untagged
@@ -769,22 +768,6 @@ MonoBehaviour:
   m_UseMeshPrefab: {fileID: 0}
   m_CompressBounds: 0
   m_OverrideVector: {x: 1, y: 1, z: 1}
---- !u!114 &5401018201420013648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6288611450489282537}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fa0352a4d56abd42ad2fc69deb72448, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Size: {x: 50, y: 1, z: 29.33}
-  m_Center: {x: 0, y: 1, z: 0}
-  m_Area: 0
-  m_AffectedAgents: ffffffff
 --- !u!1 &7300951936517818848
 GameObject:
   m_ObjectHideFlags: 0
@@ -1074,6 +1057,10 @@ PrefabInstance:
     - target: {fileID: 4413608478042096854, guid: c0960f812f2a27a4daf33595bb1c96a9, type: 3}
       propertyPath: m_Name
       value: NavmeshModifiers
+      objectReference: {fileID: 0}
+    - target: {fileID: 6107251753535976118, guid: c0960f812f2a27a4daf33595bb1c96a9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -15.29
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

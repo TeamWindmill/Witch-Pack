@@ -13,6 +13,13 @@ public class Charmed : State<EnemyAI>
         _caster = caster;
         affectedTarget.EnemyAI.SetState(typeof(Charmed));
     }
+
+    public override void Enter(EnemyAI parent)
+    {
+        parent.Enemy.Movement.ToggleMovement(true);
+        base.Enter(parent);
+    }
+
     public override void UpdateState(EnemyAI parent)
     {
         var target = parent.Enemy.EnemyTargetHelper.GetTarget(_targetData);
@@ -37,8 +44,8 @@ public class Charmed : State<EnemyAI>
 
     public override void Exit(EnemyAI parent)
     {
-        base.Exit(parent);
         var enemy = parent.Enemy;
         LevelManager.Instance.CharmedEnemies.Remove(enemy);
+        base.Exit(parent);
     }
 }
