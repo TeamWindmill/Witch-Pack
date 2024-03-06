@@ -1,5 +1,4 @@
 using System.Collections;
-using Gameplay.Units.Abilities;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]

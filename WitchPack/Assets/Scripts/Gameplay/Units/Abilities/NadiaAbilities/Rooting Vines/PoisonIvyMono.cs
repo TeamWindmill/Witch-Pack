@@ -1,8 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Gameplay.Units.Abilities;
-using UnityEngine;
 
 public class PoisonIvyMono : RootingVinesMono
 {
