@@ -39,13 +39,13 @@ public class UnitAutoCaster : MonoBehaviour
         if (caster.CheckCastAvailable())
         {
             CastTimeStart?.Invoke(caster.Ability);
-            CastTimeStartVFX?.Invoke(caster.Ability.CastVisualColor);
+            if(caster.Ability.HasCastVisual) CastTimeStartVFX?.Invoke(caster.Ability.CastVisualColor);
             if (_castTimer > caster.Ability.CastTime)
             {
                 if (caster.CastAbility())
                 {
                     CastTimeEnd?.Invoke(caster.Ability);
-                    CastTimeEndVFX?.Invoke(caster.Ability.CastVisualColor);
+                    if(caster.Ability.HasCastVisual) CastTimeEndVFX?.Invoke(caster.Ability.CastVisualColor);
                     TimerManager.Instance.AddTimer(caster.GetCooldown(),caster,EnqueueAbility,true);
                     _abilitiesOnCooldown.Add(caster);
                     _queuedAbilities.Dequeue();
