@@ -1,4 +1,3 @@
-using Gameplay.Units.Abilities;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "MeleeAA", menuName = "Ability/MeleeAA")]

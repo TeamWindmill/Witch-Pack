@@ -1,4 +1,3 @@
-using Gameplay.Units.Abilities;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ability", menuName = "Ability/PiercingShot")]
