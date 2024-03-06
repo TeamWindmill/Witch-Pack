@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class UnitVisualHandler : MonoBehaviour
 {
-    public Action<bool> OnSpriteFlip;
+    public event Action<bool> OnSpriteFlip;
     public Animator Animator => animator;
     public UnitEffectHandler EffectHandler => effectHandler;
     
