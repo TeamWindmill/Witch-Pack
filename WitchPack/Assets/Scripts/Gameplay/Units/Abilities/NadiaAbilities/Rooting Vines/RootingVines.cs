@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Gameplay.Units.Abilities;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ability", menuName = "Ability/RootingVines")]
@@ -9,7 +10,7 @@ public class RootingVines : OffensiveAbility
     [SerializeField] private float lastingTime;
     public override bool CastAbility(BaseUnit caster)
     {
-        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);    
+        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData,LevelManager.Instance.CharmedEnemies);    
         if (!ReferenceEquals(target, null))
         {
             RootingVinesMono newVines = LevelManager.Instance.PoolManager.RootingVinesPool.GetPooledObject();
@@ -27,7 +28,7 @@ public class RootingVines : OffensiveAbility
 
     public override bool CheckCastAvailable(BaseUnit caster)
     {
-        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
+        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData,LevelManager.Instance.CharmedEnemies);
         return !ReferenceEquals(target, null);
     }
 }

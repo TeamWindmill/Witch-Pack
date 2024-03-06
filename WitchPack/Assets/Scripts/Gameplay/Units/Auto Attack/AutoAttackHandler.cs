@@ -3,13 +3,13 @@ using System;
 public class AutoAttackHandler : ICaster
 {
     public event Action OnAttack;
-    public OffensiveAbility Ability => _ability;
+    public CastingAbility Ability => _ability;
     public float LastCast { get; set; }
 
     private readonly BaseUnit _unit;
-    private readonly OffensiveAbility _ability;
+    private readonly CastingAbility _ability;
 
-    public AutoAttackHandler(BaseUnit owner, OffensiveAbility ability)
+    public AutoAttackHandler(BaseUnit owner, CastingAbility ability)
     {
         _unit = owner;
         _ability = ability;

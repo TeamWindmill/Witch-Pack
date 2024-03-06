@@ -6,8 +6,10 @@ using UnityEngine;
 
 public class UnitAutoCaster : MonoBehaviour
 {
-    public event Action<BaseAbility> OnCastTimeStart;
-    public event Action<BaseAbility> OnCastTimeEnd;
+    public event Action<CastingAbility> CastTimeStart;
+    public event Action<CastingHandsEffectType> CastTimeStartVFX;
+    public event Action<CastingAbility> CastTimeEnd;
+    public event Action<CastingHandsEffectType> CastTimeEndVFX;
     public bool CanCast { get; private set; }
 
     private BaseUnit owner;
@@ -36,10 +38,14 @@ public class UnitAutoCaster : MonoBehaviour
         var caster = _queuedAbilities.Peek();
         if (caster.CheckCastAvailable())
         {
+            CastTimeStart?.Invoke(caster.Ability);
+            CastTimeStartVFX?.Invoke(caster.Ability.CastVisualColor);
             if (_castTimer > caster.Ability.CastTime)
             {
                 if (caster.CastAbility())
                 {
+                    CastTimeEnd?.Invoke(caster.Ability);
+                    CastTimeEndVFX?.Invoke(caster.Ability.CastVisualColor);
                     TimerManager.Instance.AddTimer(caster.GetCooldown(),caster,EnqueueAbility,true);
                     _abilitiesOnCooldown.Add(caster);
                     _queuedAbilities.Dequeue();

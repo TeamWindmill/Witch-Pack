@@ -4,18 +4,25 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "StateMachine/States/Charmed", fileName = "Charmed")]
 public class Charmed : State<EnemyAI>
 {
-    public override void Enter(EnemyAI parent)
+    [SerializeField] private TargetData _targetData;
+
+    private BaseUnit _caster;
+
+    public void StartCharm(BaseUnit caster, Enemy affectedTarget)
     {
-        base.Enter(parent);
-        if(!parent.Enemy.Movement.IsActive)
-            parent.Enemy.Movement.ToggleMovement(true);
+        _caster = caster;
+        affectedTarget.EnemyAI.SetState(typeof(Charmed));
     }
     public override void UpdateState(EnemyAI parent)
     {
-        var target = parent.Enemy.EnemyTargeter.GetClosestTarget();
+        var target = parent.Enemy.EnemyTargetHelper.GetTarget(_targetData);
         if (!ReferenceEquals(target, null))
         {
             parent.Enemy.Movement.SetDestination(target.transform.position);
+        }
+        else
+        {
+            parent.Enemy.Movement.SetDestination(_caster.transform.position);
         }
     }
 
@@ -25,12 +32,13 @@ public class Charmed : State<EnemyAI>
     }
     public void EndCharm(Effectable parent,StatusEffect statusEffect)
     {
-        (parent.Owner as Enemy)?.EnemyAI.SetState(typeof(FollowPath));
+        (parent.Owner as Enemy)?.EnemyAI.SetState(typeof(ReturnToPath));
     }
+
     public override void Exit(EnemyAI parent)
     {
         base.Exit(parent);
-        if(parent.Enemy.Movement.IsActive)
-            parent.Enemy.Movement.ToggleMovement(false);
+        var enemy = parent.Enemy;
+        LevelManager.Instance.CharmedEnemies.Remove(enemy);
     }
 }

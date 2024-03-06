@@ -8,7 +8,7 @@ public class AttritionCounter : AbilityEventCounter
     private BaseUnit lastTarget;
     private int maxStacks;
 
-    public AttritionCounter(BaseUnit givenOwner, BaseAbility givenAbility, ref Action<Damageable, DamageDealer, DamageHandler, BaseAbility, bool> eventToSub, int maxStacks) : base(givenOwner, givenAbility, ref eventToSub )
+    public AttritionCounter(BaseUnit givenOwner, BaseAbility givenAbility, ref Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> eventToSub, int maxStacks) : base(givenOwner, givenAbility, ref eventToSub )
     {
         this.maxStacks = maxStacks;
     }

@@ -1,19 +1,21 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Charm", menuName = "Ability/Charm")]
-public class CharmSO : OffensiveAbility
+public class CharmSO : CastingAbility
 {
     [SerializeField] private Charmed _charmedState;
     public override bool CastAbility(BaseUnit caster)
     {
-        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
+        Enemy target = caster.EnemyTargetHelper.GetTarget(TargetData,LevelManager.Instance.CharmedEnemies);
         
         if (!ReferenceEquals(target, null))
         {
+            _charmedState.StartCharm(caster,target);
+            LevelManager.Instance.CharmedEnemies.Add(target);
+            
             foreach (var statusEffect in StatusEffects)
             {
-                ((Enemy)target).EnemyAI.SetState(typeof(Charmed));
-                if (!target.Effectable.ContainsStatusEffect(StatusEffectType.Charm))
+                if (!target.Effectable.ContainsStatusEffect(statusEffect.StatusEffectType))
                 {
                     var effect = target.Effectable.AddEffect(statusEffect, caster.Affector);
                     effect.Ended += _charmedState.EndCharm;
@@ -32,7 +34,7 @@ public class CharmSO : OffensiveAbility
 
     public override bool CheckCastAvailable(BaseUnit caster)
     {
-        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
+        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData,LevelManager.Instance.CharmedEnemies);
 
         if (!ReferenceEquals(target, null))
         {

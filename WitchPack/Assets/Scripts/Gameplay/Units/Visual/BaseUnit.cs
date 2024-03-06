@@ -1,17 +1,20 @@
 using System;
 using System.Collections.Generic;
+using Gameplay.Units.Abilities;
 using Sirenix.OdinInspector;
+using Tools.Helpers;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class BaseUnit : MonoBehaviour
+public class BaseUnit : MonoBehaviour, IInitialize<BaseUnitConfig>
 {
     #region Serialized
     
     [SerializeField] private UnitType unitType;
-    [SerializeField, TabGroup("Combat")] private Damageable damageable;
-    [SerializeField, TabGroup("Combat")] private DamageDealer damageDealer;
-    [SerializeField, TabGroup("Combat")] private Affector affector;
-    [SerializeField, TabGroup("Combat")] private Effectable effectable;
+    [TabGroup("Combat")] private Damageable damageable;
+    [TabGroup("Combat")] private DamageDealer damageDealer;
+    [TabGroup("Combat")] private Affector affector;
+    [TabGroup("Combat")] private Effectable effectable;
     [SerializeField, TabGroup("Combat")] private OffensiveAbility autoAttack;
     [SerializeField, TabGroup("Combat")] private UnitAutoCaster _autoCaster;
     [SerializeField, TabGroup("Combat")] private BoxCollider2D boxCollider;
@@ -32,6 +35,7 @@ public class BaseUnit : MonoBehaviour
     private UnitTargetHelper<Shaman> shamanTargetHelper;
     private UnitTargetHelper<Enemy> enemyTargetHelper;
     private AutoAttackHandler autoAttackHandler;
+    private List<ITimer> unitTimers;
 
     #endregion
     
@@ -44,7 +48,7 @@ public class BaseUnit : MonoBehaviour
     public Effectable Effectable => effectable;
     public virtual StatSheet BaseStats => null;
     public UnitStats Stats => stats;
-    public OffensiveAbility AutoAttack => autoAttack;
+    public CastingAbility AutoAttack => autoAttack;
     public AutoAttackHandler AutoAttackHandler => autoAttackHandler;
     public UnitAutoCaster AutoCaster => _autoCaster;
     public UnitMovement Movement => movement;
@@ -54,6 +58,9 @@ public class BaseUnit : MonoBehaviour
     public ShamanTargeter ShamanTargeter => shamanTargeter;
     public UnitTargetHelper<Shaman> ShamanTargetHelper => shamanTargetHelper;
     public UnitTargetHelper<Enemy> EnemyTargetHelper => enemyTargetHelper;
+
+    public List<ITimer> UnitTimers { get => unitTimers; }
+    public bool Initialized { get; protected set; }
 
     #endregion
 
@@ -67,6 +74,7 @@ public class BaseUnit : MonoBehaviour
         autoAttackHandler = new AutoAttackHandler(this, autoAttack);
         shamanTargetHelper = new UnitTargetHelper<Shaman>(ShamanTargeter, this);
         enemyTargetHelper = new UnitTargetHelper<Enemy>(EnemyTargeter, this);
+        unitTimers = new List<ITimer>();
         AutoCaster.Init(this);
         Movement.SetUp(this);
         groundCollider.Init(this);
@@ -83,17 +91,20 @@ public class BaseUnit : MonoBehaviour
 
         damageable.OnDamageCalc += LevelManager.Instance.PopupsManager.SpawnDamagePopup;
         damageable.OnHeal += LevelManager.Instance.PopupsManager.SpawnHealPopup;
-        effectable.OnAffectedGFX += LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
+        effectable.OnAffected += LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
 
-        
     }
+
+
 
     protected virtual void OnDisable() //unsubscribe to events
     {
         if (ReferenceEquals(LevelManager.Instance, null)) return;
+        if (ReferenceEquals(damageable, null)) return;
+        if (ReferenceEquals(effectable, null)) return;
         damageable.OnDamageCalc -= LevelManager.Instance.PopupsManager.SpawnDamagePopup;
         damageable.OnHeal -= LevelManager.Instance.PopupsManager.SpawnHealPopup;
-        effectable.OnAffectedGFX -= LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
+        effectable.OnAffected -= LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
         if (hasHPBar)
         {
             damageable.OnDamageCalc -= hpBar.SetBarValue;
@@ -114,6 +125,16 @@ public class BaseUnit : MonoBehaviour
         ToggleCollider(false);
         damageable.ToggleHitable(false);
         _autoCaster.DisableCaster();
+    }
+
+    public void ClearUnitTImers()
+    {
+        foreach (ITimer iTimer in UnitTimers)
+        {
+            iTimer.RemoveThisTimer();
+        }
+
+        UnitTimers.Clear();
     }
 
     private void OnValidate()

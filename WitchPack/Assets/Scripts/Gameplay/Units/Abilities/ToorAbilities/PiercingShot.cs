@@ -1,3 +1,4 @@
+using Gameplay.Units.Abilities;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ability", menuName = "Ability/PiercingShot")]
@@ -10,7 +11,7 @@ public class PiercingShot : OffensiveAbility
 
     public override bool CastAbility(BaseUnit caster)
     {
-        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
+        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData,LevelManager.Instance.CharmedEnemies);
         if (!ReferenceEquals(target, null))
         {
             PiercingShotMono newPew = LevelManager.Instance.PoolManager.PiercingShotPool.GetPooledObject();
@@ -29,7 +30,7 @@ public class PiercingShot : OffensiveAbility
 
     public override bool CheckCastAvailable(BaseUnit caster)
     {
-        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
+        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData,LevelManager.Instance.CharmedEnemies);
         return !ReferenceEquals(target, null);
     }
 

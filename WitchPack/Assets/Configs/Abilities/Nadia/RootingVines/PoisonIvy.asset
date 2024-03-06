@@ -12,28 +12,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 472f5013576d6644788d63a05b78409b, type: 3}
   m_Name: PoisonIvy
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: d5b1a5f292bc3c1428d0609a604e2297, type: 3}
   name: Poison Ivy
   discription: The vines posions enemies
-  icon: {fileID: 21300000, guid: d5b1a5f292bc3c1428d0609a604e2297, type: 3}
+  _upgrades: []
+  hasPopupColor: 0
+  popupColor: {r: 0.365815, g: 0.19001423, b: 0.6603774, a: 1}
   castTime: 1.5
   cd: 10
+  range: 0
   givesEnergyPoints: 0
   energyPoints: 0
-  _hasSFX: 1
-  soundEffectType: 14
   statusEffects:
   - {fileID: 11400000, guid: 428d1202890fd074581af20f924554b1, type: 2}
-  _upgrades: []
   targetData:
     Priority: 1
     Modifier: 1
     StatType: 0
-  hasPopupColor: 1
-  popupColor: {r: 0.365815, g: 0.19001423, b: 0.6603774, a: 1}
+  castVisualColor: 6
+  _hasSFX: 1
+  soundEffectType: 14
   baseDamage: 30
-  range: 0
   damageBoosts: []
   lastingTime: 1
   poisonDuration: 5
   poisonTickRate: 0.5
   poisonDamage: 4
+  poisonPopupColor: {r: 0.3647059, g: 0.18823531, b: 0.65882355, a: 1}

@@ -2,13 +2,12 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
 public class Effectable
 {
     public event Action<Effectable, Affector, StatusEffect> OnAffected;
-    public event Action<Effectable,StatusEffectType> OnAffectedGFX;
+    public event Action<StatusEffectType> OnAffectedVFX;
     public event Action<StatusEffect> OnEffectRemoved;
-    public event Action<StatusEffectType> OnEffectRemovedGFX;
+    public event Action<StatusEffectType> OnEffectRemovedVFX;
     public BaseUnit Owner => _owner;
     public List<StatusEffect> ActiveEffects => activeEffects;
 
@@ -36,7 +35,7 @@ public class Effectable
         activeEffects.Add(ss);
         ss.Activate();
         OnAffected?.Invoke(this, affector, ss);
-        OnAffectedGFX?.Invoke(this,givenEffectData.StatusEffectType); // maybe also added this to the if above? line 32
+        OnAffectedVFX?.Invoke(givenEffectData.StatusEffectType); // maybe also added this to the if above? line 32
         return ss;
     }
 
@@ -44,7 +43,7 @@ public class Effectable
     {
         activeEffects.Remove(effect);
         OnEffectRemoved?.Invoke(effect);
-        OnEffectRemovedGFX?.Invoke(effect.StatusEffectType);
+        OnEffectRemovedVFX?.Invoke(effect.StatusEffectType);
     }
 
     public bool ContainsStatusEffect(StatusEffectType statusEffectType)

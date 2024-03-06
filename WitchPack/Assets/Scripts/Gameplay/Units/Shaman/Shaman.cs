@@ -46,8 +46,7 @@ public class Shaman : BaseUnit
         shamanAnimator.Init(this);
         indicatable.Init(shamanConfig.UnitIcon);
         shamanVisualHandler.Init(this,baseUnitConfig);
-        Effectable.OnAffectedGFX += ShamanVisualHandler.EffectHandler.PlayEffect;
-        Effectable.OnEffectRemovedGFX += ShamanVisualHandler.EffectHandler.DisableEffect;
+        
 
         #region Events
         // no need to unsubscribe because shaman gets destroyed between levels
@@ -61,7 +60,13 @@ public class Shaman : BaseUnit
         Damageable.OnHitGFX += OnHitSFX;
         Damageable.OnDeathGFX += DeathSFX;
         AutoAttackHandler.OnAttack += AttackSFX;
+        Effectable.OnAffectedVFX += ShamanVisualHandler.EffectHandler.PlayEffect;
+        Effectable.OnEffectRemovedVFX += ShamanVisualHandler.EffectHandler.DisableEffect;
+        AutoCaster.CastTimeStartVFX += ShamanVisualHandler.EffectHandler.PlayEffect;
+        AutoCaster.CastTimeEndVFX += ShamanVisualHandler.EffectHandler.DisableEffect;
         #endregion
+
+        Initialized = true;
     }
 
     private void IntializeAbilities()
@@ -84,7 +89,7 @@ public class Shaman : BaseUnit
             if (ability is not Passive)
             {
                 ability.OnSetCaster(this);
-                castingHandlers.Add(new AbilityCaster(this, ability as OffensiveAbility));
+                castingHandlers.Add(new AbilityCaster(this, ability as CastingAbility));
             }
             else
             {
@@ -100,7 +105,7 @@ public class Shaman : BaseUnit
         if (ability is not Passive passive)
         {
             ability.OnSetCaster(this);
-            castingHandlers.Add(new AbilityCaster(this, ability as OffensiveAbility));
+            castingHandlers.Add(new AbilityCaster(this, ability as CastingAbility));
         }
         else
         {
@@ -186,15 +191,17 @@ public class Shaman : BaseUnit
     private void OnHitSFX(bool isCrit) => SoundManager.Instance.PlayAudioClip(shamanConfig.IsMale? SoundEffectType.ShamanGetHitMale : SoundEffectType.ShamanGetHitFemale);
     private void DeathSFX() => SoundManager.Instance.PlayAudioClip(shamanConfig.IsMale? SoundEffectType.ShamanDeathMale : SoundEffectType.ShamanDeathFemale);
     private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.BasicAttack);
-    public void ShamanCastGfx(BaseAbility ability) => SoundManager.Instance.PlayAudioClip(ability.SoundEffectType);
+    public void ShamanCastGfx(CastingAbility ability) => SoundManager.Instance.PlayAudioClip(ability.SoundEffectType);
 
     #endregion
 
     protected override void OnDisable()
     {
         base.OnDisable();
-        Effectable.OnAffectedGFX -= ShamanVisualHandler.EffectHandler.PlayEffect;
-        Effectable.OnEffectRemovedGFX -= ShamanVisualHandler.EffectHandler.DisableEffect;
+        Effectable.OnAffectedVFX -= ShamanVisualHandler.EffectHandler.PlayEffect;
+        Effectable.OnEffectRemovedVFX -= ShamanVisualHandler.EffectHandler.DisableEffect;
+        AutoCaster.CastTimeStartVFX -= ShamanVisualHandler.EffectHandler.PlayEffect;
+        AutoCaster.CastTimeEndVFX -= ShamanVisualHandler.EffectHandler.DisableEffect;
     }
 
 }

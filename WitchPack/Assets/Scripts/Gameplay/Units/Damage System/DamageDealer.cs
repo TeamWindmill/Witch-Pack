@@ -1,13 +1,14 @@
 using System;
+using Gameplay.Units.Abilities;
 using UnityEngine;
 
 public class DamageDealer
 {
     private BaseUnit owner;
 
-    public Action<Damageable, DamageDealer, DamageHandler, BaseAbility, bool> OnHitTarget;
-    public Action<Damageable, DamageDealer, DamageHandler, BaseAbility, bool> OnKill;
-    public Action<Damageable, DamageDealer, DamageHandler, BaseAbility, bool> OnAssist;
+    public Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> OnHitTarget;
+    public Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> OnKill;
+    public Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> OnAssist;
 
     private OffensiveAbility autoAttack;
     public BaseUnit Owner { get => owner; }
@@ -44,7 +45,7 @@ public class DamageDealer
 
     }
 
-    private void SubscribeDamageBoostsFromAbility(Damageable target, DamageDealer dealer, DamageHandler dmg, BaseAbility ability, bool crit)
+    private void SubscribeDamageBoostsFromAbility(Damageable target, DamageDealer dealer, DamageHandler dmg, CastingAbility ability, bool crit)
     {
         if (ability is not OffensiveAbility || ReferenceEquals((ability as OffensiveAbility).DamageBoosts, null))
         {
@@ -66,12 +67,19 @@ public class DamageDealer
 
     private int GetModCurHp(DamageBoostData boostData, Damageable target)
     {
-        return Mathf.RoundToInt((boostData.Threshold / 100) *  target.CurrentHp);
+        if((target.CurrentHp / target.MaxHp) >= (boostData.Threshold / 100))
+        {
+            float damageBasedOnCurrentHP = target.CurrentHp * (boostData.damageBonus / 100);
+            return (int)damageBasedOnCurrentHP;
+        }
+
+        return 0;
+        
     }
 
     private float GetModMissingHp(DamageBoostData boostData, Damageable target)
     {
-        if ((target.CurrentHp / target.MaxHp) <= (boostData.Threshold / 100))
+        if ((target.CurrentHp / target.MaxHp) >= (boostData.Threshold / 100))
         {
             return 1 + (boostData.damageBonus / 100);
         }
