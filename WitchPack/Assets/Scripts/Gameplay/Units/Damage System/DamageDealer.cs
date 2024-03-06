@@ -1,6 +1,4 @@
 using System;
-using Gameplay.Units.Abilities;
-using UnityEngine;
 
 public class DamageDealer
 {
