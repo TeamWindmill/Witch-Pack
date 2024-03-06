@@ -25,7 +25,7 @@ public abstract class UnitVisualHandler : MonoBehaviour
     {
         _baseUnit = unit;
         spriteRenderer.sprite = config.UnitSprite;
-        effectHandler.Init();
+        effectHandler.Init(config);
         _baseUnit.EnemyTargetHelper.OnTarget += FlipSpriteOnTarget;
         _baseUnit.ShamanTargetHelper.OnTarget += FlipSpriteOnTarget;
     }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SmokeBomb", menuName = "Ability/SmokeBomb/SmokeBomb")]
-public class SmokeBombSO : CastingAbility
+public class SmokeBombSO : OffensiveAbility
 {
     public float Duration => _duration;
 
