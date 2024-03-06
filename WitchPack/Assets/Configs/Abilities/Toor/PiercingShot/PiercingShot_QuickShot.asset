@@ -12,24 +12,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 865524e509d6e0d47935469acb17fbd8, type: 3}
   m_Name: PiercingShot_QuickShot
   m_EditorClassIdentifier: 
+  icon: {fileID: 21300000, guid: 64928d65ed8dd7b44a30611ddef1dcb7, type: 3}
   name: Quick Shot
   discription: Increases the damage and reduces cooldown for Piercing Shot
-  icon: {fileID: 21300000, guid: 64928d65ed8dd7b44a30611ddef1dcb7, type: 3}
+  _upgrades: []
+  hasPopupColor: 0
+  popupColor: {r: 0, g: 0, b: 0, a: 0}
   castTime: 1
   cd: 5
+  range: 6
   givesEnergyPoints: 0
   energyPoints: 0
-  _hasSFX: 1
-  soundEffectType: 12
   statusEffects: []
-  _upgrades: []
   targetData:
     Priority: 0
     Modifier: 0
     StatType: 0
-  hasPopupColor: 0
-  popupColor: {r: 0, g: 0, b: 0, a: 0}
+  _hasCastVisual: 1
+  castVisualColor: 0
+  _hasSFX: 1
+  soundEffectType: 12
   baseDamage: 180
-  range: 6
   damageBoosts: []
   penetration: 3
