@@ -12,7 +12,8 @@ public abstract class CastingAbility : BaseAbility
     [BoxGroup("Casting")][SerializeField] private List<StatusEffectConfig> statusEffects = new List<StatusEffectConfig>();
     [BoxGroup("Casting")][SerializeField] private TargetData targetData;
 
-    [BoxGroup("Visual & Sound")][SerializeField] private CastingHandsEffectType castVisualColor;
+    [BoxGroup("Visual & Sound")][SerializeField] private bool _hasCastVisual;
+    [BoxGroup("Visual & Sound")][SerializeField,ShowIf(nameof(_hasCastVisual))] private CastingHandsEffectType castVisualColor;
     [BoxGroup("Visual & Sound")][SerializeField] private bool _hasSFX = true;
     [BoxGroup("Visual & Sound")][SerializeField,ShowIf(nameof(_hasSFX))] private SoundEffectType soundEffectType;
     
@@ -21,6 +22,7 @@ public abstract class CastingAbility : BaseAbility
     public bool GivesEnergyPoints => givesEnergyPoints;
     public int EnergyPoints => energyPoints;
     public bool HasSfx => _hasSFX;
+    public bool HasCastVisual => _hasCastVisual;
     public CastingHandsEffectType CastVisualColor => castVisualColor;
     public SoundEffectType SoundEffectType => soundEffectType;
     public float CastTime => castTime; 

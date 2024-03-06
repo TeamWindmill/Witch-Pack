@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class UnitVisualHandler : MonoBehaviour
 {
-    public Action<bool> OnSpriteFlip;
+    public event Action<bool> OnSpriteFlip;
     public Animator Animator => animator;
     public UnitEffectHandler EffectHandler => effectHandler;
     
@@ -25,7 +25,7 @@ public abstract class UnitVisualHandler : MonoBehaviour
     {
         _baseUnit = unit;
         spriteRenderer.sprite = config.UnitSprite;
-        effectHandler.Init();
+        effectHandler.Init(config);
         _baseUnit.EnemyTargetHelper.OnTarget += FlipSpriteOnTarget;
         _baseUnit.ShamanTargetHelper.OnTarget += FlipSpriteOnTarget;
     }

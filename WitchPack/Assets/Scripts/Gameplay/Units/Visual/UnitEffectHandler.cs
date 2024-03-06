@@ -7,7 +7,9 @@ public class UnitEffectHandler : MonoBehaviour
     [SerializeField] private EffectVisual<StatusEffectType>[] _statusEffectVisuals;
     [SerializeField] private EffectVisual<CastingHandsEffectType>[] _castingHandsVisuals;
 
-    public void Init()
+    
+
+    public virtual void Init(BaseUnitConfig config)
     {
         DisableAllEffects();
     }

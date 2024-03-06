@@ -47,13 +47,12 @@ public class Enemy : BaseUnit
         enemyAnimator.Init(this);
         unitVisual.Init(this, givenConfig);
         enemyAI.Init(this);
-        Effectable.OnAffectedVFX += unitVisual.EffectHandler.PlayEffect;
-        Effectable.OnEffectRemovedVFX += unitVisual.EffectHandler.DisableEffect;
-        
 
         #region Events
         //remember to unsubscribe in OnDisable!!!
-
+        unitVisual.OnSpriteFlip += enemyAnimator.FlipAnimations;
+        Effectable.OnAffectedVFX += unitVisual.EffectHandler.PlayEffect;
+        Effectable.OnEffectRemovedVFX += unitVisual.EffectHandler.DisableEffect;
         Damageable.OnHitGFX += GetHitSFX;
         Damageable.OnDeathGFX += DeathSFX;
         AutoAttackHandler.OnAttack += AttackSFX;
@@ -77,6 +76,7 @@ public class Enemy : BaseUnit
         Movement.OnDestinationReached -= AutoCaster.EnableCaster;
         Effectable.OnAffectedVFX -= unitVisual.EffectHandler.PlayEffect;
         Effectable.OnEffectRemovedVFX -= unitVisual.EffectHandler.DisableEffect;
+        unitVisual.OnSpriteFlip -= enemyAnimator.FlipAnimations;
 
         Initialized = false;
     }

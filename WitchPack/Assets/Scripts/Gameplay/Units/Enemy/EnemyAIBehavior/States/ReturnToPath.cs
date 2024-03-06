@@ -6,8 +6,9 @@ public class ReturnToPath : State<EnemyAI>
 {
     public override void Enter(EnemyAI parent)
     {
-        base.Enter(parent);
+        parent.Enemy.Movement.ToggleMovement(true);
         parent.Enemy.Movement.Agent.stoppingDistance = 0.1f;
+        base.Enter(parent);
     }
 
     public override void UpdateState(EnemyAI parent)
@@ -26,8 +27,8 @@ public class ReturnToPath : State<EnemyAI>
 
     public override void Exit(EnemyAI parent)
     {
-        base.Exit(parent);
         parent.Enemy.Movement.Agent.stoppingDistance = parent.Enemy.Movement.DefaultStoppingDistance;
+        base.Exit(parent);
 
     }
 }

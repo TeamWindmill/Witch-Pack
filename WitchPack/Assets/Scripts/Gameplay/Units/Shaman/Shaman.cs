@@ -46,10 +46,10 @@ public class Shaman : BaseUnit
         shamanAnimator.Init(this);
         indicatable.Init(shamanConfig.UnitIcon);
         shamanVisualHandler.Init(this,baseUnitConfig);
-        
 
         #region Events
         // no need to unsubscribe because shaman gets destroyed between levels
+        shamanVisualHandler.OnSpriteFlip += shamanAnimator.FlipAnimations;
         Stats.OnStatChanged += EnemyTargeter.AddRadius;
         Movement.OnDestinationSet += AutoCaster.DisableCaster;
         Movement.OnDestinationReached += AutoCaster.EnableCaster;
@@ -198,10 +198,7 @@ public class Shaman : BaseUnit
     protected override void OnDisable()
     {
         base.OnDisable();
-        Effectable.OnAffectedVFX -= ShamanVisualHandler.EffectHandler.PlayEffect;
-        Effectable.OnEffectRemovedVFX -= ShamanVisualHandler.EffectHandler.DisableEffect;
-        AutoCaster.CastTimeStartVFX -= ShamanVisualHandler.EffectHandler.PlayEffect;
-        AutoCaster.CastTimeEndVFX -= ShamanVisualHandler.EffectHandler.DisableEffect;
+        
     }
 
 }

@@ -48,11 +48,16 @@ public class WaveHandler : MonoBehaviour
     private IEnumerator StartSpawningWaves()
     {
         //yield return StartCoroutine(IntervalDelay(waveData.StartDelayInterval));
+        int nextWave = 0;
         //create start indicator 
-        SetIndicator(0);
+        SetIndicator(nextWave);
         yield return new WaitUntil(() => skipFlag);
         for (int i = 0; i < spawnData.Count; i++)
         {
+            skipFlag = false;
+            nextWave = i + 1;
+            // Spawning Wave
+            //Debug.Log("Spawning Wave " + i);
             spawnData[i].CalcSpawns();
             OnWaveStart?.Invoke(i + 1);
             _currentWave = i + 1;
@@ -64,13 +69,13 @@ public class WaveHandler : MonoBehaviour
             }
             else // if a wave other than the last one finished spawning set up the next wave. 
             {
-                SetIndicator(i, waveData.BetweenWavesInterval);
+                //Debug.Log("Showing Indicators for Wave " + nextWave);
+                SetIndicator(nextWave, waveData.BetweenWavesInterval);
                 yield return StartCoroutine(WaveDelay(waveData.BetweenWavesInterval));
             }
         }
         LevelManager.Instance.EndLevel(true);
     }
-
 
     //private IEnumerator SpawnWave(EnemySpawnData givenData)
     //{
@@ -189,7 +194,18 @@ public class WaveHandler : MonoBehaviour
 
     private void SetIndicator(int waveIndex, float time = 0)
     {
-        GetSpawnPointFromIndex(spawnData[waveIndex].Groups[0].SpawnerIndex).SetIndicator(spawnData[waveIndex].Groups[0].Enemy.UnitIcon, time, SkipWaveCD);
+        List<int> lanesThatHaveAnIndicator = new List<int>();
+        foreach (EnemyGroup group in spawnData[waveIndex].Groups)
+        {
+            if (lanesThatHaveAnIndicator.Contains(group.SpawnerIndex))
+            {
+                continue; // Skips setting an indicator on a lane that already has an indicator
+            }
+            lanesThatHaveAnIndicator.Add(group.SpawnerIndex);
+            EnemySpawnPoint spawnPoint = GetSpawnPointFromIndex(group.SpawnerIndex);
+            spawnPoint.SetIndicator(group.Enemy.UnitIcon, time, SkipWaveCD);
+        }
+        
     }
 
     private void SkipWaveCD()

@@ -12,23 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4eb122e50d8b41ac95146fd9dd98d896, type: 3}
   m_Name: HighImpact
   m_EditorClassIdentifier: 
+  icon: {fileID: 1108142957, guid: bc5335bd6010ad24b9dcf7a94d8d3f31, type: 3}
   name: High Impact
   discription: Deals damage on Impact, and has reduced CD.
-  icon: {fileID: 1108142957, guid: bc5335bd6010ad24b9dcf7a94d8d3f31, type: 3}
+  _upgrades: []
+  hasPopupColor: 0
+  popupColor: {r: 0, g: 0, b: 0, a: 0}
   castTime: 3
   cd: 15
+  range: 2
   givesEnergyPoints: 0
   energyPoints: 0
-  _hasSFX: 1
-  soundEffectType: 25
   statusEffects:
   - {fileID: 11400000, guid: 8750043a8d6bd874c9cbf473fc75907f, type: 2}
-  _upgrades: []
   targetData:
     Priority: 0
     Modifier: 0
     StatType: 0
+  _hasCastVisual: 1
+  castVisualColor: 1
+  _hasSFX: 1
+  soundEffectType: 25
   baseDamage: 100
-  range: 2
   damageBoosts: []
   _duration: 6
