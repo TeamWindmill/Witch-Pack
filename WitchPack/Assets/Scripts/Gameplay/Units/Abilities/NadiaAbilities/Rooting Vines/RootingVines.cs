@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Gameplay.Units.Abilities;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ability", menuName = "Ability/RootingVines")]

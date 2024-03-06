@@ -1,9 +1,6 @@
-using System;
 using System.Collections.Generic;
-using Gameplay.Units.Abilities;
 using Sirenix.OdinInspector;
 using Tools.Helpers;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BaseUnit : MonoBehaviour, IInitialize<BaseUnitConfig>

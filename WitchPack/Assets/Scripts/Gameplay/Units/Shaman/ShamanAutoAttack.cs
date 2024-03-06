@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using Gameplay.Units.Abilities;
 
 [CreateAssetMenu(fileName = "ShamanAA", menuName = "Ability/ShamanAA")]
 public class ShamanAutoAttack : OffensiveAbility
