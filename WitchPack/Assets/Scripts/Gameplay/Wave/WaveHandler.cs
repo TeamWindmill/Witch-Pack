@@ -51,12 +51,13 @@ public class WaveHandler : MonoBehaviour
         int nextWave = 0;
         //create start indicator 
         SetIndicator(nextWave);
-        yield return new WaitUntil(() => skipFlag);        
+        yield return new WaitUntil(() => skipFlag);
         for (int i = 0; i < spawnData.Count; i++)
         {
+            skipFlag = false;
             nextWave = i + 1;
             // Spawning Wave
-            Debug.Log("Spawning Wave " + i);
+            //Debug.Log("Spawning Wave " + i);
             spawnData[i].CalcSpawns();
             OnWaveStart?.Invoke(i + 1);
             _currentWave = i + 1;
@@ -68,14 +69,13 @@ public class WaveHandler : MonoBehaviour
             }
             else // if a wave other than the last one finished spawning set up the next wave. 
             {
-                Debug.Log("Showing Indicators for Wave " + nextWave);
+                //Debug.Log("Showing Indicators for Wave " + nextWave);
                 SetIndicator(nextWave, waveData.BetweenWavesInterval);
                 yield return StartCoroutine(WaveDelay(waveData.BetweenWavesInterval));
             }
         }
         LevelManager.Instance.EndLevel(true);
     }
-
 
     //private IEnumerator SpawnWave(EnemySpawnData givenData)
     //{
