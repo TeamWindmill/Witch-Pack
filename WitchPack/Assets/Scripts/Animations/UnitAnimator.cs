@@ -23,6 +23,7 @@ public abstract class UnitAnimator : MonoBehaviour
         this.unit.Damageable.OnDeathGFX += DeathAnimation;
         this.unit.AutoAttackHandler.OnAttack += AttackAnimation;
         animator.SetBool(Death,false);
+        
     }
 
     protected abstract void MoveAnimation();
@@ -49,7 +50,7 @@ public abstract class UnitAnimator : MonoBehaviour
         animator.SetTrigger(_isFlipped ? "GetHit_Flipped" : "GetHit");
     }
 
-    protected virtual void FlipAnimations(bool state)
+    public void FlipAnimations(bool state)
     {
         _isFlipped = state;
     }

@@ -30,10 +30,4 @@ public class FollowPath : IntervalState<EnemyAI>
             }
         }
     }
-
-    public override void Exit(EnemyAI parent)
-    {
-        parent.Enemy.Movement.ToggleMovement(true);
-        base.Exit(parent);
-    }
 }

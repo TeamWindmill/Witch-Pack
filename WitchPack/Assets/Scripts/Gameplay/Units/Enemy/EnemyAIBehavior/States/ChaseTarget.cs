@@ -9,6 +9,7 @@ public class ChaseTarget : IntervalState<EnemyAI>
 
     public override void Enter(EnemyAI parent)
     {
+        parent.Enemy.Movement.ToggleMovement(true);
         parent.CurrentTarget.Stats.AddValueToStat(StatType.ThreatLevel, 1);
         base.Enter(parent);
     }
