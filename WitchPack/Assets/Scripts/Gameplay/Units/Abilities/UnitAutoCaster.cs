@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using UnityEngine;
 
@@ -13,8 +14,8 @@ public class UnitAutoCaster : MonoBehaviour
     public bool CanCast { get; private set; }
 
     private BaseUnit owner;
-    private Queue<ICaster> _queuedAbilities;
-    private List<ICaster> _abilitiesOnCooldown = new List<ICaster>();
+    [ShowInInspector] private Queue<ICaster> _queuedAbilities;
+    [ShowInInspector] private List<ICaster> _abilitiesOnCooldown = new List<ICaster>();
     private float _castTimer;
     private float _currentCastTime;
 
@@ -82,5 +83,9 @@ public class UnitAutoCaster : MonoBehaviour
     {
         CanCast = false;
         _castTimer = 0;
+        if(_queuedAbilities.Count <= 0) return;
+        var ability = _queuedAbilities.Peek().Ability;
+        CastTimeEnd?.Invoke(ability);
+        if(ability.HasCastVisual) CastTimeEndVFX?.Invoke(ability.CastVisualColor);
     }
 }

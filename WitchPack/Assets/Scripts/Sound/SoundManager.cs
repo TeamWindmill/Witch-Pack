@@ -128,6 +128,14 @@ public class SoundManager : MonoSingleton<SoundManager>
             case SoundEffectType.SmokeBomb:
             case SoundEffectType.HighImpactSmokeBomb:
             case SoundEffectType.Charm:
+            case SoundEffectType.OverHeal:
+            case SoundEffectType.HealingWeeds:
+            case SoundEffectType.Frenzy:
+            case SoundEffectType.PoisonIvy:
+            case SoundEffectType.BlessingOfSwiftness:
+            case SoundEffectType.InspiredSmokeBomb:
+            case SoundEffectType.ExperiencedHunterLevelUp:
+            case SoundEffectType.MultiShotRicochet:
                 return SoundEffectCategory.Abilities;
             case SoundEffectType.CoreGetHit:
             case SoundEffectType.CoreDestroyed:

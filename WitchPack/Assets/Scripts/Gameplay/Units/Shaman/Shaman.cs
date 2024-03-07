@@ -112,7 +112,6 @@ public class Shaman : BaseUnit
             passive.SubscribePassive(this);
         }
         AutoCaster.Init(this);
-
     }
 
     public void RemoveAbility(BaseAbility ability)
