@@ -5,6 +5,11 @@ public class EndScreenTimeUIHandler : UIElement
 {
     [SerializeField] private TMPro.TextMeshProUGUI _text;
 
+    public void StartTimer()
+    {
+        
+    }
+
     public override void Show()
     {
         base.Show();

@@ -37,12 +37,14 @@ public class SoundManager : MonoSingleton<SoundManager>
 
         if (ReferenceEquals(audioClip, null))
         {
-            if (_testing)
+#if UNITY_EDITOR
+            if(_testing)
             {
                 var title = ColorLogHelper.SetColorToString("SOUND:", Color.cyan);
                 Debug.Log($"{title} Playing {soundEffectType} Sound Effect");
             }
             else Debug.LogWarning("did not find any matching audio clips in sound handler");
+#endif
 
             return;
         }
@@ -147,7 +149,8 @@ public class SoundManager : MonoSingleton<SoundManager>
             case SoundEffectType.LockedAbility:
                 return SoundEffectCategory.UI;
             default:
-                throw new ArgumentOutOfRangeException(nameof(soundEffectType), soundEffectType, null);
+                Debug.LogError($"{soundEffectType} not in a category");
+                return SoundEffectCategory.Enemy;
         }
     }
 }

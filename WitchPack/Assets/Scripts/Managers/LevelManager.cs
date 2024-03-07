@@ -57,11 +57,14 @@ public class LevelManager : MonoSingleton<LevelManager>
         CurrentLevel.TurnOffSpawnPoints();
         BgMusicManager.Instance.PlayMusic(MusicClip.GameMusic);
         UIManager.Instance.ShowUIGroup(UIGroup.GameUI);
+        GAME_TIME.StartGame();
     }
 
     public void EndLevel(bool win)
     {
         IsWon = win;
+        GAME_TIME.Pause();
+        if(win) SoundManager.Instance.PlayAudioClip(SoundEffectType.Victory);
         UIManager.Instance.ShowUIGroup(UIGroup.EndGameUI);
     }
 
