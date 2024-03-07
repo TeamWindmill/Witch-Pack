@@ -28,7 +28,7 @@ public class Shaman : BaseUnit
     private ShamanConfig shamanConfig;
     private List<BaseAbility> rootAbilities = new List<BaseAbility>();
     private List<BaseAbility> knownAbilities = new List<BaseAbility>();
-    private EnergyHandler energyHandler;
+    [SerializeField]private EnergyHandler energyHandler;
     #endregion
 
     private void OnValidate()
@@ -116,7 +116,7 @@ public class Shaman : BaseUnit
 
     public void RemoveAbility(BaseAbility ability)
     {
-        if (ability is not Passive)
+        //if (ability is not Passive) //might cause a problem with some passives
         {
             knownAbilities.Remove(ability);
             castingHandlers.Remove(GetCasterFromAbility(ability));

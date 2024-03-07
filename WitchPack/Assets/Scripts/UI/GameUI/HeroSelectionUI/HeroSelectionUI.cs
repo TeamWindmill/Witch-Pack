@@ -26,7 +26,6 @@ public class HeroSelectionUI : MonoSingleton<HeroSelectionUI> , IPointerEnterHan
 
     public void Show(Shaman shaman)
     {
-        UnitStats stats = shaman.Stats;
         Shaman = shaman;
         statBlockPanel.Init(shaman);
         //psBonusUIHandler.Show(stats);

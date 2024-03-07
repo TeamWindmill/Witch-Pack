@@ -369,6 +369,68 @@ MonoBehaviour:
     - ValueType: 0
       DefaultValue: 1
       SlowMotionValue: 0.2
+  _butterflyEffectHandler:
+    LerpValueConfig:
+      TransitionCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      TransitionTime: 0.5
+    EffectValues:
+    - ValueType: 0
+      DefaultValue: 1
+      SlowMotionValue: 0.2
+  _waterfallEffectHandler:
+    LerpValueConfig:
+      TransitionCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      TransitionTime: 0.5
+    EffectValues:
+    - ValueType: 0
+      DefaultValue: 1
+      SlowMotionValue: 0.2
   _startSlowTimeCurve:
     serializedVersion: 2
     m_Curve:
@@ -2249,6 +2311,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 743365502}
     m_Modifications:
+    - target: {fileID: 891813837732494121, guid: c0b598803de49a7428914318c1b47ffb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1549325706831790175, guid: c0b598803de49a7428914318c1b47ffb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2273,6 +2339,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2401954666176221405, guid: c0b598803de49a7428914318c1b47ffb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3100909936518167567, guid: c0b598803de49a7428914318c1b47ffb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2320,6 +2390,10 @@ PrefabInstance:
     - target: {fileID: 3308526173401551339, guid: c0b598803de49a7428914318c1b47ffb, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3898272616244138678, guid: c0b598803de49a7428914318c1b47ffb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4651220431886471530, guid: c0b598803de49a7428914318c1b47ffb, type: 3}
       propertyPath: m_Pivot.x
@@ -2477,8 +2551,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: HeroSelectionUI
       objectReference: {fileID: 0}
+    - target: {fileID: 8281112541122534586, guid: c0b598803de49a7428914318c1b47ffb, type: 3}
+      propertyPath: abilityUIButtons.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 7483976324143958505, guid: c0b598803de49a7428914318c1b47ffb, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0b598803de49a7428914318c1b47ffb, type: 3}

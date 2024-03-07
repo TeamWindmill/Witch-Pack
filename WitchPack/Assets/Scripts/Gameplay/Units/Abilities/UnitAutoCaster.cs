@@ -64,8 +64,6 @@ public class UnitAutoCaster : MonoBehaviour
             _queuedAbilities.Dequeue();
             _queuedAbilities.Enqueue(caster);
         }
-
-        
     }
 
     private void EnqueueAbility(ICaster caster)

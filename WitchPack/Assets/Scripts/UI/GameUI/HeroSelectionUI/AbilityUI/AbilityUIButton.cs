@@ -30,15 +30,21 @@ public class AbilityUIButton : ClickableUIElement
     public void Init(BaseAbility rootAbility,BaseAbility activeAbility = null, AbilityCaster caster = null, bool hasSkillPoints = false)
     {
         _rootAbility = rootAbility;
-        _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
         if (ReferenceEquals(activeAbility,null))
         {
+            _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
+            _activeAbility = null;
             _abilitySpriteRenderer.sprite = rootAbility.Icon;
             SetCooldownData(1);
         }
         else
         {
             _activeAbility = activeAbility;
+            if(_activeAbility.Upgrades.Length > 0)
+                _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
+            else
+                _frameSpriteRenderer.sprite = defaultFrameSprite;
+            
             _abilitySpriteRenderer.sprite = activeAbility.Icon;
             if (caster is not null)
             {
@@ -53,14 +59,19 @@ public class AbilityUIButton : ClickableUIElement
 
     public void UpdateVisual(bool hasSkillPoints)
     {
-        _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
         if (ReferenceEquals(_activeAbility,null))
         {
+            _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
             _abilitySpriteRenderer.sprite = _rootAbility.Icon;
             SetCooldownData(1);
         }
         else
         {
+            if(_activeAbility.Upgrades.Length > 0)
+                _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
+            else
+                _frameSpriteRenderer.sprite = defaultFrameSprite;
+            
             _abilitySpriteRenderer.sprite = _activeAbility.Icon;
             if (_caster is not null)
             {
