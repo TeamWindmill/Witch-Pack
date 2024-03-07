@@ -17,12 +17,9 @@ public class MultiShot : OffensiveAbility
         {
             Enemy target = caster.EnemyTargetHelper.GetTarget(TargetData, foundTargets);
             
+            if (ReferenceEquals(target, null)) return false;
+            
             foundTargets.Add(target);
-
-            if (ReferenceEquals(target, null))
-            {
-                return false;
-            }   
         }
         for (int i = 0; i < numberOfShots; i++)
         {
@@ -55,12 +52,12 @@ public class MultiShot : OffensiveAbility
         {
             Enemy target = caster.EnemyTargetHelper.GetTarget(TargetData, foundTargets);
 
-            foundTargets.Add(target);
-
             if (ReferenceEquals(target, null))
             {
                 return false;
             }
+            
+            foundTargets.Add(target);
         }
         return true;
     }

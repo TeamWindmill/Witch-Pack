@@ -27,5 +27,6 @@ public class EnemyVisualHandler : UnitVisualHandler
         color.a = 1;
         spriteRenderer.color = color;
         animator.gameObject.transform.localScale = Vector3.one;
+        _enemy.gameObject.SetActive(false);
     }
 }

@@ -1,15 +1,14 @@
 using System;
 using UnityEngine;
 
-
 [Serializable]
-public class WindEffectHandler : EffectTransitionLerp<ParticleAnimationType>
+public class ButterflyEffectHandler : EffectTransitionLerp<ParticleAnimationType>
 {
-    private ParticleSystem[] _windParticles;
+    private ParticleSystem[] _butterfliesParticles;
 
     public void Init(ParticleSystem[] windParticles)
     {
-        _windParticles = windParticles;
+        _butterfliesParticles = windParticles;
     }
 
     protected override void SetValue(ParticleAnimationType type, float value)
@@ -17,7 +16,7 @@ public class WindEffectHandler : EffectTransitionLerp<ParticleAnimationType>
         switch (type)
         {
             case ParticleAnimationType.SimulationSpeed:
-                foreach (var particle in _windParticles)
+                foreach (var particle in _butterfliesParticles)
                 {
                     var main = particle.main;
                     main.simulationSpeed = value;
@@ -26,9 +25,4 @@ public class WindEffectHandler : EffectTransitionLerp<ParticleAnimationType>
                 break;
         }
     }
-}
-
-public enum ParticleAnimationType
-{
-    SimulationSpeed,
 }
