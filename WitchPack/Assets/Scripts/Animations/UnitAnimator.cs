@@ -41,7 +41,6 @@ public abstract class UnitAnimator : MonoBehaviour
     }
     public virtual void DeathAnimationEnded()
     {
-        unit.gameObject.SetActive(false);
         OnDeathAnimationEnd?.Invoke();
     }
 

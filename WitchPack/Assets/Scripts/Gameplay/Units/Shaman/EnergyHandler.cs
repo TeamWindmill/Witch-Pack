@@ -2,6 +2,7 @@ using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
+[Serializable]
 public class EnergyHandler 
 {
     public event Action<int> OnShamanLevelUp;
@@ -62,6 +63,12 @@ public class EnergyHandler
         if(_shamanLevel != 7) _currentEnergy = 0;
         OnShamanLevelUp?.Invoke(_shamanLevel);
         LevelManager.Instance.PopupsManager.SpawnLevelUpTextPopup(_shaman);
+    }
+
+    [Button]
+    public void ManualGainEnergy()
+    {
+        GainEnergy(100);
     }
 
     public void OnEnemyKill(Damageable damageable, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4, bool arg5)
