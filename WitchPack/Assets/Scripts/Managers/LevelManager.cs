@@ -108,7 +108,11 @@ public class LevelManager : MonoSingleton<LevelManager>
         {
             shaman.DamageDealer.OnKill -= OnEnemyKill;
             ShamanParty.Remove(shaman);
-            if (ShamanParty.Count <= 0) EndLevel(false);
+            if (ShamanParty.Count <= 0)
+            {
+                GameManager.Instance.CameraHandler.SetCameraPosition(shaman.transform.position,true);
+                TimerManager.Instance.AddTimer(2, false, EndLevel);
+            }
         }
     }
 }
