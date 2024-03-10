@@ -22,7 +22,7 @@ public class AbilityUpgradeUIButton : ClickableUIElement
 
     public void Init(BaseAbility ability, bool hasSkillPoints)
     {
-        abilitySprite.sprite = ability.Icon;
+        abilitySprite.sprite = ability.DefaultIcon;
         _ability = ability;
         _hasSkillPoints = hasSkillPoints;
         _windowInfo.Name = ability.Name;
