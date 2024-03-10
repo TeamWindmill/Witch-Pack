@@ -58,12 +58,14 @@ public class HeroSelectionUI : MonoSingleton<HeroSelectionUI> , IPointerEnterHan
     public void OnPointerEnter(PointerEventData eventData)
     {
         MouseOverUI = true;
+        GameManager.Instance.CameraHandler.ToggleCameraLock(true);
         OnMouseEnter?.Invoke();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         MouseOverUI = false;
+        GameManager.Instance.CameraHandler.ToggleCameraLock(false);
         OnMouseExit?.Invoke();
     }
 }
