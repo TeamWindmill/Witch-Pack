@@ -30,5 +30,6 @@ public class HealingWeedsMono : RootingVinesMono
         damageDealer.Owner.Effectable.AddEffect(speedBoost, damageable.Owner.Affector);
         damageDealer.Owner.Effectable.AddEffect(regenBoost, damageable.Owner.Affector);
         (damageDealer.Owner as Shaman).ShamanVisualHandler.HealingWeedsEffect.Play();
+        SoundManager.Instance.PlayAudioClip(SoundEffectType.HealingWeeds);
     }
 }

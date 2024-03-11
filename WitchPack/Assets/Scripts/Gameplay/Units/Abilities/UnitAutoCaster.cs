@@ -19,7 +19,7 @@ public class UnitAutoCaster : MonoBehaviour
     private float _castTimer;
     private float _currentCastTime;
 
-    public void Init(BaseUnit givenOwner)
+    public void Init(BaseUnit givenOwner,bool enableOnStart)
     {
         if(_abilitiesOnCooldown.Count > 0) _abilitiesOnCooldown.Clear();
         _queuedAbilities = new Queue<ICaster>();
@@ -29,7 +29,7 @@ public class UnitAutoCaster : MonoBehaviour
             _queuedAbilities.Enqueue(castingHandler);
         }
         _queuedAbilities.Enqueue(givenOwner.AutoAttackHandler);
-        EnableCaster();
+        if(enableOnStart) EnableCaster();
     }
 
     private void Update()

@@ -38,6 +38,7 @@ public class PoisonIvyMono : RootingVinesMono
         damage = new DamageHandler(poison.PoisonDamage);
         damage.SetPopupColor(poison.PoisonPopupColor);
         enemy.Damageable.TakeDamage(owner.DamageDealer, damage, refAbility, false);
+        SoundManager.Instance.PlayAudioClip(SoundEffectType.PoisonIvy);
     }
 
     private void StopPoisonParticle(Timer<Enemy> timer)

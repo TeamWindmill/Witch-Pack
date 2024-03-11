@@ -48,6 +48,7 @@ public class Shaman : BaseUnit
         Indicator newIndicator = LevelManager.Instance.IndicatorManager.CreateIndicator(indicatable);
         newIndicator.gameObject.SetActive(false);
         shamanVisualHandler.Init(this,baseUnitConfig);
+        AutoCaster.Init(this,true);
 
         #region Events
         // no need to unsubscribe because shaman gets destroyed between levels
@@ -72,7 +73,7 @@ public class Shaman : BaseUnit
         AutoCaster.CastTimeStart += ShamanCastSFX;
         #endregion
 
-        Initialized = true;
+        BaseInit(baseUnitConfig);
     }
 
     private void IntializeAbilities()
@@ -102,7 +103,7 @@ public class Shaman : BaseUnit
                 (ability as Passive).SubscribePassive(this);
             }
         }
-        AutoCaster.Init(this);
+        AutoCaster.Init(this,true);
     }
 
     public void LearnAbility(BaseAbility ability)
@@ -117,7 +118,7 @@ public class Shaman : BaseUnit
         {
             passive.SubscribePassive(this);
         }
-        AutoCaster.Init(this);
+        AutoCaster.Init(this,true);
     }
 
     public void RemoveAbility(BaseAbility ability)
