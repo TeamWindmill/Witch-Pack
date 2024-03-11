@@ -20,6 +20,7 @@ public class EndScreenUIHandler : UIElement
     public void ReturnToMap()
     {
         gameObject.SetActive(false);
+        BgMusicManager.Instance.PlayMusic(MusicClip.MenuMusic);
         GameManager.SceneHandler.LoadScene(SceneType.Map);
     }
 }
