@@ -56,11 +56,7 @@ public class Indicator : UIElement
     public void InvokeClick()
     {
         onClick?.Invoke();
-        foreach (Indicator indicator in LevelManager.Instance.PoolManager.InidcatorPool.PooledObjects)
-        {
-            indicator.gameObject.SetActive(false);
-        }
-        
+        gameObject.SetActive(false);        
     }
 
 

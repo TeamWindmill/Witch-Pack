@@ -30,6 +30,10 @@ public class Indicatable : MonoBehaviour
 
     private void OnBecameVisible()
     {
+        if(toggleOnVis)
+        {
+            Debug.Log("Shaman became Visible");
+        }
         if (!toggleOnVis)
         {
             return;
@@ -47,6 +51,12 @@ public class Indicatable : MonoBehaviour
 
     private void OnBecameInvisible()
     {
+
+        if (toggleOnVis)
+        {
+            Debug.Log("Shaman became Invisible");
+        }
+
         if (!Application.isPlaying || !toggleOnVis)
         {
             return;

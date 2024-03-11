@@ -45,6 +45,7 @@ public class Shaman : BaseUnit
         IntializeAbilities();
         shamanAnimator.Init(this);
         indicatable.Init(shamanConfig.UnitIcon);
+        Indicator newIndicator = LevelManager.Instance.IndicatorManager.CreateIndicator(indicatable);
         shamanVisualHandler.Init(this,baseUnitConfig);
 
         #region Events
