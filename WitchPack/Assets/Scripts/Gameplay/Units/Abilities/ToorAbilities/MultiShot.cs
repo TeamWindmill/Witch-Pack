@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class MultiShot : OffensiveAbility
 {
     [SerializeField] private int numberOfShots;
-    [SerializeField] private Vector3 offset;
+    [SerializeField] private Vector2 offset;
     [SerializeField] private int ricochetTimes; //how many times the bullet will bounce between targets
     [SerializeField] private float ricochetRange;
     [SerializeField] private float ricochetSpeed;
@@ -14,7 +14,26 @@ public class MultiShot : OffensiveAbility
         var target = caster.EnemyTargetHelper.GetTarget(TargetData);
         if (target != null)
         {
-            //cast
+            for (int i = 0; i < numberOfShots; i++)
+            {
+                MultiShotMono shotMono = LevelManager.Instance.PoolManager.MultiShotPool.GetPooledObject();
+                shotMono.transform.position = caster.CastPos.position;
+                shotMono.gameObject.SetActive(true);
+                Vector2 dir = target.transform.position - caster.transform.position;
+                if (i == 0)
+                {
+                    shotMono.Init(target, dir.normalized);
+                }
+                else if (i % 2 == 0)
+                {
+                    shotMono.Init(target, dir.normalized + offset);
+                }
+                else
+                {
+                    shotMono.Init(target, dir.normalized - offset);
+                }
+            }
+
             return true;
         }
 
@@ -45,6 +64,9 @@ public class MultiShot : OffensiveAbility
 
     public override bool CheckCastAvailable(BaseUnit caster)
     {
+        var target = caster.EnemyTargetHelper.GetTarget(TargetData);
+        if (target != null) return true;
+
         return false;
     }
 

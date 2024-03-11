@@ -1,84 +1,71 @@
+using System;
 using System.Collections.Generic;
+using Tools.Helpers;
 using UnityEngine;
 
-public class MultiShotMono : ShamanAutoAttackMono
+public class MultiShotMono : InitializedMono<BaseUnit,Vector2>
 {
     [SerializeField] private int numOfPoint;
     private Vector3 offset;
     private const float DistanceToTarget = 1;
     private Vector3 initialPosition;
     private List<Vector3> allPositions;
-    private bool Initiallized;
     private int counter = 0;
-    public void Fire(BaseUnit shooter, OffensiveAbility givenAbility, Vector2 dir, BaseUnit target, Vector3 archSize)
+    
+    private float _speed;
+    private float _curveSpeed;
+    private BaseUnit _target;
+
+    public override void Init(BaseUnit target,Vector2 dir)
     {
-        owner = shooter;
-        ability = givenAbility;
-        this.target = target;
-        offset = archSize;
-        if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
-        {
-            offset = new Vector2(0, offset.y * 2);
-        }
-        else
-        {
-            offset = new Vector2(offset.x * 2, 0);
-        }
+        _target = target;
         Rotate(dir);
-        Init();
-    }
-
-    private void Init()
-    {
-        initialPosition = transform.position;
-        allPositions = new List<Vector3>(numOfPoint);
-        Initiallized = true;
-
-        for (var i = 0; i < numOfPoint; i++)
-        {
-            var newPosition = CubicCurve(initialPosition, initialPosition + offset, initialPosition + offset,
-                target.transform.position, (float)i / numOfPoint);
-            allPositions.Add(newPosition);
-        }
-        Initiallized = true;
+        base.Init(target,dir);
     }
 
     private void Update()
     {
-        if (!Initiallized)
-        {
-            return;
-        }
-        // if (counter < allPositions.Count)
-        // {
-        //     transform.position = Vector3.MoveTowards(transform.position, allPositions[counter], GAME_TIME.GameDeltaTime * speed);
-        //     if (Vector3.Distance(transform.position, allPositions[counter]) < DistanceToTarget)
-        //     {
-        //         //Rotate((allPositions[counter] - transform.position).normalized * -1);
-        //         counter++;
-        //     }
-        // }
-        // else
-        // {
-        //     transform.position = target.transform.position;
-        //     setup = false;
-        //     if (target.Damageable.CurrentHp <= 0)
-        //     {
-        //         OnShotHit?.Invoke(ability, owner, target);
-        //         Disable();
-        //     }
-        // }
+        if(!Initialized) return;
+        
+        transform.Translate(_speed * GAME_TIME.GameDeltaTime * transform.forward);
+        transform.LookAt(_curveSpeed * GAME_TIME.GameDeltaTime * _target.transform.position);
     }
-    private Vector3 CubicCurve(Vector3 start, Vector3 control1, Vector3 control2, Vector3 end, float t)
+    // public void Fire(BaseUnit shooter, OffensiveAbility givenAbility, Vector2 dir, BaseUnit target, Vector3 archSize)
+    // {
+    //     owner = shooter;
+    //     ability = givenAbility;
+    //     this.target = target;
+    //     offset = archSize;
+    //     if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
+    //     {
+    //         offset = new Vector2(0, offset.y * 2);
+    //     }
+    //     else
+    //     {
+    //         offset = new Vector2(offset.x * 2, 0);
+    //     }
+    //     Rotate(dir);
+    //     Init();
+    // }
+    //
+    // private void Init()
+    // {
+    //     initialPosition = transform.position;
+    //     allPositions = new List<Vector3>(numOfPoint);
+    //     Initiallized = true;
+    //
+    //     for (var i = 0; i < numOfPoint; i++)
+    //     {
+    //         var newPosition = CubicCurve(initialPosition, initialPosition + offset, initialPosition + offset,
+    //             target.transform.position, (float)i / numOfPoint);
+    //         allPositions.Add(newPosition);
+    //     }
+    //     Initiallized = true;
+    // }
+    
+    protected void Rotate(Vector2 dir)
     {
-        return (((-start + 3 * (control1 - control2) + end) * t + (3 * (start + control2) - 6 * control1)) * t +
-                3 * (control1 - start)) * t + start;
-    }
-
-    public override void Disable()
-    {
-        base.Disable();
-        Initiallized = false;
-        counter = 0;
+        var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
     }
 }
