@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Tools.Helpers;
 using UnityEngine;
 
-public class MultiShotMono : InitializedMono<BaseUnit,Vector2>
+public class MultiShotMono : InitializedMono<BaseUnit,Vector3>
 {
     [SerializeField] private int numOfPoint;
     private Vector3 offset;
@@ -12,14 +12,14 @@ public class MultiShotMono : InitializedMono<BaseUnit,Vector2>
     private List<Vector3> allPositions;
     private int counter = 0;
     
-    private float _speed;
-    private float _curveSpeed;
+    [SerializeField] private float _speed;
+    [SerializeField] private float _curveSpeed;
     private BaseUnit _target;
 
-    public override void Init(BaseUnit target,Vector2 dir)
+    public override void Init(BaseUnit target,Vector3 dir)
     {
         _target = target;
-        Rotate(dir);
+        transform.Rotate(Quaternion.Euler(dir).eulerAngles);
         base.Init(target,dir);
     }
 
@@ -28,7 +28,7 @@ public class MultiShotMono : InitializedMono<BaseUnit,Vector2>
         if(!Initialized) return;
         
         transform.Translate(_speed * GAME_TIME.GameDeltaTime * transform.forward);
-        transform.LookAt(_curveSpeed * GAME_TIME.GameDeltaTime * _target.transform.position);
+        //transform.RotateAround(_curveSpeed * GAME_TIME.GameDeltaTime * _target.transform.position);
     }
     // public void Fire(BaseUnit shooter, OffensiveAbility givenAbility, Vector2 dir, BaseUnit target, Vector3 archSize)
     // {

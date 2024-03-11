@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class MultiShot : OffensiveAbility
 {
     [SerializeField] private int numberOfShots;
-    [SerializeField] private Vector2 offset;
+    [SerializeField] private Vector3 offset;
     [SerializeField] private int ricochetTimes; //how many times the bullet will bounce between targets
     [SerializeField] private float ricochetRange;
     [SerializeField] private float ricochetSpeed;
@@ -19,18 +19,18 @@ public class MultiShot : OffensiveAbility
                 MultiShotMono shotMono = LevelManager.Instance.PoolManager.MultiShotPool.GetPooledObject();
                 shotMono.transform.position = caster.CastPos.position;
                 shotMono.gameObject.SetActive(true);
-                Vector2 dir = target.transform.position - caster.transform.position;
+                Vector3 dir = target.transform.position - caster.transform.position;
                 if (i == 0)
                 {
-                    shotMono.Init(target, dir.normalized);
+                    shotMono.Init(target, Quaternion.Euler(dir).eulerAngles - new Vector3(0,0,-90));
                 }
                 else if (i % 2 == 0)
                 {
-                    shotMono.Init(target, dir.normalized + offset);
+                    shotMono.Init(target,Quaternion.Euler(dir).eulerAngles + offset- new Vector3(0,0,-90));
                 }
                 else
                 {
-                    shotMono.Init(target, dir.normalized - offset);
+                    shotMono.Init(target,Quaternion.Euler(dir).eulerAngles - offset- new Vector3(0,0,-90));
                 }
             }
 

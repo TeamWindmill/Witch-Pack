@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a9833310f9a9446ab1e1eaace27b68, type: 3}
   m_Name: MultiShot_Ricochet
   m_EditorClassIdentifier: 
-  icon: {fileID: -48363896, guid: ac38ec6e642d8824f820dcb972a41935, type: 3}
   name: Ricochet
   discription: Multishot now ricochets to other nearby targets
+  defaultIcon: {fileID: -48363896, guid: ac38ec6e642d8824f820dcb972a41935, type: 3}
+  disabledIcon: {fileID: 0}
+  upgradeIcon: {fileID: 0}
   _upgrades: []
   hasPopupColor: 0
   popupColor: {r: 0, g: 0, b: 0, a: 0}
@@ -35,11 +37,7 @@ MonoBehaviour:
   baseDamage: 50
   damageBoosts: []
   numberOfShots: 3
-  offset: {x: 1.5, y: 1.5, z: 0}
+  offset: {x: 1.5, y: 1.5}
   ricochetTimes: 1
   ricochetRange: 5.5
   ricochetSpeed: 2.5
-  ricochetTargeting:
-    Priority: 0
-    Modifier: 0
-    StatType: 0
