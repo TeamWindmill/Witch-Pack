@@ -46,6 +46,7 @@ public class Shaman : BaseUnit
         shamanAnimator.Init(this);
         indicatable.Init(shamanConfig.UnitIcon);
         Indicator newIndicator = LevelManager.Instance.IndicatorManager.CreateIndicator(indicatable);
+        newIndicator.gameObject.SetActive(false);
         shamanVisualHandler.Init(this,baseUnitConfig);
 
         #region Events
@@ -62,6 +63,7 @@ public class Shaman : BaseUnit
         energyHandler.OnShamanLevelUp += OnLevelUpGFX;
         Damageable.OnHitGFX += OnHitSFX;
         Damageable.OnDeathGFX += DeathSFX;
+        Damageable.OnDeathGFX += SetOffIndicator;
         AutoAttackHandler.OnAttack += AttackSFX;
         Effectable.OnAffectedVFX += ShamanVisualHandler.EffectHandler.PlayEffect;
         Effectable.OnEffectRemovedVFX += ShamanVisualHandler.EffectHandler.DisableEffect;
@@ -204,7 +206,11 @@ public class Shaman : BaseUnit
     protected override void OnDisable()
     {
         base.OnDisable();
-        
+    }
+
+    private void SetOffIndicator()
+    {
+        indicatable.ToggleIndicatableRendering(false);
     }
 
 }

@@ -19,6 +19,7 @@ public class Indicatable : MonoBehaviour
     public float Lifetime { get => lifetime;}
     public bool Clickable { get => clickable;}
     public Action OnClickAction { get => onClickAction;}
+    public Indicator CurrentIndicator { get => currentIndicator; }
 
     public void Init(Sprite art, Action action = null, float lifetime = 0, bool clickable = false)
     {
@@ -30,10 +31,6 @@ public class Indicatable : MonoBehaviour
 
     private void OnBecameVisible()
     {
-        if(toggleOnVis)
-        {
-            Debug.Log("Shaman became Visible");
-        }
         if (!toggleOnVis)
         {
             return;
@@ -51,12 +48,6 @@ public class Indicatable : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-
-        if (toggleOnVis)
-        {
-            Debug.Log("Shaman became Invisible");
-        }
-
         if (!Application.isPlaying || !toggleOnVis)
         {
             return;
@@ -72,6 +63,20 @@ public class Indicatable : MonoBehaviour
     public void SetCurrentIndicator()
     {
         currentIndicator = LevelManager.Instance?.IndicatorManager.CreateIndicator(this);
+    }
+
+    public void ToggleIndicatableRendering(bool state)
+    {
+        toggleOnVis = state;
+        if (!ReferenceEquals(currentIndicator, null))
+        {
+            currentIndicator.gameObject.SetActive(state);
+        }
+
+        if(state == false)
+        {
+            currentIndicator = null;
+        }
     }
 
 
