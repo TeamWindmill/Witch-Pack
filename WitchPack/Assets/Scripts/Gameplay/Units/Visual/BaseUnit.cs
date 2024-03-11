@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 using Tools.Helpers;
 using UnityEngine;
 
-public class BaseUnit : MonoBehaviour, IInitialize<BaseUnitConfig>
+public class BaseUnit : InitializedMono<BaseUnitConfig>
 {
     #region Serialized
     
@@ -72,7 +72,6 @@ public class BaseUnit : MonoBehaviour, IInitialize<BaseUnitConfig>
         shamanTargetHelper = new UnitTargetHelper<Shaman>(ShamanTargeter, this);
         enemyTargetHelper = new UnitTargetHelper<Enemy>(EnemyTargeter, this);
         unitTimers = new List<ITimer>();
-        AutoCaster.Init(this);
         Movement.SetUp(this);
         groundCollider.Init(this);
         
@@ -89,10 +88,9 @@ public class BaseUnit : MonoBehaviour, IInitialize<BaseUnitConfig>
         damageable.OnDamageCalc += LevelManager.Instance.PopupsManager.SpawnDamagePopup;
         damageable.OnHeal += LevelManager.Instance.PopupsManager.SpawnHealPopup;
         effectable.OnAffected += LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
-
     }
 
-
+    protected void BaseInit(BaseUnitConfig givenConfig) => base.Init(givenConfig);
 
     protected virtual void OnDisable() //unsubscribe to events
     {

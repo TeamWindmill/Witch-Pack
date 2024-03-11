@@ -11,6 +11,7 @@ public class ChaseTarget : IntervalState<EnemyAI>
     {
         parent.Enemy.Movement.ToggleMovement(true);
         parent.CurrentTarget.Stats.AddValueToStat(StatType.ThreatLevel, 1);
+        parent.Enemy.AutoCaster.EnableCaster();
         base.Enter(parent);
     }
 
@@ -84,6 +85,7 @@ public class ChaseTarget : IntervalState<EnemyAI>
             parent.CurrentTarget.Stats.AddValueToStat(StatType.ThreatLevel, -1);
             parent.SetTarget(null);
         }
+        parent.Enemy.AutoCaster.DisableCaster();
         base.Exit(parent);
     }
 }

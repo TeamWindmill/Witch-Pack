@@ -47,6 +47,7 @@ public class Enemy : BaseUnit
         enemyAnimator.Init(this);
         unitVisual.Init(this, givenConfig);
         enemyAI.Init(this);
+        AutoCaster.Init(this,false);
 
         #region Events
         //remember to unsubscribe in OnDisable!!!
@@ -56,12 +57,10 @@ public class Enemy : BaseUnit
         Damageable.OnHitGFX += GetHitSFX;
         Damageable.OnDeathGFX += DeathSFX;
         AutoAttackHandler.OnAttack += AttackSFX;
-        //Movement.OnDestinationSet += AutoCaster.DisableCaster;
-        //Movement.OnDestinationReached += AutoCaster.EnableCaster;
 
         #endregion
         
-        Initialized = true;
+        BaseInit(givenConfig);
     }
     protected override void OnDisable() //enemy death
     {
@@ -72,8 +71,6 @@ public class Enemy : BaseUnit
         Damageable.OnHitGFX -= GetHitSFX;
         Damageable.OnDeathGFX -= DeathSFX;
         if (AutoAttackHandler != null) AutoAttackHandler.OnAttack -= AttackSFX;
-        Movement.OnDestinationSet -= AutoCaster.DisableCaster;
-        Movement.OnDestinationReached -= AutoCaster.EnableCaster;
         Effectable.OnAffectedVFX -= unitVisual.EffectHandler.PlayEffect;
         Effectable.OnEffectRemovedVFX -= unitVisual.EffectHandler.DisableEffect;
         unitVisual.OnSpriteFlip -= enemyAnimator.FlipAnimations;
