@@ -34,7 +34,7 @@ public class AbilityUIButton : ClickableUIElement
         {
             _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
             _activeAbility = null;
-            _abilitySpriteRenderer.sprite = rootAbility.Icon;
+            _abilitySpriteRenderer.sprite = rootAbility.DefaultIcon;
             SetCooldownData(1);
         }
         else
@@ -45,7 +45,7 @@ public class AbilityUIButton : ClickableUIElement
             else
                 _frameSpriteRenderer.sprite = defaultFrameSprite;
             
-            _abilitySpriteRenderer.sprite = activeAbility.Icon;
+            _abilitySpriteRenderer.sprite = activeAbility.DefaultIcon;
             if (caster is not null)
             {
                 _caster = caster;
@@ -62,7 +62,7 @@ public class AbilityUIButton : ClickableUIElement
         if (ReferenceEquals(_activeAbility,null))
         {
             _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
-            _abilitySpriteRenderer.sprite = _rootAbility.Icon;
+            _abilitySpriteRenderer.sprite = _rootAbility.DefaultIcon;
             SetCooldownData(1);
         }
         else
@@ -72,7 +72,7 @@ public class AbilityUIButton : ClickableUIElement
             else
                 _frameSpriteRenderer.sprite = defaultFrameSprite;
             
-            _abilitySpriteRenderer.sprite = _activeAbility.Icon;
+            _abilitySpriteRenderer.sprite = _activeAbility.DefaultIcon;
             if (_caster is not null)
             {
                 SetCooldownData(castHandler: _caster);

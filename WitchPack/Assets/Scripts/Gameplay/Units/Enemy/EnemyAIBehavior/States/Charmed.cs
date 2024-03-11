@@ -17,6 +17,7 @@ public class Charmed : State<EnemyAI>
     public override void Enter(EnemyAI parent)
     {
         parent.Enemy.Movement.ToggleMovement(true);
+        parent.Enemy.AutoCaster.EnableCaster();
         base.Enter(parent);
     }
 
@@ -46,6 +47,7 @@ public class Charmed : State<EnemyAI>
     {
         var enemy = parent.Enemy;
         LevelManager.Instance.CharmedEnemies.Remove(enemy);
+        parent.Enemy.AutoCaster.DisableCaster();
         base.Exit(parent);
     }
 }
