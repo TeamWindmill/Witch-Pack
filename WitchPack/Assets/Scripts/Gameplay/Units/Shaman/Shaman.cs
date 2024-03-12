@@ -51,7 +51,6 @@ public class Shaman : BaseUnit
         #region Events
         // no need to unsubscribe because shaman gets destroyed between levels
         shamanVisualHandler.OnSpriteFlip += shamanAnimator.FlipAnimations;
-        Stats.OnStatChanged += EnemyTargeter.AddRadius;
         Movement.OnDestinationSet += AutoCaster.DisableCaster;
         Movement.OnDestinationReached += AutoCaster.EnableCaster;
         clicker.OnClick += SetSelectedShaman;
