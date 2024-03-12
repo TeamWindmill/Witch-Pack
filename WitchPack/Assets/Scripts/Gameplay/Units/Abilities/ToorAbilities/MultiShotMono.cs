@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Tools.Helpers;
 using UnityEngine;
 
-public class MultiShotMono : InitializedMono<BaseUnit,Vector3>
+public class MultiShotMono : InitializedMono<BaseUnit,OffensiveAbility,Vector3>
 {
     [SerializeField] private int numOfPoint;
     private Vector3 offset;
@@ -11,24 +11,49 @@ public class MultiShotMono : InitializedMono<BaseUnit,Vector3>
     private Vector3 initialPosition;
     private List<Vector3> allPositions;
     private int counter = 0;
-    
+
+    [SerializeField] private Rigidbody2D _rb;
     [SerializeField] private float _speed;
     [SerializeField] private float _curveSpeed;
     private BaseUnit _target;
 
-    public override void Init(BaseUnit target,Vector3 dir)
+    public override void Init(BaseUnit target,OffensiveAbility offensiveAbility,Vector3 dir)
     {
         _target = target;
         transform.Rotate(Quaternion.Euler(dir).eulerAngles);
-        base.Init(target,dir);
+        base.Init(target,offensiveAbility,dir);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if(!Initialized) return;
-        
-        transform.Translate(_speed * GAME_TIME.GameDeltaTime * transform.forward);
-        //transform.RotateAround(_curveSpeed * GAME_TIME.GameDeltaTime * _target.transform.position);
+
+        var dir = (Vector2)_target.transform.position - _rb.position;
+        dir.Normalize();
+        float rotateAmount = Vector3.Cross(dir,transform.forward).z;
+
+        _rb.angularVelocity = -rotateAmount * _curveSpeed;
+
+        _rb.velocity = transform.up * _speed;
+    }
+    
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        // BaseUnit target = collision.GetComponent<BaseUnit>();
+        // if (!ReferenceEquals(target, null) && ReferenceEquals(target, this.target))
+        // {
+        //     target.Damageable.GetHit(owner.DamageDealer, ability);
+        //     OnShotHit?.Invoke(ability, owner, target);
+        //     Disable();
+        // }
+    }
+    public virtual void Disable()
+    {
+        // owner = null;
+        // ability = null;
+        // SetSpeed(initialSpeed);
+        // OnShotHit?.RemoveAllListeners();
+        // gameObject.SetActive(false);
     }
     // public void Fire(BaseUnit shooter, OffensiveAbility givenAbility, Vector2 dir, BaseUnit target, Vector3 archSize)
     // {

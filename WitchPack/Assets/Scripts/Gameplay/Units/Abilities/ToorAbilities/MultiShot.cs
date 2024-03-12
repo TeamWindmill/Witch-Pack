@@ -22,15 +22,15 @@ public class MultiShot : OffensiveAbility
                 Vector3 dir = target.transform.position - caster.transform.position;
                 if (i == 0)
                 {
-                    shotMono.Init(target, Quaternion.Euler(dir).eulerAngles - new Vector3(0,0,-90));
+                    shotMono.Init(target,this, Quaternion.Euler(dir).eulerAngles - new Vector3(0,0,-90));
                 }
                 else if (i % 2 == 0)
                 {
-                    shotMono.Init(target,Quaternion.Euler(dir).eulerAngles + offset- new Vector3(0,0,-90));
+                    shotMono.Init(target,this,Quaternion.Euler(dir).eulerAngles + offset- new Vector3(0,0,-90));
                 }
                 else
                 {
-                    shotMono.Init(target,Quaternion.Euler(dir).eulerAngles - offset- new Vector3(0,0,-90));
+                    shotMono.Init(target,this,Quaternion.Euler(dir).eulerAngles - offset- new Vector3(0,0,-90));
                 }
             }
 
