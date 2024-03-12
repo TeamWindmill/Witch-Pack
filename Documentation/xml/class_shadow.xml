@@ -1,0 +1,266 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_shadow" kind="class" language="C#" prot="public">
+    <compoundname>Shadow</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_shadow_1a19337011326b0da67c0bec3dd86c5213" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_unit_stats" kindref="compound">UnitStats</ref></type>
+        <definition>UnitStats Shadow.Stats</definition>
+        <argsstring></argsstring>
+        <name>Stats</name>
+        <qualifiedname>Shadow.Stats</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" line="7" column="22" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_shadow_1ae81503b11f7c40fa3d4b122e1dd17f18" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_shaman" kindref="compound">Shaman</ref></type>
+        <definition>Shaman Shadow.Shaman</definition>
+        <argsstring></argsstring>
+        <name>Shaman</name>
+        <qualifiedname>Shadow.Shaman</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" line="8" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_shadow_1a91fac12167e77dd4e0b6bf2272b49aaa" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>Dictionary&lt; StatType, int &gt;</type>
+        <definition>Dictionary&lt;StatType, int&gt; Shadow.CurrentStatPSEffects</definition>
+        <argsstring></argsstring>
+        <name>CurrentStatPSEffects</name>
+        <qualifiedname>Shadow.CurrentStatPSEffects</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" line="9" column="23" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_shadow_1aa8ce9f9d1a3e5c12a15151d14e77d362" prot="private" static="no" mutable="no">
+        <type>Transform</type>
+        <definition>Transform Shadow.rangeTransform</definition>
+        <argsstring></argsstring>
+        <name>rangeTransform</name>
+        <qualifiedname>Shadow.rangeTransform</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" line="12" column="24" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_shadow_1a03af5d9e3c6d506bd0f9f6489e133e34" prot="private" static="no" mutable="no">
+        <type>SpriteRenderer</type>
+        <definition>SpriteRenderer Shadow.spriteRenderer</definition>
+        <argsstring></argsstring>
+        <name>spriteRenderer</name>
+        <qualifiedname>Shadow.spriteRenderer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" line="13" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_shadow_1a7bdadcef4a99cd631845ea614f1d488b" prot="private" static="no" mutable="no">
+        <type>LineRenderer</type>
+        <definition>LineRenderer Shadow.lineRenderer</definition>
+        <argsstring></argsstring>
+        <name>lineRenderer</name>
+        <qualifiedname>Shadow.lineRenderer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" line="14" column="27" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_shadow_1a16c1a687cf85bac615da26a0d8adcbcc" prot="private" static="no" mutable="no">
+        <type><ref refid="class_unit_stats" kindref="compound">UnitStats</ref></type>
+        <definition>UnitStats Shadow._stats</definition>
+        <argsstring></argsstring>
+        <name>_stats</name>
+        <qualifiedname>Shadow._stats</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" line="16" column="24" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_shadow_1aca8d58352095c93e31b5922b871e084f" prot="private" static="no" mutable="no">
+        <type><ref refid="class_shaman" kindref="compound">Shaman</ref></type>
+        <definition>Shaman Shadow._shaman</definition>
+        <argsstring></argsstring>
+        <name>_shaman</name>
+        <qualifiedname>Shadow._shaman</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" line="17" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_shadow_1a6e7c47e08da53b1bc3fc6f3c4bfe9192" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Shadow._isActive</definition>
+        <argsstring></argsstring>
+        <name>_isActive</name>
+        <qualifiedname>Shadow._isActive</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" line="18" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_shadow_1a530599196c6088966b7596413724724a" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; StatType, int &gt;</type>
+        <definition>Dictionary&lt;StatType, int&gt; Shadow.currentStatPSEffects</definition>
+        <argsstring></argsstring>
+        <name>currentStatPSEffects</name>
+        <qualifiedname>Shadow.currentStatPSEffects</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" line="20" column="24" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_shadow_1a71cd50030ee164972c33f4a7b08a34cb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Shadow.Show</definition>
+        <argsstring>(Shaman shaman)</argsstring>
+        <name>Show</name>
+        <qualifiedname>Shadow.Show</qualifiedname>
+        <param>
+          <type><ref refid="class_shaman" kindref="compound">Shaman</ref></type>
+          <declname>shaman</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" line="23" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" bodystart="23" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="class_shadow_1a66b8a957fb3e327f188accf1a0c999c1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Shadow.Hide</definition>
+        <argsstring>()</argsstring>
+        <name>Hide</name>
+        <qualifiedname>Shadow.Hide</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" line="34" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" bodystart="34" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="class_shadow_1abcb8ffd9b9933cabe92a308bb9134671" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Shadow.SetPSStatValue</definition>
+        <argsstring>(StatType statType, int value)</argsstring>
+        <name>SetPSStatValue</name>
+        <qualifiedname>Shadow.SetPSStatValue</qualifiedname>
+        <param>
+          <type>StatType</type>
+          <declname>statType</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" line="40" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" bodystart="40" bodyend="50"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_shadow_1abc0e002b15ad4218988c55722673ef4d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Shadow.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>Shadow.Update</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" line="52" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" bodystart="52" bodyend="62"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>Shadow</label>
+        <link refid="class_shadow"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>Shadow</label>
+        <link refid="class_shadow"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" line="5" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shadow/Shadow.cs" bodystart="6" bodyend="65"/>
+    <listofallmembers>
+      <member refid="class_shadow_1a6e7c47e08da53b1bc3fc6f3c4bfe9192" prot="private" virt="non-virtual"><scope>Shadow</scope><name>_isActive</name></member>
+      <member refid="class_shadow_1aca8d58352095c93e31b5922b871e084f" prot="private" virt="non-virtual"><scope>Shadow</scope><name>_shaman</name></member>
+      <member refid="class_shadow_1a16c1a687cf85bac615da26a0d8adcbcc" prot="private" virt="non-virtual"><scope>Shadow</scope><name>_stats</name></member>
+      <member refid="class_shadow_1a91fac12167e77dd4e0b6bf2272b49aaa" prot="public" virt="non-virtual"><scope>Shadow</scope><name>CurrentStatPSEffects</name></member>
+      <member refid="class_shadow_1a530599196c6088966b7596413724724a" prot="private" virt="non-virtual"><scope>Shadow</scope><name>currentStatPSEffects</name></member>
+      <member refid="class_shadow_1a66b8a957fb3e327f188accf1a0c999c1" prot="public" virt="non-virtual"><scope>Shadow</scope><name>Hide</name></member>
+      <member refid="class_shadow_1a7bdadcef4a99cd631845ea614f1d488b" prot="private" virt="non-virtual"><scope>Shadow</scope><name>lineRenderer</name></member>
+      <member refid="class_shadow_1aa8ce9f9d1a3e5c12a15151d14e77d362" prot="private" virt="non-virtual"><scope>Shadow</scope><name>rangeTransform</name></member>
+      <member refid="class_shadow_1abcb8ffd9b9933cabe92a308bb9134671" prot="public" virt="non-virtual"><scope>Shadow</scope><name>SetPSStatValue</name></member>
+      <member refid="class_shadow_1ae81503b11f7c40fa3d4b122e1dd17f18" prot="public" virt="non-virtual"><scope>Shadow</scope><name>Shaman</name></member>
+      <member refid="class_shadow_1a71cd50030ee164972c33f4a7b08a34cb" prot="public" virt="non-virtual"><scope>Shadow</scope><name>Show</name></member>
+      <member refid="class_shadow_1a03af5d9e3c6d506bd0f9f6489e133e34" prot="private" virt="non-virtual"><scope>Shadow</scope><name>spriteRenderer</name></member>
+      <member refid="class_shadow_1a19337011326b0da67c0bec3dd86c5213" prot="public" virt="non-virtual"><scope>Shadow</scope><name>Stats</name></member>
+      <member refid="class_shadow_1abc0e002b15ad4218988c55722673ef4d" prot="private" virt="non-virtual"><scope>Shadow</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

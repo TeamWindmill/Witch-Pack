@@ -1,0 +1,335 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_ability_u_i" kind="class" language="C#" prot="public">
+    <compoundname>AbilityUI</compoundname>
+    <basecompoundref refid="class_clickable_u_i_element" prot="public" virt="non-virtual">ClickableUIElement</basecompoundref>
+    <basecompoundref refid="interface_i_init" prot="public" virt="non-virtual">IInit&lt; UnitCastingHandler &gt;</basecompoundref>
+      <sectiondef kind="event">
+      <memberdef kind="event" id="class_ability_u_i_1ab14132fcd00176dacdf67683009930ef" prot="public" static="no" add="no" remove="no" raise="no">
+        <type>Action&lt; <ref refid="class_ability_u_i" kindref="compound">AbilityUI</ref> &gt;</type>
+        <definition>Action&lt;AbilityUI&gt; AbilityUI.OnAbilityClick</definition>
+        <argsstring></argsstring>
+        <name>OnAbilityClick</name>
+        <qualifiedname>AbilityUI.OnAbilityClick</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUI.cs" line="8" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUI.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_ability_u_i_1ac3d91fe97dc2d7b5f6a01b668ecf3812" prot="private" static="no" mutable="no">
+        <type>Image</type>
+        <definition>Image AbilityUI._abilitySpriteRenderer</definition>
+        <argsstring></argsstring>
+        <name>_abilitySpriteRenderer</name>
+        <qualifiedname>AbilityUI._abilitySpriteRenderer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUI.cs" line="9" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUI.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ability_u_i_1ad4ffb37cd4f6ffc4560da71e0a141643" prot="private" static="no" mutable="no">
+        <type>Image</type>
+        <definition>Image AbilityUI._cooldownSpriteRenderer</definition>
+        <argsstring></argsstring>
+        <name>_cooldownSpriteRenderer</name>
+        <qualifiedname>AbilityUI._cooldownSpriteRenderer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUI.cs" line="10" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUI.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ability_u_i_1a764652661546df06359d39cefdaa120a" prot="private" static="no" mutable="no">
+        <type><ref refid="class_unit_casting_handler" kindref="compound">UnitCastingHandler</ref></type>
+        <definition>UnitCastingHandler AbilityUI._abilityCaster</definition>
+        <argsstring></argsstring>
+        <name>_abilityCaster</name>
+        <qualifiedname>AbilityUI._abilityCaster</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUI.cs" line="12" column="32" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUI.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_ability_u_i_1ae2bf5d60e021c19cea854a46a6afb06d" prot="private" static="no" mutable="no">
+        <type><ref refid="class_base_ability" kindref="compound">BaseAbility</ref></type>
+        <definition>BaseAbility AbilityUI._baseAbility</definition>
+        <argsstring></argsstring>
+        <name>_baseAbility</name>
+        <qualifiedname>AbilityUI._baseAbility</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUI.cs" line="13" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUI.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_ability_u_i_1aca0c8f2343622338a73062d215b982d6" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_base_ability" kindref="compound">BaseAbility</ref></type>
+        <definition>BaseAbility AbilityUI.BaseAbility</definition>
+        <argsstring></argsstring>
+        <name>BaseAbility</name>
+        <qualifiedname>AbilityUI.BaseAbility</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUI.cs" line="15" column="24" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUI.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_ability_u_i_1a3b79d22b49357c921fcde7ec7a6964f5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AbilityUI.Init</definition>
+        <argsstring>(UnitCastingHandler abilityCaster)</argsstring>
+        <name>Init</name>
+        <qualifiedname>AbilityUI.Init</qualifiedname>
+        <param>
+          <type><ref refid="class_unit_casting_handler" kindref="compound">UnitCastingHandler</ref></type>
+          <declname>abilityCaster</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUI.cs" line="26" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUI.cs" bodystart="26" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ability_u_i_1a40723b2f2e59bbb00dfaff909274e48d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void AbilityUI.Show</definition>
+        <argsstring>()</argsstring>
+        <name>Show</name>
+        <qualifiedname>AbilityUI.Show</qualifiedname>
+        <reimplements refid="class_u_i_element_1a71cc42a801a53704f4dd442227f98af8">Show</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUI.cs" line="33" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUI.cs" bodystart="33" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ability_u_i_1a4c422f6347f2ff21e95f97009a42a436" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void AbilityUI.Hide</definition>
+        <argsstring>()</argsstring>
+        <name>Hide</name>
+        <qualifiedname>AbilityUI.Hide</qualifiedname>
+        <reimplements refid="class_u_i_element_1a24b82c821a63e118fea9f8f15f6cf160">Hide</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUI.cs" line="39" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUI.cs" bodystart="39" bodyend="43"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_ability_u_i_1aa8f06682b84f7f6397e6ae3bca355ae4" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AbilityUI.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>AbilityUI.Update</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUI.cs" line="45" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUI.cs" bodystart="45" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="class_ability_u_i_1ab413fb5043cf9924192c09f9f70c7e6c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AbilityUI.UpdateCooldownFillAmount</definition>
+        <argsstring>(UnitCastingHandler abilityCaster)</argsstring>
+        <name>UpdateCooldownFillAmount</name>
+        <qualifiedname>AbilityUI.UpdateCooldownFillAmount</qualifiedname>
+        <param>
+          <type><ref refid="class_unit_casting_handler" kindref="compound">UnitCastingHandler</ref></type>
+          <declname>abilityCaster</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUI.cs" line="56" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUI.cs" bodystart="56" bodyend="65"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_ability_u_i_1a80eb55020e6849ad58af16e92db2f62e" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void AbilityUI.OnClick</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnClick</name>
+        <qualifiedname>AbilityUI.OnClick</qualifiedname>
+        <reimplements refid="class_clickable_u_i_element_1a09584a1be77d48508280178a3dbb5351">OnClick</reimplements>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUI.cs" line="51" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUI.cs" bodystart="51" bodyend="54"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>AbilityUI</label>
+        <link refid="class_ability_u_i"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ClickableUIElement</label>
+        <link refid="class_clickable_u_i_element"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>IInit&lt; UnitCastingHandler &gt;</label>
+        <link refid="interface_i_init"/>
+      </node>
+      <node id="7">
+        <label>IPointerClickHandler</label>
+      </node>
+      <node id="5">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="6">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="4">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="3">
+        <label>UIElement</label>
+        <link refid="class_u_i_element"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>AbilityUI</label>
+        <link refid="class_ability_u_i"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>ClickableUIElement</label>
+        <link refid="class_clickable_u_i_element"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>IInit&lt; UnitCastingHandler &gt;</label>
+        <link refid="interface_i_init"/>
+      </node>
+      <node id="7">
+        <label>IPointerClickHandler</label>
+      </node>
+      <node id="5">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="6">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="4">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="3">
+        <label>UIElement</label>
+        <link refid="class_u_i_element"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUI.cs" line="6" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/HeroSelectionUI/AbilityUI/AbilityUI.cs" bodystart="7" bodyend="66"/>
+    <listofallmembers>
+      <member refid="class_ability_u_i_1a764652661546df06359d39cefdaa120a" prot="private" virt="non-virtual"><scope>AbilityUI</scope><name>_abilityCaster</name></member>
+      <member refid="class_ability_u_i_1ac3d91fe97dc2d7b5f6a01b668ecf3812" prot="private" virt="non-virtual"><scope>AbilityUI</scope><name>_abilitySpriteRenderer</name></member>
+      <member refid="class_ability_u_i_1ae2bf5d60e021c19cea854a46a6afb06d" prot="private" virt="non-virtual"><scope>AbilityUI</scope><name>_baseAbility</name></member>
+      <member refid="class_ability_u_i_1ad4ffb37cd4f6ffc4560da71e0a141643" prot="private" virt="non-virtual"><scope>AbilityUI</scope><name>_cooldownSpriteRenderer</name></member>
+      <member refid="class_u_i_element_1a2598524d3cda2b31cdb4e7d98c6c5929" prot="protected" virt="virtual"><scope>AbilityUI</scope><name>Awake</name></member>
+      <member refid="class_ability_u_i_1aca0c8f2343622338a73062d215b982d6" prot="public" virt="non-virtual"><scope>AbilityUI</scope><name>BaseAbility</name></member>
+      <member refid="class_ability_u_i_1a4c422f6347f2ff21e95f97009a42a436" prot="public" virt="virtual"><scope>AbilityUI</scope><name>Hide</name></member>
+      <member refid="class_ability_u_i_1a3b79d22b49357c921fcde7ec7a6964f5" prot="public" virt="non-virtual"><scope>AbilityUI</scope><name>Init</name></member>
+      <member refid="interface_i_init_1a43fb998b8271f577caca0456638d828d" prot="public" virt="pure-virtual" ambiguityscope="IInit&lt; UnitCastingHandler &gt;."><scope>AbilityUI</scope><name>Init</name></member>
+      <member refid="interface_i_init_1a3a721dd770337620ddaa8f11a8bdaac7" prot="public" virt="pure-virtual" ambiguityscope="IInit&lt; UnitCastingHandler &gt;."><scope>AbilityUI</scope><name>Init</name></member>
+      <member refid="class_u_i_element_1a921de5874669c81d347319daf6836d4e" prot="protected" virt="non-virtual"><scope>AbilityUI</scope><name>isMouseOver</name></member>
+      <member refid="class_ability_u_i_1ab14132fcd00176dacdf67683009930ef" prot="public" virt="non-virtual"><scope>AbilityUI</scope><name>OnAbilityClick</name></member>
+      <member refid="class_ability_u_i_1a80eb55020e6849ad58af16e92db2f62e" prot="protected" virt="virtual"><scope>AbilityUI</scope><name>OnClick</name></member>
+      <member refid="class_clickable_u_i_element_1ad0acfe49f88a9178cb1cdd27eec26129" prot="public" virt="non-virtual"><scope>AbilityUI</scope><name>OnClickEvent</name></member>
+      <member refid="class_clickable_u_i_element_1a67b1c871bb67d64364dfda29ccc979fe" prot="protected" virt="virtual"><scope>AbilityUI</scope><name>OnDisable</name></member>
+      <member refid="class_clickable_u_i_element_1a81dd5d0a87be09dfaf6221a552ca6f6f" prot="protected" virt="virtual"><scope>AbilityUI</scope><name>OnDoubleClick</name></member>
+      <member refid="class_clickable_u_i_element_1ae69de51d56ff92c84bdb79bda89fc765" prot="public" virt="non-virtual"><scope>AbilityUI</scope><name>OnDoubleClickEvent</name></member>
+      <member refid="class_clickable_u_i_element_1a063feae7d6c0f3d86d70272c2c5ae395" prot="public" virt="non-virtual"><scope>AbilityUI</scope><name>OnEnter</name></member>
+      <member refid="class_clickable_u_i_element_1a02ae25a2c18d2a1e54e55c71f9314f71" prot="public" virt="non-virtual"><scope>AbilityUI</scope><name>OnExit</name></member>
+      <member refid="class_clickable_u_i_element_1a4d7c1b5b773d280021e5ad8928b16400" prot="public" virt="non-virtual"><scope>AbilityUI</scope><name>OnPointerClick</name></member>
+      <member refid="class_clickable_u_i_element_1a31b399415af82e73171579d81547b839" prot="public" virt="virtual"><scope>AbilityUI</scope><name>OnPointerEnter</name></member>
+      <member refid="class_clickable_u_i_element_1a10f8b01cbe05882efec128490f892cb9" prot="public" virt="virtual"><scope>AbilityUI</scope><name>OnPointerExit</name></member>
+      <member refid="class_u_i_element_1a6dd0e428ea7447dcf73f9c55058bef12" prot="public" virt="non-virtual"><scope>AbilityUI</scope><name>RectTransform</name></member>
+      <member refid="class_u_i_element_1a3fee91bfa7a1d6c7234132478e09e13a" prot="protected" virt="non-virtual"><scope>AbilityUI</scope><name>rectTransform</name></member>
+      <member refid="class_ability_u_i_1a40723b2f2e59bbb00dfaff909274e48d" prot="public" virt="virtual"><scope>AbilityUI</scope><name>Show</name></member>
+      <member refid="class_u_i_element_1a5cec5ca3592e71bd009fb5913b1a299c" prot="protected" virt="non-virtual"><scope>AbilityUI</scope><name>uiGroup</name></member>
+      <member refid="class_ability_u_i_1aa8f06682b84f7f6397e6ae3bca355ae4" prot="private" virt="non-virtual"><scope>AbilityUI</scope><name>Update</name></member>
+      <member refid="class_ability_u_i_1ab413fb5043cf9924192c09f9f70c7e6c" prot="private" virt="non-virtual"><scope>AbilityUI</scope><name>UpdateCooldownFillAmount</name></member>
+      <member refid="class_u_i_element_1ab917d89f32b29fa271cbbfb60f750a13" prot="public" virt="virtual"><scope>AbilityUI</scope><name>UpdateVisual</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

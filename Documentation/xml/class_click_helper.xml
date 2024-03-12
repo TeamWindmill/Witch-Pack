@@ -1,0 +1,227 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_click_helper" kind="class" language="C#" prot="public">
+    <compoundname>ClickHelper</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IPointerClickHandler</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IPointerEnterHandler</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IPointerExitHandler</basecompoundref>
+      <sectiondef kind="event">
+      <memberdef kind="event" id="class_click_helper_1a47915b5383d2bfa1f4fe15c6fcb633f4" prot="public" static="no" add="no" remove="no" raise="no">
+        <type>Action&lt; PointerEventData.InputButton &gt;</type>
+        <definition>Action&lt;PointerEventData.InputButton&gt; ClickHelper.OnClick</definition>
+        <argsstring></argsstring>
+        <name>OnClick</name>
+        <qualifiedname>ClickHelper.OnClick</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Helpers/ClickHelper.cs" line="7" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Helpers/ClickHelper.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="event" id="class_click_helper_1a06a5127bdf2268807978347e244c76c4" prot="public" static="no" add="no" remove="no" raise="no">
+        <type>Action</type>
+        <definition>Action ClickHelper.OnEnterHover</definition>
+        <argsstring></argsstring>
+        <name>OnEnterHover</name>
+        <qualifiedname>ClickHelper.OnEnterHover</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Helpers/ClickHelper.cs" line="8" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Helpers/ClickHelper.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="event" id="class_click_helper_1a561fecbf7f0884637d8b61183410ba3f" prot="public" static="no" add="no" remove="no" raise="no">
+        <type>Action</type>
+        <definition>Action ClickHelper.OnExitHover</definition>
+        <argsstring></argsstring>
+        <name>OnExitHover</name>
+        <qualifiedname>ClickHelper.OnExitHover</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Helpers/ClickHelper.cs" line="9" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Helpers/ClickHelper.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_click_helper_1a8b96a4da1fe0380efac47977d0fdc171" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="yes" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool ClickHelper.IsHover</definition>
+        <argsstring></argsstring>
+        <name>IsHover</name>
+        <qualifiedname>ClickHelper.IsHover</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Helpers/ClickHelper.cs" line="11" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Helpers/ClickHelper.cs" bodystart="11" bodyend="11"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_click_helper_1ab2fff49307f07098d9218137b2ce3fad" prot="private" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int ClickHelper.CLICKABLE_LAYER_INDEX</definition>
+        <argsstring></argsstring>
+        <name>CLICKABLE_LAYER_INDEX</name>
+        <qualifiedname>ClickHelper.CLICKABLE_LAYER_INDEX</qualifiedname>
+        <initializer>= 11</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Helpers/ClickHelper.cs" line="13" column="23" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Helpers/ClickHelper.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_click_helper_1a7c5ebe9bbfeb9d8d68adb02c945db0b3" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ClickHelper.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>ClickHelper.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Helpers/ClickHelper.cs" line="15" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Helpers/ClickHelper.cs" bodystart="15" bodyend="18"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_click_helper_1a34ce2ee0a17b17ee15cd8a93e1a5bb17" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ClickHelper.OnPointerClick</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnPointerClick</name>
+        <qualifiedname>ClickHelper.OnPointerClick</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Helpers/ClickHelper.cs" line="20" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Helpers/ClickHelper.cs" bodystart="20" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="class_click_helper_1a9e965d4a7b8f22031e9433383f232163" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ClickHelper.OnPointerEnter</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnPointerEnter</name>
+        <qualifiedname>ClickHelper.OnPointerEnter</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Helpers/ClickHelper.cs" line="25" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Helpers/ClickHelper.cs" bodystart="25" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="class_click_helper_1a7908f35cf7f01073a289d6bed0dcf727" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ClickHelper.OnPointerExit</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnPointerExit</name>
+        <qualifiedname>ClickHelper.OnPointerExit</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Helpers/ClickHelper.cs" line="31" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Helpers/ClickHelper.cs" bodystart="31" bodyend="35"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>ClickHelper</label>
+        <link refid="class_click_helper"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>IPointerClickHandler</label>
+      </node>
+      <node id="4">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="5">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>ClickHelper</label>
+        <link refid="class_click_helper"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>IPointerClickHandler</label>
+      </node>
+      <node id="4">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="5">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Helpers/ClickHelper.cs" line="5" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Helpers/ClickHelper.cs" bodystart="6" bodyend="36"/>
+    <listofallmembers>
+      <member refid="class_click_helper_1a7c5ebe9bbfeb9d8d68adb02c945db0b3" prot="private" virt="non-virtual"><scope>ClickHelper</scope><name>Awake</name></member>
+      <member refid="class_click_helper_1ab2fff49307f07098d9218137b2ce3fad" prot="private" virt="non-virtual"><scope>ClickHelper</scope><name>CLICKABLE_LAYER_INDEX</name></member>
+      <member refid="class_click_helper_1a8b96a4da1fe0380efac47977d0fdc171" prot="public" virt="non-virtual"><scope>ClickHelper</scope><name>IsHover</name></member>
+      <member refid="class_click_helper_1a47915b5383d2bfa1f4fe15c6fcb633f4" prot="public" virt="non-virtual"><scope>ClickHelper</scope><name>OnClick</name></member>
+      <member refid="class_click_helper_1a06a5127bdf2268807978347e244c76c4" prot="public" virt="non-virtual"><scope>ClickHelper</scope><name>OnEnterHover</name></member>
+      <member refid="class_click_helper_1a561fecbf7f0884637d8b61183410ba3f" prot="public" virt="non-virtual"><scope>ClickHelper</scope><name>OnExitHover</name></member>
+      <member refid="class_click_helper_1a34ce2ee0a17b17ee15cd8a93e1a5bb17" prot="public" virt="non-virtual"><scope>ClickHelper</scope><name>OnPointerClick</name></member>
+      <member refid="class_click_helper_1a9e965d4a7b8f22031e9433383f232163" prot="public" virt="non-virtual"><scope>ClickHelper</scope><name>OnPointerEnter</name></member>
+      <member refid="class_click_helper_1a7908f35cf7f01073a289d6bed0dcf727" prot="public" virt="non-virtual"><scope>ClickHelper</scope><name>OnPointerExit</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

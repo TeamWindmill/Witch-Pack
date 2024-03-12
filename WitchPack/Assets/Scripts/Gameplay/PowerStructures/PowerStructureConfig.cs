@@ -25,5 +25,12 @@ public class PowerStructureConfig : ScriptableObject
 public struct PowerStructureStatEffect
 {
     public StatType StatType;
-    [Range(1,2)]public float[] RingValues;
+    public Modifier Modifier;
+    public float[] RingValues;
+}
+
+public enum Modifier
+{
+    Addition,
+    Multiplication
 }

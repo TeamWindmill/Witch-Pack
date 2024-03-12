@@ -1,0 +1,124 @@
+using System;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+public class AbilityUIButton : ClickableUIElement
+{
+    public event Action<AbilityUIButton> OnAbilityClick;
+    public BaseAbility RootAbility => _rootAbility;
+    public BaseAbility ActiveAbility => _activeAbility;
+    public AbilityCaster Caster => _caster;
+    
+    [SerializeField] private Image _abilitySpriteRenderer;
+    [SerializeField] private Image _cooldownSpriteRenderer;
+    [SerializeField] private Image _frameSpriteRenderer;
+    [Space] 
+    [SerializeField] private Sprite upgradeReadyFrameSprite;
+    [SerializeField] private Sprite defaultFrameSprite;
+    
+    private AbilityCaster _caster;
+    private BaseAbility _rootAbility;
+    private BaseAbility _activeAbility;
+    private float _abilityCd;
+    private float _abilityLastCast;
+
+
+
+    private bool _activeCd;
+    
+    public void Init(BaseAbility rootAbility,BaseAbility activeAbility = null, AbilityCaster caster = null, bool hasSkillPoints = false)
+    {
+        _rootAbility = rootAbility;
+        _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
+        if (ReferenceEquals(activeAbility,null))
+        {
+            _abilitySpriteRenderer.sprite = rootAbility.Icon;
+            SetCooldownData(1);
+        }
+        else
+        {
+            _activeAbility = activeAbility;
+            _abilitySpriteRenderer.sprite = activeAbility.Icon;
+            if (caster is not null)
+            {
+                _caster = caster;
+                SetCooldownData(castHandler: caster);
+                _caster.OnCast += UpdateOnCast;
+            }
+            else SetCooldownData(0);
+        }
+        Show();
+    }
+
+    public void UpdateVisual(bool hasSkillPoints)
+    {
+        _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
+        if (ReferenceEquals(_activeAbility,null))
+        {
+            _abilitySpriteRenderer.sprite = _rootAbility.Icon;
+            SetCooldownData(1);
+        }
+        else
+        {
+            _abilitySpriteRenderer.sprite = _activeAbility.Icon;
+            if (_caster is not null)
+            {
+                SetCooldownData(castHandler: _caster);
+            }
+            else SetCooldownData(0);
+        }
+        base.UpdateVisual();
+    }
+
+    public override void Hide()
+    {
+        if (_caster is not null) _caster.OnCast -= UpdateOnCast;
+        OnAbilityClick = null;
+        SetCooldownData();
+        base.Hide();
+    }
+
+    private void Update()
+    {
+        UpdateCooldownFillAmount();
+    }
+
+    protected override void OnClick(PointerEventData eventData)
+    {
+        OnAbilityClick?.Invoke(this);
+    }
+
+    //set null for disabling the cooldown
+    private void SetCooldownData(float fillAmount = 0, AbilityCaster castHandler = null)
+    {
+        if (ReferenceEquals(castHandler, null))
+        {
+            _cooldownSpriteRenderer.fillAmount = fillAmount;
+            _activeCd = false;
+        }
+        else
+        {
+            _abilityCd = castHandler.Ability.Cd;
+            _abilityLastCast = castHandler.LastCast;
+            _activeCd = true;
+        }
+    }
+
+    private void UpdateCooldownFillAmount()
+    {
+        if (!_activeCd) return;
+        
+        float ratio = 0;
+        if (_abilityLastCast > 0)
+        {
+            ratio = (GAME_TIME.GameTime - _abilityLastCast) / _abilityCd;
+            if (ratio >= 1) ratio = 0;
+        }
+        _cooldownSpriteRenderer.fillAmount = ratio;
+    }
+    private void UpdateOnCast(AbilityCaster caster)
+    {
+        _abilityLastCast = caster.LastCast;
+    }
+}

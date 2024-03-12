@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_effect_transition_lerp" kind="class" language="C#" prot="public" abstract="yes">
+    <compoundname>EffectTransitionLerp</compoundname>
+    <templateparamlist>
+      <param>
+        <type>T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_effect_transition_lerp_1a2804ba2306008faf97911bd4883f002f" prot="private" static="no" mutable="no">
+        <type><ref refid="class_lerp_value_config" kindref="compound">LerpValueConfig</ref></type>
+        <definition>LerpValueConfig EffectTransitionLerp&lt; T &gt;.LerpValueConfig</definition>
+        <argsstring></argsstring>
+        <name>LerpValueConfig</name>
+        <qualifiedname>EffectTransitionLerp.LerpValueConfig</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/EffectTransitionLerp.cs" line="9" column="30" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/EffectTransitionLerp.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_effect_transition_lerp_1ae688cac26e2833896ac0f334cb94b55a" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="struct_effect_transition_lerp_value" kindref="compound">EffectTransitionLerpValue</ref>&lt; T &gt; &gt;</type>
+        <definition>List&lt;EffectTransitionLerpValue&lt;T&gt; &gt; EffectTransitionLerp&lt; T &gt;.EffectValues</definition>
+        <argsstring></argsstring>
+        <name>EffectValues</name>
+        <qualifiedname>EffectTransitionLerp.EffectValues</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/EffectTransitionLerp.cs" line="10" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/EffectTransitionLerp.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_effect_transition_lerp_1a0f0dafcbb97abd5030429b7cbc786a2a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void EffectTransitionLerp&lt; T &gt;.StartTransitionEffect</definition>
+        <argsstring>()</argsstring>
+        <name>StartTransitionEffect</name>
+        <qualifiedname>EffectTransitionLerp.StartTransitionEffect</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/EffectTransitionLerp.cs" line="12" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/EffectTransitionLerp.cs" bodystart="12" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="class_effect_transition_lerp_1a6c41b963a8a8025195ea190f264703fb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void EffectTransitionLerp&lt; T &gt;.EndTransitionEffect</definition>
+        <argsstring>()</argsstring>
+        <name>EndTransitionEffect</name>
+        <qualifiedname>EffectTransitionLerp.EndTransitionEffect</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/EffectTransitionLerp.cs" line="20" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/EffectTransitionLerp.cs" bodystart="20" bodyend="26"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_effect_transition_lerp_1af730800ab8d6caf7d2fd149e246d6c4d" prot="protected" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract void</type>
+        <definition>abstract void EffectTransitionLerp&lt; T &gt;.SetValue</definition>
+        <argsstring>(T type, float value)</argsstring>
+        <name>SetValue</name>
+        <qualifiedname>EffectTransitionLerp.SetValue</qualifiedname>
+        <param>
+          <type>T</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/EffectTransitionLerp.cs" line="28" column="29"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/EffectTransitionLerp.cs" line="7" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/SlowMotion/EffectTransitionLerp.cs" bodystart="8" bodyend="29"/>
+    <listofallmembers>
+      <member refid="class_effect_transition_lerp_1ae688cac26e2833896ac0f334cb94b55a" prot="private" virt="non-virtual"><scope>EffectTransitionLerp</scope><name>EffectValues</name></member>
+      <member refid="class_effect_transition_lerp_1a6c41b963a8a8025195ea190f264703fb" prot="public" virt="virtual"><scope>EffectTransitionLerp</scope><name>EndTransitionEffect</name></member>
+      <member refid="class_effect_transition_lerp_1a2804ba2306008faf97911bd4883f002f" prot="private" virt="non-virtual"><scope>EffectTransitionLerp</scope><name>LerpValueConfig</name></member>
+      <member refid="class_effect_transition_lerp_1af730800ab8d6caf7d2fd149e246d6c4d" prot="protected" virt="pure-virtual"><scope>EffectTransitionLerp</scope><name>SetValue</name></member>
+      <member refid="class_effect_transition_lerp_1a0f0dafcbb97abd5030429b7cbc786a2a" prot="public" virt="virtual"><scope>EffectTransitionLerp</scope><name>StartTransitionEffect</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

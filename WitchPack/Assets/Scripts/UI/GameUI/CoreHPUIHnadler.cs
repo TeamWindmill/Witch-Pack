@@ -5,24 +5,21 @@ using UnityEngine;
 
 public class CoreHPUIHnadler : CounterUIElement
 {
+    private CoreTemple _coreTemple;
     public override void Init()
     {
-        base.Init(); 
-        //ElementInit(); //get core hp
+        _coreTemple = LevelManager.Instance.CurrentLevel.CoreTemple;
+        ElementInit(_coreTemple.MaxHp,_coreTemple.CurHp);
+        _coreTemple.OnGetHit += UpdateCoreHealth;
     }
 
-    public override void ElementInit(int maxValue, int currentValue = -1)
+    private void UpdateCoreHealth(int obj)
     {
-        base.ElementInit(maxValue, currentValue);
-    }
-
-    public override void UpdateVisual()
-    {
-        //UpdateUiData when health changes
+        UpdateUIData(_coreTemple.CurHp);
     }
 
     public override void Hide()
     {
-        //unsubscribe to health change
+        _coreTemple.OnGetHit -= UpdateCoreHealth;
     }
 }

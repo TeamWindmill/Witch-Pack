@@ -1,0 +1,332 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_time_buttons_u_i" kind="class" language="C#" prot="public">
+    <compoundname>TimeButtonsUI</compoundname>
+    <basecompoundref refid="class_clickable_u_i_element" prot="public" virt="non-virtual">ClickableUIElement</basecompoundref>
+      <sectiondef kind="event">
+      <memberdef kind="event" id="class_time_buttons_u_i_1a88e0dfcb61109d548b0be47d3133d57d" prot="public" static="no" add="no" remove="no" raise="no">
+        <type>Action&lt; <ref refid="class_time_buttons_u_i" kindref="compound">TimeButtonsUI</ref> &gt;</type>
+        <definition>Action&lt;TimeButtonsUI&gt; TimeButtonsUI.OnTurnOn</definition>
+        <argsstring></argsstring>
+        <name>OnTurnOn</name>
+        <qualifiedname>TimeButtonsUI.OnTurnOn</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" line="9" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_time_buttons_u_i_1a47fcdfc1c3a7a9066c9f6b74132a5c22" prot="private" static="no" mutable="no">
+        <type>Image</type>
+        <definition>Image TimeButtonsUI.image</definition>
+        <argsstring></argsstring>
+        <name>image</name>
+        <qualifiedname>TimeButtonsUI.image</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" line="11" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_time_buttons_u_i_1a58a1fb932683a4c3744bc0d62a985ac4" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color TimeButtonsUI.onColor</definition>
+        <argsstring></argsstring>
+        <name>onColor</name>
+        <qualifiedname>TimeButtonsUI.onColor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" line="12" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_time_buttons_u_i_1a8866ca733582ee7e325d051f494525f6" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color TimeButtonsUI.offColor</definition>
+        <argsstring></argsstring>
+        <name>offColor</name>
+        <qualifiedname>TimeButtonsUI.offColor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" line="13" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_time_buttons_u_i_1a90f21b0b8b53a00e844ba988fdce6185" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float TimeButtonsUI.time</definition>
+        <argsstring></argsstring>
+        <name>time</name>
+        <qualifiedname>TimeButtonsUI.time</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" line="14" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_time_buttons_u_i_1adc293202ccfc5e2c6b2856bba8b6f305" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool TimeButtonsUI.startState</definition>
+        <argsstring></argsstring>
+        <name>startState</name>
+        <qualifiedname>TimeButtonsUI.startState</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" line="15" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_time_buttons_u_i_1a8f2f061824d5c88162e42efbe6cacc1a" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool TimeButtonsUI._isActive</definition>
+        <argsstring></argsstring>
+        <name>_isActive</name>
+        <qualifiedname>TimeButtonsUI._isActive</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" line="17" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_time_buttons_u_i_1abc8b7566ab195f9414a7e3aa71f62665" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool TimeButtonsUI.IsActive</definition>
+        <argsstring></argsstring>
+        <name>IsActive</name>
+        <qualifiedname>TimeButtonsUI.IsActive</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" line="19" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_time_buttons_u_i_1adb7373655647a3a02b0cf4ba5c4ff096" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TimeButtonsUI.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>TimeButtonsUI.Start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" line="21" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" bodystart="21" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_time_buttons_u_i_1a2181a1da1b207f8d12bab054e1ffb60a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TimeButtonsUI.On</definition>
+        <argsstring>()</argsstring>
+        <name>On</name>
+        <qualifiedname>TimeButtonsUI.On</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" line="40" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" bodystart="40" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="class_time_buttons_u_i_1acaafffd920de69b5ded65b30dc58d1e0" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TimeButtonsUI.Off</definition>
+        <argsstring>()</argsstring>
+        <name>Off</name>
+        <qualifiedname>TimeButtonsUI.Off</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" line="48" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" bodystart="48" bodyend="52"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_time_buttons_u_i_1a268fc9446d8cc55c7880ee5f9c2c916c" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void TimeButtonsUI.OnClick</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnClick</name>
+        <qualifiedname>TimeButtonsUI.OnClick</qualifiedname>
+        <reimplements refid="class_clickable_u_i_element_1a09584a1be77d48508280178a3dbb5351">OnClick</reimplements>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" line="27" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" bodystart="27" bodyend="32"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_time_buttons_u_i_1affde7d0a7a95a3cd20662732d1724fd4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TimeButtonsUI.SetState</definition>
+        <argsstring>(bool state)</argsstring>
+        <name>SetState</name>
+        <qualifiedname>TimeButtonsUI.SetState</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" line="34" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" bodystart="34" bodyend="38"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>ClickableUIElement</label>
+        <link refid="class_clickable_u_i_element"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>IPointerClickHandler</label>
+      </node>
+      <node id="5">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="6">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="4">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>TimeButtonsUI</label>
+        <link refid="class_time_buttons_u_i"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>UIElement</label>
+        <link refid="class_u_i_element"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>ClickableUIElement</label>
+        <link refid="class_clickable_u_i_element"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+        <childnode refid="7" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>IPointerClickHandler</label>
+      </node>
+      <node id="5">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="6">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="4">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>TimeButtonsUI</label>
+        <link refid="class_time_buttons_u_i"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>UIElement</label>
+        <link refid="class_u_i_element"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+        <childnode refid="5" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" line="7" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/GameUI/TimeUI/TimeButtonsUI.cs" bodystart="8" bodyend="53"/>
+    <listofallmembers>
+      <member refid="class_time_buttons_u_i_1a8f2f061824d5c88162e42efbe6cacc1a" prot="private" virt="non-virtual"><scope>TimeButtonsUI</scope><name>_isActive</name></member>
+      <member refid="class_u_i_element_1a2598524d3cda2b31cdb4e7d98c6c5929" prot="protected" virt="virtual"><scope>TimeButtonsUI</scope><name>Awake</name></member>
+      <member refid="class_u_i_element_1a24b82c821a63e118fea9f8f15f6cf160" prot="public" virt="virtual"><scope>TimeButtonsUI</scope><name>Hide</name></member>
+      <member refid="class_time_buttons_u_i_1a47fcdfc1c3a7a9066c9f6b74132a5c22" prot="private" virt="non-virtual"><scope>TimeButtonsUI</scope><name>image</name></member>
+      <member refid="class_time_buttons_u_i_1abc8b7566ab195f9414a7e3aa71f62665" prot="public" virt="non-virtual"><scope>TimeButtonsUI</scope><name>IsActive</name></member>
+      <member refid="class_u_i_element_1a921de5874669c81d347319daf6836d4e" prot="protected" virt="non-virtual"><scope>TimeButtonsUI</scope><name>isMouseOver</name></member>
+      <member refid="class_time_buttons_u_i_1acaafffd920de69b5ded65b30dc58d1e0" prot="private" virt="non-virtual"><scope>TimeButtonsUI</scope><name>Off</name></member>
+      <member refid="class_time_buttons_u_i_1a8866ca733582ee7e325d051f494525f6" prot="private" virt="non-virtual"><scope>TimeButtonsUI</scope><name>offColor</name></member>
+      <member refid="class_time_buttons_u_i_1a2181a1da1b207f8d12bab054e1ffb60a" prot="private" virt="non-virtual"><scope>TimeButtonsUI</scope><name>On</name></member>
+      <member refid="class_time_buttons_u_i_1a268fc9446d8cc55c7880ee5f9c2c916c" prot="protected" virt="virtual"><scope>TimeButtonsUI</scope><name>OnClick</name></member>
+      <member refid="class_clickable_u_i_element_1ad0acfe49f88a9178cb1cdd27eec26129" prot="public" virt="non-virtual"><scope>TimeButtonsUI</scope><name>OnClickEvent</name></member>
+      <member refid="class_time_buttons_u_i_1a58a1fb932683a4c3744bc0d62a985ac4" prot="private" virt="non-virtual"><scope>TimeButtonsUI</scope><name>onColor</name></member>
+      <member refid="class_clickable_u_i_element_1a67b1c871bb67d64364dfda29ccc979fe" prot="protected" virt="virtual"><scope>TimeButtonsUI</scope><name>OnDisable</name></member>
+      <member refid="class_clickable_u_i_element_1a81dd5d0a87be09dfaf6221a552ca6f6f" prot="protected" virt="virtual"><scope>TimeButtonsUI</scope><name>OnDoubleClick</name></member>
+      <member refid="class_clickable_u_i_element_1ae69de51d56ff92c84bdb79bda89fc765" prot="public" virt="non-virtual"><scope>TimeButtonsUI</scope><name>OnDoubleClickEvent</name></member>
+      <member refid="class_clickable_u_i_element_1a063feae7d6c0f3d86d70272c2c5ae395" prot="public" virt="non-virtual"><scope>TimeButtonsUI</scope><name>OnEnter</name></member>
+      <member refid="class_clickable_u_i_element_1a02ae25a2c18d2a1e54e55c71f9314f71" prot="public" virt="non-virtual"><scope>TimeButtonsUI</scope><name>OnExit</name></member>
+      <member refid="class_clickable_u_i_element_1a4d7c1b5b773d280021e5ad8928b16400" prot="public" virt="non-virtual"><scope>TimeButtonsUI</scope><name>OnPointerClick</name></member>
+      <member refid="class_clickable_u_i_element_1a31b399415af82e73171579d81547b839" prot="public" virt="virtual"><scope>TimeButtonsUI</scope><name>OnPointerEnter</name></member>
+      <member refid="class_clickable_u_i_element_1a10f8b01cbe05882efec128490f892cb9" prot="public" virt="virtual"><scope>TimeButtonsUI</scope><name>OnPointerExit</name></member>
+      <member refid="class_time_buttons_u_i_1a88e0dfcb61109d548b0be47d3133d57d" prot="public" virt="non-virtual"><scope>TimeButtonsUI</scope><name>OnTurnOn</name></member>
+      <member refid="class_u_i_element_1a6dd0e428ea7447dcf73f9c55058bef12" prot="public" virt="non-virtual"><scope>TimeButtonsUI</scope><name>RectTransform</name></member>
+      <member refid="class_u_i_element_1a3fee91bfa7a1d6c7234132478e09e13a" prot="protected" virt="non-virtual"><scope>TimeButtonsUI</scope><name>rectTransform</name></member>
+      <member refid="class_time_buttons_u_i_1affde7d0a7a95a3cd20662732d1724fd4" prot="public" virt="non-virtual"><scope>TimeButtonsUI</scope><name>SetState</name></member>
+      <member refid="class_u_i_element_1a71cc42a801a53704f4dd442227f98af8" prot="public" virt="virtual"><scope>TimeButtonsUI</scope><name>Show</name></member>
+      <member refid="class_time_buttons_u_i_1adb7373655647a3a02b0cf4ba5c4ff096" prot="private" virt="non-virtual"><scope>TimeButtonsUI</scope><name>Start</name></member>
+      <member refid="class_time_buttons_u_i_1adc293202ccfc5e2c6b2856bba8b6f305" prot="private" virt="non-virtual"><scope>TimeButtonsUI</scope><name>startState</name></member>
+      <member refid="class_time_buttons_u_i_1a90f21b0b8b53a00e844ba988fdce6185" prot="private" virt="non-virtual"><scope>TimeButtonsUI</scope><name>time</name></member>
+      <member refid="class_u_i_element_1a5cec5ca3592e71bd009fb5913b1a299c" prot="protected" virt="non-virtual"><scope>TimeButtonsUI</scope><name>uiGroup</name></member>
+      <member refid="class_u_i_element_1ab917d89f32b29fa271cbbfb60f750a13" prot="public" virt="virtual"><scope>TimeButtonsUI</scope><name>UpdateVisual</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

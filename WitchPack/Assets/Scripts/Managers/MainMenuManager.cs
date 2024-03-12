@@ -1,17 +1,22 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-namespace Tzipory.GameplayLogic.Managers.MainMenuMangers
+public class MainMenuManager : MonoBehaviour
 {
-    public class MainMenuManager : MonoBehaviour
+    private void Start()
     {
-        public void Play()
-        {
-            GameManager.SceneHandler.LoadScene(SceneType.Map);
-        }
+        BgMusicManager.Instance.PlayMusic(MusicClip.MenuMusic);
+    }
 
-        public void Quit()
-        {
-            GameManager.Instance.Quit();
-        }
+    public void Play()
+    {
+        SoundManager.Instance.PlayAudioClip(SoundEffectType.MenuClick);
+        GameManager.SceneHandler.LoadScene(SceneType.Map);
+    }
+
+    public void Quit()
+    {
+        SoundManager.Instance.PlayAudioClip(SoundEffectType.MenuClick);
+        GameManager.Instance.Quit();
     }
 }

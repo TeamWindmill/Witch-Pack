@@ -2,13 +2,13 @@
 using UnityEngine;
 
 
-public class EndScreenWaveInteractiveUIHandler : MonoBehaviour
+public class EndScreenWaveInteractiveUIHandler : UIElement
 {
     [SerializeField] private TMP_Text _text;
 
-
-    public void UpdateUIVisual()
+    public override void Show()
     {
-        //_text.text = $"{LevelManager.WaveManager.WaveNumber}/{LevelManager.WaveManager.TotalNumberOfWaves}";
+        base.Show();
+        _text.text = $"{LevelManager.Instance.CurrentLevel.WaveHandler.CurrentWave}/{LevelManager.Instance.CurrentLevel.WaveHandler.TotalWaves}";
     }
 }

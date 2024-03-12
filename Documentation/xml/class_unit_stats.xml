@@ -1,0 +1,581 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_unit_stats" kind="class" language="C#" prot="public">
+    <compoundname>UnitStats</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_unit_stats_1a62029e984ae42c7269648ae75f0e3c32" prot="public" static="no" mutable="no">
+        <type>Action&lt; StatType, float &gt;</type>
+        <definition>Action&lt;StatType, float&gt; UnitStats.OnStatChanged</definition>
+        <argsstring></argsstring>
+        <name>OnStatChanged</name>
+        <qualifiedname>UnitStats.OnStatChanged</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="10" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_unit_stats_1a1b404096919c335298483d658447e8ac" prot="private" static="no" mutable="no">
+        <type><ref refid="class_stat_sheet" kindref="compound">StatSheet</ref></type>
+        <definition>StatSheet UnitStats._baseStats</definition>
+        <argsstring></argsstring>
+        <name>_baseStats</name>
+        <qualifiedname>UnitStats._baseStats</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="12" column="23" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_unit_stats_1a13c41587b273a4486909831dac2456e8" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int UnitStats.maxHp</definition>
+        <argsstring></argsstring>
+        <name>maxHp</name>
+        <qualifiedname>UnitStats.maxHp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="26" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_unit_stats_1adf47bb8c42f5af829786e0018b5dcfac" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int UnitStats.baseDamage</definition>
+        <argsstring></argsstring>
+        <name>baseDamage</name>
+        <qualifiedname>UnitStats.baseDamage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="27" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_unit_stats_1aab2638084d35d3645c26a6fa8978c528" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float UnitStats.attackSpeed</definition>
+        <argsstring></argsstring>
+        <name>attackSpeed</name>
+        <qualifiedname>UnitStats.attackSpeed</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="28" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_unit_stats_1a897e79c7979844f81657b4dd2fb921b5" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int UnitStats.baseRange</definition>
+        <argsstring></argsstring>
+        <name>baseRange</name>
+        <qualifiedname>UnitStats.baseRange</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="29" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_unit_stats_1ad0b6ceda1ca8048a5d6df2cf9954a52d" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float UnitStats.movementSpeed</definition>
+        <argsstring></argsstring>
+        <name>movementSpeed</name>
+        <qualifiedname>UnitStats.movementSpeed</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="30" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_unit_stats_1a589b624ab87b2977f5d90d338d33199a" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int UnitStats.critDamage</definition>
+        <argsstring></argsstring>
+        <name>critDamage</name>
+        <qualifiedname>UnitStats.critDamage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="31" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_unit_stats_1aea2aa6669f157f39cd98a11d5eedb4e7" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int UnitStats.critChance</definition>
+        <argsstring></argsstring>
+        <name>critChance</name>
+        <qualifiedname>UnitStats.critChance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="32" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_unit_stats_1a142c5ed29cf7d79fe60d59d5ccaeda98" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float UnitStats.invincibleTime</definition>
+        <argsstring></argsstring>
+        <name>invincibleTime</name>
+        <qualifiedname>UnitStats.invincibleTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="33" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_unit_stats_1a32513fd3f16c14369d9557e922fa4fc1" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int UnitStats.abilityCooldownReduction</definition>
+        <argsstring></argsstring>
+        <name>abilityCooldownReduction</name>
+        <qualifiedname>UnitStats.abilityCooldownReduction</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="34" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_unit_stats_1a2f247a8fd5334fe368d21d38b07babe2" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int UnitStats.armor</definition>
+        <argsstring></argsstring>
+        <name>armor</name>
+        <qualifiedname>UnitStats.armor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="35" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_unit_stats_1af18165324a2499b263ed088e3854542e" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int UnitStats.hpRegen</definition>
+        <argsstring></argsstring>
+        <name>hpRegen</name>
+        <qualifiedname>UnitStats.hpRegen</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="36" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_unit_stats_1a492d5680ec5636c211e419fadda4adac" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int UnitStats.bonusStatusEffectDuration</definition>
+        <argsstring></argsstring>
+        <name>bonusStatusEffectDuration</name>
+        <qualifiedname>UnitStats.bonusStatusEffectDuration</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="37" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_unit_stats_1a0c721a2f2cc7805951a8d6c68b45af7c" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int UnitStats.abilityProjectileSpeed</definition>
+        <argsstring></argsstring>
+        <name>abilityProjectileSpeed</name>
+        <qualifiedname>UnitStats.abilityProjectileSpeed</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="38" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_unit_stats_1a6749ddae8682509d30972cc8b83b41a0" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int UnitStats.abilityProjectilePenetration</definition>
+        <argsstring></argsstring>
+        <name>abilityProjectilePenetration</name>
+        <qualifiedname>UnitStats.abilityProjectilePenetration</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="39" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_unit_stats_1aab71b3ffab5256933b5b4f29214750ea" prot="private" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_stat_sheet" kindref="compound">StatSheet</ref></type>
+        <definition>StatSheet UnitStats.ownerBaseStats</definition>
+        <argsstring></argsstring>
+        <name>ownerBaseStats</name>
+        <qualifiedname>UnitStats.ownerBaseStats</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="14" column="23" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_unit_stats_1a3b687de0f0d727282809194ae2aa4cb9" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int UnitStats.MaxHp</definition>
+        <argsstring></argsstring>
+        <name>MaxHp</name>
+        <qualifiedname>UnitStats.MaxHp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="41" column="16" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="41" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="property" id="class_unit_stats_1a32864601022cd169287966823deba01d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int UnitStats.BaseDamage</definition>
+        <argsstring></argsstring>
+        <name>BaseDamage</name>
+        <qualifiedname>UnitStats.BaseDamage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="42" column="16" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="42" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="property" id="class_unit_stats_1a34c4eebc14d3511ecbbc9ecc99fc667d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>float</type>
+        <definition>float UnitStats.AttackSpeed</definition>
+        <argsstring></argsstring>
+        <name>AttackSpeed</name>
+        <qualifiedname>UnitStats.AttackSpeed</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="43" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="43" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="property" id="class_unit_stats_1a8bf7d2d19d6f9897d769e90a7a74d60e" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int UnitStats.BonusRange</definition>
+        <argsstring></argsstring>
+        <name>BonusRange</name>
+        <qualifiedname>UnitStats.BonusRange</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="44" column="16" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="44" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="property" id="class_unit_stats_1a9218ddd2085e70478c8ede4667276c51" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>float</type>
+        <definition>float UnitStats.MovementSpeed</definition>
+        <argsstring></argsstring>
+        <name>MovementSpeed</name>
+        <qualifiedname>UnitStats.MovementSpeed</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="45" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="45" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="property" id="class_unit_stats_1a59ccf41a606f2b94d121d826435fc41d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int UnitStats.CritDamage</definition>
+        <argsstring></argsstring>
+        <name>CritDamage</name>
+        <qualifiedname>UnitStats.CritDamage</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="46" column="16" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="46" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="property" id="class_unit_stats_1a568d721e59c7700c1c1661244e77898d" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int UnitStats.CritChance</definition>
+        <argsstring></argsstring>
+        <name>CritChance</name>
+        <qualifiedname>UnitStats.CritChance</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="47" column="16" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="47" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="property" id="class_unit_stats_1a1c0a53ce5184a27fc9c9933d16ab5b4b" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>float</type>
+        <definition>float UnitStats.InvincibleTime</definition>
+        <argsstring></argsstring>
+        <name>InvincibleTime</name>
+        <qualifiedname>UnitStats.InvincibleTime</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="48" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="48" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="property" id="class_unit_stats_1ad19281dfa3767ccbe59946dbcab1b806" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int UnitStats.AbilityCooldownReduction</definition>
+        <argsstring></argsstring>
+        <name>AbilityCooldownReduction</name>
+        <qualifiedname>UnitStats.AbilityCooldownReduction</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="49" column="16" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="49" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="property" id="class_unit_stats_1a3d4b19161c21886a1d99822e17f39c72" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int UnitStats.Armor</definition>
+        <argsstring></argsstring>
+        <name>Armor</name>
+        <qualifiedname>UnitStats.Armor</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="50" column="16" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="50" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="property" id="class_unit_stats_1ae52d68f845357b3a410d10464128f893" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int UnitStats.HpRegen</definition>
+        <argsstring></argsstring>
+        <name>HpRegen</name>
+        <qualifiedname>UnitStats.HpRegen</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="51" column="16" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="51" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="property" id="class_unit_stats_1a149209a37926218f7c2d332e415b7168" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int UnitStats.BonusStatusEffectDuration</definition>
+        <argsstring></argsstring>
+        <name>BonusStatusEffectDuration</name>
+        <qualifiedname>UnitStats.BonusStatusEffectDuration</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="52" column="16" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="52" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="property" id="class_unit_stats_1ad9d2f6cb4fa4d37add22d5a460074464" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int UnitStats.AbilityProjectileSpeed</definition>
+        <argsstring></argsstring>
+        <name>AbilityProjectileSpeed</name>
+        <qualifiedname>UnitStats.AbilityProjectileSpeed</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="53" column="16" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="53" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="property" id="class_unit_stats_1a2d76e57ca02345ecd1496a51aa3e13c4" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>int</type>
+        <definition>int UnitStats.AbilityProjectilePenetration</definition>
+        <argsstring></argsstring>
+        <name>AbilityProjectilePenetration</name>
+        <qualifiedname>UnitStats.AbilityProjectilePenetration</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="54" column="16" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="54" bodyend="54"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_unit_stats_1a35e866163c477fd0b445fb9275f660ee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>UnitStats.UnitStats</definition>
+        <argsstring>(StatSheet baseStats)</argsstring>
+        <name>UnitStats</name>
+        <qualifiedname>UnitStats.UnitStats</qualifiedname>
+        <param>
+          <type><ref refid="class_stat_sheet" kindref="compound">StatSheet</ref></type>
+          <declname>baseStats</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="16" column="12" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="16" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="class_unit_stats_1afb7351c80dff1e8e12ed8eb598072496" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>UnitStats.UnitStats</definition>
+        <argsstring>()</argsstring>
+        <name>UnitStats</name>
+        <qualifiedname>UnitStats.UnitStats</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="21" column="12" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="21" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="class_unit_stats_1a566e493caf2c3485a747a6af7d4b9e49" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float UnitStats.GetStatValue</definition>
+        <argsstring>(StatType statTypeId)</argsstring>
+        <name>GetStatValue</name>
+        <qualifiedname>UnitStats.GetStatValue</qualifiedname>
+        <param>
+          <type>StatType</type>
+          <declname>statTypeId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="56" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="56" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="class_unit_stats_1a0171a9a8f802fc2e7a20164f5bf4e9af" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float UnitStats.GetBaseStatValue</definition>
+        <argsstring>(StatType statTypeId)</argsstring>
+        <name>GetBaseStatValue</name>
+        <qualifiedname>UnitStats.GetBaseStatValue</qualifiedname>
+        <param>
+          <type>StatType</type>
+          <declname>statTypeId</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="92" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="92" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="class_unit_stats_1a6f15508f5c4be964b34baad5ecce30be" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UnitStats.AddValueToStat</definition>
+        <argsstring>(StatType statType, int value)</argsstring>
+        <name>AddValueToStat</name>
+        <qualifiedname>UnitStats.AddValueToStat</qualifiedname>
+        <param>
+          <type>StatType</type>
+          <declname>statType</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="128" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="128" bodyend="173"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" line="7" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/UnitStats.cs" bodystart="8" bodyend="178"/>
+    <listofallmembers>
+      <member refid="class_unit_stats_1a1b404096919c335298483d658447e8ac" prot="private" virt="non-virtual"><scope>UnitStats</scope><name>_baseStats</name></member>
+      <member refid="class_unit_stats_1a32513fd3f16c14369d9557e922fa4fc1" prot="private" virt="non-virtual"><scope>UnitStats</scope><name>abilityCooldownReduction</name></member>
+      <member refid="class_unit_stats_1ad19281dfa3767ccbe59946dbcab1b806" prot="public" virt="non-virtual"><scope>UnitStats</scope><name>AbilityCooldownReduction</name></member>
+      <member refid="class_unit_stats_1a6749ddae8682509d30972cc8b83b41a0" prot="private" virt="non-virtual"><scope>UnitStats</scope><name>abilityProjectilePenetration</name></member>
+      <member refid="class_unit_stats_1a2d76e57ca02345ecd1496a51aa3e13c4" prot="public" virt="non-virtual"><scope>UnitStats</scope><name>AbilityProjectilePenetration</name></member>
+      <member refid="class_unit_stats_1a0c721a2f2cc7805951a8d6c68b45af7c" prot="private" virt="non-virtual"><scope>UnitStats</scope><name>abilityProjectileSpeed</name></member>
+      <member refid="class_unit_stats_1ad9d2f6cb4fa4d37add22d5a460074464" prot="public" virt="non-virtual"><scope>UnitStats</scope><name>AbilityProjectileSpeed</name></member>
+      <member refid="class_unit_stats_1a6f15508f5c4be964b34baad5ecce30be" prot="public" virt="non-virtual"><scope>UnitStats</scope><name>AddValueToStat</name></member>
+      <member refid="class_unit_stats_1a2f247a8fd5334fe368d21d38b07babe2" prot="private" virt="non-virtual"><scope>UnitStats</scope><name>armor</name></member>
+      <member refid="class_unit_stats_1a3d4b19161c21886a1d99822e17f39c72" prot="public" virt="non-virtual"><scope>UnitStats</scope><name>Armor</name></member>
+      <member refid="class_unit_stats_1a34c4eebc14d3511ecbbc9ecc99fc667d" prot="public" virt="non-virtual"><scope>UnitStats</scope><name>AttackSpeed</name></member>
+      <member refid="class_unit_stats_1aab2638084d35d3645c26a6fa8978c528" prot="private" virt="non-virtual"><scope>UnitStats</scope><name>attackSpeed</name></member>
+      <member refid="class_unit_stats_1adf47bb8c42f5af829786e0018b5dcfac" prot="private" virt="non-virtual"><scope>UnitStats</scope><name>baseDamage</name></member>
+      <member refid="class_unit_stats_1a32864601022cd169287966823deba01d" prot="public" virt="non-virtual"><scope>UnitStats</scope><name>BaseDamage</name></member>
+      <member refid="class_unit_stats_1a897e79c7979844f81657b4dd2fb921b5" prot="private" virt="non-virtual"><scope>UnitStats</scope><name>baseRange</name></member>
+      <member refid="class_unit_stats_1a8bf7d2d19d6f9897d769e90a7a74d60e" prot="public" virt="non-virtual"><scope>UnitStats</scope><name>BonusRange</name></member>
+      <member refid="class_unit_stats_1a492d5680ec5636c211e419fadda4adac" prot="private" virt="non-virtual"><scope>UnitStats</scope><name>bonusStatusEffectDuration</name></member>
+      <member refid="class_unit_stats_1a149209a37926218f7c2d332e415b7168" prot="public" virt="non-virtual"><scope>UnitStats</scope><name>BonusStatusEffectDuration</name></member>
+      <member refid="class_unit_stats_1aea2aa6669f157f39cd98a11d5eedb4e7" prot="private" virt="non-virtual"><scope>UnitStats</scope><name>critChance</name></member>
+      <member refid="class_unit_stats_1a568d721e59c7700c1c1661244e77898d" prot="public" virt="non-virtual"><scope>UnitStats</scope><name>CritChance</name></member>
+      <member refid="class_unit_stats_1a589b624ab87b2977f5d90d338d33199a" prot="private" virt="non-virtual"><scope>UnitStats</scope><name>critDamage</name></member>
+      <member refid="class_unit_stats_1a59ccf41a606f2b94d121d826435fc41d" prot="public" virt="non-virtual"><scope>UnitStats</scope><name>CritDamage</name></member>
+      <member refid="class_unit_stats_1a0171a9a8f802fc2e7a20164f5bf4e9af" prot="public" virt="non-virtual"><scope>UnitStats</scope><name>GetBaseStatValue</name></member>
+      <member refid="class_unit_stats_1a566e493caf2c3485a747a6af7d4b9e49" prot="public" virt="non-virtual"><scope>UnitStats</scope><name>GetStatValue</name></member>
+      <member refid="class_unit_stats_1af18165324a2499b263ed088e3854542e" prot="private" virt="non-virtual"><scope>UnitStats</scope><name>hpRegen</name></member>
+      <member refid="class_unit_stats_1ae52d68f845357b3a410d10464128f893" prot="public" virt="non-virtual"><scope>UnitStats</scope><name>HpRegen</name></member>
+      <member refid="class_unit_stats_1a142c5ed29cf7d79fe60d59d5ccaeda98" prot="private" virt="non-virtual"><scope>UnitStats</scope><name>invincibleTime</name></member>
+      <member refid="class_unit_stats_1a1c0a53ce5184a27fc9c9933d16ab5b4b" prot="public" virt="non-virtual"><scope>UnitStats</scope><name>InvincibleTime</name></member>
+      <member refid="class_unit_stats_1a13c41587b273a4486909831dac2456e8" prot="private" virt="non-virtual"><scope>UnitStats</scope><name>maxHp</name></member>
+      <member refid="class_unit_stats_1a3b687de0f0d727282809194ae2aa4cb9" prot="public" virt="non-virtual"><scope>UnitStats</scope><name>MaxHp</name></member>
+      <member refid="class_unit_stats_1a9218ddd2085e70478c8ede4667276c51" prot="public" virt="non-virtual"><scope>UnitStats</scope><name>MovementSpeed</name></member>
+      <member refid="class_unit_stats_1ad0b6ceda1ca8048a5d6df2cf9954a52d" prot="private" virt="non-virtual"><scope>UnitStats</scope><name>movementSpeed</name></member>
+      <member refid="class_unit_stats_1a62029e984ae42c7269648ae75f0e3c32" prot="public" virt="non-virtual"><scope>UnitStats</scope><name>OnStatChanged</name></member>
+      <member refid="class_unit_stats_1aab71b3ffab5256933b5b4f29214750ea" prot="private" virt="non-virtual"><scope>UnitStats</scope><name>ownerBaseStats</name></member>
+      <member refid="class_unit_stats_1a35e866163c477fd0b445fb9275f660ee" prot="public" virt="non-virtual"><scope>UnitStats</scope><name>UnitStats</name></member>
+      <member refid="class_unit_stats_1afb7351c80dff1e8e12ed8eb598072496" prot="public" virt="non-virtual"><scope>UnitStats</scope><name>UnitStats</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_class_shaman" xml:lang="en-US">
+<title>Shaman Class Reference</title>
+<indexterm><primary>Shaman</primary></indexterm>
+<para>Inheritance diagram for Shaman:    <informalfigure>
+        <mediaobject>
+            <imageobject>
+                <imagedata width="50%" align="center" valign="middle" scalefit="0" fileref="class_shaman.png"></imagedata>
+            </imageobject>
+        </mediaobject>
+    </informalfigure>
+</para>
+<simplesect>
+    <title>Public Member Functions    </title>
+        <itemizedlist>
+            <listitem><para>override void <link linkend="_class_shaman_1a9abc0f8b9e47e6c1f413392102130166">Init</link> (<link linkend="_class_base_unit_config">BaseUnitConfig</link> baseUnitConfig)</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_shaman_1a5d2157f6ddaa34479130cc03afa456aa"/>void <emphasis role="strong">LearnAbility</emphasis> (<link linkend="_class_base_ability">BaseAbility</link> ability)</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_shaman_1a16774b41e141e98e641b035e885a39ff"/>void <emphasis role="strong">UpgradeAbility</emphasis> (<link linkend="_class_base_ability">BaseAbility</link> currentAbility, <link linkend="_class_base_ability">BaseAbility</link> upgradedAbility)</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_shaman_1a740bee320e77336847a0d4c970eab24b"/>void <emphasis role="strong">RemoveAbility</emphasis> (<link linkend="_class_base_ability">BaseAbility</link> ability)</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_shaman_1a9a7c7d1cbe8ecf1a79a6836bcd12ccc1"/>void <emphasis role="strong">ToggleClicker</emphasis> (bool state)</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Properties    </title>
+        <itemizedlist>
+            <listitem><para><anchor xml:id="_class_shaman_1a384dd72ceb7a19e176f53266716de025"/>override <link linkend="_class_stat_sheet">StatSheet</link> <emphasis role="strong">BaseStats</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_shaman_1ab5dd7ce26d85e3a4816b4acef0b08a62"/><link linkend="_class_shaman_config">ShamanConfig</link> <emphasis role="strong">ShamanConfig</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_shaman_1a8b2fb686373c181fba57b4ac855cde81"/>List&lt; <link linkend="_class_base_ability">BaseAbility</link> &gt; <emphasis role="strong">KnownAbilities</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_shaman_1a1633525703caac6ee4e4e968dee288f6"/>List&lt; <link linkend="_class_unit_casting_handler">UnitCastingHandler</link> &gt; <emphasis role="strong">CastingHandlers</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+            <listitem><para><anchor xml:id="_class_shaman_1a7c5d21d8dda191a2125c0e1d9150ff0f"/>bool <emphasis role="strong">MouseOverShaman</emphasis><computeroutput> [get]</computeroutput>
+</para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+<simplesect>
+    <title>Additional Inherited Members    </title>
+</simplesect>
+<section>
+<title>Member Function Documentation</title>
+<anchor xml:id="_class_shaman_1a9abc0f8b9e47e6c1f413392102130166"/><section>
+    <title>Init()</title>
+<indexterm><primary>Init</primary><secondary>Shaman</secondary></indexterm>
+<indexterm><primary>Shaman</primary><secondary>Init</secondary></indexterm>
+<para><computeroutput>override void Shaman.Init (<link linkend="_class_base_unit_config">BaseUnitConfig</link> baseUnitConfig)<computeroutput>[virtual]</computeroutput></computeroutput></para><para>
+Reimplemented from <link linkend="_class_base_unit">BaseUnit</link>.</para>
+</section>
+<para>
+The documentation for this class was generated from the following file:</para>
+C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs</section>
+</section>

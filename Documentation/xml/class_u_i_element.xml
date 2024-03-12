@@ -1,0 +1,414 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_u_i_element" kind="class" language="C#" prot="public">
+    <compoundname>UIElement</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IPointerEnterHandler</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">IPointerExitHandler</basecompoundref>
+    <derivedcompoundref refid="class_ability_upgrade_panel_u_i" prot="public" virt="non-virtual">AbilityUpgradePanelUI</derivedcompoundref>
+    <derivedcompoundref refid="class_clickable_u_i_element" prot="public" virt="non-virtual">ClickableUIElement</derivedcompoundref>
+    <derivedcompoundref refid="class_counter_u_i_element" prot="public" virt="non-virtual">CounterUIElement</derivedcompoundref>
+    <derivedcompoundref refid="class_end_screen_enemies_killed_u_i_handler" prot="public" virt="non-virtual">EndScreenEnemiesKilledUIHandler</derivedcompoundref>
+    <derivedcompoundref refid="class_end_screen_time_u_i_handler" prot="public" virt="non-virtual">EndScreenTimeUIHandler</derivedcompoundref>
+    <derivedcompoundref refid="class_end_screen_u_i_handler" prot="public" virt="non-virtual">EndScreenUIHandler</derivedcompoundref>
+    <derivedcompoundref refid="class_end_screen_wave_interactive_u_i_handler" prot="public" virt="non-virtual">EndScreenWaveInteractiveUIHandler</derivedcompoundref>
+    <derivedcompoundref refid="class_indicator" prot="public" virt="non-virtual">Indicator</derivedcompoundref>
+    <derivedcompoundref refid="class_party_u_i_manager" prot="public" virt="non-virtual">PartyUIManager</derivedcompoundref>
+    <derivedcompoundref refid="class_time_control_u_i_handler" prot="public" virt="non-virtual">TimeControlUIHandler</derivedcompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_u_i_element_1a6dd0e428ea7447dcf73f9c55058bef12" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>RectTransform</type>
+        <definition>RectTransform UIElement.RectTransform</definition>
+        <argsstring></argsstring>
+        <name>RectTransform</name>
+        <qualifiedname>UIElement.RectTransform</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" line="9" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_u_i_element_1a3fee91bfa7a1d6c7234132478e09e13a" prot="protected" static="no" mutable="no">
+        <type>RectTransform</type>
+        <definition>RectTransform UIElement.rectTransform</definition>
+        <argsstring></argsstring>
+        <name>rectTransform</name>
+        <qualifiedname>UIElement.rectTransform</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" line="11" column="30" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_i_element_1a5cec5ca3592e71bd009fb5913b1a299c" prot="protected" static="no" mutable="no">
+        <type>UIGroup</type>
+        <definition>UIGroup UIElement.uiGroup</definition>
+        <argsstring></argsstring>
+        <name>uiGroup</name>
+        <qualifiedname>UIElement.uiGroup</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" line="14" column="24" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_i_element_1a921de5874669c81d347319daf6836d4e" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool UIElement.isMouseOver</definition>
+        <argsstring></argsstring>
+        <name>isMouseOver</name>
+        <qualifiedname>UIElement.isMouseOver</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" line="16" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_u_i_element_1ad2488c6ae748d8cdd9060773c2666f3c" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool UIElement.showOnAwake</definition>
+        <argsstring></argsstring>
+        <name>showOnAwake</name>
+        <qualifiedname>UIElement.showOnAwake</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" line="12" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_u_i_element_1a4482714be4f843db901a521aad098d70" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool UIElement.assignUIGroup</definition>
+        <argsstring></argsstring>
+        <name>assignUIGroup</name>
+        <qualifiedname>UIElement.assignUIGroup</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" line="13" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_u_i_element_1a2598524d3cda2b31cdb4e7d98c6c5929" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void UIElement.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>UIElement.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" line="18" column="28" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" bodystart="18" bodyend="25"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_u_i_element_1a71cc42a801a53704f4dd442227f98af8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void UIElement.Show</definition>
+        <argsstring>()</argsstring>
+        <name>Show</name>
+        <qualifiedname>UIElement.Show</qualifiedname>
+        <reimplementedby refid="class_end_screen_enemies_killed_u_i_handler_1a40d0882b9c834591c82b3dc0c2699461">Show</reimplementedby>
+        <reimplementedby refid="class_end_screen_time_u_i_handler_1a6eda38b57c774a6f0939eb1be7f9a704">Show</reimplementedby>
+        <reimplementedby refid="class_end_screen_u_i_handler_1a82db70b9bdbdb0a051780c309ba4161f">Show</reimplementedby>
+        <reimplementedby refid="class_end_screen_wave_interactive_u_i_handler_1a5685d2afcb2ce315c4ce4644238d7703">Show</reimplementedby>
+        <reimplementedby refid="class_ability_u_i_1a40723b2f2e59bbb00dfaff909274e48d">Show</reimplementedby>
+        <reimplementedby refid="class_ability_upgrade_panel_u_i_1aea9f31aa8a737877c09e58a0f17b9ddb">Show</reimplementedby>
+        <reimplementedby refid="class_ability_upgrade_u_i_1ad5f1be2321ef85dc74c2e2f82997d1a3">Show</reimplementedby>
+        <reimplementedby refid="class_party_u_i_manager_1a3d58a32bc2451c68dd8a9a88f51a042d">Show</reimplementedby>
+        <reimplementedby refid="class_shaman_u_i_handler_1ae38c6f513a69b7cde9ecd116a22c4f9b">Show</reimplementedby>
+        <reimplementedby refid="class_time_control_u_i_handler_1a7be74245325f3f59316809405b311fc2">Show</reimplementedby>
+        <reimplementedby refid="class_counter_u_i_element_1aa6ad0c8e3d15ee41f9435675a761301a">Show</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" line="27" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" bodystart="27" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="class_u_i_element_1ab917d89f32b29fa271cbbfb60f750a13" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void UIElement.UpdateVisual</definition>
+        <argsstring>()</argsstring>
+        <name>UpdateVisual</name>
+        <qualifiedname>UIElement.UpdateVisual</qualifiedname>
+        <reimplementedby refid="class_counter_u_i_element_1ace6be668b848ea42765d5a022f4bbe5e">UpdateVisual</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" line="32" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" bodystart="32" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="class_u_i_element_1a24b82c821a63e118fea9f8f15f6cf160" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void UIElement.Hide</definition>
+        <argsstring>()</argsstring>
+        <name>Hide</name>
+        <qualifiedname>UIElement.Hide</qualifiedname>
+        <reimplementedby refid="class_core_h_p_u_i_hnadler_1a65157d86afe00ddc22a5c724f85ed1f6">Hide</reimplementedby>
+        <reimplementedby refid="class_ability_u_i_1a4c422f6347f2ff21e95f97009a42a436">Hide</reimplementedby>
+        <reimplementedby refid="class_ability_upgrade_u_i_1a96266c5ad93602c7680355e97e91ffe4">Hide</reimplementedby>
+        <reimplementedby refid="class_shaman_u_i_handler_1a95aa4be8a7a7fbca1c4613ab5495f07a">Hide</reimplementedby>
+        <reimplementedby refid="class_time_control_u_i_handler_1a4bd83a1774846f88e685d11fc124bb98">Hide</reimplementedby>
+        <reimplementedby refid="class_wave_count_u_i_handler_1aff39c00b398c6351e245a78818420c5a">Hide</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" line="36" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" bodystart="36" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="class_u_i_element_1a4d81af31ff05165e400ba42046987059" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UIElement.OnPointerEnter</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnPointerEnter</name>
+        <qualifiedname>UIElement.OnPointerEnter</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" line="54" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" bodystart="54" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="class_u_i_element_1a1406fe3ed80f0c30b0065e85c1f205c2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UIElement.OnPointerExit</definition>
+        <argsstring>(PointerEventData eventData)</argsstring>
+        <name>OnPointerExit</name>
+        <qualifiedname>UIElement.OnPointerExit</qualifiedname>
+        <param>
+          <type>PointerEventData</type>
+          <declname>eventData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" line="59" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" bodystart="59" bodyend="62"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_u_i_element_1a66a9bb6bd63fd895b24ed43f832e2111" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UIElement.OnValidate</definition>
+        <argsstring>()</argsstring>
+        <name>OnValidate</name>
+        <qualifiedname>UIElement.OnValidate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" line="40" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" bodystart="40" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="class_u_i_element_1a2442c7853d446530f9f96b74cab84566" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UIElement.OnDestroy</definition>
+        <argsstring>()</argsstring>
+        <name>OnDestroy</name>
+        <qualifiedname>UIElement.OnDestroy</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" line="45" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" bodystart="45" bodyend="52"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="7">
+        <label>AbilityUI</label>
+        <link refid="class_ability_u_i"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>AbilityUpgradePanelUI</label>
+        <link refid="class_ability_upgrade_panel_u_i"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>AbilityUpgradeUI</label>
+        <link refid="class_ability_upgrade_u_i"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ClickableUIElement</label>
+        <link refid="class_clickable_u_i_element"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>CoreHPUIHnadler</label>
+        <link refid="class_core_h_p_u_i_hnadler"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>CounterUIElement</label>
+        <link refid="class_counter_u_i_element"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>EndScreenEnemiesKilledUIHandler</label>
+        <link refid="class_end_screen_enemies_killed_u_i_handler"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="15">
+        <label>EndScreenTimeUIHandler</label>
+        <link refid="class_end_screen_time_u_i_handler"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>EndScreenUIHandler</label>
+        <link refid="class_end_screen_u_i_handler"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>EndScreenWaveInteractiveUIHandler</label>
+        <link refid="class_end_screen_wave_interactive_u_i_handler"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="4">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="18">
+        <label>Indicator</label>
+        <link refid="class_indicator"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="19">
+        <label>PartyUIManager</label>
+        <link refid="class_party_u_i_manager"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>ShamanUIHandler</label>
+        <link refid="class_shaman_u_i_handler"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>TimeButtonsUI</label>
+        <link refid="class_time_buttons_u_i"/>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>TimeControlUIHandler</label>
+        <link refid="class_time_control_u_i_handler"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>UIElement</label>
+        <link refid="class_u_i_element"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>WaveCountUIHandler</label>
+        <link refid="class_wave_count_u_i_handler"/>
+        <childnode refid="11" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>IPointerEnterHandler</label>
+      </node>
+      <node id="4">
+        <label>IPointerExitHandler</label>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>UIElement</label>
+        <link refid="class_u_i_element"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" line="6" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIElement.cs" bodystart="7" bodyend="63"/>
+    <listofallmembers>
+      <member refid="class_u_i_element_1a4482714be4f843db901a521aad098d70" prot="private" virt="non-virtual"><scope>UIElement</scope><name>assignUIGroup</name></member>
+      <member refid="class_u_i_element_1a2598524d3cda2b31cdb4e7d98c6c5929" prot="protected" virt="virtual"><scope>UIElement</scope><name>Awake</name></member>
+      <member refid="class_u_i_element_1a24b82c821a63e118fea9f8f15f6cf160" prot="public" virt="virtual"><scope>UIElement</scope><name>Hide</name></member>
+      <member refid="class_u_i_element_1a921de5874669c81d347319daf6836d4e" prot="protected" virt="non-virtual"><scope>UIElement</scope><name>isMouseOver</name></member>
+      <member refid="class_u_i_element_1a2442c7853d446530f9f96b74cab84566" prot="private" virt="non-virtual"><scope>UIElement</scope><name>OnDestroy</name></member>
+      <member refid="class_u_i_element_1a4d81af31ff05165e400ba42046987059" prot="public" virt="non-virtual"><scope>UIElement</scope><name>OnPointerEnter</name></member>
+      <member refid="class_u_i_element_1a1406fe3ed80f0c30b0065e85c1f205c2" prot="public" virt="non-virtual"><scope>UIElement</scope><name>OnPointerExit</name></member>
+      <member refid="class_u_i_element_1a66a9bb6bd63fd895b24ed43f832e2111" prot="private" virt="non-virtual"><scope>UIElement</scope><name>OnValidate</name></member>
+      <member refid="class_u_i_element_1a6dd0e428ea7447dcf73f9c55058bef12" prot="public" virt="non-virtual"><scope>UIElement</scope><name>RectTransform</name></member>
+      <member refid="class_u_i_element_1a3fee91bfa7a1d6c7234132478e09e13a" prot="protected" virt="non-virtual"><scope>UIElement</scope><name>rectTransform</name></member>
+      <member refid="class_u_i_element_1a71cc42a801a53704f4dd442227f98af8" prot="public" virt="virtual"><scope>UIElement</scope><name>Show</name></member>
+      <member refid="class_u_i_element_1ad2488c6ae748d8cdd9060773c2666f3c" prot="private" virt="non-virtual"><scope>UIElement</scope><name>showOnAwake</name></member>
+      <member refid="class_u_i_element_1a5cec5ca3592e71bd009fb5913b1a299c" prot="protected" virt="non-virtual"><scope>UIElement</scope><name>uiGroup</name></member>
+      <member refid="class_u_i_element_1ab917d89f32b29fa271cbbfb60f750a13" prot="public" virt="virtual"><scope>UIElement</scope><name>UpdateVisual</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

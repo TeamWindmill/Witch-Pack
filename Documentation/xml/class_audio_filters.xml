@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_audio_filters" kind="class" language="C#" prot="public">
+    <compoundname>AudioFilters</compoundname>
+    <basecompoundref refid="class_effect_transition_lerp" prot="public" virt="non-virtual">EffectTransitionLerp&lt; AudioFilterValueType &gt;</basecompoundref>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_audio_filters_1a518c41fa50000d2332394df9cab4ed02" prot="protected" static="no" mutable="no">
+        <type>AudioSource</type>
+        <definition>AudioSource AudioFilters._audioSource</definition>
+        <argsstring></argsstring>
+        <name>_audioSource</name>
+        <qualifiedname>AudioFilters._audioSource</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Sound/AudioFilters.cs" line="8" column="27" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Sound/AudioFilters.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_audio_filters_1a7b286d3c4175b31aad8de8e7b0ec4a55" prot="protected" static="no" mutable="no">
+        <type>AudioReverbFilter</type>
+        <definition>AudioReverbFilter AudioFilters._audioReverbFilter</definition>
+        <argsstring></argsstring>
+        <name>_audioReverbFilter</name>
+        <qualifiedname>AudioFilters._audioReverbFilter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Sound/AudioFilters.cs" line="9" column="33" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Sound/AudioFilters.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_audio_filters_1a4177312c69bb913d51f60e7f41f4f7cc" prot="protected" static="no" mutable="no">
+        <type>AudioLowPassFilter</type>
+        <definition>AudioLowPassFilter AudioFilters._audioLowPassFilter</definition>
+        <argsstring></argsstring>
+        <name>_audioLowPassFilter</name>
+        <qualifiedname>AudioFilters._audioLowPassFilter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Sound/AudioFilters.cs" line="10" column="34" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Sound/AudioFilters.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_audio_filters_1aa7bb73f6a71df601a91db9400616976e" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool AudioFilters.IsInitialization</definition>
+        <argsstring></argsstring>
+        <name>IsInitialization</name>
+        <qualifiedname>AudioFilters.IsInitialization</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Sound/AudioFilters.cs" line="12" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Sound/AudioFilters.cs" bodystart="12" bodyend="12"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_audio_filters_1a9a31c1983d2799517b7285d8321f3cd1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void AudioFilters.Init</definition>
+        <argsstring>(AudioSource audioSource, AudioReverbFilter audioReverbFilter, AudioLowPassFilter audioLowPassFilter)</argsstring>
+        <name>Init</name>
+        <qualifiedname>AudioFilters.Init</qualifiedname>
+        <param>
+          <type>AudioSource</type>
+          <declname>audioSource</declname>
+        </param>
+        <param>
+          <type>AudioReverbFilter</type>
+          <declname>audioReverbFilter</declname>
+        </param>
+        <param>
+          <type>AudioLowPassFilter</type>
+          <declname>audioLowPassFilter</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Sound/AudioFilters.cs" line="14" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Sound/AudioFilters.cs" bodystart="14" bodyend="19"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_audio_filters_1a501193bd4804553b5cc13fb8a0e03cd6" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void AudioFilters.SetValue</definition>
+        <argsstring>(AudioFilterValueType type, float value)</argsstring>
+        <name>SetValue</name>
+        <qualifiedname>AudioFilters.SetValue</qualifiedname>
+        <param>
+          <type>AudioFilterValueType</type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Sound/AudioFilters.cs" line="21" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Sound/AudioFilters.cs" bodystart="21" bodyend="41"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>AudioFilters</label>
+        <link refid="class_audio_filters"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>EffectTransitionLerp&lt; AudioFilterValueType &gt;</label>
+        <link refid="class_effect_transition_lerp"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>AudioFilters</label>
+        <link refid="class_audio_filters"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>EffectTransitionLerp&lt; AudioFilterValueType &gt;</label>
+        <link refid="class_effect_transition_lerp"/>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Sound/AudioFilters.cs" line="6" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Sound/AudioFilters.cs" bodystart="7" bodyend="42"/>
+    <listofallmembers>
+      <member refid="class_audio_filters_1a4177312c69bb913d51f60e7f41f4f7cc" prot="protected" virt="non-virtual"><scope>AudioFilters</scope><name>_audioLowPassFilter</name></member>
+      <member refid="class_audio_filters_1a7b286d3c4175b31aad8de8e7b0ec4a55" prot="protected" virt="non-virtual"><scope>AudioFilters</scope><name>_audioReverbFilter</name></member>
+      <member refid="class_audio_filters_1a518c41fa50000d2332394df9cab4ed02" prot="protected" virt="non-virtual"><scope>AudioFilters</scope><name>_audioSource</name></member>
+      <member refid="class_effect_transition_lerp_1a6c41b963a8a8025195ea190f264703fb" prot="public" virt="virtual"><scope>AudioFilters</scope><name>EndTransitionEffect</name></member>
+      <member refid="class_audio_filters_1a9a31c1983d2799517b7285d8321f3cd1" prot="public" virt="non-virtual"><scope>AudioFilters</scope><name>Init</name></member>
+      <member refid="class_audio_filters_1aa7bb73f6a71df601a91db9400616976e" prot="public" virt="non-virtual"><scope>AudioFilters</scope><name>IsInitialization</name></member>
+      <member refid="class_audio_filters_1a501193bd4804553b5cc13fb8a0e03cd6" prot="protected" virt="non-virtual"><scope>AudioFilters</scope><name>SetValue</name></member>
+      <member refid="class_effect_transition_lerp_1af730800ab8d6caf7d2fd149e246d6c4d" prot="protected" virt="pure-virtual" ambiguityscope="EffectTransitionLerp&lt; AudioFilterValueType &gt;."><scope>AudioFilters</scope><name>SetValue</name></member>
+      <member refid="class_effect_transition_lerp_1a0f0dafcbb97abd5030429b7cbc786a2a" prot="public" virt="virtual"><scope>AudioFilters</scope><name>StartTransitionEffect</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

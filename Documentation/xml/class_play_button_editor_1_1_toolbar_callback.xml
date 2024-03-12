@@ -1,0 +1,191 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_play_button_editor_1_1_toolbar_callback" kind="class" language="C#" prot="public">
+    <compoundname>PlayButtonEditor::ToolbarCallback</compoundname>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_play_button_editor_1_1_toolbar_callback_1a897404dd6ceb90777f20a48453eeae29" prot="private" static="yes" mutable="no">
+        <type>Type</type>
+        <definition>Type PlayButtonEditor.ToolbarCallback.m_toolbarType</definition>
+        <argsstring></argsstring>
+        <name>m_toolbarType</name>
+        <qualifiedname>PlayButtonEditor.ToolbarCallback.m_toolbarType</qualifiedname>
+        <initializer>= typeof(Editor).Assembly.GetType(&quot;UnityEditor.Toolbar&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/PlayButtonEditor.cs" line="42" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/PlayButtonEditor.cs" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_play_button_editor_1_1_toolbar_callback_1a5cf19f90152a359c9df537741d7c60dc" prot="private" static="yes" mutable="no">
+        <type>Type</type>
+        <definition>Type PlayButtonEditor.ToolbarCallback.m_guiViewType</definition>
+        <argsstring></argsstring>
+        <name>m_guiViewType</name>
+        <qualifiedname>PlayButtonEditor.ToolbarCallback.m_guiViewType</qualifiedname>
+        <initializer>= typeof(Editor).Assembly.GetType(&quot;UnityEditor.GUIView&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/PlayButtonEditor.cs" line="43" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/PlayButtonEditor.cs" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_play_button_editor_1_1_toolbar_callback_1a72b4e9ad063e75f2760a03009815a784" prot="private" static="yes" mutable="no">
+        <type>PropertyInfo</type>
+        <definition>PropertyInfo PlayButtonEditor.ToolbarCallback.m_viewVisualTree</definition>
+        <argsstring></argsstring>
+        <name>m_viewVisualTree</name>
+        <qualifiedname>PlayButtonEditor.ToolbarCallback.m_viewVisualTree</qualifiedname>
+        <initializer>= m_guiViewType.GetProperty(&quot;visualTree&quot;,
+				BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/PlayButtonEditor.cs" line="53" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/PlayButtonEditor.cs" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_play_button_editor_1_1_toolbar_callback_1a9db11560359acbec31e6e28281c3bb59" prot="private" static="yes" mutable="no">
+        <type>FieldInfo</type>
+        <definition>FieldInfo PlayButtonEditor.ToolbarCallback.m_imguiContainerOnGui</definition>
+        <argsstring></argsstring>
+        <name>m_imguiContainerOnGui</name>
+        <qualifiedname>PlayButtonEditor.ToolbarCallback.m_imguiContainerOnGui</qualifiedname>
+        <initializer>= typeof(IMGUIContainer).GetField(&quot;m_OnGUIHandler&quot;,
+            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/PlayButtonEditor.cs" line="56" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/PlayButtonEditor.cs" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_play_button_editor_1_1_toolbar_callback_1a36bdfd0f607ae66929c041dd2e80b9d1" prot="private" static="yes" mutable="no">
+        <type>ScriptableObject</type>
+        <definition>ScriptableObject PlayButtonEditor.ToolbarCallback.m_currentToolbar</definition>
+        <argsstring></argsstring>
+        <name>m_currentToolbar</name>
+        <qualifiedname>PlayButtonEditor.ToolbarCallback.m_currentToolbar</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/PlayButtonEditor.cs" line="59" column="33" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/PlayButtonEditor.cs" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_play_button_editor_1_1_toolbar_callback_1af3d542b3958347891c5692577a577a7f" prot="public" static="yes" mutable="no">
+        <type>Action</type>
+        <definition>Action PlayButtonEditor.ToolbarCallback.OnToolbarGUI</definition>
+        <argsstring></argsstring>
+        <name>OnToolbarGUI</name>
+        <qualifiedname>PlayButtonEditor.ToolbarCallback.OnToolbarGUI</qualifiedname>
+        <briefdescription>
+<para>Callback for toolbar OnGUI method.  </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/PlayButtonEditor.cs" line="64" column="30" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/PlayButtonEditor.cs" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_play_button_editor_1_1_toolbar_callback_1a6b69f34aaf3ed63c9aabbde2b8f0f871" prot="public" static="yes" mutable="no">
+        <type>Action</type>
+        <definition>Action PlayButtonEditor.ToolbarCallback.OnToolbarGUILeft</definition>
+        <argsstring></argsstring>
+        <name>OnToolbarGUILeft</name>
+        <qualifiedname>PlayButtonEditor.ToolbarCallback.OnToolbarGUILeft</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/PlayButtonEditor.cs" line="66" column="30" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/PlayButtonEditor.cs" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_play_button_editor_1_1_toolbar_callback_1ab31452d65f201957d87bddd968665f43" prot="public" static="yes" mutable="no">
+        <type>Action</type>
+        <definition>Action PlayButtonEditor.ToolbarCallback.OnToolbarGUIRight</definition>
+        <argsstring></argsstring>
+        <name>OnToolbarGUIRight</name>
+        <qualifiedname>PlayButtonEditor.ToolbarCallback.OnToolbarGUIRight</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/PlayButtonEditor.cs" line="67" column="30" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/PlayButtonEditor.cs" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_play_button_editor_1_1_toolbar_callback_1a43b33fb98395b730ed8e5e33fa20f7c2" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>static</type>
+        <definition>static PlayButtonEditor.ToolbarCallback.ToolbarCallback</definition>
+        <argsstring>()</argsstring>
+        <name>ToolbarCallback</name>
+        <qualifiedname>PlayButtonEditor.ToolbarCallback.ToolbarCallback</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/PlayButtonEditor.cs" line="69" column="16" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/PlayButtonEditor.cs" bodystart="69" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="class_play_button_editor_1_1_toolbar_callback_1a8273304e5184c59041fa183b8589264b" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void PlayButtonEditor.ToolbarCallback.OnUpdate</definition>
+        <argsstring>()</argsstring>
+        <name>OnUpdate</name>
+        <qualifiedname>PlayButtonEditor.ToolbarCallback.OnUpdate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/PlayButtonEditor.cs" line="75" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/PlayButtonEditor.cs" bodystart="75" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="class_play_button_editor_1_1_toolbar_callback_1abee5b617d91be439ed26d50593602a69" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void PlayButtonEditor.ToolbarCallback.OnGUI</definition>
+        <argsstring>()</argsstring>
+        <name>OnGUI</name>
+        <qualifiedname>PlayButtonEditor.ToolbarCallback.OnGUI</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/PlayButtonEditor.cs" line="135" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/PlayButtonEditor.cs" bodystart="135" bodyend="139"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/PlayButtonEditor.cs" line="40" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Tools/Editor/PlayButtonEditor.cs" bodystart="41" bodyend="140"/>
+    <listofallmembers>
+      <member refid="class_play_button_editor_1_1_toolbar_callback_1a36bdfd0f607ae66929c041dd2e80b9d1" prot="private" virt="non-virtual"><scope>PlayButtonEditor::ToolbarCallback</scope><name>m_currentToolbar</name></member>
+      <member refid="class_play_button_editor_1_1_toolbar_callback_1a5cf19f90152a359c9df537741d7c60dc" prot="private" virt="non-virtual"><scope>PlayButtonEditor::ToolbarCallback</scope><name>m_guiViewType</name></member>
+      <member refid="class_play_button_editor_1_1_toolbar_callback_1a9db11560359acbec31e6e28281c3bb59" prot="private" virt="non-virtual"><scope>PlayButtonEditor::ToolbarCallback</scope><name>m_imguiContainerOnGui</name></member>
+      <member refid="class_play_button_editor_1_1_toolbar_callback_1a897404dd6ceb90777f20a48453eeae29" prot="private" virt="non-virtual"><scope>PlayButtonEditor::ToolbarCallback</scope><name>m_toolbarType</name></member>
+      <member refid="class_play_button_editor_1_1_toolbar_callback_1a72b4e9ad063e75f2760a03009815a784" prot="private" virt="non-virtual"><scope>PlayButtonEditor::ToolbarCallback</scope><name>m_viewVisualTree</name></member>
+      <member refid="class_play_button_editor_1_1_toolbar_callback_1abee5b617d91be439ed26d50593602a69" prot="private" virt="non-virtual"><scope>PlayButtonEditor::ToolbarCallback</scope><name>OnGUI</name></member>
+      <member refid="class_play_button_editor_1_1_toolbar_callback_1af3d542b3958347891c5692577a577a7f" prot="public" virt="non-virtual"><scope>PlayButtonEditor::ToolbarCallback</scope><name>OnToolbarGUI</name></member>
+      <member refid="class_play_button_editor_1_1_toolbar_callback_1a6b69f34aaf3ed63c9aabbde2b8f0f871" prot="public" virt="non-virtual"><scope>PlayButtonEditor::ToolbarCallback</scope><name>OnToolbarGUILeft</name></member>
+      <member refid="class_play_button_editor_1_1_toolbar_callback_1ab31452d65f201957d87bddd968665f43" prot="public" virt="non-virtual"><scope>PlayButtonEditor::ToolbarCallback</scope><name>OnToolbarGUIRight</name></member>
+      <member refid="class_play_button_editor_1_1_toolbar_callback_1a8273304e5184c59041fa183b8589264b" prot="private" virt="non-virtual"><scope>PlayButtonEditor::ToolbarCallback</scope><name>OnUpdate</name></member>
+      <member refid="class_play_button_editor_1_1_toolbar_callback_1a43b33fb98395b730ed8e5e33fa20f7c2" prot="private" virt="non-virtual"><scope>PlayButtonEditor::ToolbarCallback</scope><name>ToolbarCallback</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

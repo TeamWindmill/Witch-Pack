@@ -1,0 +1,343 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_status_effect" kind="class" language="C#" prot="public">
+    <compoundname>StatusEffect</compoundname>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_status_effect_1ac0cb1401e1844777b31851044616a352" prot="protected" static="no" mutable="no">
+        <type><ref refid="class_effectable" kindref="compound">Effectable</ref></type>
+        <definition>Effectable StatusEffect.host</definition>
+        <argsstring></argsstring>
+        <name>host</name>
+        <qualifiedname>StatusEffect.host</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" line="7" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_status_effect_1a389f0f3830378fa56287238e960500f8" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float StatusEffect.counter</definition>
+        <argsstring></argsstring>
+        <name>counter</name>
+        <qualifiedname>StatusEffect.counter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" line="8" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_status_effect_1a36da090a484cfbcc4ce329f426f5c5a1" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float StatusEffect.duration</definition>
+        <argsstring></argsstring>
+        <name>duration</name>
+        <qualifiedname>StatusEffect.duration</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" line="9" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_status_effect_1a582a03c9e019419d1c834eb4cc4246bf" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float StatusEffect.amount</definition>
+        <argsstring></argsstring>
+        <name>amount</name>
+        <qualifiedname>StatusEffect.amount</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" line="10" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_status_effect_1aa4729c24eb6e895d85a79f2580a21f3d" prot="private" static="no" mutable="no">
+        <type>StatType</type>
+        <definition>StatType StatusEffect._statType</definition>
+        <argsstring></argsstring>
+        <name>_statType</name>
+        <qualifiedname>StatusEffect._statType</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" line="11" column="22" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_status_effect_1a89624e53fc26a4e741fed8df7265c111" prot="private" static="no" mutable="no">
+        <type>StatusEffectProcess</type>
+        <definition>StatusEffectProcess StatusEffect.process</definition>
+        <argsstring></argsstring>
+        <name>process</name>
+        <qualifiedname>StatusEffect.process</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" line="12" column="33" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_status_effect_1aa246ba22e4ea309300f02ccf6f081b16" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_effectable" kindref="compound">Effectable</ref></type>
+        <definition>Effectable StatusEffect.Host</definition>
+        <argsstring></argsstring>
+        <name>Host</name>
+        <qualifiedname>StatusEffect.Host</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" line="14" column="23" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" bodystart="14" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="property" id="class_status_effect_1a69df80ece888871ac0b02f4c1472a611" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>float</type>
+        <definition>float StatusEffect.Counter</definition>
+        <argsstring></argsstring>
+        <name>Counter</name>
+        <qualifiedname>StatusEffect.Counter</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" line="15" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" bodystart="15" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="property" id="class_status_effect_1a997e996f7ed5c41d54a7f7e77e2f7d38" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>float</type>
+        <definition>float StatusEffect.Duration</definition>
+        <argsstring></argsstring>
+        <name>Duration</name>
+        <qualifiedname>StatusEffect.Duration</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" line="16" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" bodystart="16" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="property" id="class_status_effect_1a89141c3e126a6c8c6b8b1cbeee10c268" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>StatType</type>
+        <definition>StatType StatusEffect.StatType</definition>
+        <argsstring></argsstring>
+        <name>StatType</name>
+        <qualifiedname>StatusEffect.StatType</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" line="17" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" bodystart="17" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="property" id="class_status_effect_1a48c7bc2003c67b7531da28888a66087b" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>StatusEffectProcess</type>
+        <definition>StatusEffectProcess StatusEffect.Process</definition>
+        <argsstring></argsstring>
+        <name>Process</name>
+        <qualifiedname>StatusEffect.Process</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" line="18" column="32" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" bodystart="18" bodyend="18"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_status_effect_1a2e064bc59e2e0fa908d3af15bd20a9fb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>StatusEffect.StatusEffect</definition>
+        <argsstring>(Effectable host, float duration, float amount, StatType effectedStatType, StatusEffectProcess process)</argsstring>
+        <name>StatusEffect</name>
+        <qualifiedname>StatusEffect.StatusEffect</qualifiedname>
+        <param>
+          <type><ref refid="class_effectable" kindref="compound">Effectable</ref></type>
+          <declname>host</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>duration</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>amount</declname>
+        </param>
+        <param>
+          <type>StatType</type>
+          <declname>effectedStatType</declname>
+        </param>
+        <param>
+          <type>StatusEffectProcess</type>
+          <declname>process</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" line="20" column="12" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" bodystart="20" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="class_status_effect_1a50f5294d1e1c4c49f879e6ac6b67cec8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void StatusEffect.Activate</definition>
+        <argsstring>()</argsstring>
+        <name>Activate</name>
+        <qualifiedname>StatusEffect.Activate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" line="30" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" bodystart="30" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="class_status_effect_1abd3068078289df9b454e0853446df6a2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void StatusEffect.Remove</definition>
+        <argsstring>()</argsstring>
+        <name>Remove</name>
+        <qualifiedname>StatusEffect.Remove</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" line="35" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" bodystart="35" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="class_status_effect_1a4bed45dffaba39fd8902b4bdc141e038" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void StatusEffect.Reset</definition>
+        <argsstring>()</argsstring>
+        <name>Reset</name>
+        <qualifiedname>StatusEffect.Reset</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" line="41" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" bodystart="41" bodyend="44"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_status_effect_1a70dc68af6bb4ab4183906ea4befad7d9" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void StatusEffect.Subscribe</definition>
+        <argsstring>()</argsstring>
+        <name>Subscribe</name>
+        <qualifiedname>StatusEffect.Subscribe</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" line="46" column="28" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" bodystart="46" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="class_status_effect_1a5619ed4c744ca52a1b55fedff2d6d084" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void StatusEffect.UnSubscribe</definition>
+        <argsstring>()</argsstring>
+        <name>UnSubscribe</name>
+        <qualifiedname>StatusEffect.UnSubscribe</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" line="58" column="28" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" bodystart="58" bodyend="61"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_status_effect_1a2ba2fcbffe685e0c1da9deef9f62d3b9" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator StatusEffect.OverTimeEffect</definition>
+        <argsstring>()</argsstring>
+        <name>OverTimeEffect</name>
+        <qualifiedname>StatusEffect.OverTimeEffect</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" line="64" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" bodystart="64" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="class_status_effect_1a3211f60fb360e851d8178ef12b10cdf4" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator StatusEffect.InstantEffect</definition>
+        <argsstring>()</argsstring>
+        <name>InstantEffect</name>
+        <qualifiedname>StatusEffect.InstantEffect</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" line="76" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" bodystart="76" bodyend="86"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>Effectable</label>
+        <link refid="class_effectable"/>
+      </node>
+      <node id="1">
+        <label>StatusEffect</label>
+        <link refid="class_status_effect"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>host</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" line="4" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffect.cs" bodystart="5" bodyend="87"/>
+    <listofallmembers>
+      <member refid="class_status_effect_1aa4729c24eb6e895d85a79f2580a21f3d" prot="private" virt="non-virtual"><scope>StatusEffect</scope><name>_statType</name></member>
+      <member refid="class_status_effect_1a50f5294d1e1c4c49f879e6ac6b67cec8" prot="public" virt="virtual"><scope>StatusEffect</scope><name>Activate</name></member>
+      <member refid="class_status_effect_1a582a03c9e019419d1c834eb4cc4246bf" prot="private" virt="non-virtual"><scope>StatusEffect</scope><name>amount</name></member>
+      <member refid="class_status_effect_1a389f0f3830378fa56287238e960500f8" prot="protected" virt="non-virtual"><scope>StatusEffect</scope><name>counter</name></member>
+      <member refid="class_status_effect_1a69df80ece888871ac0b02f4c1472a611" prot="public" virt="non-virtual"><scope>StatusEffect</scope><name>Counter</name></member>
+      <member refid="class_status_effect_1a36da090a484cfbcc4ce329f426f5c5a1" prot="protected" virt="non-virtual"><scope>StatusEffect</scope><name>duration</name></member>
+      <member refid="class_status_effect_1a997e996f7ed5c41d54a7f7e77e2f7d38" prot="public" virt="non-virtual"><scope>StatusEffect</scope><name>Duration</name></member>
+      <member refid="class_status_effect_1ac0cb1401e1844777b31851044616a352" prot="protected" virt="non-virtual"><scope>StatusEffect</scope><name>host</name></member>
+      <member refid="class_status_effect_1aa246ba22e4ea309300f02ccf6f081b16" prot="public" virt="non-virtual"><scope>StatusEffect</scope><name>Host</name></member>
+      <member refid="class_status_effect_1a3211f60fb360e851d8178ef12b10cdf4" prot="private" virt="non-virtual"><scope>StatusEffect</scope><name>InstantEffect</name></member>
+      <member refid="class_status_effect_1a2ba2fcbffe685e0c1da9deef9f62d3b9" prot="private" virt="non-virtual"><scope>StatusEffect</scope><name>OverTimeEffect</name></member>
+      <member refid="class_status_effect_1a89624e53fc26a4e741fed8df7265c111" prot="private" virt="non-virtual"><scope>StatusEffect</scope><name>process</name></member>
+      <member refid="class_status_effect_1a48c7bc2003c67b7531da28888a66087b" prot="public" virt="non-virtual"><scope>StatusEffect</scope><name>Process</name></member>
+      <member refid="class_status_effect_1abd3068078289df9b454e0853446df6a2" prot="public" virt="virtual"><scope>StatusEffect</scope><name>Remove</name></member>
+      <member refid="class_status_effect_1a4bed45dffaba39fd8902b4bdc141e038" prot="public" virt="virtual"><scope>StatusEffect</scope><name>Reset</name></member>
+      <member refid="class_status_effect_1a89141c3e126a6c8c6b8b1cbeee10c268" prot="public" virt="non-virtual"><scope>StatusEffect</scope><name>StatType</name></member>
+      <member refid="class_status_effect_1a2e064bc59e2e0fa908d3af15bd20a9fb" prot="public" virt="non-virtual"><scope>StatusEffect</scope><name>StatusEffect</name></member>
+      <member refid="class_status_effect_1a70dc68af6bb4ab4183906ea4befad7d9" prot="protected" virt="virtual"><scope>StatusEffect</scope><name>Subscribe</name></member>
+      <member refid="class_status_effect_1a5619ed4c744ca52a1b55fedff2d6d084" prot="protected" virt="virtual"><scope>StatusEffect</scope><name>UnSubscribe</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

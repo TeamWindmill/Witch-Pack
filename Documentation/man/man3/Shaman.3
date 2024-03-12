@@ -1,0 +1,59 @@
+.TH "Shaman" 3 "Mon Jan 29 2024" "Version 0.096" "WitchPack" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+Shaman
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBBaseUnit\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "override void \fBInit\fP (\fBBaseUnitConfig\fP baseUnitConfig)"
+.br
+.ti -1c
+.RI "void \fBLearnAbility\fP (\fBBaseAbility\fP ability)"
+.br
+.ti -1c
+.RI "void \fBUpgradeAbility\fP (\fBBaseAbility\fP currentAbility, \fBBaseAbility\fP upgradedAbility)"
+.br
+.ti -1c
+.RI "void \fBRemoveAbility\fP (\fBBaseAbility\fP ability)"
+.br
+.ti -1c
+.RI "void \fBToggleClicker\fP (bool state)"
+.br
+.in -1c
+.SS "Properties"
+
+.in +1c
+.ti -1c
+.RI "override \fBStatSheet\fP \fBBaseStats\fP\fC [get]\fP"
+.br
+.ti -1c
+.RI "\fBShamanConfig\fP \fBShamanConfig\fP\fC [get]\fP"
+.br
+.ti -1c
+.RI "List< \fBBaseAbility\fP > \fBKnownAbilities\fP\fC [get]\fP"
+.br
+.ti -1c
+.RI "List< \fBUnitCastingHandler\fP > \fBCastingHandlers\fP\fC [get]\fP"
+.br
+.ti -1c
+.RI "bool \fBMouseOverShaman\fP\fC [get]\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Member Function Documentation"
+.PP 
+.SS "override void Shaman\&.Init (\fBBaseUnitConfig\fP baseUnitConfig)\fC [virtual]\fP"
+
+.PP
+Reimplemented from \fBBaseUnit\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for WitchPack from the source code\&.

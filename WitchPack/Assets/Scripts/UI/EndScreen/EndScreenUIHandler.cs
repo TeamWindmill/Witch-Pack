@@ -16,4 +16,10 @@ public class EndScreenUIHandler : UIElement
         _title.text = isWon ? "You won!" : "You lost!";
         _tips.text = isWon ? _config.WinText[Random.Range(0, _config.WinText.Length)] : _config.LoseText[Random.Range(0, _config.LoseText.Length)];
     }
+
+    public void ReturnToMap()
+    {
+        gameObject.SetActive(false);
+        GameManager.SceneHandler.LoadScene(SceneType.Map);
+    }
 }

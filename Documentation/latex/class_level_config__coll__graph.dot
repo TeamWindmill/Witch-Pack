@@ -1,0 +1,19 @@
+digraph "LevelConfig"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  Node1 [label="LevelConfig",height=0.2,width=0.4,color="gray40", fillcolor="grey60", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="steelblue1",style="solid"];
+  Node2 [label="ScriptableObject",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node3 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" Shamans" ];
+  Node3 [label="ShamanConfig",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$class_shaman_config.html",tooltip=" "];
+  Node4 -> Node3 [dir="back",color="steelblue1",style="solid"];
+  Node4 [label="BaseUnitConfig",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$class_base_unit_config.html",tooltip=" "];
+  Node2 -> Node4 [dir="back",color="steelblue1",style="solid"];
+  Node5 -> Node1 [dir="back",color="darkorchid3",style="dashed",label=" levelPrefab" ];
+  Node5 [label="LevelHandler",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",URL="$class_level_handler.html",tooltip=" "];
+  Node6 -> Node5 [dir="back",color="steelblue1",style="solid"];
+  Node6 [label="MonoBehaviour",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+}

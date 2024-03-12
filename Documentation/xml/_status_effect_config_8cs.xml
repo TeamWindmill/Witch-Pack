@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="_status_effect_config_8cs" kind="file" language="C#">
+    <compoundname>StatusEffectConfig.cs</compoundname>
+    <innerclass refid="class_status_effect_config" prot="public">StatusEffectConfig</innerclass>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="_status_effect_config_8cs_1a250cf01959bdcb233464333bb3ab517c" prot="public" static="no" strong="yes">
+        <type></type>
+        <name>StatusEffectProcess</name>
+        <enumvalue id="_status_effect_config_8cs_1a250cf01959bdcb233464333bb3ab517ca54828f327f31abd59f2f459c0247756d" prot="public">
+          <name>Instant</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="_status_effect_config_8cs_1a250cf01959bdcb233464333bb3ab517ca9afbbb6a5bfc89df3c34abd06946765f" prot="public">
+          <name>OverTime</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffectConfig.cs" line="20" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffectConfig.cs" bodystart="21" bodyend="24"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using<sp/></highlight><highlight class="normal">System.Collections.Generic;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using<sp/></highlight><highlight class="normal">UnityEngine;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal">[CreateAssetMenu(fileName<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;StatusEffectConfig&quot;</highlight><highlight class="normal">,<sp/>menuName<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;StatusEffect&quot;</highlight><highlight class="normal">)]</highlight></codeline>
+<codeline lineno="5" refid="class_status_effect_config" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_status_effect_config" kindref="compound">StatusEffectConfig</ref><sp/>:<sp/>ScriptableObject</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]<sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>duration;</highlight><highlight class="comment">//every<sp/>status<sp/>effects<sp/>only<sp/>works<sp/>for<sp/>a<sp/>duration</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]<sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>amount;</highlight><highlight class="comment">//this<sp/>might<sp/>be<sp/>useless<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField,<sp/>Tooltip(</highlight><highlight class="stringliteral">&quot;Instant<sp/>means<sp/>a<sp/>stat<sp/>will<sp/>change<sp/>by<sp/>the<sp/>amount<sp/>given<sp/>for<sp/>a<sp/>duration<sp/>then<sp/>return<sp/>to<sp/>normal,<sp/>&quot;</highlight><highlight class="normal"><sp/>+</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;Over<sp/>Time<sp/>means<sp/>a<sp/>stat<sp/>will<sp/>decrease<sp/>every<sp/>1<sp/>second<sp/>by<sp/>a<sp/>fixed<sp/>amount<sp/>until<sp/>reaching<sp/>the<sp/>given<sp/>amount<sp/>1<sp/>second<sp/>before<sp/>the<sp/>duration<sp/>ends&quot;</highlight><highlight class="normal">)]<sp/></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>StatusEffectProcess<sp/>process;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]<sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>StatType<sp/>statTypeAffected;</highlight><highlight class="comment">//all<sp/>stats<sp/>you<sp/>wish<sp/>to<sp/>affect<sp/>on<sp/>the<sp/>target</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>Duration<sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>=&gt;<sp/>duration;<sp/>}</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Amount<sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>=&gt;<sp/>amount;<sp/>}</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>StatusEffectProcess<sp/>Process<sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>=&gt;<sp/>process;<sp/>}</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>StatType<sp/>StatTypeAffected<sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>=&gt;<sp/>statTypeAffected;<sp/>}</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>StatusEffectProcess</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>Instant,<sp/></highlight><highlight class="comment">//change<sp/>a<sp/>value<sp/>instantly<sp/>for<sp/>a<sp/>duration</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>OverTime</highlight><highlight class="comment">//change<sp/>value<sp/>over<sp/>a<sp/>duration,<sp/>every<sp/>second<sp/>the<sp/>value<sp/>will<sp/>decrease<sp/>or<sp/>increase<sp/>by<sp/>a<sp/>fixed<sp/>amount</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/StatS/StatusEffectConfig.cs"/>
+  </compounddef>
+</doxygen>

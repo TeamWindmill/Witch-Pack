@@ -1,0 +1,461 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_shaman" kind="class" language="C#" prot="public">
+    <compoundname>Shaman</compoundname>
+    <basecompoundref refid="class_base_unit" prot="public" virt="non-virtual">BaseUnit</basecompoundref>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_shaman_1a384dd72ceb7a19e176f53266716de025" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>override <ref refid="class_stat_sheet" kindref="compound">StatSheet</ref></type>
+        <definition>override StatSheet Shaman.BaseStats</definition>
+        <argsstring></argsstring>
+        <name>BaseStats</name>
+        <qualifiedname>Shaman.BaseStats</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" line="8" column="31" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_shaman_1ab5dd7ce26d85e3a4816b4acef0b08a62" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type><ref refid="class_shaman_config" kindref="compound">ShamanConfig</ref></type>
+        <definition>ShamanConfig Shaman.ShamanConfig</definition>
+        <argsstring></argsstring>
+        <name>ShamanConfig</name>
+        <qualifiedname>Shaman.ShamanConfig</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" line="9" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_shaman_1a8b2fb686373c181fba57b4ac855cde81" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>List&lt; <ref refid="class_base_ability" kindref="compound">BaseAbility</ref> &gt;</type>
+        <definition>List&lt;BaseAbility&gt; Shaman.KnownAbilities</definition>
+        <argsstring></argsstring>
+        <name>KnownAbilities</name>
+        <qualifiedname>Shaman.KnownAbilities</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" line="10" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_shaman_1a1633525703caac6ee4e4e968dee288f6" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>List&lt; <ref refid="class_unit_casting_handler" kindref="compound">UnitCastingHandler</ref> &gt;</type>
+        <definition>List&lt;UnitCastingHandler&gt; Shaman.CastingHandlers</definition>
+        <argsstring></argsstring>
+        <name>CastingHandlers</name>
+        <qualifiedname>Shaman.CastingHandlers</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" line="11" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_shaman_1a7c5d21d8dda191a2125c0e1d9150ff0f" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>bool</type>
+        <definition>bool Shaman.MouseOverShaman</definition>
+        <argsstring></argsstring>
+        <name>MouseOverShaman</name>
+        <qualifiedname>Shaman.MouseOverShaman</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" line="12" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_shaman_1af7571a7dcea5cea83e46ae216c79705a" prot="private" static="no" mutable="no">
+        <type><ref refid="class_shaman_animator" kindref="compound">ShamanAnimator</ref></type>
+        <definition>ShamanAnimator Shaman.shamanAnimator</definition>
+        <argsstring></argsstring>
+        <name>shamanAnimator</name>
+        <qualifiedname>Shaman.shamanAnimator</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" line="14" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_shaman_1a597c60ea451061ba891cca64b5b957cc" prot="private" static="no" mutable="no">
+        <type><ref refid="class_click_helper" kindref="compound">ClickHelper</ref></type>
+        <definition>ClickHelper Shaman.clicker</definition>
+        <argsstring></argsstring>
+        <name>clicker</name>
+        <qualifiedname>Shaman.clicker</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" line="15" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_shaman_1aa9856ca502bf4060f475eb289c13d12f" prot="private" static="no" mutable="no">
+        <type><ref refid="class_indicatable" kindref="compound">Indicatable</ref></type>
+        <definition>Indicatable Shaman.indicatable</definition>
+        <argsstring></argsstring>
+        <name>indicatable</name>
+        <qualifiedname>Shaman.indicatable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" line="16" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_shaman_1ad45bf822f85d88039bdc8ad621a45122" prot="private" static="no" mutable="no">
+        <type><ref refid="class_ground_collider" kindref="compound">GroundCollider</ref></type>
+        <definition>GroundCollider Shaman.groundCollider</definition>
+        <argsstring></argsstring>
+        <name>groundCollider</name>
+        <qualifiedname>Shaman.groundCollider</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" line="17" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_shaman_1ac625704850329311dbdbc898b1880a13" prot="private" static="no" mutable="no">
+        <type><ref refid="class_shaman_config" kindref="compound">ShamanConfig</ref></type>
+        <definition>ShamanConfig Shaman.shamanConfig</definition>
+        <argsstring></argsstring>
+        <name>shamanConfig</name>
+        <qualifiedname>Shaman.shamanConfig</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" line="18" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_shaman_1a16e38d82ed0534e549942aa217794301" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="class_base_ability" kindref="compound">BaseAbility</ref> &gt;</type>
+        <definition>List&lt;BaseAbility&gt; Shaman.knownAbilities</definition>
+        <argsstring></argsstring>
+        <name>knownAbilities</name>
+        <qualifiedname>Shaman.knownAbilities</qualifiedname>
+        <initializer>= new List&lt;<ref refid="class_base_ability" kindref="compound">BaseAbility</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" line="19" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_shaman_1a05f7e9f52bc85a35c092e12975dbfd85" prot="private" static="no" mutable="no">
+        <type>List&lt; <ref refid="class_unit_casting_handler" kindref="compound">UnitCastingHandler</ref> &gt;</type>
+        <definition>List&lt;UnitCastingHandler&gt; Shaman.castingHandlers</definition>
+        <argsstring></argsstring>
+        <name>castingHandlers</name>
+        <qualifiedname>Shaman.castingHandlers</qualifiedname>
+        <initializer>= new List&lt;<ref refid="class_unit_casting_handler" kindref="compound">UnitCastingHandler</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" line="20" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_shaman_1a7a4601ff1b7933f026e25002254cfb69" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Shaman.OnValidate</definition>
+        <argsstring>()</argsstring>
+        <name>OnValidate</name>
+        <qualifiedname>Shaman.OnValidate</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" line="22" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" bodystart="22" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_shaman_1a0569b4cc0afc95c136154dd20dd5e028" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Shaman.OnShamanSelect</definition>
+        <argsstring>()</argsstring>
+        <name>OnShamanSelect</name>
+        <qualifiedname>Shaman.OnShamanSelect</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" line="42" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" bodystart="42" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="class_shaman_1a0a2a7e023f73e8e1670750b3d3b933f2" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Shaman.OnShamanDeselect</definition>
+        <argsstring>()</argsstring>
+        <name>OnShamanDeselect</name>
+        <qualifiedname>Shaman.OnShamanDeselect</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" line="48" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" bodystart="48" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="class_shaman_1aca6a35f7cc7c3955df93df6b5eef144b" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Shaman.IntializeCastingHandlers</definition>
+        <argsstring>()</argsstring>
+        <name>IntializeCastingHandlers</name>
+        <qualifiedname>Shaman.IntializeCastingHandlers</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" line="55" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" bodystart="55" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="class_shaman_1a9cca0cdd00f35229b1f26439f5e72e23" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Shaman.SetSelectedShaman</definition>
+        <argsstring>(PointerEventData.InputButton button)</argsstring>
+        <name>SetSelectedShaman</name>
+        <qualifiedname>Shaman.SetSelectedShaman</qualifiedname>
+        <param>
+          <type>PointerEventData.InputButton</type>
+          <declname>button</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" line="89" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" bodystart="89" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="class_shaman_1a933e514c520c991c0edec210fe1e1772" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Shaman.OnDisable</definition>
+        <argsstring>()</argsstring>
+        <name>OnDisable</name>
+        <qualifiedname>Shaman.OnDisable</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" line="111" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" bodystart="111" bodyend="116"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_shaman_1a9abc0f8b9e47e6c1f413392102130166" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void Shaman.Init</definition>
+        <argsstring>(BaseUnitConfig baseUnitConfig)</argsstring>
+        <name>Init</name>
+        <qualifiedname>Shaman.Init</qualifiedname>
+        <reimplements refid="class_base_unit_1a318afd57221249ec6faa2b130c92a8e9">Init</reimplements>
+        <param>
+          <type><ref refid="class_base_unit_config" kindref="compound">BaseUnitConfig</ref></type>
+          <declname>baseUnitConfig</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" line="27" column="26" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" bodystart="27" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="class_shaman_1a5d2157f6ddaa34479130cc03afa456aa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Shaman.LearnAbility</definition>
+        <argsstring>(BaseAbility ability)</argsstring>
+        <name>LearnAbility</name>
+        <qualifiedname>Shaman.LearnAbility</qualifiedname>
+        <param>
+          <type><ref refid="class_base_ability" kindref="compound">BaseAbility</ref></type>
+          <declname>ability</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" line="64" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" bodystart="64" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="class_shaman_1a16774b41e141e98e641b035e885a39ff" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Shaman.UpgradeAbility</definition>
+        <argsstring>(BaseAbility currentAbility, BaseAbility upgradedAbility)</argsstring>
+        <name>UpgradeAbility</name>
+        <qualifiedname>Shaman.UpgradeAbility</qualifiedname>
+        <param>
+          <type><ref refid="class_base_ability" kindref="compound">BaseAbility</ref></type>
+          <declname>currentAbility</declname>
+        </param>
+        <param>
+          <type><ref refid="class_base_ability" kindref="compound">BaseAbility</ref></type>
+          <declname>upgradedAbility</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" line="70" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" bodystart="70" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="class_shaman_1a740bee320e77336847a0d4c970eab24b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Shaman.RemoveAbility</definition>
+        <argsstring>(BaseAbility ability)</argsstring>
+        <name>RemoveAbility</name>
+        <qualifiedname>Shaman.RemoveAbility</qualifiedname>
+        <param>
+          <type><ref refid="class_base_ability" kindref="compound">BaseAbility</ref></type>
+          <declname>ability</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" line="76" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" bodystart="76" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="class_shaman_1a9a7c7d1cbe8ecf1a79a6836bcd12ccc1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Shaman.ToggleClicker</definition>
+        <argsstring>(bool state)</argsstring>
+        <name>ToggleClicker</name>
+        <qualifiedname>Shaman.ToggleClicker</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" line="106" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" bodystart="106" bodyend="109"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>BaseUnit</label>
+        <link refid="class_base_unit"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>ITargetable</label>
+        <link refid="interface_i_targetable"/>
+      </node>
+      <node id="3">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>Shaman</label>
+        <link refid="class_shaman"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>BaseUnit</label>
+        <link refid="class_base_unit"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>ITargetable</label>
+        <link refid="interface_i_targetable"/>
+      </node>
+      <node id="3">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>Shaman</label>
+        <link refid="class_shaman"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" line="6" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Shaman/Shaman.cs" bodystart="7" bodyend="118"/>
+    <listofallmembers>
+      <member refid="class_base_unit_1a313386eecce1fdf58c62ad81e6b8408a" prot="public" virt="non-virtual"><scope>Shaman</scope><name>Affector</name></member>
+      <member refid="class_base_unit_1a4caf48c381627131ac62c014c032b4ec" prot="public" virt="non-virtual"><scope>Shaman</scope><name>AutoAttack</name></member>
+      <member refid="class_base_unit_1ac1ffad5ae2e20a1d52c3b0cca382b2ac" prot="public" virt="non-virtual"><scope>Shaman</scope><name>AutoAttacker</name></member>
+      <member refid="class_base_unit_1abea9f0e2805d78a859fc233e1c5b8b26" prot="public" virt="non-virtual"><scope>Shaman</scope><name>AutoAttackHandler</name></member>
+      <member refid="class_shaman_1a384dd72ceb7a19e176f53266716de025" prot="public" virt="non-virtual"><scope>Shaman</scope><name>BaseStats</name></member>
+      <member refid="class_shaman_1a1633525703caac6ee4e4e968dee288f6" prot="public" virt="non-virtual"><scope>Shaman</scope><name>CastingHandlers</name></member>
+      <member refid="class_shaman_1a05f7e9f52bc85a35c092e12975dbfd85" prot="private" virt="non-virtual"><scope>Shaman</scope><name>castingHandlers</name></member>
+      <member refid="class_base_unit_1a6d2a95685260afde1a5441a142053d4c" prot="public" virt="non-virtual"><scope>Shaman</scope><name>CastPos</name></member>
+      <member refid="class_shaman_1a597c60ea451061ba891cca64b5b957cc" prot="private" virt="non-virtual"><scope>Shaman</scope><name>clicker</name></member>
+      <member refid="class_base_unit_1a62752250be6a1d1b478f2e853ad49d2f" prot="public" virt="non-virtual"><scope>Shaman</scope><name>Damageable</name></member>
+      <member refid="class_base_unit_1aff04a7a19aa2b5c6d791f48f84514928" prot="public" virt="non-virtual"><scope>Shaman</scope><name>DamageDealer</name></member>
+      <member refid="class_base_unit_1a3cdf2c036c5fb75972c880487217a355" prot="protected" virt="non-virtual"><scope>Shaman</scope><name>DisableAttacker</name></member>
+      <member refid="class_base_unit_1a8b48d6d42c97a03a7bb3be17db38a99c" prot="public" virt="non-virtual"><scope>Shaman</scope><name>Effectable</name></member>
+      <member refid="class_base_unit_1a47c788d0b4375120ae2a587b20feceeb" prot="protected" virt="non-virtual"><scope>Shaman</scope><name>EnableAttacker</name></member>
+      <member refid="class_shaman_1ad45bf822f85d88039bdc8ad621a45122" prot="private" virt="non-virtual"><scope>Shaman</scope><name>groundCollider</name></member>
+      <member refid="class_base_unit_1ab74acc141f024d8e5fa491387f2fe5ee" prot="public" virt="non-virtual"><scope>Shaman</scope><name>HpBar</name></member>
+      <member refid="class_shaman_1aa9856ca502bf4060f475eb289c13d12f" prot="private" virt="non-virtual"><scope>Shaman</scope><name>indicatable</name></member>
+      <member refid="class_shaman_1a9abc0f8b9e47e6c1f413392102130166" prot="public" virt="virtual"><scope>Shaman</scope><name>Init</name></member>
+      <member refid="class_shaman_1aca6a35f7cc7c3955df93df6b5eef144b" prot="private" virt="non-virtual"><scope>Shaman</scope><name>IntializeCastingHandlers</name></member>
+      <member refid="class_shaman_1a16e38d82ed0534e549942aa217794301" prot="private" virt="non-virtual"><scope>Shaman</scope><name>knownAbilities</name></member>
+      <member refid="class_shaman_1a8b2fb686373c181fba57b4ac855cde81" prot="public" virt="non-virtual"><scope>Shaman</scope><name>KnownAbilities</name></member>
+      <member refid="class_shaman_1a5d2157f6ddaa34479130cc03afa456aa" prot="public" virt="non-virtual"><scope>Shaman</scope><name>LearnAbility</name></member>
+      <member refid="class_shaman_1a7c5d21d8dda191a2125c0e1d9150ff0f" prot="public" virt="non-virtual"><scope>Shaman</scope><name>MouseOverShaman</name></member>
+      <member refid="class_base_unit_1aa317ae3934175d0f30dd029dc9dc325a" prot="public" virt="non-virtual"><scope>Shaman</scope><name>Movement</name></member>
+      <member refid="class_shaman_1a933e514c520c991c0edec210fe1e1772" prot="private" virt="non-virtual"><scope>Shaman</scope><name>OnDisable</name></member>
+      <member refid="class_shaman_1a0a2a7e023f73e8e1670750b3d3b933f2" prot="private" virt="non-virtual"><scope>Shaman</scope><name>OnShamanDeselect</name></member>
+      <member refid="class_shaman_1a0569b4cc0afc95c136154dd20dd5e028" prot="private" virt="non-virtual"><scope>Shaman</scope><name>OnShamanSelect</name></member>
+      <member refid="class_shaman_1a7a4601ff1b7933f026e25002254cfb69" prot="private" virt="non-virtual"><scope>Shaman</scope><name>OnValidate</name></member>
+      <member refid="class_shaman_1a740bee320e77336847a0d4c970eab24b" prot="public" virt="non-virtual"><scope>Shaman</scope><name>RemoveAbility</name></member>
+      <member refid="class_shaman_1a9cca0cdd00f35229b1f26439f5e72e23" prot="private" virt="non-virtual"><scope>Shaman</scope><name>SetSelectedShaman</name></member>
+      <member refid="class_shaman_1af7571a7dcea5cea83e46ae216c79705a" prot="private" virt="non-virtual"><scope>Shaman</scope><name>shamanAnimator</name></member>
+      <member refid="class_shaman_1ac625704850329311dbdbc898b1880a13" prot="private" virt="non-virtual"><scope>Shaman</scope><name>shamanConfig</name></member>
+      <member refid="class_shaman_1ab5dd7ce26d85e3a4816b4acef0b08a62" prot="public" virt="non-virtual"><scope>Shaman</scope><name>ShamanConfig</name></member>
+      <member refid="class_base_unit_1a3f47f6959fa9b498acfd695d3bd2a090" prot="public" virt="non-virtual"><scope>Shaman</scope><name>Stats</name></member>
+      <member refid="class_base_unit_1aa0b16f5a01dd397fa6a53d63ac24a6a5" prot="public" virt="non-virtual"><scope>Shaman</scope><name>Targeter</name></member>
+      <member refid="class_base_unit_1adfd5c12fc623c52b893bb17fc776517d" prot="public" virt="non-virtual"><scope>Shaman</scope><name>TargetHelper</name></member>
+      <member refid="class_shaman_1a9a7c7d1cbe8ecf1a79a6836bcd12ccc1" prot="public" virt="non-virtual"><scope>Shaman</scope><name>ToggleClicker</name></member>
+      <member refid="class_base_unit_1a3c7b9e4ec9958bc49f2aa39fdf0f9392" prot="public" virt="non-virtual"><scope>Shaman</scope><name>ToggleCollider</name></member>
+      <member refid="class_base_unit_1a96e49f74fa54c78112198c9c2a12eb77" prot="public" virt="non-virtual"><scope>Shaman</scope><name>UnitVisual</name></member>
+      <member refid="class_shaman_1a16774b41e141e98e641b035e885a39ff" prot="public" virt="non-virtual"><scope>Shaman</scope><name>UpgradeAbility</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

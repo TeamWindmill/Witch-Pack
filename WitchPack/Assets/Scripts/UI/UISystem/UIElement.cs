@@ -1,28 +1,33 @@
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public abstract class UIElement : MonoBehaviour
+public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     //inherit from this class if it is a ui element
-    [SerializeField, HideInInspector] protected RectTransform rectTransform;
-    [SerializeField] private bool _showOnAwake = true;
-    [SerializeField] protected UIGroup uiGroup;
-
+    public event Action OnMouseEnter;
+    public event Action OnMouseExit;
     public RectTransform RectTransform => rectTransform;
+    public bool isMouseOver { get; private set; }
 
-    protected virtual void Start()
+    [SerializeField, HideInInspector] protected RectTransform rectTransform;
+    [SerializeField] private bool showOnAwake = false;
+    [SerializeField] private bool assignUIGroup = false;
+    [SerializeField, ShowIf(nameof(assignUIGroup))] protected UIGroup uiGroup;
+    [SerializeField] private bool showInfoWindow = false;
+    [SerializeField, ShowIf(nameof(showInfoWindow))] protected WindowInfo _windowInfo;
+    
+
+    
+
+    protected virtual void Awake()
     {
-        UIManager.Instance.AddUIElement(this,uiGroup);
-        
-        if (_showOnAwake)
+        if (assignUIGroup) UIManager.Instance.AddUIElement(this, uiGroup);
+        if (showOnAwake)
             Show();
         else
             gameObject.SetActive(false);
-    }
-
-    public virtual void Init()
-    {
-        
     }
 
     public virtual void Show()
@@ -34,10 +39,12 @@ public abstract class UIElement : MonoBehaviour
     {
         
     }
+
     public virtual void Hide()
     {
         gameObject.SetActive(false);
     }
+
     private void OnValidate()
     {
         rectTransform ??= GetComponent<RectTransform>();
@@ -45,7 +52,32 @@ public abstract class UIElement : MonoBehaviour
 
     private void OnDestroy()
     {
-        if (UIManager.Instance is not null)
-            UIManager.Instance.RemoveUIElement(this,uiGroup);
+        if (assignUIGroup)
+        {
+            if (UIManager.Instance is not null)
+                UIManager.Instance.RemoveUIElement(this, uiGroup);
+        }
+    }
+
+    protected virtual void Update()
+    {
+        
+    }
+
+    public virtual void OnPointerEnter(PointerEventData eventData)
+    {
+        isMouseOver = true;
+        OnMouseEnter?.Invoke();
+        if (showInfoWindow) InformationWindow.Instance.RequestShow(this,_windowInfo);
+    }
+
+    public virtual void OnPointerExit(PointerEventData eventData)
+    {
+        isMouseOver = false;
+        OnMouseExit?.Invoke();
+        if (showInfoWindow)
+        {
+            if(InformationWindow.Instance.isActive) InformationWindow.Instance.Hide();
+        }
     }
 }

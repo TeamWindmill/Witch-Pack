@@ -1,32 +1,92 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
+/// <summary>
+/// GAME_TIME is a static class that manages the game time and time manipulation.
+/// </summary>
 public class GAME_TIME : MonoBehaviour
 {
+    /// <summary>
+    /// Event that is triggered when the time rate changes.
+    /// </summary>
     public static event Action OnTimeRateChange;
 
+    /// <summary>
+    /// Holds information about the game time and allows for time manipulation.
+    /// </summary>
     private static float _gameTime;
+
+    /// <summary>
+    /// The time rate at which the game time is progressing.
+    /// </summary>
     private static float _timeRate = 1f;
+
+    /// Startup` to get the total time played.
     private static float _startGameTime;
 
+    /// <summary>
+    /// The default curve used in time fading transitions.
+    /// </summary>
     private static AnimationCurve _defaultCurve = AnimationCurve.Linear(0, 0, 1, 1);
 
+    /// <summary>
+    /// The _tempTimeData variable stores the temporary time data used for pausing the game time.
+    /// </summary>
     private static float _tempTimeData = 1;
+
+    /// <summary>
+    /// Gets the total time played in the game.
+    /// </summary>
+    /// <value>The total time played in seconds.</value>
     public static float TimePlayed => Time.realtimeSinceStartup - _startGameTime;
+
+    /// <summary>
+    /// Gets the current time rate of the game.
+    /// </summary>
+    /// <returns>The current time rate.</returns>
     public static float GetCurrentTimeRate => _timeRate;
+
+    /// <summary>
+    /// GAME_TIME is a static class that manages the game time and time manipulation.
+    /// </summary>
     public static float GameTime => _gameTime;
+
+    /// <summary>
+    /// Gets the time in seconds it took to complete the last frame.
+    /// </summary>
+    /// <remarks>
+    /// The GameDeltaTime property calculates the time difference between the current frame and the previous frame.
+    /// </remarks>
+    /// <returns>The delta time in seconds.</returns>
     public static float GameDeltaTime => Time.deltaTime * _timeRate;
 
+    /// <summary>
+    /// Gets a value indicating whether the game time is currently stopped.
+    /// </summary>
+    /// <value>
+    /// <c>true</c> if the game time is stopped; otherwise, <c>false</c>.
+    /// </value>
     public static bool IsTimeStopped => _timeRate == 0;
 
+    /// of `this` in the `Awake` method of the `GAME_TIME` class.
     private static MonoBehaviour _monoBehaviour;
 
+    /// <summary>
+    /// Coroutine for managing the fade animation of the time rate.
+    /// </summary>
     private static Coroutine _fadeCoroutine;
 
+    /// <summary>
+    /// The current count of time during a transition.
+    /// </summary>
     private static float _transitionTimeCount = 0;
 
+    /// <summary>
+    /// Called when the object is instantiated in the scene.
+    /// </summary>
     private void Awake()
     {
         _monoBehaviour = this;
@@ -34,11 +94,20 @@ public class GAME_TIME : MonoBehaviour
         _gameTime = 0;
     }
 
+    /// <summary>
+    /// Updates the game time by adding the game delta time to the current game time.
+    /// </summary>
     private void Update()
     {
         _gameTime += GameDeltaTime;
     }
 
+    /// <summary>
+    /// Sets the time step for the game time.
+    /// </summary>
+    /// <param name="time">The new time step to set.</param>
+    /// <param name="transitionTime">The amount of time to transition to the new time step.</param>
+    /// <param name="curve">The animation curve to use for the time transition effect.</param>
     public static void SetTimeStep(float time, float transitionTime = 1, AnimationCurve curve = null)
     {
         if (time < 0)
@@ -60,6 +129,13 @@ public class GAME_TIME : MonoBehaviour
             _fadeCoroutine = _monoBehaviour.StartCoroutine(FadeTime(time, transitionTime, curve));
     }
 
+    /// <summary>
+    /// FadeTime method is used to set the time step of the game, which controls the rate at which time progresses.
+    /// It allows for a smooth transition from the current time step to the desired time step over a specified transition time, using an optional animation curve.
+    /// </summary>
+    /// <param name="time">The desired time step value to set. Must be greater than 0.</param>
+    /// <param name="transitionTime">The duration of the transition from the current time step to the desired time step. Default value is 1.</param>
+    /// <param name="curve">Optional animation curve to define the transition curve. If not provided, a default linear curve will be used.</param>
     private static IEnumerator FadeTime(float time, float transitionTime = 1, AnimationCurve curve = null)
     {
         float currentTimeRate = GetCurrentTimeRate;
@@ -81,6 +157,12 @@ public class GAME_TIME : MonoBehaviour
         SetTime(time);
     }
 
+    /// <summary>
+    /// Sets the game time step to the specified value over a transition period.
+    /// </summary>
+    /// <param name="time">The target time step value.</param>
+    /// <param name="transitionTime">The duration of the transition in seconds (default is 1 second).</param>
+    /// <param name="curve">The animation curve to control the speed of the transition (default is a linear curve).</param>
     private static void SetTime(float timeRate)
     {
         _timeRate = timeRate;
@@ -90,6 +172,9 @@ public class GAME_TIME : MonoBehaviour
         OnTimeRateChange?.Invoke();
     }
 
+    /// <summary>
+    /// Method to resume gameplay after pausing the game.
+    /// </summary>
     public static void Play()
     {
         SetTimeStep(_tempTimeData);
@@ -98,6 +183,13 @@ public class GAME_TIME : MonoBehaviour
         _tempTimeData = 0;
     }
 
+    /// <summary>
+    /// Pauses the game time.
+    /// </summary>
+    /// <remarks>
+    /// This method is used to pause the game time by setting the time step to 0.
+    /// It also logs a message indicating that the game is paused.
+    /// </remarks>
     public static void Pause()
     {
         if (_timeRate == 0) return;
@@ -106,4 +198,6 @@ public class GAME_TIME : MonoBehaviour
         Debug.Log($"<color={ColorLogHelper.RED}>PAUSE</color>");
         SetTimeStep(0);
     }
+    
+    
 }

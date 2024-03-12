@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_u_i_manager" kind="class" language="C#" prot="public">
+    <compoundname>UIManager</compoundname>
+    <basecompoundref refid="class_mono_singleton" prot="public" virt="non-virtual">MonoSingleton&lt; UIManager &gt;</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_u_i_manager_1ae03ea001626560bfa9e4cdcfb6928c65" prot="private" static="no" mutable="no">
+        <type>Dictionary&lt; UIGroup, List&lt; <ref refid="class_u_i_element" kindref="compound">UIElement</ref> &gt; &gt;</type>
+        <definition>Dictionary&lt;UIGroup, List&lt;UIElement&gt; &gt; UIManager._uiGroups</definition>
+        <argsstring></argsstring>
+        <name>_uiGroups</name>
+        <qualifiedname>UIManager._uiGroups</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIManager.cs" line="8" column="24" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIManager.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_u_i_manager_1aaf5ad6e7f38c09773751c1c786350b49" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>override void</type>
+        <definition>override void UIManager.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>UIManager.Awake</qualifiedname>
+        <reimplements refid="class_mono_singleton_1a04acead2ed3d970430f4c8c7716071f1">Awake</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIManager.cs" line="10" column="29" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIManager.cs" bodystart="10" bodyend="21"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_u_i_manager_1ab718cad980651af61f761b403343e51a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UIManager.AddUIElement</definition>
+        <argsstring>(UIElement element, UIGroup group)</argsstring>
+        <name>AddUIElement</name>
+        <qualifiedname>UIManager.AddUIElement</qualifiedname>
+        <param>
+          <type><ref refid="class_u_i_element" kindref="compound">UIElement</ref></type>
+          <declname>element</declname>
+        </param>
+        <param>
+          <type>UIGroup</type>
+          <declname>group</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIManager.cs" line="23" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIManager.cs" bodystart="23" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="class_u_i_manager_1a0b6664dcb69a80bdc0f9e5c0cc65db5e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UIManager.RemoveUIElement</definition>
+        <argsstring>(UIElement element, UIGroup group)</argsstring>
+        <name>RemoveUIElement</name>
+        <qualifiedname>UIManager.RemoveUIElement</qualifiedname>
+        <param>
+          <type><ref refid="class_u_i_element" kindref="compound">UIElement</ref></type>
+          <declname>element</declname>
+        </param>
+        <param>
+          <type>UIGroup</type>
+          <declname>group</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIManager.cs" line="34" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIManager.cs" bodystart="34" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="class_u_i_manager_1a9a95ca7db40624017d5e460da0d13df6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UIManager.ShowUIGroup</definition>
+        <argsstring>(UIGroup uiGroup)</argsstring>
+        <name>ShowUIGroup</name>
+        <qualifiedname>UIManager.ShowUIGroup</qualifiedname>
+        <param>
+          <type>UIGroup</type>
+          <declname>uiGroup</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIManager.cs" line="46" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIManager.cs" bodystart="46" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="class_u_i_manager_1a94b3255179404e8a70a3844c759e4166" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UIManager.HideUIGroup</definition>
+        <argsstring>(UIGroup uiGroup)</argsstring>
+        <name>HideUIGroup</name>
+        <qualifiedname>UIManager.HideUIGroup</qualifiedname>
+        <param>
+          <type>UIGroup</type>
+          <declname>uiGroup</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIManager.cs" line="56" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIManager.cs" bodystart="56" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="class_u_i_manager_1a2f89b4fec1d49a2f7efb0b3c60215e8c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void UIManager.UpdateUIGroup</definition>
+        <argsstring>(UIGroup uiGroup)</argsstring>
+        <name>UpdateUIGroup</name>
+        <qualifiedname>UIManager.UpdateUIGroup</qualifiedname>
+        <param>
+          <type>UIGroup</type>
+          <declname>uiGroup</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIManager.cs" line="67" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIManager.cs" bodystart="67" bodyend="76"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>MonoSingleton&lt; UIManager &gt;</label>
+        <link refid="class_mono_singleton"/>
+      </node>
+      <node id="1">
+        <label>UIManager</label>
+        <link refid="class_u_i_manager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>MonoSingleton&lt; UIManager &gt;</label>
+        <link refid="class_mono_singleton"/>
+      </node>
+      <node id="1">
+        <label>UIManager</label>
+        <link refid="class_u_i_manager"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIManager.cs" line="6" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/UI/UISystem/UIManager.cs" bodystart="7" bodyend="77"/>
+    <listofallmembers>
+      <member refid="class_u_i_manager_1ae03ea001626560bfa9e4cdcfb6928c65" prot="private" virt="non-virtual"><scope>UIManager</scope><name>_uiGroups</name></member>
+      <member refid="class_u_i_manager_1ab718cad980651af61f761b403343e51a" prot="public" virt="non-virtual"><scope>UIManager</scope><name>AddUIElement</name></member>
+      <member refid="class_u_i_manager_1aaf5ad6e7f38c09773751c1c786350b49" prot="protected" virt="virtual"><scope>UIManager</scope><name>Awake</name></member>
+      <member refid="class_u_i_manager_1a94b3255179404e8a70a3844c759e4166" prot="public" virt="non-virtual"><scope>UIManager</scope><name>HideUIGroup</name></member>
+      <member refid="class_mono_singleton_1a5637ba1f44359d4610b5eba552ef5f57" prot="public" virt="non-virtual"><scope>UIManager</scope><name>Instance</name></member>
+      <member refid="class_mono_singleton_1af585390f9256dfc8be7c969ca9fb4d88" prot="protected" virt="virtual"><scope>UIManager</scope><name>OnDestroy</name></member>
+      <member refid="class_u_i_manager_1a0b6664dcb69a80bdc0f9e5c0cc65db5e" prot="public" virt="non-virtual"><scope>UIManager</scope><name>RemoveUIElement</name></member>
+      <member refid="class_u_i_manager_1a9a95ca7db40624017d5e460da0d13df6" prot="public" virt="non-virtual"><scope>UIManager</scope><name>ShowUIGroup</name></member>
+      <member refid="class_u_i_manager_1a2f89b4fec1d49a2f7efb0b3c60215e8c" prot="public" virt="non-virtual"><scope>UIManager</scope><name>UpdateUIGroup</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,845 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_camera_handler" kind="class" language="C#" prot="public">
+    <compoundname>CameraHandler</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_camera_handler_1ad7fce3a051df4602c1b98d967070d10c" prot="private" static="yes" mutable="no">
+        <type>const float</type>
+        <definition>const float CameraHandler.ORTHOGRAPHIC_DETECT_RANGE</definition>
+        <argsstring></argsstring>
+        <name>ORTHOGRAPHIC_DETECT_RANGE</name>
+        <qualifiedname>CameraHandler.ORTHOGRAPHIC_DETECT_RANGE</qualifiedname>
+        <initializer>= 0.2f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="13" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_handler_1aee56d0130187216ac8407e163ec9fd6a" prot="private" static="yes" mutable="no">
+        <type>const float</type>
+        <definition>const float CameraHandler.CAMERA_MOVEMENT_DETECT_RANGE</definition>
+        <argsstring></argsstring>
+        <name>CAMERA_MOVEMENT_DETECT_RANGE</name>
+        <qualifiedname>CameraHandler.CAMERA_MOVEMENT_DETECT_RANGE</qualifiedname>
+        <initializer>= 0.5f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="14" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_handler_1a5f66cb1935b746b325f00efa8491c909" prot="private" static="yes" mutable="no">
+        <type>const float</type>
+        <definition>const float CameraHandler.FULL_HD_PIXELS_X</definition>
+        <argsstring></argsstring>
+        <name>FULL_HD_PIXELS_X</name>
+        <qualifiedname>CameraHandler.FULL_HD_PIXELS_X</qualifiedname>
+        <initializer>= 1920</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="16" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_handler_1a4ec584d3cebceb7ad3267c622cbb164e" prot="private" static="yes" mutable="no">
+        <type>const float</type>
+        <definition>const float CameraHandler.FULL_HD_PIXELS_Y</definition>
+        <argsstring></argsstring>
+        <name>FULL_HD_PIXELS_Y</name>
+        <qualifiedname>CameraHandler.FULL_HD_PIXELS_Y</qualifiedname>
+        <initializer>= 1080</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="17" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_handler_1a200db0721f15c08ebc552e2140e42bcb" prot="private" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int CameraHandler.LOCKED_CAMERA_ZOOM</definition>
+        <argsstring></argsstring>
+        <name>LOCKED_CAMERA_ZOOM</name>
+        <qualifiedname>CameraHandler.LOCKED_CAMERA_ZOOM</qualifiedname>
+        <initializer>= 9</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="18" column="23" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_camera_handler_1aefa0823d0b56746a9467292fb21f7c0f" prot="private" static="no" mutable="no">
+        <type><ref refid="class_camera_settings" kindref="compound">CameraSettings</ref></type>
+        <definition>CameraSettings CameraHandler._cameraSettings</definition>
+        <argsstring></argsstring>
+        <name>_cameraSettings</name>
+        <qualifiedname>CameraHandler._cameraSettings</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="25" column="28" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_handler_1a9f0a4dbd902963d71d3b50ca41296078" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CameraHandler._enableCameraMovement</definition>
+        <argsstring></argsstring>
+        <name>_enableCameraMovement</name>
+        <qualifiedname>CameraHandler._enableCameraMovement</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="28" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_handler_1a939e00a789872d7ca3f1d5c658b340cc" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CameraHandler._enableEdgeScroll</definition>
+        <argsstring></argsstring>
+        <name>_enableEdgeScroll</name>
+        <qualifiedname>CameraHandler._enableEdgeScroll</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="31" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_handler_1a2b28a0e1934f221f75f71738c70f3457" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CameraHandler._enablePanScroll</definition>
+        <argsstring></argsstring>
+        <name>_enablePanScroll</name>
+        <qualifiedname>CameraHandler._enablePanScroll</qualifiedname>
+        <initializer>= true</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="34" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_handler_1a9abca4f90cb95c898df970a018734ee2" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CameraHandler._testing</definition>
+        <argsstring></argsstring>
+        <name>_testing</name>
+        <qualifiedname>CameraHandler._testing</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="36" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_handler_1acea097210ea1542c13df607dd4f7bf90" prot="private" static="no" mutable="no">
+        <type>Camera</type>
+        <definition>Camera CameraHandler._mainCamera</definition>
+        <argsstring></argsstring>
+        <name>_mainCamera</name>
+        <qualifiedname>CameraHandler._mainCamera</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="39" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_handler_1a7dee36370da41982e8458973a1940611" prot="private" static="no" mutable="no">
+        <type>CinemachineVirtualCamera</type>
+        <definition>CinemachineVirtualCamera CameraHandler._cinemachineVirtualCamera</definition>
+        <argsstring></argsstring>
+        <name>_cinemachineVirtualCamera</name>
+        <qualifiedname>CameraHandler._cinemachineVirtualCamera</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="41" column="39" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_handler_1a897442b1b87d4c7d2ce3f63c87be7ef8" prot="private" static="no" mutable="no">
+        <type>Transform</type>
+        <definition>Transform CameraHandler._cameraFollowObject</definition>
+        <argsstring></argsstring>
+        <name>_cameraFollowObject</name>
+        <qualifiedname>CameraHandler._cameraFollowObject</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="42" column="24" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_handler_1ab1f0bb8ecd973d6f7471366e22611831" prot="private" static="no" mutable="no">
+        <type>CinemachineBrain</type>
+        <definition>CinemachineBrain CameraHandler._cinemachineBrain</definition>
+        <argsstring></argsstring>
+        <name>_cinemachineBrain</name>
+        <qualifiedname>CameraHandler._cinemachineBrain</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="43" column="31" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_handler_1a68c1c3a5df91a679784412e0b329008f" prot="private" static="no" mutable="no">
+        <type>Volume</type>
+        <definition>Volume CameraHandler._postProcessVolume</definition>
+        <argsstring></argsstring>
+        <name>_postProcessVolume</name>
+        <qualifiedname>CameraHandler._postProcessVolume</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="46" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_handler_1ab68d374e3eca66196f4637855ffdb671" prot="private" static="no" mutable="no">
+        <type>readonly Vector3</type>
+        <definition>readonly Vector3 CameraHandler._lockedCameraPosition</definition>
+        <argsstring></argsstring>
+        <name>_lockedCameraPosition</name>
+        <qualifiedname>CameraHandler._lockedCameraPosition</qualifiedname>
+        <initializer>= new(0, -3, -80)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="54" column="30" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_handler_1a6eb1efbd51e40393e72ad1c3a88725be" prot="private" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 CameraHandler._cameraBorders</definition>
+        <argsstring></argsstring>
+        <name>_cameraBorders</name>
+        <qualifiedname>CameraHandler._cameraBorders</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="55" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_handler_1a6154bedca5b9a018653433e613f5b776" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float CameraHandler._cameraMaxZoom</definition>
+        <argsstring></argsstring>
+        <name>_cameraMaxZoom</name>
+        <qualifiedname>CameraHandler._cameraMaxZoom</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="56" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_handler_1ae575f8fa21e5ff029fa78577c98849d9" prot="private" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 CameraHandler._cameraStartPosition</definition>
+        <argsstring></argsstring>
+        <name>_cameraStartPosition</name>
+        <qualifiedname>CameraHandler._cameraStartPosition</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="57" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_handler_1a74970c55b8344b4f2bd8103da7b4fb02" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float CameraHandler._cameraStartZoom</definition>
+        <argsstring></argsstring>
+        <name>_cameraStartZoom</name>
+        <qualifiedname>CameraHandler._cameraStartZoom</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="58" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_handler_1a2a9810e37fa9a38bc0870fd65ceaf02f" prot="private" static="no" mutable="no">
+        <type>CinemachineTransposer</type>
+        <definition>CinemachineTransposer CameraHandler._cinemachineTransposer</definition>
+        <argsstring></argsstring>
+        <name>_cinemachineTransposer</name>
+        <qualifiedname>CameraHandler._cinemachineTransposer</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="59" column="35" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_handler_1a0a88870b49cdf56e8fcea3d1c8846cbb" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float CameraHandler._currentAspectRatioX</definition>
+        <argsstring></argsstring>
+        <name>_currentAspectRatioX</name>
+        <qualifiedname>CameraHandler._currentAspectRatioX</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="61" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_handler_1a1f6293e1d00c04f6d02dcc9468d43b02" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float CameraHandler._currentAspectRatioY</definition>
+        <argsstring></argsstring>
+        <name>_currentAspectRatioY</name>
+        <qualifiedname>CameraHandler._currentAspectRatioY</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="62" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_handler_1a351d0d6ed80bb211a61489f851867a5f" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool CameraHandler._dragPanMoveActive</definition>
+        <argsstring></argsstring>
+        <name>_dragPanMoveActive</name>
+        <qualifiedname>CameraHandler._dragPanMoveActive</qualifiedname>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="64" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_handler_1ab2413a2dfdd70cc6fec7aa9f511c8de6" prot="private" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 CameraHandler._dragPanSpeed</definition>
+        <argsstring></argsstring>
+        <name>_dragPanSpeed</name>
+        <qualifiedname>CameraHandler._dragPanSpeed</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="65" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_handler_1a2dfa2fecad06e28cbfc2172d2bbb6434" prot="private" static="no" mutable="no">
+        <type>Vector2</type>
+        <definition>Vector2 CameraHandler._lastMousePosition</definition>
+        <argsstring></argsstring>
+        <name>_lastMousePosition</name>
+        <qualifiedname>CameraHandler._lastMousePosition</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="66" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_handler_1a143bf83e140f1a02952acc5acb67bc77" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float CameraHandler._targetOrthographicSize</definition>
+        <argsstring></argsstring>
+        <name>_targetOrthographicSize</name>
+        <qualifiedname>CameraHandler._targetOrthographicSize</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="67" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_handler_1a06d4f7a8d479cdf78588ee391f55c7ad" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float CameraHandler._zoomPadding</definition>
+        <argsstring></argsstring>
+        <name>_zoomPadding</name>
+        <qualifiedname>CameraHandler._zoomPadding</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="68" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_handler_1aa7bf16cc278aa9dcea939e1e35092d65" prot="private" static="no" mutable="no">
+        <type>Vector3</type>
+        <definition>Vector3 CameraHandler._inputDir</definition>
+        <argsstring></argsstring>
+        <name>_inputDir</name>
+        <qualifiedname>CameraHandler._inputDir</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="69" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_camera_handler_1a383b6c81d2368332d36be7f2d42874f4" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>Volume</type>
+        <definition>Volume CameraHandler.PostProcessVolume</definition>
+        <argsstring></argsstring>
+        <name>PostProcessVolume</name>
+        <qualifiedname>CameraHandler.PostProcessVolume</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="48" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_camera_handler_1a20d5d29d4aa717adee1459afcc0c2236" prot="public" static="no" readable="no" writable="no" gettable="yes" privategettable="no" protectedgettable="no" settable="no" privatesettable="no" protectedsettable="no">
+        <type>Camera</type>
+        <definition>Camera CameraHandler.MainCamera</definition>
+        <argsstring></argsstring>
+        <name>MainCamera</name>
+        <qualifiedname>CameraHandler.MainCamera</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="71" column="19" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_camera_handler_1afc9be7a88d29e0349ddd56f954130838" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CameraHandler.Awake</definition>
+        <argsstring>()</argsstring>
+        <name>Awake</name>
+        <qualifiedname>CameraHandler.Awake</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="77" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="77" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_handler_1ab397c0f15866b4cc2e4d6cb728216afe" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CameraHandler.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <qualifiedname>CameraHandler.Start</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="84" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="84" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_handler_1abfb0cb3d40a739595593a6c23a34dbd1" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CameraHandler.Update</definition>
+        <argsstring>()</argsstring>
+        <name>Update</name>
+        <qualifiedname>CameraHandler.Update</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="113" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="113" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_handler_1aeb52acc6661698faf105c24ca82da782" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector3</type>
+        <definition>Vector3 CameraHandler.HandleInput</definition>
+        <argsstring>()</argsstring>
+        <name>HandleInput</name>
+        <qualifiedname>CameraHandler.HandleInput</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="126" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="126" bodyend="176"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_handler_1aff9f6c832a4b568b69c9f25a6239c84e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CameraHandler.HandleZoom</definition>
+        <argsstring>()</argsstring>
+        <name>HandleZoom</name>
+        <qualifiedname>CameraHandler.HandleZoom</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="178" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="178" bodyend="193"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_handler_1aba33fe288b50737f251c40a00e8a6f60" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CameraHandler.HandleCameraMove</definition>
+        <argsstring>(Vector3 inputDir)</argsstring>
+        <name>HandleCameraMove</name>
+        <qualifiedname>CameraHandler.HandleCameraMove</qualifiedname>
+        <param>
+          <type>Vector3</type>
+          <declname>inputDir</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="195" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="195" bodyend="219"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_handler_1ad86f204ae6cf752cf9b373517241c9bf" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector3</type>
+        <definition>Vector3 CameraHandler.CameraMoveClamp</definition>
+        <argsstring>(Vector3 cameraPosition)</argsstring>
+        <name>CameraMoveClamp</name>
+        <qualifiedname>CameraHandler.CameraMoveClamp</qualifiedname>
+        <param>
+          <type>Vector3</type>
+          <declname>cameraPosition</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="221" column="21" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="221" bodyend="233"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_handler_1a63f7b767b39f119c7dbc5d7781166431" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CameraHandler.CameraZoomClamp</definition>
+        <argsstring>()</argsstring>
+        <name>CameraZoomClamp</name>
+        <qualifiedname>CameraHandler.CameraZoomClamp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="235" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="235" bodyend="243"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_handler_1a517fa69fc84f8ce9eb80a6db837ac8d0" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CameraHandler.ToggleCameraLock</definition>
+        <argsstring>(bool state)</argsstring>
+        <name>ToggleCameraLock</name>
+        <qualifiedname>CameraHandler.ToggleCameraLock</qualifiedname>
+        <param>
+          <type>bool</type>
+          <declname>state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="301" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="301" bodyend="305"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_handler_1afdd3227125c96496f2eba24757583282" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool CameraHandler.CameraFinishedFollowUp</definition>
+        <argsstring>()</argsstring>
+        <name>CameraFinishedFollowUp</name>
+        <qualifiedname>CameraHandler.CameraFinishedFollowUp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="335" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="335" bodyend="345"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_handler_1af3ae63c2f3cf3e241317e8d122163e6e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CameraHandler.ChangeDamping</definition>
+        <argsstring>(float xDamping, float yDamping)</argsstring>
+        <name>ChangeDamping</name>
+        <qualifiedname>CameraHandler.ChangeDamping</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>xDamping</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>yDamping</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="349" column="18" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="349" bodyend="353"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_handler_1a644c0c7d6d28a1842196dd180abb4df5" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator CameraHandler.ChangeDampingUntilCameraFinishedFollowUp</definition>
+        <argsstring>(float xDamping, float yDamping)</argsstring>
+        <name>ChangeDampingUntilCameraFinishedFollowUp</name>
+        <qualifiedname>CameraHandler.ChangeDampingUntilCameraFinishedFollowUp</qualifiedname>
+        <param>
+          <type>float</type>
+          <declname>xDamping</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>yDamping</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="355" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="355" bodyend="361"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_handler_1a618847856f81c70d5f91ce41b2a7b892" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator CameraHandler.LockCameraAfterFinishedFollowUp</definition>
+        <argsstring>()</argsstring>
+        <name>LockCameraAfterFinishedFollowUp</name>
+        <qualifiedname>CameraHandler.LockCameraAfterFinishedFollowUp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="362" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="362" bodyend="367"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_camera_handler_1a1405a2caa01942079abb857bb306e821" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CameraHandler.SetCameraLevelSettings</definition>
+        <argsstring>(CameraLevelSettings cameraLevelSettings)</argsstring>
+        <name>SetCameraLevelSettings</name>
+        <qualifiedname>CameraHandler.SetCameraLevelSettings</qualifiedname>
+        <param>
+          <type><ref refid="struct_camera_level_settings" kindref="compound">CameraLevelSettings</ref></type>
+          <declname>cameraLevelSettings</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="249" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="249" bodyend="258"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_handler_1addd925c75a9c5670fb0b7f5654e0b4a1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CameraHandler.ResetCamera</definition>
+        <argsstring>()</argsstring>
+        <name>ResetCamera</name>
+        <qualifiedname>CameraHandler.ResetCamera</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="261" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="261" bodyend="299"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_handler_1adeeaccd270e9a9157e45a62603cd2bd7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CameraHandler.LockCamera</definition>
+        <argsstring>(Vector2 lockedCameraPos, int lockedCameraZoom)</argsstring>
+        <name>LockCamera</name>
+        <qualifiedname>CameraHandler.LockCamera</qualifiedname>
+        <param>
+          <type>Vector2</type>
+          <declname>lockedCameraPos</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>lockedCameraZoom</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="307" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="307" bodyend="313"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_handler_1a863fd31e0cedd06c8f1e82763d3fb541" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CameraHandler.SetCameraPosition</definition>
+        <argsstring>(Vector2 eventPosition, bool lockCameraMove=false)</argsstring>
+        <name>SetCameraPosition</name>
+        <qualifiedname>CameraHandler.SetCameraPosition</qualifiedname>
+        <param>
+          <type>Vector2</type>
+          <declname>eventPosition</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>lockCameraMove</declname>
+          <defval>false</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="315" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="315" bodyend="323"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_handler_1a9e6370a20f52964f0a41f7f453d78fd0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CameraHandler.SetCameraZoom</definition>
+        <argsstring>(int zoom)</argsstring>
+        <name>SetCameraZoom</name>
+        <qualifiedname>CameraHandler.SetCameraZoom</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>zoom</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="325" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="325" bodyend="329"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>CameraHandler</label>
+        <link refid="class_camera_handler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>CameraHandler</label>
+        <link refid="class_camera_handler"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" line="9" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/CameraSystem/CameraHandler.cs" bodystart="10" bodyend="369"/>
+    <listofallmembers>
+      <member refid="class_camera_handler_1a6eb1efbd51e40393e72ad1c3a88725be" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>_cameraBorders</name></member>
+      <member refid="class_camera_handler_1a897442b1b87d4c7d2ce3f63c87be7ef8" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>_cameraFollowObject</name></member>
+      <member refid="class_camera_handler_1a6154bedca5b9a018653433e613f5b776" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>_cameraMaxZoom</name></member>
+      <member refid="class_camera_handler_1aefa0823d0b56746a9467292fb21f7c0f" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>_cameraSettings</name></member>
+      <member refid="class_camera_handler_1ae575f8fa21e5ff029fa78577c98849d9" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>_cameraStartPosition</name></member>
+      <member refid="class_camera_handler_1a74970c55b8344b4f2bd8103da7b4fb02" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>_cameraStartZoom</name></member>
+      <member refid="class_camera_handler_1ab1f0bb8ecd973d6f7471366e22611831" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>_cinemachineBrain</name></member>
+      <member refid="class_camera_handler_1a2a9810e37fa9a38bc0870fd65ceaf02f" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>_cinemachineTransposer</name></member>
+      <member refid="class_camera_handler_1a7dee36370da41982e8458973a1940611" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>_cinemachineVirtualCamera</name></member>
+      <member refid="class_camera_handler_1a0a88870b49cdf56e8fcea3d1c8846cbb" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>_currentAspectRatioX</name></member>
+      <member refid="class_camera_handler_1a1f6293e1d00c04f6d02dcc9468d43b02" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>_currentAspectRatioY</name></member>
+      <member refid="class_camera_handler_1a351d0d6ed80bb211a61489f851867a5f" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>_dragPanMoveActive</name></member>
+      <member refid="class_camera_handler_1ab2413a2dfdd70cc6fec7aa9f511c8de6" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>_dragPanSpeed</name></member>
+      <member refid="class_camera_handler_1a9f0a4dbd902963d71d3b50ca41296078" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>_enableCameraMovement</name></member>
+      <member refid="class_camera_handler_1a939e00a789872d7ca3f1d5c658b340cc" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>_enableEdgeScroll</name></member>
+      <member refid="class_camera_handler_1a2b28a0e1934f221f75f71738c70f3457" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>_enablePanScroll</name></member>
+      <member refid="class_camera_handler_1aa7bf16cc278aa9dcea939e1e35092d65" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>_inputDir</name></member>
+      <member refid="class_camera_handler_1a2dfa2fecad06e28cbfc2172d2bbb6434" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>_lastMousePosition</name></member>
+      <member refid="class_camera_handler_1ab68d374e3eca66196f4637855ffdb671" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>_lockedCameraPosition</name></member>
+      <member refid="class_camera_handler_1acea097210ea1542c13df607dd4f7bf90" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>_mainCamera</name></member>
+      <member refid="class_camera_handler_1a68c1c3a5df91a679784412e0b329008f" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>_postProcessVolume</name></member>
+      <member refid="class_camera_handler_1a143bf83e140f1a02952acc5acb67bc77" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>_targetOrthographicSize</name></member>
+      <member refid="class_camera_handler_1a9abca4f90cb95c898df970a018734ee2" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>_testing</name></member>
+      <member refid="class_camera_handler_1a06d4f7a8d479cdf78588ee391f55c7ad" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>_zoomPadding</name></member>
+      <member refid="class_camera_handler_1afc9be7a88d29e0349ddd56f954130838" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>Awake</name></member>
+      <member refid="class_camera_handler_1aee56d0130187216ac8407e163ec9fd6a" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>CAMERA_MOVEMENT_DETECT_RANGE</name></member>
+      <member refid="class_camera_handler_1afdd3227125c96496f2eba24757583282" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>CameraFinishedFollowUp</name></member>
+      <member refid="class_camera_handler_1ad86f204ae6cf752cf9b373517241c9bf" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>CameraMoveClamp</name></member>
+      <member refid="class_camera_handler_1a63f7b767b39f119c7dbc5d7781166431" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>CameraZoomClamp</name></member>
+      <member refid="class_camera_handler_1af3ae63c2f3cf3e241317e8d122163e6e" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>ChangeDamping</name></member>
+      <member refid="class_camera_handler_1a644c0c7d6d28a1842196dd180abb4df5" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>ChangeDampingUntilCameraFinishedFollowUp</name></member>
+      <member refid="class_camera_handler_1a5f66cb1935b746b325f00efa8491c909" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>FULL_HD_PIXELS_X</name></member>
+      <member refid="class_camera_handler_1a4ec584d3cebceb7ad3267c622cbb164e" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>FULL_HD_PIXELS_Y</name></member>
+      <member refid="class_camera_handler_1aba33fe288b50737f251c40a00e8a6f60" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>HandleCameraMove</name></member>
+      <member refid="class_camera_handler_1aeb52acc6661698faf105c24ca82da782" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>HandleInput</name></member>
+      <member refid="class_camera_handler_1aff9f6c832a4b568b69c9f25a6239c84e" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>HandleZoom</name></member>
+      <member refid="class_camera_handler_1adeeaccd270e9a9157e45a62603cd2bd7" prot="public" virt="non-virtual"><scope>CameraHandler</scope><name>LockCamera</name></member>
+      <member refid="class_camera_handler_1a618847856f81c70d5f91ce41b2a7b892" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>LockCameraAfterFinishedFollowUp</name></member>
+      <member refid="class_camera_handler_1a200db0721f15c08ebc552e2140e42bcb" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>LOCKED_CAMERA_ZOOM</name></member>
+      <member refid="class_camera_handler_1a20d5d29d4aa717adee1459afcc0c2236" prot="public" virt="non-virtual"><scope>CameraHandler</scope><name>MainCamera</name></member>
+      <member refid="class_camera_handler_1ad7fce3a051df4602c1b98d967070d10c" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>ORTHOGRAPHIC_DETECT_RANGE</name></member>
+      <member refid="class_camera_handler_1a383b6c81d2368332d36be7f2d42874f4" prot="public" virt="non-virtual"><scope>CameraHandler</scope><name>PostProcessVolume</name></member>
+      <member refid="class_camera_handler_1addd925c75a9c5670fb0b7f5654e0b4a1" prot="public" virt="non-virtual"><scope>CameraHandler</scope><name>ResetCamera</name></member>
+      <member refid="class_camera_handler_1a1405a2caa01942079abb857bb306e821" prot="public" virt="non-virtual"><scope>CameraHandler</scope><name>SetCameraLevelSettings</name></member>
+      <member refid="class_camera_handler_1a863fd31e0cedd06c8f1e82763d3fb541" prot="public" virt="non-virtual"><scope>CameraHandler</scope><name>SetCameraPosition</name></member>
+      <member refid="class_camera_handler_1a9e6370a20f52964f0a41f7f453d78fd0" prot="public" virt="non-virtual"><scope>CameraHandler</scope><name>SetCameraZoom</name></member>
+      <member refid="class_camera_handler_1ab397c0f15866b4cc2e4d6cb728216afe" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>Start</name></member>
+      <member refid="class_camera_handler_1a517fa69fc84f8ce9eb80a6db837ac8d0" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>ToggleCameraLock</name></member>
+      <member refid="class_camera_handler_1abfb0cb3d40a739595593a6c23a34dbd1" prot="private" virt="non-virtual"><scope>CameraHandler</scope><name>Update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

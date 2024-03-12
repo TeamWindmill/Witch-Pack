@@ -1,0 +1,257 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.5" xml:lang="en-US">
+  <compounddef id="class_targeted_shot" kind="class" language="C#" prot="public">
+    <compoundname>TargetedShot</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <derivedcompoundref refid="class_arched_shot" prot="public" virt="non-virtual">ArchedShot</derivedcompoundref>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="class_targeted_shot_1afcbc15294127bdb632a2b8e087576216" prot="protected" static="no" mutable="no">
+        <type>float</type>
+        <definition>float TargetedShot.speed</definition>
+        <argsstring></argsstring>
+        <name>speed</name>
+        <qualifiedname>TargetedShot.speed</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/TargetedShot.cs" line="8" column="22" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/TargetedShot.cs" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_targeted_shot_1a272b5a2148785c4593f68e8a0044dd5c" prot="protected" static="no" mutable="no">
+        <type><ref refid="class_base_ability" kindref="compound">BaseAbility</ref></type>
+        <definition>BaseAbility TargetedShot.ability</definition>
+        <argsstring></argsstring>
+        <name>ability</name>
+        <qualifiedname>TargetedShot.ability</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/TargetedShot.cs" line="10" column="27" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/TargetedShot.cs" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_targeted_shot_1a5f26434e7b47436b3886523f270e78ac" prot="protected" static="no" mutable="no">
+        <type><ref refid="class_base_unit" kindref="compound">BaseUnit</ref></type>
+        <definition>BaseUnit TargetedShot.owner</definition>
+        <argsstring></argsstring>
+        <name>owner</name>
+        <qualifiedname>TargetedShot.owner</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/TargetedShot.cs" line="11" column="24" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/TargetedShot.cs" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_targeted_shot_1a02409cae603c878fcccaafaa2580a2c8" prot="protected" static="no" mutable="no">
+        <type><ref refid="class_base_unit" kindref="compound">BaseUnit</ref></type>
+        <definition>BaseUnit TargetedShot.target</definition>
+        <argsstring></argsstring>
+        <name>target</name>
+        <qualifiedname>TargetedShot.target</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/TargetedShot.cs" line="12" column="24" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/TargetedShot.cs" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_targeted_shot_1ac9850e65d29f17d8bedc36246b75da96" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float TargetedShot.maxTravelTime</definition>
+        <argsstring></argsstring>
+        <name>maxTravelTime</name>
+        <qualifiedname>TargetedShot.maxTravelTime</qualifiedname>
+        <initializer>= 2f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/TargetedShot.cs" line="9" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/TargetedShot.cs" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_targeted_shot_1a9c8f82d1cb637ffb47ce5b0ddc9bae93" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TargetedShot.Fire</definition>
+        <argsstring>(BaseUnit shooter, BaseAbility givenAbility, Vector2 dir, BaseUnit target)</argsstring>
+        <name>Fire</name>
+        <qualifiedname>TargetedShot.Fire</qualifiedname>
+        <param>
+          <type><ref refid="class_base_unit" kindref="compound">BaseUnit</ref></type>
+          <declname>shooter</declname>
+        </param>
+        <param>
+          <type><ref refid="class_base_ability" kindref="compound">BaseAbility</ref></type>
+          <declname>givenAbility</declname>
+        </param>
+        <param>
+          <type>Vector2</type>
+          <declname>dir</declname>
+        </param>
+        <param>
+          <type><ref refid="class_base_unit" kindref="compound">BaseUnit</ref></type>
+          <declname>target</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/TargetedShot.cs" line="13" column="17" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/TargetedShot.cs" bodystart="13" bodyend="20"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_targeted_shot_1a975a5b6e68e30f5b3a9b8753f72191bd" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TargetedShot.Rotate</definition>
+        <argsstring>(Vector2 dir)</argsstring>
+        <name>Rotate</name>
+        <qualifiedname>TargetedShot.Rotate</qualifiedname>
+        <param>
+          <type>Vector2</type>
+          <declname>dir</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/TargetedShot.cs" line="23" column="20" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/TargetedShot.cs" bodystart="23" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="class_targeted_shot_1a00cda497be7a834f2dddda1eaa8f7370" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void TargetedShot.Disable</definition>
+        <argsstring>()</argsstring>
+        <name>Disable</name>
+        <qualifiedname>TargetedShot.Disable</qualifiedname>
+        <reimplementedby refid="class_arched_shot_1a5831e4e9ab6cba2d49ebe16a99d8cecf">Disable</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/TargetedShot.cs" line="56" column="28" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/TargetedShot.cs" bodystart="56" bodyend="61"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_targeted_shot_1ab90aaa08d18a309966202a451d593f7f" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void TargetedShot.OnTriggerEnter2D</definition>
+        <argsstring>(Collider2D collision)</argsstring>
+        <name>OnTriggerEnter2D</name>
+        <qualifiedname>TargetedShot.OnTriggerEnter2D</qualifiedname>
+        <param>
+          <type>Collider2D</type>
+          <declname>collision</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/TargetedShot.cs" line="29" column="10" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/TargetedShot.cs" bodystart="29" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="class_targeted_shot_1a94cd2d9ac9f3776e042e3d4c4b91cb90" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>IEnumerator</type>
+        <definition>IEnumerator TargetedShot.TravelTimeCountdown</definition>
+        <argsstring>()</argsstring>
+        <name>TravelTimeCountdown</name>
+        <qualifiedname>TargetedShot.TravelTimeCountdown</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/TargetedShot.cs" line="40" column="25" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/TargetedShot.cs" bodystart="40" bodyend="54"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="3">
+        <label>ArchedShot</label>
+        <link refid="class_arched_shot"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="1">
+        <label>TargetedShot</label>
+        <link refid="class_targeted_shot"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="3">
+        <label>BaseAbility</label>
+        <link refid="class_base_ability"/>
+        <childnode refid="4" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>BaseUnit</label>
+        <link refid="class_base_unit"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="6" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>ITargetable</label>
+        <link refid="interface_i_targetable"/>
+      </node>
+      <node id="2">
+        <label>MonoBehaviour</label>
+      </node>
+      <node id="4">
+        <label>ScriptableObject</label>
+      </node>
+      <node id="1">
+        <label>TargetedShot</label>
+        <link refid="class_targeted_shot"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+        <childnode refid="3" relation="usage">
+          <edgelabel>ability</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>owner</edgelabel>
+          <edgelabel>target</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/TargetedShot.cs" line="5" column="7" bodyfile="C:/Users/PC/Documents/GitHub/Witch-Pack/WitchPack/Assets/Scripts/Gameplay/Units/Abilities/TargetedShot.cs" bodystart="6" bodyend="63"/>
+    <listofallmembers>
+      <member refid="class_targeted_shot_1a272b5a2148785c4593f68e8a0044dd5c" prot="protected" virt="non-virtual"><scope>TargetedShot</scope><name>ability</name></member>
+      <member refid="class_targeted_shot_1a00cda497be7a834f2dddda1eaa8f7370" prot="protected" virt="virtual"><scope>TargetedShot</scope><name>Disable</name></member>
+      <member refid="class_targeted_shot_1a9c8f82d1cb637ffb47ce5b0ddc9bae93" prot="public" virt="non-virtual"><scope>TargetedShot</scope><name>Fire</name></member>
+      <member refid="class_targeted_shot_1ac9850e65d29f17d8bedc36246b75da96" prot="private" virt="non-virtual"><scope>TargetedShot</scope><name>maxTravelTime</name></member>
+      <member refid="class_targeted_shot_1ab90aaa08d18a309966202a451d593f7f" prot="private" virt="non-virtual"><scope>TargetedShot</scope><name>OnTriggerEnter2D</name></member>
+      <member refid="class_targeted_shot_1a5f26434e7b47436b3886523f270e78ac" prot="protected" virt="non-virtual"><scope>TargetedShot</scope><name>owner</name></member>
+      <member refid="class_targeted_shot_1a975a5b6e68e30f5b3a9b8753f72191bd" prot="protected" virt="non-virtual"><scope>TargetedShot</scope><name>Rotate</name></member>
+      <member refid="class_targeted_shot_1afcbc15294127bdb632a2b8e087576216" prot="protected" virt="non-virtual"><scope>TargetedShot</scope><name>speed</name></member>
+      <member refid="class_targeted_shot_1a02409cae603c878fcccaafaa2580a2c8" prot="protected" virt="non-virtual"><scope>TargetedShot</scope><name>target</name></member>
+      <member refid="class_targeted_shot_1a94cd2d9ac9f3776e042e3d4c4b91cb90" prot="private" virt="non-virtual"><scope>TargetedShot</scope><name>TravelTimeCountdown</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

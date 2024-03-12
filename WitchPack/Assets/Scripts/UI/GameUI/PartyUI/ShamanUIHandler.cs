@@ -7,7 +7,12 @@ public class ShamanUIHandler : ClickableUIElement
     [SerializeField] private Image _fill;
     [SerializeField] private Slider _healthBar;
     [SerializeField] private Image _splash;
+    [SerializeField] private Image _frame;
     [SerializeField, Range(0, 1)] private float spriteDeathAlpha;
+    [Space] 
+    [SerializeField] private Sprite upgradeReadyFrameSprite;
+    [SerializeField] private Sprite defaultFrameSprite;
+    
     private Shaman _shaman;
 
 
@@ -16,17 +21,13 @@ public class ShamanUIHandler : ClickableUIElement
         _shaman = shaman;
         _splash.sprite = _shaman.ShamanConfig.UnitIcon;
         _healthBar.value = 1;
-    }
-
-    private void GoToShaman() =>
-        GameManager.Instance.CameraHandler.SetCameraPosition(_shaman.transform.position);
-
-    public override void Show()
-    {
-        base.Show();
-        _shaman.Damageable.OnGetHit += OnHealthChange;
-        _shaman.Damageable.OnDeath += ShamanDeathUI;
+        _frame.sprite = shaman.EnergyHandler.HasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
+        shaman.EnergyHandler.OnShamanUpgrade += OnShamanUpgrade;
+        shaman.EnergyHandler.OnShamanLevelUp += OnShamanLevelUp;
+        shaman.Damageable.OnGetHit += OnHealthChange;
+        shaman.Damageable.OnDeath += ShamanDeathUI;
         OnClickEvent += GoToShaman;
+        Show();
     }
 
     private void OnHealthChange(Damageable arg1, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4, bool arg5)
@@ -46,8 +47,21 @@ public class ShamanUIHandler : ClickableUIElement
 
     private void ShamanDeathUI(Damageable arg1, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4)
     {
+        _frame.sprite = defaultFrameSprite;
         var lowAlphaColor = _splash.color;
         lowAlphaColor.a = spriteDeathAlpha;
         _splash.color = lowAlphaColor;
     }
+
+    private void OnShamanLevelUp(int obj) => _frame.sprite = upgradeReadyFrameSprite;
+    
+    private void OnShamanUpgrade(bool hasSkillPoints) => 
+        _frame.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
+
+    private void GoToShaman()
+    {
+        if(_shaman.IsDead) return;
+        GameManager.Instance.CameraHandler.SetCameraPosition(_shaman.transform.position);
+    }
+        
 }

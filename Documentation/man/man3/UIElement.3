@@ -1,0 +1,62 @@
+.TH "UIElement" 3 "Mon Jan 29 2024" "Version 0.096" "WitchPack" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+UIElement
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits MonoBehaviour, IPointerEnterHandler, and IPointerExitHandler\&.
+.PP
+Inherited by \fBAbilityUpgradePanelUI\fP, \fBClickableUIElement\fP, \fBCounterUIElement\fP, \fBEndScreenEnemiesKilledUIHandler\fP, \fBEndScreenTimeUIHandler\fP, \fBEndScreenUIHandler\fP, \fBEndScreenWaveInteractiveUIHandler\fP, \fBIndicator\fP, \fBPartyUIManager\fP, and \fBTimeControlUIHandler\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBShow\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBUpdateVisual\fP ()"
+.br
+.ti -1c
+.RI "virtual void \fBHide\fP ()"
+.br
+.ti -1c
+.RI "void \fBOnPointerEnter\fP (PointerEventData eventData)"
+.br
+.ti -1c
+.RI "void \fBOnPointerExit\fP (PointerEventData eventData)"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBAwake\fP ()"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "RectTransform \fBrectTransform\fP"
+.br
+.ti -1c
+.RI "UIGroup \fBuiGroup\fP"
+.br
+.ti -1c
+.RI "bool \fBisMouseOver\fP"
+.br
+.in -1c
+.SS "Properties"
+
+.in +1c
+.ti -1c
+.RI "RectTransform \fBRectTransform\fP\fC [get]\fP"
+.br
+.in -1c
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for WitchPack from the source code\&.
