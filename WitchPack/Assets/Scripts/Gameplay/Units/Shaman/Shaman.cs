@@ -44,7 +44,7 @@ public class Shaman : BaseUnit
         EnemyTargeter.SetRadius(Stats.BonusRange);
         IntializeAbilities();
         shamanAnimator.Init(this);
-        indicatable.Init(shamanConfig.UnitIcon);
+        indicatable.Init(shamanConfig.UnitIcon, action: FocusCameraOnShaman, clickable: true);
         Indicator newIndicator = LevelManager.Instance.IndicatorManager.CreateIndicator(indicatable);
         newIndicator.gameObject.SetActive(false);
         shamanVisualHandler.Init(this,baseUnitConfig);
@@ -212,6 +212,11 @@ public class Shaman : BaseUnit
     private void SetOffIndicator()
     {
         indicatable.ToggleIndicatableRendering(false);
+    }
+
+    private void FocusCameraOnShaman()
+    {
+        GameManager.Instance.CameraHandler.SetCameraPosition(transform.position, false);
     }
 
 }

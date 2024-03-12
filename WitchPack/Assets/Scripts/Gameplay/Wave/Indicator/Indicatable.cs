@@ -26,6 +26,7 @@ public class Indicatable : MonoBehaviour
         this.lifetime = lifetime;
         artWork = art;
         onClickAction = action;
+        this.clickable = clickable;
     }
 
 
