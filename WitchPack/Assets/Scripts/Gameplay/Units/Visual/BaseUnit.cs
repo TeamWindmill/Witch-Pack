@@ -57,8 +57,6 @@ public class BaseUnit : InitializedMono<BaseUnitConfig>
     public UnitTargetHelper<Enemy> EnemyTargetHelper => enemyTargetHelper;
 
     public List<ITimer> UnitTimers { get => unitTimers; }
-    public bool Initialized { get; protected set; }
-
     #endregion
 
     public virtual void Init(BaseUnitConfig givenConfig)
