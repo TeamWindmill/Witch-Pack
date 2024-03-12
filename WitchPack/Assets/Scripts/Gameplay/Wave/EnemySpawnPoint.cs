@@ -12,10 +12,11 @@ public class EnemySpawnPoint : MonoBehaviour
     private Queue<Enemy> queuedEnemies = new Queue<Enemy>();
     private Coroutine activeSpawningRoutine;
     private float lastSpawned = -0.4f;
-    public void SetIndicator(Sprite artwork ,float time, Action onClick)
+    public Indicator SetIndicator(Sprite artwork ,float time, Action onClick)
     {
         indicateable.Init(artwork, onClick, time, true);
-        LevelManager.Instance.IndicatorManager.CreateIndicator(indicateable);
+        Indicator newIndicator = LevelManager.Instance.IndicatorManager.CreateIndicator(indicateable);
+        return newIndicator;
     }
 
     public Enemy SpawnEnemy(EnemyConfig givenConf)
