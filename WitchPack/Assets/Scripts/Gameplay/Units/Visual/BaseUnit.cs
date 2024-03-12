@@ -86,6 +86,8 @@ public class BaseUnit : InitializedMono<BaseUnitConfig>
         damageable.OnDamageCalc += LevelManager.Instance.PopupsManager.SpawnDamagePopup;
         damageable.OnHeal += LevelManager.Instance.PopupsManager.SpawnHealPopup;
         effectable.OnAffected += LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
+        Stats.OnStatChanged += EnemyTargeter.AddRadius;
+
     }
 
     protected void BaseInit(BaseUnitConfig givenConfig) => base.Init(givenConfig);
@@ -103,8 +105,7 @@ public class BaseUnit : InitializedMono<BaseUnitConfig>
             damageable.OnDamageCalc -= hpBar.SetBarValue;
             damageable.OnHeal -= hpBar.SetBarBasedOnOwner;
         }
-
-        
+        Stats.OnStatChanged -= EnemyTargeter.AddRadius;
     }
 
     public void ToggleCollider(bool state)

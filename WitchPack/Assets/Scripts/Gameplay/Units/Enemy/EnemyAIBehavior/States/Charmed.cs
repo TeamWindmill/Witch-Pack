@@ -30,7 +30,7 @@ public class Charmed : State<EnemyAI>
         }
         else
         {
-            parent.Enemy.Movement.SetDestination(_caster.transform.position);
+            //parent.Enemy.Movement.SetDestination(_caster.transform.position);
         }
     }
 
