@@ -9,6 +9,8 @@ public class Indicator : UIElement
     [SerializeField] private Button button;
     [SerializeField] private Transform pointer;
 
+    [SerializeField] private RectTransform artParent;
+
     private Action onClick;
     private float time;
     private float counter;
@@ -62,32 +64,33 @@ public class Indicator : UIElement
 
     private void PositionIndicator()
     {
-        Vector3 targetSP = GameManager.Instance.CameraHandler.MainCamera.WorldToScreenPoint(target.transform.position);
-        targetSP = new Vector3(Mathf.Clamp(targetSP.x, 0, midScreen.x * 2), Mathf.Clamp(targetSP.y, 0, midScreen.y * 2));
-        targetSP -= midScreen;
-        rectTransform.localPosition = targetSP;
+        Vector3 targetScreenPoint = GameManager.Instance.CameraHandler.MainCamera.WorldToScreenPoint(target.transform.position);
+        targetScreenPoint = new Vector3(Mathf.Clamp(targetScreenPoint.x, 0, midScreen.x * 2), Mathf.Clamp(targetScreenPoint.y, 0, midScreen.y * 2));
+        targetScreenPoint -= midScreen;
+        rectTransform.localPosition = targetScreenPoint;
         /* float angle = Mathf.Atan2(targetSP.normalized.y, targetSP.normalized.y) * Mathf.Rad2Deg;
          pointer.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);*/
 
         //test
 
-        if (targetSP.y == -midScreen.y)
+        if (targetScreenPoint.y == -midScreen.y)
         {
             rectTransform.localRotation = Quaternion.AngleAxis(180, Vector3.forward);
         }
-        else if (targetSP.y == midScreen.y)
+        else if (targetScreenPoint.y == midScreen.y)
         {
             rectTransform.localRotation = Quaternion.AngleAxis(0, Vector3.forward);
         }
-        else if (targetSP.x == -midScreen.x)
+        else if (targetScreenPoint.x == -midScreen.x)
         {
             rectTransform.localRotation = Quaternion.AngleAxis(90, Vector3.forward);
         }
-        else if (targetSP.x == midScreen.x)
+        else if (targetScreenPoint.x == midScreen.x)
         {
             rectTransform.localRotation = Quaternion.AngleAxis(270, Vector3.forward);
         }
-        artwork.rectTransform.localEulerAngles = new Vector3(0, 0, -rectTransform.localEulerAngles.z);
+        //artwork.rectTransform.localEulerAngles = new Vector3(0, 0, -rectTransform.localEulerAngles.z);
+        artParent.localEulerAngles = new Vector3(0, 0, -rectTransform.localEulerAngles.z);
 
         /* float angle = Mathf.Atan2(targetSP.y - midScreen.y, targetSP.x - midScreen.x);
          Vector3 posIndicator = new Vector3();
@@ -107,7 +110,8 @@ public class Indicator : UIElement
     private void OnDisable()
     {
         rectTransform.localRotation = Quaternion.AngleAxis(0, Vector3.forward);
-        artwork.rectTransform.localRotation = Quaternion.AngleAxis(0, Vector3.forward);
+        //artwork.rectTransform.localRotation = Quaternion.AngleAxis(0, Vector3.forward);
+        artParent.localRotation = Quaternion.AngleAxis(0, Vector3.forward);
 
     }
 
