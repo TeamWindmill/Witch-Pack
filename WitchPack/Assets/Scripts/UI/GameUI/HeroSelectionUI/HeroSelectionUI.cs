@@ -26,7 +26,6 @@ public class HeroSelectionUI : MonoSingleton<HeroSelectionUI> , IPointerEnterHan
 
     public void Show(Shaman shaman)
     {
-        UnitStats stats = shaman.Stats;
         Shaman = shaman;
         statBlockPanel.Init(shaman);
         //psBonusUIHandler.Show(stats);
@@ -59,12 +58,14 @@ public class HeroSelectionUI : MonoSingleton<HeroSelectionUI> , IPointerEnterHan
     public void OnPointerEnter(PointerEventData eventData)
     {
         MouseOverUI = true;
+        GameManager.Instance.CameraHandler.ToggleCameraLock(true);
         OnMouseEnter?.Invoke();
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         MouseOverUI = false;
+        GameManager.Instance.CameraHandler.ToggleCameraLock(false);
         OnMouseExit?.Invoke();
     }
 }

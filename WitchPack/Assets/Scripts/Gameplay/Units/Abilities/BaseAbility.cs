@@ -5,22 +5,32 @@ using UnityEngine;
 
 public abstract class BaseAbility : ScriptableObject
 {
-    [HideLabel, PreviewField(55,ObjectFieldAlignment.Left)]
-    [BoxGroup("General Settings")]
-    [HorizontalGroup("General Settings/Split",width:70)]
-    [SerializeField] private Sprite icon;
-    
-    [BoxGroup("General Settings")]
+    [BoxGroup("General Settings/Details",centerLabel: true)]
     [LabelWidth(50)]
-    [VerticalGroup("General Settings/Split/Right")]
-    [HorizontalGroup("General Settings/Split")]
+    //[VerticalGroup("General Settings/Split/Right")]
+    [HorizontalGroup("General Settings")]
     [SerializeField] private string name;
     
-    [BoxGroup("General Settings")]
+    [BoxGroup("General Settings/Details",centerLabel: true)]
     [TextArea(4, 14)]
-    [HorizontalGroup("General Settings/Split")]
-    [VerticalGroup("General Settings/Split/Right")]
+    [HorizontalGroup("General Settings")]
+    //[VerticalGroup("General Settings/Split/Right")]
     [SerializeField] private string discription;
+    
+    [PreviewField(55)]
+    [BoxGroup("General Settings/Icons",centerLabel: true)]
+    [HorizontalGroup("General Settings")]
+    [SerializeField] private Sprite defaultIcon;
+    
+    [PreviewField(55)]
+    [BoxGroup("General Settings/Icons",centerLabel: true)]
+    [HorizontalGroup("General Settings")]
+    [SerializeField] private Sprite disabledIcon;
+    
+    [PreviewField(55)]
+    [BoxGroup("General Settings/Icons",centerLabel: true)]
+    [HorizontalGroup("General Settings")]
+    [SerializeField] private Sprite upgradeIcon;
 
     [BoxGroup("Skill Tree")][SerializeField] private BaseAbility[] _upgrades;
     [BoxGroup("Damage Popup Numbers")][SerializeField] private bool hasPopupColor;
@@ -29,7 +39,7 @@ public abstract class BaseAbility : ScriptableObject
     private AbilityUpgradeState _abilityUpgradeState;
     public bool HasPopupColor { get => hasPopupColor; }
     public Color PopupColor { get => popupColor; }
-    public Sprite Icon => icon;
+    public Sprite DefaultIcon => defaultIcon;
     public string Name => name;
     public string Discription => discription;
     public BaseAbility[] Upgrades => _upgrades;

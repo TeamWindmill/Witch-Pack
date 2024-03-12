@@ -3,7 +3,7 @@ using UnityEngine;
 
 
 [Serializable]
-public class WindEffectHandler : EffectTransitionLerp<WindParticleAnimationType>
+public class WindEffectHandler : EffectTransitionLerp<ParticleAnimationType>
 {
     private ParticleSystem[] _windParticles;
 
@@ -12,11 +12,11 @@ public class WindEffectHandler : EffectTransitionLerp<WindParticleAnimationType>
         _windParticles = windParticles;
     }
 
-    protected override void SetValue(WindParticleAnimationType type, float value)
+    protected override void SetValue(ParticleAnimationType type, float value)
     {
         switch (type)
         {
-            case WindParticleAnimationType.SimulationSpeed:
+            case ParticleAnimationType.SimulationSpeed:
                 foreach (var particle in _windParticles)
                 {
                     var main = particle.main;
@@ -28,7 +28,7 @@ public class WindEffectHandler : EffectTransitionLerp<WindParticleAnimationType>
     }
 }
 
-public enum WindParticleAnimationType
+public enum ParticleAnimationType
 {
     SimulationSpeed,
 }

@@ -202,7 +202,6 @@ Transform:
   - {fileID: 2971995721795491555}
   - {fileID: 8991111791567003915}
   - {fileID: 8941240236620290604}
-  - {fileID: 5631091486548740503}
   - {fileID: 8518057557330149118}
   - {fileID: 8939714329096551808}
   - {fileID: 763702162486530112}
@@ -236,9 +235,7 @@ MonoBehaviour:
   - {fileID: 1181389657882632671}
   - {fileID: 3392006803581390503}
   - {fileID: 3882102753062598714}
-  windEffectsParticleSystem:
-  - {fileID: 1897545809591933593}
-  - {fileID: 7217239295452024031}
+  _EnviromentHandler: {fileID: 6774714382102225793}
   navMeshSurface: {fileID: 772577259468376679}
   waveHandler: {fileID: -5944038825449864076}
   cameraLevelSettings:
@@ -770,38 +767,6 @@ MonoBehaviour:
   m_UseMeshPrefab: {fileID: 0}
   m_CompressBounds: 0
   m_OverrideVector: {x: 1, y: 1, z: 1}
---- !u!1 &7300951936517818848
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5631091486548740503}
-  m_Layer: 0
-  m_Name: VFX
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5631091486548740503
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7300951936517818848}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4484618772268365423}
-  m_Father: {fileID: 4319940627422526649}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7341714739771356214
 GameObject:
   m_ObjectHideFlags: 0
@@ -1794,6 +1759,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09cb0b55ce7312740993d0f2a58c7f05, type: 3}
+--- !u!114 &6774714382102225793 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 943716443190178152, guid: 09cb0b55ce7312740993d0f2a58c7f05, type: 3}
+  m_PrefabInstance: {fileID: 5988766937543693033}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28921e6910e64b18a39fb5cf2f1e77ef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &8941240236620290604 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3389509933984368837, guid: 09cb0b55ce7312740993d0f2a58c7f05, type: 3}
@@ -2282,78 +2258,6 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 2769440070172495311, guid: cc77f83d75dc41c4186ed542ed2d461c, type: 3}
   m_PrefabInstance: {fileID: 6517363709125229004}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &6676024733360212144
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 5631091486548740503}
-    m_Modifications:
-    - target: {fileID: 4141272437573713113, guid: 28a5df87c9bec744eb7a0fad471b9801, type: 3}
-      propertyPath: m_Name
-      value: Wind_Effect
-      objectReference: {fileID: 0}
-    - target: {fileID: 7105149816320229087, guid: 28a5df87c9bec744eb7a0fad471b9801, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 1.0615093
-      objectReference: {fileID: 0}
-    - target: {fileID: 7105149816320229087, guid: 28a5df87c9bec744eb7a0fad471b9801, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.63999987
-      objectReference: {fileID: 0}
-    - target: {fileID: 7105149816320229087, guid: 28a5df87c9bec744eb7a0fad471b9801, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -6.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7105149816320229087, guid: 28a5df87c9bec744eb7a0fad471b9801, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7105149816320229087, guid: 28a5df87c9bec744eb7a0fad471b9801, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 7105149816320229087, guid: 28a5df87c9bec744eb7a0fad471b9801, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7105149816320229087, guid: 28a5df87c9bec744eb7a0fad471b9801, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7105149816320229087, guid: 28a5df87c9bec744eb7a0fad471b9801, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 7105149816320229087, guid: 28a5df87c9bec744eb7a0fad471b9801, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7105149816320229087, guid: 28a5df87c9bec744eb7a0fad471b9801, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 28a5df87c9bec744eb7a0fad471b9801, type: 3}
---- !u!198 &1897545809591933593 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 5112551787981328937, guid: 28a5df87c9bec744eb7a0fad471b9801, type: 3}
-  m_PrefabInstance: {fileID: 6676024733360212144}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &4484618772268365423 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7105149816320229087, guid: 28a5df87c9bec744eb7a0fad471b9801, type: 3}
-  m_PrefabInstance: {fileID: 6676024733360212144}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &7217239295452024031 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 4075416784767861871, guid: 28a5df87c9bec744eb7a0fad471b9801, type: 3}
-  m_PrefabInstance: {fileID: 6676024733360212144}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6997262761603073584
 PrefabInstance:

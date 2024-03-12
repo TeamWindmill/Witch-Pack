@@ -8,7 +8,7 @@ public class MultiShotMono : ShamanAutoAttackMono
     private const float DistanceToTarget = 1;
     private Vector3 initialPosition;
     private List<Vector3> allPositions;
-    private bool setup;
+    private bool Initiallized;
     private int counter = 0;
     public void Fire(BaseUnit shooter, OffensiveAbility givenAbility, Vector2 dir, BaseUnit target, Vector3 archSize)
     {
@@ -32,7 +32,7 @@ public class MultiShotMono : ShamanAutoAttackMono
     {
         initialPosition = transform.position;
         allPositions = new List<Vector3>(numOfPoint);
-        setup = true;
+        Initiallized = true;
 
         for (var i = 0; i < numOfPoint; i++)
         {
@@ -40,34 +40,34 @@ public class MultiShotMono : ShamanAutoAttackMono
                 target.transform.position, (float)i / numOfPoint);
             allPositions.Add(newPosition);
         }
-        setup = true;
+        Initiallized = true;
     }
 
     private void Update()
     {
-        if (!setup)
+        if (!Initiallized)
         {
             return;
         }
-        if (counter < allPositions.Count)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, allPositions[counter], GAME_TIME.GameDeltaTime * speed);
-            if (Vector3.Distance(transform.position, allPositions[counter]) < DistanceToTarget)
-            {
-                //Rotate((allPositions[counter] - transform.position).normalized * -1);
-                counter++;
-            }
-        }
-        else
-        {
-            transform.position = target.transform.position;
-            setup = false;
-            if (target.Damageable.CurrentHp <= 0)
-            {
-                OnShotHit?.Invoke(ability, owner, target);
-                Disable();
-            }
-        }
+        // if (counter < allPositions.Count)
+        // {
+        //     transform.position = Vector3.MoveTowards(transform.position, allPositions[counter], GAME_TIME.GameDeltaTime * speed);
+        //     if (Vector3.Distance(transform.position, allPositions[counter]) < DistanceToTarget)
+        //     {
+        //         //Rotate((allPositions[counter] - transform.position).normalized * -1);
+        //         counter++;
+        //     }
+        // }
+        // else
+        // {
+        //     transform.position = target.transform.position;
+        //     setup = false;
+        //     if (target.Damageable.CurrentHp <= 0)
+        //     {
+        //         OnShotHit?.Invoke(ability, owner, target);
+        //         Disable();
+        //     }
+        // }
     }
     private Vector3 CubicCurve(Vector3 start, Vector3 control1, Vector3 control2, Vector3 end, float t)
     {
@@ -78,7 +78,7 @@ public class MultiShotMono : ShamanAutoAttackMono
     public override void Disable()
     {
         base.Disable();
-        setup = false;
+        Initiallized = false;
         counter = 0;
     }
 }

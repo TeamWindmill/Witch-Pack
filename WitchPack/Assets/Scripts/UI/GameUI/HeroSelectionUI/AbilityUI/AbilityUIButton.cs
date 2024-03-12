@@ -30,16 +30,22 @@ public class AbilityUIButton : ClickableUIElement
     public void Init(BaseAbility rootAbility,BaseAbility activeAbility = null, AbilityCaster caster = null, bool hasSkillPoints = false)
     {
         _rootAbility = rootAbility;
-        _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
         if (ReferenceEquals(activeAbility,null))
         {
-            _abilitySpriteRenderer.sprite = rootAbility.Icon;
+            _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
+            _activeAbility = null;
+            _abilitySpriteRenderer.sprite = rootAbility.DefaultIcon;
             SetCooldownData(1);
         }
         else
         {
             _activeAbility = activeAbility;
-            _abilitySpriteRenderer.sprite = activeAbility.Icon;
+            if(_activeAbility.Upgrades.Length > 0)
+                _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
+            else
+                _frameSpriteRenderer.sprite = defaultFrameSprite;
+            
+            _abilitySpriteRenderer.sprite = activeAbility.DefaultIcon;
             if (caster is not null)
             {
                 _caster = caster;
@@ -53,15 +59,20 @@ public class AbilityUIButton : ClickableUIElement
 
     public void UpdateVisual(bool hasSkillPoints)
     {
-        _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
         if (ReferenceEquals(_activeAbility,null))
         {
-            _abilitySpriteRenderer.sprite = _rootAbility.Icon;
+            _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
+            _abilitySpriteRenderer.sprite = _rootAbility.DefaultIcon;
             SetCooldownData(1);
         }
         else
         {
-            _abilitySpriteRenderer.sprite = _activeAbility.Icon;
+            if(_activeAbility.Upgrades.Length > 0)
+                _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
+            else
+                _frameSpriteRenderer.sprite = defaultFrameSprite;
+            
+            _abilitySpriteRenderer.sprite = _activeAbility.DefaultIcon;
             if (_caster is not null)
             {
                 SetCooldownData(castHandler: _caster);

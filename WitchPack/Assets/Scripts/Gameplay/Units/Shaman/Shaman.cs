@@ -28,7 +28,7 @@ public class Shaman : BaseUnit
     private ShamanConfig shamanConfig;
     private List<BaseAbility> rootAbilities = new List<BaseAbility>();
     private List<BaseAbility> knownAbilities = new List<BaseAbility>();
-    private EnergyHandler energyHandler;
+    [SerializeField]private EnergyHandler energyHandler;
     #endregion
 
     private void OnValidate()
@@ -46,6 +46,7 @@ public class Shaman : BaseUnit
         shamanAnimator.Init(this);
         indicatable.Init(shamanConfig.UnitIcon);
         shamanVisualHandler.Init(this,baseUnitConfig);
+        AutoCaster.Init(this,true);
 
         #region Events
         // no need to unsubscribe because shaman gets destroyed between levels
@@ -54,6 +55,8 @@ public class Shaman : BaseUnit
         Movement.OnDestinationSet += AutoCaster.DisableCaster;
         Movement.OnDestinationReached += AutoCaster.EnableCaster;
         clicker.OnClick += SetSelectedShaman;
+        clicker.OnEnterHover += shamanVisualHandler.ShowShamanRange;
+        clicker.OnExitHover += shamanVisualHandler.HideShamanRange;
         DamageDealer.OnKill += energyHandler.OnEnemyKill;
         DamageDealer.OnAssist += energyHandler.OnEnemyAssist;
         energyHandler.OnShamanLevelUp += OnLevelUpGFX;
@@ -64,9 +67,10 @@ public class Shaman : BaseUnit
         Effectable.OnEffectRemovedVFX += ShamanVisualHandler.EffectHandler.DisableEffect;
         AutoCaster.CastTimeStartVFX += ShamanVisualHandler.EffectHandler.PlayEffect;
         AutoCaster.CastTimeEndVFX += ShamanVisualHandler.EffectHandler.DisableEffect;
+        AutoCaster.CastTimeStart += ShamanCastSFX;
         #endregion
 
-        Initialized = true;
+        BaseInit(baseUnitConfig);
     }
 
     private void IntializeAbilities()
@@ -96,7 +100,7 @@ public class Shaman : BaseUnit
                 (ability as Passive).SubscribePassive(this);
             }
         }
-        AutoCaster.Init(this);
+        AutoCaster.Init(this,true);
     }
 
     public void LearnAbility(BaseAbility ability)
@@ -111,13 +115,12 @@ public class Shaman : BaseUnit
         {
             passive.SubscribePassive(this);
         }
-        AutoCaster.Init(this);
-
+        AutoCaster.Init(this,true);
     }
 
     public void RemoveAbility(BaseAbility ability)
     {
-        if (ability is not Passive)
+        //if (ability is not Passive) //might cause a problem with some passives
         {
             knownAbilities.Remove(ability);
             castingHandlers.Remove(GetCasterFromAbility(ability));
@@ -160,6 +163,7 @@ public class Shaman : BaseUnit
 
     private void SetSelectedShaman(PointerEventData.InputButton button)
     {
+        shamanVisualHandler.HideShamanRange();
         if (button == PointerEventData.InputButton.Left)
         {
             if (!ReferenceEquals(LevelManager.Instance.SelectionManager.SelectedShaman, this))
@@ -176,6 +180,7 @@ public class Shaman : BaseUnit
         }
     }
 
+
     public void ToggleClicker(bool state)
     {
         clicker.enabled = state;
@@ -191,7 +196,8 @@ public class Shaman : BaseUnit
     private void OnHitSFX(bool isCrit) => SoundManager.Instance.PlayAudioClip(shamanConfig.IsMale? SoundEffectType.ShamanGetHitMale : SoundEffectType.ShamanGetHitFemale);
     private void DeathSFX() => SoundManager.Instance.PlayAudioClip(shamanConfig.IsMale? SoundEffectType.ShamanDeathMale : SoundEffectType.ShamanDeathFemale);
     private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.BasicAttack);
-    public void ShamanCastGfx(CastingAbility ability) => SoundManager.Instance.PlayAudioClip(ability.SoundEffectType);
+    public void ShamanAbilityCastSFX(CastingAbility ability) => SoundManager.Instance.PlayAudioClip(ability.SoundEffectType);
+    public void ShamanCastSFX(CastingAbility ability) => SoundManager.Instance.PlayAudioClip(SoundEffectType.ShamanCast);
 
     #endregion
 

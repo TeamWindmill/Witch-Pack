@@ -298,7 +298,7 @@ public class CameraHandler : MonoBehaviour
         ToggleCameraLock(false);
     }
 
-    private void ToggleCameraLock(bool state)
+    public void ToggleCameraLock(bool state)
     {
         _enableCameraMovement = !state;
         _cinemachineBrain.enabled = !state;
