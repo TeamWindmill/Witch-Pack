@@ -20,6 +20,8 @@ public class Indicator : UIElement
 
 
     private Vector3 midScreen = new Vector3(Screen.width / 2, Screen.height / 2);
+    private Vector2 referenceResolution;
+    private Vector2 resolutionDifference;
 
     // pulse variables
     [SerializeField] private float pulsingSpeed;
@@ -46,6 +48,9 @@ public class Indicator : UIElement
         {
             this.onClick = null;
         }
+        referenceResolution = new Vector2(1920f, 1080f); 
+        resolutionDifference = new Vector2(referenceResolution.x / Screen.width, referenceResolution.y / Screen.height);
+
     }
 
 
@@ -77,8 +82,13 @@ public class Indicator : UIElement
     private void PositionIndicator()
     {
         Vector3 targetScreenPoint = GameManager.Instance.CameraHandler.MainCamera.WorldToScreenPoint(target.transform.position);
-        targetScreenPoint = new Vector3(Mathf.Clamp(targetScreenPoint.x, 0, midScreen.x * 2), Mathf.Clamp(targetScreenPoint.y, 0, midScreen.y * 2));
-        targetScreenPoint -= midScreen;
+        targetScreenPoint.x *= resolutionDifference.x;
+        targetScreenPoint.y *= resolutionDifference.y;
+        Debug.Log(targetScreenPoint);
+        float clampedX = Mathf.Clamp(targetScreenPoint.x, 0, midScreen.x * 2);
+        float clampedY = Mathf.Clamp(targetScreenPoint.y, 0, midScreen.y * 2);
+        targetScreenPoint = new Vector3(clampedX, clampedY);
+        targetScreenPoint -= (new Vector3(referenceResolution.x / 2f, referenceResolution.y / 2f)); // Why we do dis??
         rectTransform.localPosition = targetScreenPoint;
         /* float angle = Mathf.Atan2(targetSP.normalized.y, targetSP.normalized.y) * Mathf.Rad2Deg;
          pointer.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);*/
