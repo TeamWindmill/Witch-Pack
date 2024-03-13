@@ -5,15 +5,15 @@ using Sirenix.OdinInspector;
 [CreateAssetMenu(fileName = "MultiShot", menuName = "Ability/MultiShot")]
 public class MultiShotSO : OffensiveAbility
 {
-    [BoxGroup("MultiShot")][SerializeField] private int offset;
-    [BoxGroup("MultiShot")][SerializeField] private MultiShotType multiShotType;
+    [BoxGroup("MultiShot")][SerializeField] protected int offset;
+    [BoxGroup("MultiShot")][SerializeField] protected MultiShotType multiShotType;
 
     
 
-    private const int NUMBER_OF_SHOTS = 3;
-    private Enemy _target1;
-    private Enemy _target2;
-    private Enemy _target3;
+    protected const int NUMBER_OF_SHOTS = 3;
+    protected Enemy _target1;
+    protected Enemy _target2;
+    protected Enemy _target3;
 
     public override bool CastAbility(BaseUnit caster)
     {
