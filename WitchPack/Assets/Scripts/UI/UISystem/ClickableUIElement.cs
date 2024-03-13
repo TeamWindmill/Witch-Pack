@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public abstract class ClickableUIElement : UIElement, IPointerClickHandler
 {
     //inherit from this class for clickable ui element
-    public event Action OnClickEvent;
+    public event Action<PointerEventData> OnClickEvent;
     public event Action OnDoubleClickEvent;
 
     [SerializeField] private bool enableDoubleClick;
@@ -49,7 +49,7 @@ public abstract class ClickableUIElement : UIElement, IPointerClickHandler
 
     protected virtual void OnClick(PointerEventData eventData)
     {
-        OnClickEvent?.Invoke();
+        OnClickEvent?.Invoke(eventData);
 
         if (!enableDoubleClick) return;
         

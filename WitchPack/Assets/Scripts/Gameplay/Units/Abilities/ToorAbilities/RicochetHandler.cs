@@ -20,32 +20,32 @@ public class RicochetHandler
     public void JumpToTarget(OffensiveAbility ability, BaseUnit shooter, BaseUnit originalTarget)
     {
 
-        ShamanAutoAttackMono shot = LevelManager.Instance.PoolManager.MultiShotPool.GetPooledObject();
-        Enemy originalEnemy = originalTarget as Enemy;
-        List<Enemy> enemies = shooter.EnemyTargeter.GetAvailableTargets(originalEnemy, jumpsRange);
-        Enemy newTargat = shooter.EnemyTargetHelper.GetTarget(enemies, targetData);
-        if (ReferenceEquals(newTargat, null) || newTargat.Damageable.CurrentHp <= 0)//if no target was found or if the target is dead
-        {
-            shot.Disable();
-            return;
-        }
-        Vector2 dir = newTargat.transform.position - originalTarget.transform.position;
-        shot.transform.position = originalTarget.transform.position;
-        shot.SetSpeed(speed);
-        shot.gameObject.SetActive(true);
-        shot.Fire(shooter, ability, dir.normalized, newTargat);
-        jumpsLeft--;
-        if (jumpsLeft > 0)
-        {
-            shot.OnShotHit.AddListener(JumpToTarget);
-            Debug.Log("jumped");
-        }
-       /* else
-        {
-            shot.Disable();
-            Debug.Log("disabled");
-            return;
-        }*/
+       //  MultiShotMono shot = LevelManager.Instance.PoolManager.MultiShotPool.GetPooledObject();
+       //  Enemy originalEnemy = originalTarget as Enemy;
+       //  List<Enemy> enemies = shooter.EnemyTargeter.GetAvailableTargets(originalEnemy, jumpsRange);
+       //  Enemy newTargat = shooter.EnemyTargetHelper.GetTarget(enemies, targetData);
+       //  if (ReferenceEquals(newTargat, null) || newTargat.Damageable.CurrentHp <= 0)//if no target was found or if the target is dead
+       //  {
+       //      shot.Disable();
+       //      return;
+       //  }
+       //  Vector2 dir = newTargat.transform.position - originalTarget.transform.position;
+       //  shot.transform.position = originalTarget.transform.position;
+       //  shot.SetSpeed(speed);
+       //  shot.gameObject.SetActive(true);
+       //  shot.Fire(shooter, ability, dir.normalized, newTargat);
+       //  jumpsLeft--;
+       //  if (jumpsLeft > 0)
+       //  {
+       //      shot.OnShotHit.AddListener(JumpToTarget);
+       //      Debug.Log("jumped");
+       //  }
+       // /* else
+       //  {
+       //      shot.Disable();
+       //      Debug.Log("disabled");
+       //      return;
+       //  }*/
     }
 
 

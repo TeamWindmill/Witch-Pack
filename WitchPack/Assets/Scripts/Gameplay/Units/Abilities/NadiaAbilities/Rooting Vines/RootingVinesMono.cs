@@ -41,8 +41,8 @@ public class RootingVinesMono : MonoBehaviour
         {
             if (!ReferenceEquals(enemy, null))
             {
-                enemy.Damageable.GetHit(owner.DamageDealer, refAbility);
                 OnRoot(enemy);
+                enemy.Damageable.GetHit(owner.DamageDealer, refAbility);
             }
         }
     }

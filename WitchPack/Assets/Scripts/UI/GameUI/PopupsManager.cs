@@ -94,24 +94,24 @@ public class PopupsManager : MonoBehaviour
         // Third Priority - Crit Color
         if (isCrit)
         {
-            if (damageDealer.Owner is Shaman)
+            if (damageDealer.Owner is Enemy enemy && !enemy.Effectable.ContainsStatusEffect(StatusEffectType.Charm))
             {
-                return shamanCritColor;
+                return enemyCritAutoAttackColor;
             }
             else
             {
-                return enemyCritAutoAttackColor;
+                return shamanCritColor;
             }
         }
 
         // Fourth Priority - Default Colors
-        if (damageDealer.Owner is Shaman)
+        else if (damageDealer.Owner is Enemy enemy && !enemy.Effectable.ContainsStatusEffect(StatusEffectType.Charm))
         {
-            return Color.white;
+            return enemyAutoAttackColor;
         }
         else
         {
-            return enemyAutoAttackColor;
+            return Color.white;
         }
     }
 }

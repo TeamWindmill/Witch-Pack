@@ -5,34 +5,34 @@ using UnityEngine;
 
 public abstract class BaseAbility : ScriptableObject
 {
-    [BoxGroup("General Settings/Details",centerLabel: true)]
-    [LabelWidth(50)]
-    //[VerticalGroup("General Settings/Split/Right")]
+    [BoxGroup("General Settings/left/Details",centerLabel: true)]
+    [LabelWidth(50)][VerticalGroup("General Settings/left")]
     [HorizontalGroup("General Settings")]
     [SerializeField] private string name;
     
-    [BoxGroup("General Settings/Details",centerLabel: true)]
-    [TextArea(4, 14)]
+    [BoxGroup("General Settings/left/Details",centerLabel: true)]
+    [TextArea(4, 14)][VerticalGroup("General Settings/left")]
     [HorizontalGroup("General Settings")]
-    //[VerticalGroup("General Settings/Split/Right")]
     [SerializeField] private string discription;
     
-    [PreviewField(55)]
+    [PreviewField(63)]
     [BoxGroup("General Settings/Icons",centerLabel: true)]
     [HorizontalGroup("General Settings")]
     [SerializeField] private Sprite defaultIcon;
     
-    [PreviewField(55)]
+    [PreviewField(63)]
     [BoxGroup("General Settings/Icons",centerLabel: true)]
     [HorizontalGroup("General Settings")]
     [SerializeField] private Sprite disabledIcon;
     
-    [PreviewField(55)]
+    [PreviewField(63)]
     [BoxGroup("General Settings/Icons",centerLabel: true)]
     [HorizontalGroup("General Settings")]
     [SerializeField] private Sprite upgradeIcon;
-
-    [BoxGroup("Skill Tree")][SerializeField] private BaseAbility[] _upgrades;
+    
+    [HorizontalGroup("General Settings")][VerticalGroup("General Settings/left")]
+    [BoxGroup("General Settings/left/Skill Tree")][SerializeField] private BaseAbility[] _upgrades;
+    
     [BoxGroup("Damage Popup Numbers")][SerializeField] private bool hasPopupColor;
     [BoxGroup("Damage Popup Numbers")][SerializeField, ShowIf(nameof(hasPopupColor))] private Color popupColor;
 
