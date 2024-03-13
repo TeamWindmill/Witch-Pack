@@ -51,8 +51,10 @@ public class WaveHandler : MonoBehaviour
         //yield return StartCoroutine(IntervalDelay(waveData.StartDelayInterval));
         int nextWave = 0;
         //create start indicator 
-        SetIndicator(nextWave);
-        yield return new WaitUntil(() => skipFlag);
+        SetIndicator(nextWave, waveData.StartDelayInterval);
+        //yield return new WaitUntil(() => skipFlag); // using skipFlag
+        yield return StartCoroutine(WaveDelay(waveData.StartDelayInterval)); 
+
         for (int i = 0; i < spawnData.Count; i++)
         {
             skipFlag = false;

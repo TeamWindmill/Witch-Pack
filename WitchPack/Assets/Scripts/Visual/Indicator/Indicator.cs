@@ -9,6 +9,8 @@ public class Indicator : UIElement
     [SerializeField] private Button button;
     [SerializeField] private Transform pointer;
 
+    private bool isPulsing;
+
     [SerializeField] private RectTransform artParent;
 
     private Action onClick;
@@ -19,13 +21,22 @@ public class Indicator : UIElement
 
     private Vector3 midScreen = new Vector3(Screen.width / 2, Screen.height / 2);
 
-    public void InitIndicator(Indicatable target, Sprite artwork, float time = 0, bool clickable = false, Action onClick = null)
+    // pulse variables
+    [SerializeField] private float pulsingSpeed;
+    int speedDirection;
+    [SerializeField] float minSizeValue;
+    float maxSizeValue;
+
+    public void InitIndicator(Indicatable target, Sprite artwork, float time = 0, bool clickable = false, Action onClick = null, bool isPulsing = false)
     {
         this.time = time;
         this.target = target;
         this.artwork.sprite = artwork;
+        this.isPulsing = isPulsing;
         counter = time;
         circle.fillAmount = 1;
+        maxSizeValue = 1;
+        speedDirection = 1;
         button.enabled = clickable;
         if (!ReferenceEquals(onClick, null))
         {
@@ -52,6 +63,7 @@ public class Indicator : UIElement
             }
         }
         PositionIndicator();
+        IndicatorPulse();
     }
 
 
@@ -107,12 +119,27 @@ public class Indicator : UIElement
         RectTransform.localPosition = new Vector2(Mathf.Clamp(rectTransform.localPosition.x, -midScreen.x, midScreen.x), Mathf.Clamp(rectTransform.localPosition.y, -midScreen.y, midScreen.y));*/
     }
 
+    private void IndicatorPulse()
+    {
+        if(isPulsing == true)
+        {            
+            if(artParent.localScale.x > maxSizeValue || artParent.localScale.x < minSizeValue)
+            {
+                speedDirection *= -1;
+            }
+            float scaleChange = speedDirection * pulsingSpeed * GAME_TIME.GameDeltaTime;
+            Vector3 scaleChangeVector = new Vector3(scaleChange, scaleChange, scaleChange);
+            artParent.localScale += scaleChangeVector;
+        }
+    }
+
     private void OnDisable()
     {
         rectTransform.localRotation = Quaternion.AngleAxis(0, Vector3.forward);
         //artwork.rectTransform.localRotation = Quaternion.AngleAxis(0, Vector3.forward);
         artParent.localRotation = Quaternion.AngleAxis(0, Vector3.forward);
-
+        artParent.localScale = new Vector3(1, 1, 1);
+        speedDirection = 1;
     }
 
 }

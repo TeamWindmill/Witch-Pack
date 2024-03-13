@@ -8,7 +8,7 @@ public class IndicatorManager : MonoBehaviour
         Indicator indicator = LevelManager.Instance.PoolManager.InidcatorPool.GetPooledObject();
         indicator.transform.SetParent(LevelManager.Instance.GameUi.transform);
         indicator.gameObject.SetActive(true);
-        indicator.InitIndicator(target, target.ArtWork, target.Lifetime, target.Clickable, target.OnClickAction);
+        indicator.InitIndicator(target, target.ArtWork, target.Lifetime, target.Clickable, target.OnClickAction, target.ShouldIndicatorPulse);
         return indicator;
     }
 
