@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
@@ -32,6 +33,7 @@ public class ShamanUIHandler : ClickableUIElement
         shaman.Damageable.OnGetHit += OnHealthChange;
         shaman.Damageable.OnDeath += ShamanDeathUI;
         OnClickEvent += GoToShaman;
+        OnClickEvent += ShowShamanInfo;
         Show();
     }
 
@@ -47,6 +49,7 @@ public class ShamanUIHandler : ClickableUIElement
         _shaman.Damageable.OnGetHit -= OnHealthChange;
         _shaman.Damageable.OnDeath -= ShamanDeathUI;
         OnClickEvent -= GoToShaman;
+        OnClickEvent -= ShowShamanInfo;
         base.Hide();
     }
 
@@ -77,10 +80,13 @@ public class ShamanUIHandler : ClickableUIElement
         _upgradeFrame.color = upgradeColor;
     }
 
-    private void GoToShaman()
+    private void GoToShaman(PointerEventData pointerData)
     {
         if(_shaman.IsDead) return;
         GameManager.Instance.CameraHandler.SetCameraPosition(_shaman.transform.position);
     }
-        
+    private void ShowShamanInfo(PointerEventData pointerData)
+    {
+        _shaman.SetSelectedShaman(pointerData.button);
+    }
 }
