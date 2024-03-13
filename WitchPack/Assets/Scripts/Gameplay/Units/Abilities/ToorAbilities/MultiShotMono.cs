@@ -33,12 +33,18 @@ public class MultiShotMono : MonoBehaviour
         _rb.velocity = transform.up * _speed;
         
         if(!Launched) return;
-        if(Vector3.Distance(transform.position, _targetPos) < HIT_POS_OFFSET) Disable();
         var dir = _rb.position - (Vector2)_targetPos;
         dir.Normalize();
         float rotateAmount = Vector3.Cross(dir,transform.up).z;
 
         _rb.angularVelocity = rotateAmount * _curveSpeed;
+
+        if (!_target.IsDead)
+        {
+            _targetPos = _target.transform.position;
+            return;
+        }
+        if(Vector3.Distance(transform.position, _targetPos) < HIT_POS_OFFSET) Disable();
     }
 
 
