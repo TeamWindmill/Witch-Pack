@@ -1,16 +1,14 @@
 using UnityEngine;
-using System.Collections.Generic;
 using System.Linq;
+using Sirenix.OdinInspector;
 
 [CreateAssetMenu(fileName = "MultiShot", menuName = "Ability/MultiShot")]
-public class MultiShot : OffensiveAbility
+public class MultiShotSO : OffensiveAbility
 {
-    [SerializeField] private int offset;
+    [BoxGroup("MultiShot")][SerializeField] private int offset;
+    [BoxGroup("MultiShot")][SerializeField] private MultiShotType multiShotType;
 
-
-    [SerializeField] private int ricochetTimes; //how many times the bullet will bounce between targets
-    [SerializeField] private float ricochetRange;
-    [SerializeField] private float ricochetSpeed;
+    
 
     private const int NUMBER_OF_SHOTS = 3;
     private Enemy _target1;
@@ -45,15 +43,15 @@ public class MultiShot : OffensiveAbility
                 shotMono.gameObject.SetActive(true);
                 if (i == 0)
                 {
-                    shotMono.Init(caster, _target1, this, dirAngle);
+                    shotMono.Init(multiShotType,caster, _target1, this, dirAngle);
                 }
                 else if (i % 2 == 0)
                 {
-                    shotMono.Init(caster, _target2, this, dirAngle + offset);
+                    shotMono.Init(multiShotType,caster, _target2, this, dirAngle + offset);
                 }
                 else
                 {
-                    shotMono.Init(caster, _target3, this, dirAngle - offset);
+                    shotMono.Init(multiShotType,caster, _target3, this, dirAngle - offset);
                 }
             }
             return true;
@@ -69,4 +67,11 @@ public class MultiShot : OffensiveAbility
 
         return false;
     }
+}
+
+public enum MultiShotType
+{
+    MultiShot,
+    EssenceShot,
+    Ricochet
 }
