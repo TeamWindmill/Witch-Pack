@@ -26,6 +26,7 @@ public class PoisonIvyMono : RootingVinesMono
 
         enemy.Damageable.OnDeath += RemovePoisonFromEnemyOnDeath;
         enemy.UnitVisual.PoisonIvyVisuals.PlayPoisonParticle(poison.PoisonDuration);
+        SoundManager.Instance.PlayAudioClip(SoundEffectType.PoisonIvy);
     }
 
     private void RemovePoisonFromEnemyOnDeath(Damageable damageable, DamageDealer damageDealer, DamageHandler damage, BaseAbility ability)
@@ -38,7 +39,7 @@ public class PoisonIvyMono : RootingVinesMono
         damage = new DamageHandler(poison.PoisonDamage);
         damage.SetPopupColor(poison.PoisonPopupColor);
         enemy.Damageable.TakeDamage(owner.DamageDealer, damage, refAbility, false);
-        SoundManager.Instance.PlayAudioClip(SoundEffectType.PoisonIvy);
+        
     }
 
     private void StopPoisonParticle(Timer<Enemy> timer)
