@@ -44,14 +44,15 @@ public class Shaman : BaseUnit
         EnemyTargeter.SetRadius(Stats.BonusRange);
         IntializeAbilities();
         shamanAnimator.Init(this);
-        indicatable.Init(shamanConfig.UnitIcon);
+        indicatable.Init(shamanConfig.UnitIcon, action: FocusCameraOnShaman, clickable: true);
+        Indicator newIndicator = LevelManager.Instance.IndicatorManager.CreateIndicator(indicatable);
+        newIndicator.gameObject.SetActive(false);
         shamanVisualHandler.Init(this,baseUnitConfig);
         AutoCaster.Init(this,true);
 
         #region Events
         // no need to unsubscribe because shaman gets destroyed between levels
         shamanVisualHandler.OnSpriteFlip += shamanAnimator.FlipAnimations;
-        Stats.OnStatChanged += EnemyTargeter.AddRadius;
         Movement.OnDestinationSet += AutoCaster.DisableCaster;
         Movement.OnDestinationReached += AutoCaster.EnableCaster;
         clicker.OnClick += SetSelectedShaman;
@@ -62,6 +63,7 @@ public class Shaman : BaseUnit
         energyHandler.OnShamanLevelUp += OnLevelUpGFX;
         Damageable.OnHitGFX += OnHitSFX;
         Damageable.OnDeathGFX += DeathSFX;
+        Damageable.OnDeathGFX += SetOffIndicator;
         AutoAttackHandler.OnAttack += AttackSFX;
         Effectable.OnAffectedVFX += ShamanVisualHandler.EffectHandler.PlayEffect;
         Effectable.OnEffectRemovedVFX += ShamanVisualHandler.EffectHandler.DisableEffect;
@@ -204,7 +206,16 @@ public class Shaman : BaseUnit
     protected override void OnDisable()
     {
         base.OnDisable();
-        
+    }
+
+    private void SetOffIndicator()
+    {
+        indicatable.ToggleIndicatableRendering(false);
+    }
+
+    private void FocusCameraOnShaman()
+    {
+        GameManager.Instance.CameraHandler.SetCameraPosition(transform.position, false);
     }
 
 }

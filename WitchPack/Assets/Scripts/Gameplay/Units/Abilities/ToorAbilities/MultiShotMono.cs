@@ -1,84 +1,62 @@
+using System;
 using System.Collections.Generic;
+using Tools.Helpers;
 using UnityEngine;
 
-public class MultiShotMono : ShamanAutoAttackMono
+public class MultiShotMono : MonoBehaviour
 {
-    [SerializeField] private int numOfPoint;
-    private Vector3 offset;
-    private const float DistanceToTarget = 1;
-    private Vector3 initialPosition;
-    private List<Vector3> allPositions;
-    private bool Initiallized;
-    private int counter = 0;
-    public void Fire(BaseUnit shooter, OffensiveAbility givenAbility, Vector2 dir, BaseUnit target, Vector3 archSize)
+    public bool Launched { get; private set; }
+
+    [SerializeField] private Rigidbody2D _rb;
+    [SerializeField] private float _speed;
+    [SerializeField] private float _curveSpeed;
+    [SerializeField] private float _Delay;
+    private BaseUnit _target;
+    private Vector3 _targetPos;
+    private BaseUnit _caster;
+    private OffensiveAbility _ability;
+
+    private static readonly float HIT_POS_OFFSET = 0.8f;
+
+    public void Init(BaseUnit caster, BaseUnit target,OffensiveAbility offensiveAbility,float angle)
     {
-        owner = shooter;
-        ability = givenAbility;
-        this.target = target;
-        offset = archSize;
-        if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
-        {
-            offset = new Vector2(0, offset.y * 2);
-        }
-        else
-        {
-            offset = new Vector2(offset.x * 2, 0);
-        }
-        Rotate(dir);
-        Init();
+        _caster = caster;
+        _target = target;
+        _targetPos = target.transform.position;
+        _ability = offensiveAbility;
+        transform.rotation = Quaternion.Euler(0,0,angle);
+        TimerManager.Instance.AddTimer(_Delay, () => Launched = true, true);
     }
 
-    private void Init()
+    private void FixedUpdate()
     {
-        initialPosition = transform.position;
-        allPositions = new List<Vector3>(numOfPoint);
-        Initiallized = true;
+        _rb.velocity = transform.up * _speed;
+        
+        if(!Launched) return;
+        if(Vector3.Distance(transform.position, _targetPos) < HIT_POS_OFFSET) Disable();
+        var dir = _rb.position - (Vector2)_targetPos;
+        dir.Normalize();
+        float rotateAmount = Vector3.Cross(dir,transform.up).z;
 
-        for (var i = 0; i < numOfPoint; i++)
+        _rb.angularVelocity = rotateAmount * _curveSpeed;
+    }
+
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        BaseUnit target = collision.GetComponent<BaseUnit>();
+        if (!ReferenceEquals(target, null) && ReferenceEquals(target, _target))
         {
-            var newPosition = CubicCurve(initialPosition, initialPosition + offset, initialPosition + offset,
-                target.transform.position, (float)i / numOfPoint);
-            allPositions.Add(newPosition);
+            target.Damageable.GetHit(_caster.DamageDealer, _ability);
+            Disable();
         }
-        Initiallized = true;
     }
-
-    private void Update()
+    private void Disable()
     {
-        if (!Initiallized)
-        {
-            return;
-        }
-        // if (counter < allPositions.Count)
-        // {
-        //     transform.position = Vector3.MoveTowards(transform.position, allPositions[counter], GAME_TIME.GameDeltaTime * speed);
-        //     if (Vector3.Distance(transform.position, allPositions[counter]) < DistanceToTarget)
-        //     {
-        //         //Rotate((allPositions[counter] - transform.position).normalized * -1);
-        //         counter++;
-        //     }
-        // }
-        // else
-        // {
-        //     transform.position = target.transform.position;
-        //     setup = false;
-        //     if (target.Damageable.CurrentHp <= 0)
-        //     {
-        //         OnShotHit?.Invoke(ability, owner, target);
-        //         Disable();
-        //     }
-        // }
-    }
-    private Vector3 CubicCurve(Vector3 start, Vector3 control1, Vector3 control2, Vector3 end, float t)
-    {
-        return (((-start + 3 * (control1 - control2) + end) * t + (3 * (start + control2) - 6 * control1)) * t +
-                3 * (control1 - start)) * t + start;
-    }
-
-    public override void Disable()
-    {
-        base.Disable();
-        Initiallized = false;
-        counter = 0;
+        _caster = null;
+        _ability = null;
+        _target = null;
+        Launched = false;
+        gameObject.SetActive(false);
     }
 }
