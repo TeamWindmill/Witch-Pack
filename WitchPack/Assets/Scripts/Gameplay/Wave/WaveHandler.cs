@@ -216,7 +216,8 @@ public class WaveHandler : MonoBehaviour
     {
         skipFlag = true;
 
-        for (int i = 0; i < activeWaveIndicators.Count; i++)
+        int numberOfIterations = activeWaveIndicators.Count;
+        for (int i = numberOfIterations - 1; i >=0; i--)
         {
             activeWaveIndicators[i].gameObject.SetActive(false);
             activeWaveIndicators.Remove(activeWaveIndicators[i]);

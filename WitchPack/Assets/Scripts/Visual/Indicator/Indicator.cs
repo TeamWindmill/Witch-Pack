@@ -150,6 +150,7 @@ public class Indicator : UIElement
         artParent.localRotation = Quaternion.AngleAxis(0, Vector3.forward);
         artParent.localScale = new Vector3(1, 1, 1);
         speedDirection = 1;
+        counter = time;
     }
 
 }
