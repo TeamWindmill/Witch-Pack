@@ -9,6 +9,7 @@ public class Indicatable : MonoBehaviour
     private Indicator currentIndicator;
     private Sprite artWork;
     private float lifetime;
+    private bool shouldIndicatorPulse;
     private Action onClickAction;
 
     public Action OnVisible;
@@ -20,13 +21,15 @@ public class Indicatable : MonoBehaviour
     public bool Clickable { get => clickable;}
     public Action OnClickAction { get => onClickAction;}
     public Indicator CurrentIndicator { get => currentIndicator; }
+    public bool ShouldIndicatorPulse { get => shouldIndicatorPulse; }
 
-    public void Init(Sprite art, Action action = null, float lifetime = 0, bool clickable = false)
+    public void Init(Sprite art, Action action = null, float lifetime = 0, bool clickable = false, bool shouldIndicatorPulse = false)
     {
         this.lifetime = lifetime;
         artWork = art;
         onClickAction = action;
         this.clickable = clickable;
+        this.shouldIndicatorPulse = shouldIndicatorPulse;
     }
 
 

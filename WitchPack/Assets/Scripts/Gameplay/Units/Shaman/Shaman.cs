@@ -163,7 +163,7 @@ public class Shaman : BaseUnit
         return null;
     }
 
-    private void SetSelectedShaman(PointerEventData.InputButton button)
+    public void SetSelectedShaman(PointerEventData.InputButton button)
     {
         shamanVisualHandler.HideShamanRange();
         if (button == PointerEventData.InputButton.Left)
