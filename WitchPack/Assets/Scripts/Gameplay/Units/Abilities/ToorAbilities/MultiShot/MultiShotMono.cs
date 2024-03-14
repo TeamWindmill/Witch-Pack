@@ -10,39 +10,37 @@ public class MultiShotMono : MonoBehaviour
     [SerializeField] private Transform _multiShotPrefab;
     [SerializeField] private Transform _essenceShotPrefab;
     [SerializeField] protected Rigidbody2D _rb;
-    [SerializeField] private float _speed;
-    [SerializeField] private float _curveSpeed;
-    [SerializeField] private float _Delay;
+
     private BaseUnit _target;
     protected Vector3 _targetPos;
     protected BaseUnit _caster;
-    protected OffensiveAbility _ability;
+    protected MultiShotSO _ability;
 
     protected static readonly float HIT_POS_OFFSET = 0.8f;
 
-    public virtual void Init(MultiShotType type,BaseUnit caster, BaseUnit target,OffensiveAbility offensiveAbility,float angle)
+    public virtual void Init(MultiShotType type,BaseUnit caster, BaseUnit target,MultiShotSO ability,float angle)
     {
         _caster = caster;
         _target = target;
         _targetPos = target.transform.position;
-        _ability = offensiveAbility;
+        _ability = ability;
         ChangeVisuals(type);
         transform.rotation = Quaternion.Euler(0,0,angle);
-        TimerManager.Instance.AddTimer(_Delay, () => Launched = true, true);
+        TimerManager.Instance.AddTimer(ability.Delay, () => Launched = true, true);
     }
 
     
 
     protected virtual void FixedUpdate()
     {
-        _rb.velocity = _speed * GAME_TIME.TimeRate * transform.up;
+        _rb.velocity = _ability.Speed * GAME_TIME.TimeRate * transform.up;
         
         if(!Launched) return;
         var dir = _rb.position - (Vector2)_targetPos;
         dir.Normalize();
         float rotateAmount = Vector3.Cross(dir,transform.up).z;
 
-        _rb.angularVelocity = rotateAmount * _curveSpeed * GAME_TIME.TimeRate;
+        _rb.angularVelocity = rotateAmount * _ability.CurveSpeed * GAME_TIME.TimeRate;
 
         if (!_target.IsDead)
         {
