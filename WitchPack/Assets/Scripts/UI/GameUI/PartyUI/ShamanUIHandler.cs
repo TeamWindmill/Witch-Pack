@@ -13,7 +13,8 @@ public class ShamanUIHandler : ClickableUIElement
     [Space] 
     [SerializeField] private Sprite upgradeReadyFrameSprite;
     [SerializeField] private Sprite defaultFrameSprite;
-    
+    [SerializeField] private Image redInjuryImage;
+
     private Shaman _shaman;
 
 
@@ -30,23 +31,36 @@ public class ShamanUIHandler : ClickableUIElement
         _upgradeFrame.color = upgradeColor;
         shaman.EnergyHandler.OnShamanUpgrade += OnShamanUpgrade;
         shaman.EnergyHandler.OnShamanLevelUp += OnShamanLevelUp;
-        shaman.Damageable.OnGetHit += OnHealthChange;
+        shaman.Damageable.OnGetHit += OnChangeHealth;
+        shaman.Damageable.OnHeal += OnChangeHealth;
         shaman.Damageable.OnDeath += ShamanDeathUI;
         OnClickEvent += GoToShaman;
         OnClickEvent += ShowShamanInfo;
         Show();
     }
 
-    private void OnHealthChange(Damageable arg1, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4, bool arg5)
+    private void OnChangeHealth()
     {
-        float hpRatio = _shaman.Damageable.CurrentHp / _shaman.Damageable.MaxHp;
+        float hpRatio = _shaman.Damageable.CurrentHp / (float)_shaman.Damageable.MaxHp;
+        redInjuryImage.fillAmount = 1 - hpRatio;
         _healthBar.value = hpRatio;
         _fill.color = Color.Lerp(Color.red, Color.green, hpRatio);
     }
 
+    private void OnChangeHealth(Damageable arg1, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4, bool arg5)
+    {
+        OnChangeHealth();
+    }
+
+    private void OnChangeHealth(Damageable arg1, float healAmount)
+    {
+        OnChangeHealth();
+    }
+
     public override void Hide()
     {
-        _shaman.Damageable.OnGetHit -= OnHealthChange;
+        _shaman.Damageable.OnGetHit -= OnChangeHealth;
+        _shaman.Damageable.OnHeal -= OnChangeHealth;
         _shaman.Damageable.OnDeath -= ShamanDeathUI;
         OnClickEvent -= GoToShaman;
         OnClickEvent -= ShowShamanInfo;
