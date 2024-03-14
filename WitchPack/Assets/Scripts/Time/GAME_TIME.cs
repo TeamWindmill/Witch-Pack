@@ -53,15 +53,9 @@ public class GAME_TIME : MonoBehaviour
     /// GAME_TIME is a static class that manages the game time and time manipulation.
     /// </summary>
     public static float GameTime => _gameTime;
-
-    /// <summary>
-    /// Gets the time in seconds it took to complete the last frame.
-    /// </summary>
-    /// <remarks>
-    /// The GameDeltaTime property calculates the time difference between the current frame and the previous frame.
-    /// </remarks>
-    /// <returns>The delta time in seconds.</returns>
+    public static float TimeRate => _timeRate;
     public static float GameDeltaTime => Time.deltaTime * _timeRate;
+    public static float GameFixedDeltaTime => Time.fixedDeltaTime * _timeRate;
 
     /// <summary>
     /// Gets a value indicating whether the game time is currently stopped.
