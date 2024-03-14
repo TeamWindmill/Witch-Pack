@@ -9,7 +9,8 @@ public class PopupsManager : MonoBehaviour
     [SerializeField] private DamageNumber textPopupPrefab;
     [SerializeField] private DamageNumber levelUpPopupPrefab;
     [SerializeField] private DamageNumber damagePopupPrefab;
-    [SerializeField] private DamageNumber bigDamagePopupPrefab;
+    [SerializeField] private DamageNumber critDamagePopupPrefab;
+    [SerializeField] private DamageNumber enemyDamagePopupPrefab;
     [SerializeField] private DamageNumber healPopupPrefab;
     private float _xOffset;
     [SerializeField] private float _yOffset;
@@ -30,8 +31,6 @@ public class PopupsManager : MonoBehaviour
     string _popupText;
     float _popupNumber;
 
-    float maxDamageReached;
-
     public DamageNumber PopupPrefab { get => textPopupPrefab; }
 
     private void Update()
@@ -46,9 +45,13 @@ public class PopupsManager : MonoBehaviour
         _popupColor = DetermineDamagePopupColor(damageDealer, damage, ability, isCrit);
 
          _popupNumber = damage.GetFinalDamage();
-        if(isCrit || damageDealer.Owner is Enemy)
+        if(damageDealer.Owner is Enemy)
         {
-            bigDamagePopupPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, _popupNumber, _popupColor);
+            enemyDamagePopupPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, _popupNumber, _popupColor);
+        }
+        else if(isCrit)
+        {
+            critDamagePopupPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, _popupNumber, _popupColor);
         }
         else
         {
