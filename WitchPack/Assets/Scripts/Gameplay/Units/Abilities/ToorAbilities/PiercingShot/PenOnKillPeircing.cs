@@ -8,7 +8,7 @@ public class PenOnKillPeircing : PiercingShot
 {
     [SerializeField] private int extraPenPerKill;
     [SerializeField] private int numberOfKillsRequiredToIncreasePierce;
-    [SerializeField] private Color popupColor;
+    [SerializeField] private Color textPopupColor;
 
     public override void OnSetCaster(BaseUnit caster)
     {
@@ -23,6 +23,6 @@ public class PenOnKillPeircing : PiercingShot
         // Play Sound
         SoundManager.Instance.PlayAudioClip(SoundEffectType.ExperiencedHunterLevelUp);
         // Popup
-        LevelManager.Instance.PopupsManager.SpawnGeneralPopup("PIERCE UP+", popupColor, dealer.Owner.transform.position, yOffset: true);
+        LevelManager.Instance.PopupsManager.SpawnGeneralPopup("PIERCE UP+", textPopupColor, dealer.Owner.transform.position, yOffset: true);
     }
 }
