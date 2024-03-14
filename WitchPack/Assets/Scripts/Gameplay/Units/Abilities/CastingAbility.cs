@@ -6,7 +6,7 @@ public abstract class CastingAbility : BaseAbility
 {
     [BoxGroup("Casting")][SerializeField, Tooltip("Interval before casting in real time")] private float castTime;
     [BoxGroup("Casting")][SerializeField] private float cd;
-    [BoxGroup("Casting")][SerializeField] private float range;
+    [BoxGroup("Casting")][SerializeField] private float range; //currently not in use
     [BoxGroup("Casting")][SerializeField] private bool givesEnergyPoints;
     [BoxGroup("Casting")][SerializeField,ShowIf(nameof(givesEnergyPoints))] private int energyPoints;
     [BoxGroup("Casting")][SerializeField] private List<StatusEffectConfig> statusEffects = new List<StatusEffectConfig>();
@@ -43,5 +43,5 @@ public struct DamageBoostData
 {
     public DamageBonusType Type;
     [Tooltip("%hp threshold to reach (according to type)")] public float Threshold;
-    public float damageBonus;
+    public float damageBonusInPercent;
 }
