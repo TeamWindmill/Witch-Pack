@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DamageNumbersPro;
+using System;
 
 public class PopupsManager : MonoBehaviour
 {
-    [SerializeField] private DamageNumber popupPrefab;
+    [SerializeField] private DamageNumber textPopupPrefab;
     [SerializeField] private DamageNumber levelUpPopupPrefab;
+    [SerializeField] private DamageNumber damagePopupPrefab;
+    [SerializeField] private DamageNumber critDamagePopupPrefab;
+    [SerializeField] private DamageNumber enemyDamagePopupPrefab;
     [SerializeField] private DamageNumber healPopupPrefab;
     private float _xOffset;
     [SerializeField] private float _yOffset;
@@ -19,13 +23,15 @@ public class PopupsManager : MonoBehaviour
     [SerializeField] private Color shamanCritColor;
     [SerializeField] private Color enemyAutoAttackColor;
     [SerializeField] private Color enemyCritAutoAttackColor;
+    [SerializeField] private Color healColor;
+    [SerializeField] private StatusEffectTypeColorDictionary _dictionary;
 
     private Color _popupColor;
 
     string _popupText;
+    float _popupNumber;
 
-    [SerializeField] private StatusEffectTypeColorDictionary _dictionary;
-    public DamageNumber PopupPrefab { get => popupPrefab; }
+    public DamageNumber PopupPrefab { get => textPopupPrefab; }
 
     private void Update()
     {
@@ -34,15 +40,25 @@ public class PopupsManager : MonoBehaviour
 
     public void SpawnDamagePopup(Damageable damageable, DamageDealer damageDealer, DamageHandler damage, BaseAbility ability, bool isCrit)
     {
-        _popupText = "";
         _offsetVector = new Vector3(_xOffset, _yOffset);
 
         _popupColor = DetermineDamagePopupColor(damageDealer, damage, ability, isCrit);
 
-
-         _popupText = damage.GetFinalDamage().ToString();
-        PopupPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, _popupText, _popupColor);
+         _popupNumber = damage.GetFinalDamage();
+        if(damageDealer.Owner is Enemy)
+        {
+            enemyDamagePopupPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, _popupNumber, _popupColor);
+        }
+        else if(isCrit)
+        {
+            critDamagePopupPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, _popupNumber, _popupColor);
+        }
+        else
+        {
+            damagePopupPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, _popupNumber, _popupColor);
+        }
     }
+
     public void SpawnStatusEffectPopup(Effectable effectable, Affector affector, StatusEffect statusEffect)
     {
         if(statusEffect.StatusEffectType == StatusEffectType.None) return;
@@ -75,10 +91,9 @@ public class PopupsManager : MonoBehaviour
 
     public void SpawnHealPopup(Damageable damageable, float healAmount)
     {
-        _popupText = healAmount.ToString();
         _offsetVector = new Vector3(0, _yOffset);
 
-        healPopupPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, _popupText);
+        healPopupPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, healAmount, healColor);
     }
 
     public void SpawnLevelUpTextPopup(Shaman shaman)

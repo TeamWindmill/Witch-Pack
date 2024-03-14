@@ -53,7 +53,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: 8623078618439313755, guid: 21a5fd57c8c888d44ab11a871c740c02, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -140,7 +140,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: 8623078618439313755, guid: 21a5fd57c8c888d44ab11a871c740c02, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -182,17 +182,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 21a5fd57c8c888d44ab11a871c740c02, type: 2}
+  m_sharedMaterial: {fileID: 8623078618439313755, guid: 21a5fd57c8c888d44ab11a871c740c02, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 0.08627451, g: 0.87058824, b: 0.2901961, a: 1}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -307,7 +307,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  - {fileID: 8623078618439313755, guid: 21a5fd57c8c888d44ab11a871c740c02, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -400,7 +400,7 @@ MonoBehaviour:
     closeScale: 2
     farScale: 0.5
   cameraOverride: {fileID: 0}
-  enableNumber: 0
+  enableNumber: 1
   number: 1
   numberSettings:
     bold: 0
@@ -625,10 +625,10 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  enableScaleByNumber: 0
+  enableScaleByNumber: 1
   scaleByNumberSettings:
-    fromNumber: 0
-    toNumber: 1000
+    fromNumber: 30
+    toNumber: 100
     fromScale: 1
     toScale: 2
   enableScaleOverTime: 0
@@ -801,7 +801,7 @@ MonoBehaviour:
   enablePooling: 1
   poolSize: 500
   disableOnSceneLoad: 1
-  editorLastFont: LiberationSans SDF
+  editorLastFont: Basic-Outline
   position: {x: 0, y: 0, z: 0}
 --- !u!210 &3356982554656220545
 SortingGroup:
