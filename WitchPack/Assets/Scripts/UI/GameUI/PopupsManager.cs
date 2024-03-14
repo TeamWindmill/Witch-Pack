@@ -58,6 +58,21 @@ public class PopupsManager : MonoBehaviour
         PopupPrefab.Spawn(effectable.Owner.transform.position + _offsetVector, _popupText, _popupColor);
     }
 
+    public void SpawnGeneralPopup(string text, Color color, Vector3 position, bool xOffset = false, bool yOffset = false)
+    {
+        _offsetVector = new Vector3(0, 0);
+        if(xOffset)
+        {
+            _offsetVector.x += _xOffset;
+        }
+        if(yOffset)
+        {
+            _offsetVector.y += _yOffset;
+        }
+
+        PopupPrefab.Spawn(position + _offsetVector, text, color);
+    }
+
     public void SpawnHealPopup(Damageable damageable, float healAmount)
     {
         _popupText = healAmount.ToString();
