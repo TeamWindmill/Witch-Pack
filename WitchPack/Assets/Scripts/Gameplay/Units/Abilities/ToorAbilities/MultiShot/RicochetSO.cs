@@ -1,21 +1,21 @@
-using UnityEngine;
-using System.Collections.Generic;
 using System.Linq;
+using Sirenix.OdinInspector;
+using UnityEngine;
 
-[CreateAssetMenu(fileName = "MultiShot", menuName = "Ability/MultiShot")]
-public class MultiShot : OffensiveAbility
+[CreateAssetMenu(fileName = "Ricochet", menuName = "Ability/Ricochet")]
+public class RicochetSO : MultiShotSO
 {
-    [SerializeField] private int offset;
-
-
-    [SerializeField] private int ricochetTimes; //how many times the bullet will bounce between targets
-    [SerializeField] private float ricochetRange;
-    [SerializeField] private float ricochetSpeed;
-
-    private const int NUMBER_OF_SHOTS = 3;
-    private Enemy _target1;
-    private Enemy _target2;
-    private Enemy _target3;
+    [BoxGroup("Ricochet")][SerializeField] private TargetData _ricochetTargetData; 
+    [BoxGroup("Ricochet")][SerializeField] private LayerMask _targetingLayer;
+    [BoxGroup("Ricochet")][SerializeField] private float _bounceRange;
+    [BoxGroup("Ricochet")][SerializeField] private float _bounceSpeed;
+    [BoxGroup("Ricochet")][SerializeField] private float _bounceCurveSpeed;
+    
+    public TargetData RicochetTargetData => _ricochetTargetData;
+    public float BounceRange => _bounceRange;
+    public float BounceSpeed => _bounceSpeed;
+    public float BounceCurveSpeed => _bounceCurveSpeed;
+    public LayerMask TargetingLayer => _targetingLayer;
 
     public override bool CastAbility(BaseUnit caster)
     {
@@ -40,32 +40,24 @@ public class MultiShot : OffensiveAbility
 
             for (int i = 0; i < NUMBER_OF_SHOTS; i++)
             {
-                var shotMono = LevelManager.Instance.PoolManager.MultiShotPool.GetPooledObject();
+                var shotMono = LevelManager.Instance.PoolManager.RicochetPool.GetPooledObject();
                 shotMono.transform.position = caster.CastPos.position;
                 shotMono.gameObject.SetActive(true);
                 if (i == 0)
                 {
-                    shotMono.Init(caster, _target1, this, dirAngle);
+                    shotMono.Init(multiShotType,caster, _target1, this, dirAngle);
                 }
                 else if (i % 2 == 0)
                 {
-                    shotMono.Init(caster, _target2, this, dirAngle + offset);
+                    shotMono.Init(multiShotType,caster, _target2, this, dirAngle + offset);
                 }
                 else
                 {
-                    shotMono.Init(caster, _target3, this, dirAngle - offset);
+                    shotMono.Init(multiShotType,caster, _target3, this, dirAngle - offset);
                 }
             }
             return true;
         }
-
-        return false;
-    }
-
-    public override bool CheckCastAvailable(BaseUnit caster)
-    {
-        var target = caster.EnemyTargetHelper.GetTarget(TargetData);
-        if (target != null) return true;
 
         return false;
     }

@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15a9833310f9a9446ab1e1eaace27b68, type: 3}
-  m_Name: MultiShot_Ricochet
+  m_Script: {fileID: 11500000, guid: 0319f66eb6be4577bdbae99be77c24d6, type: 3}
+  m_Name: Ricochet
   m_EditorClassIdentifier: 
   name: Ricochet
   discription: Multishot now ricochets to other nearby targets
@@ -36,8 +36,15 @@ MonoBehaviour:
   soundEffectType: 13
   baseDamage: 50
   damageBoosts: []
-  numberOfShots: 3
-  offset: 0
-  ricochetTimes: 1
-  ricochetRange: 5.5
-  ricochetSpeed: 2.5
+  offset: 45
+  multiShotType: 2
+  _ricochetTargetData:
+    Priority: 0
+    Modifier: 1
+    StatType: 0
+  _targetingLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  _bounceRange: 10
+  _bounceSpeed: 25
+  _bounceCurveSpeed: 3000

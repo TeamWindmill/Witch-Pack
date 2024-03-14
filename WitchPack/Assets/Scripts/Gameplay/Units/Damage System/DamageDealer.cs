@@ -67,7 +67,7 @@ public class DamageDealer
     {
         if((target.CurrentHp / target.MaxHp) >= (boostData.Threshold / 100))
         {
-            float damageBasedOnCurrentHP = target.CurrentHp * (boostData.damageBonus / 100);
+            float damageBasedOnCurrentHP = target.CurrentHp * (boostData.damageBonusInPercent / 100);
             return (int)damageBasedOnCurrentHP;
         }
 
@@ -79,7 +79,7 @@ public class DamageDealer
     {
         if ((target.CurrentHp / target.MaxHp) >= (boostData.Threshold / 100))
         {
-            return 1 + (boostData.damageBonus / 100);
+            return 1 + (boostData.damageBonusInPercent / 100);
         }
         return 1;
     }

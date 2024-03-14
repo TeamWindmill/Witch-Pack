@@ -6,7 +6,6 @@ using UnityEngine;
 public class Targeter<T> : MonoBehaviour where T : Component
 {
     [SerializeField] private List<T> availableTargets = new List<T>();
-    [SerializeField] private LayerMask layer;
     public event Action<T> OnTargetAdded;
     public event Action<T> OnTargetLost;
 
@@ -44,22 +43,6 @@ public class Targeter<T> : MonoBehaviour where T : Component
             availableTargets.Remove(possibleTarget);
             OnTargetLost?.Invoke(possibleTarget);
         }
-    }
-
-    public List<T> GetAvailableTargets(T origin, float range)
-    {
-        Collider2D[] foundColldiers = Physics2D.OverlapCircleAll(origin.transform.position, range, layer);
-        List<T> legalTargets = new List<T>();
-
-        foreach (var item in foundColldiers)
-        {
-            T possibleTarget = item.GetComponent<T>();
-            if (!ReferenceEquals(possibleTarget, null) && !ReferenceEquals(origin, possibleTarget))
-            {
-                legalTargets.Add(possibleTarget);
-            }
-        }
-        return legalTargets;
     }
 }
 
