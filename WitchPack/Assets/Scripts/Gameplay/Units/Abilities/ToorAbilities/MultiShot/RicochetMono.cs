@@ -11,11 +11,11 @@ public class RicochetMono : MultiShotMono
     private bool _bouncing = false;
 
 
-    public override void Init(MultiShotType type, BaseUnit caster, BaseUnit target, OffensiveAbility offensiveAbility, float angle)
+    public override void Init(MultiShotType type, BaseUnit caster, BaseUnit target, MultiShotSO ability, float angle)
     {
-        base.Init(type,caster, target, offensiveAbility, angle);
+        base.Init(type,caster, target, ability, angle);
         _bouncing = false;
-        if(offensiveAbility is not RicochetSO ricochetSO) return;
+        if(ability is not RicochetSO ricochetSO) return;
         _ricochetSO = ricochetSO;
     }
 

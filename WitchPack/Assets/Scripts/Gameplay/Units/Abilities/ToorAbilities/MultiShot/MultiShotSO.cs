@@ -5,8 +5,15 @@ using Sirenix.OdinInspector;
 [CreateAssetMenu(fileName = "MultiShot", menuName = "Ability/MultiShot")]
 public class MultiShotSO : OffensiveAbility
 {
-    [BoxGroup("MultiShot")][SerializeField] protected int offset;
+    public int Speed => speed;
+    public int CurveSpeed => curveSpeed;
+    public float Delay => delay;
+
     [BoxGroup("MultiShot")][SerializeField] protected MultiShotType multiShotType;
+    [BoxGroup("MultiShot")][SerializeField] protected int offset;
+    [BoxGroup("MultiShot")][SerializeField] protected int speed;
+    [BoxGroup("MultiShot")][SerializeField] protected int curveSpeed;
+    [BoxGroup("MultiShot")][SerializeField] protected float delay;
 
     
 
