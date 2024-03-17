@@ -175,13 +175,9 @@ public class Shaman : BaseUnit
     public void SetSelectedShaman(PointerEventData.InputButton button)
     {
         shamanVisualHandler.HideShamanRange();
-        if (button == PointerEventData.InputButton.Right)
+        if (button == PointerEventData.InputButton.Left)
         {
-            LevelManager.Instance.OldSelectionManager.SetSelectedShaman(this, SelectionType.Movement);
-        }
-        else if (button == PointerEventData.InputButton.Left)
-        {
-            LevelManager.Instance.OldSelectionManager.SetSelectedShaman(this, SelectionType.Info);
+            LevelManager.Instance.OldSelectionHandler.SetSelectedShaman(this, SelectionType.Info);
         }
     }
 
