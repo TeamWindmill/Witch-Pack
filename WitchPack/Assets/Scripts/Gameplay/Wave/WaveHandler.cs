@@ -10,7 +10,7 @@ public class WaveHandler : MonoBehaviour
     public event Action<int> OnWaveStart;
     public event Action<int> OnWaveEnd;
 
-    [SerializeField] private Sprite generalEnemyIcon;
+    [SerializeField] private Sprite enemyIndicatorIcon;
 
     [SerializeField] private EnemySpawnPoint[] spawnPoints;
     [SerializeField] private WaveData waveData; //wave data is supposed to be given to a room from the inspector in the editor and not in runtime
@@ -206,7 +206,7 @@ public class WaveHandler : MonoBehaviour
             }
             lanesThatHaveAnIndicator.Add(group.SpawnerIndex);
             EnemySpawnPoint spawnPoint = GetSpawnPointFromIndex(group.SpawnerIndex);
-            Indicator newIndicator = spawnPoint.SetIndicator(generalEnemyIcon, time, SkipWaveCD);
+            Indicator newIndicator = spawnPoint.SetIndicator(enemyIndicatorIcon, time, SkipWaveCD);
             activeWaveIndicators.Add(newIndicator);
         }
         

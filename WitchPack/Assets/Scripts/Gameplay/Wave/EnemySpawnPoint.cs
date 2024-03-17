@@ -14,7 +14,7 @@ public class EnemySpawnPoint : MonoBehaviour
     private float lastSpawned = -0.4f;
     public Indicator SetIndicator(Sprite artwork ,float time, Action onClick)
     {
-        indicateable.Init(artwork, onClick, time, true, true);
+        indicateable.Init(artwork, onClick, time, true, true, IndicatorPointerSpriteType.Red);
         Indicator newIndicator = LevelManager.Instance.IndicatorManager.CreateIndicator(indicateable);
         return newIndicator;
     }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,8 +30,14 @@ public class Indicator : UIElement
     [SerializeField] float minSizeValue;
     float maxSizeValue;
 
-    public void InitIndicator(Indicatable target, Sprite artwork, float time = 0, bool clickable = false, Action onClick = null, bool isPulsing = false)
+    [SerializeField] private Image pointerImage;
+    [SerializeField] private List<Sprite> pointerSprites;
+
+    public void InitIndicator(Indicatable target, Sprite artwork, float time = 0, bool clickable = false, Action onClick = null, bool isPulsing = false, 
+                IndicatorPointerSpriteType indicatorPointerSprite = IndicatorPointerSpriteType.Default)
     {
+        pointerImage.sprite = SetPointerImage(indicatorPointerSprite);
+
         this.time = time;
         this.target = target;
         this.artwork.sprite = artwork;
@@ -53,7 +60,11 @@ public class Indicator : UIElement
 
     }
 
-
+    private Sprite SetPointerImage(IndicatorPointerSpriteType indicatorPointerSprite)
+    {
+        int index = ((int)indicatorPointerSprite);
+        return pointerSprites[index];
+    }
 
     private void Update()
     {
@@ -152,6 +163,13 @@ public class Indicator : UIElement
         counter = time;
     }
 
+}
+
+public enum IndicatorPointerSpriteType
+{
+    Default,
+    Cyan,
+    Red
 }
 
 
