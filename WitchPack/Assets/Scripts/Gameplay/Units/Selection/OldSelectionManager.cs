@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using System;
-using Unity.VisualScripting;
 
-public class SelectionManager : MonoBehaviour
+public class OldSelectionManager : MonoBehaviour,ISelection
 {
     public event Action<Shaman> OnShamanMoveSelect;
     public event Action<Shaman> OnShamanInfoSelect;
