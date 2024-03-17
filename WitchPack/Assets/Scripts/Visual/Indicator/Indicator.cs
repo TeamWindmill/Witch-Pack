@@ -12,7 +12,7 @@ public class Indicator : UIElement
 
     private bool isPulsing;
 
-    [SerializeField] private RectTransform artParent;
+    [SerializeField] private RectTransform artParentRectTransform;
 
     private Action onClick;
     private float time;
@@ -105,24 +105,42 @@ public class Indicator : UIElement
 
         //test
 
+        Vector2 direction = new Vector2(0, 0); // will help calculate the angle at which we need to rotate our pointer
+        Vector2 referenceVector = new Vector2(0, -1); // angle will be calculated in relation to this vector
+        Vector3 axis = Vector3.forward; // the axis is used to flip the corner in case the target is to the right of the screen
+
+        // y value of direction
         if (targetScreenPoint.y == -midScreen.y)
         {
-            rectTransform.localRotation = Quaternion.AngleAxis(180, Vector3.forward);
+            direction.y = 1;
         }
         else if (targetScreenPoint.y == midScreen.y)
         {
-            rectTransform.localRotation = Quaternion.AngleAxis(0, Vector3.forward);
+            direction.y = -1;
         }
-        else if (targetScreenPoint.x == -midScreen.x)
+
+        // x value of direction
+        if (targetScreenPoint.x == -midScreen.x)
         {
-            rectTransform.localRotation = Quaternion.AngleAxis(90, Vector3.forward);
+            direction.x = 1;
         }
         else if (targetScreenPoint.x == midScreen.x)
         {
-            rectTransform.localRotation = Quaternion.AngleAxis(270, Vector3.forward);
+            direction.x = -1;
+            axis = Vector3.back;
         }
-        //artwork.rectTransform.localEulerAngles = new Vector3(0, 0, -rectTransform.localEulerAngles.z);
-        artParent.localEulerAngles = new Vector3(0, 0, -rectTransform.localEulerAngles.z);
+
+
+        /// gets angle between our referenceVector and our calculated direction
+        /// for future reference:
+        /// 180 degrees = above screen
+        /// 0 degrees = below screen
+        /// 90 degrees = to the right of screen
+        /// 270 degrees = to the left of screen
+        float pointerAngle = Vector2.Angle(referenceVector, direction);
+        rectTransform.localRotation = Quaternion.AngleAxis(pointerAngle, axis);
+
+        artParentRectTransform.localEulerAngles = new Vector3(0, 0, -rectTransform.localEulerAngles.z);
 
         /* float angle = Mathf.Atan2(targetSP.y - midScreen.y, targetSP.x - midScreen.x);
          Vector3 posIndicator = new Vector3();
@@ -143,13 +161,13 @@ public class Indicator : UIElement
     {
         if(isPulsing == true)
         {            
-            if(artParent.localScale.x > maxSizeValue || artParent.localScale.x < minSizeValue)
+            if(artParentRectTransform.localScale.x > maxSizeValue || artParentRectTransform.localScale.x < minSizeValue)
             {
                 speedDirection *= -1;
             }
             float scaleChange = speedDirection * pulsingSpeed * GAME_TIME.GameDeltaTime;
             Vector3 scaleChangeVector = new Vector3(scaleChange, scaleChange, scaleChange);
-            artParent.localScale += scaleChangeVector;
+            artParentRectTransform.localScale += scaleChangeVector;
         }
     }
 
@@ -157,8 +175,8 @@ public class Indicator : UIElement
     {
         rectTransform.localRotation = Quaternion.AngleAxis(0, Vector3.forward);
         //artwork.rectTransform.localRotation = Quaternion.AngleAxis(0, Vector3.forward);
-        artParent.localRotation = Quaternion.AngleAxis(0, Vector3.forward);
-        artParent.localScale = new Vector3(1, 1, 1);
+        artParentRectTransform.localRotation = Quaternion.AngleAxis(0, Vector3.forward);
+        artParentRectTransform.localScale = new Vector3(1, 1, 1);
         speedDirection = 1;
         counter = time;
     }
