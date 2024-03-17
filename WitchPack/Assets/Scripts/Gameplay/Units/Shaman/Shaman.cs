@@ -177,11 +177,11 @@ public class Shaman : BaseUnit
         shamanVisualHandler.HideShamanRange();
         if (button == PointerEventData.InputButton.Right)
         {
-            LevelManager.Instance.SelectionManager.SetSelectedShaman(this, SelectionType.Movement);
+            LevelManager.Instance.OldSelectionManager.SetSelectedShaman(this, SelectionType.Movement);
         }
         else if (button == PointerEventData.InputButton.Left)
         {
-            LevelManager.Instance.SelectionManager.SetSelectedShaman(this, SelectionType.Info);
+            LevelManager.Instance.OldSelectionManager.SetSelectedShaman(this, SelectionType.Info);
         }
     }
 
