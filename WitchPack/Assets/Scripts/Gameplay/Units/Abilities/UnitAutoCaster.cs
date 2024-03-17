@@ -24,6 +24,7 @@ public class UnitAutoCaster : MonoBehaviour
         if(_abilitiesOnCooldown.Count > 0) _abilitiesOnCooldown.Clear();
         _queuedAbilities = new Queue<ICaster>();
         owner = givenOwner;
+        _castTimer = 0;
         foreach (var castingHandler in givenOwner.CastingHandlers)
         {
             _queuedAbilities.Enqueue(castingHandler);

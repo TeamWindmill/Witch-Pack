@@ -24,6 +24,7 @@ public class StatBlockUI : MonoBehaviour
     }
     public void UpdateUI(float newValue)
     {
+        if(ReferenceEquals(HeroSelectionUI.Instance,null)) return;
         if(!HeroSelectionUI.Instance.IsActive) return;
         _bonusValue = newValue;
         SetStatText(_baseValue,_bonusValue);
@@ -31,6 +32,7 @@ public class StatBlockUI : MonoBehaviour
 
     public void UpdateBaseStat(float delta)
     {
+        if(ReferenceEquals(HeroSelectionUI.Instance,null)) return;
         if(!HeroSelectionUI.Instance.IsActive) return;
         _baseValue += delta;
         SetStatText(_baseValue, _bonusValue);

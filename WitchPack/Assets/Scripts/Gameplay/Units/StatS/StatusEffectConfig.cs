@@ -51,4 +51,5 @@ public enum StatusEffectType
     HealthRegen,
     MovementSpeed,
     PermanentMaxHealthBonus,
+    Frenzy,
 }
