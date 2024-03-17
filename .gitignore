@@ -71,3 +71,12 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# Ignore the auto-generated AOT compatibility dll.
+WitchPack//Assets/Plugins/Sirenix/Assemblies/AOT/*
+
+# Ignore all unpacked demos.
+WitchPack/Assets/Plugins/Sirenix/Demos/*
+
+# But keep the demo packages themselves.
+!WitchPack//Assets/Plugins/Sirenix/Demos/*.unitypackage 

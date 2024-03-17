@@ -1,7 +1,7 @@
 using UnityEngine;
 using System;
 
-public class OldSelectionManager : MonoBehaviour,ISelection
+public class OldSelectionHandler : MonoBehaviour,ISelection
 {
     public event Action<Shaman> OnShamanMoveSelect;
     public event Action<Shaman> OnShamanInfoSelect;
