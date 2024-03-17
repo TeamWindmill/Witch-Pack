@@ -27,7 +27,6 @@ public class SelectionManager : MonoBehaviour
         OnShamanMoveSelect += ShamanMoveSelect;
         OnShamanInfoSelect += ShamanInfoSelect;
         OnShamanDeselected += ShamanDeselect;
-       
     }
     private void Start()
     {
@@ -38,10 +37,8 @@ public class SelectionManager : MonoBehaviour
 
     public void SetSelectedShaman(Shaman selectedShaman, SelectionType selectMode)
     {
-        if (ReferenceEquals(selectedShaman, _selectedShaman))
-        {
-            return;
-        }
+        if (ReferenceEquals(selectedShaman, _selectedShaman)) return;
+        if(!ReferenceEquals(_selectedShaman,null) && !ReferenceEquals(selectedShaman, _selectedShaman)) return;
 
         _selectedShaman = selectedShaman;
         _selectMode = selectMode;
@@ -56,52 +53,45 @@ public class SelectionManager : MonoBehaviour
 
         if (SelectMode == SelectionType.Info)
         {
-            if (Input.GetMouseButtonDown(LEFT_CLICK))
+            if (Input.GetMouseButtonDown(RIGHT_CLICK))
             {
                 if (_mouseOverSelectionUI) return;
                 if (_selectedShaman.MouseOverShaman)
                 {
-                    ShamanMoveSelect(_selectedShaman);
+                    OnShamanMoveSelect?.Invoke(_selectedShaman);
                     return;
                 }
                 OnShamanDeselected?.Invoke(SelectedShaman);
-                _selectedShaman = null;
             }
 
-            if (Input.GetMouseButtonDown(RIGHT_CLICK))
+            if (Input.GetMouseButtonDown(LEFT_CLICK))
             {
                 if (_mouseOverSelectionUI || _selectedShaman.MouseOverShaman) return;
                 OnShamanDeselected?.Invoke(SelectedShaman);
-                _selectedShaman = null;
             }
         }
 
         if (SelectMode == SelectionType.Movement)
         {
-            
-                
-            if (Input.GetMouseButtonDown(LEFT_CLICK))
+            if (Input.GetMouseButtonDown(RIGHT_CLICK))
             {
-                if (_mouseOverSelectionUI || _selectedShaman.MouseOverShaman) return;
+                if (_mouseOverSelectionUI) return;
                 
                 //set destination for selected shaman
                 var newDest = GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
                 _selectedShaman.Movement.SetDestination(newDest);
                 OnShamanDeselected?.Invoke(SelectedShaman);
-                _selectedShaman = null;
             }
-            else if (Input.GetMouseButtonDown(RIGHT_CLICK))
+            else if (Input.GetMouseButtonDown(LEFT_CLICK))
             {
                 if (_mouseOverSelectionUI) return;
                 if (_selectedShaman.MouseOverShaman)
                 {
-                    
                     ShamanInfoSelect(_selectedShaman);
                     return;
                 }
                 
                 OnShamanDeselected?.Invoke(SelectedShaman);
-                _selectedShaman = null;
             }
         }
     }
@@ -135,6 +125,7 @@ public class SelectionManager : MonoBehaviour
 
     private void ShamanDeselect(Shaman shaman)
     {
+        TimerManager.Instance.AddTimer(0.1f, () => _selectedShaman = null);
         if (SelectMode == SelectionType.Info)
         {
             HeroSelectionUI.Instance.Hide();
