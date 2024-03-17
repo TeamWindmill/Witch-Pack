@@ -38,8 +38,8 @@ public class ProximityRingsManager : MonoBehaviour
         _statEffect = powerStructureConfig.statEffect;
         _clickHelper.OnEnterHover += ActivateRingSprites;
         _clickHelper.OnExitHover += DeactivateRingSprites;
-        LevelManager.Instance.OldSelectionManager.OnShamanMoveSelect += OnShamanSelect;
-        LevelManager.Instance.OldSelectionManager.OnShamanDeselected += OnShamanDeselect;
+        LevelManager.Instance.OldSelectionHandler.OnShamanMoveSelect += OnShamanSelect;
+        LevelManager.Instance.OldSelectionHandler.OnShamanDeselected += OnShamanDeselect;
         ScaleCircles(powerStructureConfig.Range, powerStructureConfig.RingsRanges);
         ChangeAllRingsColors(_powerStructureTypeColor);
     }
@@ -49,8 +49,8 @@ public class ProximityRingsManager : MonoBehaviour
         _clickHelper.OnEnterHover -= ActivateRingSprites;
         _clickHelper.OnExitHover -= DeactivateRingSprites;
         if (ReferenceEquals(LevelManager.Instance,null)) return;
-        LevelManager.Instance.OldSelectionManager.OnShamanMoveSelect -= OnShamanSelect;
-        LevelManager.Instance.OldSelectionManager.OnShamanDeselected -= OnShamanDeselect;
+        LevelManager.Instance.OldSelectionHandler.OnShamanMoveSelect -= OnShamanSelect;
+        LevelManager.Instance.OldSelectionHandler.OnShamanDeselected -= OnShamanDeselect;
     }
 
     private void ChangeAllRingsColors(Color color)

@@ -10,7 +10,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     public List<Enemy> CharmedEnemies { get;} = new();
     public bool IsWon { get; private set; }
     public ScoreHandler ScoreHandler => _scoreHandler;
-    public ISelection OldSelectionManager => _oldSelectionManager;
+    public ISelection OldSelectionHandler => _selectionManager.ActiveSelectionHandler;
     public IndicatorManager IndicatorManager => indicatorManager;
     public Canvas GameUi => gameUi;
     public PoolManager PoolManager => poolManager;
@@ -21,10 +21,10 @@ public class LevelManager : MonoSingleton<LevelManager>
     [SerializeField] private Shaman shamanPrefab;
     [SerializeField] private PartyUIManager partyUIManager;
     [SerializeField] private PoolManager poolManager;
-    [SerializeField] private OldSelectionManager _oldSelectionManager;
     [SerializeField] private IndicatorManager indicatorManager;
     [SerializeField] private Canvas gameUi;
     [SerializeField] private PopupsManager popupsManager;
+    [SerializeField] private SelectionManager _selectionManager;
     
     private readonly ScoreHandler _scoreHandler = new ScoreHandler();
 
