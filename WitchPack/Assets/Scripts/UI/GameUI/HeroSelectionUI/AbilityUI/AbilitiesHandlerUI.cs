@@ -46,11 +46,6 @@ public class AbilitiesHandlerUI : MonoBehaviour
         }
     }
 
-    public static void UpdateButton(Shaman shaman, AbilityUIButton button)
-    {
-        button.UpdateVisual(CheckAbilityUpgradable(shaman,button.ActiveAbility));
-    }
-
     private void OpenUpgradePanel(AbilityUIButton abilityButton)
     {
         SoundManager.Instance.PlayAudioClip(SoundEffectType.OpenUpgradeTree);

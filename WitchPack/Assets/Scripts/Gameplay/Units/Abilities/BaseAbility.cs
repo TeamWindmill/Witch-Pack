@@ -40,6 +40,8 @@ public abstract class BaseAbility : ScriptableObject
     public bool HasPopupColor { get => hasPopupColor; }
     public Color PopupColor { get => popupColor; }
     public Sprite DefaultIcon => defaultIcon;
+    public Sprite DisabledIcon => disabledIcon;
+    public Sprite UpgradeIcon => upgradeIcon;
     public string Name => name;
     public string Discription => discription;
     public BaseAbility[] Upgrades => _upgrades;

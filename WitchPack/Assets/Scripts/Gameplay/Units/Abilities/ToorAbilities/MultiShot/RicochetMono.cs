@@ -51,7 +51,7 @@ public class RicochetMono : MultiShotMono
         if (_bouncing)
         {
             _rb.velocity = _ricochetSO.BounceSpeed * GAME_TIME.TimeRate * transform.up;
-        
+            
             if(!Launched) return;
             var dir = _rb.position - (Vector2)_targetPos;
             dir.Normalize();

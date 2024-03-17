@@ -29,10 +29,12 @@ public class RicochetSO : MultiShotSO
         {
             
             //target 2
-            _target2 = caster.EnemyTargetHelper.GetTarget(TargetData, new []{_target1}.ToList()) ?? _target1;
-
+            _target2 = caster.EnemyTargetHelper.GetTarget(TargetData, new []{_target1}.ToList());
+            _target2 ??= _target1;
+            
             //target 3
-            _target3 = caster.EnemyTargetHelper.GetTarget(TargetData, new []{_target1,_target2}.ToList()) ?? _target1;
+            _target3 = caster.EnemyTargetHelper.GetTarget(TargetData, new []{_target1,_target2}.ToList());
+            _target3 ??= _target1;
             
             //calculate start direction
             var dir = _target1.transform.position - caster.transform.position;
