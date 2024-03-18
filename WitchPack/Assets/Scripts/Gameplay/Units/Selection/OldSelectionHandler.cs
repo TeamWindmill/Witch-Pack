@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using UnityEngine.EventSystems;
 
 public class OldSelectionHandler : MonoBehaviour,ISelection
 {
@@ -25,12 +26,21 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
         _selectedShaman = LevelManager.Instance.ShamanParty[0];
         HeroSelectionUI.Instance.Show(_selectedShaman);
     }
-
-    public void SetSelectedShaman(Shaman selectedShaman, SelectionType selectMode)
+    public void OnShamanClick(PointerEventData.InputButton button, Shaman shaman)
     {
-        _selectedShaman = selectedShaman;
-        _selectMode = selectMode;
-        HeroSelectionUI.Instance.Show(selectedShaman);
+        if (button == PointerEventData.InputButton.Left)
+        {
+            _selectedShaman = shaman;
+            _selectMode = SelectionType.Info;
+            HeroSelectionUI.Instance.Show(shaman);
+        }
+        if (button == PointerEventData.InputButton.Right)
+        {
+            _selectedShaman = shaman;
+            _selectMode = SelectionType.Movement;
+            HeroSelectionUI.Instance.Show(shaman);
+        }
+        
     }
 
     private void Update()
