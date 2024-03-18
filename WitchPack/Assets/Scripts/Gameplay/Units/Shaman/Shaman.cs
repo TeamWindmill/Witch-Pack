@@ -14,7 +14,7 @@ public class Shaman : BaseUnit
     public List<BaseAbility> RootAbilities => rootAbilities;
     public EnergyHandler EnergyHandler => energyHandler;
     public ShamanVisualHandler ShamanVisualHandler => shamanVisualHandler;
-
+    public bool IsSelected {get => _isSelected; set => _isSelected = value; }
     #endregion
 
     #region serialized
@@ -33,7 +33,7 @@ public class Shaman : BaseUnit
     private List<BaseAbility> rootAbilities = new List<BaseAbility>();
     private List<BaseAbility> knownAbilities = new List<BaseAbility>();
     [SerializeField] private EnergyHandler energyHandler;
-
+    private bool _isSelected;
     #endregion
 
     private void OnValidate()
@@ -62,8 +62,8 @@ public class Shaman : BaseUnit
         Movement.OnDestinationSet += AutoCaster.DisableCaster;
         Movement.OnDestinationReached += AutoCaster.EnableCaster;
         clicker.OnClick += SetSelectedShaman;
-        clicker.OnEnterHover += shamanVisualHandler.ShowShamanRange;
-        clicker.OnExitHover += shamanVisualHandler.HideShamanRange;
+        clicker.OnEnterHover += ShamanHoveredEntered;
+        clicker.OnExitHover += ShamanHoveredExit;
         DamageDealer.OnKill += energyHandler.OnEnemyKill;
         DamageDealer.OnAssist += energyHandler.OnEnemyAssist;
         energyHandler.OnShamanLevelUp += OnLevelUpGFX;
@@ -176,7 +176,20 @@ public class Shaman : BaseUnit
     {
         LevelManager.Instance.SelectionHandler.OnShamanClick(button,this);
     }
-
+    public void ShamanHoveredEntered()
+    {
+        if (!_isSelected)
+        {
+            shamanVisualHandler.ShowShamanRange();
+        }
+    }
+    public void ShamanHoveredExit()
+    {
+        if (!_isSelected)
+        { 
+            shamanVisualHandler.HideShamanRange();
+        }
+    }
 
     public void ToggleClicker(bool state)
     {
