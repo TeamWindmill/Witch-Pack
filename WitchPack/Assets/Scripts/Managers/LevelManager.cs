@@ -10,7 +10,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     public List<Enemy> CharmedEnemies { get;} = new();
     public bool IsWon { get; private set; }
     public ScoreHandler ScoreHandler => _scoreHandler;
-    public ISelection OldSelectionHandler => _selectionManager.ActiveSelectionHandler;
+    public ISelection SelectionHandler => _selectionManager.ActiveSelectionHandler;
     public IndicatorManager IndicatorManager => indicatorManager;
     public Canvas GameUi => gameUi;
     public PoolManager PoolManager => poolManager;
