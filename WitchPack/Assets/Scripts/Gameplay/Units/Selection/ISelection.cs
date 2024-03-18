@@ -1,4 +1,5 @@
 using System;
+using UnityEngine.EventSystems;
 
 public interface ISelection
 {
@@ -8,6 +9,6 @@ public interface ISelection
     public SelectionType SelectMode { get; }
     public Shaman SelectedShaman { get; }
     public Shadow Shadow { get; }
-    public void SetSelectedShaman(Shaman selectedShaman, SelectionType selectMode);
+    public void OnShamanClick(PointerEventData.InputButton button, Shaman shaman);
 }
 

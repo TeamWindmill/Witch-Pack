@@ -20,11 +20,8 @@ public class PopupsManager : MonoBehaviour
     private float _offsetDivider = 10;
     private Vector3 _offsetVector;
 
-    [SerializeField] private Color shamanCritColor;
-    [SerializeField] private Color enemyAutoAttackColor;
-    [SerializeField] private Color enemyCritAutoAttackColor;
-    [SerializeField] private Color healColor;
-    [SerializeField] private StatusEffectTypeColorDictionary _dictionary;
+
+    [SerializeField] private PopupsColorsDictionary _dictionary;
 
     private Color _popupColor;
 
@@ -93,7 +90,7 @@ public class PopupsManager : MonoBehaviour
     {
         _offsetVector = new Vector3(0, _yOffset);
 
-        healPopupPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, healAmount, healColor);
+        healPopupPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, healAmount, _dictionary.HealColor);
     }
 
     public void SpawnLevelUpTextPopup(Shaman shaman)
@@ -126,22 +123,22 @@ public class PopupsManager : MonoBehaviour
         {
             if (damageDealer.Owner is Enemy enemy && !enemy.Effectable.ContainsStatusEffect(StatusEffectType.Charm))
             {
-                return enemyCritAutoAttackColor;
+                return _dictionary.EnemyCritAutoAttackColor;
             }
             else
             {
-                return shamanCritColor;
+                return _dictionary.ShamanCritColor;
             }
         }
 
         // Fourth Priority - Default Colors
         else if (damageDealer.Owner is Enemy enemy && !enemy.Effectable.ContainsStatusEffect(StatusEffectType.Charm))
         {
-            return enemyAutoAttackColor;
+            return _dictionary.EnemyAutoAttackColor;
         }
         else
         {
-            return Color.white;
+            return _dictionary.DefaultColor;
         }
     }
 }
