@@ -50,13 +50,13 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
 
         if (SelectMode == SelectionType.Movement)
         {
-            if (Input.GetMouseButtonDown(LEFT_CLICK))
+            if (Input.GetMouseButtonDown(RIGHT_CLICK))
             { 
                 if (_mouseOverSelectionUI) return;
 
                 ReleaseMove();
             }
-            if (Input.GetMouseButtonDown(RIGHT_CLICK))
+            if (Input.GetMouseButtonDown(LEFT_CLICK))
             { 
                 CancelMove();
             }
