@@ -99,16 +99,18 @@ public class Indicator : UIElement
         float clampedY = Mathf.Clamp(targetScreenPoint.y, 0, midScreen.y * 2);
         targetScreenPoint = new Vector3(clampedX, clampedY);
         targetScreenPoint -= (new Vector3(referenceResolution.x / 2f, referenceResolution.y / 2f)); // Why we do dis??
+        //targetScreenPoint -= midScreen;
         rectTransform.localPosition = targetScreenPoint;
         /* float angle = Mathf.Atan2(targetSP.normalized.y, targetSP.normalized.y) * Mathf.Rad2Deg;
          pointer.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);*/
 
         //test
 
+        // New Indicators for corners
         Vector2 direction = new Vector2(0, 0); // will help calculate the angle at which we need to rotate our pointer
         Vector2 referenceVector = new Vector2(0, -1); // angle will be calculated in relation to this vector
         Vector3 axis = Vector3.forward; // the axis is used to flip the corner in case the target is to the right of the screen
-
+        
         // y value of direction
         if (targetScreenPoint.y == -midScreen.y)
         {
@@ -118,7 +120,7 @@ public class Indicator : UIElement
         {
             direction.y = -1;
         }
-
+        
         // x value of direction
         if (targetScreenPoint.x == -midScreen.x)
         {
@@ -129,8 +131,8 @@ public class Indicator : UIElement
             direction.x = -1;
             axis = Vector3.back;
         }
-
-
+        
+        
         /// gets angle between our referenceVector and our calculated direction
         /// for future reference:
         /// 180 degrees = above screen
@@ -139,6 +141,27 @@ public class Indicator : UIElement
         /// 270 degrees = to the left of screen
         float pointerAngle = Vector2.Angle(referenceVector, direction);
         rectTransform.localRotation = Quaternion.AngleAxis(pointerAngle, axis);
+
+        // Old Indicators
+        /// if (targetScreenPoint.y == -midScreen.y)
+        /// {
+        ///     rectTransform.localRotation = Quaternion.AngleAxis(180, Vector3.forward);
+        /// }
+        /// else if (targetScreenPoint.y == midScreen.y)
+        /// {
+        ///     rectTransform.localRotation = Quaternion.AngleAxis(0, Vector3.forward);
+        /// }
+        /// else if (targetScreenPoint.x == -midScreen.x)
+        /// 
+        /// if (targetScreenPoint.x == -midScreen.x)
+        /// {
+        ///     rectTransform.localRotation = Quaternion.AngleAxis(90, Vector3.forward);
+        /// }
+        /// else if (targetScreenPoint.x == midScreen.x)
+        /// {
+        ///     rectTransform.localRotation = Quaternion.AngleAxis(270, Vector3.forward);
+        /// }
+
 
         artParentRectTransform.localEulerAngles = new Vector3(0, 0, -rectTransform.localEulerAngles.z);
 
