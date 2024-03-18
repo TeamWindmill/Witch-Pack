@@ -49,6 +49,7 @@ public class SelectionHandler : MonoBehaviour, ISelection
     {
         SlowMotionManager.Instance.StartSlowMotionEffects();
         shadow.Show(_selectedShaman);
+        OnShamanMoveSelect?.Invoke(_selectedShaman);
     }
     private void ReleaseMove()
     {
@@ -58,12 +59,14 @@ public class SelectionHandler : MonoBehaviour, ISelection
         shadow.Hide();
         var newDest = GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
         _selectedShaman.Movement.SetDestination(newDest);
+        OnShamanDeselected?.Invoke(_selectedShaman);
     }
 
     private void CancelMove()
     {
         SlowMotionManager.Instance.EndSlowMotionEffects();
         shadow.Hide();
+        OnShamanDeselected?.Invoke(_selectedShaman);
     }
 
     

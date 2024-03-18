@@ -41,14 +41,14 @@ public class PowerStructure : MonoBehaviour
             ring.OnShadowExit += OnShadowRingExit;
         }
 
-        LevelManager.Instance.OldSelectionHandler.OnShamanDeselected += OnShadowDeselect;
+        LevelManager.Instance.SelectionHandler.OnShamanDeselected += OnShadowDeselect;
     }
     private void OnShadowDeselect(Shaman shaman)
     {
         proximityRingsManager.ToggleAllSprites(false);
-        if(ReferenceEquals(LevelManager.Instance.OldSelectionHandler.Shadow,null)) return;
-        if(ReferenceEquals(LevelManager.Instance.OldSelectionHandler.Shadow.Shaman,null)) return;
-        HideUI(LevelManager.Instance.OldSelectionHandler.Shadow);
+        if(ReferenceEquals(LevelManager.Instance.SelectionHandler.Shadow,null)) return;
+        if(ReferenceEquals(LevelManager.Instance.SelectionHandler.Shadow.Shaman,null)) return;
+        HideUI(LevelManager.Instance.SelectionHandler.Shadow);
     }
 
     private void OnShamanRingEnter(int ringId, Shaman shaman)
