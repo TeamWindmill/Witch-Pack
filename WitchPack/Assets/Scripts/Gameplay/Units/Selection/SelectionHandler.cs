@@ -21,8 +21,8 @@ public class SelectionHandler : MonoBehaviour, ISelection
 
     private void Start()
     {
-        _selectedShaman = LevelManager.Instance.ShamanParty[0];
-        HeroSelectionUI.Instance.Show(_selectedShaman);
+        //_selectedShaman = LevelManager.Instance.ShamanParty[0];
+        //HeroSelectionUI.Instance.Show(_selectedShaman);
     }
 
     public void SetSelectedShaman(Shaman selectedShaman, SelectionType selectMode)
@@ -60,6 +60,7 @@ public class SelectionHandler : MonoBehaviour, ISelection
         var newDest = GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
         _selectedShaman.Movement.SetDestination(newDest);
         OnShamanDeselected?.Invoke(_selectedShaman);
+        CloseUIPanelAndDeselectShaman();
     }
 
     private void CancelMove()
@@ -69,5 +70,9 @@ public class SelectionHandler : MonoBehaviour, ISelection
         OnShamanDeselected?.Invoke(_selectedShaman);
     }
 
-    
+    private void CloseUIPanelAndDeselectShaman()
+    {
+        HeroSelectionUI.Instance.Hide();
+        _selectedShaman = null;
+    }
 }
