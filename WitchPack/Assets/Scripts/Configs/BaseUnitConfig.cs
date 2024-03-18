@@ -10,6 +10,10 @@ public class BaseUnitConfig : BaseConfig
     [SerializeField][PreviewField(40)]
     [BoxGroup("Unit")][HorizontalGroup("Unit/Split")][VerticalGroup("Unit/Split/Right")]
     private Sprite unitIcon;
+
+    [SerializeField][PreviewField(40)]
+    [BoxGroup("Unit")][HorizontalGroup("Unit/Split")][VerticalGroup("Unit/Split/Right")]
+    private Sprite unitIndicatorIcon;
     
     [SerializeField] 
     [BoxGroup("Unit")][HorizontalGroup("Unit/Split")][VerticalGroup("Unit/Split/Left")]
@@ -18,4 +22,5 @@ public class BaseUnitConfig : BaseConfig
     public Sprite UnitSprite => unitSprite;
     public Sprite UnitIcon => unitIcon;
     public StatSheet BaseStats { get => baseStats; }
+    public Sprite UnitIndicatorIcon { get => unitIndicatorIcon; }
 }

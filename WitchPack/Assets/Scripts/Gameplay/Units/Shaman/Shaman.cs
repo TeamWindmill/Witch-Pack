@@ -49,7 +49,7 @@ public class Shaman : BaseUnit
         EnemyTargeter.SetRadius(Stats.BonusRange);
         IntializeAbilities();
         shamanAnimator.Init(this);
-        indicatable.Init(shamanConfig.UnitIcon, action: FocusCameraOnShaman, clickable: true);
+        indicatable.Init(shamanConfig.UnitIndicatorIcon, action: FocusCameraOnShaman, clickable: true, indicatorPointerSprite: IndicatorPointerSpriteType.Cyan);
         Indicator newIndicator = LevelManager.Instance.IndicatorManager.CreateIndicator(indicatable);
         newIndicator.gameObject.SetActive(false);
         shamanVisualHandler.Init(this, baseUnitConfig);
@@ -175,13 +175,9 @@ public class Shaman : BaseUnit
     public void SetSelectedShaman(PointerEventData.InputButton button)
     {
         shamanVisualHandler.HideShamanRange();
-        if (button == PointerEventData.InputButton.Right)
+        if (button == PointerEventData.InputButton.Left)
         {
-            LevelManager.Instance.OldSelectionManager.SetSelectedShaman(this, SelectionType.Movement);
-        }
-        else if (button == PointerEventData.InputButton.Left)
-        {
-            LevelManager.Instance.OldSelectionManager.SetSelectedShaman(this, SelectionType.Info);
+            LevelManager.Instance.OldSelectionHandler.SetSelectedShaman(this, SelectionType.Info);
         }
     }
 

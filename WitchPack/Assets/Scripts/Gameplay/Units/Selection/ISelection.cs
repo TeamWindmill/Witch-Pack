@@ -10,3 +10,4 @@ public interface ISelection
     public Shadow Shadow { get; }
     public void SetSelectedShaman(Shaman selectedShaman, SelectionType selectMode);
 }
+
