@@ -93,47 +93,42 @@ public class Indicator : UIElement
     private void PositionIndicator()
     {
         Vector3 targetScreenPoint = GameManager.Instance.CameraHandler.MainCamera.WorldToScreenPoint(target.transform.position);
-        targetScreenPoint.x *= resolutionDifference.x;
-        targetScreenPoint.y *= resolutionDifference.y;
-        float clampedX = Mathf.Clamp(targetScreenPoint.x, 0, midScreen.x * 2);
-        float clampedY = Mathf.Clamp(targetScreenPoint.y, 0, midScreen.y * 2);
+        targetScreenPoint *= resolutionDifference;
+        float clampedX = Mathf.Clamp(targetScreenPoint.x, 0, referenceResolution.x);
+        float clampedY = Mathf.Clamp(targetScreenPoint.y, 0, referenceResolution.y);
         targetScreenPoint = new Vector3(clampedX, clampedY);
         targetScreenPoint -= (new Vector3(referenceResolution.x / 2f, referenceResolution.y / 2f)); // Why we do dis??
-        //targetScreenPoint -= midScreen;
+        
         rectTransform.localPosition = targetScreenPoint;
-        /* float angle = Mathf.Atan2(targetSP.normalized.y, targetSP.normalized.y) * Mathf.Rad2Deg;
-         pointer.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);*/
-
-        //test
 
         // New Indicators for corners
         Vector2 direction = new Vector2(0, 0); // will help calculate the angle at which we need to rotate our pointer
-        Vector2 referenceVector = new Vector2(0, -1); // angle will be calculated in relation to this vector
+        Vector2 referenceVector = new Vector2(0, 1); // angle will be calculated in relation to this vector
         Vector3 axis = Vector3.forward; // the axis is used to flip the corner in case the target is to the right of the screen
         
         // y value of direction
-        if (targetScreenPoint.y == -midScreen.y)
-        {
-            direction.y = 1;
-        }
-        else if (targetScreenPoint.y == midScreen.y)
+        if (targetScreenPoint.y == -referenceResolution.y / 2)
         {
             direction.y = -1;
         }
+        else if (targetScreenPoint.y == referenceResolution.y /2)
+        {
+            direction.y = 1;
+        }
         
         // x value of direction
-        if (targetScreenPoint.x == -midScreen.x)
-        {
-            direction.x = 1;
-        }
-        else if (targetScreenPoint.x == midScreen.x)
+        if (targetScreenPoint.x == -referenceResolution.x / 2)
         {
             direction.x = -1;
+        }
+        else if (targetScreenPoint.x == referenceResolution.x / 2)
+        {
+            direction.x = 1;
             axis = Vector3.back;
         }
         
         
-        /// gets angle between our referenceVector and our calculated direction
+        /// gets angle (from the left of the y axis) between our referenceVector and our calculated direction
         /// for future reference:
         /// 180 degrees = above screen
         /// 0 degrees = below screen
