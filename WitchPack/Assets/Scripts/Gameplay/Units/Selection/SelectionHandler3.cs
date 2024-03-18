@@ -1,8 +1,10 @@
-using UnityEngine;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class OldSelectionHandler : MonoBehaviour,ISelection
+public class SelectionHandler3 : MonoBehaviour, ISelection
 {
     public event Action<Shaman> OnShamanMoveSelect;
     public event Action<Shaman> OnShamanInfoSelect;
@@ -28,20 +30,20 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
     }
     public void OnShamanClick(PointerEventData.InputButton button, Shaman shaman)
     {
-        if (button == PointerEventData.InputButton.Left)
+        if (button == PointerEventData.InputButton.Right)
         {
             _selectedShaman = shaman;
             _selectMode = SelectionType.Info;
             HeroSelectionUI.Instance.Show(shaman);
         }
-        if (button == PointerEventData.InputButton.Right)
+        if (button == PointerEventData.InputButton.Left)
         {
             _selectedShaman = shaman;
             _selectMode = SelectionType.Movement;
             HeroSelectionUI.Instance.Show(shaman);
             Shadow.Show(shaman);
         }
-        
+
     }
 
     private void Update()
@@ -50,20 +52,20 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
 
         if (SelectMode == SelectionType.Movement)
         {
-            if (Input.GetMouseButtonDown(RIGHT_CLICK))
-            { 
+            if (Input.GetMouseButtonDown(LEFT_CLICK))
+            {
                 if (_mouseOverSelectionUI) return;
 
                 ReleaseMove();
             }
-            if (Input.GetMouseButtonDown(LEFT_CLICK))
-            { 
+            if (Input.GetMouseButtonDown(RIGHT_CLICK))
+            {
                 CancelMove();
             }
         }
         if (SelectMode == SelectionType.Info)
         {
-            if (Input.GetMouseButtonDown(RIGHT_CLICK))
+            if (Input.GetMouseButtonDown(LEFT_CLICK))
             {
                 _selectMode = SelectionType.Movement;
             }
