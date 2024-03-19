@@ -6,22 +6,26 @@ using UnityEngine;
 
 public abstract class EffectTransitionLerp<T> where T : Enum
 {
-    [SerializeField] private LerpValueConfig LerpValueConfig;
-    [SerializeField] private List<EffectTransitionLerpValue<T>> EffectValues;
+    public LerpValueConfig LerpValueConfig => _lerpValueConfig;
+
+    public List<EffectTransitionLerpValue<T>> EffectValues => _effectValues;
+
+    [SerializeField] private LerpValueConfig _lerpValueConfig;
+    [SerializeField] private List<EffectTransitionLerpValue<T>> _effectValues;
 
     public virtual void StartTransitionEffect()
     {
-        foreach (var effectValue in EffectValues)
+        foreach (var effectValue in _effectValues)
         {
-            LerpValuesHandler.Instance.SetValueByType(LerpValueConfig, effectValue.ValueType, effectValue.DefaultValue, effectValue.SlowMotionValue, SetValue);
+            LerpValuesHandler.Instance.SetValueByType(_lerpValueConfig, effectValue.ValueType, effectValue.StartValue, effectValue.EndValue, SetValue);
         }
     }
 
     public virtual void EndTransitionEffect()
     {
-        foreach (var effectValue in EffectValues)
+        foreach (var effectValue in _effectValues)
         {
-            LerpValuesHandler.Instance.SetValueByType(LerpValueConfig, effectValue.ValueType, effectValue.SlowMotionValue, effectValue.DefaultValue, SetValue);
+            LerpValuesHandler.Instance.SetValueByType(_lerpValueConfig, effectValue.ValueType, effectValue.EndValue, effectValue.StartValue, SetValue);
         }
     }
 
@@ -32,6 +36,6 @@ public abstract class EffectTransitionLerp<T> where T : Enum
 public struct EffectTransitionLerpValue<T> where T : Enum
 {
     public T ValueType;
-    public float DefaultValue;
-    public float SlowMotionValue;
+    public float StartValue;
+    public float EndValue;
 }

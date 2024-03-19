@@ -61,7 +61,8 @@ public class CoreTemple : MonoBehaviour
         }
         else if (curHp <= maxHp * 0.66)
         {
-            animator.SetBool("R_Crack",true);   
+            animator.SetBool("R_Crack",true);
+            ScreenCracksHandler.Instance.StartCracksAnimation(1);
         }
         
     }
