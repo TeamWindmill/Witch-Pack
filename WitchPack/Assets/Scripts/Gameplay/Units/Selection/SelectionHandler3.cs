@@ -97,6 +97,7 @@ public class SelectionHandler3 : MonoBehaviour, ISelection
     }
     private void ReleaseMove()
     {
+        _selectMode = SelectionType.Info;
         if (!shadow.IsActive) return;
         SlowMotionManager.Instance.EndSlowMotionEffects();
         shadow.Hide();
