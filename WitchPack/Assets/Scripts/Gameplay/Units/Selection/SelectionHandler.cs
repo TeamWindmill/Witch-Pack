@@ -20,18 +20,16 @@ public class SelectionHandler : MonoBehaviour, ISelection
     private Shaman _selectedShaman;
     private SelectionType _selectMode;
 
-    private void Start()
-    {
-        //_selectedShaman = LevelManager.Instance.ShamanParty[0];
-        //HeroSelectionUI.Instance.Show(_selectedShaman);
-    }
     public void OnShamanClick(PointerEventData.InputButton button, Shaman shaman)
     {
         if (button == PointerEventData.InputButton.Left)
         {
+            if (_selectedShaman != null) _selectedShaman.IsSelected = false;
             _selectedShaman = shaman;
             _selectMode = SelectionType.Info;
             HeroSelectionUI.Instance.Show(shaman);
+            _selectedShaman.ShamanVisualHandler.ShowShamanRange();
+            _selectedShaman.IsSelected = true;
         }
     }
 
@@ -47,6 +45,12 @@ public class SelectionHandler : MonoBehaviour, ISelection
         }
 
         if (Input.GetMouseButtonUp(RIGHT_CLICK)) ReleaseMove();
+
+        if (!_mouseOverSelectionUI)
+        { 
+            if (Input.GetMouseButtonDown(LEFT_CLICK)) CloseUIPanelAndDeselectShaman();
+        }
+
     }
     private void SelectMove()
     {
@@ -56,16 +60,13 @@ public class SelectionHandler : MonoBehaviour, ISelection
     }
     private void ReleaseMove()
     {
-        if(!shadow.IsActive) return;
-        
+        if (!shadow.IsActive) return;
+
         SlowMotionManager.Instance.EndSlowMotionEffects();
         shadow.Hide();
         var newDest = GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
         _selectedShaman.Movement.SetDestination(newDest);
-        OnShamanDeselected?.Invoke(_selectedShaman);
-        CloseUIPanelAndDeselectShaman();
     }
-
     private void CancelMove()
     {
         SlowMotionManager.Instance.EndSlowMotionEffects();
@@ -75,7 +76,12 @@ public class SelectionHandler : MonoBehaviour, ISelection
 
     private void CloseUIPanelAndDeselectShaman()
     {
+        //when pressin on something that is not the shaman or other shamans or ui make this happen
         HeroSelectionUI.Instance.Hide();
+        OnShamanDeselected?.Invoke(_selectedShaman);
+        _selectedShaman.ShamanVisualHandler.HideShamanRange();
+        _selectedShaman.IsSelected = false;
         _selectedShaman = null;
+
     }
 }
