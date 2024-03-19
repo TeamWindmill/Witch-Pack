@@ -28,18 +28,20 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
     }
     public void OnShamanClick(PointerEventData.InputButton button, Shaman shaman)
     {
-        if (button == PointerEventData.InputButton.Left)
+        if (button == PointerEventData.InputButton.Right)
         {
             _selectedShaman = shaman;
             _selectMode = SelectionType.Info;
             HeroSelectionUI.Instance.Show(shaman);
         }
-        if (button == PointerEventData.InputButton.Right)
+        if (button == PointerEventData.InputButton.Left)
         {
+            CancelMove();
             _selectedShaman = shaman;
             _selectMode = SelectionType.Movement;
             HeroSelectionUI.Instance.Show(shaman);
             Shadow.Show(shaman);
+            SelectMove();
         }
         
     }
@@ -48,24 +50,40 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
     {
         if (ReferenceEquals(_selectedShaman, null)) return;
 
+        if (SelectMode == SelectionType.Info)
+        {
+            if (!_mouseOverSelectionUI)
+            {
+                if (Input.GetMouseButtonDown(LEFT_CLICK))
+                {
+                    SelectMove();
+                }
+                if (Input.GetMouseButton(LEFT_CLICK))
+                {
+                    if (Input.GetMouseButtonDown(RIGHT_CLICK))
+                    {
+                        CancelMove();
+                    }
+                }
+                if (Input.GetMouseButtonUp(LEFT_CLICK))
+                {
+                    ReleaseMove();
+                }
+                //if (Input.GetMouseButtonDown(LEFT_CLICK)) CloseUIPanelAndDeselectShaman();
+            }
+        }
+
         if (SelectMode == SelectionType.Movement)
         {
-            if (Input.GetMouseButtonDown(RIGHT_CLICK))
+            if (Input.GetMouseButtonDown(LEFT_CLICK))
             { 
                 if (_mouseOverSelectionUI) return;
 
                 ReleaseMove();
             }
-            if (Input.GetMouseButtonDown(LEFT_CLICK))
+            if (Input.GetMouseButtonDown(RIGHT_CLICK))
             { 
                 CancelMove();
-            }
-        }
-        if (SelectMode == SelectionType.Info)
-        {
-            if (Input.GetMouseButtonDown(RIGHT_CLICK))
-            {
-                _selectMode = SelectionType.Movement;
             }
         }
     }
@@ -78,6 +96,7 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
     }
     private void ReleaseMove()
     {
+        _selectMode = SelectionType.Info;
         if (!shadow.IsActive) return;
 
         SlowMotionManager.Instance.EndSlowMotionEffects();
@@ -98,5 +117,10 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
     {
         HeroSelectionUI.Instance.Hide();
         _selectedShaman = null;
+    }
+
+    public bool GetOnMouseDownShaman()
+    {
+        return false;
     }
 }

@@ -117,4 +117,9 @@ public class SelectionHandler3 : MonoBehaviour, ISelection
         OnShamanDeselected?.Invoke(_selectedShaman);
         _selectedShaman = null;
     }
+
+    public bool GetOnMouseDownShaman()
+    {
+        return true;
+    }
 }
