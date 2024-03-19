@@ -36,6 +36,7 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
         }
         if (button == PointerEventData.InputButton.Left)
         {
+            CancelMove();
             _selectedShaman = shaman;
             _selectMode = SelectionType.Movement;
             HeroSelectionUI.Instance.Show(shaman);
@@ -51,13 +52,24 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
 
         if (SelectMode == SelectionType.Info)
         {
-            if (Input.GetMouseButtonDown(LEFT_CLICK))
+            if (!_mouseOverSelectionUI)
             {
-                _selectMode = SelectionType.Movement;
-            }
-                        if (!_mouseOverSelectionUI)
-            {
-                if (Input.GetMouseButtonDown(LEFT_CLICK)) CloseUIPanelAndDeselectShaman();
+                if (Input.GetMouseButtonDown(LEFT_CLICK))
+                {
+                    SelectMove();
+                }
+                if (Input.GetMouseButton(LEFT_CLICK))
+                {
+                    if (Input.GetMouseButtonDown(RIGHT_CLICK))
+                    {
+                        CancelMove();
+                    }
+                }
+                if (Input.GetMouseButtonUp(LEFT_CLICK))
+                {
+                    ReleaseMove();
+                }
+                //if (Input.GetMouseButtonDown(LEFT_CLICK)) CloseUIPanelAndDeselectShaman();
             }
         }
 
