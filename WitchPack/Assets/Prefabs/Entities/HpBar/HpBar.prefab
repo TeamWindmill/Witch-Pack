@@ -210,6 +210,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5617180991050575516}
   - component: {fileID: 753731943303979882}
+  - component: {fileID: 6277327099422070477}
   m_Layer: 0
   m_Name: HpBar
   m_TagString: Untagged
@@ -246,6 +247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 706fb28129b945f48a14cac4f2a75004, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: {fileID: 0}
   fillSprite: {fileID: 2482432304323612586}
   fillSpriteRenderer: {fileID: 4002182410603616698}
   drainDuration: 0
@@ -253,3 +255,15 @@ MonoBehaviour:
   heroHealthColor: {r: 0.5411765, g: 0.7725491, b: 0.23137257, a: 1}
   enemyHealthColor: {r: 0.57254905, g: 0.14117648, b: 0.08235294, a: 1}
   coreHealthColor: {r: 0.30588236, g: 0.6431373, b: 0.56078434, a: 1}
+--- !u!210 &6277327099422070477
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5994928142813065113}
+  m_Enabled: 1
+  m_SortingLayerID: -1222986967
+  m_SortingLayer: 5
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
