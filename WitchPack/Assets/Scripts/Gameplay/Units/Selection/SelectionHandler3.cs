@@ -22,6 +22,7 @@ public class SelectionHandler3 : MonoBehaviour, ISelection
     private SelectionType _selectMode;
     [SerializeField] private float _maxHoldTime;
     private float _currentHoldTime;
+    private bool _inSelectMode;
 
     private void Start()
     {
@@ -53,8 +54,9 @@ public class SelectionHandler3 : MonoBehaviour, ISelection
         {
             if (Input.GetMouseButton(LEFT_CLICK))
             {
-                if (_currentHoldTime > _maxHoldTime)
+                if (_currentHoldTime > _maxHoldTime && !_inSelectMode)
                 {
+                    _inSelectMode = true;
                     SelectMove();
                 }
                 else
@@ -62,9 +64,10 @@ public class SelectionHandler3 : MonoBehaviour, ISelection
                     _currentHoldTime += Time.deltaTime;
                 }
             }
-            else if (Input.GetMouseButtonUp(LEFT_CLICK))
+            if (Input.GetMouseButtonUp(LEFT_CLICK))
             {
                 _currentHoldTime = 0;
+                _inSelectMode = false;
                 if (_mouseOverSelectionUI) return;
                 ReleaseMove();
             }
@@ -91,6 +94,7 @@ public class SelectionHandler3 : MonoBehaviour, ISelection
         SlowMotionManager.Instance.StartSlowMotionEffects();
         shadow.Show(_selectedShaman);
         OnShamanMoveSelect?.Invoke(_selectedShaman);
+        Debug.Log("Select Move");
     }
     private void ReleaseMove()
     {
@@ -99,12 +103,14 @@ public class SelectionHandler3 : MonoBehaviour, ISelection
         shadow.Hide();
         var newDest = GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
         _selectedShaman.Movement.SetDestination(newDest);
+        Debug.Log("Release Move");
     }
 
     private void CancelMove()
     {
         SlowMotionManager.Instance.EndSlowMotionEffects();
         shadow.Hide();
+        Debug.Log("Cancel Move");
     }
 
     private void CloseUIPanelAndDeselectShaman()
