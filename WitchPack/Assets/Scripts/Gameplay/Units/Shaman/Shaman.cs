@@ -62,6 +62,7 @@ public class Shaman : BaseUnit
         Movement.OnDestinationSet += AutoCaster.DisableCaster;
         Movement.OnDestinationReached += AutoCaster.EnableCaster;
         clicker.OnClick += SetSelectedShaman;
+        clicker.OnMouseDown += SetSelectedShaman;
         clicker.OnEnterHover += ShamanHoveredEntered;
         clicker.OnExitHover += ShamanHoveredExit;
         DamageDealer.OnKill += energyHandler.OnEnemyKill;
