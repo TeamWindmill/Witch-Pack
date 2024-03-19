@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Indicatable : MonoBehaviour
 {
-    [SerializeField] private Renderer rend;
     [SerializeField] private bool toggleOnVis;
     [SerializeField] private bool clickable;
     private Indicator currentIndicator;
@@ -15,7 +14,6 @@ public class Indicatable : MonoBehaviour
     public Action OnVisible;
     public Action OnInvisible;
 
-    public Renderer Rend { get => rend; }
     public Sprite ArtWork { get => artWork; }
     public float Lifetime { get => lifetime;}
     public bool Clickable { get => clickable;}
