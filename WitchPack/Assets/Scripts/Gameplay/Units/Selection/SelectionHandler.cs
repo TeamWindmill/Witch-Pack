@@ -84,4 +84,9 @@ public class SelectionHandler : MonoBehaviour, ISelection
         _selectedShaman = null;
 
     }
+
+    public bool GetOnMouseDownShaman()
+    {
+        return false;
+    }
 }
