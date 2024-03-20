@@ -7,7 +7,10 @@ public class ScreenCracksHandler : MonoSingleton<ScreenCracksHandler>
 {
     [SerializeField] private Canvas _canvas;
     [BoxGroup("Cracks")] [SerializeField] private ScreenCrack[] _cracks;
-    
+    [BoxGroup("Cracks")] [SerializeField] private ScreenCracksVignette _cracksVignette;
+    private int _crackIndicator;
+    private int _cracksPerHp;
+    private float _vignetteValuePerHp;
     
     private void Start()
     {
@@ -18,13 +21,21 @@ public class ScreenCracksHandler : MonoSingleton<ScreenCracksHandler>
             crack.ScreenCrackLerper.SetStartValue();
         }
     }
-
-    public void StartCracksAnimation(int crackNum)
+    public void InitByCore(CoreTemple core)
     {
-        _cracks[crackNum].ScreenCrackLerper.StartTransitionEffect();
+        _cracksPerHp = core.MaxHp / _cracks.Length;
+        _vignetteValuePerHp = Mathf.Abs(_cracksVignette.EffectValues[0].EndValue - _cracksVignette.EffectValues[0].StartValue) / core.MaxHp;
     }
-
-    
+    public void StartCracksAnimation()
+    {
+        for (int i = 0; i < _cracksPerHp; i++)
+        {
+            _cracks[_crackIndicator].ScreenCrackLerper.StartTransitionEffect();
+            _crackIndicator++;
+        }
+        _cracksVignette.StartTransitionEffect();
+        _cracksVignette.CurrentStartValue += _vignetteValuePerHp;
+    }
 }
 
 

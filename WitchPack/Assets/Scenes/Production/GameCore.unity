@@ -271,52 +271,166 @@ MonoBehaviour:
     _lerpValueConfig:
       TransitionCurve:
         serializedVersion: 2
-        m_Curve: []
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-      TransitionTime: 0
-    _effectValues: []
+      TransitionTime: 0.25
+    _effectValues:
+    - ValueType: 0
+      StartValue: 0
+      EndValue: -800
+    - ValueType: 1
+      StartValue: -10000
+      EndValue: 600
   _postProcessFilters:
     _lerpValueConfig:
       TransitionCurve:
         serializedVersion: 2
-        m_Curve: []
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-      TransitionTime: 0
-    _effectValues: []
+      TransitionTime: 0.5
+    _effectValues:
+    - ValueType: 0
+      StartValue: 0
+      EndValue: 1
+    - ValueType: 1
+      StartValue: 0
+      EndValue: 0.4
+    - ValueType: 2
+      StartValue: 0
+      EndValue: -25
   _windEffectHandler:
     _lerpValueConfig:
       TransitionCurve:
         serializedVersion: 2
-        m_Curve: []
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-      TransitionTime: 0
-    _effectValues: []
+      TransitionTime: 0.5
+    _effectValues:
+    - ValueType: 0
+      StartValue: 1
+      EndValue: 0.2
   _butterflyEffectHandler:
     _lerpValueConfig:
       TransitionCurve:
         serializedVersion: 2
-        m_Curve: []
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-      TransitionTime: 0
-    _effectValues: []
+      TransitionTime: 0.5
+    _effectValues:
+    - ValueType: 0
+      StartValue: 1
+      EndValue: 0.2
   _waterfallEffectHandler:
     _lerpValueConfig:
       TransitionCurve:
         serializedVersion: 2
-        m_Curve: []
+        m_Curve:
+        - serializedVersion: 3
+          time: 0
+          value: 0
+          inSlope: 0
+          outSlope: 0
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
+        - serializedVersion: 3
+          time: 1
+          value: 1
+          inSlope: 2
+          outSlope: 2
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-      TransitionTime: 0
-    _effectValues: []
+      TransitionTime: 0.5
+    _effectValues:
+    - ValueType: 0
+      StartValue: 1
+      EndValue: 0.2
   _startSlowTimeCurve:
     serializedVersion: 2
     m_Curve:
@@ -698,6 +812,274 @@ PrefabInstance:
       propertyPath: m_Name
       value: Screen Cracks Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1336628649540534253, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1359996429800849220, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1359996429800849220, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1359996429800849220, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.data[0].EndValue
+      value: 0.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1359996429800849220, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.data[0].StartValue
+      value: 0.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 1359996429800849220, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1359996429800849220, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1359996429800849220, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1359996429800849220, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1359996429800849220, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1359996429800849220, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1359996429800849220, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1359996429800849220, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 1359996429800849220, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516650103217774850, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516650103217774850, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516650103217774850, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.data[0].EndValue
+      value: 0.18
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516650103217774850, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.data[0].StartValue
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516650103217774850, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516650103217774850, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516650103217774850, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516650103217774850, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516650103217774850, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516650103217774850, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516650103217774850, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516650103217774850, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 1516650103217774850, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075554497855257403, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075554497855257403, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075554497855257403, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.data[0].EndValue
+      value: -0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075554497855257403, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.data[0].StartValue
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075554497855257403, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075554497855257403, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075554497855257403, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075554497855257403, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075554497855257403, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075554497855257403, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075554497855257403, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075554497855257403, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 2075554497855257403, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969998564173612047, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969998564173612047, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969998564173612047, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.data[0].EndValue
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969998564173612047, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.data[0].StartValue
+      value: -0.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969998564173612047, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969998564173612047, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969998564173612047, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969998564173612047, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969998564173612047, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969998564173612047, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969998564173612047, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969998564173612047, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 2969998564173612047, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6233588486285341985, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6233588486285341985, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6233588486285341985, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.data[0].EndValue
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6233588486285341985, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.data[0].StartValue
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6233588486285341985, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6233588486285341985, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6233588486285341985, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6233588486285341985, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6233588486285341985, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6233588486285341985, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6233588486285341985, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6233588486285341985, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 6233588486285341985, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 7325926403666239510, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _cracksVignette
+      value: 
+      objectReference: {fileID: 1606782934}
     - target: {fileID: 7325926403666239510, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
       propertyPath: _cracks.Array.size
       value: 10
@@ -742,6 +1124,162 @@ PrefabInstance:
       propertyPath: _cracks.Array.data[9]
       value: 
       objectReference: {fileID: 572488214}
+    - target: {fileID: 7549801376039547930, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549801376039547930, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549801376039547930, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.data[0].EndValue
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549801376039547930, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.data[0].StartValue
+      value: -0.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549801376039547930, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549801376039547930, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549801376039547930, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549801376039547930, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549801376039547930, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549801376039547930, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549801376039547930, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549801376039547930, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 7549801376039547930, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 7684575122712835835, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7684575122712835835, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7684575122712835835, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.data[0].EndValue
+      value: -0.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 7684575122712835835, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.data[0].StartValue
+      value: -0.41
+      objectReference: {fileID: 0}
+    - target: {fileID: 7684575122712835835, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7684575122712835835, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7684575122712835835, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7684575122712835835, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7684575122712835835, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7684575122712835835, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7684575122712835835, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7684575122712835835, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 7684575122712835835, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 7735054008103823188, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7735054008103823188, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7735054008103823188, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.data[0].EndValue
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 7735054008103823188, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.data[0].StartValue
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7735054008103823188, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7735054008103823188, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7735054008103823188, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7735054008103823188, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7735054008103823188, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7735054008103823188, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7735054008103823188, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7735054008103823188, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 7735054008103823188, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
     - target: {fileID: 8493481870404466271, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -822,10 +1360,117 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8808629629371940231, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808629629371940231, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808629629371940231, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.data[0].EndValue
+      value: -0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808629629371940231, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.data[0].StartValue
+      value: -0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808629629371940231, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808629629371940231, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808629629371940231, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808629629371940231, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808629629371940231, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808629629371940231, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808629629371940231, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808629629371940231, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 8808629629371940231, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 9047887650283089899, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9047887650283089899, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9047887650283089899, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.data[0].EndValue
+      value: -0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 9047887650283089899, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._effectValues.Array.data[0].StartValue
+      value: -0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9047887650283089899, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9047887650283089899, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].time
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9047887650283089899, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9047887650283089899, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9047887650283089899, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].inSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9047887650283089899, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9047887650283089899, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].outSlope
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9047887650283089899, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[0].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
+    - target: {fileID: 9047887650283089899, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      propertyPath: _screenCrackLerper._lerpValueConfig.TransitionCurve.m_Curve.Array.data[1].tangentMode
+      value: 34
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 734461530221553990, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1606782934}
   m_SourcePrefab: {fileID: 100100000, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
 --- !u!224 &572488213 stripped
 RectTransform:
@@ -1534,6 +2179,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shadow: {fileID: 345006126}
   _maxHoldTime: 0.15
+--- !u!1 &1606782932 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 734461530221553990, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+  m_PrefabInstance: {fileID: 572488212}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1606782933 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1336628649540534253, guid: b1574b1d1eab65844ab48bd5e5d849a0, type: 3}
+  m_PrefabInstance: {fileID: 572488212}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606782932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1606782934
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1606782932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58cb3f4b75ee448c8d170765b1f08a7d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _lerpValueConfig:
+    TransitionCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    TransitionTime: 0.15
+  _effectValues:
+  - ValueType: 0
+    StartValue: -1.97
+    EndValue: 0
+  _vignette: {fileID: 1606782933}
 --- !u!1 &1639231520
 GameObject:
   m_ObjectHideFlags: 0

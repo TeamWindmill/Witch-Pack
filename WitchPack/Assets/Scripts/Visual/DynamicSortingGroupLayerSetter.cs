@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 
 [RequireComponent(typeof(SortingGroup))]
-public class DynamicSortingGroupHandler : MonoBehaviour
+public class DynamicSortingGroupLayerSetter : MonoBehaviour
 {
     [SerializeField] private bool _updateInRuntime;
     private SortingGroup _sortingGroup;
