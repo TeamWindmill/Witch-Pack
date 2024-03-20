@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using UnityEngine.EventSystems;
+using Unity.VisualScripting.Antlr3.Runtime;
 
 public class OldSelectionHandler : MonoBehaviour,ISelection
 {
@@ -18,7 +19,9 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
     private bool _mouseOverSelectionUI => HeroSelectionUI.Instance.MouseOverUI;
     private Shaman _selectedShaman;
     private SelectionType _selectMode;
-
+    [SerializeField] private float _maxHoldTime;
+    private float _currentHoldTime;
+    private bool _inSelectMode;
 
     private void Start()
     {
@@ -50,12 +53,21 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
     private void Update()
     {
         if (ReferenceEquals(_selectedShaman, null)) return;
+        if (UIManager.Instance.MouseOverUI) return;
 
         if (SelectMode == SelectionType.Info)
         {
             if (!_mouseOverSelectionUI)
             {
-                if (Input.GetMouseButtonDown(LEFT_CLICK))
+                if (_currentHoldTime < _maxHoldTime)
+                {
+                    if (Input.GetMouseButtonUp(LEFT_CLICK))
+                    {
+                        QuickMove();
+                        return;
+                    }
+                }
+                if (Input.GetMouseButton(LEFT_CLICK))
                 {
                     foreach (var shaman in LevelManager.Instance.ShamanParty)
                     {
@@ -64,17 +76,15 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
                             return;
                         }
                     }
-                    //foreach (var indicator in LevelManager.Instance.IndicatorManager.ActiveIndicators)
-                    //{
-                    //    if (indicator.isMouseOver)
-                    //    {
-                    //        return;
-                    //    }
-                    //}
-                    SelectMove();
-                }
-                if (Input.GetMouseButton(LEFT_CLICK))
-                {
+                    if (_currentHoldTime > _maxHoldTime && !_inSelectMode) //holding
+                    {
+                        _inSelectMode = true;
+                        SelectMove();
+                    }
+                    else
+                    {
+                        _currentHoldTime += Time.deltaTime;
+                    }
                     if (Input.GetMouseButtonDown(RIGHT_CLICK))
                     {
                         CancelMove();
@@ -82,6 +92,9 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
                 }
                 if (Input.GetMouseButtonUp(LEFT_CLICK))
                 {
+                    _currentHoldTime = 0;
+                    _inSelectMode = false;
+                    if (_mouseOverSelectionUI) return;
                     ReleaseMove();
                 }
                 //if (Input.GetMouseButtonDown(LEFT_CLICK)) CloseUIPanelAndDeselectShaman();
@@ -90,28 +103,24 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
 
         if (SelectMode == SelectionType.Movement)
         {
-            if (Input.GetMouseButtonDown(LEFT_CLICK))
+            if (Input.GetMouseButtonUp(LEFT_CLICK))
             { 
                 if (_mouseOverSelectionUI) return;
                 foreach (var shaman in LevelManager.Instance.ShamanParty)
                 {
-                    if (shaman.MouseOverShaman && shaman != _selectedShaman)
+                    if (shaman.MouseOverShaman)
                     {
                         return;
                     }
                 }
-                //foreach (var indicator in LevelManager.Instance.IndicatorManager.ActiveIndicators)
-                //{
-                //    if (indicator.isMouseOver)
-                //    {
-                //        return;
-                //    }
-                //}
+
                 ReleaseMove();
+                _selectMode = SelectionType.Info;
             }
             if (Input.GetMouseButtonDown(RIGHT_CLICK))
             { 
                 CancelMove();
+                _selectMode = SelectionType.Info;
             }
         }
     }
@@ -133,7 +142,12 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
         _selectedShaman.Movement.SetDestination(newDest);
         OnShamanDeselected?.Invoke(_selectedShaman);
     }
-
+    private void QuickMove()
+    {
+        var newDest = GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+        _selectedShaman.Movement.SetDestination(newDest);
+        //OnShamanMoveSelect?.Invoke(_selectedShaman);
+    }
     private void CancelMove()
     {
         SlowMotionManager.Instance.EndSlowMotionEffects();

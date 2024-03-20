@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 0}
   showOnAwake: 0
-  assignUIGroup: 0
+  assignUIGroup: 1
   uiGroup: 0
   showInfoWindow: 0
   _windowInfo:
@@ -59,6 +59,11 @@ MonoBehaviour:
   circle: {fileID: 0}
   button: {fileID: 0}
   pointer: {fileID: 3716746932221534651}
+  artParentRectTransform: {fileID: 0}
+  pulsingSpeed: 0
+  minSizeValue: 0
+  pointerImage: {fileID: 0}
+  pointerSprites: []
 --- !u!1 &952028517625306118
 GameObject:
   m_ObjectHideFlags: 0
@@ -140,7 +145,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &2170101083173379251
