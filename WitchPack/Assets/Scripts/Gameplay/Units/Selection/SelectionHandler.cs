@@ -19,6 +19,9 @@ public class SelectionHandler : MonoBehaviour, ISelection
     private bool _mouseOverSelectionUI => HeroSelectionUI.Instance.MouseOverUI;
     private Shaman _selectedShaman;
     private SelectionType _selectMode;
+    [SerializeField] private float _maxHoldTime;
+    private float _currentHoldTime;
+    private bool _inSelectMode;
 
     public void OnShamanClick(PointerEventData.InputButton button, Shaman shaman)
     {
@@ -36,9 +39,31 @@ public class SelectionHandler : MonoBehaviour, ISelection
     private void Update()
     {
         if (ReferenceEquals(_selectedShaman, null)) return;
-
-        if (Input.GetMouseButtonDown(RIGHT_CLICK)) SelectMove();
-
+        if (_currentHoldTime < _maxHoldTime)
+        {
+            if (Input.GetMouseButtonUp(RIGHT_CLICK))
+            {
+                QuickMove();
+                return;
+            }
+        }
+        if (Input.GetMouseButton(RIGHT_CLICK))
+        {
+            if (_currentHoldTime > _maxHoldTime && !_inSelectMode) //holding
+            {
+                _inSelectMode = true;
+                SelectMove();
+            }
+            else
+            {
+                _currentHoldTime += Time.deltaTime;
+            }
+        }
+        else
+        {
+            _inSelectMode = false;
+            _currentHoldTime = 0;
+        }
         if (Input.GetMouseButton(RIGHT_CLICK))
         {
             if (Input.GetMouseButtonDown(LEFT_CLICK)) CancelMove();
@@ -51,6 +76,12 @@ public class SelectionHandler : MonoBehaviour, ISelection
             if (Input.GetMouseButtonDown(LEFT_CLICK)) CloseUIPanelAndDeselectShaman();
         }
 
+    }
+    private void QuickMove()
+    {
+        var newDest = GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+        _selectedShaman.Movement.SetDestination(newDest);
+        OnShamanMoveSelect?.Invoke(_selectedShaman);
     }
     private void SelectMove()
     {
