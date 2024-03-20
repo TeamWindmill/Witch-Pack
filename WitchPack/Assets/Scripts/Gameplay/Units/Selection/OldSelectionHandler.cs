@@ -25,6 +25,7 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
         shadow.Hide();
         _selectedShaman = LevelManager.Instance.ShamanParty[0];
         HeroSelectionUI.Instance.Show(_selectedShaman);
+        _selectMode = SelectionType.Info;
     }
     public void OnShamanClick(PointerEventData.InputButton button, Shaman shaman)
     {
@@ -63,6 +64,13 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
                             return;
                         }
                     }
+                    //foreach (var indicator in LevelManager.Instance.IndicatorManager.ActiveIndicators)
+                    //{
+                    //    if (indicator.isMouseOver)
+                    //    {
+                    //        return;
+                    //    }
+                    //}
                     SelectMove();
                 }
                 if (Input.GetMouseButton(LEFT_CLICK))
@@ -92,6 +100,13 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
                         return;
                     }
                 }
+                //foreach (var indicator in LevelManager.Instance.IndicatorManager.ActiveIndicators)
+                //{
+                //    if (indicator.isMouseOver)
+                //    {
+                //        return;
+                //    }
+                //}
                 ReleaseMove();
             }
             if (Input.GetMouseButtonDown(RIGHT_CLICK))
