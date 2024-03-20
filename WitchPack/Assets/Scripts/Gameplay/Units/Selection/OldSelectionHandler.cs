@@ -56,6 +56,13 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
             {
                 if (Input.GetMouseButtonDown(LEFT_CLICK))
                 {
+                    foreach (var shaman in LevelManager.Instance.ShamanParty)
+                    {
+                        if (shaman.MouseOverShaman && shaman != _selectedShaman)
+                        {
+                            return;
+                        }
+                    }
                     SelectMove();
                 }
                 if (Input.GetMouseButton(LEFT_CLICK))
@@ -78,7 +85,13 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
             if (Input.GetMouseButtonDown(LEFT_CLICK))
             { 
                 if (_mouseOverSelectionUI) return;
-
+                foreach (var shaman in LevelManager.Instance.ShamanParty)
+                {
+                    if (shaman.MouseOverShaman && shaman != _selectedShaman)
+                    {
+                        return;
+                    }
+                }
                 ReleaseMove();
             }
             if (Input.GetMouseButtonDown(RIGHT_CLICK))
