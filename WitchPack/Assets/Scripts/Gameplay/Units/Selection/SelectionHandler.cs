@@ -81,7 +81,7 @@ public class SelectionHandler : MonoBehaviour, ISelection
     {
         var newDest = GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
         _selectedShaman.Movement.SetDestination(newDest);
-        OnShamanMoveSelect?.Invoke(_selectedShaman);
+        //OnShamanMoveSelect?.Invoke(_selectedShaman);
     }
     private void SelectMove()
     {
