@@ -40,7 +40,7 @@ public class CoreTemple : MonoBehaviour
             curHp = 0;
         OnGetHit?.Invoke(amount);
         SoundManager.Instance.PlayAudioClip(SoundEffectType.CoreGetHit);
-        ScreenCracksHandler.Instance.StartCracksAnimation();
+        ScreenCracksHandler.Instance.StartCracksAnimation(amount);
         hpBar.SetBarValue(curHp);
         if (curHp <= 0)
         {

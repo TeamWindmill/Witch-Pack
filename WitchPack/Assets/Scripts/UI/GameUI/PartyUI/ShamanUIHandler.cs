@@ -13,6 +13,7 @@ public class ShamanUIHandler : ClickableUIElement
     [SerializeField, Range(0, 1)] private float spriteDeathAlpha;
     [Space] 
     [SerializeField] private Image _redInjuryImage;
+    [SerializeField] private Sprite _deadUnitIcon;
 
     private Shaman _shaman;
 
@@ -23,6 +24,7 @@ public class ShamanUIHandler : ClickableUIElement
         _splash.sprite = _shaman.ShamanConfig.UnitIcon;
         _healthBar.value = 1;
         Color upgradeColor = _upgradeFrame.color;
+        _redInjuryImage.fillAmount = 0;
         if (shaman.EnergyHandler.HasSkillPoints)
         {
             upgradeColor.a = 100;
@@ -77,9 +79,8 @@ public class ShamanUIHandler : ClickableUIElement
         Color upgradeColor = _upgradeFrame.color;
         upgradeColor.a = 0;
         _upgradeFrame.color = upgradeColor;
-        var lowAlphaColor = _splash.color;
-        lowAlphaColor.a = spriteDeathAlpha;
-        _splash.color = lowAlphaColor;
+        _splash.sprite = _deadUnitIcon;
+        _redInjuryImage.fillAmount = 0;
     }
 
     private void OnShamanLevelUp(int obj)
