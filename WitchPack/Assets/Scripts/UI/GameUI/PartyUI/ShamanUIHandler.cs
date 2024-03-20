@@ -9,11 +9,10 @@ public class ShamanUIHandler : ClickableUIElement
     [SerializeField] private Slider _healthBar;
     [SerializeField] private Image _splash;
     [SerializeField] private Image _upgradeFrame;
+    [SerializeField] private Image _upgradeArrow;
     [SerializeField, Range(0, 1)] private float spriteDeathAlpha;
     [Space] 
-    [SerializeField] private Sprite upgradeReadyFrameSprite;
-    [SerializeField] private Sprite defaultFrameSprite;
-    [SerializeField] private Image redInjuryImage;
+    [SerializeField] private Image _redInjuryImage;
 
     private Shaman _shaman;
 
@@ -25,9 +24,15 @@ public class ShamanUIHandler : ClickableUIElement
         _healthBar.value = 1;
         Color upgradeColor = _upgradeFrame.color;
         if (shaman.EnergyHandler.HasSkillPoints)
+        {
             upgradeColor.a = 100;
+            _upgradeArrow.gameObject.SetActive(true);
+        }
         else
+        {
             upgradeColor.a = 0;
+            _upgradeArrow.gameObject.SetActive(false);
+        }
         _upgradeFrame.color = upgradeColor;
         shaman.EnergyHandler.OnShamanUpgrade += OnShamanUpgrade;
         shaman.EnergyHandler.OnShamanLevelUp += OnShamanLevelUp;
@@ -42,7 +47,7 @@ public class ShamanUIHandler : ClickableUIElement
     private void OnChangeHealth()
     {
         float hpRatio = _shaman.Damageable.CurrentHp / (float)_shaman.Damageable.MaxHp;
-        redInjuryImage.fillAmount = 1 - hpRatio;
+        _redInjuryImage.fillAmount = 1 - hpRatio;
         _healthBar.value = hpRatio;
         _fill.color = Color.Lerp(Color.red, Color.green, hpRatio);
     }
@@ -82,15 +87,22 @@ public class ShamanUIHandler : ClickableUIElement
        Color upgradeColor = _upgradeFrame.color;
         upgradeColor.a = 100;
         _upgradeFrame.color = upgradeColor;
+        _upgradeArrow.gameObject.SetActive(true);
     }
 
     private void OnShamanUpgrade(bool hasSkillPoints)
     {
         Color upgradeColor = _upgradeFrame.color;
         if (hasSkillPoints)
+        {
             upgradeColor.a = 100;
+            _upgradeArrow.gameObject.SetActive(true);
+        }
         else
+        {
             upgradeColor.a = 0;
+            _upgradeArrow.gameObject.SetActive(false);
+        }
         _upgradeFrame.color = upgradeColor;
     }
 
