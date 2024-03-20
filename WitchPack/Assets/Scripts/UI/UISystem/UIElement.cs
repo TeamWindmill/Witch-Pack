@@ -80,4 +80,8 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
             if(InformationWindow.Instance.isActive) InformationWindow.Instance.Hide();
         }
     }
+    private void OnDisable()
+    {
+        isMouseOver = false;
+    }
 }

@@ -75,6 +75,7 @@ public class Indicator : UIElement
             counter -= GAME_TIME.GameDeltaTime;
             if (counter <= 0)
             {
+                LevelManager.Instance.IndicatorManager.RemoveActiveIndicator(this);
                 gameObject.SetActive(false);
             }
         }
@@ -86,6 +87,7 @@ public class Indicator : UIElement
     public void InvokeClick()
     {
         onClick?.Invoke();
+        LevelManager.Instance.IndicatorManager.RemoveActiveIndicator(this);
         gameObject.SetActive(false);        
     }
 
@@ -198,7 +200,6 @@ public class Indicator : UIElement
         speedDirection = 1;
         counter = time;
     }
-
 }
 
 public enum IndicatorPointerSpriteType
