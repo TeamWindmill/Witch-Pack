@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using UnityEngine.EventSystems;
+using Unity.VisualScripting.Antlr3.Runtime;
 
 public class OldSelectionHandler : MonoBehaviour,ISelection
 {
@@ -52,6 +53,7 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
     private void Update()
     {
         if (ReferenceEquals(_selectedShaman, null)) return;
+        if (UIManager.Instance.MouseOverUI) return;
 
         if (SelectMode == SelectionType.Info)
         {
@@ -83,14 +85,6 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
                     {
                         _currentHoldTime += Time.deltaTime;
                     }
-                }
-                else
-                {
-                    _inSelectMode = false;
-                    _currentHoldTime = 0;
-                }
-                if (Input.GetMouseButton(LEFT_CLICK))
-                {
                     if (Input.GetMouseButtonDown(RIGHT_CLICK))
                     {
                         CancelMove();
@@ -98,6 +92,9 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
                 }
                 if (Input.GetMouseButtonUp(LEFT_CLICK))
                 {
+                    _currentHoldTime = 0;
+                    _inSelectMode = false;
+                    if (_mouseOverSelectionUI) return;
                     ReleaseMove();
                 }
                 //if (Input.GetMouseButtonDown(LEFT_CLICK)) CloseUIPanelAndDeselectShaman();
@@ -106,22 +103,24 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
 
         if (SelectMode == SelectionType.Movement)
         {
-            if (Input.GetMouseButtonDown(LEFT_CLICK))
+            if (Input.GetMouseButtonUp(LEFT_CLICK))
             { 
                 if (_mouseOverSelectionUI) return;
                 foreach (var shaman in LevelManager.Instance.ShamanParty)
                 {
-                    if (shaman.MouseOverShaman && shaman != _selectedShaman)
+                    if (shaman.MouseOverShaman)
                     {
                         return;
                     }
                 }
 
                 ReleaseMove();
+                _selectMode = SelectionType.Info;
             }
             if (Input.GetMouseButtonDown(RIGHT_CLICK))
             { 
                 CancelMove();
+                _selectMode = SelectionType.Info;
             }
         }
     }
