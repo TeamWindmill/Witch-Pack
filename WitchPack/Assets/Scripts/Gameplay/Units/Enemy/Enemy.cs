@@ -48,7 +48,7 @@ public class Enemy : BaseUnit
         unitVisual.Init(this, givenConfig);
         enemyAI.Init(this);
         AutoCaster.Init(this,false);
-
+        Movement.ToggleMovement(false);
         #region Events
         //remember to unsubscribe in OnDisable!!!
         unitVisual.OnSpriteFlip += enemyAnimator.FlipAnimations;
