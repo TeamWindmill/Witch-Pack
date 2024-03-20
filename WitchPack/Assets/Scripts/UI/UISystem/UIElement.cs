@@ -6,8 +6,8 @@ using UnityEngine.EventSystems;
 public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     //inherit from this class if it is a ui element
-    public event Action OnMouseEnter;
-    public event Action OnMouseExit;
+    public event Action<UIElement> OnMouseEnter;
+    public event Action<UIElement> OnMouseExit;
     public RectTransform RectTransform => rectTransform;
     public bool isMouseOver { get; private set; }
 
@@ -67,14 +67,14 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
         isMouseOver = true;
-        OnMouseEnter?.Invoke();
+        OnMouseEnter?.Invoke(this);
         if (showInfoWindow) InformationWindow.Instance.RequestShow(this,_windowInfo);
     }
 
     public virtual void OnPointerExit(PointerEventData eventData)
     {
         isMouseOver = false;
-        OnMouseExit?.Invoke();
+        OnMouseExit?.Invoke(this);
         if (showInfoWindow)
         {
             if(InformationWindow.Instance.isActive) InformationWindow.Instance.Hide();
