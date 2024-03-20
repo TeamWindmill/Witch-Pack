@@ -54,7 +54,6 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
     {
         if (ReferenceEquals(_selectedShaman, null)) return;
         if (UIManager.Instance.MouseOverUI) return;
-
         if (SelectMode == SelectionType.Info)
         {
             if (!_mouseOverSelectionUI)
@@ -64,6 +63,7 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
                     if (Input.GetMouseButtonUp(LEFT_CLICK))
                     {
                         QuickMove();
+                        _currentHoldTime = 0;
                         return;
                     }
                 }
