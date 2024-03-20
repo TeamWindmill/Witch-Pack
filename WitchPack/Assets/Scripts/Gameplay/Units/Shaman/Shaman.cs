@@ -61,7 +61,14 @@ public class Shaman : BaseUnit
         shamanVisualHandler.OnSpriteFlip += shamanAnimator.FlipAnimations;
         Movement.OnDestinationSet += AutoCaster.DisableCaster;
         Movement.OnDestinationReached += AutoCaster.EnableCaster;
-        clicker.OnClick += SetSelectedShaman;
+        if (LevelManager.Instance.SelectionHandler.GetOnMouseDownShaman())
+        {
+            clicker.OnMouseDown += SetSelectedShaman;
+        }
+        else
+        { 
+            clicker.OnClick += SetSelectedShaman;
+        }
         clicker.OnEnterHover += ShamanHoveredEntered;
         clicker.OnExitHover += ShamanHoveredExit;
         DamageDealer.OnKill += energyHandler.OnEnemyKill;
