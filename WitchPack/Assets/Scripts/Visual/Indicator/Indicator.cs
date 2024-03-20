@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -47,6 +48,7 @@ public class Indicator : UIElement
         maxSizeValue = 1;
         speedDirection = 1;
         button.enabled = clickable;
+        //UIManager.Instance.AddUIElement(this, uiGroup);
         if (!ReferenceEquals(onClick, null))
         {
             this.onClick = onClick;
@@ -75,6 +77,7 @@ public class Indicator : UIElement
             counter -= GAME_TIME.GameDeltaTime;
             if (counter <= 0)
             {
+                //UIManager.Instance.RemoveUIElement(this, uiGroup);
                 LevelManager.Instance.IndicatorManager.RemoveActiveIndicator(this);
                 gameObject.SetActive(false);
             }
@@ -87,10 +90,10 @@ public class Indicator : UIElement
     public void InvokeClick()
     {
         onClick?.Invoke();
+        //UIManager.Instance.RemoveUIElement(this, uiGroup);
         LevelManager.Instance.IndicatorManager.RemoveActiveIndicator(this);
-        gameObject.SetActive(false);        
+        gameObject.SetActive(false);
     }
-
 
     private void PositionIndicator()
     {
