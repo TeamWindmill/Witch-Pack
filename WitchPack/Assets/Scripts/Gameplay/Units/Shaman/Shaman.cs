@@ -185,14 +185,14 @@ public class Shaman : BaseUnit
     }
     public void ShamanHoveredEntered()
     {
-        if (!_isSelected)
+        //if (!_isSelected)
         {
             shamanVisualHandler.ShowShamanRange();
         }
     }
     public void ShamanHoveredExit()
     {
-        if (!_isSelected)
+        //if (!_isSelected)
         { 
             shamanVisualHandler.HideShamanRange();
         }

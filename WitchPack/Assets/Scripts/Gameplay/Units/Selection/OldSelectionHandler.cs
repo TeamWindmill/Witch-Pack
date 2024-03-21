@@ -34,16 +34,20 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
     {
         if (button == PointerEventData.InputButton.Right)
         {
+            if(_selectedShaman != null) _selectedShaman.ShamanVisualHandler.HideShamanRing();
             _selectedShaman = shaman;
             _selectMode = SelectionType.Info;
             HeroSelectionUI.Instance.Show(shaman);
+            shaman.ShamanVisualHandler.ShowShamanRing();
         }
         if (button == PointerEventData.InputButton.Left)
         {
             CancelMove();
+            if(_selectedShaman != null) _selectedShaman.ShamanVisualHandler.HideShamanRing();
             _selectedShaman = shaman;
             _selectMode = SelectionType.Movement;
             HeroSelectionUI.Instance.Show(shaman);
+            shaman.ShamanVisualHandler.ShowShamanRing();
             Shadow.Show(shaman);
             SelectMove();
         }
