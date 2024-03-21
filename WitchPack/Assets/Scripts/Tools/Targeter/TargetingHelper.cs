@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Tools.Targeter
@@ -52,31 +53,34 @@ namespace Tools.Targeter
 
     public static T GetTargetByThreat(List<T> targets, TargetModifier mod, List<T> targetsToAvoid)
     {
-        T cur = targets[targets.Count/2];
-        for (int i = 0; i < targets.Count; i++)
+        //targets to avoid
+        var availableTargets = targets;
+        if (!ReferenceEquals(targetsToAvoid, null))
         {
-            if (!ReferenceEquals(targetsToAvoid, null)  && targetsToAvoid.Contains(targets[i]))
-            {
-                if (cur == targets[i]) cur = null;
-                continue;
-            }
+            availableTargets = targets.Except(targetsToAvoid).ToList();
+        }
+        T cur = availableTargets.Count > 0 ? availableTargets[availableTargets.Count/2] : null;
+        
+        //checking for target from available targets
+        for (int i = 0; i < availableTargets.Count; i++)
+        {
             
-            if(targets[i].IsDead) continue;
+            if(availableTargets[i].IsDead) continue;
 
-            if (targets[i].Stats.ThreatLevel <= 0) continue;
+            if (availableTargets[i].Stats.ThreatLevel <= 0) continue;
             
             if (mod == TargetModifier.Most)
             {
-                if (cur.Stats.ThreatLevel < targets[i].Stats.ThreatLevel)
+                if (cur.Stats.ThreatLevel < availableTargets[i].Stats.ThreatLevel)
                 {
-                    cur = targets[i];
+                    cur = availableTargets[i];
                 }
             }
             else
             {
-                if (cur.Stats.ThreatLevel > targets[i].Stats.ThreatLevel)
+                if (cur.Stats.ThreatLevel > availableTargets[i].Stats.ThreatLevel)
                 {
-                    cur = targets[i];
+                    cur = availableTargets[i];
                 } 
             }
         }
@@ -84,31 +88,33 @@ namespace Tools.Targeter
     }
     public static T GetTargetByHP(List<T> targets, TargetModifier mod, List<T> targetsToAvoid = null)
     {
-        T cur = targets[targets.Count/2];
-        for (int i = 0; i < targets.Count; i++)
+        //targets to avoid
+        var availableTargets = targets;
+        if (!ReferenceEquals(targetsToAvoid, null))
         {
-            if (!ReferenceEquals(targetsToAvoid, null) && targetsToAvoid.Contains(targets[i]))
-            {
-                if (cur == targets[i]) cur = null;
-                continue;
-            }
-            
-            if(targets[i].IsDead) continue;
+            availableTargets = targets.Except(targetsToAvoid).ToList();
+        }
+        T cur = availableTargets.Count > 0 ? availableTargets[availableTargets.Count/2] : null;
+        
+        //checking for target from available targets
+        for (int i = 0; i < availableTargets.Count; i++)
+        {
+            if(availableTargets[i].IsDead) continue;
             
             if (!ReferenceEquals(cur, null))
             {
                 if (mod == TargetModifier.Most)
                 {
-                    if (cur.Damageable.CurrentHp < targets[i].Damageable.CurrentHp)
+                    if (cur.Damageable.CurrentHp < availableTargets[i].Damageable.CurrentHp)
                     {
-                        cur = targets[i];
+                        cur = availableTargets[i];
                     }
                 }
                 else
                 {
-                    if (cur.Damageable.CurrentHp > targets[i].Damageable.CurrentHp)
+                    if (cur.Damageable.CurrentHp > availableTargets[i].Damageable.CurrentHp)
                     {
-                        cur = targets[i];
+                        cur = availableTargets[i];
                     }
                 }
             }
@@ -117,31 +123,33 @@ namespace Tools.Targeter
     }
     public static T GetTargetByHPPrecentage(List<T> targets, TargetModifier mod, List<T> targetsToAvoid = null)
     {
-        T cur = targets[targets.Count/2];
-        for (int i = 0; i < targets.Count; i++)
+        //targets to avoid
+        var availableTargets = targets;
+        if (!ReferenceEquals(targetsToAvoid, null))
         {
-            if (!ReferenceEquals(targetsToAvoid, null) && targetsToAvoid.Contains(targets[i]))
-            {
-                if (cur == targets[i]) cur = null;
-                continue;
-            }
-            
-            if(targets[i].IsDead) continue;
+            availableTargets = targets.Except(targetsToAvoid).ToList();
+        }
+        T cur = availableTargets.Count > 0 ? availableTargets[availableTargets.Count/2] : null;
+        
+        //checking for target from available targets
+        for (int i = 0; i < availableTargets.Count; i++)
+        {
+            if(availableTargets[i].IsDead) continue;
             
             if (!ReferenceEquals(cur, null))
             {
                 if (mod == TargetModifier.Most)
                 {
-                    if (cur.Damageable.CurrentHp / cur.Stats.GetStatValue(StatType.MaxHp) < targets[i].Damageable.CurrentHp / targets[i].Stats.GetStatValue(StatType.MaxHp))
+                    if (cur.Damageable.CurrentHp / cur.Stats.GetStatValue(StatType.MaxHp) < availableTargets[i].Damageable.CurrentHp / availableTargets[i].Stats.GetStatValue(StatType.MaxHp))
                     {
-                        cur = targets[i];
+                        cur = availableTargets[i];
                     }
                 }
                 else
                 {
-                    if (cur.Damageable.CurrentHp / cur.Stats.GetStatValue(StatType.MaxHp) > targets[i].Damageable.CurrentHp / targets[i].Stats.GetStatValue(StatType.MaxHp))
+                    if (cur.Damageable.CurrentHp / cur.Stats.GetStatValue(StatType.MaxHp) > availableTargets[i].Damageable.CurrentHp / availableTargets[i].Stats.GetStatValue(StatType.MaxHp))
                     {
-                        cur = targets[i];
+                        cur = availableTargets[i];
                     }
                 }
             }
@@ -150,31 +158,33 @@ namespace Tools.Targeter
     }
     public static T GetTargetByStat(List<T> targets, StatType givenStat, TargetModifier mod, List<T> targetsToAvoid = null)
     {
-        T cur = targets[targets.Count/2];
-        for (int i = 0; i < targets.Count; i++)
+        //targets to avoid
+        var availableTargets = targets;
+        if (!ReferenceEquals(targetsToAvoid, null))
         {
-            if (!ReferenceEquals(targetsToAvoid, null) && targetsToAvoid.Contains(targets[i]))
-            {
-                if (cur == targets[i]) cur = null;
-                continue;
-            }
-            
-            if(targets[i].IsDead) continue;
+            availableTargets = targets.Except(targetsToAvoid).ToList();
+        }
+        T cur = availableTargets.Count > 0 ? availableTargets[availableTargets.Count/2] : null;
+        
+        //checking for target from available targets
+        for (int i = 0; i < availableTargets.Count; i++)
+        {
+            if(availableTargets[i].IsDead) continue;
             
             if (!ReferenceEquals(cur, null))
             {
                 if (mod == TargetModifier.Most)
                 {
-                    if (cur.Stats.GetStatValue(givenStat) < targets[i].Stats.GetStatValue(givenStat))
+                    if (cur.Stats.GetStatValue(givenStat) < availableTargets[i].Stats.GetStatValue(givenStat))
                     {
-                        cur = targets[i];
+                        cur = availableTargets[i];
                     }
                 }
                 else
                 {
-                    if (cur.Stats.GetStatValue(givenStat) > targets[i].Stats.GetStatValue(givenStat))
+                    if (cur.Stats.GetStatValue(givenStat) > availableTargets[i].Stats.GetStatValue(givenStat))
                     {
-                        cur = targets[i];
+                        cur = availableTargets[i];
                     }
                 }
             }
@@ -184,31 +194,33 @@ namespace Tools.Targeter
 
     public static T GetTargetByDistance(List<T> targets, TargetModifier mod,Transform originPos, List<T> targetsToAvoid = null)
     {
-        T cur = targets[targets.Count/2];
-        for (int i = 0; i < targets.Count; i++)
+        //targets to avoid
+        var availableTargets = targets;
+        if (!ReferenceEquals(targetsToAvoid, null))
         {
-            if (!ReferenceEquals(targetsToAvoid, null)  && targetsToAvoid.Contains(targets[i]))
-            {
-                if (cur == targets[i]) cur = null;
-                continue;
-            }
-            
-            if(targets[i].IsDead) continue;
+            availableTargets = targets.Except(targetsToAvoid).ToList();
+        }
+        T cur = availableTargets.Count > 0 ? availableTargets[availableTargets.Count/2] : null;
+        
+        //checking for target from available targets
+        for (int i = 0; i < availableTargets.Count; i++)
+        {
+            if(availableTargets[i].IsDead) continue;
 
             if (!ReferenceEquals(cur, null))
             {
                 if (mod == TargetModifier.Most)
                 {
-                    if (Vector3.Distance(cur.transform.position, originPos.position) < Vector3.Distance(targets[i].transform.position, originPos.position))
+                    if (Vector3.Distance(cur.transform.position, originPos.position) < Vector3.Distance(availableTargets[i].transform.position, originPos.position))
                     {
-                        cur = targets[i];
+                        cur = availableTargets[i];
                     }
                 }
                 else
                 {
-                    if (Vector3.Distance(cur.transform.position, originPos.position) > Vector3.Distance(targets[i].transform.position, originPos.position))
+                    if (Vector3.Distance(cur.transform.position, originPos.position) > Vector3.Distance(availableTargets[i].transform.position, originPos.position))
                     {
-                        cur = targets[i];
+                        cur = availableTargets[i];
                     }
                 }
             }
@@ -218,31 +230,34 @@ namespace Tools.Targeter
 
     public static T GetTargetByDistanceToCore(List<T> targets, TargetModifier mod, List<T> targetsToAvoid = null)
     {
-        T cur = targets[targets.Count/2];
-        for (int i = 0; i < targets.Count; i++)
+        //targets to avoid
+        var availableTargets = targets;
+        if (!ReferenceEquals(targetsToAvoid, null))
         {
-            if (!ReferenceEquals(targetsToAvoid, null) && targetsToAvoid.Contains(targets[i]))
-            {
-                if (cur == targets[i]) cur = null;
-                continue;
-            }
+            availableTargets = targets.Except(targetsToAvoid).ToList();
+        }
+        T cur = availableTargets.Count > 0 ? availableTargets[availableTargets.Count/2] : null;
+        
+        //checking for target from available targets
+        for (int i = 0; i < availableTargets.Count; i++)
+        {
             
-            if(targets[i].IsDead) continue;
+            if(availableTargets[i].IsDead) continue;
 
             if (!ReferenceEquals(cur, null))
             {
                 if (mod == TargetModifier.Most)
                 {
-                    if (Vector3.Distance(cur.transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position) < Vector3.Distance(targets[i].transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position))
+                    if (Vector3.Distance(cur.transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position) < Vector3.Distance(availableTargets[i].transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position))
                     {
-                        cur = targets[i];
+                        cur = availableTargets[i];
                     }
                 }
                 else
                 {
-                    if (Vector3.Distance(cur.transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position) > Vector3.Distance(targets[i].transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position))
+                    if (Vector3.Distance(cur.transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position) > Vector3.Distance(availableTargets[i].transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position))
                     {
-                        cur = targets[i];
+                        cur = availableTargets[i];
                     }
                 }
             }

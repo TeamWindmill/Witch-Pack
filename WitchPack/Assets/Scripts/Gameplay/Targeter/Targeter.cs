@@ -17,7 +17,7 @@ public class Targeter<T> : MonoBehaviour where T : Component
     {
         if (statType == StatType.BaseRange)
         {
-            transform.parent.localScale += new Vector3(value * 2, value * 2, value * 2);
+            transform.parent.localScale = new Vector3(value * 2, value * 2, value * 2);
         }
     }
     public void SetRadius(float value)

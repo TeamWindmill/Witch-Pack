@@ -31,7 +31,7 @@ public class SelectionHandler : MonoBehaviour, ISelection
             _selectedShaman = shaman;
             _selectMode = SelectionType.Info;
             HeroSelectionUI.Instance.Show(shaman);
-            _selectedShaman.ShamanVisualHandler.ShowShamanRange();
+            _selectedShaman.ShamanVisualHandler.ShowShamanRing();
             _selectedShaman.IsSelected = true;
         }
     }
@@ -110,7 +110,7 @@ public class SelectionHandler : MonoBehaviour, ISelection
         //when pressin on something that is not the shaman or other shamans or ui make this happen
         HeroSelectionUI.Instance.Hide();
         OnShamanDeselected?.Invoke(_selectedShaman);
-        _selectedShaman.ShamanVisualHandler.HideShamanRange();
+        _selectedShaman.ShamanVisualHandler.HideShamanRing();
         _selectedShaman.IsSelected = false;
         _selectedShaman = null;
 

@@ -7,6 +7,7 @@ public class ShamanVisualHandler : UnitVisualHandler
     [SerializeField] private ParticleSystem overhealEffect;
     [SerializeField] private ParticleSystem healingWeedsEffect;
     [SerializeField] private ParticleSystem _hitEffect;
+    [SerializeField] private ParticleSystem _selectionRing;
     [SerializeField] private Transform _rangeVisual;
 
 
@@ -18,6 +19,7 @@ public class ShamanVisualHandler : UnitVisualHandler
     public override void Init(BaseUnit unit, BaseUnitConfig config)
     {
         _rangeVisual.gameObject.SetActive(false);
+        _selectionRing.gameObject.SetActive(false);
         base.Init(unit, config);
     }
 
@@ -30,8 +32,17 @@ public class ShamanVisualHandler : UnitVisualHandler
     {
         _rangeVisual.gameObject.SetActive(true);
     }
+    
     public void HideShamanRange()
     {
         _rangeVisual.gameObject.SetActive(false);
+    }
+    public void ShowShamanRing()
+    {
+        _selectionRing.gameObject.SetActive(true);
+    }
+    public void HideShamanRing()
+    {
+        _selectionRing.gameObject.SetActive(false);
     }
 }

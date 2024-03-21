@@ -30,7 +30,7 @@ public class SlowMotionManager : MonoSingleton<SlowMotionManager>
 
     public void StartSlowMotionEffects()
     {
-        _previousTimeRate = GAME_TIME.GetCurrentTimeRate;
+        _previousTimeRate = GAME_TIME.TimeRate;
         if(_previousTimeRate == 0) return;
         GAME_TIME.SetTimeStep(_slowTime, _slowTimeTransitionTime, _startSlowTimeCurve);
         _audioFilters.StartTransitionEffect();

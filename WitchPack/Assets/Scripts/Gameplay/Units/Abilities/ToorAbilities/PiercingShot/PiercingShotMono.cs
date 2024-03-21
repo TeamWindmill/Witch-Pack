@@ -12,29 +12,29 @@ public class PiercingShotMono : MonoBehaviour
     
     [Header("refs")]
     [SerializeField] private ParticleSystem _basicPiercingShot;
-    [SerializeField] private ParticleSystem _MarksmanPiercingShot;
-    [SerializeField] private ParticleSystem _ExperiencedHunterPiercingShot;
-    [SerializeField] private ParticleSystem _QuickShotPiercingShot;
-    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private ParticleSystem _marksmanPiercingShot;
+    [SerializeField] private ParticleSystem _experiencedHunterPiercingShot;
+    [SerializeField] private ParticleSystem _quickShotPiercingShot;
+    [SerializeField] private Rigidbody2D _rb;
     
     [Header("variables")]
-    [SerializeField] private float speed;
-    [SerializeField] private float lifeTime;
+    [SerializeField] private float _speed;
+    [SerializeField] private float _lifeTime;
     
-    private int baseMaxNumberOfHits;
-    private int currentNumberOfHits;
-    private int maxNumberOfHits;
-    private float lastRate;
-    private OffensiveAbility refAbility;
-    private BaseUnit owner;
+    private int _baseMaxNumberOfHits;
+    private int _currentNumberOfHits;
+    private int _maxNumberOfHits;
+    private OffensiveAbility _refAbility;
+    private BaseUnit _owner;
+    private Vector2 _dir;
 
     private void OnEnable()
     {
         GAME_TIME.OnTimeRateChange += ChangeVelocity;
         _basicPiercingShot.gameObject.SetActive(false);
-        _MarksmanPiercingShot.gameObject.SetActive(false);
-        _ExperiencedHunterPiercingShot.gameObject.SetActive(false);
-        _QuickShotPiercingShot.gameObject.SetActive(false);
+        _marksmanPiercingShot.gameObject.SetActive(false);
+        _experiencedHunterPiercingShot.gameObject.SetActive(false);
+        _quickShotPiercingShot.gameObject.SetActive(false);
     }
     private void OnDisable()
     {
@@ -43,18 +43,18 @@ public class PiercingShotMono : MonoBehaviour
     public void Fire(BaseUnit shooter, OffensiveAbility givenAbility, Vector2 dir, int basePen = 0, bool includePenStat = false)
     {
         EnableVisuals(givenAbility);
-        owner = shooter;
-        refAbility = givenAbility;
+        _owner = shooter;
+        _refAbility = givenAbility;
+        _dir = dir;
         Rotate(dir);
-        lastRate = GAME_TIME.GetCurrentTimeRate;
-        rb.velocity = dir * (speed) * lastRate;
+        _rb.velocity = (_speed) * GAME_TIME.TimeRate * _dir;
         if (includePenStat)
         {
-            maxNumberOfHits = baseMaxNumberOfHits + shooter.Stats.AbilityProjectilePenetration + basePen;
+            _maxNumberOfHits = _baseMaxNumberOfHits + shooter.Stats.AbilityProjectilePenetration + basePen;
         }
         else
         {
-            maxNumberOfHits = baseMaxNumberOfHits + basePen;
+            _maxNumberOfHits = _baseMaxNumberOfHits + basePen;
         }
         StartCoroutine(LifeTime());
     }
@@ -67,25 +67,22 @@ public class PiercingShotMono : MonoBehaviour
                 _basicPiercingShot.gameObject.SetActive(true);
                 break;
             case MARKSMAN:
-                _MarksmanPiercingShot.gameObject.SetActive(true);
+                _marksmanPiercingShot.gameObject.SetActive(true);
                 break;
             case EXPERIENCED_HUNTER:
-                _ExperiencedHunterPiercingShot.gameObject.SetActive(true);
+                _experiencedHunterPiercingShot.gameObject.SetActive(true);
                 break;
             case QUICK_SHOT:
-                _QuickShotPiercingShot.gameObject.SetActive(true);
+                _quickShotPiercingShot.gameObject.SetActive(true);
                 break;
         }
     }
 
     private void ChangeVelocity()
     {
-        if (gameObject.activeSelf)
-        {
-            rb.velocity /= lastRate;
-            lastRate = GAME_TIME.GetCurrentTimeRate;
-            rb.velocity *= lastRate;
-        }
+        if (!gameObject.activeSelf) return;
+        
+        _rb.velocity = _speed * GAME_TIME.TimeRate * _dir;
     }
 
     private void Rotate(Vector2 dir)
@@ -97,12 +94,12 @@ public class PiercingShotMono : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         BaseUnit target = collision.GetComponent<BaseUnit>();
-        if (!ReferenceEquals(target, null) && !ReferenceEquals(owner, null))
+        if (!ReferenceEquals(target, null) && !ReferenceEquals(_owner, null))
         {
-            target.Damageable.GetHit(owner.DamageDealer, refAbility);
+            target.Damageable.GetHit(_owner.DamageDealer, _refAbility);
         }
-        currentNumberOfHits++;
-        if (currentNumberOfHits >= maxNumberOfHits)
+        _currentNumberOfHits++;
+        if (_currentNumberOfHits >= _maxNumberOfHits)
         {
             Disable();
         }
@@ -111,29 +108,29 @@ public class PiercingShotMono : MonoBehaviour
 
     private void Disable()
     {
-        owner = null;
-        refAbility = null;
-        currentNumberOfHits = 0;
-        rb.velocity = Vector2.zero;
+        _owner = null;
+        _refAbility = null;
+        _currentNumberOfHits = 0;
+        _rb.velocity = Vector2.zero;
         gameObject.SetActive(false);
     }
 
     private void OnValidate()
     {
-        if (speed <= 1)
+        if (_speed <= 1)
         {
-            speed = 1;
+            _speed = 1;
         }
-        if (baseMaxNumberOfHits <= 1)
+        if (_baseMaxNumberOfHits <= 1)
         {
-            baseMaxNumberOfHits = 1;
+            _baseMaxNumberOfHits = 1;
         }
     }
 
     private IEnumerator LifeTime()
     {
         float counter = 0f;
-        while (counter < lifeTime)
+        while (counter < _lifeTime)
         {
             counter += GAME_TIME.GameDeltaTime;
             yield return new WaitForEndOfFrame();
