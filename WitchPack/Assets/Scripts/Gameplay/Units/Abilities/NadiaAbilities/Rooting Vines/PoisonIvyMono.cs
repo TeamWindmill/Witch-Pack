@@ -25,7 +25,7 @@ public class PoisonIvyMono : RootingVinesMono
         enemy.UnitTimers.Add(dotTimer);
 
         enemy.Damageable.OnDeath += RemovePoisonFromEnemyOnDeath;
-        enemy.UnitVisual.PoisonIvyVisuals.PlayPoisonParticle(poison.PoisonDuration);
+        enemy.EnemyVisualHandler.PoisonIvyVisuals.PlayPoisonParticle(poison.PoisonDuration);
         SoundManager.Instance.PlayAudioClip(SoundEffectType.PoisonIvy);
     }
 
@@ -49,7 +49,7 @@ public class PoisonIvyMono : RootingVinesMono
 
     private void StopPoisonParticle(Enemy enemy)
     {
-        enemy.UnitVisual.PoisonIvyVisuals.StopPoisonParticle();
+        enemy.EnemyVisualHandler.PoisonIvyVisuals.StopPoisonParticle();
     }
 
 

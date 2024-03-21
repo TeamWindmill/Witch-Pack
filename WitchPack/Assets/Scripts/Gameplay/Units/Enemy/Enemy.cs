@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Enemy : BaseUnit
 {
-    [SerializeField, TabGroup("Visual")] private EnemyVisualHandler unitVisual;
+    [SerializeField, TabGroup("Visual")] private EnemyVisualHandler enemyVisualHandler;
     [SerializeField, TabGroup("Combat")] private EnemyAI enemyAI;
 
     public EnemyConfig EnemyConfig { get => enemyConfig; }
@@ -14,7 +14,7 @@ public class Enemy : BaseUnit
     public override StatSheet BaseStats => enemyConfig.BaseStats;
     public EnemyMovement EnemyMovement => _enemyMovement;
     public EnemyAI EnemyAI => enemyAI;
-    public EnemyVisualHandler UnitVisual => unitVisual;
+    public EnemyVisualHandler EnemyVisualHandler => enemyVisualHandler;
     public PathCreator Path => _path;
 
     [SerializeField, TabGroup("Visual")] private EnemyAnimator enemyAnimator;
@@ -45,15 +45,15 @@ public class Enemy : BaseUnit
         EnemyTargeter.SetRadius(Stats.BonusRange);
         _enemyMovement = new EnemyMovement(this);
         enemyAnimator.Init(this);
-        unitVisual.Init(this, givenConfig);
+        enemyVisualHandler.Init(this, givenConfig);
         enemyAI.Init(this);
         AutoCaster.Init(this,false);
         Movement.ToggleMovement(false);
         #region Events
         //remember to unsubscribe in OnDisable!!!
-        unitVisual.OnSpriteFlip += enemyAnimator.FlipAnimations;
-        Effectable.OnAffectedVFX += unitVisual.EffectHandler.PlayEffect;
-        Effectable.OnEffectRemovedVFX += unitVisual.EffectHandler.DisableEffect;
+        enemyVisualHandler.OnSpriteFlip += enemyAnimator.FlipAnimations;
+        Effectable.OnAffectedVFX += enemyVisualHandler.EffectHandler.PlayEffect;
+        Effectable.OnEffectRemovedVFX += enemyVisualHandler.EffectHandler.DisableEffect;
         Damageable.OnHitGFX += GetHitSFX;
         Damageable.OnDeathGFX += DeathSFX;
         AutoAttackHandler.OnAttack += AttackSFX;
@@ -71,15 +71,21 @@ public class Enemy : BaseUnit
         Damageable.OnHitGFX -= GetHitSFX;
         Damageable.OnDeathGFX -= DeathSFX;
         if (AutoAttackHandler != null) AutoAttackHandler.OnAttack -= AttackSFX;
-        Effectable.OnAffectedVFX -= unitVisual.EffectHandler.PlayEffect;
-        Effectable.OnEffectRemovedVFX -= unitVisual.EffectHandler.DisableEffect;
-        unitVisual.OnSpriteFlip -= enemyAnimator.FlipAnimations;
+        Effectable.OnAffectedVFX -= enemyVisualHandler.EffectHandler.PlayEffect;
+        Effectable.OnEffectRemovedVFX -= enemyVisualHandler.EffectHandler.DisableEffect;
+        enemyVisualHandler.OnSpriteFlip -= enemyAnimator.FlipAnimations;
 
         Initialized = false;
     }
 
     #region SFX
-    private void GetHitSFX(bool isCrit) => SoundManager.Instance.PlayAudioClip(isCrit ? SoundEffectType.EnemyGetHitCrit : SoundEffectType.EnemyGetHit);
+
+    private void GetHitSFX(bool isCrit)
+    {
+        SoundManager.Instance.PlayAudioClip(isCrit ? SoundEffectType.EnemyGetHitCrit : SoundEffectType.EnemyGetHit);
+        enemyVisualHandler.HitEffect.Play();
+    }
+
     private void DeathSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.EnemyDeath);
     private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.EnemyAttack);
     

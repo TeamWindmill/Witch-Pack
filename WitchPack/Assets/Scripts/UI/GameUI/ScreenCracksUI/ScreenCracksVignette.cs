@@ -23,6 +23,14 @@ public class ScreenCracksVignette : MonoEffectTransitionLerp<CracksVignetteValue
         CurrentStartValue = EffectValues[0].StartValue;
     }
 
+    private void OnDisable()
+    {
+        foreach (var effectValue in EffectValues)
+        {
+            _vignette.material.SetFloat("_Scale",effectValue.StartValue);
+        }
+    }
+
     public override void StartTransitionEffect()
     {
         LerpValuesHandler.Instance.SetValueByType(LerpValueConfig, EffectValues[0].ValueType, CurrentStartValue, EffectValues[0].EndValue, SetValue,OnTransitionEnd);

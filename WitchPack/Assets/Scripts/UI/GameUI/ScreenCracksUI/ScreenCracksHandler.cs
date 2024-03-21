@@ -21,6 +21,15 @@ public class ScreenCracksHandler : MonoSingleton<ScreenCracksHandler>
             crack.ScreenCrackLerper.SetStartValue();
         }
     }
+
+    private void OnDisable()
+    {
+        foreach (var crack in _cracks)
+        {
+            crack.ScreenCrackLerper.SetStartValue();
+        }
+    }
+
     public void InitByCore(CoreTemple core)
     {
         _cracksPerHp = core.MaxHp / _cracks.Length;

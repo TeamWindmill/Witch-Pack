@@ -212,7 +212,12 @@ public class Shaman : BaseUnit
         SoundManager.Instance.PlayAudioClip(SoundEffectType.ShamanLevelUp);
     }
 
-    private void OnHitSFX(bool isCrit) => SoundManager.Instance.PlayAudioClip(shamanConfig.IsMale ? SoundEffectType.ShamanGetHitMale : SoundEffectType.ShamanGetHitFemale);
+    private void OnHitSFX(bool isCrit)
+    {
+        SoundManager.Instance.PlayAudioClip(shamanConfig.IsMale ? SoundEffectType.ShamanGetHitMale : SoundEffectType.ShamanGetHitFemale);
+        shamanVisualHandler.HitEffect.Play();
+    }
+
     private void DeathSFX() => SoundManager.Instance.PlayAudioClip(shamanConfig.IsMale ? SoundEffectType.ShamanDeathMale : SoundEffectType.ShamanDeathFemale);
     private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.BasicAttack);
     public void ShamanAbilityCastSFX(CastingAbility ability) => SoundManager.Instance.PlayAudioClip(ability.SoundEffectType);
