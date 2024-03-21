@@ -35,7 +35,7 @@ public class UnitMovement : MonoBehaviour
 
     private void Update()
     {
-        agent.speed = owner.Stats.MovementSpeed * GAME_TIME.GetCurrentTimeRate;
+        agent.speed = owner.Stats.MovementSpeed * GAME_TIME.TimeRate;
     }
 
     public void SetDestination(Vector3 worldPos)
