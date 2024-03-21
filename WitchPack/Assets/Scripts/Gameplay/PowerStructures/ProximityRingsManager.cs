@@ -11,7 +11,6 @@ public class ProximityRingsManager : MonoBehaviour
     [SerializeField] private ProximityRingHandler[] _ringHandlers;
     [SerializeField] private ClickHelper _clickHelper;
     [SerializeField] private GameObject _infoWindow;
-    [SerializeField] private SpriteRenderer _infoWindowBG;
     [SerializeField] private TextMeshPro _infoWindowText;
     private bool _lockSpriteToggle;
     private Color _defaultColor;
@@ -93,8 +92,8 @@ public class ProximityRingsManager : MonoBehaviour
     {
         if (_shamanSelected) return;
         ToggleOuterRingSprite(true);
-        _infoWindowBG.color = _powerStructureTypeColor;
         _infoWindowText.text = _statEffect.StatType.ToString().ToLowercaseNamingConvention();
+        _infoWindowText.color = _powerStructureTypeColor;
         _infoWindow.SetActive(true);
     }
 

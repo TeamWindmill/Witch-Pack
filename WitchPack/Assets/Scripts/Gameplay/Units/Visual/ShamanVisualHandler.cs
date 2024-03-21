@@ -6,12 +6,14 @@ public class ShamanVisualHandler : UnitVisualHandler
     [SerializeField] private ParticleSystem healEffect;
     [SerializeField] private ParticleSystem overhealEffect;
     [SerializeField] private ParticleSystem healingWeedsEffect;
+    [SerializeField] private ParticleSystem _hitEffect;
     [SerializeField] private Transform _rangeVisual;
 
 
     public ParticleSystem HealEffect { get => healEffect; }
     public ParticleSystem OverhealEffect { get => overhealEffect; }
     public ParticleSystem HealingWeedsEffect { get => healingWeedsEffect; }
+    public ParticleSystem HitEffect => _hitEffect;
 
     public override void Init(BaseUnit unit, BaseUnitConfig config)
     {

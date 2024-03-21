@@ -21,20 +21,32 @@ public class ScreenCracksHandler : MonoSingleton<ScreenCracksHandler>
             crack.ScreenCrackLerper.SetStartValue();
         }
     }
+
+    private void OnDisable()
+    {
+        foreach (var crack in _cracks)
+        {
+            crack.ScreenCrackLerper.SetStartValue();
+        }
+    }
+
     public void InitByCore(CoreTemple core)
     {
         _cracksPerHp = core.MaxHp / _cracks.Length;
         _vignetteValuePerHp = Mathf.Abs(_cracksVignette.EffectValues[0].EndValue - _cracksVignette.EffectValues[0].StartValue) / core.MaxHp;
     }
-    public void StartCracksAnimation()
+    public void StartCracksAnimation(int damage)
     {
-        for (int i = 0; i < _cracksPerHp; i++)
+        for (int i = 0; i < damage; i++)
         {
-            _cracks[_crackIndicator].ScreenCrackLerper.StartTransitionEffect();
-            _crackIndicator++;
+            for (int j = 0; j < _cracksPerHp; j++)
+            {
+                _cracks[_crackIndicator].ScreenCrackLerper.StartTransitionEffect();
+                _crackIndicator++;
+            }
+            _cracksVignette.StartTransitionEffect();
+            _cracksVignette.CurrentStartValue += _vignetteValuePerHp;
         }
-        _cracksVignette.StartTransitionEffect();
-        _cracksVignette.CurrentStartValue += _vignetteValuePerHp;
     }
 }
 
