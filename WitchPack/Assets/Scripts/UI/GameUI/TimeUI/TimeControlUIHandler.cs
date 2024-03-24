@@ -1,13 +1,35 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
 public class TimeControlUIHandler : UIElement
 {
+    public static TimeControlUIHandler Instance;
+    public TimeButtonsUI CurrentTimeButton { get; private set; }
+
     [SerializeField] private List<TimeButtonsUI> _timeButtons;
 
-    private TimeButtonsUI _currentButton;
+    protected override void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(Instance);
+        }
+        else Instance = this;
+        base.Awake();
+    }
 
+    public void ChangeTimeButton(TimeButtons button)
+    {
+        foreach (var timeButton in _timeButtons)
+        {
+            if (timeButton.ButtonType == button)
+            {
+                timeButton.SetState(true);
+            }
+        }
+    }
 
     public override void Show()
     {
@@ -15,7 +37,7 @@ public class TimeControlUIHandler : UIElement
         {
             timeButtonsUI.OnTurnOn += OnButtonPressed;
             if (timeButtonsUI.IsActive)
-                _currentButton = timeButtonsUI;
+                CurrentTimeButton = timeButtonsUI;
         }
 
         base.Show();
@@ -31,13 +53,21 @@ public class TimeControlUIHandler : UIElement
 
     private void OnButtonPressed(TimeButtonsUI timeButtonsUI)
     {
-        if (_currentButton == null)
+        if (CurrentTimeButton == null)
         {
-            _currentButton = timeButtonsUI;
+            CurrentTimeButton = timeButtonsUI;
             return;
         }
 
-        _currentButton.SetState(false);
-        _currentButton = timeButtonsUI;
+        CurrentTimeButton.SetState(false);
+        CurrentTimeButton = timeButtonsUI;
     }
+}
+
+public enum TimeButtons
+{
+    Pause,
+    Play,
+    X2,
+    X3,
 }

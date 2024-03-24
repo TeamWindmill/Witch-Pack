@@ -6,7 +6,7 @@ public class CharmSO : CastingAbility
     [SerializeField] private Charmed _charmedState;
     public override bool CastAbility(BaseUnit caster)
     {
-        Enemy target = caster.EnemyTargetHelper.GetTarget(TargetData,LevelManager.Instance.CharmedEnemies);
+        Enemy target = caster.EnemyTargetHelper.GetTarget(TargetData);
         
         if (!ReferenceEquals(target, null))
         {
@@ -34,7 +34,7 @@ public class CharmSO : CastingAbility
 
     public override bool CheckCastAvailable(BaseUnit caster)
     {
-        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData,LevelManager.Instance.CharmedEnemies);
+        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
 
         if (!ReferenceEquals(target, null))
         {

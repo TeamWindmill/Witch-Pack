@@ -19,18 +19,19 @@ public class RicochetMono : MultiShotMono
         _ricochetSO = ricochetSO;
     }
 
-    protected override void OnTriggerEnter2D(Collider2D collision)
+    protected override void OnTriggerStay2D(Collider2D collision)
     {
         if (_bouncing)
         {
             Enemy target = collision.GetComponent<Enemy>();
             if (!ReferenceEquals(target, null) && ReferenceEquals(target, _bounceTarget))
             {
-                OnTargetHit(target);
+                target.Damageable.GetHit(_caster.DamageDealer, _ability);
+                Disable();
             }
         }
         else
-            base.OnTriggerEnter2D(collision);
+            base.OnTriggerStay2D(collision);
     }
 
     protected override void OnTargetHit(Enemy target)

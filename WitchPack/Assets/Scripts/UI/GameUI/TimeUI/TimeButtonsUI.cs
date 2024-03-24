@@ -11,12 +11,14 @@ public class TimeButtonsUI : ClickableUIElement
     [SerializeField] private Image image;
     [SerializeField] private Color onColor;
     [SerializeField] private Color offColor;
+    [SerializeField] private TimeButtons buttonType;
     [SerializeField] private float time;
     [SerializeField] private bool startState = false;
 
     private bool _isActive;
 
     public bool IsActive => _isActive;
+    public TimeButtons ButtonType => buttonType;
 
     private void Start()
     {

@@ -25,25 +25,25 @@ namespace Tools.Targeter
         switch (givenData.Priority)
         {
             case TargetPriority.Stat:
-                target = GetTargetByStat(targets, givenData.StatType, givenData.Modifier, targetsToAvoid);
+                target = GetTargetByStat(targets, givenData, targetsToAvoid);
                 break;
             case TargetPriority.Distance:
-                target = GetTargetByDistance(targets, givenData.Modifier,originPos, targetsToAvoid);
+                target = GetTargetByDistance(targets, givenData,originPos, targetsToAvoid);
                 break;
             case TargetPriority.Random:
                 target = targets[UnityEngine.Random.Range(0, targets.Count)];
                 break;
             case TargetPriority.DistnaceToCore:
-                target = GetTargetByDistanceToCore(targets, givenData.Modifier, targetsToAvoid);
+                target = GetTargetByDistanceToCore(targets, givenData, targetsToAvoid);
                 break;
             case TargetPriority.Threatened:
-                target = GetTargetByThreat(targets, givenData.Modifier, targetsToAvoid);
+                target = GetTargetByThreat(targets, givenData, targetsToAvoid);
                 break;
             case TargetPriority.CurrentHP:
-                target = GetTargetByHP(targets, givenData.Modifier, targetsToAvoid);
+                target = GetTargetByHP(targets, givenData, targetsToAvoid);
                 break;
             case TargetPriority.CurrentHPPrecentage:
-                target = GetTargetByHPPrecentage(targets, givenData.Modifier, targetsToAvoid);
+                target = GetTargetByHPPrecentage(targets, givenData, targetsToAvoid);
                 break;
             default:
                 return targets[0];
@@ -51,7 +51,7 @@ namespace Tools.Targeter
         return target;
     }
 
-    public static T GetTargetByThreat(List<T> targets, TargetModifier mod, List<T> targetsToAvoid)
+    public static T GetTargetByThreat(List<T> targets, TargetData targetData, List<T> targetsToAvoid)
     {
         //targets to avoid
         var availableTargets = targets;
@@ -66,10 +66,13 @@ namespace Tools.Targeter
         {
             
             if(availableTargets[i].IsDead) continue;
+            
+            if(targetData.AvoidCharmedTargets)
+                if(availableTargets[i].Effectable.ContainsStatusEffect(StatusEffectType.Charm)) continue;
 
             if (availableTargets[i].Stats.ThreatLevel <= 0) continue;
             
-            if (mod == TargetModifier.Most)
+            if (targetData.Modifier == TargetModifier.Most)
             {
                 if (cur.Stats.ThreatLevel < availableTargets[i].Stats.ThreatLevel)
                 {
@@ -86,7 +89,7 @@ namespace Tools.Targeter
         }
         return cur;
     }
-    public static T GetTargetByHP(List<T> targets, TargetModifier mod, List<T> targetsToAvoid = null)
+    public static T GetTargetByHP(List<T> targets, TargetData targetData, List<T> targetsToAvoid = null)
     {
         //targets to avoid
         var availableTargets = targets;
@@ -101,9 +104,12 @@ namespace Tools.Targeter
         {
             if(availableTargets[i].IsDead) continue;
             
+            if(targetData.AvoidCharmedTargets)
+                if(availableTargets[i].Effectable.ContainsStatusEffect(StatusEffectType.Charm)) continue;
+            
             if (!ReferenceEquals(cur, null))
             {
-                if (mod == TargetModifier.Most)
+                if (targetData.Modifier == TargetModifier.Most)
                 {
                     if (cur.Damageable.CurrentHp < availableTargets[i].Damageable.CurrentHp)
                     {
@@ -121,7 +127,7 @@ namespace Tools.Targeter
         }
         return cur;
     }
-    public static T GetTargetByHPPrecentage(List<T> targets, TargetModifier mod, List<T> targetsToAvoid = null)
+    public static T GetTargetByHPPrecentage(List<T> targets, TargetData targetData, List<T> targetsToAvoid = null)
     {
         //targets to avoid
         var availableTargets = targets;
@@ -136,9 +142,12 @@ namespace Tools.Targeter
         {
             if(availableTargets[i].IsDead) continue;
             
+            if(targetData.AvoidCharmedTargets)
+                if(availableTargets[i].Effectable.ContainsStatusEffect(StatusEffectType.Charm)) continue;
+            
             if (!ReferenceEquals(cur, null))
             {
-                if (mod == TargetModifier.Most)
+                if (targetData.Modifier == TargetModifier.Most)
                 {
                     if (cur.Damageable.CurrentHp / cur.Stats.GetStatValue(StatType.MaxHp) < availableTargets[i].Damageable.CurrentHp / availableTargets[i].Stats.GetStatValue(StatType.MaxHp))
                     {
@@ -156,7 +165,7 @@ namespace Tools.Targeter
         }
         return cur;
     }
-    public static T GetTargetByStat(List<T> targets, StatType givenStat, TargetModifier mod, List<T> targetsToAvoid = null)
+    public static T GetTargetByStat(List<T> targets, TargetData targetData, List<T> targetsToAvoid = null)
     {
         //targets to avoid
         var availableTargets = targets;
@@ -171,18 +180,21 @@ namespace Tools.Targeter
         {
             if(availableTargets[i].IsDead) continue;
             
+            if(targetData.AvoidCharmedTargets)
+                if(availableTargets[i].Effectable.ContainsStatusEffect(StatusEffectType.Charm)) continue;
+            
             if (!ReferenceEquals(cur, null))
             {
-                if (mod == TargetModifier.Most)
+                if (targetData.Modifier == TargetModifier.Most)
                 {
-                    if (cur.Stats.GetStatValue(givenStat) < availableTargets[i].Stats.GetStatValue(givenStat))
+                    if (cur.Stats.GetStatValue(targetData.StatType) < availableTargets[i].Stats.GetStatValue(targetData.StatType))
                     {
                         cur = availableTargets[i];
                     }
                 }
                 else
                 {
-                    if (cur.Stats.GetStatValue(givenStat) > availableTargets[i].Stats.GetStatValue(givenStat))
+                    if (cur.Stats.GetStatValue(targetData.StatType) > availableTargets[i].Stats.GetStatValue(targetData.StatType))
                     {
                         cur = availableTargets[i];
                     }
@@ -192,7 +204,7 @@ namespace Tools.Targeter
         return cur;
     }
 
-    public static T GetTargetByDistance(List<T> targets, TargetModifier mod,Transform originPos, List<T> targetsToAvoid = null)
+    public static T GetTargetByDistance(List<T> targets, TargetData targetData,Transform originPos, List<T> targetsToAvoid = null)
     {
         //targets to avoid
         var availableTargets = targets;
@@ -206,10 +218,13 @@ namespace Tools.Targeter
         for (int i = 0; i < availableTargets.Count; i++)
         {
             if(availableTargets[i].IsDead) continue;
+            
+            if(targetData.AvoidCharmedTargets)
+                if(availableTargets[i].Effectable.ContainsStatusEffect(StatusEffectType.Charm)) continue;
 
             if (!ReferenceEquals(cur, null))
             {
-                if (mod == TargetModifier.Most)
+                if (targetData.Modifier == TargetModifier.Most)
                 {
                     if (Vector3.Distance(cur.transform.position, originPos.position) < Vector3.Distance(availableTargets[i].transform.position, originPos.position))
                     {
@@ -228,7 +243,7 @@ namespace Tools.Targeter
         return cur;
     }
 
-    public static T GetTargetByDistanceToCore(List<T> targets, TargetModifier mod, List<T> targetsToAvoid = null)
+    public static T GetTargetByDistanceToCore(List<T> targets, TargetData targetData, List<T> targetsToAvoid = null)
     {
         //targets to avoid
         var availableTargets = targets;
@@ -243,10 +258,13 @@ namespace Tools.Targeter
         {
             
             if(availableTargets[i].IsDead) continue;
+            
+            if(targetData.AvoidCharmedTargets)
+                if(availableTargets[i].Effectable.ContainsStatusEffect(StatusEffectType.Charm)) continue;
 
             if (!ReferenceEquals(cur, null))
             {
-                if (mod == TargetModifier.Most)
+                if (targetData.Modifier == TargetModifier.Most)
                 {
                     if (Vector3.Distance(cur.transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position) < Vector3.Distance(availableTargets[i].transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position))
                     {
