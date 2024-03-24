@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 397bd49a0b873c749a99a21a1401c825, type: 3}
   m_Name: ShamanAutoAttack
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
   name: 
   discription: 
+  defaultIcon: {fileID: 0}
+  disabledIcon: {fileID: 0}
+  upgradeIcon: {fileID: 0}
   _upgrades: []
   hasPopupColor: 0
   popupColor: {r: 0, g: 0, b: 0, a: 0}
@@ -28,6 +30,7 @@ MonoBehaviour:
     Priority: 0
     Modifier: 1
     StatType: 0
+    AvoidCharmedTargets: 1
   _hasCastVisual: 0
   castVisualColor: 0
   _hasSFX: 1

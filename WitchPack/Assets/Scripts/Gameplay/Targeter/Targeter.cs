@@ -69,4 +69,5 @@ public struct TargetData
     public TargetPriority Priority;
     public TargetModifier Modifier;
     [ShowIf(nameof(Priority), TargetPriority.Stat)]public StatType StatType;
+    public bool AvoidCharmedTargets;
 }

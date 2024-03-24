@@ -17,7 +17,7 @@ public class PoisonIvy : OffensiveAbility
 
     public override bool CastAbility(BaseUnit caster)
     {
-        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData,LevelManager.Instance.CharmedEnemies);
+        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
         if (!ReferenceEquals(target, null))
         {
             PoisonIvyMono newIvyPoison = LevelManager.Instance.PoolManager.PoisonIvyPool.GetPooledObject();
@@ -35,7 +35,7 @@ public class PoisonIvy : OffensiveAbility
 
     public override bool CheckCastAvailable(BaseUnit caster)
     {
-        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData,LevelManager.Instance.CharmedEnemies);
+        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
         return !ReferenceEquals(target, null);
     }
 }

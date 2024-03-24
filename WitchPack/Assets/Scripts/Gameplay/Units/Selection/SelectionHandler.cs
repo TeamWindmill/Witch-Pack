@@ -27,7 +27,11 @@ public class SelectionHandler : MonoBehaviour, ISelection
     {
         if (button == PointerEventData.InputButton.Left)
         {
-            if (_selectedShaman != null) _selectedShaman.IsSelected = false;
+            if (_selectedShaman != null)
+            {
+                _selectedShaman.ShamanVisualHandler.HideShamanRing();
+                _selectedShaman.IsSelected = false;
+            }
             _selectedShaman = shaman;
             _selectMode = SelectionType.Info;
             HeroSelectionUI.Instance.Show(shaman);
