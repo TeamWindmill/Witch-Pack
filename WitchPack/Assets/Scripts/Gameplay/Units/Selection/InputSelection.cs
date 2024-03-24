@@ -9,17 +9,17 @@ public class InputSelection : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if(LevelManager.Instance.ShamanParty.Count < 0) return;
+            if(LevelManager.Instance.ShamanParty.Count < 1) return;
             LevelManager.Instance.SelectionHandler.OnShamanClick(PointerEventData.InputButton.Left,LevelManager.Instance.ShamanParty[0]);
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            if(LevelManager.Instance.ShamanParty.Count < 1) return;
+            if(LevelManager.Instance.ShamanParty.Count < 2) return;
             LevelManager.Instance.SelectionHandler.OnShamanClick(PointerEventData.InputButton.Left,LevelManager.Instance.ShamanParty[1]);
         }
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            if(LevelManager.Instance.ShamanParty.Count < 2) return;
+            if(LevelManager.Instance.ShamanParty.Count < 3) return;
             LevelManager.Instance.SelectionHandler.OnShamanClick(PointerEventData.InputButton.Left,LevelManager.Instance.ShamanParty[2]);
         }
         if (Input.GetKeyDown(KeyCode.Space))
