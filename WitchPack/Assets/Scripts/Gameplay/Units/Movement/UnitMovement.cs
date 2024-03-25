@@ -36,6 +36,11 @@ public class UnitMovement : MonoBehaviour
         GAME_TIME.OnTimeRateChange += ChangeSpeed;
     }
 
+    private void OnDisable()
+    {
+        GAME_TIME.OnTimeRateChange -= ChangeSpeed;
+    }
+
     public void SetDestination(Vector3 worldPos)
     {
         if(!agent.isOnNavMesh || !agent.enabled) return;
@@ -49,8 +54,9 @@ public class UnitMovement : MonoBehaviour
         activeMovementRoutine = StartCoroutine(WaitTilReached());
         
     }
-    private void ChangeSpeed()
+    public void ChangeSpeed()
     {
+        if(agent is null) return;
         agent.speed = owner.Stats.MovementSpeed * GAME_TIME.TimeRate;
     }
 
@@ -79,5 +85,11 @@ public class UnitMovement : MonoBehaviour
     }
 
 
-   
+    public void OnSpeedChange(StatType statType, float value)
+    {
+        if (statType == StatType.MovementSpeed)
+        {
+            ChangeSpeed();
+        }
+    }
 }

@@ -9,7 +9,7 @@ public class EnemyAutoAttack : OffensiveAbility
       BaseUnit target;
       if(caster.Effectable.ContainsStatusEffect(StatusEffectType.Charm))
       {
-         target = caster.EnemyTargetHelper.GetTarget(TargetData,LevelManager.Instance.CharmedEnemies);
+         target = caster.EnemyTargetHelper.GetTarget(TargetData);
       }
       else
       {
@@ -26,7 +26,7 @@ public class EnemyAutoAttack : OffensiveAbility
       BaseUnit target;
       if(caster.Effectable.ContainsStatusEffect(StatusEffectType.Charm))
       {
-         target = caster.EnemyTargetHelper.GetTarget(TargetData,LevelManager.Instance.CharmedEnemies);
+         target = caster.EnemyTargetHelper.GetTarget(TargetData);
       }
       else
       {

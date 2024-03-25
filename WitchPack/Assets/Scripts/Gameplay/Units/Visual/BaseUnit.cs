@@ -87,6 +87,7 @@ public class BaseUnit : InitializedMono<BaseUnitConfig>
         damageable.OnHeal += LevelManager.Instance.PopupsManager.SpawnHealPopup;
         effectable.OnAffected += LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
         Stats.OnStatChanged += EnemyTargeter.AddRadius;
+        Stats.OnStatChanged += movement.OnSpeedChange;
 
     }
 
@@ -106,6 +107,7 @@ public class BaseUnit : InitializedMono<BaseUnitConfig>
             damageable.OnHeal -= hpBar.SetBarBasedOnOwner;
         }
         Stats.OnStatChanged -= EnemyTargeter.AddRadius;
+        Stats.OnStatChanged -= movement.OnSpeedChange;
     }
 
     public void ToggleCollider(bool state)

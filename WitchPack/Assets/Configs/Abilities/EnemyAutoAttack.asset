@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 858949ca3866f444e9f7fe2fc1f46c5a, type: 3}
   m_Name: EnemyAutoAttack
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
   name: 
   discription: 
+  defaultIcon: {fileID: 0}
+  disabledIcon: {fileID: 0}
+  upgradeIcon: {fileID: 0}
   _upgrades: []
   hasPopupColor: 0
   popupColor: {r: 0, g: 0, b: 0, a: 0}
@@ -28,6 +30,7 @@ MonoBehaviour:
     Priority: 0
     Modifier: 1
     StatType: 0
+    AvoidCharmedTargets: 0
   _hasCastVisual: 0
   castVisualColor: 0
   _hasSFX: 1

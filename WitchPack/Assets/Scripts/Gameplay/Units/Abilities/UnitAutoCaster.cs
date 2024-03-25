@@ -14,15 +14,15 @@ public class UnitAutoCaster : MonoBehaviour
     public bool CanCast { get; private set; }
 
     private BaseUnit owner;
-    [ShowInInspector] private Queue<ICaster> _queuedAbilities;
-    [ShowInInspector] private List<ICaster> _abilitiesOnCooldown = new List<ICaster>();
+    [ShowInInspector] private Queue<ICaster> _queuedAbilities = new();
+    [ShowInInspector] private List<ICaster> _abilitiesOnCooldown = new();
+    [ShowInInspector] private List<Timer<ICaster>> _activeTimers = new();
     private float _castTimer;
     private float _currentCastTime;
 
     public void Init(BaseUnit givenOwner,bool enableOnStart)
     {
-        if(_abilitiesOnCooldown.Count > 0) _abilitiesOnCooldown.Clear();
-        _queuedAbilities = new Queue<ICaster>();
+        ClearData();
         owner = givenOwner;
         _castTimer = 0;
         foreach (var castingHandler in givenOwner.CastingHandlers)
@@ -48,7 +48,7 @@ public class UnitAutoCaster : MonoBehaviour
                 {
                     CastTimeEnd?.Invoke(caster.Ability);
                     if(caster.Ability.HasCastVisual) CastTimeEndVFX?.Invoke(caster.Ability.CastVisualColor);
-                    TimerManager.Instance.AddTimer(caster.GetCooldown(),caster,EnqueueAbility,true);
+                    _activeTimers.Add(TimerManager.Instance.AddTimer(caster.GetCooldown(),caster,EnqueueAbility,true));
                     _abilitiesOnCooldown.Add(caster);
                     _queuedAbilities.Dequeue();
                     _castTimer = 0;
@@ -86,5 +86,18 @@ public class UnitAutoCaster : MonoBehaviour
         var ability = _queuedAbilities.Peek().Ability;
         CastTimeEnd?.Invoke(ability);
         if(ability.HasCastVisual) CastTimeEndVFX?.Invoke(ability.CastVisualColor);
+    }
+    private void ClearData()
+    {
+        if(_abilitiesOnCooldown.Count > 0) _abilitiesOnCooldown.Clear();
+        if(_activeTimers.Count > 0)
+        {
+            foreach (var timer in _activeTimers)
+            {
+                timer.RemoveThisTimer();
+            }
+            _activeTimers.Clear();
+        }
+        _queuedAbilities.Clear();
     }
 }
