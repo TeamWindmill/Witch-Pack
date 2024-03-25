@@ -75,7 +75,7 @@ public class StatusEffect
                 _statValue = Mathf.RoundToInt(amount);
                 break;
             case StatusEffectValueType.Percentage:
-                _statValue = Mathf.RoundToInt((amount / 100) * host.Owner.Stats.GetStatValue(_statType));
+                _statValue = (amount / 100) * host.Owner.Stats.GetStatValue(_statType);
                 break;
             case StatusEffectValueType.FlatToFloat:
                 _statValue = amount;
@@ -93,7 +93,7 @@ public class StatusEffect
                 _statValue = Mathf.RoundToInt(amount / duration);
                 break;
             case StatusEffectValueType.Percentage:
-                _statValue = Mathf.RoundToInt((amount / 100) * host.Owner.Stats.GetStatValue(_statType)) / duration;
+                _statValue = (amount / 100) * host.Owner.Stats.GetStatValue(_statType) / duration;
                 break;
             case StatusEffectValueType.FlatToFloat:
                 _statValue = amount / duration;
@@ -122,7 +122,7 @@ public class StatusEffect
                 _statValue = Mathf.RoundToInt(amount);
                 break;
             case StatusEffectValueType.Percentage:
-                _statValue = Mathf.RoundToInt((amount / 100) * host.Owner.Stats.GetStatValue(_statType));
+                _statValue = (amount / 100) * host.Owner.Stats.GetStatValue(_statType);
                 break;
             case StatusEffectValueType.FlatToFloat:
                 _statValue = amount;
