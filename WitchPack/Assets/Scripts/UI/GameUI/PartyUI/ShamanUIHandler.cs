@@ -85,6 +85,7 @@ public class ShamanUIHandler : ClickableUIElement
 
     private void OnShamanLevelUp(int obj)
     { 
+        if(_shaman.IsDead) return;
        Color upgradeColor = _upgradeFrame.color;
         upgradeColor.a = 100;
         _upgradeFrame.color = upgradeColor;
@@ -93,6 +94,7 @@ public class ShamanUIHandler : ClickableUIElement
 
     private void OnShamanUpgrade(bool hasSkillPoints)
     {
+        if(_shaman.IsDead) return;
         Color upgradeColor = _upgradeFrame.color;
         if (hasSkillPoints)
         {
@@ -114,6 +116,7 @@ public class ShamanUIHandler : ClickableUIElement
     }
     private void ShowShamanInfo(PointerEventData pointerData)
     {
+        if(_shaman.IsDead) return;
         _shaman.SetSelectedShaman(pointerData.button);
     }
 }
