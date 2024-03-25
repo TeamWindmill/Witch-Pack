@@ -17,12 +17,12 @@ public class Targeter<T> : MonoBehaviour where T : Component
     {
         if (statType == StatType.BaseRange)
         {
-            transform.parent.localScale = new Vector3(value * 2, value * 2, value * 2);
+            transform.parent.localScale = new Vector3(value, value, value);
         }
     }
     public void SetRadius(float value)
     {
-        transform.parent.localScale = new Vector3(value * 2, value * 2, value * 2);
+        transform.parent.localScale = new Vector3(value, value, value);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
