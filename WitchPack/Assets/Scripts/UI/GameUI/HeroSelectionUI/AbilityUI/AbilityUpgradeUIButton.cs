@@ -1,4 +1,5 @@
 using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -8,13 +9,16 @@ public class AbilityUpgradeUIButton : ClickableUIElement
     public event Action<AbilityUpgradeUIButton> OnAbilityClick;
     public BaseAbility Ability => _ability;
 
-    [SerializeField] private Image bg;
-    //[SerializeField] private Image lockedBg;
-    [SerializeField] private Image frame;
-    [SerializeField] private Image abilitySprite;
+    [BoxGroup("Components")][SerializeField] private Image bg;
+    [BoxGroup("Components")][SerializeField] private Image frame;
+    [BoxGroup("Components")][SerializeField] private Image line;
+    [BoxGroup("Components")][SerializeField] private Image abilitySprite;
     [Space] 
-    [SerializeField] private Sprite upgradeReadyFrameSprite;
-    [SerializeField] private Sprite defaultFrameSprite;
+    [BoxGroup("Sprites")][SerializeField] private Sprite upgradeReadyFrameSprite;
+    [BoxGroup("Sprites")][SerializeField] private Sprite defaultFrameSprite;
+    [BoxGroup("Sprites")][SerializeField] private Sprite defaultLineSprite;
+    [BoxGroup("Sprites")][SerializeField] private Sprite upgradedLineSprite;
+    [SerializeField] private bool showLine;
 
     private BaseAbility _ability;
     private bool _hasSkillPoints;
@@ -26,6 +30,7 @@ public class AbilityUpgradeUIButton : ClickableUIElement
         _hasSkillPoints = hasSkillPoints;
         _windowInfo.Name = ability.Name;
         _windowInfo.Discription = ability.Discription;
+        line.gameObject.SetActive(showLine);
         Show();
     }
 
@@ -34,22 +39,26 @@ public class AbilityUpgradeUIButton : ClickableUIElement
         switch (_ability.AbilityUpgradeState)
         {
             case AbilityUpgradeState.Locked:
+                if(showLine) line.sprite = defaultLineSprite;
                 frame.sprite = defaultFrameSprite;
                 abilitySprite.sprite = _ability.DisabledIcon;
                 break;
             case AbilityUpgradeState.Open:
                 if (!_hasSkillPoints)
                 {
+                    if(showLine) line.sprite = defaultLineSprite;
                     frame.sprite = defaultFrameSprite;
                     abilitySprite.sprite = _ability.DisabledIcon;
                 }
                 else
                 {
+                    if(showLine) line.sprite = defaultLineSprite;
                     frame.sprite = upgradeReadyFrameSprite;
                     abilitySprite.sprite = _ability.UpgradeIcon;
                 }
                 break;
             case AbilityUpgradeState.Upgraded:
+                if(showLine) line.sprite = upgradedLineSprite;
                 frame.sprite = defaultFrameSprite;
                 abilitySprite.sprite = _ability.DefaultIcon;
                 break;

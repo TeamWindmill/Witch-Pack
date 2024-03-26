@@ -30,12 +30,17 @@ public class StatBlockUI : MonoBehaviour
         SetStatText(_baseValue,_bonusValue);
     }
 
+    public void HideBonusStatUI()
+    {
+        SetStatText(_baseValue,0);
+    }
+
     public void UpdateBaseStat(float newValue)
     {
         if(ReferenceEquals(HeroSelectionUI.Instance,null)) return;
         if(!HeroSelectionUI.Instance.IsActive) return;
         _baseValue = newValue;
-        SetStatText(_baseValue, _bonusValue);
+        SetStatText(_baseValue, 0);
     }
 
     private void SetStatText(float baseValue, float bonusValue)

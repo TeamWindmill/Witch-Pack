@@ -4,14 +4,17 @@ using UnityEngine.EventSystems;
 
 public class SelectionHandler : MonoBehaviour, ISelection
 {
-    public event Action<Shaman> OnShamanMoveSelect;
-    public event Action<Shaman> OnShamanInfoSelect;
+    public event Action<Shaman> OnShamanSelect;
     public event Action<Shaman> OnShamanDeselected;
+    public event Action<Shadow> OnShadowSelect;
+    public event Action<Shadow> OnShadowDeselected;
     public SelectionType SelectMode { get; }
     public Shaman SelectedShaman { get; }
     public Shadow Shadow { get; }
     
     [SerializeField] private Shadow shadow;
+    [SerializeField] private ParticleSystem quickMoveEffect;
+    [SerializeField] private Animator quickMoveArrowsAnimator;
     
     private const int LEFT_CLICK = 0;
     private const int RIGHT_CLICK = 1;
@@ -53,6 +56,14 @@ public class SelectionHandler : MonoBehaviour, ISelection
         }
         if (Input.GetMouseButton(RIGHT_CLICK))
         {
+            if (Input.GetMouseButtonDown(LEFT_CLICK))
+            {
+                CancelMove();
+                _inSelectMode = false;
+                _currentHoldTime = 0;
+                return;
+            }
+            
             if (_currentHoldTime > _maxHoldTime && !_inSelectMode) //holding
             {
                 _inSelectMode = true;
@@ -68,10 +79,6 @@ public class SelectionHandler : MonoBehaviour, ISelection
             _inSelectMode = false;
             _currentHoldTime = 0;
         }
-        if (Input.GetMouseButton(RIGHT_CLICK))
-        {
-            if (Input.GetMouseButtonDown(LEFT_CLICK)) CancelMove();
-        }
 
         if (Input.GetMouseButtonUp(RIGHT_CLICK)) ReleaseMove();
 
@@ -85,13 +92,16 @@ public class SelectionHandler : MonoBehaviour, ISelection
     {
         var newDest = GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
         _selectedShaman.Movement.SetDestination(newDest);
-        //OnShamanMoveSelect?.Invoke(_selectedShaman);
+        newDest.z = 0;
+        quickMoveEffect.transform.position = newDest;
+        quickMoveEffect.Play();
+        quickMoveArrowsAnimator.Play("LocationArrows");
     }
     private void SelectMove()
     {
         SlowMotionManager.Instance.StartSlowMotionEffects();
         shadow.Show(_selectedShaman);
-        OnShamanMoveSelect?.Invoke(_selectedShaman);
+        OnShamanSelect?.Invoke(_selectedShaman);
     }
     private void ReleaseMove()
     {
@@ -101,12 +111,13 @@ public class SelectionHandler : MonoBehaviour, ISelection
         shadow.Hide();
         var newDest = GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
         _selectedShaman.Movement.SetDestination(newDest);
+        OnShadowDeselected?.Invoke(shadow);
     }
     private void CancelMove()
     {
         SlowMotionManager.Instance.EndSlowMotionEffects();
         shadow.Hide();
-        OnShamanDeselected?.Invoke(_selectedShaman);
+        OnShadowDeselected?.Invoke(shadow);
     }
 
     private void CloseUIPanelAndDeselectShaman()

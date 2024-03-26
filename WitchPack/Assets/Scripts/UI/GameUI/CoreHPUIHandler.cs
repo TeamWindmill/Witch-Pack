@@ -3,13 +3,13 @@ using TMPro;
 using UnityEngine;
 
 
-public class CoreHPUIHnadler : CounterUIElement
+public class CoreHPUIHandler : StatBarUIElement
 {
     private CoreTemple _coreTemple;
     public override void Init()
     {
         _coreTemple = LevelManager.Instance.CurrentLevel.CoreTemple;
-        ElementInit(_coreTemple.MaxHp,_coreTemple.CurHp);
+        ElementInit(_coreTemple.MaxHp);
         _coreTemple.OnGetHit += UpdateCoreHealth;
     }
 

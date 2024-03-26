@@ -59,6 +59,7 @@ public class PopupsManager : MonoBehaviour
     public void SpawnStatusEffectPopup(Effectable effectable, Affector affector, StatusEffect statusEffect)
     {
         if(statusEffect.StatusEffectType == StatusEffectType.None) return;
+        if(!statusEffect.ShowStatusEffectPopup) return;
 
         _offsetVector = new Vector3(0, _yOffset);
 
