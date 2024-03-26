@@ -45,12 +45,12 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
         gameObject.SetActive(false);
     }
 
-    private void OnValidate()
+    protected virtual void OnValidate()
     {
         rectTransform ??= GetComponent<RectTransform>();
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         if (assignUIGroup)
         {
@@ -80,7 +80,7 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
             if(InformationWindow.Instance.isActive) InformationWindow.Instance.Hide();
         }
     }
-    private void OnDisable()
+    protected virtual void OnDisable()
     {
         isMouseOver = false;
     }

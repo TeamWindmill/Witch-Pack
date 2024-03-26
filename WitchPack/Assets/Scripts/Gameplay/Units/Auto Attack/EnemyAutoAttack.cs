@@ -7,7 +7,7 @@ public class EnemyAutoAttack : OffensiveAbility
    public override bool CastAbility(BaseUnit caster)
    {
       BaseUnit target;
-      if(caster.Effectable.ContainsStatusEffect(StatusEffectType.Charm))
+      if(caster.Effectable.ContainsStatusEffect(StatusEffectType.Charm) || caster.Effectable.ContainsStatusEffect(StatusEffectType.Frenzy))
       {
          target = caster.EnemyTargetHelper.GetTarget(TargetData);
       }
@@ -24,7 +24,7 @@ public class EnemyAutoAttack : OffensiveAbility
    public override bool CheckCastAvailable(BaseUnit caster)
    {
       BaseUnit target;
-      if(caster.Effectable.ContainsStatusEffect(StatusEffectType.Charm))
+      if(caster.Effectable.ContainsStatusEffect(StatusEffectType.Charm) || caster.Effectable.ContainsStatusEffect(StatusEffectType.Frenzy))
       {
          target = caster.EnemyTargetHelper.GetTarget(TargetData);
       }

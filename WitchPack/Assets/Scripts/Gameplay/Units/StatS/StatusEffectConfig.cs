@@ -11,6 +11,7 @@ public class StatusEffectConfig : ScriptableObject
     [SerializeField, ShowIf(nameof(hasDuration))] private float duration;//every status effects only works for a duration
     [SerializeField] private StatType statTypeAffected;//all stats you wish to affect on the target
     [SerializeField] private StatusEffectType statusEffectType;
+    [SerializeField] private bool _showStatusEffectPopup;
     [SerializeField] private StatusEffectValueType valueType;
     private bool hasDuration => process != StatusEffectProcess.InstantWithoutDuration;
 
@@ -20,6 +21,7 @@ public class StatusEffectConfig : ScriptableObject
     public StatType StatTypeAffected { get => statTypeAffected; }
     public StatusEffectType StatusEffectType { get => statusEffectType; }
     public StatusEffectValueType ValueType { get => valueType; }
+    public bool ShowStatusEffectPopup => _showStatusEffectPopup;
 }
 
 public enum StatusEffectProcess
