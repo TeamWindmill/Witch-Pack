@@ -12,11 +12,11 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
     public bool isMouseOver { get; private set; }
 
     [SerializeField, HideInInspector] protected RectTransform rectTransform;
-    [SerializeField] private bool showOnAwake = false;
-    [SerializeField] private bool assignUIGroup = false;
-    [SerializeField, ShowIf(nameof(assignUIGroup))] protected UIGroup uiGroup;
-    [SerializeField] private bool showInfoWindow = false;
-    [SerializeField, ShowIf(nameof(showInfoWindow))] protected WindowInfo _windowInfo;
+    [BoxGroup("UI Element")][SerializeField] private bool showOnAwake = false;
+    [BoxGroup("UI Element")][SerializeField] private bool assignUIGroup = false;
+    [BoxGroup("UI Element")][SerializeField, ShowIf(nameof(assignUIGroup))] protected UIGroup uiGroup;
+    [BoxGroup("UI Element")][SerializeField] private bool showInfoWindow = false;
+    [BoxGroup("UI Element")][SerializeField, ShowIf(nameof(showInfoWindow))] protected WindowInfo _windowInfo;
     
 
     

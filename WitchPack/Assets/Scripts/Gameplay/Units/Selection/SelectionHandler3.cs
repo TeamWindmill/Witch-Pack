@@ -6,9 +6,10 @@ using UnityEngine.EventSystems;
 
 public class SelectionHandler3 : MonoBehaviour, ISelection
 {
-    public event Action<Shaman> OnShamanMoveSelect;
-    public event Action<Shaman> OnShamanInfoSelect;
+    public event Action<Shaman> OnShamanSelect;
     public event Action<Shaman> OnShamanDeselected;
+    public event Action<Shadow> OnShadowSelect;
+    public event Action<Shadow> OnShadowDeselected;
     public SelectionType SelectMode => _selectMode;
     public Shaman SelectedShaman => _selectedShaman;
     public Shadow Shadow => shadow;
@@ -93,7 +94,7 @@ public class SelectionHandler3 : MonoBehaviour, ISelection
     {
         SlowMotionManager.Instance.StartSlowMotionEffects();
         shadow.Show(_selectedShaman);
-        OnShamanMoveSelect?.Invoke(_selectedShaman);
+        OnShamanSelect?.Invoke(_selectedShaman);
     }
     private void ReleaseMove()
     {

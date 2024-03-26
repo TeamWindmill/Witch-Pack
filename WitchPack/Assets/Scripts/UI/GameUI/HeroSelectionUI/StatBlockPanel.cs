@@ -45,6 +45,14 @@ public class StatBlockPanel : MonoBehaviour
         }
     }
 
+    public void HideStatBlocksBonus()
+    {
+        foreach (var statBlock in _statBlocks)
+        {
+            statBlock.HideBonusStatUI();
+        }
+    }
+
     public void HideStatBlocks()
     {
         _shaman.Stats.OnStatChanged -= OnBaseStatChange;

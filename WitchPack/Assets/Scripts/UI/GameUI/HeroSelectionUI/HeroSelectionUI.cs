@@ -8,11 +8,12 @@ public class HeroSelectionUI : MonoSingleton<HeroSelectionUI> , IPointerEnterHan
 {
     public event Action OnMouseEnter;
     public event Action OnMouseExit;
+    public StatBlockPanel StatBlockPanel => statBlockPanel;
+
     [SerializeField] private Image shamanSprite;
     [SerializeField] private TextMeshProUGUI shamanName;
     [SerializeField] private TextMeshProUGUI shamanLevel;
     [SerializeField] private StatBlockPanel statBlockPanel;
-    //[SerializeField] private PSBonusUIHandler psBonusUIHandler;
     [SerializeField] private AbilitiesHandlerUI abilitiesHandlerUI;
 
     public bool IsActive { get; private set; }
@@ -28,7 +29,6 @@ public class HeroSelectionUI : MonoSingleton<HeroSelectionUI> , IPointerEnterHan
     {
         Shaman = shaman;
         statBlockPanel.Init(shaman);
-        //psBonusUIHandler.Show(stats);
         abilitiesHandlerUI.Show(shaman);
         shamanSprite.sprite = shaman.ShamanConfig.UnitIcon;
         shamanName.text = shaman.ShamanConfig.Name;
@@ -44,12 +44,9 @@ public class HeroSelectionUI : MonoSingleton<HeroSelectionUI> , IPointerEnterHan
         shamanLevel.text = "Lvl: " + level;
     }
 
-    public void UpdateStatBlocks(StatType shamanStatType, float newValue) => statBlockPanel.UpdateStatBlocks(shamanStatType, newValue);
-
     public void Hide()
     {
         statBlockPanel.HideStatBlocks();
-        //psBonusUIHandler.Hide();
         abilitiesHandlerUI.Hide();
         IsActive = false;
         gameObject.SetActive(false);

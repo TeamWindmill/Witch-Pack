@@ -14,8 +14,7 @@ public class PowerStructure : MonoBehaviour
     [SerializeField] private SpriteRenderer _powerStructureSpriteRenderer;
     [SerializeField] private SpriteMask _powerStructureMask;
     [Space] [SerializeField] private bool _testing;
-
-    //private int _currentActiveRingId = 4;
+    
     private StatType _statType;
     private Modifier _statModifier;
     private Dictionary<int, float> _activeShadowRingIds = new Dictionary<int, float>();
@@ -41,9 +40,9 @@ public class PowerStructure : MonoBehaviour
             ring.OnShadowExit += OnShadowRingExit;
         }
 
-        LevelManager.Instance.SelectionHandler.OnShamanDeselected += OnShadowDeselect;
+        LevelManager.Instance.SelectionHandler.OnShadowDeselected += OnShadowDeselect;
     }
-    private void OnShadowDeselect(Shaman shaman)
+    private void OnShadowDeselect(Shadow shadow)
     {
         proximityRingsManager.ToggleAllSprites(false);
         if(ReferenceEquals(LevelManager.Instance.SelectionHandler.Shadow,null)) return;
@@ -105,13 +104,13 @@ public class PowerStructure : MonoBehaviour
     }
     private void ShowUI(Shadow shadow,int ringId)
     {
-        HeroSelectionUI.Instance.UpdateStatBlocks(_statType, CalculateStatValueForSelectionUI(shadow,shadow.Shaman));
+        HeroSelectionUI.Instance.StatBlockPanel.UpdateStatBlocks(_statType, CalculateStatValueForSelectionUI(shadow,shadow.Shaman));
         StatEffectPopupManager.ShowPopupWindows(GetInstanceID(), _statType.ToString(), CalculateStatValueForPSUI(), true, GetRingColorAlpha(ringId));
     }
 
     private void HideUI(Shadow shadow)
     {
-        HeroSelectionUI.Instance.UpdateStatBlocks(_statType, CalculateStatValueForSelectionUI(shadow,shadow.Shaman));
+        HeroSelectionUI.Instance.StatBlockPanel.HideStatBlocksBonus();
         StatEffectPopupManager.HidePopupWindows(GetInstanceID());
     }
 

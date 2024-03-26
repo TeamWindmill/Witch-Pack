@@ -3,9 +3,10 @@ using UnityEngine.EventSystems;
 
 public interface ISelection
 {
-    public event Action<Shaman> OnShamanMoveSelect;
-    public event Action<Shaman> OnShamanInfoSelect;
+    public event Action<Shaman> OnShamanSelect;
     public event Action<Shaman> OnShamanDeselected;
+    public event Action<Shadow> OnShadowSelect;
+    public event Action<Shadow> OnShadowDeselected;
     public SelectionType SelectMode { get; }
     public Shaman SelectedShaman { get; }
     public Shadow Shadow { get; }
