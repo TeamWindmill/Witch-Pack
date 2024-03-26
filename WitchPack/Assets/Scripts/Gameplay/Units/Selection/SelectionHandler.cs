@@ -13,6 +13,8 @@ public class SelectionHandler : MonoBehaviour, ISelection
     public Shadow Shadow { get; }
     
     [SerializeField] private Shadow shadow;
+    [SerializeField] private ParticleSystem quickMoveEffect;
+    [SerializeField] private Animator quickMoveArrowsAnimator;
     
     private const int LEFT_CLICK = 0;
     private const int RIGHT_CLICK = 1;
@@ -90,7 +92,10 @@ public class SelectionHandler : MonoBehaviour, ISelection
     {
         var newDest = GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
         _selectedShaman.Movement.SetDestination(newDest);
-        
+        newDest.z = 0;
+        quickMoveEffect.transform.position = newDest;
+        quickMoveEffect.Play();
+        quickMoveArrowsAnimator.Play("LocationArrows");
     }
     private void SelectMove()
     {
