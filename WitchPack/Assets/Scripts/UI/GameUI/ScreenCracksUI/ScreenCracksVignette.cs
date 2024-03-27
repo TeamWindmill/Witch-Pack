@@ -33,12 +33,12 @@ public class ScreenCracksVignette : MonoEffectTransitionLerp<CracksVignetteValue
 
     public override void StartTransitionEffect()
     {
-        LerpValuesHandler.Instance.SetValueByType(LerpValueConfig, EffectValues[0].ValueType, CurrentStartValue, EffectValues[0].EndValue, SetValue,OnTransitionEnd);
+        LerpValuesHandler.Instance.StartLerpByType(LerpValueConfig, EffectValues[0].ValueType, CurrentStartValue, EffectValues[0].EndValue, SetValue,OnTransitionEnd);
     }
 
     public override void EndTransitionEffect()
     {
-        LerpValuesHandler.Instance.SetValueByType(LerpValueConfig, EffectValues[0].ValueType, EffectValues[0].EndValue, CurrentStartValue, SetValue);
+        LerpValuesHandler.Instance.StartLerpByType(LerpValueConfig, EffectValues[0].ValueType, EffectValues[0].EndValue, CurrentStartValue, SetValue);
     }
 
     protected override void SetValue(CracksVignetteValues type, float value)
