@@ -5,6 +5,7 @@ using Random = UnityEngine.Random;
 
 public class LevelManager : MonoSingleton<LevelManager>
 {
+    public event Action<LevelHandler> OnLevelStart;
     public LevelHandler CurrentLevel { get; private set; }
     public List<Shaman> ShamanParty { get; private set; }
     public List<Enemy> CharmedEnemies { get;} = new();
@@ -38,6 +39,7 @@ public class LevelManager : MonoSingleton<LevelManager>
         BgMusicManager.Instance.PlayMusic(MusicClip.GameMusic);
         UIManager.Instance.ShowUIGroup(UIGroup.GameUI);
         GAME_TIME.StartGame();
+        OnLevelStart?.Invoke(CurrentLevel);
     }
 
     public void EndLevel(bool win)

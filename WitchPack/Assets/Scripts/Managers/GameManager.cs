@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
+    public bool TutorialPlayed;
     public static ISceneHandler SceneHandler { get; private set; }
     public LevelConfig CurrentLevelConfig { get; private set; }
 

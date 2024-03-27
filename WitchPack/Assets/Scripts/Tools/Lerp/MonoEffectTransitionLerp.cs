@@ -17,7 +17,7 @@ namespace Tools.Lerp
         {
             foreach (var effectValue in _effectValues)
             {
-                LerpValuesHandler.Instance.SetValueByType(_lerpValueConfig, effectValue.ValueType, effectValue.StartValue, effectValue.EndValue, SetValue,OnTransitionEnd);
+                LerpValuesHandler.Instance.StartLerpByType(_lerpValueConfig, effectValue.ValueType, effectValue.StartValue, effectValue.EndValue, SetValue,OnTransitionEnd);
             }
         }
 
@@ -25,7 +25,7 @@ namespace Tools.Lerp
         {
             foreach (var effectValue in _effectValues)
             {
-                LerpValuesHandler.Instance.SetValueByType(_lerpValueConfig, effectValue.ValueType, effectValue.EndValue, effectValue.StartValue, SetValue,OnTransitionEnd);
+                LerpValuesHandler.Instance.StartLerpByType(_lerpValueConfig, effectValue.ValueType, effectValue.EndValue, effectValue.StartValue, SetValue,OnTransitionEnd);
             }
         }
 
