@@ -4,6 +4,7 @@ using NavMeshPlus.Components;
 
 public class LevelHandler : MonoBehaviour
 {
+    public int ID { get; private set; }
     public EnviromentHandler EnviromentHandler => _EnviromentHandler;
     public Transform[] ShamanSpawnPoints => shamanSpawnPoints;
     public CoreTemple CoreTemple => coreTemple;
@@ -23,8 +24,9 @@ public class LevelHandler : MonoBehaviour
     
     private bool _tempSlowMotion; //TEMP
 
-    public void Init()
+    public void Init(LevelConfig config)
     {
+        ID = config.ID;
         GameManager.Instance.CameraHandler.SetCameraLevelSettings(cameraLevelSettings);
         GameManager.Instance.CameraHandler.ResetCamera();
         navMeshSurface.BuildNavMeshAsync(); //bakes navmesh

@@ -6,6 +6,7 @@ using Random = UnityEngine.Random;
 public class LevelManager : MonoSingleton<LevelManager>
 {
     public event Action<LevelHandler> OnLevelStart;
+    public event Action<LevelHandler> OnLevelEnd;
     public LevelHandler CurrentLevel { get; private set; }
     public List<Shaman> ShamanParty { get; private set; }
     public List<Enemy> CharmedEnemies { get;} = new();
@@ -33,7 +34,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     {
         var levelConfig = GameManager.Instance.CurrentLevelConfig;
         CurrentLevel = Instantiate(levelConfig.levelPrefab, enviromentHolder);
-        CurrentLevel.Init();
+        CurrentLevel.Init(levelConfig);
         SpawnParty(levelConfig.Shamans);
         CurrentLevel.TurnOffSpawnPoints();
         BgMusicManager.Instance.PlayMusic(MusicClip.GameMusic);
@@ -49,6 +50,7 @@ public class LevelManager : MonoSingleton<LevelManager>
         BgMusicManager.Instance.StopMusic();
         if(win) SoundManager.Instance.PlayAudioClip(SoundEffectType.Victory);
         UIManager.Instance.ShowUIGroup(UIGroup.EndGameUI);
+        OnLevelEnd?.Invoke(CurrentLevel);
     }
 
     private void SpawnParty(ShamanConfig[] shamanConfigs)
