@@ -9,6 +9,7 @@ public class CanvasLerper : EffectTransitionLerp
     public void SetStartValue()
     {
         _canvasGroup.alpha = EffectValue.StartValue;
+        _canvasGroup.gameObject.SetActive(false);
     }
     
     protected override void SetValue(float value)
