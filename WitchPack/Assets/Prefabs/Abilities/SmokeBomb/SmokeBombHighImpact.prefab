@@ -42,8 +42,8 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1056421739797466172}
   m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -110211569
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!1 &2805396558220922475
@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 1480168114741877926}
   - component: {fileID: 6972495888065968399}
   m_Layer: 17
-  m_Name: Somke Bomb Clouds
+  m_Name: Smoke Bomb Clouds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,8 +89,8 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2805396558220922475}
   m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1618181451
+  m_SortingLayer: 3
   m_SortingOrder: 5
   m_SortAtRoot: 0
 --- !u!1 &8901440362174484338
@@ -176,6 +176,10 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3996492433731156507, guid: f3047693d6f8f8049a98ec47b730d378, type: 3}
+      propertyPath: m_Name
+      value: Black Ground Spikes
+      objectReference: {fileID: 0}
     - target: {fileID: 4601439509643182674, guid: f3047693d6f8f8049a98ec47b730d378, type: 3}
       propertyPath: playOnAwake
       value: 1
@@ -255,7 +259,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 9192060345142239463, guid: f3047693d6f8f8049a98ec47b730d378, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 562049147986347536}
   m_SourcePrefab: {fileID: 100100000, guid: f3047693d6f8f8049a98ec47b730d378, type: 3}
 --- !u!198 &3714221080141742385 stripped
 ParticleSystem:
@@ -267,6 +274,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5650219501563498663, guid: f3047693d6f8f8049a98ec47b730d378, type: 3}
   m_PrefabInstance: {fileID: 1423406390049165840}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7804798349605778167 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9192060345142239463, guid: f3047693d6f8f8049a98ec47b730d378, type: 3}
+  m_PrefabInstance: {fileID: 1423406390049165840}
+  m_PrefabAsset: {fileID: 0}
+--- !u!210 &562049147986347536
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7804798349605778167}
+  m_Enabled: 1
+  m_SortingLayerID: -1610086817
+  m_SortingLayer: 2
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1001 &1882776750036877250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -674,9 +698,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableTargets: []
-  layer:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!4 &1672107853310777491 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3347676658267846020, guid: 05fec0a2918812545ae3f8132224d2f4, type: 3}
