@@ -2,10 +2,11 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class NodeObject : MonoBehaviour
+public class LevelNode : MonoBehaviour
 {
     [BoxGroup("Level")][SerializeField] private LevelConfig _levelConfig;
-    [BoxGroup("Level")][SerializeField] private NodeObject[] _nextNodes;
+    //[BoxGroup("Level")][SerializeField] private LevelNode[] _nextNodes;
+    [BoxGroup("Level")][SerializeField] private LevelNode _parentNode;
     [BoxGroup("Icon")][SerializeField] private ClickHelper _clickHelper;
     [BoxGroup("Icon")][SerializeField] private SpriteRenderer _spriteRenderer;
     [BoxGroup("Icon")][SerializeField] private Color _winNodeColor;
@@ -13,7 +14,7 @@ public class NodeObject : MonoBehaviour
     [BoxGroup("Icon")][SerializeField] private Sprite _defaultIcon;
     [BoxGroup("Icon")][SerializeField] private Sprite _hoverIcon;
     [BoxGroup("Icon")][SerializeField] private Sprite _pressedIcon;
-    public bool IsUnlock { get; private set; }
+    public bool IsLocked { get; private set; }
     public bool IsCompleted { get; private set; }
 
     //public int Id => _levelConfig.LevelId;
@@ -28,24 +29,21 @@ public class NodeObject : MonoBehaviour
         _clickHelper.OnMouseUp += OnNodeMouseUp;
     }
 
-    
-
     public void Init(bool isCompleted, bool isUnLock)
     {
-        IsUnlock = isUnLock;
+        IsLocked = isUnLock;
+        if (IsLocked) Unlock();
+        else Lock();
         IsCompleted = isCompleted;
         
-        if (IsUnlock) Unlock();
-        else Lock();
-        
-        if (isCompleted) Completed();
-           
+        if(_parentNode is null) Unlock();
+        else if(_parentNode.IsCompleted) Unlock();
     }
 
     public void Lock()
     {
         gameObject.SetActive(false);
-        IsUnlock = false;
+        IsLocked = true;
     }
 
     private void OnDestroy()
@@ -56,15 +54,15 @@ public class NodeObject : MonoBehaviour
     public void Unlock()
     {
         gameObject.SetActive(true); 
-        IsUnlock = true;
+        IsLocked = false;
     }
 
     private void Completed()
     {
         _spriteRenderer.color = _winNodeColor;
         
-        foreach (var node in _nextNodes)
-            node.Unlock();
+        // foreach (var node in _nextNodes)
+        //     node.Unlock();
     }
     
     private void OnNodeClick(PointerEventData.InputButton button)

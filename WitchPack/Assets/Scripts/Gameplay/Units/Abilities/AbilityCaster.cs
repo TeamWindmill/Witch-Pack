@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 
 public class AbilityCaster : ICaster
 {
@@ -44,6 +45,11 @@ public class AbilityCaster : ICaster
     public bool CheckCastAvailable()
     {
         return _ability.CheckCastAvailable(_shaman);
+    }
+
+    public bool ContainsUpgrade(ICaster caster)
+    {
+        return _ability.Upgrades.Contains(caster.Ability);
     }
 
     public float GetCooldown() => _ability.Cd;

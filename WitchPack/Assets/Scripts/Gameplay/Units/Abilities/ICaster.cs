@@ -5,4 +5,5 @@ public interface ICaster
     public bool CastAbility();
     public float GetCooldown();
     public bool CheckCastAvailable();
+    public bool ContainsUpgrade(ICaster caster);
 }

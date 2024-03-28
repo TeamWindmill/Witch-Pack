@@ -38,7 +38,8 @@ public class LevelManager : MonoSingleton<LevelManager>
         SpawnParty(levelConfig.Shamans);
         CurrentLevel.TurnOffSpawnPoints();
         BgMusicManager.Instance.PlayMusic(MusicClip.GameMusic);
-        UIManager.Instance.ShowUIGroup(UIGroup.GameUI);
+        UIManager.Instance.ShowUIGroup(UIGroup.TopCounterUI);
+        UIManager.Instance.ShowUIGroup(UIGroup.PartyUI);
         GAME_TIME.StartGame();
         OnLevelStart?.Invoke(CurrentLevel);
     }
@@ -51,6 +52,7 @@ public class LevelManager : MonoSingleton<LevelManager>
         if(win) SoundManager.Instance.PlayAudioClip(SoundEffectType.Victory);
         UIManager.Instance.ShowUIGroup(UIGroup.EndGameUI);
         OnLevelEnd?.Invoke(CurrentLevel);
+        GameManager.Instance.LevelsCompleted[CurrentLevel.ID] = true;
     }
 
     private void SpawnParty(ShamanConfig[] shamanConfigs)

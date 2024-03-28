@@ -33,4 +33,9 @@ public class AutoAttackHandler : ICaster
     {
         return _ability.CheckCastAvailable(_unit);
     }
+
+    public bool ContainsUpgrade(ICaster caster)
+    {
+        return false;
+    }
 }

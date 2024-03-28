@@ -18,7 +18,7 @@ public class SelectionHandler3 : MonoBehaviour, ISelection
     private const int LEFT_CLICK = 0;
     private const int RIGHT_CLICK = 1;
     private const int MIDDLE_CLICK = 2;
-    private bool _mouseOverSelectionUI => HeroSelectionUI.Instance.MouseOverUI;
+    private bool _mouseOverSelectionUI => HeroSelectionUI.Instance.isMouseOver;
     private Shaman _selectedShaman;
     private SelectionType _selectMode;
     [SerializeField] private float _maxHoldTime;

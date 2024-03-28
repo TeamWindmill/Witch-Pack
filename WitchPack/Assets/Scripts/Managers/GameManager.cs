@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoSingleton<GameManager>
 {
     public bool TutorialPlayed;
-    public bool[] LevelsCompleted;
+    public bool[] LevelsCompleted = new bool[3];
     public static ISceneHandler SceneHandler { get; private set; }
     public LevelConfig CurrentLevelConfig { get; private set; }
 
