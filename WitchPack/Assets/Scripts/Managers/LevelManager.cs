@@ -41,6 +41,7 @@ public class LevelManager : MonoSingleton<LevelManager>
         UIManager.Instance.ShowUIGroup(UIGroup.TopCounterUI);
         UIManager.Instance.ShowUIGroup(UIGroup.PartyUI);
         GAME_TIME.StartGame();
+        TutorialHandler.Instance.LevelStart(CurrentLevel);
         OnLevelStart?.Invoke(CurrentLevel);
     }
 

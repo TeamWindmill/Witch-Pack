@@ -25,14 +25,14 @@ public class TutorialHandler : MonoSingleton<TutorialHandler>
     private void Start()
     {
         _canvasLerper.SetStartValue();
-        if (!_tutorialActive) return;
-        if (GameManager.Instance.TutorialPlayed) return;
-        LevelManager.Instance.OnLevelStart += LevelStart;
     }
 
-    private void LevelStart(LevelHandler level)
+    public void LevelStart(LevelHandler level)
     {
+        if (!_tutorialActive) return;
+        if (GameManager.Instance.TutorialPlayed) return;
         if(!level.ShowTutorial) return;
+
         TimerManager.Instance.AddTimer(_levelStartDelay, PlayMovementTutorial);
     }
 
