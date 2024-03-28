@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class AbilitiesHandlerUI : MonoBehaviour
 {
+    public AbilityUpgradePanelUI AbilityUpgradePanelUI => abilityUpgradePanelUI;
+
     [SerializeField] private AbilityUIButton[] abilityUIButtons;
     [SerializeField] private AbilityUpgradePanelUI abilityUpgradePanelUI;
 

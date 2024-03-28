@@ -68,7 +68,7 @@ public class Indicator : UIElement
         return pointerSprites[index];
     }
 
-    private void Update()
+    protected override void Update()
     {
         //decrease ring if time is set
         if (time != 0)
@@ -79,7 +79,7 @@ public class Indicator : UIElement
             {
                 //UIManager.Instance.RemoveUIElement(this, uiGroup);
                 LevelManager.Instance.IndicatorManager.RemoveActiveIndicator(this);
-                gameObject.SetActive(false);
+                Hide();
             }
         }
         PositionIndicator();
@@ -92,7 +92,7 @@ public class Indicator : UIElement
         onClick?.Invoke();
         //UIManager.Instance.RemoveUIElement(this, uiGroup);
         LevelManager.Instance.IndicatorManager.RemoveActiveIndicator(this);
-        gameObject.SetActive(false);
+        Hide();
     }
 
     private void PositionIndicator()
@@ -194,7 +194,7 @@ public class Indicator : UIElement
         }
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
         rectTransform.localRotation = Quaternion.AngleAxis(0, Vector3.forward);
         //artwork.rectTransform.localRotation = Quaternion.AngleAxis(0, Vector3.forward);
@@ -202,6 +202,7 @@ public class Indicator : UIElement
         artParentRectTransform.localScale = new Vector3(1, 1, 1);
         speedDirection = 1;
         counter = time;
+        base.OnDisable();
     }
 }
 

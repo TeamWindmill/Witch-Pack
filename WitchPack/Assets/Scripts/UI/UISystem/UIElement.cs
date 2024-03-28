@@ -13,6 +13,7 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     [SerializeField, HideInInspector] protected RectTransform rectTransform;
     [BoxGroup("UI Element")][SerializeField] private bool showOnAwake = false;
+    [BoxGroup("UI Element")][SerializeField] private bool hideOnAwake = false;
     [BoxGroup("UI Element")][SerializeField] private bool assignUIGroup = false;
     [BoxGroup("UI Element")][SerializeField, ShowIf(nameof(assignUIGroup))] protected UIGroup uiGroup;
     [BoxGroup("UI Element")][SerializeField] private bool showInfoWindow = false;
@@ -26,8 +27,8 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
         if (assignUIGroup) UIManager.Instance.AddUIElement(this, uiGroup);
         if (showOnAwake)
             Show();
-        else
-            gameObject.SetActive(false);
+        if (hideOnAwake)
+            Hide();
     }
 
     public virtual void Show()
@@ -52,6 +53,7 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     protected virtual void OnDestroy()
     {
+        OnMouseExit?.Invoke(this);
         if (assignUIGroup)
         {
             if (UIManager.Instance is not null)
@@ -83,5 +85,6 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
     protected virtual void OnDisable()
     {
         isMouseOver = false;
+        OnMouseExit?.Invoke(this);
     }
 }

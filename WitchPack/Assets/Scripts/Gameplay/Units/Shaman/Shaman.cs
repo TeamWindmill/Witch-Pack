@@ -126,14 +126,16 @@ public class Shaman : BaseUnit
         if (ability is not Passive passive)
         {
             ability.OnSetCaster(this);
-            castingHandlers.Add(new AbilityCaster(this, ability as CastingAbility));
+            var caster = new AbilityCaster(this, ability as CastingAbility);
+            castingHandlers.Add(caster);
+            AutoCaster.ReplaceAbility(caster);
         }
         else
         {
             passive.SubscribePassive(this);
         }
 
-        AutoCaster.Init(this, true);
+        
     }
 
     public void RemoveAbility(BaseAbility ability)

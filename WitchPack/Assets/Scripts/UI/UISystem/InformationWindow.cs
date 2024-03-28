@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class InformationWindow : MonoSingleton<InformationWindow>
+public class InformationWindow : UIElement
 {
+    public static InformationWindow Instance { get; private set; }
     public bool isActive { get; private set; }
     [SerializeField] private Transform _holder;
     [SerializeField] private TextMeshProUGUI _titleTMP;
@@ -19,6 +20,16 @@ public class InformationWindow : MonoSingleton<InformationWindow>
     private bool _activeShowRequest;
     private UIElement _currentUIElement;
     private WindowInfo _currentWindowInfo;
+    protected override void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(Instance);
+        }
+        else Instance = this;
+        base.Awake();
+    }
+
     private void Start()
     {
         _holder.gameObject.SetActive(false);
@@ -58,7 +69,7 @@ public class InformationWindow : MonoSingleton<InformationWindow>
         _rectTransform ??= GetComponent<RectTransform>();
     }
 
-    private void Update()
+    protected override void Update()
     {
         if (_activeShowRequest)
         {

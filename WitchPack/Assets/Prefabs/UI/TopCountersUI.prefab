@@ -33,10 +33,10 @@ RectTransform:
   - {fileID: 7398800735269794539}
   m_Father: {fileID: 7583724675601292305}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &179416184190290666
 MonoBehaviour:
@@ -50,6 +50,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cba76db3745f4265849c4ff5cad211b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rectTransform: {fileID: 6428597834598853319}
+  showOnAwake: 0
+  assignUIGroup: 1
+  uiGroup: 5
+  showInfoWindow: 0
+  _windowInfo:
+    Name: 
+    Discription: 
+  _statBar: {fileID: 1103392913187386826}
 --- !u!1 &2069620034474891077
 GameObject:
   m_ObjectHideFlags: 0
@@ -82,10 +91,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7398800735269794539}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 128, y: 127}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.000015258789, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7685175054732695952
 CanvasRenderer:
@@ -840,9 +849,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 2173017079267731475}
-  showOnAwake: 1
-  assignUIGroup: 0
-  uiGroup: 0
+  showOnAwake: 0
+  assignUIGroup: 1
+  uiGroup: 5
   showInfoWindow: 0
   _windowInfo:
     Name: 
@@ -906,7 +915,7 @@ RectTransform:
   m_GameObject: {fileID: 7496314370488718653}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4554463800587632866}
@@ -915,7 +924,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -137.8, y: 0}
-  m_SizeDelta: {x: 128, y: 129}
+  m_SizeDelta: {x: 76.8, y: 77.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6851241353349714516
 CanvasRenderer:
@@ -988,11 +997,11 @@ RectTransform:
   - {fileID: 2614380088870145604}
   m_Father: {fileID: 4756907167031828794}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 500, y: 77.399994}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!1 &9099439597805650142
 GameObject:
   m_ObjectHideFlags: 0
@@ -1059,10 +1068,10 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 379555027, guid: 358bb9a962689e04e830b4a519d243a5, type: 3}
-  m_Type: 0
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
+  m_FillMethod: 0
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
@@ -1096,12 +1105,20 @@ PrefabInstance:
       propertyPath: buttonType
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1133809848651596192, guid: fd81550fdc035a146bcd6baa1fd98645, type: 3}
+      propertyPath: assignUIGroup
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1973688188902217454, guid: fd81550fdc035a146bcd6baa1fd98645, type: 3}
       propertyPath: buttonType
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1973688188902217454, guid: fd81550fdc035a146bcd6baa1fd98645, type: 3}
       propertyPath: showOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973688188902217454, guid: fd81550fdc035a146bcd6baa1fd98645, type: 3}
+      propertyPath: assignUIGroup
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2342615320968249419, guid: fd81550fdc035a146bcd6baa1fd98645, type: 3}
@@ -1118,7 +1135,7 @@ PrefabInstance:
       objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 3061523107822464930, guid: fd81550fdc035a146bcd6baa1fd98645, type: 3}
       propertyPath: uiGroup
-      value: 0
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3061523107822464930, guid: fd81550fdc035a146bcd6baa1fd98645, type: 3}
       propertyPath: _showOnAwake
@@ -1166,6 +1183,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5779094764299099604, guid: fd81550fdc035a146bcd6baa1fd98645, type: 3}
       propertyPath: showOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5779094764299099604, guid: fd81550fdc035a146bcd6baa1fd98645, type: 3}
+      propertyPath: assignUIGroup
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6449997446758028118, guid: fd81550fdc035a146bcd6baa1fd98645, type: 3}
@@ -1266,6 +1287,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8052745526889941195, guid: fd81550fdc035a146bcd6baa1fd98645, type: 3}
       propertyPath: showOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8052745526889941195, guid: fd81550fdc035a146bcd6baa1fd98645, type: 3}
+      propertyPath: assignUIGroup
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8617112634349786205, guid: fd81550fdc035a146bcd6baa1fd98645, type: 3}

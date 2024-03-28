@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
-    [SerializeField] private NodeObject[] _nodeObjects;
+    [SerializeField] private LevelNode[] _nodeObjects;
     [SerializeField] private bool _unLockAll;
 
     [Header("Camera Control")] [SerializeField]
@@ -11,13 +11,17 @@ public class MapManager : MonoBehaviour
     [SerializeField] private int _cameraLockedZoom;
 
     [SerializeField] private bool[] _nodeLockState;
-    private bool[] _nodeCompletedState = new bool[3];
 
     private void Awake()
     {
+        Init();
+    }
+
+    private void Init()
+    {
         for (int i = 0; i < _nodeObjects.Length; i++)
         {
-            _nodeObjects[i].Init(_nodeCompletedState[i], _nodeLockState[i]);
+            _nodeObjects[i].Init(GameManager.Instance.LevelsCompleted[i], _nodeLockState[i]);
         }
     }
 
@@ -28,10 +32,12 @@ public class MapManager : MonoBehaviour
 
     public void UnlockLevels(bool state)
     {
-        if(!state) return;
         foreach (var nodeObject in _nodeObjects)
         {
-            nodeObject.Unlock();
+            if(state)
+                nodeObject.Unlock();
+            else
+                Init();
         }
     }
 }

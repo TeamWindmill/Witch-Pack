@@ -103,4 +103,8 @@ public enum UIGroup
     MenuUI,
     EndGameUI,
     SelectionUI,
+    TopCounterUI,
+    PartyUI,
+    Indicators,
+    InfoWindow,
 }
