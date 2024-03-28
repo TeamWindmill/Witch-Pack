@@ -9,6 +9,7 @@ public class HeroSelectionUI : MonoSingleton<HeroSelectionUI> , IPointerEnterHan
     public event Action OnMouseEnter;
     public event Action OnMouseExit;
     public StatBlockPanel StatBlockPanel => statBlockPanel;
+    public AbilitiesHandlerUI AbilitiesHandlerUI => abilitiesHandlerUI;
 
     [SerializeField] private Image shamanSprite;
     [SerializeField] private TextMeshProUGUI shamanName;

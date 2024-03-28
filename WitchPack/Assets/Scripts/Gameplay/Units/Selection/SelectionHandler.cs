@@ -82,7 +82,7 @@ public class SelectionHandler : MonoBehaviour, ISelection
 
         if (Input.GetMouseButtonUp(RIGHT_CLICK)) ReleaseMove();
 
-        if (!_mouseOverSelectionUI)
+        if (!_mouseOverSelectionUI && !HeroSelectionUI.Instance.AbilitiesHandlerUI.AbilityUpgradePanelUI.isActiveAndEnabled)
         { 
             if (Input.GetMouseButtonDown(LEFT_CLICK)) CloseUIPanelAndDeselectShaman();
         }
