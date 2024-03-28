@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using UnityEngine;
@@ -13,12 +14,13 @@ public class UnitAutoCaster : MonoBehaviour
     public event Action<CastingHandsEffectType> CastTimeEndVFX;
     public bool CanCast { get; private set; }
 
-    private BaseUnit owner;
     [ShowInInspector] private Queue<ICaster> _queuedAbilities = new();
-    [ShowInInspector] private List<ICaster> _abilitiesOnCooldown = new();
-    [ShowInInspector] private List<Timer<ICaster>> _activeTimers = new();
+    //[ShowInInspector] private List<ICaster> _abilitiesOnCooldown = new();
+    //[ShowInInspector] private List<Timer<ICaster>> _activeTimers = new();
+    [ShowInInspector] private Dictionary<ICaster, Timer<ICaster>> _cooldownAbilities = new();
     private float _castTimer;
     private float _currentCastTime;
+    private BaseUnit owner;
 
     public void Init(BaseUnit givenOwner,bool enableOnStart)
     {
@@ -48,8 +50,9 @@ public class UnitAutoCaster : MonoBehaviour
                 {
                     CastTimeEnd?.Invoke(caster.Ability);
                     if(caster.Ability.HasCastVisual) CastTimeEndVFX?.Invoke(caster.Ability.CastVisualColor);
-                    _activeTimers.Add(TimerManager.Instance.AddTimer(caster.GetCooldown(),caster,EnqueueAbility,true));
-                    _abilitiesOnCooldown.Add(caster);
+                    _cooldownAbilities.Add(caster,TimerManager.Instance.AddTimer(caster.GetCooldown(),caster,ReturnAbilityFromCooldown,true));
+                    // _activeTimers.Add(TimerManager.Instance.AddTimer(caster.GetCooldown(),caster,EnqueueAbility,true));
+                    // _abilitiesOnCooldown.Add(caster);
                     _queuedAbilities.Dequeue();
                     _castTimer = 0;
                 }
@@ -67,10 +70,48 @@ public class UnitAutoCaster : MonoBehaviour
         }
     }
 
-    private void EnqueueAbility(ICaster caster)
+    private void ReturnAbilityFromCooldown(ICaster caster)
     {
-        if (!_abilitiesOnCooldown.Contains(caster)) return;
-        _abilitiesOnCooldown.Remove(caster);
+        if (!_cooldownAbilities.ContainsKey(caster)) return;
+        _cooldownAbilities.Remove(caster);
+        _queuedAbilities.Enqueue(caster);
+    }
+
+    public void ReplaceAbility(ICaster caster)
+    {
+        //if the ability is on cooldown
+        foreach (var ability in _cooldownAbilities.Where(ability => ability.Key.Ability.Upgrades.Contains(caster.Ability)))
+        {
+            ability.Value.RemoveThisTimer();
+            _cooldownAbilities.Remove(ability.Key);
+            _queuedAbilities.Enqueue(caster);
+            return;
+        }
+
+        //if the ability is on active queue
+        
+        foreach (var queuedAbility in _queuedAbilities)
+        {
+            if (queuedAbility.ContainsUpgrade(caster))
+            {
+                var dequeuing = true;
+                while (dequeuing)
+                {
+                    var ability = _queuedAbilities.Dequeue();
+                    if (ability.Ability.Upgrades.Contains(caster.Ability))
+                    {
+                        _queuedAbilities.Enqueue(caster);                
+                        dequeuing = false;
+                    }
+                    else
+                    {
+                        _queuedAbilities.Enqueue(ability);
+                    }
+                }
+                return;
+            }
+        }
+        
         _queuedAbilities.Enqueue(caster);
     }
 
@@ -89,15 +130,11 @@ public class UnitAutoCaster : MonoBehaviour
     }
     private void ClearData()
     {
-        if(_abilitiesOnCooldown.Count > 0) _abilitiesOnCooldown.Clear();
-        if(_activeTimers.Count > 0)
+        foreach (var ability in _cooldownAbilities)
         {
-            foreach (var timer in _activeTimers)
-            {
-                timer.RemoveThisTimer();
-            }
-            _activeTimers.Clear();
+            ability.Value.RemoveThisTimer();
         }
+        _cooldownAbilities.Clear();
         _queuedAbilities.Clear();
     }
 }
