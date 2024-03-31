@@ -17,10 +17,10 @@ public class BaseUnitConfig : BaseConfig
     
     [SerializeField] 
     [BoxGroup("Unit")][HorizontalGroup("Unit/Split")][VerticalGroup("Unit/Split/Left")]
-    private StatSheet baseStats;
+    private Stats baseStats;
 
     public Sprite UnitSprite => unitSprite;
     public Sprite UnitIcon => unitIcon;
-    public StatSheet BaseStats { get => baseStats; }
+    public Stats BaseStats { get => baseStats; }
     public Sprite UnitIndicatorIcon { get => unitIndicatorIcon; }
 }

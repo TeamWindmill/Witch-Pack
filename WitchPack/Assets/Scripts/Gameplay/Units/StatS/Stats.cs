@@ -1,18 +1,10 @@
+using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "StatSheet", menuName = "Stat Sheet")]
-public class StatSheet : ScriptableObject
+[Serializable]
+public class Stats
 {
-    [SerializeField, ReadOnly] private float damageMitigation;
-
-    [Button]
-    public void CalcDamageMitigation()
-    {
-        float damageTaken = 100 * 100 / (100 + Armor.value);
-        damageMitigation = (1 - (damageTaken / 100)) * 100;
-    }
-
     //base stats here - affects every unit 
     public BaseStat MaxHp = new BaseStat(StatType.MaxHp);
     public BaseStat BaseDamage = new BaseStat(StatType.BaseDamage);
@@ -23,11 +15,9 @@ public class StatSheet : ScriptableObject
     public BaseStat CritChance = new BaseStat(StatType.CritChance);
     public BaseStat Armor = new BaseStat(StatType.Armor);
     public BaseStat HpRegen = new BaseStat(StatType.HpRegen);
-    public BaseStat BonusStatusEffectDuration = new BaseStat(StatType.BonusStatusEffectDuration);
-    public BaseStat AbilityProjectileSpeed = new BaseStat(StatType.AbilityProjectileSpeed);
-    public BaseStat AbilityProjectilePenetration = new BaseStat(StatType.AbilityProjectilePenetration);
-    public BaseStat Visibility = new BaseStat(StatType.Visibility);
-    public BaseStat ThreatLevel = new BaseStat(StatType.ThreatLevel);
+    [HideInInspector] public BaseStat AbilityProjectilePenetration = new BaseStat(StatType.AbilityProjectilePenetration);
+    [HideInInspector] public BaseStat Visibility = new BaseStat(StatType.Visibility);
+    [HideInInspector] public BaseStat ThreatLevel = new BaseStat(StatType.ThreatLevel);
 
 }
 
@@ -51,7 +41,7 @@ public enum StatType
     ThreatLevel,
 }
 
-[System.Serializable]
+[Serializable]
 public class BaseStat
 {
     [ReadOnly] public StatType statType;
@@ -64,7 +54,7 @@ public class BaseStat
 
 }
 
-[System.Serializable]
+[Serializable]
 public class BaseStatDecimal
 {
     [ReadOnly] public StatType statType;

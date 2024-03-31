@@ -7,13 +7,13 @@ public class UnitStats
 
     public event Action<StatType, float> OnStatChanged;
 
-    private StatSheet _baseStats;
+    private Stats _baseStats;
 
-    public StatSheet OwnerBaseStats => _baseStats;
+    public Stats OwnerBaseStats => _baseStats;
 
     public Action OnHpRegenChange;
 
-    public UnitStats(StatSheet baseStats)
+    public UnitStats(Stats baseStats)
     {
         _baseStats = baseStats;
     }
@@ -58,8 +58,6 @@ public class UnitStats
             OnHpRegenChange?.Invoke();
         }
     }
-    public int BonusStatusEffectDuration { get { return Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.BonusStatusEffectDuration.value + bonusStatusEffectDuration), 0, (OwnerBaseStats.BonusStatusEffectDuration.value + bonusStatusEffectDuration))); } }
-    public int AbilityProjectileSpeed { get { return Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.AbilityProjectileSpeed.value + abilityProjectileSpeed), 0, (OwnerBaseStats.AbilityProjectileSpeed.value + abilityProjectileSpeed))); } }
     public int AbilityProjectilePenetration { get { return Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.AbilityProjectilePenetration.value + abilityProjectilePenetration), 0, (OwnerBaseStats.AbilityProjectilePenetration.value + abilityProjectilePenetration))); } }
     public int Visibility { get { return Mathf.Clamp((OwnerBaseStats.Visibility.value + visibility), 0, 1); } }
     public int ThreatLevel { get { return Mathf.Clamp((OwnerBaseStats.ThreatLevel.value + threatLevel), 0, OwnerBaseStats.ThreatLevel.value + threatLevel); } }
@@ -86,10 +84,6 @@ public class UnitStats
                 return Armor;
             case StatType.HpRegen:
                 return HpRegen;
-            case StatType.BonusStatusEffectDuration:
-                return BonusStatusEffectDuration;
-            case StatType.AbilityProjectileSpeed:
-                return AbilityProjectileSpeed;
             case StatType.AbilityProjectilePenetration:
                 return AbilityProjectilePenetration;
             case StatType.Visibility:
@@ -122,10 +116,6 @@ public class UnitStats
                 return OwnerBaseStats.Armor.value;
             case StatType.HpRegen:
                 return OwnerBaseStats.HpRegen.value;
-            case StatType.BonusStatusEffectDuration:
-                return OwnerBaseStats.BonusStatusEffectDuration.value;
-            case StatType.AbilityProjectileSpeed:
-                return OwnerBaseStats.AbilityProjectileSpeed.value;
             case StatType.AbilityProjectilePenetration:
                 return OwnerBaseStats.AbilityProjectilePenetration.value;
             case StatType.Visibility:
@@ -171,10 +161,6 @@ public class UnitStats
             case StatType.HpRegen:
                 HpRegen += wholeValue;
                 OnStatChanged?.Invoke(statType, HpRegen);
-                break;
-            case StatType.BonusStatusEffectDuration:
-                bonusStatusEffectDuration += wholeValue;
-                OnStatChanged?.Invoke(statType, BonusStatusEffectDuration);
                 break;
             case StatType.AbilityProjectilePenetration:
                 abilityProjectilePenetration += wholeValue;

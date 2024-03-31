@@ -1,6 +1,5 @@
 using PathCreation;
 using Sirenix.OdinInspector;
-using Sirenix.Serialization;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "EnemyConfig", menuName = "Enemy/EnemyConfig")]
@@ -8,9 +7,9 @@ using UnityEngine;
 public class EnemyConfig : BaseUnitConfig
 {
     [HideInInspector] public PathCreator Path;
-    [SerializeField] private int coreDamage;
-    [SerializeField] private int energyPoints;
-    [SerializeField] private EnemyAIConfig enemyAIConfig;
+    [BoxGroup("Enemy")][SerializeField] private int coreDamage;
+    [BoxGroup("Enemy")][SerializeField] private int energyPoints;
+    [BoxGroup("Enemy")][SerializeField] private EnemyAIConfig enemyAIConfig;
 
     public EnemyAIConfig EnemyAIConfig => enemyAIConfig;
     public int CoreDamage => coreDamage;

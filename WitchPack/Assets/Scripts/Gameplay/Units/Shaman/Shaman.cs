@@ -7,7 +7,7 @@ public class Shaman : BaseUnit
 {
     #region public
 
-    public override StatSheet BaseStats => shamanConfig.BaseStats;
+    public override Stats BaseStats => shamanConfig.BaseStats;
     public ShamanConfig ShamanConfig => shamanConfig;
     public List<BaseAbility> KnownAbilities => knownAbilities;
     public bool MouseOverShaman => clicker.IsHover;

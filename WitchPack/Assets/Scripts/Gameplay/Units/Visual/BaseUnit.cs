@@ -43,7 +43,7 @@ public class BaseUnit : InitializedMono<BaseUnitConfig>
     public DamageDealer DamageDealer => damageDealer;
     public Affector Affector => affector;
     public Effectable Effectable => effectable;
-    public virtual StatSheet BaseStats => null;
+    public virtual Stats BaseStats => null;
     public UnitStats Stats => stats;
     public CastingAbility AutoAttack => autoAttack;
     public AutoAttackHandler AutoAttackHandler => autoAttackHandler;
