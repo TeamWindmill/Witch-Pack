@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EnergyLevels", menuName = "EnergyLevels")]
-public class EnergyLevels : ScriptableObject
+[CreateAssetMenu(fileName = "EnergyConfig", menuName = "EnergyConfig")]
+public class EnergyConfig : ScriptableObject
 {
+    [Header("Energy")] 
+    [SerializeField] private float _assistPercent;
     [Header("Energy Points Required to Level Up")] 
     [SerializeField] private int level1;
     [SerializeField] private int level2;
@@ -21,4 +23,5 @@ public class EnergyLevels : ScriptableObject
     public int Level5 => level5;
     public int Level6 => level6;
     public int MaxLevel => maxLevel;
+    public float AssistPercent => _assistPercent;
 }

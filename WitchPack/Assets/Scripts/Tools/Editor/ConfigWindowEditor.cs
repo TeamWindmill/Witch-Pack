@@ -23,7 +23,7 @@ public class ConfigWindowEditor : OdinMenuEditorWindow
         tree.AddAllAssetsAtPath("Units/Enemies/Base","Assets/Configs/UnitConfigs/EnemyConfigs",typeof(EnemyConfig));
         tree.AddAllAssetsAtPath("Units/Shamans/Base","Assets/Configs/UnitConfigs/ShamanConfigs",typeof(ShamanConfig));
         tree.AddAllAssetsAtPath("Units/PowerStructures","Assets/Configs/UnitConfigs/StructuresConfig",typeof(PowerStructureConfig));
-        tree.AddAllAssetsAtPath("Units/Shamans","Assets/Configs/UnitConfigs/ShamanConfigs",typeof(EnergyLevels));
+        tree.AddAllAssetsAtPath("Units/Shamans","Assets/Configs/UnitConfigs/ShamanConfigs",typeof(EnergyConfig));
         tree.AddAllAssetsAtPath("Abilities/AutoAttack","Assets/Configs/Abilities",typeof(BaseAbility));
         tree.AddAllAssetsAtPath("Abilities/Toor/Multishot","Assets/Configs/Abilities/Toor/Multishot",typeof(BaseAbility));
         tree.AddAllAssetsAtPath("Abilities/Toor/PiercingShot","Assets/Configs/Abilities/Toor/PiercingShot",typeof(BaseAbility));

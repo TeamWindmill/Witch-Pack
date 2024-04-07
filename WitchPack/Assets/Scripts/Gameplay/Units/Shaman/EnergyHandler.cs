@@ -20,20 +20,21 @@ public class EnergyHandler
     private int[] _energyLevels;
     private int _usedSkillPoints = 1;
     private Shaman _shaman;
+    private EnergyConfig _config;
 
     public EnergyHandler(Shaman shaman)
     {
         _shaman = shaman;
-        var config = shaman.ShamanConfig;
+        _config = shaman.ShamanConfig.EnergyConfig;
         _energyLevels = new[]
         {
-            config.EnergyLevels.Level1,
-            config.EnergyLevels.Level2,
-            config.EnergyLevels.Level3,
-            config.EnergyLevels.Level4,
-            config.EnergyLevels.Level5,
-            config.EnergyLevels.Level6,
-            config.EnergyLevels.MaxLevel
+            _config.Level1,
+            _config.Level2,
+            _config.Level3,
+            _config.Level4,
+            _config.Level5,
+            _config.Level6,
+            _config.MaxLevel
         };
     }
     public void GainEnergy(int energy = 0)
@@ -89,7 +90,7 @@ public class EnergyHandler
             Debug.LogError("target not set as an enemy");
             return;
         }
-        GainEnergy(enemy.EnergyPoints * 1); //might change it to a different percent later on
+        GainEnergy((int)(enemy.EnergyPoints * _config.AssistPercent)); //might change it to a different percent later on
     }
     public void OnShamanCast(AbilityCaster caster)
     {
