@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6344edf426da4d668eab01a7ac771e3c, type: 3}
-  m_Name: BlasterAIConfig
+  m_Script: {fileID: 11500000, guid: 25b7913bab414f64bbb722ee8a40a836, type: 3}
+  m_Name: ChaseTargetGallanite
   m_EditorClassIdentifier: 
-  _targetData:
-    Priority: 0
-    Modifier: 1
-    StatType: 0
-    AvoidCharmedTargets: 0
-  _enemyStates:
-  - {fileID: 0}
+  _usingGameTime: 1
+  _executionInterval: 0.1
+  _stateCheckInterval: 2
+  _outOfRangeInterval: 0.5
+  _distanceModifier: 1.1
+  _returnChance: 0.15
