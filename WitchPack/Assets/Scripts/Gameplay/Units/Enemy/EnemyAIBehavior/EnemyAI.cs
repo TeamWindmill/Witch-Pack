@@ -21,7 +21,7 @@ public class EnemyAI : BaseStateMachine<EnemyAI>
     public void Init(Enemy owner)
     {
         Enemy = owner;
-        var config = owner.EnemyConfig.EnemyAIConfig;
+        var config = owner.EnemyConfig.GroundEnemyAIConfig;
         _agroChance = config.AgroChance;
         _targetData = config.TargetData;
         _returnChance = config.ReturnChance;

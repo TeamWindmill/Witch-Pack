@@ -16,6 +16,11 @@ public class ScreenCracksHandler : MonoSingleton<ScreenCracksHandler>
     {
         _canvas.worldCamera = GameManager.Instance.CameraHandler.MainCamera;
         _canvas.sortingLayerName = "Game UI";
+        SetStartValue();
+    }
+
+    public void SetStartValue()
+    {
         foreach (var crack in _cracks)
         {
             crack.ScreenCrackLerper.SetStartValue();
