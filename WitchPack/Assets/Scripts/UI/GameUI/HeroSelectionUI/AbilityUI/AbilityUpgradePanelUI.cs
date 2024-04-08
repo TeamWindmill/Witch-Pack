@@ -48,7 +48,7 @@ public class AbilityUpgradePanelUI : UIElement
                 upgrade.OnAbilityClick += UpgradeShamanAbility;
             }
         }
-
+        SlowMotionManager.Instance.StartSlowMotionEffects();
         Show();
     }
 
@@ -84,7 +84,6 @@ public class AbilityUpgradePanelUI : UIElement
             Debug.LogError("invalid number of upgrades");
             return;
         }
-        SlowMotionManager.Instance.StartSlowMotionEffects();
         base.Show();
     }
 
