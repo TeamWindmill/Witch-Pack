@@ -15,7 +15,6 @@ public class TutorialHandler : MonoSingleton<TutorialHandler>
     [TabGroup("Components")][SerializeField] GameObject _tutorialCanvas;
 
     [SerializeField] private CanvasLerper _canvasLerper;
-    [SerializeField] private bool _tutorialActive;
 
     private bool _isActive;
     [TabGroup("Timings")][SerializeField]private float _clickToCancelDelay = 1;
@@ -29,7 +28,9 @@ public class TutorialHandler : MonoSingleton<TutorialHandler>
 
     public void LevelStart(LevelHandler level)
     {
-        if (!_tutorialActive) return;
+#if UNITY_EDITOR
+        return;
+#endif
         if (GameManager.Instance.TutorialPlayed) return;
         if(!level.ShowTutorial) return;
 

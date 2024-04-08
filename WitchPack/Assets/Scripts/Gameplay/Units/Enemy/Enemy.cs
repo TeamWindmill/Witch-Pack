@@ -11,7 +11,7 @@ public class Enemy : BaseUnit
     public EnemyConfig EnemyConfig { get => enemyConfig; }
     public int CoreDamage => _coreDamage;
     public int EnergyPoints => _energyPoints;
-    public override StatSheet BaseStats => enemyConfig.BaseStats;
+    public override Stats BaseStats => enemyConfig.BaseStats;
     public EnemyMovement EnemyMovement => _enemyMovement;
     public EnemyAI EnemyAI => enemyAI;
     public EnemyVisualHandler EnemyVisualHandler => enemyVisualHandler;

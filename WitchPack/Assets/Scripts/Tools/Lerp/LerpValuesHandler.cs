@@ -1,5 +1,9 @@
 using System;
 using System.Collections;
+using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
+using Tools.Lerp;
 using UnityEngine;
 
 public class LerpValuesHandler : MonoSingleton<LerpValuesHandler>
@@ -7,6 +11,10 @@ public class LerpValuesHandler : MonoSingleton<LerpValuesHandler>
     private static AnimationCurve _defaultCurve = AnimationCurve.Linear(0, 0, 1, 1);
     [SerializeField] private LerpValueConfig _defaultConfig;
 
+    // public static TweenerCore<float,float,FloatOptions> LerpValues(ILerpable<float> lerpable,float targetValue,float time)
+    // {
+    //     //return DOTween.To(() => lerpable.CurrentValue,x=> lerpable.SetValue(x) = x,targetValue,time);
+    // }
     public void StartLerpByType<T>(LerpValueConfig config, T type, float currentValue, float newValue, Action<T, float> setter, Action<float> onEnd = null)
         where T : Enum
     {

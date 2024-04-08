@@ -48,7 +48,7 @@ public class AbilityUpgradePanelUI : UIElement
                 upgrade.OnAbilityClick += UpgradeShamanAbility;
             }
         }
-
+        SlowMotionManager.Instance.StartSlowMotionEffects();
         Show();
     }
 
@@ -84,7 +84,6 @@ public class AbilityUpgradePanelUI : UIElement
             Debug.LogError("invalid number of upgrades");
             return;
         }
-
         base.Show();
     }
 
@@ -104,6 +103,8 @@ public class AbilityUpgradePanelUI : UIElement
         upgrades3Holder.gameObject.SetActive(false);
         upgrades3BG.gameObject.SetActive(false);
         InformationWindow.Instance.Hide();
+        
+        SlowMotionManager.Instance.EndSlowMotionEffects();
         base.Hide();
         //if(_shaman is not null && _abilityUIButton is not null) AbilitiesHandlerUI.UpdateButton(_shaman,_abilityUIButton);
     }

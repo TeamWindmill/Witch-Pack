@@ -29,9 +29,12 @@ public class AbilityUIButton : ClickableUIElement
     
     public void Init(BaseAbility rootAbility,BaseAbility activeAbility = null, AbilityCaster caster = null, bool hasSkillPoints = false)
     {
+        
         _rootAbility = rootAbility;
         if (ReferenceEquals(activeAbility,null))
         {
+            _windowInfo.Name = rootAbility.Name;
+            _windowInfo.Discription = rootAbility.Discription;
             _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
             _abilitySpriteRenderer.sprite = hasSkillPoints ? rootAbility.UpgradeIcon : rootAbility.DisabledIcon;
             _activeAbility = null;
@@ -40,6 +43,8 @@ public class AbilityUIButton : ClickableUIElement
         else
         {
             _activeAbility = activeAbility;
+            _windowInfo.Name = activeAbility.Name;
+            _windowInfo.Discription = activeAbility.Discription;
             if (_activeAbility.Upgrades.Length > 0)
             {
                 _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;

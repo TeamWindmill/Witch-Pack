@@ -16,6 +16,7 @@ public class ObjectPool<T> : MonoBehaviour where T : MonoBehaviour
     }
     public void Awake()
     {
+        
         for (int i = 0; i < NumToPool; i++)
         {
             T newPooledObject = Instantiate(PrefabToPool, transform);

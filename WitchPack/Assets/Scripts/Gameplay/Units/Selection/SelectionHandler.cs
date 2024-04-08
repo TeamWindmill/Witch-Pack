@@ -21,7 +21,6 @@ public class SelectionHandler : MonoBehaviour, ISelection
     private const int MIDDLE_CLICK = 2;
     private bool _mouseOverSelectionUI => HeroSelectionUI.Instance.isMouseOver;
     private Shaman _selectedShaman;
-    private SelectionType _selectMode;
     [SerializeField] private float _maxHoldTime;
     private float _currentHoldTime;
     private bool _inSelectMode;
@@ -36,7 +35,6 @@ public class SelectionHandler : MonoBehaviour, ISelection
                 _selectedShaman.IsSelected = false;
             }
             _selectedShaman = shaman;
-            _selectMode = SelectionType.Info;
             HeroSelectionUI.Instance.Show(shaman);
             _selectedShaman.ShamanVisualHandler.ShowShamanRing();
             _selectedShaman.IsSelected = true;
