@@ -4,7 +4,7 @@ using UnityEngine;
 public class CoreTemple : MonoBehaviour
 {
     public Action OnCoreDestroyed;
-    public Action<int> OnGetHit;
+    public event Action<int> OnGetHit;
     
     [SerializeField] private int maxHp;
     [SerializeField] private GroundColliderTargeter enemyGroundCollider;
@@ -17,8 +17,8 @@ public class CoreTemple : MonoBehaviour
     
     private int curHp;
 
-    public int MaxHp { get => maxHp; }
-    public int CurHp { get => curHp; }
+    public int MaxHp => maxHp;
+    public int CurHp => curHp;
 
     public void Init()
     {
@@ -66,6 +66,15 @@ public class CoreTemple : MonoBehaviour
             animator.SetBool("R_Crack",true);
         }
         
+    }
+
+    public void Heal(int amount)
+    {
+        curHp += amount;
+        if (curHp > maxHp) curHp = maxHp;
+        hpBar.SetBarValue(curHp);
+        OnGetHit?.Invoke(-amount);
+        ScreenCracksHandler.Instance.SetStartValue();
     }
 
     private void DestroyCoreAnimation()

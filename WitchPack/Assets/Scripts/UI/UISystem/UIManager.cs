@@ -107,4 +107,5 @@ public enum UIGroup
     PartyUI,
     Indicators,
     InfoWindow,
+    DevTools,
 }

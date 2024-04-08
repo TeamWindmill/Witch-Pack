@@ -9,9 +9,9 @@ public class EnemyConfig : BaseUnitConfig
     [HideInInspector] public PathCreator Path;
     [BoxGroup("Enemy")][SerializeField] private int coreDamage;
     [BoxGroup("Enemy")][SerializeField] private int energyPoints;
-    [BoxGroup("Enemy")][SerializeField] private EnemyAIConfig enemyAIConfig;
+    [BoxGroup("Enemy")][SerializeField] private GroundEnemyAIConfig _groundEnemyAIConfig;
 
-    public EnemyAIConfig EnemyAIConfig => enemyAIConfig;
+    public GroundEnemyAIConfig GroundEnemyAIConfig => _groundEnemyAIConfig;
     public int CoreDamage => coreDamage;
     public int EnergyPoints => energyPoints;
     
