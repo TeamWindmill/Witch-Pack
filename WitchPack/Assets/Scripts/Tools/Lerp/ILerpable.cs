@@ -1,11 +1,13 @@
+using System;
+
 namespace Tools.Lerp
 {
-    public interface ILerpable
+
+    [Serializable]
+    public struct LerpConfig<T>
     {
-        public void StartTransition();
-        public void EndTransition();
-        public float CurrentValue { get; set; }
-        public float TargetValue { get; set; }
-        
+        public float TransitionTime;
+        public T StartValue;
+        public T EndValue;
     }
 }
