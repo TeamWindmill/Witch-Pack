@@ -1,13 +1,11 @@
-using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 
-[CreateAssetMenu(fileName = "ShamanAutoAttack", menuName = "Ability/AutoAttack/ShamanAutoAttack")]
-public class ShamanAutoAttack : OffensiveAbility
+[CreateAssetMenu(fileName = "EnemyRangedAutoAttack", menuName = "Ability/AutoAttack/EnemyRangedAutoAttack")]
+public class EnemyRangedAutoAttack : OffensiveAbility
 {
     public override bool CastAbility(BaseUnit caster)
     {
-        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
+        BaseUnit target = caster.ShamanTargetHelper.GetTarget(TargetData);
         if (ReferenceEquals(target, null))
         {
             return false;
@@ -22,7 +20,7 @@ public class ShamanAutoAttack : OffensiveAbility
 
     public override bool CheckCastAvailable(BaseUnit caster)
     {
-        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
+        BaseUnit target = caster.ShamanTargetHelper.GetTarget(TargetData);
         return !ReferenceEquals(target, null);
     }
 }

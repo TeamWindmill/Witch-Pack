@@ -12,7 +12,6 @@ public class BaseUnit : InitializedMono<BaseUnitConfig>
     [TabGroup("Combat")] private DamageDealer damageDealer;
     [TabGroup("Combat")] private Affector affector;
     [TabGroup("Combat")] private Effectable effectable;
-    [SerializeField, TabGroup("Combat")] private OffensiveAbility autoAttack;
     [SerializeField, TabGroup("Combat")] private UnitAutoCaster _autoCaster;
     [SerializeField, TabGroup("Combat")] private BoxCollider2D boxCollider;
     [SerializeField, TabGroup("Combat")] private GroundCollider groundCollider;
@@ -32,6 +31,7 @@ public class BaseUnit : InitializedMono<BaseUnitConfig>
     private UnitTargetHelper<Shaman> shamanTargetHelper;
     private UnitTargetHelper<Enemy> enemyTargetHelper;
     private AutoAttackHandler autoAttackHandler;
+    private OffensiveAbility _autoAttack;
     private List<ITimer> unitTimers;
 
     #endregion
@@ -45,8 +45,8 @@ public class BaseUnit : InitializedMono<BaseUnitConfig>
     public Effectable Effectable => effectable;
     public virtual Stats BaseStats => null;
     public UnitStats Stats => stats;
-    public CastingAbility AutoAttack => autoAttack;
     public AutoAttackHandler AutoAttackHandler => autoAttackHandler;
+    public OffensiveAbility AutoAttack => _autoAttack;
     public UnitAutoCaster AutoCaster => _autoCaster;
     public UnitMovement Movement => movement;
     public List<AbilityCaster> CastingHandlers => castingHandlers;
@@ -61,12 +61,13 @@ public class BaseUnit : InitializedMono<BaseUnitConfig>
 
     public virtual void Init(BaseUnitConfig givenConfig)
     {
+        _autoAttack = givenConfig.AutoAttack;
         stats = new UnitStats(BaseStats);
         damageable = new Damageable(this);
-        damageDealer = new DamageDealer(this, autoAttack);
+        damageDealer = new DamageDealer(this, givenConfig.AutoAttack);
         affector = new Affector(this);
         effectable = new Effectable(this);
-        autoAttackHandler = new AutoAttackHandler(this, autoAttack);
+        autoAttackHandler = new AutoAttackHandler(this, givenConfig.AutoAttack);
         shamanTargetHelper = new UnitTargetHelper<Shaman>(ShamanTargeter, this);
         enemyTargetHelper = new UnitTargetHelper<Enemy>(EnemyTargeter, this);
         unitTimers = new List<ITimer>();

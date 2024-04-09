@@ -46,8 +46,8 @@ public class Enemy : BaseUnit
         _enemyMovement = new EnemyMovement(this);
         enemyAnimator.Init(this);
         enemyVisualHandler.Init(this, givenConfig);
+        IntializeAbilities();
         enemyAI.Init(this);
-        AutoCaster.Init(this,false);
         Movement.ToggleMovement(false);
         #region Events
         //remember to unsubscribe in OnDisable!!!
@@ -61,6 +61,24 @@ public class Enemy : BaseUnit
         #endregion
         
         BaseInit(givenConfig);
+    }
+
+    private void IntializeAbilities()
+    {
+        foreach (var ability in enemyConfig.Abilities)
+        {
+            if (ability is not Passive)
+            {
+                ability.OnSetCaster(this);
+                castingHandlers.Add(new AbilityCaster(this, ability as CastingAbility));
+            }
+            else
+            {
+                (ability as Passive).SubscribePassive(this);
+            }
+        }
+
+        AutoCaster.Init(this, false);
     }
     protected override void OnDisable() //enemy death
     {
