@@ -8,13 +8,13 @@ public class DynamicSpriteRendererLayerSetter : MonoBehaviour
     void Start()
     {
         _spriteRenderer ??= GetComponent<SpriteRenderer>();
-        _spriteRenderer.sortingOrder = (int)(transform.position.y * -1);
+        _spriteRenderer.sortingOrder = (int)(transform.position.y * -100);
     }
     private void Update()
     {
         if (_updateInRuntime)
         {
-            _spriteRenderer.sortingOrder = (int)(transform.position.y * -1);
+            _spriteRenderer.sortingOrder = (int)(transform.position.y * -100);
         }
 
     }
