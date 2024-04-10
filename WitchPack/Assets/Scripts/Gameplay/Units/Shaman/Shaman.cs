@@ -86,7 +86,7 @@ public class Shaman : BaseUnit
 
         #endregion
 
-        BaseInit(baseUnitConfig);
+        Initialized = true;
     }
 
     private void IntializeAbilities()

@@ -37,8 +37,8 @@ public class ScreenCracksHandler : MonoSingleton<ScreenCracksHandler>
 
     public void InitByCore(CoreTemple core)
     {
-        _cracksPerHp = core.MaxHp / _cracks.Length;
-        _vignetteValuePerHp = Mathf.Abs(_cracksVignette.EffectValues[0].EndValue - _cracksVignette.EffectValues[0].StartValue) / core.MaxHp;
+        _cracksPerHp = core.Damageable.MaxHp / _cracks.Length;
+        _vignetteValuePerHp = Mathf.Abs(_cracksVignette.EffectValues[0].EndValue - _cracksVignette.EffectValues[0].StartValue) / core.Damageable.MaxHp;
     }
     public void StartCracksAnimation(int damage)
     {

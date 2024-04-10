@@ -46,10 +46,10 @@ public class StatusEffect
         switch (process)
         {
             case StatusEffectProcess.InstantWithDuration:
-                host.Owner.StartCoroutine(InstantEffect());
+                host.Owner.GameObject.StartCoroutine(InstantEffect());
                 break;
             case StatusEffectProcess.OverTime:
-                host.Owner.StartCoroutine(OverTimeEffect());
+                host.Owner.GameObject.StartCoroutine(OverTimeEffect());
                 break;
             case StatusEffectProcess.InstantWithoutDuration:
                 InstantEffectWithoutDuration();

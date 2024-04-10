@@ -59,8 +59,8 @@ public class Enemy : BaseUnit
         AutoAttackHandler.OnAttack += AttackSFX;
 
         #endregion
-        
-        BaseInit(givenConfig);
+
+        Initialized = true;
     }
 
     private void IntializeAbilities()

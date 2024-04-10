@@ -1,13 +1,13 @@
 using System;
 
 
-public class Affector
+public class Affector 
 {
-    private BaseUnit owner;
+    private IDamagable owner;
 
     public Action<Effectable, Affector, StatusEffect> OnAffect;
-    public BaseUnit Owner { get => owner; }
-    public Affector(BaseUnit owner)
+    public IDamagable Owner { get => owner; }
+    public Affector(IDamagable owner)
     {
         this.owner = owner;
     }

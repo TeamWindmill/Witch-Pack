@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 using Tools.Helpers;
 using UnityEngine;
 
-public class BaseUnit : InitializedMono<BaseUnitConfig>
+public class BaseUnit : BaseEntity , IDamagable
 {
     #region Serialized
     
@@ -37,11 +37,14 @@ public class BaseUnit : InitializedMono<BaseUnitConfig>
     #endregion
     
     #region Public
+
+    public bool Initialized { get; protected set; }
     public bool IsDead => damageable.CurrentHp <= 0;
     public HP_Bar HpBar => hpBar;
     public Damageable Damageable => damageable;
     public DamageDealer DamageDealer => damageDealer;
     public Affector Affector => affector;
+    public Transform Transform => transform;
     public Effectable Effectable => effectable;
     public virtual Stats BaseStats => null;
     public UnitStats Stats => stats;
@@ -92,8 +95,6 @@ public class BaseUnit : InitializedMono<BaseUnitConfig>
 
     }
 
-    protected void BaseInit(BaseUnitConfig givenConfig) => base.Init(givenConfig);
-
     protected virtual void OnDisable() //unsubscribe to events
     {
         if (ReferenceEquals(LevelManager.Instance, null)) return;
@@ -124,7 +125,7 @@ public class BaseUnit : InitializedMono<BaseUnitConfig>
         _autoCaster.DisableCaster();
     }
 
-    public void ClearUnitTImers()
+    public void ClearUnitTimers()
     {
         foreach (ITimer iTimer in UnitTimers)
         {
@@ -133,6 +134,8 @@ public class BaseUnit : InitializedMono<BaseUnitConfig>
 
         UnitTimers.Clear();
     }
+
+    public BaseEntity GameObject => this;
 
     private void OnValidate()
     {

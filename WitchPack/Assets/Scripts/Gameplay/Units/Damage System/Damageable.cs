@@ -6,7 +6,7 @@ using UnityEngine;
 public class Damageable
 {
     private List<DamageDealer> _damageDealers = new List<DamageDealer>();
-    private BaseUnit owner;
+    private IDamagable owner;
     private int currentHp;
     public int MaxHp => owner.Stats.MaxHp;
     public int CurrentHp => currentHp;
@@ -16,18 +16,18 @@ public class Damageable
 
     Timer regenTimer;
 
-    public event Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility, bool /*critical - a more generic callback*/> OnGetHit;
-    public event Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility, bool> OnDamageCalc;
-    public event Action<Damageable, DamageDealer /*as of this moment might be null*/, DamageHandler, BaseAbility> OnDeath;
+    public event Action<Damageable, DamageDealer , DamageHandler, BaseAbility, bool > OnGetHit;
+    public event Action<Damageable, DamageDealer, DamageHandler, BaseAbility, bool> OnDamageCalc;
+    public event Action<Damageable, DamageDealer, DamageHandler, BaseAbility> OnDeath;
     public event Action OnDeathGFX;
     public event Action<bool> OnHitGFX;
     public event Action<Damageable, float> OnHeal;
 
     //add gfx events later
 
-    public BaseUnit Owner { get => owner; }
+    public IDamagable Owner { get => owner; }
 
-    public Damageable(BaseUnit owner)
+    public Damageable(IDamagable owner)
     {
         this.owner = owner;
         hitable = true;
@@ -101,7 +101,7 @@ public class Damageable
         OnDeath?.Invoke(this, dealer, damage, ability);
         OnDeathGFX?.Invoke();
         dealer.OnKill?.Invoke(this, dealer, damage, ability, isCrit);
-        owner.ClearUnitTImers();
+        owner.ClearUnitTimers();
         foreach (var damageDealer in _damageDealers)
         {
             if (damageDealer == dealer) continue;

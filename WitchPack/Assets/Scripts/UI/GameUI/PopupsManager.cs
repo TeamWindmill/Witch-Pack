@@ -44,15 +44,15 @@ public class PopupsManager : MonoBehaviour
          _popupNumber = damage.GetFinalDamage();
         if(damageDealer.Owner is Enemy)
         {
-            enemyDamagePopupPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, _popupNumber, _popupColor);
+            enemyDamagePopupPrefab.Spawn(damageDealer.Owner.transform.position + _offsetVector, _popupNumber, _popupColor);
         }
         else if(isCrit)
         {
-            critDamagePopupPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, _popupNumber, _popupColor);
+            critDamagePopupPrefab.Spawn(damageDealer.Owner.transform.position + _offsetVector, _popupNumber, _popupColor);
         }
         else
         {
-            damagePopupPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, _popupNumber, _popupColor);
+            damagePopupPrefab.Spawn(damageDealer.Owner.transform.position + _offsetVector, _popupNumber, _popupColor);
         }
     }
 
@@ -69,7 +69,7 @@ public class PopupsManager : MonoBehaviour
         _popupText = "";
         _popupText = data.Name;
 
-        PopupPrefab.Spawn(effectable.Owner.transform.position + _offsetVector, _popupText, _popupColor);
+        PopupPrefab.Spawn(effectable.Owner.GameObject.transform.position + _offsetVector, _popupText, _popupColor);
     }
 
     public void SpawnGeneralPopup(string text, Color color, Vector3 position, bool xOffset = false, bool yOffset = false)
@@ -91,7 +91,7 @@ public class PopupsManager : MonoBehaviour
     {
         _offsetVector = new Vector3(0, _yOffset);
 
-        healPopupPrefab.Spawn(damageable.Owner.transform.position + _offsetVector, healAmount, _dictionary.HealColor);
+        healPopupPrefab.Spawn(damageable.Owner.GameObject.transform.position + _offsetVector, healAmount, _dictionary.HealColor);
     }
 
     public void SpawnLevelUpTextPopup(Shaman shaman)
