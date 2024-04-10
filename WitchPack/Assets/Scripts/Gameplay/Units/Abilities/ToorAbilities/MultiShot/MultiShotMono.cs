@@ -23,6 +23,7 @@ public class MultiShotMono : MonoBehaviour
         _caster = caster;
         _target = target;
         _targetPos = target.transform.position;
+        Launched = false;
         _ability = ability;
         ChangeVisuals(type);
         transform.rotation = Quaternion.Euler(0,0,angle);
