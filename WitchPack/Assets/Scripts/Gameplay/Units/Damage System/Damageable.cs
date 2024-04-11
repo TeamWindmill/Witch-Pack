@@ -17,6 +17,7 @@ public class Damageable
     Timer regenTimer;
 
     public event Action<Damageable, DamageDealer , DamageHandler, BaseAbility, bool > OnGetHit;
+    public event Action<int> OnTakeDamage;
     public event Action<Damageable, DamageDealer, DamageHandler, BaseAbility, bool> OnDamageCalc;
     public event Action<Damageable, DamageDealer, DamageHandler, BaseAbility> OnDeath;
     public event Action OnDeathGFX;
@@ -83,6 +84,7 @@ public class Damageable
         if(!hitable) return;
         dealer.OnHitTarget?.Invoke(this, dealer, damage, ability, isCrit);
         OnGetHit?.Invoke(this, dealer, damage, ability, isCrit);
+        OnTakeDamage?.Invoke(damage.GetFinalDamage());
         OnHitGFX?.Invoke(isCrit);
 
         currentHp -= damage.GetFinalDamage();
@@ -127,9 +129,10 @@ public class Damageable
         Debug.Log(elapsedTime);
     }
 
-    public void TakeFlatDamage(int amount)  //DOES NOT TRIGGER EVENTS!
+    public void TakeFlatDamage(int amount)  
     {
         currentHp -= amount;
+        OnTakeDamage?.Invoke(amount);
         if (currentHp <= 0)
         {
             OnDeathGFX?.Invoke();

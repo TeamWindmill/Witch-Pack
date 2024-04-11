@@ -16,8 +16,46 @@ MonoBehaviour:
   unitSprite: {fileID: 21300000, guid: d7e1009e197553842bbe5f6d1fb34d17, type: 3}
   unitIcon: {fileID: 21300000, guid: d7e1009e197553842bbe5f6d1fb34d17, type: 3}
   unitIndicatorIcon: {fileID: 21300000, guid: d7e1009e197553842bbe5f6d1fb34d17, type: 3}
-  baseStats: {fileID: 11400000, guid: a89f8c53ed0710d48a30c0bed387b900, type: 2}
+  _autoAttack: {fileID: 11400000, guid: e73298e29f0be4743b9dc64bb8db2679, type: 2}
+  baseStats:
+    MaxHp:
+      statType: 0
+      value: 0
+    BaseDamage:
+      statType: 1
+      value: 0
+    AttackSpeed:
+      statType: 2
+      value: 0
+    BaseRange:
+      statType: 3
+      value: 0
+    MovementSpeed:
+      statType: 4
+      value: 0
+    CritDamage:
+      statType: 5
+      value: 0
+    CritChance:
+      statType: 6
+      value: 0
+    Armor:
+      statType: 9
+      value: 0
+    HpRegen:
+      statType: 10
+      value: 0
+    AbilityProjectilePenetration:
+      statType: 13
+      value: 0
+    Visibility:
+      statType: 14
+      value: 0
+    ThreatLevel:
+      statType: 15
+      value: 0
   Path: {fileID: 0}
   coreDamage: 1
   energyPoints: 1
-  enemyAIConfig: {fileID: 11400000, guid: 2df3aef7566553b4a8abaaf2f473203b, type: 2}
+  _abilities: []
+  _enemyAIConfig: {fileID: 11400000, guid: a8a7c81df24d3e84e887b0ee33daf957, type: 2}

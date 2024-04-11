@@ -3,8 +3,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [Serializable]
-public class ScreenCrackLerper : EffectTransitionLerp<CracksValueLerp>
+public class ScreenCrackLerper : EffectTransitionLerp
 {
+    public bool Finished { get; private set; }
     public Image Image => _image;
 
     [SerializeField] private Image _image;
@@ -13,20 +14,20 @@ public class ScreenCrackLerper : EffectTransitionLerp<CracksValueLerp>
     {
         _image = image;
     }
+
     public void SetStartValue()
     {
-        foreach (var effectValue in EffectValues)
-        {
-            _image.material.SetFloat("_Offset_X",effectValue.StartValue);
-        }
+        _image.material.SetFloat("_Offset_X", EffectValue.StartValue);
+        Finished = false;
     }
 
-    protected override void SetValue(CracksValueLerp type, float value)
+    protected override void SetValue(float value)
     {
-        _image.material.SetFloat("_Offset_X",value);
+        _image.material.SetFloat("_Offset_X", value);
     }
-}
-public enum CracksValueLerp
-{
-    OffsetX,
+
+    protected override void OnTransitionEnd(float newValue)
+    {
+        if (newValue == EffectValue.EndValue) Finished = true;
+    }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 using System.Linq;
 
 [CreateAssetMenu(fileName = "ShamanAutoAttack", menuName = "Ability/AutoAttack/ShamanAutoAttack")]
-public class ShamanAutoAttack : OffensiveAbility
+public class ShamanAutoAttack : AutoAttack
 {
     public override bool CastAbility(BaseUnit caster)
     {

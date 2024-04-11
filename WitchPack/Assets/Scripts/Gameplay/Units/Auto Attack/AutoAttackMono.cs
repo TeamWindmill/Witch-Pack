@@ -6,27 +6,26 @@ using UnityEngine.Events;
 public class AutoAttackMono : MonoBehaviour
 {
     [SerializeField] protected float initialSpeed;
-    [SerializeField] private float maxTravelTime = 2f;
-    protected float speed;
-    protected OffensiveAbility ability;
-    protected BaseUnit owner;
-    protected BaseUnit target;
+    private float speed;
+    private AutoAttack ability;
+    private BaseUnit owner;
+    private IDamagable _target;
 
-    public UnityEvent<OffensiveAbility/*ability cached*/, BaseUnit/*shooter*/, BaseUnit /*target*/> OnShotHit;
+    public UnityEvent<AutoAttack/*ability cached*/, BaseUnit/*shooter*/, IDamagable /*target*/> OnShotHit;
     private void Awake()
     {
         SetSpeed(initialSpeed);
     }
-    public void Fire(BaseUnit shooter, OffensiveAbility givenAbility, Vector2 dir, BaseUnit target)
+    public void Fire(BaseUnit shooter, AutoAttack givenAbility, Vector2 dir, IDamagable target)
     {
         owner = shooter;
         ability = givenAbility;
-        this.target = target;
+        _target = target;
         Rotate(dir);
         StartCoroutine(TravelTimeCountdown());
     }
 
-    protected void Rotate(Vector2 dir)
+    private void Rotate(Vector2 dir)
     {
         var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
@@ -34,10 +33,18 @@ public class AutoAttackMono : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        BaseUnit target = collision.GetComponent<BaseUnit>();
-        if (!ReferenceEquals(target, null) && ReferenceEquals(target, this.target))
+        IDamagable target = collision.GetComponent<IDamagable>() ?? collision.GetComponentInParent<IDamagable>();
+        if (!ReferenceEquals(target, null) && ReferenceEquals(target, _target))
         {
-            target.Damageable.GetHit(owner.DamageDealer, ability);
+            switch (target)
+            {
+                case CoreTemple:
+                    target.Damageable.TakeFlatDamage(ability.CoreDamage);
+                    break;
+                case BaseUnit:
+                    target.Damageable.GetHit(owner.DamageDealer, ability);
+                    break;
+            }
             OnShotHit?.Invoke(ability, owner, target);
             Disable();
         }
@@ -46,32 +53,32 @@ public class AutoAttackMono : MonoBehaviour
 
     private IEnumerator TravelTimeCountdown()
     {
-        //yield return new WaitForSecondsRealtime(maxTravelTime);
         Vector3 startPosition = transform.position;
         float counter = 0;
         while (counter <= 1)
         {
-            Vector3 positionLerp = Vector3.Lerp(startPosition, target.transform.position, counter);
+            Vector3 positionLerp = Vector3.Lerp(startPosition, _target.GameObject.transform.position, counter);
             transform.position = positionLerp;
             counter += GAME_TIME.GameDeltaTime * speed;
             yield return new WaitForEndOfFrame();
         }
         yield return new WaitForEndOfFrame();
-        transform.position = target.transform.position;
-        Disable();
+        transform.position = _target.GameObject.transform.position;
+       
 
     }
 
-    public void SetSpeed(float vlaue)
+    public void SetSpeed(float value)
     {
-        speed = vlaue;
+        speed = value;
     }
 
 
-    public virtual void Disable()
+    public void Disable()
     {
         owner = null;
         ability = null;
+        _target = null;
         SetSpeed(initialSpeed);
         OnShotHit?.RemoveAllListeners();
         gameObject.SetActive(false);

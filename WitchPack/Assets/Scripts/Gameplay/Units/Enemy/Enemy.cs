@@ -56,7 +56,7 @@ public class Enemy : BaseUnit
         Effectable.OnEffectRemovedVFX += enemyVisualHandler.EffectHandler.DisableEffect;
         Damageable.OnHitGFX += GetHitSFX;
         Damageable.OnDeathGFX += DeathSFX;
-        AutoAttackHandler.OnAttack += AttackSFX;
+        AutoAttackCaster.OnAttack += AttackSFX;
 
         #endregion
 
@@ -88,7 +88,7 @@ public class Enemy : BaseUnit
         enemyAI.OnDisable();
         Damageable.OnHitGFX -= GetHitSFX;
         Damageable.OnDeathGFX -= DeathSFX;
-        if (AutoAttackHandler != null) AutoAttackHandler.OnAttack -= AttackSFX;
+        if (AutoAttackCaster != null) AutoAttackCaster.OnAttack -= AttackSFX;
         Effectable.OnAffectedVFX -= enemyVisualHandler.EffectHandler.PlayEffect;
         Effectable.OnEffectRemovedVFX -= enemyVisualHandler.EffectHandler.DisableEffect;
         enemyVisualHandler.OnSpriteFlip -= enemyAnimator.FlipAnimations;

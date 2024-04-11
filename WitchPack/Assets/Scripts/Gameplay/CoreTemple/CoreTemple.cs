@@ -21,7 +21,6 @@ public class CoreTemple : BaseEntity, IDamagable
 
     public void Init()
     {
-        // TODO connect config in seralizefield
         _stats = new UnitStats(_statsConfig);
         _affector = new Affector(this);
         _effectable = new Effectable(this);
@@ -30,14 +29,14 @@ public class CoreTemple : BaseEntity, IDamagable
         hpBar.Init(_damageable.MaxHp,UnitType.Temple);
         ScreenCracksHandler.Instance.InitByCore(this);
         _damageable.OnDeathGFX += OnCoreDeath;
-        _damageable.OnGetHit += OnGetHit;
+        _damageable.OnTakeDamage += OnGetHit;
         _damageable.OnHeal += Heal;
     }
 
-    private void OnGetHit(Damageable arg1, DamageDealer damageDealer, DamageHandler damage, BaseAbility arg4, bool arg5)
+    private void OnGetHit(int damage)
     {
         SoundManager.Instance.PlayAudioClip(SoundEffectType.CoreGetHit);
-        ScreenCracksHandler.Instance.StartCracksAnimation(damage.GetFinalDamage());
+        ScreenCracksHandler.Instance.StartCracksAnimation(damage);
         hpBar.SetBarValue(_damageable.CurrentHp);
         
         if (_damageable.CurrentHp <= _damageable.MaxHp * 0.33)
@@ -53,7 +52,7 @@ public class CoreTemple : BaseEntity, IDamagable
     private void OnEnemyEnter(GroundCollider collider)
     {
         collider.Unit.Damageable.TakeFlatDamage(collider.Unit.Damageable.CurrentHp);
-        _damageable.TakeFlatDamage((collider.Unit as Enemy).CoreDamage);
+        _damageable.TakeFlatDamage(((Enemy)collider.Unit).CoreDamage);
     }
 
     private void OnCoreDeath()

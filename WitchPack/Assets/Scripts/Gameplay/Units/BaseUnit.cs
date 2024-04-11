@@ -30,7 +30,7 @@ public class BaseUnit : BaseEntity , IDamagable
     protected List<AbilityCaster> castingHandlers = new List<AbilityCaster>();
     private UnitTargetHelper<Shaman> shamanTargetHelper;
     private UnitTargetHelper<Enemy> enemyTargetHelper;
-    private AutoAttackHandler autoAttackHandler;
+    private AutoAttackCaster autoAttackCaster;
     private OffensiveAbility _autoAttack;
     private List<ITimer> unitTimers;
 
@@ -48,7 +48,7 @@ public class BaseUnit : BaseEntity , IDamagable
     public Effectable Effectable => effectable;
     public virtual Stats BaseStats => null;
     public UnitStats Stats => stats;
-    public AutoAttackHandler AutoAttackHandler => autoAttackHandler;
+    public AutoAttackCaster AutoAttackCaster => autoAttackCaster;
     public OffensiveAbility AutoAttack => _autoAttack;
     public UnitAutoCaster AutoCaster => _autoCaster;
     public UnitMovement Movement => movement;
@@ -70,7 +70,7 @@ public class BaseUnit : BaseEntity , IDamagable
         damageDealer = new DamageDealer(this, givenConfig.AutoAttack);
         affector = new Affector(this);
         effectable = new Effectable(this);
-        autoAttackHandler = new AutoAttackHandler(this, givenConfig.AutoAttack);
+        autoAttackCaster = new AutoAttackCaster(this, givenConfig.AutoAttack);
         shamanTargetHelper = new UnitTargetHelper<Shaman>(ShamanTargeter, this);
         enemyTargetHelper = new UnitTargetHelper<Enemy>(EnemyTargeter, this);
         unitTimers = new List<ITimer>();

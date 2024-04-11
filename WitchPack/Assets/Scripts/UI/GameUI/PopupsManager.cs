@@ -44,15 +44,15 @@ public class PopupsManager : MonoBehaviour
          _popupNumber = damage.GetFinalDamage();
         if(damageDealer.Owner is Enemy)
         {
-            enemyDamagePopupPrefab.Spawn(damageDealer.Owner.transform.position + _offsetVector, _popupNumber, _popupColor);
+            enemyDamagePopupPrefab.Spawn(damageable.Owner.GameObject.transform.position + _offsetVector, _popupNumber, _popupColor);
         }
         else if(isCrit)
         {
-            critDamagePopupPrefab.Spawn(damageDealer.Owner.transform.position + _offsetVector, _popupNumber, _popupColor);
+            critDamagePopupPrefab.Spawn(damageable.Owner.GameObject.transform.position + _offsetVector, _popupNumber, _popupColor);
         }
         else
         {
-            damagePopupPrefab.Spawn(damageDealer.Owner.transform.position + _offsetVector, _popupNumber, _popupColor);
+            damagePopupPrefab.Spawn(damageable.Owner.GameObject.transform.position + _offsetVector, _popupNumber, _popupColor);
         }
     }
 

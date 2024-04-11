@@ -8,10 +8,10 @@ public class ScreenCracksHandler : MonoSingleton<ScreenCracksHandler>
     [SerializeField] private Canvas _canvas;
     [BoxGroup("Cracks")] [SerializeField] private ScreenCrack[] _cracks;
     [BoxGroup("Cracks")] [SerializeField] private ScreenCracksVignette _cracksVignette;
-    private int _crackIndicator;
-    private int _cracksPerHp;
+    private int _hpPerCrack;
     private float _vignetteValuePerHp;
-    
+    private CoreTemple _core;
+
     private void Start()
     {
         _canvas.worldCamera = GameManager.Instance.CameraHandler.MainCamera;
@@ -37,21 +37,22 @@ public class ScreenCracksHandler : MonoSingleton<ScreenCracksHandler>
 
     public void InitByCore(CoreTemple core)
     {
-        _cracksPerHp = core.Damageable.MaxHp / _cracks.Length;
+        _core = core;
+        _hpPerCrack = core.Damageable.MaxHp / _cracks.Length;
         _vignetteValuePerHp = Mathf.Abs(_cracksVignette.EffectValues[0].EndValue - _cracksVignette.EffectValues[0].StartValue) / core.Damageable.MaxHp;
     }
     public void StartCracksAnimation(int damage)
     {
-        for (int i = 0; i < damage; i++)
+        var missingHP = _core.Damageable.MaxHp - _core.Damageable.CurrentHp ;
+        var crackCount = missingHP / _hpPerCrack;
+
+        for (int i = 0; i < crackCount; i++)
         {
-            for (int j = 0; j < _cracksPerHp; j++)
-            {
-                _cracks[_crackIndicator].ScreenCrackLerper.StartTransitionEffect();
-                _crackIndicator++;
-            }
-            _cracksVignette.StartTransitionEffect();
-            _cracksVignette.CurrentStartValue += _vignetteValuePerHp;
+            if(_cracks[i].ScreenCrackLerper.Finished) continue;
+            _cracks[i].ScreenCrackLerper.StartTransitionEffect();
         }
+        _cracksVignette.StartTransitionEffect();
+        _cracksVignette.CurrentStartValue += _vignetteValuePerHp;
     }
 }
 

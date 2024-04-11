@@ -31,7 +31,7 @@ public class UnitAutoCaster : MonoBehaviour
         {
             _queuedAbilities.Enqueue(castingHandler);
         }
-        _queuedAbilities.Enqueue(givenOwner.AutoAttackHandler);
+        _queuedAbilities.Enqueue(givenOwner.AutoAttackCaster);
         if(enableOnStart) EnableCaster();
     }
 
