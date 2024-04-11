@@ -5,6 +5,8 @@ using UnityEngine;
 public class ChaseTarget : IntervalState<EnemyAI>
 {
     [SerializeField] float _outOfRangeInterval;
+    [SerializeField] float _distanceModifier;
+    [SerializeField,Range(0,1)] float _returnChance;
     private bool _isOutOfRange;
 
     public override void Enter(EnemyAI parent)
@@ -60,7 +62,7 @@ public class ChaseTarget : IntervalState<EnemyAI>
         if (target is null) return;
 
         var rand = Random.Range(0f, 1f);
-        var distance = parent.DistanceModifier * Vector3.Distance(target.transform.position, parent.Enemy.transform.position);
+        var distance = _distanceModifier * Vector3.Distance(target.transform.position, parent.Enemy.transform.position);
         //Debug.Log("Distance is: " + distance);
         if (distance > parent.Enemy.Stats.BonusRange)
         {
@@ -72,7 +74,7 @@ public class ChaseTarget : IntervalState<EnemyAI>
             _isOutOfRange = false;
         }
 
-        if (rand < parent.ReturnChance)
+        if (rand < _returnChance)
         {
             parent.SetState(typeof(ReturnToPath));
         }

@@ -5,13 +5,15 @@ using UnityEngine;
 
 namespace Systems.StateMachine
 {
-    public abstract class BaseStateMachine<T> : MonoBehaviour where T : MonoBehaviour
+    public abstract class BaseStateMachine<T> : MonoBehaviour 
+        where T : MonoBehaviour
     {
         public State<T> ActiveState => _activeState;
         
         protected State<T> _activeState;
         
         private Dictionary<Type, State<T>> _stateByType = new ();
+        
         private bool _isActive;
         
         protected void BaseInit(List<State<T>> states)

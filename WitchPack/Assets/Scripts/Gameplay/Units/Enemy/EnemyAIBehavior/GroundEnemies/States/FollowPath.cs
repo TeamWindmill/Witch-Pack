@@ -4,6 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "StateMachine/States/FollowPath", fileName = "FollowPath")]
 public class FollowPath : IntervalState<EnemyAI>
 {
+    //add serializedfields for state parameters
+    [SerializeField,Range(0,1)] private float _agroChance;
     public override void Enter(EnemyAI parent)
     {
         parent.Enemy.Movement.ToggleMovement(false);
@@ -20,9 +22,9 @@ public class FollowPath : IntervalState<EnemyAI>
         if (parent.Enemy.ShamanTargeter.HasTarget)
         {
             var rand = Random.Range(0f, 1f);
-            if (rand < parent.AgroChance)
+            if (rand < _agroChance)
             {
-                var target = parent.Enemy.ShamanTargetHelper.GetTarget(parent.TargetData);
+                var target = parent.Enemy.ShamanTargetHelper.GetTarget(parent.Config.TargetData);
                 if(target.Stats.Visibility == 1) return;
                 parent.SetTarget(target);
                 parent.Enemy.Movement.Agent.stoppingDistance = parent.Enemy.Movement.DefaultStoppingDistance;
