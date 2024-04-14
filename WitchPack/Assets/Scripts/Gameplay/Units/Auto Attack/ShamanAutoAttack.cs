@@ -15,8 +15,7 @@ public class ShamanAutoAttack : AutoAttack
         AutoAttackMono newPew = LevelManager.Instance.PoolManager.ShamanAutoAttackPool.GetPooledObject();
         newPew.transform.position = caster.CastPos.transform.position;
         newPew.gameObject.SetActive(true);
-        Vector2 dir = (target.transform.position - caster.transform.position).normalized;
-        newPew.Fire(caster, this, dir.normalized, target);
+        newPew.Fire(caster, this, target);
         return true;
     }
 
