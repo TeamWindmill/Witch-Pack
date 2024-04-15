@@ -77,7 +77,7 @@ public class Shaman : BaseUnit
         Damageable.OnHitGFX += OnHitSFX;
         Damageable.OnDeathGFX += DeathSFX;
         Damageable.OnDeathGFX += SetOffIndicator;
-        AutoAttackHandler.OnAttack += AttackSFX;
+        AutoAttackCaster.OnAttack += AttackSFX;
         Effectable.OnAffectedVFX += ShamanVisualHandler.EffectHandler.PlayEffect;
         Effectable.OnEffectRemovedVFX += ShamanVisualHandler.EffectHandler.DisableEffect;
         AutoCaster.CastTimeStartVFX += ShamanVisualHandler.EffectHandler.PlayEffect;
@@ -86,7 +86,7 @@ public class Shaman : BaseUnit
 
         #endregion
 
-        BaseInit(baseUnitConfig);
+        Initialized = true;
     }
 
     private void IntializeAbilities()

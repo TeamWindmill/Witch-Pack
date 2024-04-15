@@ -22,7 +22,7 @@ public class DevToolsUI : UIElement
 
     public void HealCore()
     {
-        LevelManager.Instance.CurrentLevel.CoreTemple.Heal(500);
+        LevelManager.Instance.CurrentLevel.CoreTemple.Damageable.Heal(500);
     }
 
     public void HealShamans()

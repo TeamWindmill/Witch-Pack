@@ -8,13 +8,13 @@ public class Effectable
     public event Action<StatusEffectType> OnAffectedVFX;
     public event Action<StatusEffect> OnEffectRemoved;
     public event Action<StatusEffectType> OnEffectRemovedVFX;
-    public BaseUnit Owner => _owner;
+    public IDamagable Owner => _owner;
     public List<StatusEffect> ActiveEffects => activeEffects;
 
     private List<StatusEffect> activeEffects = new List<StatusEffect>();
-    private BaseUnit _owner;
+    private IDamagable _owner;
 
-    public Effectable(BaseUnit owner)
+    public Effectable(IDamagable owner)
     { 
         _owner = owner;
     } 

@@ -15046,7 +15046,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 913d2888535dec24ba1229839d8ff747, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 10
+  _statsConfig:
+    MaxHp:
+      statType: 0
+      value: 10
+    BaseDamage:
+      statType: 1
+      value: 0
+    AttackSpeed:
+      statType: 2
+      value: 0
+    BaseRange:
+      statType: 3
+      value: 0
+    MovementSpeed:
+      statType: 4
+      value: 0
+    CritDamage:
+      statType: 5
+      value: 0
+    CritChance:
+      statType: 6
+      value: 0
+    Armor:
+      statType: 9
+      value: 0
+    HpRegen:
+      statType: 10
+      value: 0
+    AbilityProjectilePenetration:
+      statType: 13
+      value: 0
+    Visibility:
+      statType: 14
+      value: 0
+    ThreatLevel:
+      statType: 15
+      value: 0
   enemyGroundCollider: {fileID: 3190880965736817959}
   hpBar: {fileID: 4111116889428995083}
   animator: {fileID: 9140744131601393012}

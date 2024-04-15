@@ -1,6 +1,6 @@
 using System;
 
-public class AutoAttackHandler : ICaster
+public class AutoAttackCaster : ICaster
 {
     public event Action OnAttack;
     public CastingAbility Ability => _ability;
@@ -9,7 +9,7 @@ public class AutoAttackHandler : ICaster
     private readonly BaseUnit _unit;
     private readonly CastingAbility _ability;
 
-    public AutoAttackHandler(BaseUnit owner, CastingAbility ability)
+    public AutoAttackCaster(BaseUnit owner, CastingAbility ability)
     {
         _unit = owner;
         _ability = ability;
