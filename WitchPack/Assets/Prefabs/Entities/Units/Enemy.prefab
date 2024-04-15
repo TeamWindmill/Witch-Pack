@@ -89,7 +89,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitType: 1
-  autoAttack: {fileID: 11400000, guid: 43f10eef9cb52464cb2f69d46a88498f, type: 2}
   _autoCaster: {fileID: 848828296485308851}
   boxCollider: {fileID: 5393496188249262306}
   groundCollider: {fileID: 3037507871975908322}
@@ -825,13 +824,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2706607167605362372}
     m_Modifications:
+    - target: {fileID: 753731943303979882, guid: d9811e9856b31b04cbf763f6941cacd5, type: 3}
+      propertyPath: owner
+      value: 
+      objectReference: {fileID: 3988689875388376819}
+    - target: {fileID: 1565228757226791273, guid: d9811e9856b31b04cbf763f6941cacd5, type: 3}
+      propertyPath: m_SortingOrder
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 2482432304323612586, guid: d9811e9856b31b04cbf763f6941cacd5, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4002182410603616698, guid: d9811e9856b31b04cbf763f6941cacd5, type: 3}
       propertyPath: m_SortingOrder
-      value: 4
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 5617180991050575516, guid: d9811e9856b31b04cbf763f6941cacd5, type: 3}
       propertyPath: m_LocalScale.x

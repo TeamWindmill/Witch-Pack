@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "Fireball", menuName = "Ability/EnemyAbilities/Fireball")]
 public class FireballSO : OffensiveAbility
 {
     public override bool CastAbility(BaseUnit caster)
@@ -21,6 +22,7 @@ public class FireballSO : OffensiveAbility
 
     public override bool CheckCastAvailable(BaseUnit caster)
     {
-        return false;
+        BaseUnit target = caster.ShamanTargetHelper.GetTarget(TargetData);
+        return !ReferenceEquals(target, null);
     }
 }

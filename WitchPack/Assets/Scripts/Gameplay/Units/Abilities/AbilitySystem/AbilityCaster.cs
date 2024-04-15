@@ -18,12 +18,15 @@ public class AbilityCaster : ICaster
         _ability = ability;
         if (owner is Shaman shaman)
         {
-            
             if(ability.HasSfx) OnCastGFX += shaman.ShamanAbilityCastSFX;
             if (ability.GivesEnergyPoints)
             {
                 OnCast += shaman.EnergyHandler.OnShamanCast;
             }
+        }
+        else if (owner is Enemy enemy)
+        {
+            if(ability.HasSfx) OnCastGFX += enemy.AbilityCastSFX;
         }
     }
 

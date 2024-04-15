@@ -57,6 +57,7 @@ public class Enemy : BaseUnit
         Damageable.OnHitGFX += GetHitSFX;
         Damageable.OnDeathGFX += DeathSFX;
         AutoAttackCaster.OnAttack += AttackSFX;
+        
 
         #endregion
 
@@ -103,7 +104,7 @@ public class Enemy : BaseUnit
         SoundManager.Instance.PlayAudioClip(isCrit ? SoundEffectType.EnemyGetHitCrit : SoundEffectType.EnemyGetHit);
         enemyVisualHandler.HitEffect.Play();
     }
-
+    public void AbilityCastSFX(CastingAbility ability) => SoundManager.Instance.PlayAudioClip(ability.SoundEffectType);
     private void DeathSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.EnemyDeath);
     private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.EnemyAttack);
     
