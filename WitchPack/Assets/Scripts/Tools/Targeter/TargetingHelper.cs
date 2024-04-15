@@ -264,20 +264,41 @@ namespace Tools.Targeter
 
             if (!ReferenceEquals(cur, null))
             {
-                if (targetData.Modifier == TargetModifier.Most)
+                if (cur is Shaman shaman)
                 {
-                    if (Vector3.Distance(cur.transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position) < Vector3.Distance(availableTargets[i].transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position))
+                    if (targetData.Modifier == TargetModifier.Most)
                     {
-                        cur = availableTargets[i];
+                        if (Vector3.Distance(shaman.transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position) < Vector3.Distance(availableTargets[i].transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position))
+                        {
+                            cur = availableTargets[i];
+                        }
                     }
+                    else
+                    {
+                        if (Vector3.Distance(shaman.transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position) > Vector3.Distance(availableTargets[i].transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position))
+                        {
+                            cur = availableTargets[i];
+                        }
+                    }  
                 }
-                else
+                else if (cur is Enemy enemy)
                 {
-                    if (Vector3.Distance(cur.transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position) > Vector3.Distance(availableTargets[i].transform.position, LevelManager.Instance.CurrentLevel.CoreTemple.transform.position))
+                    if (targetData.Modifier == TargetModifier.Most)
                     {
-                        cur = availableTargets[i];
+                        if (enemy.EnemyMovement.DistanceRemaining < (availableTargets[i] as Enemy)?.EnemyMovement.DistanceRemaining)
+                        {
+                            cur = availableTargets[i];
+                        }
                     }
+                    else
+                    {
+                        if (enemy.EnemyMovement.DistanceRemaining > (availableTargets[i] as Enemy)?.EnemyMovement.DistanceRemaining)
+                        {
+                            cur = availableTargets[i];
+                        }
+                    } 
                 }
+                
             }
         }
         return cur;

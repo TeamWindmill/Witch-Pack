@@ -6,6 +6,6 @@ public class FireballMono : ProjectileMono
 {
     protected override void OnTargetHit(IDamagable target)
     {
-        // TODO Create aoe damage area
+        target.Damageable.GetHit(owner.DamageDealer, ability);
     }
 }
