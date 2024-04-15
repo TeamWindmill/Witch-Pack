@@ -29,7 +29,7 @@ public class AttritionCounter : AbilityEventCounter
             {
                 currentCount = 0;
                 OnCountReset?.Invoke(this, target, dealer, dmg, ability);
-                lastTarget = target.Owner;
+                lastTarget = target.Owner as BaseUnit;
             }
         }
     }

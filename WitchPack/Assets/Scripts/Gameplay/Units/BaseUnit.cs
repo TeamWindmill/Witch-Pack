@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 using Tools.Helpers;
 using UnityEngine;
 
-public class BaseUnit : InitializedMono<BaseUnitConfig>
+public class BaseUnit : BaseEntity , IDamagable
 {
     #region Serialized
     
@@ -12,7 +12,6 @@ public class BaseUnit : InitializedMono<BaseUnitConfig>
     [TabGroup("Combat")] private DamageDealer damageDealer;
     [TabGroup("Combat")] private Affector affector;
     [TabGroup("Combat")] private Effectable effectable;
-    [SerializeField, TabGroup("Combat")] private OffensiveAbility autoAttack;
     [SerializeField, TabGroup("Combat")] private UnitAutoCaster _autoCaster;
     [SerializeField, TabGroup("Combat")] private BoxCollider2D boxCollider;
     [SerializeField, TabGroup("Combat")] private GroundCollider groundCollider;
@@ -31,22 +30,26 @@ public class BaseUnit : InitializedMono<BaseUnitConfig>
     protected List<AbilityCaster> castingHandlers = new List<AbilityCaster>();
     private UnitTargetHelper<Shaman> shamanTargetHelper;
     private UnitTargetHelper<Enemy> enemyTargetHelper;
-    private AutoAttackHandler autoAttackHandler;
+    private AutoAttackCaster autoAttackCaster;
+    private OffensiveAbility _autoAttack;
     private List<ITimer> unitTimers;
 
     #endregion
     
     #region Public
+
+    public bool Initialized { get; protected set; }
     public bool IsDead => damageable.CurrentHp <= 0;
     public HP_Bar HpBar => hpBar;
     public Damageable Damageable => damageable;
     public DamageDealer DamageDealer => damageDealer;
     public Affector Affector => affector;
+    public Transform Transform => transform;
     public Effectable Effectable => effectable;
     public virtual Stats BaseStats => null;
     public UnitStats Stats => stats;
-    public CastingAbility AutoAttack => autoAttack;
-    public AutoAttackHandler AutoAttackHandler => autoAttackHandler;
+    public AutoAttackCaster AutoAttackCaster => autoAttackCaster;
+    public OffensiveAbility AutoAttack => _autoAttack;
     public UnitAutoCaster AutoCaster => _autoCaster;
     public UnitMovement Movement => movement;
     public List<AbilityCaster> CastingHandlers => castingHandlers;
@@ -61,12 +64,13 @@ public class BaseUnit : InitializedMono<BaseUnitConfig>
 
     public virtual void Init(BaseUnitConfig givenConfig)
     {
+        _autoAttack = givenConfig.AutoAttack;
         stats = new UnitStats(BaseStats);
         damageable = new Damageable(this);
-        damageDealer = new DamageDealer(this, autoAttack);
+        damageDealer = new DamageDealer(this, givenConfig.AutoAttack);
         affector = new Affector(this);
         effectable = new Effectable(this);
-        autoAttackHandler = new AutoAttackHandler(this, autoAttack);
+        autoAttackCaster = new AutoAttackCaster(this, givenConfig.AutoAttack);
         shamanTargetHelper = new UnitTargetHelper<Shaman>(ShamanTargeter, this);
         enemyTargetHelper = new UnitTargetHelper<Enemy>(EnemyTargeter, this);
         unitTimers = new List<ITimer>();
@@ -90,8 +94,6 @@ public class BaseUnit : InitializedMono<BaseUnitConfig>
         Stats.OnStatChanged += movement.OnSpeedChange;
 
     }
-
-    protected void BaseInit(BaseUnitConfig givenConfig) => base.Init(givenConfig);
 
     protected virtual void OnDisable() //unsubscribe to events
     {
@@ -123,7 +125,7 @@ public class BaseUnit : InitializedMono<BaseUnitConfig>
         _autoCaster.DisableCaster();
     }
 
-    public void ClearUnitTImers()
+    public void ClearUnitTimers()
     {
         foreach (ITimer iTimer in UnitTimers)
         {
@@ -132,6 +134,8 @@ public class BaseUnit : InitializedMono<BaseUnitConfig>
 
         UnitTimers.Clear();
     }
+
+    public BaseEntity GameObject => this;
 
     private void OnValidate()
     {

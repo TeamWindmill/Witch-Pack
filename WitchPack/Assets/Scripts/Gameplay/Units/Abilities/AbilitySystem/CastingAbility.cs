@@ -42,6 +42,5 @@ public enum DamageBonusType
 public struct DamageBoostData
 {
     public DamageBonusType Type;
-    [Tooltip("%hp threshold to reach (according to type)")] public float Threshold;
     public float damageBonusInPercent;
 }

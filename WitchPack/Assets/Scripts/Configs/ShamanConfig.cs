@@ -15,7 +15,6 @@ public class ShamanConfig : BaseUnitConfig
     public List<BaseAbility> KnownAbilities { get => knownAbilities; }
     public List<BaseAbility> RootAbilities { get => rootAbilities; }
     public EnergyConfig EnergyConfig => _energyConfig;
-
     public bool IsMale => isMale;
 }
 

@@ -46,8 +46,8 @@ public class Enemy : BaseUnit
         _enemyMovement = new EnemyMovement(this);
         enemyAnimator.Init(this);
         enemyVisualHandler.Init(this, givenConfig);
+        IntializeAbilities();
         enemyAI.Init(this);
-        AutoCaster.Init(this,false);
         Movement.ToggleMovement(false);
         #region Events
         //remember to unsubscribe in OnDisable!!!
@@ -56,11 +56,30 @@ public class Enemy : BaseUnit
         Effectable.OnEffectRemovedVFX += enemyVisualHandler.EffectHandler.DisableEffect;
         Damageable.OnHitGFX += GetHitSFX;
         Damageable.OnDeathGFX += DeathSFX;
-        AutoAttackHandler.OnAttack += AttackSFX;
+        AutoAttackCaster.OnAttack += AttackSFX;
+        
 
         #endregion
-        
-        BaseInit(givenConfig);
+
+        Initialized = true;
+    }
+
+    private void IntializeAbilities()
+    {
+        foreach (var ability in enemyConfig.Abilities)
+        {
+            if (ability is not Passive)
+            {
+                ability.OnSetCaster(this);
+                castingHandlers.Add(new AbilityCaster(this, ability as CastingAbility));
+            }
+            else
+            {
+                (ability as Passive).SubscribePassive(this);
+            }
+        }
+
+        AutoCaster.Init(this, false);
     }
     protected override void OnDisable() //enemy death
     {
@@ -70,7 +89,7 @@ public class Enemy : BaseUnit
         enemyAI.OnDisable();
         Damageable.OnHitGFX -= GetHitSFX;
         Damageable.OnDeathGFX -= DeathSFX;
-        if (AutoAttackHandler != null) AutoAttackHandler.OnAttack -= AttackSFX;
+        if (AutoAttackCaster != null) AutoAttackCaster.OnAttack -= AttackSFX;
         Effectable.OnAffectedVFX -= enemyVisualHandler.EffectHandler.PlayEffect;
         Effectable.OnEffectRemovedVFX -= enemyVisualHandler.EffectHandler.DisableEffect;
         enemyVisualHandler.OnSpriteFlip -= enemyAnimator.FlipAnimations;
@@ -85,7 +104,7 @@ public class Enemy : BaseUnit
         SoundManager.Instance.PlayAudioClip(isCrit ? SoundEffectType.EnemyGetHitCrit : SoundEffectType.EnemyGetHit);
         enemyVisualHandler.HitEffect.Play();
     }
-
+    public void AbilityCastSFX(CastingAbility ability) => SoundManager.Instance.PlayAudioClip(ability.SoundEffectType);
     private void DeathSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.EnemyDeath);
     private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.EnemyAttack);
     

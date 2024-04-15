@@ -9,27 +9,30 @@ public class AbilityCaster : ICaster
     public CastingAbility Ability { get => _ability; }
     public float LastCast { get; private set; }
     
-    private readonly Shaman _shaman;
+    private readonly BaseUnit _unit;
     private readonly CastingAbility _ability;
 
     public AbilityCaster(BaseUnit owner, CastingAbility ability)
     {
+        _unit = owner;
+        _ability = ability;
         if (owner is Shaman shaman)
         {
-            _shaman = shaman;
-            _ability = ability;
-            
-            if(ability.HasSfx) OnCastGFX += _shaman.ShamanAbilityCastSFX;
+            if(ability.HasSfx) OnCastGFX += shaman.ShamanAbilityCastSFX;
             if (ability.GivesEnergyPoints)
             {
-                OnCast += _shaman.EnergyHandler.OnShamanCast;
+                OnCast += shaman.EnergyHandler.OnShamanCast;
             }
+        }
+        else if (owner is Enemy enemy)
+        {
+            if(ability.HasSfx) OnCastGFX += enemy.AbilityCastSFX;
         }
     }
 
     public bool CastAbility()
     {
-        if (_ability.CastAbility(_shaman))
+        if (_ability.CastAbility(_unit))
         {
             LastCast = GAME_TIME.GameTime;
             OnCast?.Invoke(this);
@@ -44,7 +47,7 @@ public class AbilityCaster : ICaster
 
     public bool CheckCastAvailable()
     {
-        return _ability.CheckCastAvailable(_shaman);
+        return _ability.CheckCastAvailable(_unit);
     }
 
     public bool ContainsUpgrade(ICaster caster)

@@ -1,0 +1,21 @@
+using System.Collections;
+using UnityEngine;
+using UnityEngine.Events;
+
+
+public class AutoAttackMono : ProjectileMono
+{
+
+    protected override void OnTargetHit(IDamagable target)
+    {
+        switch (target)
+        {
+            case CoreTemple:
+                target.Damageable.TakeFlatDamage((ability as AutoAttack).CoreDamage);
+                break;
+            case BaseUnit:
+                target.Damageable.GetHit(owner.DamageDealer, ability);
+                break;
+        }
+    }
+}

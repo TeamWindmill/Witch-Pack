@@ -9,17 +9,14 @@ public class CoreHPUIHandler : StatBarUIElement
     public override void Init()
     {
         _coreTemple = LevelManager.Instance.CurrentLevel.CoreTemple;
-        ElementInit(_coreTemple.MaxHp);
-        _coreTemple.OnGetHit += UpdateCoreHealth;
-    }
-
-    private void UpdateCoreHealth(int obj)
-    {
-        UpdateUIData(_coreTemple.CurHp);
+        ElementInit(_coreTemple.Damageable.MaxHp);
+        _coreTemple.Damageable.OnTakeDamage += (value) => UpdateUIData(_coreTemple.Damageable.CurrentHp);
+        _coreTemple.Damageable.OnHeal += (damageable, value) => UpdateUIData(_coreTemple.Damageable.CurrentHp);
     }
 
     public override void Hide()
     {
-        _coreTemple.OnGetHit -= UpdateCoreHealth;
+        _coreTemple.Damageable.OnTakeDamage -= (value) => UpdateUIData(_coreTemple.Damageable.CurrentHp);
+        _coreTemple.Damageable.OnHeal -= (damageable, value) => UpdateUIData(_coreTemple.Damageable.CurrentHp);
     }
 }

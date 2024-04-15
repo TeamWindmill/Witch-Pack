@@ -15,8 +15,6 @@ public class UnitAutoCaster : MonoBehaviour
     public bool CanCast { get; private set; }
 
     [ShowInInspector] private Queue<ICaster> _queuedAbilities = new();
-    //[ShowInInspector] private List<ICaster> _abilitiesOnCooldown = new();
-    //[ShowInInspector] private List<Timer<ICaster>> _activeTimers = new();
     [ShowInInspector] private Dictionary<ICaster, Timer<ICaster>> _cooldownAbilities = new();
     private float _castTimer;
     private float _currentCastTime;
@@ -31,7 +29,7 @@ public class UnitAutoCaster : MonoBehaviour
         {
             _queuedAbilities.Enqueue(castingHandler);
         }
-        _queuedAbilities.Enqueue(givenOwner.AutoAttackHandler);
+        _queuedAbilities.Enqueue(givenOwner.AutoAttackCaster);
         if(enableOnStart) EnableCaster();
     }
 
