@@ -14,7 +14,13 @@ public class Shaman : BaseUnit
     public List<BaseAbility> RootAbilities => rootAbilities;
     public EnergyHandler EnergyHandler => energyHandler;
     public ShamanVisualHandler ShamanVisualHandler => shamanVisualHandler;
-    public bool IsSelected {get => _isSelected; set => _isSelected = value; }
+
+    public bool IsSelected
+    {
+        get => _isSelected;
+        set => _isSelected = value;
+    }
+
     #endregion
 
     #region serialized
@@ -34,6 +40,7 @@ public class Shaman : BaseUnit
     private List<BaseAbility> knownAbilities = new List<BaseAbility>();
     [SerializeField] private EnergyHandler energyHandler;
     private bool _isSelected;
+
     #endregion
 
     private void OnValidate()
@@ -61,14 +68,7 @@ public class Shaman : BaseUnit
         shamanVisualHandler.OnSpriteFlip += shamanAnimator.FlipAnimations;
         Movement.OnDestinationSet += AutoCaster.DisableCaster;
         Movement.OnDestinationReached += AutoCaster.EnableCaster;
-        if (LevelManager.Instance.SelectionHandler.GetOnMouseDownShaman())
-        {
-            clicker.OnMouseDown += SetSelectedShaman;
-        }
-        else
-        { 
-            clicker.OnClick += SetSelectedShaman;
-        }
+        clicker.OnClick += SetSelectedShaman;
         clicker.OnEnterHover += ShamanHoveredEntered;
         clicker.OnExitHover += ShamanHoveredExit;
         DamageDealer.OnKill += energyHandler.OnEnemyKill;
@@ -134,8 +134,6 @@ public class Shaman : BaseUnit
         {
             passive.SubscribePassive(this);
         }
-
-        
     }
 
     public void RemoveAbility(BaseAbility ability)
@@ -183,8 +181,9 @@ public class Shaman : BaseUnit
 
     public void SetSelectedShaman(PointerEventData.InputButton button)
     {
-        LevelManager.Instance.SelectionHandler.OnShamanClick(button,this);
+        LevelManager.Instance.SelectionHandler.OnShamanClick(button, this);
     }
+
     public void ShamanHoveredEntered()
     {
         //if (!_isSelected)
@@ -192,10 +191,11 @@ public class Shaman : BaseUnit
             shamanVisualHandler.ShowShamanRange();
         }
     }
+
     public void ShamanHoveredExit()
     {
         //if (!_isSelected)
-        { 
+        {
             shamanVisualHandler.HideShamanRange();
         }
     }

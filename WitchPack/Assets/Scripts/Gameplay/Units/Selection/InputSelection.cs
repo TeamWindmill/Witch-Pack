@@ -24,7 +24,7 @@ public class InputSelection : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (GAME_TIME.TimeRate != 0)
+            if (!Mathf.Approximately(GAME_TIME.TimeRate,0))
             {
                 _lastTimeButton = TimeControlUIHandler.Instance.CurrentTimeButton.ButtonType;
                 TimeControlUIHandler.Instance.ChangeTimeButton(TimeButtons.Pause);
