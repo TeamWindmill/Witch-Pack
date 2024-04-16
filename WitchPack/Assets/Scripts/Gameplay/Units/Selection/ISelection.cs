@@ -11,6 +11,5 @@ public interface ISelection
     public Shaman SelectedShaman { get; }
     public Shadow Shadow { get; }
     public void OnShamanClick(PointerEventData.InputButton button, Shaman shaman);
-    public bool GetOnMouseDownShaman();
 }
 

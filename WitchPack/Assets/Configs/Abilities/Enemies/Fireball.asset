@@ -20,15 +20,15 @@ MonoBehaviour:
   _upgrades: []
   hasPopupColor: 0
   popupColor: {r: 0, g: 0, b: 0, a: 0}
-  castTime: 0
-  cd: 0
+  castTime: 0.5
+  cd: 4
   range: 0
   givesEnergyPoints: 0
   energyPoints: 0
   statusEffects: []
   targetData:
     Priority: 0
-    Modifier: 0
+    Modifier: 1
     StatType: 0
     AvoidCharmedTargets: 0
   _hasCastVisual: 0
@@ -37,3 +37,10 @@ MonoBehaviour:
   soundEffectType: 25
   baseDamage: 50
   damageBoosts: []
+  _speed: 3
+  _duration: 4
+  _tickTime: 0.5
+  _tickAmount: 100
+  _aoeRange: 1
+  _burnDamage: 5
+  _burnPopupColor: {r: 1, g: 0.51373154, b: 0, a: 1}

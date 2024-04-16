@@ -4,23 +4,20 @@ using UnityEngine;
 
 public class ProjectileMono : MonoBehaviour
 {
-    [SerializeField] protected float initialSpeed;
-    protected float speed;
-    protected CastingAbility ability;
-    protected BaseUnit owner;
+    protected float _speed;
+    protected CastingAbility _ability;
+    protected BaseUnit _owner;
     protected IDamagable _target;
 
     public event Action<CastingAbility, BaseUnit, IDamagable> OnShotHit;
-    protected virtual void Awake()
+
+    public virtual void Fire(BaseUnit caster, CastingAbility givenAbility, IDamagable target,float speed)
     {
-        SetSpeed(initialSpeed);
-    }
-    public virtual void Fire(BaseUnit caster, CastingAbility givenAbility, IDamagable target)
-    {
-        Vector2 dir = (target.GameObject.transform.position - caster.transform.position).normalized;
-        owner = caster;
-        ability = givenAbility;
+        _owner = caster;
+        _ability = givenAbility;
         _target = target;
+        SetSpeed(speed);
+        Vector2 dir = (target.GameObject.transform.position - caster.transform.position).normalized;
         Rotate(dir);
         StartCoroutine(TravelTimeCountdown());
     }
@@ -37,14 +34,14 @@ public class ProjectileMono : MonoBehaviour
         if (!ReferenceEquals(target, null) && ReferenceEquals(target, _target))
         {
             OnTargetHit(target);
-            OnShotHit?.Invoke(ability, owner, target);
+            OnShotHit?.Invoke(_ability, _owner, target);
             Disable();
         }
     }
 
     protected virtual void OnTargetHit(IDamagable target)
     {
-        target.Damageable.GetHit(owner.DamageDealer, ability);
+        target.Damageable.GetHit(_owner.DamageDealer, _ability);
     }
     private IEnumerator TravelTimeCountdown()
     {
@@ -54,7 +51,7 @@ public class ProjectileMono : MonoBehaviour
         {
             Vector3 positionLerp = Vector3.Lerp(startPosition, _target.GameObject.transform.position, counter);
             transform.position = positionLerp;
-            counter += GAME_TIME.GameDeltaTime * speed;
+            counter += GAME_TIME.GameDeltaTime * _speed;
             yield return new WaitForEndOfFrame();
         }
         yield return new WaitForEndOfFrame();
@@ -64,16 +61,15 @@ public class ProjectileMono : MonoBehaviour
 
     public void SetSpeed(float value)
     {
-        speed = value;
+        _speed = value;
     }
 
 
     public virtual void Disable()
     {
-        owner = null;
-        ability = null;
+        _owner = null;
+        _ability = null;
         _target = null;
-        SetSpeed(initialSpeed);
         OnShotHit = null;
         gameObject.SetActive(false);
     }

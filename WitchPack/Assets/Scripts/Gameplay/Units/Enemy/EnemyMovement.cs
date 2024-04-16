@@ -4,9 +4,9 @@ using PathCreation;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
-public class EnemyMovement 
+public class EnemyMovement
 {
-
+    public float DistanceRemaining => _path.path.length - _dstTravelled;
     private float _dstTravelled;
     private readonly Enemy _enemy;
     private readonly UnitMovement _unitMovement;

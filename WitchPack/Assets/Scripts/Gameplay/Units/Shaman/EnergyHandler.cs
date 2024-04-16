@@ -39,11 +39,11 @@ public class EnergyHandler
     }
     public void GainEnergy(int energy = 0)
     {
-        if (energy == 0) energy = 25; //temp
+        //if (energy == 0) energy = 25; //temp
         if(_shamanLevel == 7) return;
         _currentEnergy += energy;
+        if(_currentEnergy >= MaxEnergyToNextLevel) LevelUp(_currentEnergy - MaxEnergyToNextLevel);
         OnShamanGainEnergy?.Invoke(_currentEnergy,MaxEnergyToNextLevel);
-        if(_currentEnergy >= MaxEnergyToNextLevel) LevelUp();
     }
 
     public bool TryUseSkillPoint()
@@ -58,12 +58,13 @@ public class EnergyHandler
         return false;
     }
     
-    private void LevelUp()
+    private void LevelUp(int excessEnergy)
     {
         _shamanLevel++;
         if(_shamanLevel != 7) _currentEnergy = 0;
         OnShamanLevelUp?.Invoke(_shamanLevel);
         LevelManager.Instance.PopupsManager.SpawnLevelUpTextPopup(_shaman);
+        GainEnergy(excessEnergy);
     }
 
     [Button]

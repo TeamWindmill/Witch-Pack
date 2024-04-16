@@ -54,8 +54,9 @@ public class Damageable
             bool isCrit = dealer.CritChance(offensiveAbility);
 
             TakeDamage(dealer, dmg, offensiveAbility, isCrit);
-
-            _damageDealers.Add(dealer);
+            
+            if(!_damageDealers.Contains(dealer))
+                _damageDealers.Add(dealer);
         }
         else // in case we want to make an ability that only applys status effects
         {
