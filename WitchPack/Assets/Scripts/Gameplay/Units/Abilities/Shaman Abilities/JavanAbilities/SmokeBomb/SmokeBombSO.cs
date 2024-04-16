@@ -31,19 +31,16 @@ public class SmokeBombSO : OffensiveAbility
         
         if (!ReferenceEquals(target, null))
         {
-            if (caster.Stats.ThreatLevel > target.Stats.ThreatLevel) target = caster;
             if (target.Stats.ThreatLevel <= 0) return false;
             return true;
         }
-        else
-        {
-            if(caster.Stats.ThreatLevel > 0) return true;
-            else return false;
-        }
 
+        if (caster.Stats.ThreatLevel >= 0) return true;
+
+        return false;
     }
 
-    private bool Cast(BaseUnit caster, BaseUnit target)
+    protected virtual bool Cast(BaseUnit caster, BaseUnit target)
     {
         SmokeBomb smokeBomb = LevelManager.Instance.PoolManager.SmokeBombPool.GetPooledObject();
         smokeBomb.transform.position = target.transform.position;

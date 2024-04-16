@@ -3,10 +3,7 @@ using UnityEngine;
 public class RootingVinesMono : AoeMono
 {
     
-    protected virtual void OnRoot(Enemy enemy)
-    {
-
-    }
+    protected virtual void OnRoot(Enemy enemy){}
 
     protected override void OnEnemyEnter(Enemy enemy)
     {

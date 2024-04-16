@@ -11,10 +11,10 @@ public class AutoAttackMono : ProjectileMono
         switch (target)
         {
             case CoreTemple:
-                target.Damageable.TakeFlatDamage((ability as AutoAttack).CoreDamage);
+                target.Damageable.TakeFlatDamage((_ability as AutoAttack).CoreDamage);
                 break;
             case BaseUnit:
-                target.Damageable.GetHit(owner.DamageDealer, ability);
+                target.Damageable.GetHit(_owner.DamageDealer, _ability);
                 break;
         }
     }
