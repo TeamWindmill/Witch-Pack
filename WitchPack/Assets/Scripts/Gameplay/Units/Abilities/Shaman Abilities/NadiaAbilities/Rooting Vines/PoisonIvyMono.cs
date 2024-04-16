@@ -2,13 +2,13 @@
 public class PoisonIvyMono : RootingVinesMono
 {
     private PoisonIvy poison;
-
     DamageHandler damage;
-    public override void Init(BaseUnit owner, OffensiveAbility ability, float lastingTime)
+    public override void Init(BaseUnit owner, CastingAbility ability, float lastingTime)
     {
         base.Init(owner, ability, lastingTime);
         poison = ability as PoisonIvy;
     }
+    
 
     protected override void OnRoot(Enemy enemy)
     {
@@ -38,7 +38,7 @@ public class PoisonIvyMono : RootingVinesMono
     {
         damage = new DamageHandler(poison.PoisonDamage);
         damage.SetPopupColor(poison.PoisonPopupColor);
-        enemy.Damageable.TakeDamage(owner.DamageDealer, damage, refAbility, false);
+        enemy.Damageable.TakeDamage(_owner.DamageDealer, damage, _ability as OffensiveAbility, false);
         
     }
 
