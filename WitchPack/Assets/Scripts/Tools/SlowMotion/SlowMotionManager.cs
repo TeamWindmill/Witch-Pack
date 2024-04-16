@@ -44,6 +44,7 @@ public class SlowMotionManager : MonoSingleton<SlowMotionManager>
     public void EndSlowMotionEffects()
     {
         if(_previousTimeRate == 0) return;
+        if(GAME_TIME.TimeRate == 0) return;
         GAME_TIME.SetTimeStep(_previousTimeRate, _slowTimeTransitionTime, _endSlowTimeCurve);
         _audioFilters.EndTransition();
         _windEffectHandler.EndTransition();
