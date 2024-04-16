@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PoisonIvy : OffensiveAbility
 {
+    [SerializeField] private float aoeRange = 1;
     [SerializeField] private float lastingTime;
     [SerializeField] private float poisonDuration;
     [SerializeField] private float poisonTickRate;
@@ -21,7 +22,7 @@ public class PoisonIvy : OffensiveAbility
         if (!ReferenceEquals(target, null))
         {
             PoisonIvyMono newIvyPoison = LevelManager.Instance.PoolManager.PoisonIvyPool.GetPooledObject();
-            newIvyPoison.Init(caster, this, lastingTime);
+            newIvyPoison.Init(caster, this, lastingTime,aoeRange);
             newIvyPoison.transform.position = target.transform.position;
             newIvyPoison.gameObject.SetActive(true);
             return true;
