@@ -7,5 +7,6 @@ public class FireballMono : ProjectileMono
     protected override void OnTargetHit(IDamagable target)
     {
         target.Damageable.GetHit(owner.DamageDealer, ability);
+        
     }
 }
