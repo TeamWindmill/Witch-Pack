@@ -1,11 +1,12 @@
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "EnemyRangedAutoAttack", menuName = "Ability/AutoAttack/EnemyRangedAutoAttack")]
 public class EnemyRangedAutoAttack : AutoAttack
 {
-    [SerializeField] private int coreDamage;
+    [BoxGroup("Auto Attack")][SerializeField] private float _speed;
+    [BoxGroup("Auto Attack")][SerializeField] private int coreDamage;
     public override int CoreDamage => coreDamage;
-
     public override bool CastAbility(BaseUnit caster)
     {
         IDamagable target = null;
@@ -25,7 +26,7 @@ public class EnemyRangedAutoAttack : AutoAttack
         AutoAttackMono newPew = LevelManager.Instance.PoolManager.ShamanAutoAttackPool.GetPooledObject();
         newPew.transform.position = caster.CastPos.transform.position;
         newPew.gameObject.SetActive(true);
-        newPew.Fire(caster, this, target);
+        newPew.Fire(caster, this, target,_speed);
         return true;
     }
 

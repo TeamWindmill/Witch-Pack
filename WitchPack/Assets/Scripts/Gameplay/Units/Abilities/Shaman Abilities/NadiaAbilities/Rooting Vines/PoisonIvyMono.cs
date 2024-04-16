@@ -3,9 +3,9 @@ public class PoisonIvyMono : RootingVinesMono
 {
     private PoisonIvy poison;
     DamageHandler damage;
-    public override void Init(BaseUnit owner, CastingAbility ability, float lastingTime)
+    public override void Init(BaseUnit owner, CastingAbility ability, float lastingTime,float aoeRange)
     {
-        base.Init(owner, ability, lastingTime);
+        base.Init(owner, ability, lastingTime,aoeRange);
         poison = ability as PoisonIvy;
     }
     
