@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ProjectileMono : MonoBehaviour
 {
-    [SerializeField] protected float initialSpeed;
     protected float _speed;
     protected CastingAbility _ability;
     protected BaseUnit _owner;
