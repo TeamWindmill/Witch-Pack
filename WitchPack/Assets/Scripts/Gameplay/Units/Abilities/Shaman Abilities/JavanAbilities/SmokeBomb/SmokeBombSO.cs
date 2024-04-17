@@ -35,7 +35,7 @@ public class SmokeBombSO : OffensiveAbility
             return true;
         }
 
-        if (caster.Stats.ThreatLevel >= 0) return true;
+        if (caster.Stats.ThreatLevel > 0) return true;
 
         return false;
     }

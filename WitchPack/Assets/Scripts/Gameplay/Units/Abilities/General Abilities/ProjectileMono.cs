@@ -1,8 +1,9 @@
 using System;
 using System.Collections;
+using Systems.ObjectPool;
 using UnityEngine;
 
-public class ProjectileMono : MonoBehaviour
+public class ProjectileMono : PoolableObject<ProjectileMono>
 {
     protected float _speed;
     protected CastingAbility _ability;
@@ -72,5 +73,20 @@ public class ProjectileMono : MonoBehaviour
         _target = null;
         OnShotHit = null;
         gameObject.SetActive(false);
+    }
+
+    public override ProjectileMono FactoryMethod()
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void TurnOnCallback(ProjectileMono obj)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void TurnOffCallback(ProjectileMono obj)
+    {
+        throw new NotImplementedException();
     }
 }
