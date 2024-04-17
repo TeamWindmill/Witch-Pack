@@ -826,6 +826,7 @@ Transform:
   - {fileID: 2032161954}
   - {fileID: 149105237}
   - {fileID: 1867247881}
+  - {fileID: 831346895}
   m_Father: {fileID: 990766648}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &572488212
@@ -1300,6 +1301,53 @@ MonoBehaviour:
   pooledObjects: []
   PrefabToPool: {fileID: 8952517543661881636, guid: 051572c4bedeccc448ee4dac2d812e2a, type: 3}
   NumToPool: 1
+--- !u!1 &831346894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 831346895}
+  - component: {fileID: 831346896}
+  m_Layer: 0
+  m_Name: AoeFirePool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &831346895
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831346894}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 448829543}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &831346896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 831346894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73368a8f2d814ad6ad550cdf9398d419, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pooledObjects: []
+  PrefabToPool: {fileID: 47119597711039227, guid: e4ef94ed7271f6d4080a22d7031a8c04, type: 3}
+  NumToPool: 2
 --- !u!1 &837308235
 GameObject:
   m_ObjectHideFlags: 0
@@ -1437,6 +1485,7 @@ MonoBehaviour:
   poisonIvyPool: {fileID: 2032161955}
   healingWeedsPool: {fileID: 149105238}
   _fireballPool: {fileID: 1867247882}
+  _aoeFirePool: {fileID: 831346896}
 --- !u!1 &1014536823
 GameObject:
   m_ObjectHideFlags: 0
