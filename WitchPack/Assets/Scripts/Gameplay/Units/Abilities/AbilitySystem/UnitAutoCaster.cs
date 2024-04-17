@@ -49,8 +49,6 @@ public class UnitAutoCaster : MonoBehaviour
                     CastTimeEnd?.Invoke(caster.Ability);
                     if(caster.Ability.HasCastVisual) CastTimeEndVFX?.Invoke(caster.Ability.CastVisualColor);
                     _cooldownAbilities.Add(caster,TimerManager.Instance.AddTimer(caster.GetCooldown(),caster,ReturnAbilityFromCooldown,true));
-                    // _activeTimers.Add(TimerManager.Instance.AddTimer(caster.GetCooldown(),caster,EnqueueAbility,true));
-                    // _abilitiesOnCooldown.Add(caster);
                     _queuedAbilities.Dequeue();
                     _castTimer = 0;
                 }
