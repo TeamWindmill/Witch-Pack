@@ -6,7 +6,6 @@ public class EnemyAI: BaseStateMachine<EnemyAI>
 {
     public State<EnemyAI> ActiveState => _activeState;
     public Enemy Enemy { get; private set; }
-    public BaseUnit CurrentTarget { get; private set; }
     public EnemyAIConfig Config { get; private set; }
 
     public void Init(Enemy owner)
@@ -18,10 +17,5 @@ public class EnemyAI: BaseStateMachine<EnemyAI>
     public void OnDisable()
     {
         if(_activeState != null) _activeState.Exit(this);
-    }
-
-    public void SetTarget(BaseUnit target)
-    {
-        CurrentTarget = target;
     }
 }
