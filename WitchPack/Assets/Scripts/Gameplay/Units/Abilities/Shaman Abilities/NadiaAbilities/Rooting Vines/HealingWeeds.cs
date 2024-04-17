@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ability", menuName = "Ability/HealingWeeds")]
 public class HealingWeeds : OffensiveAbility
 {
-    [SerializeField] private float aoeRange = 1;
+    [SerializeField] private float aoeScale = 1;
     [SerializeField] private float lastingTime;
 
     public override bool CastAbility(BaseUnit caster)
@@ -14,7 +14,7 @@ public class HealingWeeds : OffensiveAbility
         if (!ReferenceEquals(target, null))
         {
             HealingWeedsMono newHealingWeeds = LevelManager.Instance.PoolManager.HealingWeedsPool.GetPooledObject();
-            newHealingWeeds.Init(caster, this, lastingTime,aoeRange);
+            newHealingWeeds.Init(caster, this, lastingTime,aoeScale);
             newHealingWeeds.transform.position = target.transform.position;
             newHealingWeeds.gameObject.SetActive(true);
             return true;
