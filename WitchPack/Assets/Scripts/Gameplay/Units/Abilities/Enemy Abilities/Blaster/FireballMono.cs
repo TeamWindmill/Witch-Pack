@@ -10,6 +10,6 @@ public class FireballMono : ProjectileMono
         var fireball = _ability as FireballSO;
         target.Damageable.GetHit(_owner.DamageDealer, _ability);
         _aoeFire.gameObject.SetActive(true);
-        _aoeFire.Init(_owner,_ability,fireball.Duration,fireball.AoeRange);
+        _aoeFire.Init(_owner,_ability,fireball.Duration,fireball.AoeScale);
     }
 }

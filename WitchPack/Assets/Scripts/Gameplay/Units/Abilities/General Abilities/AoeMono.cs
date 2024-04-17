@@ -5,6 +5,7 @@ public class AoeMono : MonoBehaviour
     private float ringLastingTime;
     private float elapsedTime;
     [SerializeField] private Transform _holder;
+    [SerializeField] private Transform _rangeVisuals;
     [SerializeField] private GroundColliderTargeter _groundColliderTargeter;
 
     protected CastingAbility _ability;
@@ -15,6 +16,7 @@ public class AoeMono : MonoBehaviour
         _owner = owner;
         _ability = ability;
         _holder.transform.localScale = new Vector3(aoeRange,aoeRange,aoeRange);
+        _rangeVisuals.transform.localScale = new Vector3(aoeRange,aoeRange,aoeRange);
         _groundColliderTargeter.OnTargetAdded += (c) => TargetInteract(c,true);
         _groundColliderTargeter.OnTargetLost += (c) => TargetInteract(c,false);
     }
