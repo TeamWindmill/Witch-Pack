@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class AoeMono : MonoBehaviour
@@ -5,6 +6,7 @@ public class AoeMono : MonoBehaviour
     private float ringLastingTime;
     private float elapsedTime;
     [SerializeField] private Transform _holder;
+    [SerializeField] private Transform _rangeVisuals;
     [SerializeField] private GroundColliderTargeter _groundColliderTargeter;
 
     protected CastingAbility _ability;
@@ -15,8 +17,9 @@ public class AoeMono : MonoBehaviour
         _owner = owner;
         _ability = ability;
         _holder.transform.localScale = new Vector3(aoeRange,aoeRange,aoeRange);
-        _groundColliderTargeter.OnTargetAdded += (c) => TargetInteract(c,true);
-        _groundColliderTargeter.OnTargetLost += (c) => TargetInteract(c,false);
+        _rangeVisuals.transform.localScale = new Vector3(aoeRange,aoeRange,aoeRange);
+        _groundColliderTargeter.OnTargetAdded += OnTargetEnter;
+        _groundColliderTargeter.OnTargetLost += OnTargetExit;
     }
     protected virtual void Update()
     {
@@ -28,7 +31,17 @@ public class AoeMono : MonoBehaviour
         }
     }
 
+    protected virtual void OnDisable()
+    {
+        _groundColliderTargeter.OnTargetAdded -= OnTargetEnter;
+        _groundColliderTargeter.OnTargetLost -= OnTargetExit;
+    }
+
+    private void OnTargetEnter(GroundCollider collider) => TargetInteract(collider, true);
+    private void OnTargetExit(GroundCollider collider) => TargetInteract(collider, false);
     
+
+
     private void TargetInteract(GroundCollider collider, bool enter)
     {
         if(collider.Unit is Enemy enemy)

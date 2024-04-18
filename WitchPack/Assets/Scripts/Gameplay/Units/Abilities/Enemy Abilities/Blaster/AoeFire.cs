@@ -25,6 +25,7 @@ public class AoeFire : AoeMono
         if (_activeTimers.TryGetValue(shaman,out var timer))
         {
             timer.RemoveThisTimer();
+            _activeTimers.Remove(shaman);
         }
     }
     private void OnFireTick(Shaman shaman)

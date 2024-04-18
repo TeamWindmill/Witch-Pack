@@ -21,6 +21,7 @@ public class ConfigWindowEditor : OdinMenuEditorWindow
         //_createNewConfigDatas = new CreateNewConfigDatas();
         //tree.Add("Create New Configs", _createNewConfigDatas);
         tree.AddAllAssetsAtPath("Units/Enemies/Base",                   "Assets/Configs/UnitConfigs/EnemyConfigs",typeof(EnemyConfig));
+        tree.AddAllAssetsAtPath("Units/Enemies/Bosses",                   "Assets/Configs/UnitConfigs/EnemyConfigs/Bosses",typeof(EnemyConfig));
         tree.AddAllAssetsAtPath("Units/Shamans/Base",                   "Assets/Configs/UnitConfigs/ShamanConfigs",typeof(ShamanConfig));
         tree.AddAllAssetsAtPath("Units/PowerStructures",                "Assets/Configs/UnitConfigs/StructuresConfig",typeof(PowerStructureConfig));
         tree.AddAllAssetsAtPath("Units/Shamans",                        "Assets/Configs/UnitConfigs/ShamanConfigs",typeof(EnergyConfig));

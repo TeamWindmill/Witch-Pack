@@ -33,6 +33,7 @@ public class BaseUnit : BaseEntity , IDamagable
     private AutoAttackCaster autoAttackCaster;
     private OffensiveAbility _autoAttack;
     private List<ITimer> unitTimers;
+    private BaseUnitConfig _unitConfig;
 
     #endregion
     
@@ -40,6 +41,7 @@ public class BaseUnit : BaseEntity , IDamagable
 
     public bool Initialized { get; protected set; }
     public bool IsDead => damageable.CurrentHp <= 0;
+    public BaseUnitConfig UnitConfig => _unitConfig;
     public HP_Bar HpBar => hpBar;
     public Damageable Damageable => damageable;
     public DamageDealer DamageDealer => damageDealer;
@@ -64,6 +66,7 @@ public class BaseUnit : BaseEntity , IDamagable
 
     public virtual void Init(BaseUnitConfig givenConfig)
     {
+        _unitConfig = givenConfig;
         _autoAttack = givenConfig.AutoAttack;
         stats = new UnitStats(BaseStats);
         damageable = new Damageable(this);

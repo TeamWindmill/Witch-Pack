@@ -72,6 +72,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 667829e21f460fc4db6b3c14534079c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &3758589107414161647 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3566934796620190830, guid: c124e729e6fd9044a9c26cd483d7b758, type: 3}
+  m_PrefabInstance: {fileID: 407994326100216961}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6868458766133203199 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6555225063696473214, guid: c124e729e6fd9044a9c26cd483d7b758, type: 3}
+  m_PrefabInstance: {fileID: 407994326100216961}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &9096238916081232529 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8905069691879237136, guid: c124e729e6fd9044a9c26cd483d7b758, type: 3}
@@ -89,9 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2941386c540fc744cad542a9c598ab9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lastingTime: 3
-  elapsedTime: 0
-  groundColliderTargeter: {fileID: 2624625606037107988}
+  _holder: {fileID: 3758589107414161647}
+  _rangeVisuals: {fileID: 6868458766133203199}
+  _groundColliderTargeter: {fileID: 2624625606037107988}
   speedBoost: {fileID: 11400000, guid: d710e62716202eb468b2736736888e07, type: 2}
   regenBoost: {fileID: 11400000, guid: 73432250d607bfb48baaaf21ada71a98, type: 2}
   root: {fileID: 11400000, guid: 742cb490a287e5d45b8812d4c42299c4, type: 2}

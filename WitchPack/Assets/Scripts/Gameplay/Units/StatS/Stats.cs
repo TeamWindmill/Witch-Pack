@@ -15,6 +15,7 @@ public class Stats
     public BaseStat CritChance = new BaseStat(StatType.CritChance);
     public BaseStat Armor = new BaseStat(StatType.Armor);
     public BaseStat HpRegen = new BaseStat(StatType.HpRegen);
+    public BaseStat Threat = new BaseStat(StatType.Threat);
     [HideInInspector] public BaseStat AbilityProjectilePenetration = new BaseStat(StatType.AbilityProjectilePenetration);
     [HideInInspector] public BaseStat Visibility = new BaseStat(StatType.Visibility);
     [HideInInspector] public BaseStat ThreatLevel = new BaseStat(StatType.ThreatLevel);
@@ -38,7 +39,8 @@ public enum StatType
     AbilityProjectileSpeed,//if an ability is projectile quicken it by this amount
     AbilityProjectilePenetration,//the amount of times a projectile ability can hit targets before disabling
     Visibility,
-    ThreatLevel,
+    ThreatLevel, //the amount of threat currently on this unit
+    Threat, //the amount of threat added to this unit's targets
 }
 
 [Serializable]
