@@ -29,8 +29,8 @@ public class TimeButtonsUI : ClickableUIElement
     protected override void OnClick(PointerEventData eventData)
     {
         base.OnClick(eventData);
-        if (_isActive) Off();
-        else On();
+        if(_isActive) return;
+        On();
     }
 
     public void SetState(bool state)

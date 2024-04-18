@@ -89,6 +89,7 @@ public class AbilityUpgradePanelUI : UIElement
 
     public override void Hide()
     {
+        if(!gameObject.activeSelf) return; 
         baseAbilityUpgradeUIButton.Hide();
         foreach (var ability in abilityUpgrades2UI)
         {
