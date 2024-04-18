@@ -40,7 +40,7 @@ public class AbilitiesHandlerUI : MonoBehaviour
     {
         abilityUpgradePanelUI.OnAbilityUpgrade -= OnAbilityUpgrade;
         _shaman.EnergyHandler.OnShamanLevelUp -= OnShamanLevelUp;
-        abilityUpgradePanelUI.Hide();
+        abilityUpgradePanelUI.gameObject.SetActive(false);
         foreach (var uiBlock in abilityUIButtons)
         {
             if (!uiBlock.gameObject.activeSelf) return;
