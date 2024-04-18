@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Overheal
   m_EditorClassIdentifier: 
   name: Overheal
-  discription: Overhealing grants max health
+  discription: 'Healing increaced and Overhealing grants max health '
   defaultIcon: {fileID: -2047859931, guid: 8a1c0a843806e364080d5a6ae48d09fb, type: 3}
   disabledIcon: {fileID: -240458134, guid: 8a1c0a843806e364080d5a6ae48d09fb, type: 3}
   upgradeIcon: {fileID: 1948251923, guid: 8a1c0a843806e364080d5a6ae48d09fb, type: 3}
@@ -30,9 +30,10 @@ MonoBehaviour:
     Priority: 5
     Modifier: 1
     StatType: 0
+    AvoidCharmedTargets: 0
   _hasCastVisual: 1
   castVisualColor: 5
   _hasSFX: 1
   soundEffectType: 32
-  healAmount: 50
+  healAmount: 70
   permanentMaxHealthBonus: 20
