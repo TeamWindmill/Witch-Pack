@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
-public class AutoAttackMono : ProjectileMono, IPoolable<AutoAttackMono>
+public class AutoAttackMono : ProjectileMono
 {
 
     protected override void OnTargetHit(IDamagable target)
@@ -19,20 +19,5 @@ public class AutoAttackMono : ProjectileMono, IPoolable<AutoAttackMono>
                 break;
         }
     }
-    public int InitialStock { get; set; }
-    public bool IsDynamic { get; set; }
-    public AutoAttackMono FactoryMethod()
-    {
-        throw new System.NotImplementedException();
-    }
 
-    public void TurnOnCallback(AutoAttackMono obj)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public void TurnOffCallback(AutoAttackMono obj)
-    {
-        throw new System.NotImplementedException();
-    }
 }

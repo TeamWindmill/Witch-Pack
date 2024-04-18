@@ -9,7 +9,7 @@ public class EnemyRangedAutoAttack : AutoAttack
     public override int CoreDamage => coreDamage;
     public override bool CastAbility(BaseUnit caster)
     {
-        IDamagable target = null;
+        IDamagable target;
         if ((caster as Enemy)?.EnemyAI.ActiveState.GetType() == typeof(AttackCoreState))
         {
             target = LevelManager.Instance.CurrentLevel.CoreTemple;

@@ -19,16 +19,16 @@ public class AttackState : State<EnemyAI>
     public override void UpdateState(EnemyAI parent)
     {
         _timer -= GAME_TIME.GameDeltaTime;
-        
+
         if (_timer <= 0) parent.SetState(typeof(FollowPathBoss));
     }
 
     public override void ChangeState(EnemyAI parent)
     {
-        if (!parent.Enemy.ShamanTargeter.HasTarget)
-        {
-            parent.SetState(typeof(FollowPathBoss));
-        }
+        if (parent.Enemy.ShamanTargeter.HasTarget) return;
+        if (parent.Enemy.ShamanTargetHelper.CurrentTarget.Stats.Visibility == 0) return;
+
+        parent.SetState(typeof(FollowPathBoss));
     }
 
     public override void Exit(EnemyAI parent)
