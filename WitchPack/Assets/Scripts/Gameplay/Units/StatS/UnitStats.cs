@@ -38,29 +38,27 @@ public class UnitStats
     [SerializeField] private int visibility;
     [SerializeField] private int threatLevel;
 
-    public int MaxHp { get { return Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.MaxHp.value + maxHp), 0, (OwnerBaseStats.MaxHp.value + maxHp))); } }
-    public int BaseDamage { get { return Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.BaseDamage.value + baseDamage), 0, (OwnerBaseStats.BaseDamage.value + baseDamage))); } }
-    public float AttackSpeed { get { return Mathf.Clamp((OwnerBaseStats.AttackSpeed.value + attackSpeed), 0, 2f); } }
-    public float BonusRange { get { return Mathf.Clamp((OwnerBaseStats.BaseRange.value + baseRange), 0, (OwnerBaseStats.BaseRange.value + baseRange)); } }
-    public float MovementSpeed { get { return Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.MovementSpeed.value + movementSpeed), 0, (OwnerBaseStats.MovementSpeed.value + movementSpeed))); } }
-    public int CritDamage { get { return Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.CritDamage.value + critDamage), 0, (OwnerBaseStats.CritDamage.value + critDamage))); } }
-    public int CritChance { get { return Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.CritChance.value + critChance), 0, (OwnerBaseStats.CritChance.value + critChance))); } }
-    public int Armor { get { return Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.Armor.value + armor), 0, (OwnerBaseStats.Armor.value + armor))); } }
+    public int MaxHp => Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.MaxHp.value + maxHp), 0, (OwnerBaseStats.MaxHp.value + maxHp)));
+    public int BaseDamage => Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.BaseDamage.value + baseDamage), 0, (OwnerBaseStats.BaseDamage.value + baseDamage)));
+    public float AttackSpeed => Mathf.Clamp((OwnerBaseStats.AttackSpeed.value + attackSpeed), 0, 2f);
+    public float BonusRange => Mathf.Clamp((OwnerBaseStats.BaseRange.value + baseRange), 0, (OwnerBaseStats.BaseRange.value + baseRange));
+    public float MovementSpeed => Mathf.Clamp((OwnerBaseStats.MovementSpeed.value + movementSpeed), 0, (OwnerBaseStats.MovementSpeed.value + movementSpeed));
+    public int CritDamage => Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.CritDamage.value + critDamage), 0, (OwnerBaseStats.CritDamage.value + critDamage)));
+    public int CritChance => Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.CritChance.value + critChance), 0, (OwnerBaseStats.CritChance.value + critChance)));
+    public int Armor => Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.Armor.value + armor), 0, (OwnerBaseStats.Armor.value + armor)));
+
     public int HpRegen 
     { 
-        get 
-        {
-            return Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.HpRegen.value + hpRegen), 0, (OwnerBaseStats.HpRegen.value + hpRegen))); 
-        }
+        get => Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.HpRegen.value + hpRegen), 0, (OwnerBaseStats.HpRegen.value + hpRegen)));
         private set
         {
             hpRegen = value;
             OnHpRegenChange?.Invoke();
         }
     }
-    public int AbilityProjectilePenetration { get { return Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.AbilityProjectilePenetration.value + abilityProjectilePenetration), 0, (OwnerBaseStats.AbilityProjectilePenetration.value + abilityProjectilePenetration))); } }
-    public int Visibility { get { return Mathf.Clamp((OwnerBaseStats.Visibility.value + visibility), 0, 1); } }
-    public int ThreatLevel { get { return Mathf.Clamp((OwnerBaseStats.ThreatLevel.value + threatLevel), 0, OwnerBaseStats.ThreatLevel.value + threatLevel); } }
+    public int AbilityProjectilePenetration => Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.AbilityProjectilePenetration.value + abilityProjectilePenetration), 0, (OwnerBaseStats.AbilityProjectilePenetration.value + abilityProjectilePenetration)));
+    public int Visibility => Mathf.Clamp((OwnerBaseStats.Visibility.value + visibility), 0, 1);
+    public int ThreatLevel => Mathf.Clamp((OwnerBaseStats.ThreatLevel.value + threatLevel), 0, OwnerBaseStats.ThreatLevel.value + threatLevel);
 
     public float GetStatValue(StatType statTypeId)
     {
