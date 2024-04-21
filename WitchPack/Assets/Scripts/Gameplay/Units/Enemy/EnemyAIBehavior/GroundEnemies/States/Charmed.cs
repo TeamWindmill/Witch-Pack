@@ -6,11 +6,9 @@ public class Charmed : State<EnemyAI>
 {
     [SerializeField] private TargetData _targetData;
 
-    private BaseUnit _caster;
 
-    public void StartCharm(BaseUnit caster, Enemy affectedTarget)
+    public void StartCharm(Enemy affectedTarget)
     {
-        _caster = caster;
         affectedTarget.EnemyAI.SetState(typeof(Charmed));
     }
 
@@ -45,8 +43,6 @@ public class Charmed : State<EnemyAI>
 
     public override void Exit(EnemyAI parent)
     {
-        var enemy = parent.Enemy;
-        LevelManager.Instance.CharmedEnemies.Remove(enemy);
         parent.Enemy.AutoCaster.DisableCaster();
         base.Exit(parent);
     }
