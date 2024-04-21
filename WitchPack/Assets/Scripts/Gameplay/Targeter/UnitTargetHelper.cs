@@ -33,6 +33,10 @@ public class UnitTargetHelper<T> where T : BaseUnit
         var target = TargetingHelper<T>.GetTarget(_targets, givenData, totalTargetsToAvoid, owner.transform);
         if (!ReferenceEquals(target, null))
         {
+            if (givenData.AvoidCharmedTargets)
+                if (target.Effectable.ContainsStatusEffect(StatusEffectType.Charm))
+                    return null;
+
             if (!ReferenceEquals(CurrentTarget, null))
             {
                 CurrentTarget.Stats.AddValueToStat(StatType.ThreatLevel, -owner.UnitConfig.BaseStats.Threat.value);

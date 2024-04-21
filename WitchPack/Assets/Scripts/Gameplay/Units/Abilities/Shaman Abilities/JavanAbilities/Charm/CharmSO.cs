@@ -10,8 +10,7 @@ public class CharmSO : CastingAbility
 
         if (ReferenceEquals(target, null)) return false;
         
-        _charmedState.StartCharm(caster,target);
-        LevelManager.Instance.CharmedEnemies.Add(target);
+        _charmedState.StartCharm(target);
             
         foreach (var statusEffect in StatusEffects)
         {
