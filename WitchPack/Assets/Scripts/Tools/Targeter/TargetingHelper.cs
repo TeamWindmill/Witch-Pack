@@ -68,7 +68,6 @@ namespace Tools.Targeter
             if (availableTargets[i].Effectable.ContainsStatusEffect(StatusEffectType.Charm))
                 return true;
 
-            if (availableTargets[i].Stats.ThreatLevel <= 0) return true;
             
             return false;
         }
@@ -81,6 +80,8 @@ namespace Tools.Targeter
             for (int i = 0; i < availableTargets.Count; i++)
             {
                 if (TargetGeneralChecks(availableTargets, targetData, i)) continue;
+                
+                if (availableTargets[i].Stats.ThreatLevel <= 0) continue;
 
                 if (targetData.Modifier == TargetModifier.Most)
                 {
