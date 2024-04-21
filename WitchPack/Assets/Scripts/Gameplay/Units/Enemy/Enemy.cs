@@ -56,7 +56,7 @@ public class Enemy : BaseUnit
         Effectable.OnEffectRemovedVFX += enemyVisualHandler.EffectHandler.DisableEffect;
         Damageable.OnHitGFX += GetHitSFX;
         Damageable.OnDeathGFX += DeathSFX;
-        AutoAttackCaster.OnAttack += AttackSFX;
+        //AutoAttackCaster.OnAttack += AttackSFX;
         
 
         #endregion
@@ -89,7 +89,7 @@ public class Enemy : BaseUnit
         enemyAI.OnDisable();
         Damageable.OnHitGFX -= GetHitSFX;
         Damageable.OnDeathGFX -= DeathSFX;
-        if (AutoAttackCaster != null) AutoAttackCaster.OnAttack -= AttackSFX;
+        //if (AutoAttackCaster != null) AutoAttackCaster.OnAttack -= AttackSFX;
         Effectable.OnAffectedVFX -= enemyVisualHandler.EffectHandler.PlayEffect;
         Effectable.OnEffectRemovedVFX -= enemyVisualHandler.EffectHandler.DisableEffect;
         enemyVisualHandler.OnSpriteFlip -= enemyAnimator.FlipAnimations;
@@ -106,7 +106,7 @@ public class Enemy : BaseUnit
     }
     public void AbilityCastSFX(CastingAbility ability) => SoundManager.Instance.PlayAudioClip(ability.SoundEffectType);
     private void DeathSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.EnemyDeath);
-    private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.EnemyAttack);
+    //private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.EnemyAttack);
     
     #endregion
     

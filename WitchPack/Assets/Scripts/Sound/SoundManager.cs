@@ -9,15 +9,43 @@ using Random = UnityEngine.Random;
 public class SoundManager : MonoSingleton<SoundManager>
 {
     [SerializeField] private bool _testing;
-    [SerializeField] private AudioSource[] _lowPriorityAudioSources;
-    [SerializeField] private AudioSource[] _highPriorityAudioSources;
+    [SerializeField] private int _startingAudioSourcesAmount;
+    [SerializeField] private AudioSource _highPrioPrefab;
+    [SerializeField] private AudioSource _lowPrioPrefab;
     [SerializeField] private SoundsConfig _soundsConfig;
+    
+    private List<AudioSource> _highPriorityAudioSources = new();
+    private List<AudioSource> _lowPriorityAudioSources = new();
     private Dictionary<SoundEffectCategory, SoundEffect[]> _soundEffects;
-
-
-    private void Start()
+    protected override void Awake()
     {
+        base.Awake();
         _soundEffects = _soundsConfig.SoundEffects;
+        for (int i = 0; i < _startingAudioSourcesAmount; i++)
+        {
+            CreateAudioSource(true);
+        }
+
+        for (int i = 0; i < _startingAudioSourcesAmount; i++)
+        {
+            CreateAudioSource(false);
+        }
+    }
+
+    private AudioSource CreateAudioSource(bool highPrio)
+    {
+        AudioSource source;
+        if (highPrio)
+        {
+            source = Instantiate(_highPrioPrefab, transform);
+            _highPriorityAudioSources.Add(source);
+        }
+        else
+        {
+            source = Instantiate(_lowPrioPrefab, transform);
+            _lowPriorityAudioSources.Add(source);
+        }
+        return source;
     }
 
     public void PlayAudioClip(SoundEffectType soundEffectType, float pitch = 1, float volume = 1, bool loop = false)
@@ -63,6 +91,8 @@ public class SoundManager : MonoSingleton<SoundManager>
                 audioSource = source;
                 break;
             }
+
+            audioSource ??= CreateAudioSource(true);
         }
         else
         {
@@ -73,11 +103,13 @@ public class SoundManager : MonoSingleton<SoundManager>
                 audioSource = source;
                 break;
             }
+
+            audioSource ??= CreateAudioSource(false);
         }
         
         if (ReferenceEquals(audioSource, null))
         {
-            Debug.LogWarning("did not find any available audio source");
+            Debug.LogError("Error with audio source pooling");
             return;
         }
         #endregion

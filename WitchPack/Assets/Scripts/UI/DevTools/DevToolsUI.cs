@@ -6,6 +6,9 @@ using UnityEngine;
 public class DevToolsUI : UIElement
 {
     [SerializeField] private Transform _holder;
+    public override void Show() => _holder.gameObject.SetActive(true);
+    public override void Hide() => _holder.gameObject.SetActive(false);
+
     protected override void Update()
     {
         if (Input.GetKeyDown(KeyCode.K))

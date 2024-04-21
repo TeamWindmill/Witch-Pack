@@ -32,7 +32,7 @@ public class AbilitiesHandlerUI : MonoBehaviour
             uiButton.OnAbilityClick += OpenUpgradePanel;
         }
 
-        abilityUpgradePanelUI.gameObject.SetActive(false);
+        abilityUpgradePanelUI.Hide();
     }
 
 

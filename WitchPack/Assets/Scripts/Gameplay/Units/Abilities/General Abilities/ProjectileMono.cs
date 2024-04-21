@@ -3,7 +3,7 @@ using System.Collections;
 using Systems.ObjectPool;
 using UnityEngine;
 
-public class ProjectileMono : PoolableObject<ProjectileMono>
+public class ProjectileMono : PoolableObject
 {
     protected float _speed;
     protected CastingAbility _ability;
@@ -75,17 +75,18 @@ public class ProjectileMono : PoolableObject<ProjectileMono>
         gameObject.SetActive(false);
     }
 
-    public override ProjectileMono FactoryMethod()
+    public override PoolableObject FactoryMethod()
+    {
+        //return Instantiate();
+        return null;
+    }
+
+    public override void TurnOnCallback(PoolableObject obj)
     {
         throw new NotImplementedException();
     }
 
-    public override void TurnOnCallback(ProjectileMono obj)
-    {
-        throw new NotImplementedException();
-    }
-
-    public override void TurnOffCallback(ProjectileMono obj)
+    public override void TurnOffCallback(PoolableObject obj)
     {
         throw new NotImplementedException();
     }

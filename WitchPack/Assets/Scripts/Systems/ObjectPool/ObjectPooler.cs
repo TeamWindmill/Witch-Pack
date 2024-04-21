@@ -5,15 +5,15 @@ using UnityEngine;
 
 namespace Systems.ObjectPool
 {
-    public class ObjectPooler<T>
+    public class ObjectPooler
     {
-        private readonly List<T> _currentStock;
+        private readonly List<PoolableObject> _currentStock;
         private readonly bool _isDynamic;
-        private readonly Func<T> _factoryMethod;
-        private readonly Action<T> _turnOnCallback;
-        private readonly Action<T> _turnOffCallback;
+        private readonly Func<PoolableObject> _factoryMethod;
+        private readonly Action<PoolableObject> _turnOnCallback;
+        private readonly Action<PoolableObject> _turnOffCallback;
 
-        public ObjectPooler(PoolableObject<T> poolable)
+        public ObjectPooler(PoolableObject poolable)
         {
             _factoryMethod = poolable.FactoryMethod;
             _isDynamic = poolable.IsDynamic;
@@ -21,7 +21,7 @@ namespace Systems.ObjectPool
             _turnOffCallback = poolable.TurnOffCallback;
             _turnOnCallback = poolable.TurnOnCallback;
 
-            _currentStock = new List<T>();
+            _currentStock = new List<PoolableObject>();
 
             for (var i = 0; i < poolable.InitialStock; i++)
             {
@@ -30,7 +30,7 @@ namespace Systems.ObjectPool
                 _currentStock.Add(obj);
             }
         }
-        public ObjectPooler(Func<T> factoryMethod, Action<T> turnOnCallback, Action<T> turnOffCallback, int initialStock = 0, bool isDynamic = true)
+        public ObjectPooler(Func<PoolableObject> factoryMethod, Action<PoolableObject> turnOnCallback, Action<PoolableObject> turnOffCallback, int initialStock = 0, bool isDynamic = true)
         {
             _factoryMethod = factoryMethod;
             _isDynamic = isDynamic;
@@ -38,7 +38,7 @@ namespace Systems.ObjectPool
             _turnOffCallback = turnOffCallback;
             _turnOnCallback = turnOnCallback;
 
-            _currentStock = new List<T>();
+            _currentStock = new List<PoolableObject>();
 
             for (var i = 0; i < initialStock; i++)
             {
@@ -47,7 +47,7 @@ namespace Systems.ObjectPool
                 _currentStock.Add(obj);
             }
         }
-        public ObjectPooler(Func<T> factoryMethod, Action<T> turnOnCallback, Action<T> turnOffCallback, List<T> initialStock, bool isDynamic = true)
+        public ObjectPooler(Func<PoolableObject> factoryMethod, Action<PoolableObject> turnOnCallback, Action<PoolableObject> turnOffCallback, List<PoolableObject> initialStock, bool isDynamic = true)
         {
             _factoryMethod = factoryMethod;
             _isDynamic = isDynamic;
@@ -58,9 +58,9 @@ namespace Systems.ObjectPool
             _currentStock = initialStock;
         }
         
-        public T GetObject()
+        public PoolableObject GetObject()
         {
-            var result = default(T);
+            var result = default(PoolableObject);
             if (_currentStock.Count > 0)
             {
                 result = _currentStock[0];
@@ -72,7 +72,7 @@ namespace Systems.ObjectPool
             return result;
         }
         
-        public void ReturnObject(T o)
+        public void ReturnObject(PoolableObject o)
         {
             _turnOffCallback(o);
             _currentStock.Add(o);
