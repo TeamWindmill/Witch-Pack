@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnergyConfig : ScriptableObject
 {
     [Header("Energy")] 
-    [SerializeField] private float _assistPercent;
+    [SerializeField,Range(0,100)] private float _assistPercent;
     [Header("Energy Points Required to Level Up")] 
     [SerializeField] private int level1;
     [SerializeField] private int level2;
@@ -23,5 +23,5 @@ public class EnergyConfig : ScriptableObject
     public int Level5 => level5;
     public int Level6 => level6;
     public int MaxLevel => maxLevel;
-    public float AssistPercent => _assistPercent;
+    public float AssistPercent => _assistPercent/100;
 }

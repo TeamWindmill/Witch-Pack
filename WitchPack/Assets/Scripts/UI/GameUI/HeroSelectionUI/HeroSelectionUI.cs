@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class HeroSelectionUI : UIElement , IPointerEnterHandler , IPointerExitHandler
+public class HeroSelectionUI : UIElement 
 {
     public static HeroSelectionUI Instance { get; private set; }
     public event Action OnMouseEnter;

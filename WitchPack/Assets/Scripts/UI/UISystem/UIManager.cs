@@ -6,9 +6,6 @@ using UnityEngine;
 public class UIManager : MonoSingleton<UIManager>
 {
     public bool MouseOverUI { get; private set; }
-    public InformationWindow InformationWindow => _informationWindow;
-    
-    [SerializeField] private InformationWindow _informationWindow;
     
     private Dictionary<UIGroup, List<UIElement>> _uiGroups;
     private List<UIElement> _mouseOnUIElements = new List<UIElement>();
