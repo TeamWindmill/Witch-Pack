@@ -9,7 +9,6 @@ public class LevelManager : MonoSingleton<LevelManager>
     public event Action<LevelHandler> OnLevelEnd;
     public LevelHandler CurrentLevel { get; private set; }
     public List<Shaman> ShamanParty { get; private set; }
-    public List<Enemy> CharmedEnemies { get;} = new();
     public bool IsWon { get; private set; }
     public ScoreHandler ScoreHandler => _scoreHandler;
     public ISelection SelectionHandler => _selectionManager.ActiveSelectionHandler;
