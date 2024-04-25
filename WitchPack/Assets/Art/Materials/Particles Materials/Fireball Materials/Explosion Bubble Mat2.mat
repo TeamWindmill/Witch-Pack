@@ -65,7 +65,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Main_Tex:
-        m_Texture: {fileID: 2800000, guid: 58b859f9be027e04f99382c55cc3a7aa, type: 3}
+        m_Texture: {fileID: 2800000, guid: 58e102ecb07d9114baea2597728e3d45, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -78,6 +78,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_4f071ce327444bdea351af1ff6414bf2_Texture_1_Texture2D:
+        m_Texture: {fileID: 2800000, guid: 13e6e81027a108348ba483d4adf56085, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
@@ -104,7 +108,7 @@ Material:
     - _Blend: 0
     - _BlendModePreserveSpecular: 1
     - _BlendOp: 0
-    - _Bloom: 1
+    - _Bloom: 3
     - _BumpScale: 1
     - _CameraFadingEnabled: 0
     - _CameraFarFadeDistance: 2
@@ -147,11 +151,15 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 0
     m_Colors:
+    - _BG_Color: {r: 1, g: 0.4198113, b: 0.4198113, a: 0.3254902}
     - _BaseColor: {r: 1, g: 0.26447567, b: 0, a: 1}
     - _BaseColorAddSubDiff: {r: 1, g: 0, b: 0, a: 0}
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}
-    - _Color: {r: 15.265926, g: 2.8571918, b: 0.39963147, a: 1}
+    - _Color: {r: 6.51427, g: 1.2433289, b: 0.0921829, a: 1}
+    - _Edges_Alpha: {r: 0.6226415, g: 0.6226415, b: 0.6226415, a: 0}
+    - _Edges_Color: {r: 1.5674734, g: 0.20526436, b: 0, a: 0}
     - _EmissionColor: {r: 0.990566, g: 0.6149114, b: 0, a: 1}
     - _SoftParticleFadeParams: {r: 0, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+    - _Texture_Tilling: {r: 1, g: 1, b: 0, a: 0}
   m_BuildTextureStacks: []
