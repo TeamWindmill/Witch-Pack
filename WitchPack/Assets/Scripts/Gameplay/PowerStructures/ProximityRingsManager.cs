@@ -91,7 +91,7 @@ public class ProximityRingsManager : MonoBehaviour
     private void ActivateRingSprites()
     {
         if (_shamanSelected) return;
-        ToggleOuterRingSprite(true);
+        ToggleRingSprite(_ringHandlers.Length-1,true);
         _infoWindowText.text = _statEffect.StatType.ToString().ToLowercaseNamingConvention();
         _infoWindowText.color = _powerStructureTypeColor;
         _infoWindow.SetActive(true);
@@ -104,9 +104,9 @@ public class ProximityRingsManager : MonoBehaviour
         _infoWindow.SetActive(false);
     }
 
-    private void ToggleOuterRingSprite(bool state)
+    public void ToggleRingSprite(int ringId, bool state)
     {
-        _ringHandlers[^1].ToggleSprite(state);
+        _ringHandlers[ringId].ToggleSprite(state);
     }
 
     #endregion

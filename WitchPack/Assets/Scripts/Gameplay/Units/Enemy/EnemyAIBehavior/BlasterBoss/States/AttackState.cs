@@ -25,15 +25,23 @@ public class AttackState : State<EnemyAI>
 
     public override void ChangeState(EnemyAI parent)
     {
-        if (parent.Enemy.ShamanTargeter.HasTarget) return;
-        if (parent.Enemy.ShamanTargetHelper.CurrentTarget.Stats.Visibility == 0) return;
+        var target = parent.Enemy.ShamanTargetHelper.CurrentTarget;
+        if (target is null)
+        {
+            parent.SetState(typeof(FollowPathBoss));
+            return;
+        }
 
-        parent.SetState(typeof(FollowPathBoss));
+        if (target.Stats.Visibility == 1 || target.IsDead)
+        {
+            parent.SetState(typeof(FollowPathBoss));
+        }
     }
 
     public override void Exit(EnemyAI parent)
     {
         parent.Enemy.AutoCaster.DisableCaster();
+        parent.Enemy.ShamanTargetHelper.RemoveCurrentTarget();
         base.Exit(parent);
     }
 }

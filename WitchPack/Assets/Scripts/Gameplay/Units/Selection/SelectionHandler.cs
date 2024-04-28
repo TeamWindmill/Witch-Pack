@@ -31,12 +31,10 @@ public class SelectionHandler : MonoBehaviour, ISelection
             if (SelectedShaman != null)
             {
                 SelectedShaman.ShamanVisualHandler.HideShamanRing();
-                SelectedShaman.IsSelected = false;
             }
             SelectedShaman = shaman;
             HeroSelectionUI.Instance.Show(shaman);
             SelectedShaman.ShamanVisualHandler.ShowShamanRing();
-            SelectedShaman.IsSelected = true;
         }
     }
 
@@ -123,7 +121,6 @@ public class SelectionHandler : MonoBehaviour, ISelection
         HeroSelectionUI.Instance.Hide();
         OnShamanDeselected?.Invoke(SelectedShaman);
         SelectedShaman.ShamanVisualHandler.HideShamanRing();
-        SelectedShaman.IsSelected = false;
         SelectedShaman = null;
 
     }

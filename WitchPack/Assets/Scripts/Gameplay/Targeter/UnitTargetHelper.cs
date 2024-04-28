@@ -37,10 +37,7 @@ public class UnitTargetHelper<T> where T : BaseUnit
                 if (target.Effectable.ContainsStatusEffect(StatusEffectType.Charm))
                     return null;
 
-            if (!ReferenceEquals(CurrentTarget, null))
-            {
-                CurrentTarget.Stats.AddValueToStat(StatType.ThreatLevel, -owner.UnitConfig.BaseStats.Threat.value);
-            }
+            RemoveCurrentTarget();
 
             CurrentTarget = target;
             CurrentTarget.Stats.AddValueToStat(StatType.ThreatLevel, owner.UnitConfig.BaseStats.Threat.value);
@@ -49,13 +46,15 @@ public class UnitTargetHelper<T> where T : BaseUnit
 
         return target;
     }
-    private void OnDeath()
+
+    public void RemoveCurrentTarget()
     {
         if (!ReferenceEquals(CurrentTarget, null))
         {
             CurrentTarget.Stats.AddValueToStat(StatType.ThreatLevel, -owner.UnitConfig.BaseStats.Threat.value);
         }
-        owner.Damageable.OnDeathGFX -= OnDeath;
+
+        CurrentTarget = null;
     }
 
     public void AddTargetToAvoid(T target)
@@ -67,5 +66,10 @@ public class UnitTargetHelper<T> where T : BaseUnit
     public void RemoveTargetToAvoid(T target)
     {
         _targetsToAvoid?.Remove(target);
+    }
+    private void OnDeath()
+    {
+        RemoveCurrentTarget();
+        owner.Damageable.OnDeathGFX -= OnDeath;
     }
 }

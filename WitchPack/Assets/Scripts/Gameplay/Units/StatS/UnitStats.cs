@@ -124,7 +124,7 @@ public class UnitStats
                 return 0;
         }
     }
-    public void AddValueToStat(StatType statType, int wholeValue) //can be used to reduce or increase
+    private void AddValueToStat(StatType statType, int wholeValue) //can be used to reduce or increase
     {
         switch (statType)
         {
