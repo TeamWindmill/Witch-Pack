@@ -11,12 +11,14 @@ public class TimeButtonsUI : ClickableUIElement
     [SerializeField] private Image image;
     [SerializeField] private Color onColor;
     [SerializeField] private Color offColor;
+    [SerializeField] private TimeButtons buttonType;
     [SerializeField] private float time;
     [SerializeField] private bool startState = false;
 
     private bool _isActive;
 
     public bool IsActive => _isActive;
+    public TimeButtons ButtonType => buttonType;
 
     private void Start()
     {
@@ -27,8 +29,8 @@ public class TimeButtonsUI : ClickableUIElement
     protected override void OnClick(PointerEventData eventData)
     {
         base.OnClick(eventData);
-        if (_isActive) Off();
-        else On();
+        if(_isActive) return;
+        On();
     }
 
     public void SetState(bool state)

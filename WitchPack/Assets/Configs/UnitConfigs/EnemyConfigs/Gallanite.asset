@@ -15,8 +15,51 @@ MonoBehaviour:
   Name: Gallanite
   unitSprite: {fileID: 21300000, guid: 42729d60a23b7d944afa643d5dec5ddf, type: 3}
   unitIcon: {fileID: 21300000, guid: 42729d60a23b7d944afa643d5dec5ddf, type: 3}
-  baseStats: {fileID: 11400000, guid: 2fac325b23a32424d8828063a5ff876e, type: 2}
+  unitIndicatorIcon: {fileID: 0}
+  _autoAttack: {fileID: 11400000, guid: 43f10eef9cb52464cb2f69d46a88498f, type: 2}
+  baseStats:
+    MaxHp:
+      statType: 0
+      value: 800
+    BaseDamage:
+      statType: 1
+      value: 40
+    AttackSpeed:
+      statType: 2
+      value: 1
+    BaseRange:
+      statType: 3
+      value: 5
+    MovementSpeed:
+      statType: 4
+      value: 1
+    CritDamage:
+      statType: 5
+      value: 75
+    CritChance:
+      statType: 6
+      value: 30
+    Armor:
+      statType: 9
+      value: 10
+    HpRegen:
+      statType: 10
+      value: 0
+    Threat:
+      statType: 16
+      value: 3
+    AbilityProjectilePenetration:
+      statType: 13
+      value: 0
+    Visibility:
+      statType: 14
+      value: 0
+    ThreatLevel:
+      statType: 15
+      value: 0
   Path: {fileID: 0}
   coreDamage: 3
   energyPoints: 20
-  enemyAIConfig: {fileID: 11400000, guid: 2df3aef7566553b4a8abaaf2f473203b, type: 2}
+  threat: 3
+  _abilities: []
+  _enemyAIConfig: {fileID: 11400000, guid: 5054c0e5f81b3a747bb44977d1e8dc73, type: 2}

@@ -5,11 +5,10 @@ using UnityEngine;
 [DefaultExecutionOrder(-1)]
 public class UIManager : MonoSingleton<UIManager>
 {
-    public InformationWindow InformationWindow => _informationWindow;
-    
-    [SerializeField] private InformationWindow _informationWindow;
+    public bool MouseOverUI { get; private set; }
     
     private Dictionary<UIGroup, List<UIElement>> _uiGroups;
+    private List<UIElement> _mouseOnUIElements = new List<UIElement>();
 
     protected override void Awake()
     {
@@ -29,6 +28,8 @@ public class UIManager : MonoSingleton<UIManager>
         if (_uiGroups.TryGetValue(group, out var uiElements))
         {
             uiElements.Add(element);
+            element.OnMouseEnter += MouseOnUIEnter;
+            element.OnMouseExit += MouseOnUIExit;
         }
         else
         {
@@ -78,6 +79,18 @@ public class UIManager : MonoSingleton<UIManager>
             }
         }
     }
+
+    private void MouseOnUIEnter(UIElement element)
+    {
+        MouseOverUI = true;
+        _mouseOnUIElements.Add(element);
+    }
+    private void MouseOnUIExit(UIElement element)
+    {
+        if (_mouseOnUIElements.Contains(element)) _mouseOnUIElements.Remove(element);
+        if(_mouseOnUIElements.Count == 0)
+            MouseOverUI = false;
+    }
 }
 
 public enum UIGroup
@@ -87,4 +100,9 @@ public enum UIGroup
     MenuUI,
     EndGameUI,
     SelectionUI,
+    TopCounterUI,
+    PartyUI,
+    Indicators,
+    InfoWindow,
+    DevTools,
 }

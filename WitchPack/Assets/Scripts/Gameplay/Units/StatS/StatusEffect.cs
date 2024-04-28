@@ -17,6 +17,7 @@ public class StatusEffect
     private StatusEffectType statusEffectType;
     private StatusEffectValueType statusEffectValueType;
     private float _statValue;
+    private bool _showStatusEffectPopup;
 
     public Effectable Host { get => host; }
     public float Counter { get => timeCounter; }
@@ -25,16 +26,18 @@ public class StatusEffect
     public StatusEffectProcess Process { get => process; }
     public StatusEffectType StatusEffectType { get => statusEffectType; }
     public StatusEffectValueType StatusEffectValueType { get => statusEffectValueType; }
+    public bool ShowStatusEffectPopup => _showStatusEffectPopup;
 
-    public StatusEffect(Effectable host, float duration, float amount, StatType effectedStatType, StatusEffectProcess process, StatusEffectType statusEffectType, StatusEffectValueType valueType)
+    public StatusEffect(Effectable host, StatusEffectConfig config)
     {
         this.host = host;
-        this.duration = duration;
-        this.amount = amount;
-        this._statType = effectedStatType;
-        this.process = process;
-        this.statusEffectType = statusEffectType;
-        this.statusEffectValueType = valueType;
+        duration = config.Duration;
+        amount = config.Amount;
+        _statType = config.StatTypeAffected;
+        process = config.Process;
+        statusEffectType = config.StatusEffectType;
+        statusEffectValueType = config.ValueType;
+        _showStatusEffectPopup = config.ShowStatusEffectPopup;
     }
 
 
@@ -43,10 +46,10 @@ public class StatusEffect
         switch (process)
         {
             case StatusEffectProcess.InstantWithDuration:
-                host.Owner.StartCoroutine(InstantEffect());
+                host.Owner.GameObject.StartCoroutine(InstantEffect());
                 break;
             case StatusEffectProcess.OverTime:
-                host.Owner.StartCoroutine(OverTimeEffect());
+                host.Owner.GameObject.StartCoroutine(OverTimeEffect());
                 break;
             case StatusEffectProcess.InstantWithoutDuration:
                 InstantEffectWithoutDuration();
@@ -75,7 +78,7 @@ public class StatusEffect
                 _statValue = Mathf.RoundToInt(amount);
                 break;
             case StatusEffectValueType.Percentage:
-                _statValue = Mathf.RoundToInt((amount / 100) * host.Owner.Stats.GetStatValue(_statType));
+                _statValue = (amount / 100) * host.Owner.Stats.GetStatValue(_statType);
                 break;
             case StatusEffectValueType.FlatToFloat:
                 _statValue = amount;
@@ -93,7 +96,7 @@ public class StatusEffect
                 _statValue = Mathf.RoundToInt(amount / duration);
                 break;
             case StatusEffectValueType.Percentage:
-                _statValue = Mathf.RoundToInt((amount / 100) * host.Owner.Stats.GetStatValue(_statType)) / duration;
+                _statValue = (amount / 100) * host.Owner.Stats.GetStatValue(_statType) / duration;
                 break;
             case StatusEffectValueType.FlatToFloat:
                 _statValue = amount / duration;
@@ -122,7 +125,7 @@ public class StatusEffect
                 _statValue = Mathf.RoundToInt(amount);
                 break;
             case StatusEffectValueType.Percentage:
-                _statValue = Mathf.RoundToInt((amount / 100) * host.Owner.Stats.GetStatValue(_statType));
+                _statValue = (amount / 100) * host.Owner.Stats.GetStatValue(_statType);
                 break;
             case StatusEffectValueType.FlatToFloat:
                 _statValue = amount;

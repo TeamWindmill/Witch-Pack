@@ -1,34 +1,33 @@
 using System;
+using DG.Tweening;
+using Tools.Lerp;
 using UnityEngine;
 
 
 [Serializable]
-public class WindEffectHandler : EffectTransitionLerp<ParticleAnimationType>
+public class WindEffectHandler 
 {
     private ParticleSystem[] _windParticles;
-
+    [SerializeField] private LerpConfig<float> LerpConfig;
     public void Init(ParticleSystem[] windParticles)
     {
         _windParticles = windParticles;
     }
-
-    protected override void SetValue(ParticleAnimationType type, float value)
+    public void StartTransition()
     {
-        switch (type)
+        foreach (var particle in _windParticles)
         {
-            case ParticleAnimationType.SimulationSpeed:
-                foreach (var particle in _windParticles)
-                {
-                    var main = particle.main;
-                    main.simulationSpeed = value;
-                }
-
-                break;
+            var main = particle.main;
+            DOTween.To(() => main.simulationSpeed, x => main.simulationSpeed = x, LerpConfig.EndValue, LerpConfig.TransitionTime);
         }
     }
-}
 
-public enum ParticleAnimationType
-{
-    SimulationSpeed,
+    public void EndTransition()
+    {
+        foreach (var particle in _windParticles)
+        {
+            var main = particle.main;
+            DOTween.To(() => main.simulationSpeed, x => main.simulationSpeed = x, LerpConfig.StartValue, LerpConfig.TransitionTime);
+        }
+    }
 }

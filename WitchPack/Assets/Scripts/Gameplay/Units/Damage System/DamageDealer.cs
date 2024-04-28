@@ -9,7 +9,11 @@ public class DamageDealer
     public Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> OnAssist;
 
     private OffensiveAbility autoAttack;
-    public BaseUnit Owner { get => owner; }
+
+    public BaseUnit Owner
+    {
+        get => owner;
+    }
 
     public DamageDealer(BaseUnit owner, OffensiveAbility autoAttack)
     {
@@ -26,6 +30,7 @@ public class DamageDealer
         {
             return true;
         }
+
         return false;
     }
 
@@ -37,10 +42,9 @@ public class DamageDealer
             if (crit)
             {
                 float critDamage = (Owner.Stats.CritDamage / 100f) + 1f;
-                dmg.AddMod(critDamage);//not sure what the math is supposed to be here - ask gd
+                dmg.AddMod(critDamage); //not sure what the math is supposed to be here - ask gd
             }
         }
-
     }
 
     private void SubscribeDamageBoostsFromAbility(Damageable target, DamageDealer dealer, DamageHandler dmg, CastingAbility ability, bool crit)
@@ -49,6 +53,7 @@ public class DamageDealer
         {
             return;
         }
+
         foreach (var item in (ability as OffensiveAbility).DamageBoosts)
         {
             switch (item.Type)
@@ -65,23 +70,14 @@ public class DamageDealer
 
     private int GetModCurHp(DamageBoostData boostData, Damageable target)
     {
-        if((target.CurrentHp / target.MaxHp) >= (boostData.Threshold / 100))
-        {
-            float damageBasedOnCurrentHP = target.CurrentHp * (boostData.damageBonus / 100);
-            return (int)damageBasedOnCurrentHP;
-        }
-
-        return 0;
-        
+        float damageBasedOnCurrentHP = target.CurrentHp * (boostData.damageBonusInPercent / 100);
+        return (int)damageBasedOnCurrentHP;
     }
 
     private float GetModMissingHp(DamageBoostData boostData, Damageable target)
     {
-        if ((target.CurrentHp / target.MaxHp) >= (boostData.Threshold / 100))
-        {
-            return 1 + (boostData.damageBonus / 100);
-        }
-        return 1;
+        var missingHp = (target.MaxHp - target.CurrentHp);
+        float damageBasedOnMissingHp = missingHp * (boostData.damageBonusInPercent / 100);
+        return (int)damageBasedOnMissingHp;
     }
-
 }

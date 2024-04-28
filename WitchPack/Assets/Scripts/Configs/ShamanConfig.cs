@@ -8,14 +8,13 @@ public class ShamanConfig : BaseUnitConfig
 {
     [SerializeField] private List<BaseAbility> rootAbilities = new List<BaseAbility>();
     [SerializeField] private List<BaseAbility> knownAbilities = new List<BaseAbility>();
-    [SerializeField] private EnergyLevels energyLevels;
+    [SerializeField] private EnergyConfig _energyConfig;
     [SerializeField] private bool isMale;
 
 
     public List<BaseAbility> KnownAbilities { get => knownAbilities; }
     public List<BaseAbility> RootAbilities { get => rootAbilities; }
-    public EnergyLevels EnergyLevels => energyLevels;
-
+    public EnergyConfig EnergyConfig => _energyConfig;
     public bool IsMale => isMale;
 }
 

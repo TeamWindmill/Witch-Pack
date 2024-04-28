@@ -9,94 +9,29 @@ using UnityEngine;
 /// </summary>
 public class GAME_TIME : MonoBehaviour
 {
-    /// <summary>
-    /// Event that is triggered when the time rate changes.
-    /// </summary>
     public static event Action OnTimeRateChange;
-
-    /// <summary>
-    /// Holds information about the game time and allows for time manipulation.
-    /// </summary>
     private static float _gameTime;
-
-    /// <summary>
-    /// The time rate at which the game time is progressing.
-    /// </summary>
     private static float _timeRate = 1f;
-
-    /// Startup` to get the total time played.
     private static float _startGameTime;
-
-    /// <summary>
-    /// The default curve used in time fading transitions.
-    /// </summary>
     private static AnimationCurve _defaultCurve = AnimationCurve.Linear(0, 0, 1, 1);
 
-    /// <summary>
-    /// The _tempTimeData variable stores the temporary time data used for pausing the game time.
-    /// </summary>
     private static float _tempTimeData = 1;
-
-    /// <summary>
-    /// Gets the total time played in the game.
-    /// </summary>
-    /// <value>The total time played in seconds.</value>
     public static float TimePlayed => Time.realtimeSinceStartup - _startGameTime;
-
-    /// <summary>
-    /// Gets the current time rate of the game.
-    /// </summary>
-    /// <returns>The current time rate.</returns>
-    public static float GetCurrentTimeRate => _timeRate;
-
-    /// <summary>
-    /// GAME_TIME is a static class that manages the game time and time manipulation.
-    /// </summary>
     public static float GameTime => _gameTime;
-
-    /// <summary>
-    /// Gets the time in seconds it took to complete the last frame.
-    /// </summary>
-    /// <remarks>
-    /// The GameDeltaTime property calculates the time difference between the current frame and the previous frame.
-    /// </remarks>
-    /// <returns>The delta time in seconds.</returns>
+    public static float TimeRate => _timeRate;
     public static float GameDeltaTime => Time.deltaTime * _timeRate;
-
-    /// <summary>
-    /// Gets a value indicating whether the game time is currently stopped.
-    /// </summary>
-    /// <value>
-    /// <c>true</c> if the game time is stopped; otherwise, <c>false</c>.
-    /// </value>
+    public static float GameFixedDeltaTime => Time.fixedDeltaTime * _timeRate;
     public static bool IsTimeStopped => _timeRate == 0;
-
-    /// of `this` in the `Awake` method of the `GAME_TIME` class.
     private static MonoBehaviour _monoBehaviour;
-
-    /// <summary>
-    /// Coroutine for managing the fade animation of the time rate.
-    /// </summary>
     private static Coroutine _fadeCoroutine;
-
-    /// <summary>
-    /// The current count of time during a transition.
-    /// </summary>
     private static float _transitionTimeCount = 0;
 
-    /// <summary>
-    /// Called when the object is instantiated in the scene.
-    /// </summary>
     private void Awake()
     {
         _monoBehaviour = this;
         _startGameTime = Time.realtimeSinceStartup;
         _gameTime = 0;
     }
-
-    /// <summary>
-    /// Updates the game time by adding the game delta time to the current game time.
-    /// </summary>
     private void Update()
     {
         _gameTime += GameDeltaTime;
@@ -143,7 +78,7 @@ public class GAME_TIME : MonoBehaviour
     /// <param name="curve">Optional animation curve to define the transition curve. If not provided, a default linear curve will be used.</param>
     private static IEnumerator FadeTime(float time, float transitionTime = 1, AnimationCurve curve = null)
     {
-        float currentTimeRate = GetCurrentTimeRate;
+        float currentTimeRate = _timeRate;
 
         var animationCurve = curve ?? _defaultCurve;
 
@@ -184,7 +119,7 @@ public class GAME_TIME : MonoBehaviour
     {
         SetTimeStep(_tempTimeData);
 
-        Debug.Log($"<color={ColorLogHelper.GREEN}>PLAY</color>");
+        //Debug.Log($"<color={ColorLogHelper.GREEN}>PLAY</color>");
         _tempTimeData = 0;
     }
 

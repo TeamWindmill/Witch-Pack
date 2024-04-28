@@ -22,8 +22,18 @@ public class UnitEffectHandler : MonoBehaviour
                 foreach (var effectVisual in _statusEffectVisuals)
                 {
                     if (effectVisual.StatusEffectType == statusEffectType)
-                    {                
-                        effectVisual.GetGameObject().SetActive(true);                            
+                    {
+                        if (effectVisual.PlayAllEffects)
+                        {
+                            foreach (var go in effectVisual.visualGameObjects)
+                            {
+                                go.SetActive(true);
+                            }
+                        }
+                        else
+                        {
+                            effectVisual.GetGameObject().SetActive(true);                            
+                        }
                         return;
                     }
                 }
@@ -85,6 +95,7 @@ public class UnitEffectHandler : MonoBehaviour
 public struct EffectVisual<T> where T : Enum
 {
     public T StatusEffectType;
+    [SerializeField] public bool PlayAllEffects;
     [SerializeField] public List<GameObject> visualGameObjects;
 
     public GameObject GetGameObject()

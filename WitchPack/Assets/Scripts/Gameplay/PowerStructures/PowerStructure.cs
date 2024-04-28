@@ -14,8 +14,7 @@ public class PowerStructure : MonoBehaviour
     [SerializeField] private SpriteRenderer _powerStructureSpriteRenderer;
     [SerializeField] private SpriteMask _powerStructureMask;
     [Space] [SerializeField] private bool _testing;
-
-    //private int _currentActiveRingId = 4;
+    
     private StatType _statType;
     private Modifier _statModifier;
     private Dictionary<int, float> _activeShadowRingIds = new Dictionary<int, float>();
@@ -41,14 +40,13 @@ public class PowerStructure : MonoBehaviour
             ring.OnShadowExit += OnShadowRingExit;
         }
 
-        LevelManager.Instance.SelectionManager.OnShamanDeselected += OnShadowDeselect;
+        LevelManager.Instance.SelectionHandler.OnShadowDeselected += OnShadowDeselect;
     }
-    private void OnShadowDeselect(Shaman shaman)
+    private void OnShadowDeselect(Shadow shadow)
     {
         proximityRingsManager.ToggleAllSprites(false);
-        if(ReferenceEquals(LevelManager.Instance.SelectionManager.Shadow,null)) return;
-        if(ReferenceEquals(LevelManager.Instance.SelectionManager.Shadow.Shaman,null)) return;
-        HideUI(LevelManager.Instance.SelectionManager.Shadow);
+        if(ReferenceEquals(shadow,null) || ReferenceEquals(shadow.Shaman,null)) return;
+        HideUI();
     }
 
     private void OnShamanRingEnter(int ringId, Shaman shaman)
@@ -100,18 +98,18 @@ public class PowerStructure : MonoBehaviour
         }
         else
         {
-            HideUI(shadow);
+            HideUI();
         }
     }
     private void ShowUI(Shadow shadow,int ringId)
     {
-        HeroSelectionUI.Instance.UpdateStatBlocks(_statType, CalculateStatValueForSelectionUI(shadow,shadow.Shaman));
+        HeroSelectionUI.Instance.StatBlockPanel.UpdateStatBlocks(_statType, CalculateStatValueForSelectionUI(shadow,shadow.Shaman));
         StatEffectPopupManager.ShowPopupWindows(GetInstanceID(), _statType.ToString(), CalculateStatValueForPSUI(), true, GetRingColorAlpha(ringId));
     }
 
-    private void HideUI(Shadow shadow)
+    private void HideUI()
     {
-        HeroSelectionUI.Instance.UpdateStatBlocks(_statType, CalculateStatValueForSelectionUI(shadow,shadow.Shaman));
+        HeroSelectionUI.Instance.StatBlockPanel.HideStatBlocksBonus();
         StatEffectPopupManager.HidePopupWindows(GetInstanceID());
     }
 

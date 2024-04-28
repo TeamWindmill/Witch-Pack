@@ -9,11 +9,12 @@ public class ShamanUIHandler : ClickableUIElement
     [SerializeField] private Slider _healthBar;
     [SerializeField] private Image _splash;
     [SerializeField] private Image _upgradeFrame;
+    [SerializeField] private Image _upgradeArrow;
     [SerializeField, Range(0, 1)] private float spriteDeathAlpha;
     [Space] 
-    [SerializeField] private Sprite upgradeReadyFrameSprite;
-    [SerializeField] private Sprite defaultFrameSprite;
-    
+    [SerializeField] private Image _redInjuryImage;
+    [SerializeField] private Sprite _deadUnitIcon;
+
     private Shaman _shaman;
 
 
@@ -23,30 +24,50 @@ public class ShamanUIHandler : ClickableUIElement
         _splash.sprite = _shaman.ShamanConfig.UnitIcon;
         _healthBar.value = 1;
         Color upgradeColor = _upgradeFrame.color;
+        _redInjuryImage.fillAmount = 0;
         if (shaman.EnergyHandler.HasSkillPoints)
+        {
             upgradeColor.a = 100;
+            _upgradeArrow.gameObject.SetActive(true);
+        }
         else
+        {
             upgradeColor.a = 0;
+            _upgradeArrow.gameObject.SetActive(false);
+        }
         _upgradeFrame.color = upgradeColor;
         shaman.EnergyHandler.OnShamanUpgrade += OnShamanUpgrade;
         shaman.EnergyHandler.OnShamanLevelUp += OnShamanLevelUp;
-        shaman.Damageable.OnGetHit += OnHealthChange;
+        shaman.Damageable.OnGetHit += OnChangeHealth;
+        shaman.Damageable.OnHeal += OnChangeHealth;
         shaman.Damageable.OnDeath += ShamanDeathUI;
         OnClickEvent += GoToShaman;
         OnClickEvent += ShowShamanInfo;
         Show();
     }
 
-    private void OnHealthChange(Damageable arg1, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4, bool arg5)
+    private void OnChangeHealth()
     {
-        float hpRatio = _shaman.Damageable.CurrentHp / _shaman.Damageable.MaxHp;
+        float hpRatio = _shaman.Damageable.CurrentHp / (float)_shaman.Damageable.MaxHp;
+        _redInjuryImage.fillAmount = 1 - hpRatio;
         _healthBar.value = hpRatio;
         _fill.color = Color.Lerp(Color.red, Color.green, hpRatio);
     }
 
+    private void OnChangeHealth(Damageable arg1, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4, bool arg5)
+    {
+        OnChangeHealth();
+    }
+
+    private void OnChangeHealth(Damageable arg1, float healAmount)
+    {
+        OnChangeHealth();
+    }
+
     public override void Hide()
     {
-        _shaman.Damageable.OnGetHit -= OnHealthChange;
+        _shaman.Damageable.OnGetHit -= OnChangeHealth;
+        _shaman.Damageable.OnHeal -= OnChangeHealth;
         _shaman.Damageable.OnDeath -= ShamanDeathUI;
         OnClickEvent -= GoToShaman;
         OnClickEvent -= ShowShamanInfo;
@@ -58,25 +79,33 @@ public class ShamanUIHandler : ClickableUIElement
         Color upgradeColor = _upgradeFrame.color;
         upgradeColor.a = 0;
         _upgradeFrame.color = upgradeColor;
-        var lowAlphaColor = _splash.color;
-        lowAlphaColor.a = spriteDeathAlpha;
-        _splash.color = lowAlphaColor;
+        _splash.sprite = _deadUnitIcon;
+        _redInjuryImage.fillAmount = 0;
     }
 
     private void OnShamanLevelUp(int obj)
     { 
+        if(_shaman.IsDead) return;
        Color upgradeColor = _upgradeFrame.color;
         upgradeColor.a = 100;
         _upgradeFrame.color = upgradeColor;
+        _upgradeArrow.gameObject.SetActive(true);
     }
 
     private void OnShamanUpgrade(bool hasSkillPoints)
     {
+        if(_shaman.IsDead) return;
         Color upgradeColor = _upgradeFrame.color;
         if (hasSkillPoints)
+        {
             upgradeColor.a = 100;
+            _upgradeArrow.gameObject.SetActive(true);
+        }
         else
+        {
             upgradeColor.a = 0;
+            _upgradeArrow.gameObject.SetActive(false);
+        }
         _upgradeFrame.color = upgradeColor;
     }
 
@@ -87,6 +116,7 @@ public class ShamanUIHandler : ClickableUIElement
     }
     private void ShowShamanInfo(PointerEventData pointerData)
     {
+        if(_shaman.IsDead) return;
         _shaman.SetSelectedShaman(pointerData.button);
     }
 }

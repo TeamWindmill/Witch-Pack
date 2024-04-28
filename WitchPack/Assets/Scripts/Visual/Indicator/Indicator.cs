@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +13,7 @@ public class Indicator : UIElement
 
     private bool isPulsing;
 
-    [SerializeField] private RectTransform artParent;
+    [SerializeField] private RectTransform artParentRectTransform;
 
     private Action onClick;
     private float time;
@@ -20,6 +22,8 @@ public class Indicator : UIElement
 
 
     private Vector3 midScreen = new Vector3(Screen.width / 2, Screen.height / 2);
+    private Vector2 referenceResolution;
+    private Vector2 resolutionDifference;
 
     // pulse variables
     [SerializeField] private float pulsingSpeed;
@@ -27,8 +31,14 @@ public class Indicator : UIElement
     [SerializeField] float minSizeValue;
     float maxSizeValue;
 
-    public void InitIndicator(Indicatable target, Sprite artwork, float time = 0, bool clickable = false, Action onClick = null, bool isPulsing = false)
+    [SerializeField] private Image pointerImage;
+    [SerializeField] private List<Sprite> pointerSprites;
+
+    public void InitIndicator(Indicatable target, Sprite artwork, float time = 0, bool clickable = false, Action onClick = null, bool isPulsing = false, 
+                IndicatorPointerSpriteType indicatorPointerSprite = IndicatorPointerSpriteType.Default)
     {
+        pointerImage.sprite = SetPointerImage(indicatorPointerSprite);
+
         this.time = time;
         this.target = target;
         this.artwork.sprite = artwork;
@@ -38,6 +48,7 @@ public class Indicator : UIElement
         maxSizeValue = 1;
         speedDirection = 1;
         button.enabled = clickable;
+        //UIManager.Instance.AddUIElement(this, uiGroup);
         if (!ReferenceEquals(onClick, null))
         {
             this.onClick = onClick;
@@ -46,11 +57,18 @@ public class Indicator : UIElement
         {
             this.onClick = null;
         }
+        referenceResolution = new Vector2(1920f, 1080f); 
+        resolutionDifference = new Vector2(referenceResolution.x / Screen.width, referenceResolution.y / Screen.height);
+
     }
 
+    private Sprite SetPointerImage(IndicatorPointerSpriteType indicatorPointerSprite)
+    {
+        int index = ((int)indicatorPointerSprite);
+        return pointerSprites[index];
+    }
 
-
-    private void Update()
+    protected override void Update()
     {
         //decrease ring if time is set
         if (time != 0)
@@ -59,7 +77,9 @@ public class Indicator : UIElement
             counter -= GAME_TIME.GameDeltaTime;
             if (counter <= 0)
             {
-                gameObject.SetActive(false);
+                //UIManager.Instance.RemoveUIElement(this, uiGroup);
+                LevelManager.Instance.IndicatorManager.RemoveActiveIndicator(this);
+                Hide();
             }
         }
         PositionIndicator();
@@ -70,39 +90,80 @@ public class Indicator : UIElement
     public void InvokeClick()
     {
         onClick?.Invoke();
-        gameObject.SetActive(false);        
+        //UIManager.Instance.RemoveUIElement(this, uiGroup);
+        LevelManager.Instance.IndicatorManager.RemoveActiveIndicator(this);
+        Hide();
     }
-
 
     private void PositionIndicator()
     {
         Vector3 targetScreenPoint = GameManager.Instance.CameraHandler.MainCamera.WorldToScreenPoint(target.transform.position);
-        targetScreenPoint = new Vector3(Mathf.Clamp(targetScreenPoint.x, 0, midScreen.x * 2), Mathf.Clamp(targetScreenPoint.y, 0, midScreen.y * 2));
-        targetScreenPoint -= midScreen;
+        targetScreenPoint *= resolutionDifference;
+        float clampedX = Mathf.Clamp(targetScreenPoint.x, 0, referenceResolution.x);
+        float clampedY = Mathf.Clamp(targetScreenPoint.y, 0, referenceResolution.y);
+        targetScreenPoint = new Vector3(clampedX, clampedY);
+        targetScreenPoint -= (new Vector3(referenceResolution.x / 2f, referenceResolution.y / 2f)); // Why we do dis??
+        
         rectTransform.localPosition = targetScreenPoint;
-        /* float angle = Mathf.Atan2(targetSP.normalized.y, targetSP.normalized.y) * Mathf.Rad2Deg;
-         pointer.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);*/
 
-        //test
+        // New Indicators for corners
+        Vector2 direction = new Vector2(0, 0); // will help calculate the angle at which we need to rotate our pointer
+        Vector2 referenceVector = new Vector2(0, 1); // angle will be calculated in relation to this vector
+        Vector3 axis = Vector3.forward; // the axis is used to flip the corner in case the target is to the right of the screen
+        
+        // y value of direction
+        if (targetScreenPoint.y == -referenceResolution.y / 2)
+        {
+            direction.y = -1;
+        }
+        else if (targetScreenPoint.y == referenceResolution.y /2)
+        {
+            direction.y = 1;
+        }
+        
+        // x value of direction
+        if (targetScreenPoint.x == -referenceResolution.x / 2)
+        {
+            direction.x = -1;
+        }
+        else if (targetScreenPoint.x == referenceResolution.x / 2)
+        {
+            direction.x = 1;
+            axis = Vector3.back;
+        }
+        
+        
+        /// gets angle (from the left of the y axis) between our referenceVector and our calculated direction
+        /// for future reference:
+        /// 180 degrees = above screen
+        /// 0 degrees = below screen
+        /// 90 degrees = to the right of screen
+        /// 270 degrees = to the left of screen
+        float pointerAngle = Vector2.Angle(referenceVector, direction);
+        rectTransform.localRotation = Quaternion.AngleAxis(pointerAngle, axis);
 
-        if (targetScreenPoint.y == -midScreen.y)
-        {
-            rectTransform.localRotation = Quaternion.AngleAxis(180, Vector3.forward);
-        }
-        else if (targetScreenPoint.y == midScreen.y)
-        {
-            rectTransform.localRotation = Quaternion.AngleAxis(0, Vector3.forward);
-        }
-        else if (targetScreenPoint.x == -midScreen.x)
-        {
-            rectTransform.localRotation = Quaternion.AngleAxis(90, Vector3.forward);
-        }
-        else if (targetScreenPoint.x == midScreen.x)
-        {
-            rectTransform.localRotation = Quaternion.AngleAxis(270, Vector3.forward);
-        }
-        //artwork.rectTransform.localEulerAngles = new Vector3(0, 0, -rectTransform.localEulerAngles.z);
-        artParent.localEulerAngles = new Vector3(0, 0, -rectTransform.localEulerAngles.z);
+        // Old Indicators
+        /// if (targetScreenPoint.y == -midScreen.y)
+        /// {
+        ///     rectTransform.localRotation = Quaternion.AngleAxis(180, Vector3.forward);
+        /// }
+        /// else if (targetScreenPoint.y == midScreen.y)
+        /// {
+        ///     rectTransform.localRotation = Quaternion.AngleAxis(0, Vector3.forward);
+        /// }
+        /// else if (targetScreenPoint.x == -midScreen.x)
+        /// 
+        /// if (targetScreenPoint.x == -midScreen.x)
+        /// {
+        ///     rectTransform.localRotation = Quaternion.AngleAxis(90, Vector3.forward);
+        /// }
+        /// else if (targetScreenPoint.x == midScreen.x)
+        /// {
+        ///     rectTransform.localRotation = Quaternion.AngleAxis(270, Vector3.forward);
+        /// }
+
+
+        artParentRectTransform.localEulerAngles = new Vector3(0, 0, -rectTransform.localEulerAngles.z);
 
         /* float angle = Mathf.Atan2(targetSP.y - midScreen.y, targetSP.x - midScreen.x);
          Vector3 posIndicator = new Vector3();
@@ -123,25 +184,33 @@ public class Indicator : UIElement
     {
         if(isPulsing == true)
         {            
-            if(artParent.localScale.x > maxSizeValue || artParent.localScale.x < minSizeValue)
+            if(artParentRectTransform.localScale.x > maxSizeValue || artParentRectTransform.localScale.x < minSizeValue)
             {
                 speedDirection *= -1;
             }
             float scaleChange = speedDirection * pulsingSpeed * GAME_TIME.GameDeltaTime;
             Vector3 scaleChangeVector = new Vector3(scaleChange, scaleChange, scaleChange);
-            artParent.localScale += scaleChangeVector;
+            artParentRectTransform.localScale += scaleChangeVector;
         }
     }
 
-    private void OnDisable()
+    protected override void OnDisable()
     {
         rectTransform.localRotation = Quaternion.AngleAxis(0, Vector3.forward);
         //artwork.rectTransform.localRotation = Quaternion.AngleAxis(0, Vector3.forward);
-        artParent.localRotation = Quaternion.AngleAxis(0, Vector3.forward);
-        artParent.localScale = new Vector3(1, 1, 1);
+        artParentRectTransform.localRotation = Quaternion.AngleAxis(0, Vector3.forward);
+        artParentRectTransform.localScale = new Vector3(1, 1, 1);
         speedDirection = 1;
+        counter = time;
+        base.OnDisable();
     }
+}
 
+public enum IndicatorPointerSpriteType
+{
+    Default,
+    Cyan,
+    Red
 }
 
 

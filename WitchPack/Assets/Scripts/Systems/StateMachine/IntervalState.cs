@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace Systems.StateMachine
 {
-    public abstract class IntervalState<T> : State<T> where T : MonoBehaviour
+    public abstract class IntervalState<T> : State<T> 
+        where T : MonoBehaviour
     {
         [SerializeField,BoxGroup("Interval State")] protected bool _usingGameTime;
         [SerializeField,BoxGroup("Interval State"), Tooltip("seconds between execution method")] protected float _executionInterval;

@@ -21,7 +21,7 @@ public abstract class UnitAnimator : MonoBehaviour
         this.unit = unit;
         this.unit.Damageable.OnHitGFX += GetHitAnimation;
         this.unit.Damageable.OnDeathGFX += DeathAnimation;
-        this.unit.AutoAttackHandler.OnAttack += AttackAnimation;
+        this.unit.AutoAttackCaster.OnAttack += AttackAnimation;
         animator.SetBool(Death,false);
         
     }

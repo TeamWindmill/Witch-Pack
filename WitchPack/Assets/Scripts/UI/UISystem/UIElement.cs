@@ -6,17 +6,18 @@ using UnityEngine.EventSystems;
 public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     //inherit from this class if it is a ui element
-    public event Action OnMouseEnter;
-    public event Action OnMouseExit;
+    public event Action<UIElement> OnMouseEnter;
+    public event Action<UIElement> OnMouseExit;
     public RectTransform RectTransform => rectTransform;
     public bool isMouseOver { get; private set; }
 
     [SerializeField, HideInInspector] protected RectTransform rectTransform;
-    [SerializeField] private bool showOnAwake = false;
-    [SerializeField] private bool assignUIGroup = false;
-    [SerializeField, ShowIf(nameof(assignUIGroup))] protected UIGroup uiGroup;
-    [SerializeField] private bool showInfoWindow = false;
-    [SerializeField, ShowIf(nameof(showInfoWindow))] protected WindowInfo _windowInfo;
+    [BoxGroup("UI Element")][SerializeField] private bool showOnAwake = false;
+    [BoxGroup("UI Element")][SerializeField] private bool hideOnAwake = false;
+    [BoxGroup("UI Element")][SerializeField] private bool assignUIGroup = false;
+    [BoxGroup("UI Element")][SerializeField, ShowIf(nameof(assignUIGroup))] protected UIGroup uiGroup;
+    [BoxGroup("UI Element")][SerializeField] private bool showInfoWindow = false;
+    [BoxGroup("UI Element")][SerializeField, ShowIf(nameof(showInfoWindow))] protected WindowInfo _windowInfo;
     
 
     
@@ -26,8 +27,8 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
         if (assignUIGroup) UIManager.Instance.AddUIElement(this, uiGroup);
         if (showOnAwake)
             Show();
-        else
-            gameObject.SetActive(false);
+        if (hideOnAwake)
+            Hide();
     }
 
     public virtual void Show()
@@ -45,13 +46,14 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
         gameObject.SetActive(false);
     }
 
-    private void OnValidate()
+    protected virtual void OnValidate()
     {
         rectTransform ??= GetComponent<RectTransform>();
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
+        OnMouseExit?.Invoke(this);
         if (assignUIGroup)
         {
             if (UIManager.Instance is not null)
@@ -67,17 +69,22 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
         isMouseOver = true;
-        OnMouseEnter?.Invoke();
+        OnMouseEnter?.Invoke(this);
         if (showInfoWindow) InformationWindow.Instance.RequestShow(this,_windowInfo);
     }
 
     public virtual void OnPointerExit(PointerEventData eventData)
     {
         isMouseOver = false;
-        OnMouseExit?.Invoke();
+        OnMouseExit?.Invoke(this);
         if (showInfoWindow)
         {
             if(InformationWindow.Instance.isActive) InformationWindow.Instance.Hide();
         }
+    }
+    protected virtual void OnDisable()
+    {
+        isMouseOver = false;
+        OnMouseExit?.Invoke(this);
     }
 }

@@ -74,6 +74,13 @@ public class PauseMenuManager : MonoBehaviour
         _canvas.gameObject.SetActive(false);
         GameManager.SceneHandler.LoadScene(SceneType.Map);
     }
+    public void ReturnToMainMenu()
+    { 
+        SoundManager.Instance.PlayAudioClip(SoundEffectType.MenuClick);
+        BgMusicManager.Instance.PlayMusic(MusicClip.MenuMusic);
+        _canvas.gameObject.SetActive(false);
+        GameManager.SceneHandler.LoadScene(SceneType.MainMenu);
+    }
 
     public void Quit()
     {

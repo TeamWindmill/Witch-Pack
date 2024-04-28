@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace Systems.StateMachine
 {
-    public abstract class State<T> : ScriptableObject where T : MonoBehaviour
+    public abstract class State<T> : ScriptableObject 
+        where T : MonoBehaviour 
     {
         public event Action<State<T>> StateEnter;
         public event Action<State<T>> StateExit;

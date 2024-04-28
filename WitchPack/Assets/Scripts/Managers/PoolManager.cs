@@ -8,12 +8,18 @@ public class PoolManager : MonoBehaviour
     [SerializeField] private EnemyPool enemyPool;
     [SerializeField] private IndicatorPool inidcatorPool;
     [SerializeField] private MultiShotPool _multiShotPool;
+    [SerializeField] private RicochetPool _ricochetPool;
     [SerializeField] private SmokeBombPool smokeBombPool;
     [SerializeField] private HighImpactPool highImpactPool;
     [SerializeField] private PoisonIvyPool poisonIvyPool;
     [SerializeField] private HealingWeedsPool healingWeedsPool;
+    [SerializeField] private FireballPool _fireballPool;
+    [SerializeField] private AoeFirePool _aoeFirePool;
 
+    public AoeFirePool AoeFirePool => _aoeFirePool;
+    public FireballPool FireballPool => _fireballPool;
     public PiercingShotPool PiercingShotPool { get => _piercingShotPool; }
+    public RicochetPool RicochetPool => _ricochetPool;
     public AutoAttackPool ShamanAutoAttackPool { get => shamanAutoAttackPool; }
     public EnemyPool EnemyPool { get => enemyPool; }
     public IndicatorPool InidcatorPool { get => inidcatorPool; }

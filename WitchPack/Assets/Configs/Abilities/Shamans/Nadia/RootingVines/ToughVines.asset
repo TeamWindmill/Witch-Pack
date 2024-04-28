@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bdd6bd70c445f54b9fa3b047c004b0a, type: 3}
+  m_Name: ToughVines
+  m_EditorClassIdentifier: 
+  name: Tough Vines
+  discription: Root duration increase
+  defaultIcon: {fileID: 894698434, guid: 8a1c0a843806e364080d5a6ae48d09fb, type: 3}
+  disabledIcon: {fileID: 60933071, guid: 8a1c0a843806e364080d5a6ae48d09fb, type: 3}
+  upgradeIcon: {fileID: -1382658470, guid: 8a1c0a843806e364080d5a6ae48d09fb, type: 3}
+  _upgrades:
+  - {fileID: 11400000, guid: 38ce83318f3509e48849324c620c3205, type: 2}
+  - {fileID: 11400000, guid: d190281f00062eb48ab27020e3d083f8, type: 2}
+  hasPopupColor: 0
+  popupColor: {r: 0, g: 0, b: 0, a: 0}
+  castTime: 1.5
+  cd: 10
+  range: 0
+  givesEnergyPoints: 0
+  energyPoints: 0
+  statusEffects:
+  - {fileID: 11400000, guid: 35f2904e82aa83e428f5e706a406d704, type: 2}
+  targetData:
+    Priority: 1
+    Modifier: 1
+    StatType: 0
+    AvoidCharmedTargets: 1
+  _hasCastVisual: 1
+  castVisualColor: 6
+  _hasSFX: 1
+  soundEffectType: 14
+  baseDamage: 30
+  damageBoosts: []
+  lastingTime: 1

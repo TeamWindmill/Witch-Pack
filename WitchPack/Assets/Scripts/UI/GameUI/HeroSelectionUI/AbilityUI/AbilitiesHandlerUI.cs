@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class AbilitiesHandlerUI : MonoBehaviour
 {
+    public AbilityUpgradePanelUI AbilityUpgradePanelUI => abilityUpgradePanelUI;
+
     [SerializeField] private AbilityUIButton[] abilityUIButtons;
     [SerializeField] private AbilityUpgradePanelUI abilityUpgradePanelUI;
 
@@ -44,11 +46,6 @@ public class AbilitiesHandlerUI : MonoBehaviour
             if (!uiBlock.gameObject.activeSelf) return;
             uiBlock.Hide();
         }
-    }
-
-    public static void UpdateButton(Shaman shaman, AbilityUIButton button)
-    {
-        button.UpdateVisual(CheckAbilityUpgradable(shaman,button.ActiveAbility));
     }
 
     private void OpenUpgradePanel(AbilityUIButton abilityButton)

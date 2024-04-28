@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1273835979575734157}
   - component: {fileID: 1067136454140085093}
   - component: {fileID: 480743874704142366}
+  - component: {fileID: 2470796564660782762}
   m_Layer: 0
   m_Name: Basic Piercing Shot
   m_TagString: Untagged
@@ -206,6 +207,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!210 &2470796564660782762
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662033331541053454}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 3
+  m_SortAtRoot: 0
 --- !u!1 &1171143045786820160
 GameObject:
   m_ObjectHideFlags: 0
@@ -278,7 +291,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: b78d54a3d5765084ebf526fd5284d4b4, type: 3}
   m_Color: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 0.50980395}
   m_FlipX: 0
@@ -305,6 +318,7 @@ GameObject:
   - component: {fileID: 6078446701244994385}
   - component: {fileID: 5649682964807375655}
   - component: {fileID: 2443957168834421167}
+  - component: {fileID: 4294327871289923341}
   m_Layer: 0
   m_Name: Basic Piercing Shot trail
   m_TagString: Untagged
@@ -518,6 +532,18 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!210 &4294327871289923341
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3477010610076370748}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 4
+  m_SortAtRoot: 0
 --- !u!1 &4876856490606952934
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,6 +555,7 @@ GameObject:
   - component: {fileID: 7394060605884897915}
   - component: {fileID: 7577845688974325094}
   - component: {fileID: 8211681215006266628}
+  - component: {fileID: 7325706636427726517}
   m_Layer: 0
   m_Name: Basic_Piercing_Arrow Holder
   m_TagString: Untagged
@@ -5351,6 +5378,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!210 &7325706636427726517
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4876856490606952934}
+  m_Enabled: 1
+  m_SortingLayerID: 1618181451
+  m_SortingLayer: 3
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &4959409077927538207
 GameObject:
   m_ObjectHideFlags: 0
@@ -10149,7 +10188,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 13
   m_RenderMode: 0
   m_MeshDistribution: 0
   m_SortMode: 0
@@ -10207,7 +10246,7 @@ Transform:
   m_GameObject: {fileID: 5342660358503688383}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0, y: -0.05, z: 0.18}
+  m_LocalPosition: {x: -0, y: 0.023, z: 0.767}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10467,8 +10506,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.5
-      minScalar: 0.2
+      scalar: 1
+      minScalar: 0.4
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -10520,7 +10559,7 @@ ParticleSystem:
     startSizeY:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.9
+      scalar: 0.6
       minScalar: 0.2
       maxCurve:
         serializedVersion: 2
@@ -10845,7 +10884,7 @@ ParticleSystem:
     serializedVersion: 6
     enabled: 1
     type: 4
-    angle: 8
+    angle: 2
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
@@ -11498,16 +11537,16 @@ ParticleSystem:
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 0
         ctime1: 10137
-        ctime2: 30004
-        ctime3: 36814
+        ctime2: 25760
+        ctime3: 29609
         ctime4: 36814
         ctime5: 0
         ctime6: 0
         ctime7: 0
         atime0: 0
         atime1: 9508
-        atime2: 29412
-        atime3: 36123
+        atime2: 24576
+        atime3: 29510
         atime4: 36123
         atime5: 0
         atime6: 0
@@ -14957,7 +14996,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c816c8f2124c03c4695f245cf01d6bb5, type: 2}
+  - {fileID: 2100000, guid: c7ead59df66a8454e8f69c24512c931e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14977,8 +15016,8 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_RenderMode: 0
+  m_SortingOrder: 13
+  m_RenderMode: 1
   m_MeshDistribution: 0
   m_SortMode: 0
   m_MinParticleSize: 0
@@ -14989,7 +15028,7 @@ ParticleSystemRenderer:
   m_SortingFudge: 0
   m_NormalDirection: 1
   m_ShadowBias: 0
-  m_RenderAlignment: 0
+  m_RenderAlignment: 2
   m_Pivot: {x: 0, y: 0, z: 0}
   m_Flip: {x: 0, y: 0, z: 0}
   m_UseCustomVertexStreams: 0
@@ -15019,6 +15058,7 @@ GameObject:
   - component: {fileID: 5886240470029290309}
   - component: {fileID: 3433847735582237566}
   - component: {fileID: 3227973134135145289}
+  - component: {fileID: 639360314453832662}
   m_Layer: 0
   m_Name: Basic_Piercing_Arrow_Soft Glow
   m_TagString: Untagged
@@ -19894,3 +19934,15 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!210 &639360314453832662
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6743167091364253768}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 5
+  m_SortAtRoot: 0

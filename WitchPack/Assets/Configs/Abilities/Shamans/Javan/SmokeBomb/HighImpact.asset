@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4eb122e50d8b41ac95146fd9dd98d896, type: 3}
+  m_Name: HighImpact
+  m_EditorClassIdentifier: 
+  name: High Impact
+  discription: Deals damage on Impact, and has reduced CD.
+  defaultIcon: {fileID: 202968324, guid: 8f7f54d525985144598871936635c227, type: 3}
+  disabledIcon: {fileID: 1284082320, guid: 8f7f54d525985144598871936635c227, type: 3}
+  upgradeIcon: {fileID: 1195584214, guid: 8f7f54d525985144598871936635c227, type: 3}
+  _upgrades: []
+  hasPopupColor: 0
+  popupColor: {r: 0, g: 0, b: 0, a: 0}
+  castTime: 1.5
+  cd: 12
+  range: 2
+  givesEnergyPoints: 0
+  energyPoints: 0
+  statusEffects:
+  - {fileID: 11400000, guid: 8750043a8d6bd874c9cbf473fc75907f, type: 2}
+  targetData:
+    Priority: 3
+    Modifier: 0
+    StatType: 0
+    AvoidCharmedTargets: 0
+  _hasCastVisual: 1
+  castVisualColor: 1
+  _hasSFX: 1
+  soundEffectType: 25
+  baseDamage: 100
+  damageBoosts: []
+  _duration: 6

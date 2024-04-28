@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8270022412761042295}
   - component: {fileID: 5556610855597039399}
   - component: {fileID: 986514746105202926}
+  - component: {fileID: 921481983626699404}
   m_Layer: 8
   m_Name: MultiShotPrefab
   m_TagString: Untagged
@@ -29,12 +30,11 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4917893978252809241}
   - {fileID: 3975337803336647464}
-  - {fileID: 8837331121360990482}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8270022412761042295
@@ -49,10 +49,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18afa2a3397112e4d9fee874fce6ae1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _multiShotPrefab: {fileID: 4917893978252809241}
+  _essenceShotPrefab: {fileID: 3975337803336647464}
   _rb: {fileID: 986514746105202926}
-  _speed: 10
-  _curveSpeed: 1000
-  _Delay: 0.2
 --- !u!58 &5556610855597039399
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -87,7 +86,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 2
 --- !u!50 &986514746105202926
 Rigidbody2D:
   serializedVersion: 4
@@ -115,6 +114,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!210 &921481983626699404
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7951538307925724370}
+  m_Enabled: 1
+  m_SortingLayerID: 1618181451
+  m_SortingLayer: 3
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1001 &1842351394004594457
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -123,6 +134,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4399582254470398416}
     m_Modifications:
+    - target: {fileID: 3367114170603858993, guid: 283cafbc2de8b164db4dd5fac125e37a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3367114170603858993, guid: 283cafbc2de8b164db4dd5fac125e37a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3367114170603858993, guid: 283cafbc2de8b164db4dd5fac125e37a, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3367114170603858993, guid: 283cafbc2de8b164db4dd5fac125e37a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -163,6 +186,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5015991087334070822, guid: 283cafbc2de8b164db4dd5fac125e37a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.4
+      objectReference: {fileID: 0}
     - target: {fileID: 7041222197635326676, guid: 283cafbc2de8b164db4dd5fac125e37a, type: 3}
       propertyPath: m_Name
       value: Multishot_increased_damage_Holder
@@ -193,6 +220,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Multishot_Holder
       objectReference: {fileID: 0}
+    - target: {fileID: 7133298230148661040, guid: 6ad37c30fa07ceb48ba422183c3ef6f4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247718535362102174, guid: 6ad37c30fa07ceb48ba422183c3ef6f4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247718535362102174, guid: 6ad37c30fa07ceb48ba422183c3ef6f4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247718535362102174, guid: 6ad37c30fa07ceb48ba422183c3ef6f4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8247718535362102174, guid: 6ad37c30fa07ceb48ba422183c3ef6f4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -232,6 +275,10 @@ PrefabInstance:
     - target: {fileID: 8247718535362102174, guid: 6ad37c30fa07ceb48ba422183c3ef6f4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8247718535362102174, guid: 6ad37c30fa07ceb48ba422183c3ef6f4, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -242,70 +289,4 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 8247718535362102174, guid: 6ad37c30fa07ceb48ba422183c3ef6f4, type: 3}
   m_PrefabInstance: {fileID: 3911964288052582279}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &5164209394198245570
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 4399582254470398416}
-    m_Modifications:
-    - target: {fileID: 4399582254470398416, guid: c52c3e365cb6bb947b65f90bf9a2e92a, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4399582254470398416, guid: c52c3e365cb6bb947b65f90bf9a2e92a, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4399582254470398416, guid: c52c3e365cb6bb947b65f90bf9a2e92a, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4399582254470398416, guid: c52c3e365cb6bb947b65f90bf9a2e92a, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4399582254470398416, guid: c52c3e365cb6bb947b65f90bf9a2e92a, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4399582254470398416, guid: c52c3e365cb6bb947b65f90bf9a2e92a, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4399582254470398416, guid: c52c3e365cb6bb947b65f90bf9a2e92a, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4399582254470398416, guid: c52c3e365cb6bb947b65f90bf9a2e92a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4399582254470398416, guid: c52c3e365cb6bb947b65f90bf9a2e92a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4399582254470398416, guid: c52c3e365cb6bb947b65f90bf9a2e92a, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7951538307925724370, guid: c52c3e365cb6bb947b65f90bf9a2e92a, type: 3}
-      propertyPath: m_Name
-      value: MultiShotRicochet
-      objectReference: {fileID: 0}
-    - target: {fileID: 7951538307925724370, guid: c52c3e365cb6bb947b65f90bf9a2e92a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c52c3e365cb6bb947b65f90bf9a2e92a, type: 3}
---- !u!4 &8837331121360990482 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4399582254470398416, guid: c52c3e365cb6bb947b65f90bf9a2e92a, type: 3}
-  m_PrefabInstance: {fileID: 5164209394198245570}
   m_PrefabAsset: {fileID: 0}
