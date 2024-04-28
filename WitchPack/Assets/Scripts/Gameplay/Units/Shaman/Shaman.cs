@@ -14,12 +14,7 @@ public class Shaman : BaseUnit
     public List<BaseAbility> RootAbilities => rootAbilities;
     public EnergyHandler EnergyHandler => energyHandler;
     public ShamanVisualHandler ShamanVisualHandler => shamanVisualHandler;
-
-    public bool IsSelected
-    {
-        get => _isSelected;
-        set => _isSelected = value;
-    }
+    public List<PowerStructure> ActivePowerStructures => _activePowerStructures;
 
     #endregion
 
@@ -35,11 +30,11 @@ public class Shaman : BaseUnit
 
     #region private
 
+    private List<PowerStructure> _activePowerStructures = new();
     private ShamanConfig shamanConfig;
     private List<BaseAbility> rootAbilities = new List<BaseAbility>();
     private List<BaseAbility> knownAbilities = new List<BaseAbility>();
     [SerializeField] private EnergyHandler energyHandler;
-    private bool _isSelected;
 
     #endregion
 
@@ -56,7 +51,8 @@ public class Shaman : BaseUnit
         EnemyTargeter.SetRadius(Stats.BonusRange);
         IntializeAbilities();
         shamanAnimator.Init(this);
-        indicatable.Init(shamanConfig.UnitIndicatorIcon, action: FocusCameraOnShaman, clickable: true, indicatorPointerSprite: IndicatorPointerSpriteType.Cyan);
+        indicatable.Init(shamanConfig.UnitIndicatorIcon, action: FocusCameraOnShaman, clickable: true,
+            indicatorPointerSprite: IndicatorPointerSpriteType.Cyan);
         Indicator newIndicator = LevelManager.Instance.IndicatorManager.CreateIndicator(indicatable);
         newIndicator.gameObject.SetActive(false);
         shamanVisualHandler.Init(this, baseUnitConfig);
@@ -186,18 +182,18 @@ public class Shaman : BaseUnit
 
     public void ShamanHoveredEntered()
     {
-        //if (!_isSelected)
+        shamanVisualHandler.ShowShamanRange();
+        foreach (var powerStructure in _activePowerStructures)
         {
-            shamanVisualHandler.ShowShamanRange();
+            
         }
+        //show active power structures
     }
 
     public void ShamanHoveredExit()
     {
-        //if (!_isSelected)
-        {
-            shamanVisualHandler.HideShamanRange();
-        }
+        shamanVisualHandler.HideShamanRange();
+        //hide active power structures
     }
 
     public void ToggleClicker(bool state)
@@ -216,14 +212,24 @@ public class Shaman : BaseUnit
 
     private void OnHitSFX(bool isCrit)
     {
-        SoundManager.Instance.PlayAudioClip(shamanConfig.IsMale ? SoundEffectType.ShamanGetHitMale : SoundEffectType.ShamanGetHitFemale);
+        SoundManager.Instance.PlayAudioClip(shamanConfig.IsMale
+            ? SoundEffectType.ShamanGetHitMale
+            : SoundEffectType.ShamanGetHitFemale);
         shamanVisualHandler.HitEffect.Play();
     }
 
-    private void DeathSFX() => SoundManager.Instance.PlayAudioClip(shamanConfig.IsMale ? SoundEffectType.ShamanDeathMale : SoundEffectType.ShamanDeathFemale);
+    private void DeathSFX() =>
+        SoundManager.Instance.PlayAudioClip(shamanConfig.IsMale
+            ? SoundEffectType.ShamanDeathMale
+            : SoundEffectType.ShamanDeathFemale);
+
     private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.BasicAttack);
-    public void ShamanAbilityCastSFX(CastingAbility ability) => SoundManager.Instance.PlayAudioClip(ability.SoundEffectType);
-    public void ShamanCastSFX(CastingAbility ability) => SoundManager.Instance.PlayAudioClip(SoundEffectType.ShamanCast);
+
+    public void ShamanAbilityCastSFX(CastingAbility ability) =>
+        SoundManager.Instance.PlayAudioClip(ability.SoundEffectType);
+
+    public void ShamanCastSFX(CastingAbility ability) =>
+        SoundManager.Instance.PlayAudioClip(SoundEffectType.ShamanCast);
 
     #endregion
 

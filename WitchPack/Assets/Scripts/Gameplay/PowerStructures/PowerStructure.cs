@@ -17,7 +17,7 @@ public class PowerStructure : MonoBehaviour
     
     private StatType _statType;
     private Modifier _statModifier;
-    private Dictionary<int, float> _activeShadowRingIds = new Dictionary<int, float>();
+    private Dictionary<int, float> _activeShadowRingIds = new();
 
     public void Init()
     {
@@ -55,6 +55,7 @@ public class PowerStructure : MonoBehaviour
 
         var statAdditionValue = GetStatEffectValue(ringId, shaman.Stats);
         shaman.Stats.AddValueToStat(_statType,statAdditionValue);
+        
     }
     private void OnShamanRingExit(int ringId, Shaman shaman)
     {
@@ -62,18 +63,32 @@ public class PowerStructure : MonoBehaviour
         
         var statAdditionValue = GetStatEffectValue(ringId, shaman.Stats);
         shaman.Stats.AddValueToStat(_statType,-statAdditionValue);
+        
     }
     private void OnShadowRingEnter(int ringId, Shadow shadow)
     {
-        _activeShadowRingIds.Add(ringId,_powerStructureConfig.statEffect.RingValues[ringId]);
-        
         if (_testing) Debug.Log($"Shadow Enter: {ringId}");
         
         //switch between ring sprites
-        var currentActiveRing = proximityRingsManager.RingHandlers[ringId];
-        proximityRingsManager.ToggleAllSprites(false);
-        currentActiveRing.ToggleSprite(true);
+        if (_activeShadowRingIds.Count > 0)
+        {
+            foreach (var ring in _activeShadowRingIds)
+            {
+                if (ringId < ring.Key)
+                {
+                    proximityRingsManager.ToggleAllSprites(false);
+                    proximityRingsManager.ToggleRingSprite(ringId,true);
+                }
+            }
+        }
+        else
+        {
+            proximityRingsManager.ToggleAllSprites(false);
+            proximityRingsManager.ToggleRingSprite(ringId,true);
+        }
         
+        _activeShadowRingIds.Add(ringId,_powerStructureConfig.statEffect.RingValues[ringId]);
+
         var statAdditionValue = GetStatEffectValue(ringId, shadow.Stats);
         shadow.SetPSStatValue(_statType,statAdditionValue);
         
@@ -90,10 +105,9 @@ public class PowerStructure : MonoBehaviour
         shadow.SetPSStatValue(_statType,-statAdditionValue);
         
         proximityRingsManager.ToggleAllSprites(false);
-        if (ringId + 1 < proximityRingsManager.RingHandlers.Length)
+        if (_activeShadowRingIds.Count > 0)
         {
-            var currentActiveRing = proximityRingsManager.RingHandlers[ringId + 1];
-            currentActiveRing.ToggleSprite(true);
+            proximityRingsManager.ToggleRingSprite(ringId + 1,true);
             ShowUI(shadow,ringId);
         }
         else
