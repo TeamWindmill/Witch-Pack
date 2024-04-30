@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -5,8 +7,11 @@ public class StatEffectPopupHandler : MonoBehaviour
 {
     [SerializeField] private StatEffectPopupWindowHandler[] _popupWindowHandlers;
     [SerializeField] private float StatEffectPopupWindowsDistance;
+    [SerializeField] private Vector3 offsetfollowPos;
 
-
+    private Transform _followPosition;
+    private List<StatEffectPopupWindowHandler> _activeWindowHandlers = new();
+    private bool _isActive;
     private void Awake()
     {
         foreach (var popupWindowHandler in _popupWindowHandlers)
@@ -15,34 +20,54 @@ public class StatEffectPopupHandler : MonoBehaviour
         }
     }
 
-    public void ShowPopupWindows(int EntityId, string statBonusText, float value, bool isPercent, Color color)
+    private void Update()
     {
-        for (int i = 0; i < _popupWindowHandlers.Length; i++)
+        if (_isActive)
         {
-            if (_popupWindowHandlers[i].ActiveEntityId == EntityId && _popupWindowHandlers[i].IsActive)
+            transform.position = _followPosition.position + offsetfollowPos;
+        }
+    }
+
+    public void ShowPopupWindows(int EntityId, Transform followTransform, string statBonusText, float value, bool isPercent, Color color)
+    {
+        _followPosition = followTransform;
+        _isActive = true;
+        foreach (var handler in _popupWindowHandlers)
+        {
+            if (handler.IsActive && handler.ActiveEntityId == EntityId)
             {
-                 _popupWindowHandlers[i].UpdatePopupWindow(value, isPercent, color);
+                handler.UpdatePopupWindow(value, isPercent, color);
                 return;
             }
-            
         }
-
-        for (int i = 0; i < _popupWindowHandlers.Length; i++)
+        for (var i = 0; i < _popupWindowHandlers.Length; i++)
         {
             if (_popupWindowHandlers[i].IsActive) continue;
-            _popupWindowHandlers[i].ShowPopupWindow(EntityId, statBonusText, value, isPercent, color, (i) * StatEffectPopupWindowsDistance);
+            _popupWindowHandlers[i].ShowPopupWindow(EntityId, statBonusText, value, isPercent, color, _activeWindowHandlers.Count * StatEffectPopupWindowsDistance);
+            _activeWindowHandlers.Add(_popupWindowHandlers[i]);
             return;
         }
     }
 
     public void HidePopupWindow(int powerStructureId)
     {
+        _isActive = false;
         foreach (var popupWindowHandler in _popupWindowHandlers)
         {
             if (popupWindowHandler.ActiveEntityId == powerStructureId && popupWindowHandler.IsActive)
             {
                 popupWindowHandler.HidePopupWindow();
+                _activeWindowHandlers.Remove(popupWindowHandler);
             }
+        }
+
+        var i = 0;
+        foreach (var handler in _activeWindowHandlers)
+        {
+            if (!handler.IsActive) continue;
+            handler.UpdateWindowPosition(i * StatEffectPopupWindowsDistance);
+            _isActive = true;
+            i++;
         }
     }
 }

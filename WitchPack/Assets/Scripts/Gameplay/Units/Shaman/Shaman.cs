@@ -14,7 +14,8 @@ public class Shaman : BaseUnit
     public List<BaseAbility> RootAbilities => rootAbilities;
     public EnergyHandler EnergyHandler => energyHandler;
     public ShamanVisualHandler ShamanVisualHandler => shamanVisualHandler;
-    public List<PowerStructure> ActivePowerStructures => _activePowerStructures;
+    public Dictionary<PowerStructure,int> ActivePowerStructures => _activePowerStructures;
+    public ClickHelper Clicker => clicker;
 
     #endregion
 
@@ -30,7 +31,7 @@ public class Shaman : BaseUnit
 
     #region private
 
-    private List<PowerStructure> _activePowerStructures = new();
+    private Dictionary<PowerStructure,int> _activePowerStructures = new();
     private ShamanConfig shamanConfig;
     private List<BaseAbility> rootAbilities = new List<BaseAbility>();
     private List<BaseAbility> knownAbilities = new List<BaseAbility>();
@@ -180,20 +181,24 @@ public class Shaman : BaseUnit
         LevelManager.Instance.SelectionHandler.OnShamanClick(button, this);
     }
 
-    public void ShamanHoveredEntered()
+    private void ShamanHoveredEntered()
     {
         shamanVisualHandler.ShowShamanRange();
         foreach (var powerStructure in _activePowerStructures)
         {
-            
+            powerStructure.Key.ProximityRingsManager.ToggleRingSprite(powerStructure.Value,true);
+            powerStructure.Key.OnShamanHoverEnter(this,powerStructure.Value);
         }
-        //show active power structures
     }
 
-    public void ShamanHoveredExit()
+    private void ShamanHoveredExit()
     {
         shamanVisualHandler.HideShamanRange();
-        //hide active power structures
+        foreach (var powerStructure in LevelManager.Instance.CurrentLevel.PowerStructures)
+        {
+            powerStructure.ProximityRingsManager.ToggleAllSprites(false);
+            powerStructure.HideUI();
+        }
     }
 
     public void ToggleClicker(bool state)
