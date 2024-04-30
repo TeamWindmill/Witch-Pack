@@ -11,6 +11,7 @@ public class LevelHandler : MonoBehaviour
     public CustomPath[] Paths => paths;
     public WaveHandler WaveHandler => waveHandler;
     public bool ShowTutorial => showTutorial;
+    public PowerStructure[] PowerStructures => powerStructures;
 
     [SerializeField] private Transform[] shamanSpawnPoints;
     [SerializeField] private CustomPath[] paths;

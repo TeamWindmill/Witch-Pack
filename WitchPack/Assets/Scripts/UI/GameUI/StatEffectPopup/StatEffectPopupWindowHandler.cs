@@ -31,7 +31,7 @@ public class StatEffectPopupWindowHandler : MonoBehaviour
         _popupText.gameObject.SetActive(true);
         _isActive = true;
         _statBonusText = statBonusText;
-        transform.localPosition = new Vector3(0, yAxisModifier, 0);
+        UpdateWindowPosition(yAxisModifier);
         _popupText.text = isPercent ? $"{_statBonusText} +{value}%" : $"{_statBonusText} +{value}";
         _popupVisual.color = color;
     }
@@ -40,6 +40,11 @@ public class StatEffectPopupWindowHandler : MonoBehaviour
     {
         _popupText.text = isPercent ? $"{_statBonusText} +{value}%" : $"{_statBonusText} +{value}";
         _popupVisual.color = color;
+    }
+
+    public void UpdateWindowPosition(float yAxisModifier)
+    {
+        transform.localPosition = new Vector3(0, yAxisModifier, 0);
     }
 
     public void HidePopupWindow()

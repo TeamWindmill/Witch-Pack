@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PowerStructure : MonoBehaviour
 {
+    public ProximityRingsManager ProximityRingsManager => proximityRingsManager;
+
     [Header("Config File")] [SerializeField]
     private PowerStructureConfig _powerStructureConfig;
 
@@ -17,7 +19,7 @@ public class PowerStructure : MonoBehaviour
     
     private StatType _statType;
     private Modifier _statModifier;
-    private Dictionary<int, float> _activeShadowRingIds = new();
+    private readonly Dictionary<int, float> _activeShadowRingIds = new();
 
     public void Init()
     {
@@ -55,7 +57,7 @@ public class PowerStructure : MonoBehaviour
 
         var statAdditionValue = GetStatEffectValue(ringId, shaman.Stats);
         shaman.Stats.AddValueToStat(_statType,statAdditionValue);
-        
+        shaman.ActivePowerStructures[this] = ringId;
     }
     private void OnShamanRingExit(int ringId, Shaman shaman)
     {
@@ -63,7 +65,9 @@ public class PowerStructure : MonoBehaviour
         
         var statAdditionValue = GetStatEffectValue(ringId, shaman.Stats);
         shaman.Stats.AddValueToStat(_statType,-statAdditionValue);
-        
+
+        if (ringId < proximityRingsManager.RingHandlers.Length - 1) shaman.ActivePowerStructures[this] = ringId + 1;
+        else shaman.ActivePowerStructures.Remove(this);
     }
     private void OnShadowRingEnter(int ringId, Shadow shadow)
     {
@@ -107,6 +111,12 @@ public class PowerStructure : MonoBehaviour
         proximityRingsManager.ToggleAllSprites(false);
         if (_activeShadowRingIds.Count > 0)
         {
+            if (ringId == proximityRingsManager.RingHandlers.Length - 1)
+            {
+                proximityRingsManager.ToggleRingSprite(ringId, false);
+                HideUI();
+                return;
+            }
             proximityRingsManager.ToggleRingSprite(ringId + 1,true);
             ShowUI(shadow,ringId);
         }
@@ -115,13 +125,17 @@ public class PowerStructure : MonoBehaviour
             HideUI();
         }
     }
-    private void ShowUI(Shadow shadow,int ringId)
+    public void OnShamanHoverEnter(Shaman shaman, int ringId)
+    {
+        StatEffectPopupManager.ShowPopupWindows(GetInstanceID(),shaman.transform, _statType.ToString(), CalculateStatValueForPowerStructureUI(ringId), true, GetRingColorAlpha(ringId));
+    }
+    public void ShowUI(Shadow shadow,int ringId)
     {
         HeroSelectionUI.Instance.StatBlockPanel.UpdateStatBlocks(_statType, CalculateStatValueForSelectionUI(shadow,shadow.Shaman));
-        StatEffectPopupManager.ShowPopupWindows(GetInstanceID(), _statType.ToString(), CalculateStatValueForPSUI(), true, GetRingColorAlpha(ringId));
+        StatEffectPopupManager.ShowPopupWindows(GetInstanceID(), shadow.transform, _statType.ToString(), CalculateStatValueForPowerStructureUIByShadow(), true, GetRingColorAlpha(ringId));
     }
 
-    private void HideUI()
+    public void HideUI()
     {
         HeroSelectionUI.Instance.StatBlockPanel.HideStatBlocksBonus();
         StatEffectPopupManager.HidePopupWindows(GetInstanceID());
@@ -143,12 +157,29 @@ public class PowerStructure : MonoBehaviour
         return 0;
     }
 
-    private int CalculateStatValueForPSUI()
+    private int CalculateStatValueForPowerStructureUIByShadow()
     {
         float sumRingValues = 0;
         foreach (var ring in _activeShadowRingIds)
         {
             sumRingValues += ring.Value;
+        }
+        switch (_statModifier)
+        {
+            case Modifier.Addition:
+                return Mathf.RoundToInt(sumRingValues);
+            case Modifier.Multiplication:
+                float statValue = sumRingValues * 100;
+                return Mathf.RoundToInt(statValue);
+        }
+        return 0;
+    }
+    private int CalculateStatValueForPowerStructureUI(int ringId)
+    {
+        float sumRingValues = 0;
+        for (int i = proximityRingsManager.RingHandlers.Length - 1; i >= ringId; i--)
+        {
+            sumRingValues += _powerStructureConfig.statEffect.RingValues[i];
         }
         switch (_statModifier)
         {
