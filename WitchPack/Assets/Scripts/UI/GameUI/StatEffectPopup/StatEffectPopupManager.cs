@@ -13,9 +13,9 @@ public class StatEffectPopupManager : MonoBehaviour
         _statEffectPopupHandler = Instantiate(_statEffectPopupHandlerPrefab, _parentHolder);
     }
 
-    public static void ShowPopupWindows(int EntityId, string statName, int value, bool isPercent, Color color)
+    public static void ShowPopupWindows(int EntityId, Transform followTransform, string statName, int value, bool isPercent, Color color)
     {
-        _statEffectPopupHandler.ShowPopupWindows(EntityId, statName, value, isPercent, color);
+        _statEffectPopupHandler.ShowPopupWindows(EntityId, followTransform, statName, value, isPercent, color);
     }
 
     public static void HidePopupWindows(int powerStructureId)
