@@ -51,4 +51,9 @@ public class LevelHandler : MonoBehaviour
     {
         Gizmos.DrawWireCube(Vector3.zero, cameraLevelSettings.CameraBorders);
     }
+
+    private void OnValidate()
+    {
+        powerStructures = GetComponentsInChildren<PowerStructure>();
+    }
 }
