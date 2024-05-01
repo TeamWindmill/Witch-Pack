@@ -38,6 +38,7 @@ public class Enemy : BaseUnit
         pointIndex = 0;
         enemyConfig = givenConfig as EnemyConfig;
         base.Init(enemyConfig);
+        transform.localScale = new Vector3(enemyConfig.Size,enemyConfig.Size,enemyConfig.Size);
         _path = enemyConfig.Path;
         _coreDamage = enemyConfig.CoreDamage;
         _energyPoints = enemyConfig.EnergyPoints;
