@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -6,16 +7,13 @@ public class GameManager : MonoSingleton<GameManager>
 {
     public bool TutorialPlayed;
     public bool[] LevelsCompleted = new bool[3];
+    public List<ShamanConfig> ShamanRoster => _shamanRoster;
+
     public static ISceneHandler SceneHandler { get; private set; }
     public LevelConfig CurrentLevelConfig { get; private set; }
 
     [SerializeField] private SceneHandler _sceneHandler;
-    //[SerializeField] private PoolManager poolManager;
-
-    // [SerializeField] private BaseUnitConfig shamanConf;
-    // [SerializeField] private BaseUnitConfig enemyConf;
-    // [SerializeField] private Shaman testShaman;
-    // [SerializeField] private Enemy[] enemies;
+    [SerializeField] private List<ShamanConfig> _shamanRoster;
 
     private CameraHandler _cameraHandler;
 
@@ -47,15 +45,9 @@ public class GameManager : MonoSingleton<GameManager>
         CameraHandler = FindObjectOfType<CameraHandler>(); //May need to change 
     }
 
-    // public PoolManager PoolManager
-    // {
-    //     get => poolManager;
-    // }
-
     void Start()
     {
         SceneHandler.LoadScene(SceneType.MainMenu);
-        //InitUnits();
     }
 
     public void SetLevelConfig(LevelConfig levelConfig)
@@ -72,7 +64,6 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void OnMouseDown()
     {
-        //lock the cursor inside the screen
         Screen.lockCursor = true;
     }
 
@@ -80,14 +71,5 @@ public class GameManager : MonoSingleton<GameManager>
     {
         Application.Quit();
     }
-
-    // private void InitUnits()
-    // {
-    //     foreach (var item in enemies)
-    //     {
-    //         item.Init(enemyConf);
-    //     }
-    //     testShaman.Init(shamanConf);
-    // }
 
 }
