@@ -105,4 +105,5 @@ public enum UIGroup
     Indicators,
     InfoWindow,
     DevTools,
+    PartySelectionWindow,
 }

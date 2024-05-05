@@ -1,20 +1,61 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class RosterPanel : UIElement
 {
     [SerializeField] private RosterIcon _rosterIconPrefab;
-    [SerializeField] private List<RosterIcon> _rosterIcons;
     [SerializeField] private Transform _holder;
 
-    public void Init(List<ShamanConfig> configs)
+    private List<RosterIcon> _rosterIcons = new();
+    private PartySelectionWindow _parent;
+
+    public void Init(PartySelectionWindow parent, List<ShamanConfig> configs)
     {
+        if (_rosterIcons.Count > 0)
+        {
+            foreach (var icon in _rosterIcons)
+            {
+                Destroy(icon.gameObject);
+            }
+            _rosterIcons.Clear();
+        }
+        _parent = parent;
         foreach (var config in configs)
         {
             var icon = Instantiate(_rosterIconPrefab, _holder);
             _rosterIcons.Add(icon);
-            icon.SpriteRenderer.sprite = config.UnitIcon;
+            icon.Init(config);
+            icon.OnIconClick += ToggleShaman;
         }
         base.Show();
+    }
+    public void AssignShaman(ShamanConfig shamanConfig) 
+    {
+        foreach (var icon in _rosterIcons)
+        {
+            if (icon.ShamanConfig == shamanConfig)
+            {
+                icon.ToggleAvailable(false);
+                return;
+            }
+        }
+    }
+    public void UnassignShaman(ShamanConfig shamanConfig) 
+    {
+        foreach (var icon in _rosterIcons)
+        {
+            if (icon.ShamanConfig == shamanConfig)
+            {
+                icon.ToggleAvailable(true);
+                return;
+            }
+        }
+    }
+
+    private void ToggleShaman(ShamanConfig config, bool available)
+    {
+        if (available) _parent.AssignShamanToPack(config);
+        else _parent.UnassignShamanFromPack(config);
     }
 }
