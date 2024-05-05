@@ -12,14 +12,6 @@ public class RosterPanel : UIElement
 
     public void Init(PartySelectionWindow parent, List<ShamanConfig> configs)
     {
-        if (_rosterIcons.Count > 0)
-        {
-            foreach (var icon in _rosterIcons)
-            {
-                Destroy(icon.gameObject);
-            }
-            _rosterIcons.Clear();
-        }
         _parent = parent;
         foreach (var config in configs)
         {
@@ -30,6 +22,19 @@ public class RosterPanel : UIElement
         }
         base.Show();
     }
+
+    public override void Hide()
+    {
+        if (_rosterIcons.Count > 0)
+        {
+            foreach (var icon in _rosterIcons)
+            {
+                Destroy(icon.gameObject);
+            }
+            _rosterIcons.Clear();
+        }
+    }
+
     public void AssignShaman(ShamanConfig shamanConfig) 
     {
         foreach (var icon in _rosterIcons)

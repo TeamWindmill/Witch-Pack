@@ -5,7 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "LevelConfig", menuName = "Configs/LevelConfig", order = 0)]
 public class LevelConfig : ScriptableObject
 {
-    [Header("Level")] public int ID;
+    [Header("Level")] public int Number;
+    public string Name;
     public ShamanConfig[] Shamans;
     public LevelHandler levelPrefab;
     

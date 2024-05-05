@@ -52,8 +52,8 @@ public class LevelManager : MonoSingleton<LevelManager>
         if(win) SoundManager.Instance.PlayAudioClip(SoundEffectType.Victory);
         UIManager.Instance.ShowUIGroup(UIGroup.EndGameUI);
         OnLevelEnd?.Invoke(CurrentLevel);
-        if(!GameManager.Instance.LevelsCompleted[CurrentLevel.ID])
-            GameManager.Instance.LevelsCompleted[CurrentLevel.ID] = win;
+        if(!GameManager.Instance.LevelsCompleted[CurrentLevel.ID - 1])
+            GameManager.Instance.LevelsCompleted[CurrentLevel.ID - 1] = win;
     }
 
     private void SpawnParty(ShamanConfig[] shamanConfigs)

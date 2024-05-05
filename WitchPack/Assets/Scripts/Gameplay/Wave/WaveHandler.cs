@@ -22,6 +22,8 @@ public class WaveHandler : MonoBehaviour
     public int CurrentWave => _currentWave;
     public int TotalWaves => spawnData.Count;
 
+    public WaveData WaveData => waveData;
+
     private List<Indicator> activeWaveIndicators;
     public void Init()
     {
