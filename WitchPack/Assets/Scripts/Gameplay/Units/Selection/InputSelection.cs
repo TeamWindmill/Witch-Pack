@@ -22,6 +22,11 @@ public class InputSelection : MonoBehaviour
             if(LevelManager.Instance.ShamanParty.Count < 3) return;
             LevelManager.Instance.SelectionHandler.OnShamanClick(PointerEventData.InputButton.Left,LevelManager.Instance.ShamanParty[2]);
         }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            if(LevelManager.Instance.ShamanParty.Count < 4) return;
+            LevelManager.Instance.SelectionHandler.OnShamanClick(PointerEventData.InputButton.Left,LevelManager.Instance.ShamanParty[4]);
+        }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (!Mathf.Approximately(GAME_TIME.TimeRate,0))
