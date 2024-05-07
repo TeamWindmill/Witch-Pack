@@ -49,7 +49,11 @@ public class LevelManager : MonoSingleton<LevelManager>
         IsWon = win;
         GAME_TIME.Pause();
         BgMusicManager.Instance.StopMusic();
-        if(win) SoundManager.Instance.PlayAudioClip(SoundEffectType.Victory);
+        if (win)
+        {
+            SoundManager.Instance.PlayAudioClip(SoundEffectType.Victory);
+            GameManager.Instance.ShamansManager.AddShamanToRoster(CurrentLevel.Config.shamansToAddAfterComplete);
+        }
         UIManager.Instance.ShowUIGroup(UIGroup.EndGameUI);
         OnLevelEnd?.Invoke(CurrentLevel);
         if(!GameManager.Instance.LevelsCompleted[CurrentLevel.ID - 1])

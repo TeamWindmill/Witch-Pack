@@ -1,19 +1,21 @@
 using System;
 using System.Collections.Generic;
+using Sirenix.Utilities;
 using UnityEngine;
 
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    public bool TutorialPlayed;
-    public bool[] LevelsCompleted = new bool[3];
-    public List<ShamanConfig> ShamanRoster => _shamanRoster;
-
-    public static ISceneHandler SceneHandler { get; private set; }
     public LevelConfig CurrentLevelConfig { get; private set; }
+    public static ISceneHandler SceneHandler { get; private set; }
+    public GameSaveData SaveData { get; private set; }
+    public ShamansManager ShamansManager => _shamansManager;
 
+    public bool TutorialPlayed;
+    public bool[] LevelsCompleted = new bool[3]; //temp
+
+    [SerializeField] private ShamansManager _shamansManager;
     [SerializeField] private SceneHandler _sceneHandler;
-    [SerializeField] private List<ShamanConfig> _shamanRoster;
 
     private CameraHandler _cameraHandler;
 
@@ -30,21 +32,18 @@ public class GameManager : MonoSingleton<GameManager>
 
             return _cameraHandler;
         }
-        private set => _cameraHandler = value;
     }
-
-
+    
     protected override void Awake()
     {
         base.Awake();
-
-
+        
         if (SceneHandler == null)
             SceneHandler = _sceneHandler;
 
-        CameraHandler = FindObjectOfType<CameraHandler>(); //May need to change 
+        LoadDataFromSave(SaveData); //need to load save from file
+        _shamansManager.Init(SaveData);
     }
-
     void Start()
     {
         SceneHandler.LoadScene(SceneType.MainMenu);
@@ -55,6 +54,13 @@ public class GameManager : MonoSingleton<GameManager>
         CurrentLevelConfig = levelConfig;
     }
 
+    private void LoadDataFromSave(GameSaveData saveData) //this is temp need to connect to a save system
+    {
+        if (saveData == null)
+        {
+            SaveData = new GameSaveData();
+        }
+    }
 
     private void OnValidate()
     {

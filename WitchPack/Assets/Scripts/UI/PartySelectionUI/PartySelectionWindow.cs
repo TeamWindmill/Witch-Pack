@@ -17,7 +17,7 @@ public class PartySelectionWindow : UIElement
     {
         _levelConfig = GameManager.Instance.CurrentLevelConfig;
         ActiveShamanParty = new();
-        _rosterPanel.Init(this,GameManager.Instance.ShamanRoster);
+        _rosterPanel.Init(this,GameManager.Instance.ShamansManager.ShamanRoster);
         _packPanel.Init(this);
         _enemyPanel.Init(_levelConfig,_enemyPanelConfig);
         _levelTitle.text = $"Level {_levelConfig.Number} - {_levelConfig.Name}";

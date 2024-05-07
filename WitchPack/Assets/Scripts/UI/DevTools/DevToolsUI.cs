@@ -35,4 +35,9 @@ public class DevToolsUI : UIElement
             shaman.Damageable.Heal(500);
         }
     }
+
+    public void WinLevel()
+    {
+        LevelManager.Instance.EndLevel(true);
+    }
 }

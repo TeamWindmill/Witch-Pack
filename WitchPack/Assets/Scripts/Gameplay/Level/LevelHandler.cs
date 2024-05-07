@@ -4,13 +4,13 @@ using NavMeshPlus.Components;
 
 public class LevelHandler : MonoBehaviour
 {
+    public LevelConfig Config { get; private set; }
     public int ID { get; private set; }
     public EnviromentHandler EnviromentHandler => _EnviromentHandler;
     public Transform[] ShamanSpawnPoints => shamanSpawnPoints;
     public CoreTemple CoreTemple => coreTemple;
     public CustomPath[] Paths => paths;
     public WaveHandler WaveHandler => waveHandler;
-    public bool ShowTutorial => showTutorial;
     public PowerStructure[] PowerStructures => powerStructures;
 
     [SerializeField] private Transform[] shamanSpawnPoints;
@@ -21,12 +21,12 @@ public class LevelHandler : MonoBehaviour
     [SerializeField] private NavMeshSurface navMeshSurface;
     [SerializeField] private WaveHandler waveHandler;
     [SerializeField] private CameraLevelSettings cameraLevelSettings;
-    [SerializeField] private bool showTutorial;
     
     private bool _tempSlowMotion; //TEMP
 
     public void Init(LevelConfig config)
     {
+        Config = config;
         ID = config.Number;
         GameManager.Instance.CameraHandler.SetCameraLevelSettings(cameraLevelSettings);
         GameManager.Instance.CameraHandler.ResetCamera();
