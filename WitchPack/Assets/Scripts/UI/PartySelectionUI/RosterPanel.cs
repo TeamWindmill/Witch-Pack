@@ -12,6 +12,8 @@ public class RosterPanel : UIElement
 
     public void Init(PartySelectionWindow parent, List<ShamanSaveData> configs)
     {
+        Hide();
+        _rosterIcons = new();
         _parent = parent;
         foreach (var shamanSaveData in configs)
         {

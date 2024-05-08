@@ -38,4 +38,11 @@ public class ShamansManager
             ShamanRoster.Add(new ShamanSaveData(config));
         }
     }
+    public void RemoveShamansFromRoster(ShamanConfig[] shamansConfig)
+    {
+        foreach (var config in shamansConfig)
+        {
+            
+        }
+    }
 }
