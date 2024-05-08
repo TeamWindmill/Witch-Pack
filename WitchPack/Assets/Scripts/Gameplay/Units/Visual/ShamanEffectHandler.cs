@@ -12,7 +12,7 @@ namespace Gameplay.Units.Visual
         public override void Init(BaseUnitConfig config)
         {
             base.Init(config);
-            _castHands.localPosition = (config as ShamanConfig).IsMale ? _maleCastHandsPos : _femaleCastHandsPos;
+            _castHands.localPosition = (config as ShamanConfig)?.Sex == Sex.Male ? _maleCastHandsPos : _femaleCastHandsPos;
         }
     }
 }

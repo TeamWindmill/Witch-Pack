@@ -7,10 +7,12 @@ public class LevelConfig : ScriptableObject
 {
     [Header("Level")] public int Number;
     public string Name;
-    public ShamanConfig[] Shamans;
     public LevelHandler levelPrefab;
+    public ShamanConfig[] shamansToAddAfterComplete;
+    public bool ShowTutorial;
     
 
+    [NonSerialized]public ShamanConfig[] Shamans;
 }
 
 [Serializable]

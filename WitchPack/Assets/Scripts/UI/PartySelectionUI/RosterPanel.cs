@@ -10,14 +10,14 @@ public class RosterPanel : UIElement
     private List<RosterIcon> _rosterIcons = new();
     private PartySelectionWindow _parent;
 
-    public void Init(PartySelectionWindow parent, List<ShamanConfig> configs)
+    public void Init(PartySelectionWindow parent, List<ShamanSaveData> configs)
     {
         _parent = parent;
-        foreach (var config in configs)
+        foreach (var shamanSaveData in configs)
         {
             var icon = Instantiate(_rosterIconPrefab, _holder);
             _rosterIcons.Add(icon);
-            icon.Init(config);
+            icon.Init(shamanSaveData.Config);
             icon.OnIconClick += ToggleShaman;
         }
         base.Show();

@@ -32,7 +32,7 @@ public class TutorialHandler : MonoSingleton<TutorialHandler>
         return;
 #endif
         if (GameManager.Instance.TutorialPlayed) return;
-        if(!level.ShowTutorial) return;
+        if(!level.Config.ShowTutorial) return;
 
         TimerManager.Instance.AddTimer(_levelStartDelay, PlayMovementTutorial);
     }

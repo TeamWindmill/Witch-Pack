@@ -1,3 +1,4 @@
+using System;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
@@ -217,16 +218,31 @@ public class Shaman : BaseUnit
 
     private void OnHitSFX(bool isCrit)
     {
-        SoundManager.Instance.PlayAudioClip(shamanConfig.IsMale
-            ? SoundEffectType.ShamanGetHitMale
-            : SoundEffectType.ShamanGetHitFemale);
+        switch (shamanConfig.Sex)
+        {
+            case Sex.Male:
+                SoundManager.Instance.PlayAudioClip(SoundEffectType.ShamanGetHitMale);
+                break;
+            case Sex.Female:
+                SoundManager.Instance.PlayAudioClip(SoundEffectType.ShamanGetHitFemale);
+                break;
+        }
+        
         shamanVisualHandler.HitEffect.Play();
     }
 
-    private void DeathSFX() =>
-        SoundManager.Instance.PlayAudioClip(shamanConfig.IsMale
-            ? SoundEffectType.ShamanDeathMale
-            : SoundEffectType.ShamanDeathFemale);
+    private void DeathSFX()
+    {
+        switch (shamanConfig.Sex)
+        {
+            case Sex.Male:
+                SoundManager.Instance.PlayAudioClip(SoundEffectType.ShamanDeathMale);
+                break;
+            case Sex.Female:
+                SoundManager.Instance.PlayAudioClip(SoundEffectType.ShamanDeathFemale);
+                break;
+        }
+    }
 
     private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.BasicAttack);
 
