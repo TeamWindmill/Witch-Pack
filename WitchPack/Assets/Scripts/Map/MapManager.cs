@@ -11,6 +11,7 @@ public class MapManager : MonoBehaviour
     [SerializeField] private int _cameraLockedZoom;
 
     [SerializeField] private bool[] _nodeLockState;
+    [SerializeField] private ShamanConfig[] _shamanConfigsForInstantUnlock;
 
     private void Awake()
     {
@@ -39,5 +40,10 @@ public class MapManager : MonoBehaviour
             else
                 Init();
         }
+    }
+    public void UnlockShamans(bool state)
+    {
+        GameManager.Instance.ShamansManager.AddShamanToRoster(_shamanConfigsForInstantUnlock);
+        //GameManager.Instance.ShamansManager.re(_shamanConfigsForInstantUnlock);
     }
 }
