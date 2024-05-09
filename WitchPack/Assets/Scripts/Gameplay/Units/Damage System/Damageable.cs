@@ -50,7 +50,7 @@ public class Damageable
         
         if (ability is OffensiveAbility offensiveAbility)
         {
-            DamageHandler dmg = new DamageHandler(offensiveAbility.BaseDamage);
+            DamageHandler dmg = new DamageHandler(offensiveAbility.BaseDamage.StatValue);
             bool isCrit = dealer.CritChance(offensiveAbility);
 
             TakeDamage(dealer, dmg, offensiveAbility, isCrit);

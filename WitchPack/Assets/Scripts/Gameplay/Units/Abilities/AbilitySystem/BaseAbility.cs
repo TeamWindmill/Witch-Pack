@@ -38,6 +38,7 @@ public abstract class BaseAbility : ScriptableObject
 
     private AbilityUpgradeState _abilityUpgradeState;
     public bool HasPopupColor { get => hasPopupColor; }
+    public AbilityStatUpgrade abilityStatUpgrade { get; private set; }
     public Color PopupColor { get => popupColor; }
     public Sprite DefaultIcon => defaultIcon;
     public Sprite DisabledIcon => disabledIcon;
@@ -50,6 +51,11 @@ public abstract class BaseAbility : ScriptableObject
     public virtual void OnSetCaster(BaseUnit caster)
     {
 
+    }
+
+    public virtual void AddStatUpgrade(AbilityStatUpgrade statUpgrade)
+    {
+        abilityStatUpgrade = statUpgrade;
     }
 
     public void ChangeUpgradeState(AbilityUpgradeState state)

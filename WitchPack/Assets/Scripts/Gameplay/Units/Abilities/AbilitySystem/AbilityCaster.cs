@@ -3,10 +3,9 @@ using System.Linq;
 
 public class AbilityCaster : ICaster
 {
-    
     public event Action<AbilityCaster> OnCast;
     public event Action<CastingAbility> OnCastGFX;
-    public CastingAbility Ability { get => _ability; }
+    public CastingAbility Ability => _ability;
     public float LastCast { get; private set; }
     
     private readonly BaseUnit _unit;
