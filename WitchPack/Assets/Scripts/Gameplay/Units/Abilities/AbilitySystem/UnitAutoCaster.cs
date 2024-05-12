@@ -20,7 +20,7 @@ public class UnitAutoCaster : MonoBehaviour
     private float _currentCastTime;
     private BaseUnit owner;
 
-    public void Init(BaseUnit givenOwner,bool enableOnStart)
+    public void Init(BaseUnit givenOwner, bool enableOnStart)
     {
         ClearData();
         owner = givenOwner;
@@ -29,26 +29,27 @@ public class UnitAutoCaster : MonoBehaviour
         {
             _queuedAbilities.Enqueue(castingHandler);
         }
+
         _queuedAbilities.Enqueue(givenOwner.AutoAttackCaster);
-        if(enableOnStart) EnableCaster();
+        if (enableOnStart) EnableCaster();
     }
 
     private void Update()
     {
-        if(!CanCast) return;
+        if (!CanCast) return;
         if (_queuedAbilities.Count <= 0) return;
         var caster = _queuedAbilities.Peek();
         if (caster.CheckCastAvailable())
         {
             CastTimeStart?.Invoke(caster.Ability);
-            if(caster.Ability.HasCastVisual) CastTimeStartVFX?.Invoke(caster.Ability.CastVisualColor);
+            if (caster.Ability.HasCastVisual) CastTimeStartVFX?.Invoke(caster.Ability.CastVisualColor);
             if (_castTimer > caster.Ability.CastTime)
             {
                 if (caster.CastAbility())
                 {
                     CastTimeEnd?.Invoke(caster.Ability);
-                    if(caster.Ability.HasCastVisual) CastTimeEndVFX?.Invoke(caster.Ability.CastVisualColor);
-                    _cooldownAbilities.Add(caster,TimerManager.Instance.AddTimer(caster.GetCooldown(),caster,ReturnAbilityFromCooldown,true));
+                    if (caster.Ability.HasCastVisual) CastTimeEndVFX?.Invoke(caster.Ability.CastVisualColor);
+                    _cooldownAbilities.Add(caster, TimerManager.Instance.AddTimer(caster.GetCooldown(), caster, ReturnAbilityFromCooldown, true));
                     _queuedAbilities.Dequeue();
                     _castTimer = 0;
                 }
@@ -83,9 +84,8 @@ public class UnitAutoCaster : MonoBehaviour
             _queuedAbilities.Enqueue(caster);
             return;
         }
-
         //if the ability is on active queue
-        
+
         foreach (var queuedAbility in _queuedAbilities)
         {
             if (queuedAbility.ContainsUpgrade(caster))
@@ -96,7 +96,7 @@ public class UnitAutoCaster : MonoBehaviour
                     var ability = _queuedAbilities.Dequeue();
                     if (ability.Ability.Upgrades.Contains(caster.Ability))
                     {
-                        _queuedAbilities.Enqueue(caster);                
+                        _queuedAbilities.Enqueue(caster);
                         dequeuing = false;
                     }
                     else
@@ -104,10 +104,11 @@ public class UnitAutoCaster : MonoBehaviour
                         _queuedAbilities.Enqueue(ability);
                     }
                 }
+
                 return;
             }
         }
-        
+
         _queuedAbilities.Enqueue(caster);
     }
 
@@ -115,21 +116,24 @@ public class UnitAutoCaster : MonoBehaviour
     {
         CanCast = true;
     }
+
     public void DisableCaster()
     {
         CanCast = false;
         _castTimer = 0;
-        if(_queuedAbilities.Count <= 0) return;
+        if (_queuedAbilities.Count <= 0) return;
         var ability = _queuedAbilities.Peek().Ability;
         CastTimeEnd?.Invoke(ability);
-        if(ability.HasCastVisual) CastTimeEndVFX?.Invoke(ability.CastVisualColor);
+        if (ability.HasCastVisual) CastTimeEndVFX?.Invoke(ability.CastVisualColor);
     }
+
     private void ClearData()
     {
         foreach (var ability in _cooldownAbilities)
         {
             ability.Value.RemoveThisTimer();
         }
+
         _cooldownAbilities.Clear();
         _queuedAbilities.Clear();
     }

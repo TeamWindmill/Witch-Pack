@@ -15,6 +15,7 @@ public class AbilityCaster : ICaster
     {
         _unit = owner;
         _ability = ability;
+        //ability.AddStatUpgrade();
         if (owner is Shaman shaman)
         {
             if(ability.HasSfx) OnCastGFX += shaman.ShamanAbilityCastSFX;
@@ -38,10 +39,8 @@ public class AbilityCaster : ICaster
             OnCastGFX?.Invoke(_ability);
             return true;
         }
-        else
-        {
-            return false;
-        }
+        
+        return false;
     }
 
     public bool CheckCastAvailable()

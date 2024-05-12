@@ -11,6 +11,7 @@ public class ScreenCracksHandler : MonoSingleton<ScreenCracksHandler>
     private int _hpPerCrack;
     private float _vignetteValuePerHp;
     private CoreTemple _core;
+    [SerializeField] private float _pulseStrength;
 
     private void Start()
     {
@@ -25,6 +26,7 @@ public class ScreenCracksHandler : MonoSingleton<ScreenCracksHandler>
         {
             crack.ScreenCrackLerper.SetStartValue();
         }
+        _cracksVignette.SetStartValue();
     }
 
     private void OnDisable()
@@ -51,6 +53,8 @@ public class ScreenCracksHandler : MonoSingleton<ScreenCracksHandler>
             if(_cracks[i].ScreenCrackLerper.Finished) continue;
             _cracks[i].ScreenCrackLerper.StartTransitionEffect();
         }
+
+        _cracksVignette.CurrentEndValue = _cracksVignette.CurrentStartValue + _vignetteValuePerHp * _pulseStrength;
         _cracksVignette.StartTransitionEffect();
         _cracksVignette.CurrentStartValue += _vignetteValuePerHp;
     }
