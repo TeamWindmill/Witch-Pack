@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
-using Tools.Helpers;
 using UnityEngine;
 
 public class BaseUnit : BaseEntity , IDamagable
@@ -73,7 +72,7 @@ public class BaseUnit : BaseEntity , IDamagable
         damageDealer = new DamageDealer(this, givenConfig.AutoAttack);
         affector = new Affector(this);
         effectable = new Effectable(this);
-        autoAttackCaster = new AutoAttackCaster(this, givenConfig.AutoAttack);
+        autoAttackCaster = new AutoAttackCaster(this, AbilityFactory.CreateAbility(givenConfig.AutoAttack,this) as OffensiveAbility);
         shamanTargetHelper = new UnitTargetHelper<Shaman>(ShamanTargeter, this);
         enemyTargetHelper = new UnitTargetHelper<Enemy>(EnemyTargeter, this);
         unitTimers = new List<ITimer>();

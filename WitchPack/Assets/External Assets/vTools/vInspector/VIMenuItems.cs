@@ -1,10 +1,7 @@
 #if UNITY_EDITOR
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using static VInspector.Libs.VUtils;
-using static VInspector.Libs.VGUI;
 
 
 namespace VInspector

@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.ProBuilder.MeshOperations;
 using UnityEngine.UI;
 
 public class RosterIcon : ClickableUIElement

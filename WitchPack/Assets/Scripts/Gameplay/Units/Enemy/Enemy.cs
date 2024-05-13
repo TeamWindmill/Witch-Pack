@@ -1,6 +1,5 @@
 using PathCreation;
 using Sirenix.OdinInspector;
-using Systems.StateMachine;
 using UnityEngine;
 
 public class Enemy : BaseUnit
@@ -67,16 +66,17 @@ public class Enemy : BaseUnit
 
     private void IntializeAbilities()
     {
-        foreach (var ability in enemyConfig.Abilities)
+        foreach (var abilitySo in enemyConfig.Abilities)
         {
-            if (ability is not Passive)
+            var ability = AbilityFactory.CreateAbility(abilitySo, this);
+            if (ability is PassiveAbility passive)
             {
-                ability.OnSetCaster(this);
-                castingHandlers.Add(new AbilityCaster(this, ability as CastingAbilitySO));
+                passive.SubscribePassive();
             }
-            else
+            else if (ability is CastingAbility castingAbility)
             {
-                (ability as Passive).SubscribePassive(this);
+                //abilitySo.OnSetCaster(this);
+                castingHandlers.Add(new AbilityCaster(this, castingAbility));
             }
         }
 

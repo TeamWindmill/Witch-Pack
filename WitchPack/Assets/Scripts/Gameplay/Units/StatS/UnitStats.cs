@@ -203,9 +203,9 @@ public class UnitStats
 public struct HealData
 {
     float healAmount;
-    BaseAbilitySO abilitySoRef;
+    AbilitySO abilitySoRef;
 
-    public HealData(float healAmount, BaseAbilitySO abilitySoRef)
+    public HealData(float healAmount, AbilitySO abilitySoRef)
     {
         this.healAmount = healAmount;
         this.abilitySoRef = abilitySoRef;

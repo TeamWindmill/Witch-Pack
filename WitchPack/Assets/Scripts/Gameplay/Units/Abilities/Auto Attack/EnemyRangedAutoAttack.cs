@@ -1,22 +1,22 @@
-using Sirenix.OdinInspector;
-using UnityEngine;
-
-[CreateAssetMenu(fileName = "EnemyRangedAutoAttack", menuName = "Ability/AutoAttack/EnemyRangedAutoAttack")]
-public class EnemyRangedAutoAttack : AutoAttack
+public class EnemyRangedAutoAttack : OffensiveAbility
 {
-    [BoxGroup("Auto Attack")][SerializeField] private float _speed;
-    [BoxGroup("Auto Attack")][SerializeField] private int coreDamage;
-    public override int CoreDamage => coreDamage;
-    public override bool CastAbility(BaseUnit caster)
+    private RangedAutoAttackSO _config;
+
+    public EnemyRangedAutoAttack(EnemyRangedAutoAttackSO config, BaseUnit owner) : base(config, owner)
+    {
+        _config = config;
+    }
+    
+    public override bool CastAbility()
     {
         IDamagable target;
-        if ((caster as Enemy)?.EnemyAI.ActiveState.GetType() == typeof(AttackCoreState))
+        if ((Owner as Enemy)?.EnemyAI.ActiveState.GetType() == typeof(AttackCoreState))
         {
             target = LevelManager.Instance.CurrentLevel.CoreTemple;
         }
         else
         {
-            target = caster.ShamanTargetHelper.GetTarget(TargetData);
+            target = Owner.ShamanTargetHelper.GetTarget(CastingConfig.TargetData);
         }
         
         if (ReferenceEquals(target, null))
@@ -24,16 +24,17 @@ public class EnemyRangedAutoAttack : AutoAttack
             return false;
         }
         AutoAttackMono newPew = LevelManager.Instance.PoolManager.ShamanAutoAttackPool.GetPooledObject();
-        newPew.transform.position = caster.CastPos.transform.position;
+        newPew.transform.position = Owner.CastPos.transform.position;
         newPew.gameObject.SetActive(true);
-        newPew.Fire(caster, this, target,_speed);
+        newPew.Fire(Owner, _config, target,_config.Speed);
         return true;
     }
 
-    public override bool CheckCastAvailable(BaseUnit caster)
+    public override bool CheckCastAvailable()
     {
-        if ((caster as Enemy)?.EnemyAI.ActiveState.GetType() == typeof(AttackCoreState)) return true;
-        BaseUnit target = caster.ShamanTargetHelper.GetTarget(TargetData);
+        if ((Owner as Enemy)?.EnemyAI.ActiveState.GetType() == typeof(AttackCoreState)) return true;
+        BaseUnit target = Owner.ShamanTargetHelper.GetTarget(CastingConfig.TargetData);
         return !ReferenceEquals(target, null);
     }
+
 }

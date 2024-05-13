@@ -24,7 +24,7 @@ public class DamageDealer
     }
 
 
-    public bool CritChance(BaseAbilitySO abilitySo)
+    public bool CritChance(AbilitySO abilitySo)
     {
         if (ReferenceEquals(abilitySo, owner.AutoAttack) && UnityEngine.Random.Range(0, 100) <= owner.Stats.CritChance)
         {
@@ -34,7 +34,7 @@ public class DamageDealer
         return false;
     }
 
-    private void SubscribeStatDamage(Damageable target, DamageDealer dealer, DamageHandler dmg, BaseAbilitySO abilitySo, bool crit)
+    private void SubscribeStatDamage(Damageable target, DamageDealer dealer, DamageHandler dmg, AbilitySO abilitySo, bool crit)
     {
         if (ReferenceEquals(abilitySo, owner.AutoAttack))
         {

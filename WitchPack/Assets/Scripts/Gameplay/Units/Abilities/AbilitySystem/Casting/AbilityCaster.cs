@@ -1,42 +1,41 @@
 using System;
-using System.Linq;
 
 public class AbilityCaster : ICaster
 {
     public event Action<AbilityCaster> OnCast;
     public event Action<CastingAbilitySO> OnCastGFX;
-    public CastingAbilitySO AbilitySo => abilitySo;
+    public CastingAbility Ability => ability;
     public float LastCast { get; private set; }
     
     private readonly BaseUnit _unit;
-    private readonly CastingAbilitySO abilitySo;
+    private readonly CastingAbility ability;
 
-    public AbilityCaster(BaseUnit owner, CastingAbilitySO abilitySo)
+    public AbilityCaster(BaseUnit owner, CastingAbility ability)
     {
         _unit = owner;
-        this.abilitySo = abilitySo;
+        this.ability = ability;
         //ability.AddStatUpgrade();
         if (owner is Shaman shaman)
         {
-            if(abilitySo.HasSfx) OnCastGFX += shaman.ShamanAbilityCastSFX;
-            if (abilitySo.GivesEnergyPoints)
+            if(ability.CastingConfig.HasSfx) OnCastGFX += shaman.ShamanAbilityCastSFX;
+            if (ability.CastingConfig.GivesEnergyPoints)
             {
                 OnCast += shaman.EnergyHandler.OnShamanCast;
             }
         }
         else if (owner is Enemy enemy)
         {
-            if(abilitySo.HasSfx) OnCastGFX += enemy.AbilityCastSFX;
+            if(ability.CastingConfig.HasSfx) OnCastGFX += enemy.AbilityCastSFX;
         }
     }
 
     public bool CastAbility()
     {
-        if (abilitySo.CastAbility(_unit))
+        if (ability.CastAbility())
         {
             LastCast = GAME_TIME.GameTime;
             OnCast?.Invoke(this);
-            OnCastGFX?.Invoke(abilitySo);
+            OnCastGFX?.Invoke(ability.CastingConfig);
             return true;
         }
         
@@ -45,15 +44,15 @@ public class AbilityCaster : ICaster
 
     public bool CheckCastAvailable()
     {
-        return abilitySo.CheckCastAvailable(_unit);
+        return ability.CheckCastAvailable();
     }
 
     public bool ContainsUpgrade(ICaster caster)
     {
-        return abilitySo.Upgrades.Contains(caster.AbilitySo);
+        return ability.GetUpgrades().Contains(caster.Ability);
     }
 
-    public float GetCooldown() => abilitySo.Cd;
+    public float GetCooldown() => ability.CastingConfig.Cd;
 
 }
 

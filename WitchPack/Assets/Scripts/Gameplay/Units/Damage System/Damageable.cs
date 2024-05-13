@@ -16,10 +16,10 @@ public class Damageable
 
     Timer regenTimer;
 
-    public event Action<Damageable, DamageDealer , DamageHandler, BaseAbilitySO, bool > OnGetHit;
+    public event Action<Damageable, DamageDealer , DamageHandler, AbilitySO, bool > OnGetHit;
     public event Action<int> OnTakeDamage;
-    public event Action<Damageable, DamageDealer, DamageHandler, BaseAbilitySO, bool> OnDamageCalc;
-    public event Action<Damageable, DamageDealer, DamageHandler, BaseAbilitySO> OnDeath;
+    public event Action<Damageable, DamageDealer, DamageHandler, AbilitySO, bool> OnDamageCalc;
+    public event Action<Damageable, DamageDealer, DamageHandler, AbilitySO> OnDeath;
     public event Action OnDeathGFX;
     public event Action<bool> OnHitGFX;
     public event Action<Damageable, float> OnHeal;
@@ -146,7 +146,7 @@ public class Damageable
         currentHp = Mathf.Clamp(currentHp, 0, MaxHp);
     }
 
-    private void AddStatsDamageReduction(Damageable target, DamageDealer dealer, DamageHandler dmg, BaseAbilitySO abilitySo, bool crit)
+    private void AddStatsDamageReduction(Damageable target, DamageDealer dealer, DamageHandler dmg, AbilitySO abilitySo, bool crit)
     {
         float damageReductionModifier = 100f / (owner.Stats.Armor + 100f);
         dmg.AddMod(damageReductionModifier);

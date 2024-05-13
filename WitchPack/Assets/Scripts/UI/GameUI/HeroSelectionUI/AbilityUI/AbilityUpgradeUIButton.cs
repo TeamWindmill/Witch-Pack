@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class AbilityUpgradeUIButton : ClickableUIElement
 {
     public event Action<AbilityUpgradeUIButton> OnAbilityClick;
-    public BaseAbilitySO AbilitySo => abilitySo;
+    public Ability Ability{ get; private set; }
 
     [BoxGroup("Components")][SerializeField] private Image bg;
     [BoxGroup("Components")][SerializeField] private Image frame;
@@ -20,47 +20,46 @@ public class AbilityUpgradeUIButton : ClickableUIElement
     [BoxGroup("Sprites")][SerializeField] private Sprite upgradedLineSprite;
     [SerializeField] private bool showLine;
 
-    private BaseAbilitySO abilitySo;
     private bool _hasSkillPoints;
 
 
-    public void Init(BaseAbilitySO abilitySo, bool hasSkillPoints)
+    public void Init(Ability ability, bool hasSkillPoints)
     {
-        this.abilitySo = abilitySo;
+        Ability = ability;
         _hasSkillPoints = hasSkillPoints;
-        _windowInfo.Name = abilitySo.Name;
-        _windowInfo.Discription = abilitySo.Discription;
+        _windowInfo.Name = ability.BaseConfig.Name;
+        _windowInfo.Discription = ability.BaseConfig.Discription;
         line.gameObject.SetActive(showLine);
         Show();
     }
 
     public override void Show()
     {
-        switch (abilitySo.AbilityUpgradeState)
+        switch (Ability.AbilityUpgradeState)
         {
             case AbilityUpgradeState.Locked:
                 if(showLine) line.sprite = defaultLineSprite;
                 frame.sprite = defaultFrameSprite;
-                abilitySprite.sprite = abilitySo.DisabledIcon;
+                abilitySprite.sprite = Ability.BaseConfig.DisabledIcon;
                 break;
             case AbilityUpgradeState.Open:
                 if (!_hasSkillPoints)
                 {
                     if(showLine) line.sprite = defaultLineSprite;
                     frame.sprite = defaultFrameSprite;
-                    abilitySprite.sprite = abilitySo.DisabledIcon;
+                    abilitySprite.sprite = Ability.BaseConfig.DisabledIcon;
                 }
                 else
                 {
                     if(showLine) line.sprite = defaultLineSprite;
                     frame.sprite = upgradeReadyFrameSprite;
-                    abilitySprite.sprite = abilitySo.UpgradeIcon;
+                    abilitySprite.sprite = Ability.BaseConfig.UpgradeIcon;
                 }
                 break;
             case AbilityUpgradeState.Upgraded:
                 if(showLine) line.sprite = upgradedLineSprite;
                 frame.sprite = defaultFrameSprite;
-                abilitySprite.sprite = abilitySo.DefaultIcon;
+                abilitySprite.sprite = Ability.BaseConfig.DefaultIcon;
                 break;
         }
 
@@ -80,14 +79,14 @@ public class AbilityUpgradeUIButton : ClickableUIElement
     protected override void OnClick(PointerEventData eventData)
     {
         base.OnClick(eventData);
-        switch (abilitySo.AbilityUpgradeState)
+        switch (Ability.AbilityUpgradeState)
         {
             case AbilityUpgradeState.Locked:
                 SoundManager.Instance.PlayAudioClip(SoundEffectType.MenuClick);
                 return;
             case AbilityUpgradeState.Open:
                 if(!_hasSkillPoints) return;
-                abilitySo.UpgradeAbility();
+                Ability.UpgradeAbility();
                 OnAbilityClick?.Invoke(this);
                 SoundManager.Instance.PlayAudioClip(SoundEffectType.UpgradeAbility);
                 return;

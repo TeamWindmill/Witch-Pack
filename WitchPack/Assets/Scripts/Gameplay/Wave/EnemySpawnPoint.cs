@@ -1,9 +1,7 @@
-using System.Collections;
 using System;
 using System.Collections.Generic;
 using PathCreation;
 using UnityEngine;
-using TMPro;
 
 public class EnemySpawnPoint : MonoBehaviour
 {

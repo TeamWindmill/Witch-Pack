@@ -1,11 +1,9 @@
 ﻿#if UNITY_EDITOR
 
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using TMPro;
-using DamageNumbersPro;
 using UnityEngine.Rendering;
 
 namespace DamageNumbersPro.Internal {

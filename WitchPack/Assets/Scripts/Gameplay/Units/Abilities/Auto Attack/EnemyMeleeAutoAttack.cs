@@ -1,37 +1,43 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EnemyMeleeAutoAttack", menuName = "Ability/AutoAttack/MeleeAutoAttack")]
-public class EnemyMeleeAutoAttack : OffensiveAbilitySO
+
+public class EnemyMeleeAutoAttack : OffensiveAbility
 {
    
-   public override bool CastAbility(BaseUnit caster)
+   public EnemyMeleeAutoAttack(OffensiveAbilitySO config, BaseUnit owner) : base(config, owner)
+   {
+   }
+   
+   public override bool CastAbility()
    {
       BaseUnit target;
-      if(caster.Effectable.ContainsStatusEffect(StatusEffectType.Charm) || caster.Effectable.ContainsStatusEffect(StatusEffectType.Frenzy))
+      if(Owner.Effectable.ContainsStatusEffect(StatusEffectType.Charm) || Owner.Effectable.ContainsStatusEffect(StatusEffectType.Frenzy))
       {
-         target = caster.EnemyTargetHelper.GetTarget(TargetData);
+         target = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData);
       }
       else
       {
-         target = caster.ShamanTargetHelper.GetTarget(TargetData);
+         target = Owner.ShamanTargetHelper.GetTarget(CastingConfig.TargetData);
       }
       if (ReferenceEquals(target, null)) return false;
-      if (Vector2.Distance(target.transform.position, caster.transform.position) > caster.Movement.DefaultStoppingDistance) return false;
-      target.Damageable.GetHit(caster.DamageDealer,this);
+      if (Vector2.Distance(target.transform.position, Owner.transform.position) > Owner.Movement.DefaultStoppingDistance) return false;
+      target.Damageable.GetHit(Owner.DamageDealer,OffensiveAbilityConfig);
       return true;
    }
 
-   public override bool CheckCastAvailable(BaseUnit caster)
+   public override bool CheckCastAvailable()
    {
       BaseUnit target;
-      if(caster.Effectable.ContainsStatusEffect(StatusEffectType.Charm) || caster.Effectable.ContainsStatusEffect(StatusEffectType.Frenzy))
+      if(Owner.Effectable.ContainsStatusEffect(StatusEffectType.Charm) || Owner.Effectable.ContainsStatusEffect(StatusEffectType.Frenzy))
       {
-         target = caster.EnemyTargetHelper.GetTarget(TargetData);
+         target = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData);
       }
       else
       {
-         target = caster.ShamanTargetHelper.GetTarget(TargetData);
+         target = Owner.ShamanTargetHelper.GetTarget(CastingConfig.TargetData);
       }
       return !ReferenceEquals(target, null);
    }
+
+
 }

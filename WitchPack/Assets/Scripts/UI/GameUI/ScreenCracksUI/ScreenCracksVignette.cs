@@ -1,4 +1,3 @@
-using System;
 using Tools.Lerp;
 using UnityEngine;
 using UnityEngine.UI;

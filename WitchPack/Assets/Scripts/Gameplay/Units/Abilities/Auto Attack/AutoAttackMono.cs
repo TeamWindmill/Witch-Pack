@@ -1,23 +1,16 @@
-using System.Collections;
-using Systems.ObjectPool;
-using UnityEngine;
-using UnityEngine.Events;
-
-
 public class AutoAttackMono : ProjectileMono
 {
-
     protected override void OnTargetHit(IDamagable target)
     {
         switch (target)
         {
             case CoreTemple:
-                target.Damageable.TakeFlatDamage((AbilitySo as AutoAttack).CoreDamage);
+                if (AbilitySo is EnemyRangedAutoAttackSO enemyAutoAttackSO)
+                    target.Damageable.TakeFlatDamage(enemyAutoAttackSO.CoreDamage);
                 break;
             case BaseUnit:
                 target.Damageable.GetHit(_owner.DamageDealer, AbilitySo);
                 break;
         }
     }
-
 }

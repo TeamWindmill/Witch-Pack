@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public abstract class CastingAbilitySO : BaseAbilitySO
+public abstract class CastingAbilitySO : AbilitySO
 {
     [BoxGroup("Casting")][SerializeField, Tooltip("Interval before casting in real time")] private float castTime;
     [BoxGroup("Casting")][SerializeField] private float cd;
@@ -28,8 +28,6 @@ public abstract class CastingAbilitySO : BaseAbilitySO
     public float CastTime => castTime; 
     public TargetData TargetData => targetData;
     public List<StatusEffectConfig> StatusEffects => statusEffects;
-    public abstract bool CastAbility(BaseUnit caster);
-    public abstract bool CheckCastAvailable(BaseUnit caster);
 }
 
 public enum DamageBonusType

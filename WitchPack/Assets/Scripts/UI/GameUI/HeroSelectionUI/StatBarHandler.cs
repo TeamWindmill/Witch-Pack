@@ -51,7 +51,7 @@ public class StatBarHandler : MonoBehaviour
          _statBarFill.fillAmount = (float)currentEnergy / maxEnergy;
      }
 
-     public void UpdateStatBarHealth(Damageable damageable, DamageDealer arg2, DamageHandler arg3, BaseAbilitySO arg4, bool arg5)
+     public void UpdateStatBarHealth(Damageable damageable, DamageDealer arg2, DamageHandler arg3, AbilitySO arg4, bool arg5)
      {
          var currentHP = damageable.CurrentHp;
          var maxHP = damageable.MaxHp;

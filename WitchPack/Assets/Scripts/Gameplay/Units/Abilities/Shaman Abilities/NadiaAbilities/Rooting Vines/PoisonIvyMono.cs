@@ -29,7 +29,7 @@ public class PoisonIvyMono : RootingVinesMono
         SoundManager.Instance.PlayAudioClip(SoundEffectType.PoisonIvy);
     }
 
-    private void RemovePoisonFromEnemyOnDeath(Damageable damageable, DamageDealer damageDealer, DamageHandler damage, BaseAbilitySO abilitySo)
+    private void RemovePoisonFromEnemyOnDeath(Damageable damageable, DamageDealer damageDealer, DamageHandler damage, AbilitySO abilitySo)
     {
         StopPoisonParticle(damageable.Owner as Enemy);
     }

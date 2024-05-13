@@ -73,7 +73,7 @@ public class EnergyHandler
         GainEnergy(100);
     }
 
-    public void OnEnemyKill(Damageable damageable, DamageDealer arg2, DamageHandler arg3, BaseAbilitySO arg4, bool arg5)
+    public void OnEnemyKill(Damageable damageable, DamageDealer arg2, DamageHandler arg3, AbilitySO arg4, bool arg5)
     {
         var enemy = damageable.Owner as Enemy;
         if (enemy is null)
@@ -83,7 +83,7 @@ public class EnergyHandler
         }
         GainEnergy(enemy.EnergyPoints);
     }
-    public void OnEnemyAssist(Damageable damageable, DamageDealer arg2, DamageHandler arg3, BaseAbilitySO arg4, bool arg5)
+    public void OnEnemyAssist(Damageable damageable, DamageDealer arg2, DamageHandler arg3, AbilitySO arg4, bool arg5)
     {
         var enemy = damageable.Owner as Enemy;
         if (enemy is null)
@@ -95,6 +95,6 @@ public class EnergyHandler
     }
     public void OnShamanCast(AbilityCaster caster)
     {
-        GainEnergy(caster.AbilitySo.EnergyPoints); 
+        GainEnergy(caster.Ability.CastingConfig.EnergyPoints); 
     }
 }

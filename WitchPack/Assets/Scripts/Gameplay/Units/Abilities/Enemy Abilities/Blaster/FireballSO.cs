@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -19,25 +17,4 @@ public class FireballSO : OffensiveAbilitySO
     public int TickAmount => _tickAmount;
     public float AoeScale => _aoeScale;
     public int BurnDamage => _burnDamage;
-
-    public override bool CastAbility(BaseUnit caster)
-    {
-        var target = caster.ShamanTargetHelper.GetTarget(TargetData);
-        if (ReferenceEquals(target, null))
-        {
-            return false;
-        }
-
-        FireballMono fireball = LevelManager.Instance.PoolManager.FireballPool.GetPooledObject();
-        fireball.transform.position = caster.CastPos.transform.position;
-        fireball.gameObject.SetActive(true);
-        fireball.Fire(caster, this, target,_speed);
-        return true;
-    }
-
-    public override bool CheckCastAvailable(BaseUnit caster)
-    {
-        BaseUnit target = caster.ShamanTargetHelper.GetTarget(TargetData);
-        return !ReferenceEquals(target, null);
-    }
 }

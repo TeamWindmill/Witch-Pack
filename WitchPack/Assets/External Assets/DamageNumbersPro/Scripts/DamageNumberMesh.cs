@@ -1,9 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Serialization;
-using DamageNumbersPro.Internal;
-using TMPro;
+﻿using UnityEngine;
 
 namespace DamageNumbersPro
 {

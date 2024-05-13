@@ -3,21 +3,21 @@ using System;
 public class AutoAttackCaster : ICaster
 {
     public event Action OnAttack;
-    public CastingAbilitySO AbilitySo => abilitySo;
+    public CastingAbility Ability => ability;
     public float LastCast { get; set; }
 
     private readonly BaseUnit _unit;
-    private readonly CastingAbilitySO abilitySo;
+    private readonly CastingAbility ability;
 
-    public AutoAttackCaster(BaseUnit owner, CastingAbilitySO abilitySo)
+    public AutoAttackCaster(BaseUnit owner, CastingAbility ability)
     {
         _unit = owner;
-        this.abilitySo = abilitySo;
+        this.ability = ability;
     }
 
     public bool CastAbility()
     {
-        if (abilitySo.CastAbility(_unit))
+        if (ability.CastAbility())
         {
             OnAttack?.Invoke();
             return true;
@@ -31,7 +31,7 @@ public class AutoAttackCaster : ICaster
     public float GetCooldown() => 1 / _unit.Stats.AttackSpeed;
     public bool CheckCastAvailable()
     {
-        return abilitySo.CheckCastAvailable(_unit);
+        return ability.CheckCastAvailable();
     }
 
     public bool ContainsUpgrade(ICaster caster)

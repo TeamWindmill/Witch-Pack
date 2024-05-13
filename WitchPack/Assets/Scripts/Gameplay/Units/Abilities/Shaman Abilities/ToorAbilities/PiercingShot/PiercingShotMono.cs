@@ -59,7 +59,7 @@ public class PiercingShotMono : MonoBehaviour
         StartCoroutine(LifeTime());
     }
 
-    private void EnableVisuals(BaseAbilitySO givenAbilitySo)
+    private void EnableVisuals(AbilitySO givenAbilitySo)
     {
         switch (givenAbilitySo.Name)
         {

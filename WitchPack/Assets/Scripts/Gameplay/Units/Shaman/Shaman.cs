@@ -1,21 +1,23 @@
-using System;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Enumerable = System.Linq.Enumerable;
 
 public class Shaman : BaseUnit
 {
     #region public
 
-    public override Stats BaseStats => shamanConfig.BaseStats;
-    public ShamanConfig ShamanConfig => shamanConfig;
-    public List<BaseAbilitySO> KnownAbilities => knownAbilities;
+    public override Stats BaseStats => ShamanConfig.BaseStats;
+    public ShamanConfig ShamanConfig { get; private set; }
+
+    public List<Ability> KnownAbilities { get; } = new();
+    public List<Ability> RootAbilities { get; } = new();
     public bool MouseOverShaman => clicker.IsHover;
-    public List<BaseAbilitySO> RootAbilities => rootAbilities;
     public EnergyHandler EnergyHandler => energyHandler;
     public ShamanVisualHandler ShamanVisualHandler => shamanVisualHandler;
-    public Dictionary<PowerStructure,int> ActivePowerStructures => _activePowerStructures;
+    public Dictionary<PowerStructure,int> ActivePowerStructures { get; } = new();
+
     public ClickHelper Clicker => clicker;
 
     #endregion
@@ -32,10 +34,6 @@ public class Shaman : BaseUnit
 
     #region private
 
-    private Dictionary<PowerStructure,int> _activePowerStructures = new();
-    private ShamanConfig shamanConfig;
-    private List<BaseAbilitySO> rootAbilities = new List<BaseAbilitySO>();
-    private List<BaseAbilitySO> knownAbilities = new List<BaseAbilitySO>();
     [SerializeField] private EnergyHandler energyHandler;
 
     #endregion
@@ -47,13 +45,13 @@ public class Shaman : BaseUnit
 
     public override void Init(BaseUnitConfig baseUnitConfig)
     {
-        shamanConfig = baseUnitConfig as ShamanConfig;
-        base.Init(shamanConfig);
+        ShamanConfig = baseUnitConfig as ShamanConfig;
+        base.Init(ShamanConfig);
         energyHandler = new EnergyHandler(this);
         EnemyTargeter.SetRadius(Stats.BonusRange);
         IntializeAbilities();
         shamanAnimator.Init(this);
-        indicatable.Init(shamanConfig.UnitIndicatorIcon, action: FocusCameraOnShaman, clickable: true,
+        indicatable.Init(ShamanConfig.UnitIndicatorIcon, action: FocusCameraOnShaman, clickable: true,
             indicatorPointerSprite: IndicatorPointerSpriteType.Cyan);
         Indicator newIndicator = LevelManager.Instance.IndicatorManager.CreateIndicator(indicatable);
         newIndicator.gameObject.SetActive(false);
@@ -89,86 +87,90 @@ public class Shaman : BaseUnit
 
     private void IntializeAbilities()
     {
-        foreach (var rootAbility in shamanConfig.RootAbilities)
+        foreach (var abilitySo in ShamanConfig.RootAbilities)
         {
-            rootAbilities.Add(rootAbility);
-            foreach (var upgrade in rootAbility.GetUpgrades())
+            var ability = AbilityFactory.CreateAbility(abilitySo, this);
+            RootAbilities.Add(ability);
+            foreach (var upgrade in ability.GetUpgrades())
             {
                 upgrade.ChangeUpgradeState(AbilityUpgradeState.Locked);
             }
 
-            rootAbility.ChangeUpgradeState(AbilityUpgradeState.Open);
+            ability.ChangeUpgradeState(AbilityUpgradeState.Open);
         }
 
-        foreach (var ability in ShamanConfig.KnownAbilities)
+        foreach (var abilitySo in ShamanConfig.KnownAbilities)
         {
-            ability.UpgradeAbility();
-            knownAbilities.Add(ability);
-            if (ability is not Passive)
+            foreach (var ability in Enumerable.Where(RootAbilities, rootAbility => rootAbility.BaseConfig == abilitySo))
             {
-                ability.OnSetCaster(this);
-                castingHandlers.Add(new AbilityCaster(this, ability as CastingAbilitySO));
-            }
-            else
-            {
-                (ability as Passive).SubscribePassive(this);
+                ability.UpgradeAbility();
+                KnownAbilities.Add(ability);
+                if (ability is PassiveAbility passive)
+                {
+                    passive.SubscribePassive();
+                }
+                else if (ability is CastingAbility castingAbility)
+                {
+                    //abilitySo.OnSetCaster(this);
+                    castingHandlers.Add(new AbilityCaster(this, castingAbility));
+                }
             }
         }
 
         AutoCaster.Init(this, true);
     }
 
-    public void LearnAbility(BaseAbilitySO abilitySo)
+    public void LearnAbility(Ability ability)
     {
-        knownAbilities.Add(abilitySo);
-        if (abilitySo is not Passive passive)
+        KnownAbilities.Add(ability);
+        if (ability is PassiveAbility passive)
         {
-            abilitySo.OnSetCaster(this);
-            var caster = new AbilityCaster(this, abilitySo as CastingAbilitySO);
+            passive.SubscribePassive();
+        }
+        else if (ability is CastingAbility castingAbility)
+        {
+            //ability.BaseConfig.OnSetCaster(this);
+            var caster = new AbilityCaster(this, castingAbility);
             castingHandlers.Add(caster);
             AutoCaster.ReplaceAbility(caster);
         }
-        else
+    }
+
+    public void RemoveAbility(Ability ability)
+    {
+        if (ability is not PassiveAbility) //might cause a problem with some passives
         {
-            passive.SubscribePassive(this);
+            KnownAbilities.Remove(ability);
+            castingHandlers.Remove(GetCasterFromAbility(ability));
         }
     }
 
-    public void RemoveAbility(BaseAbilitySO abilitySo)
+    public void UpgradeAbility(Ability ability, Ability upgrade)
     {
-        //if (ability is not Passive) //might cause a problem with some passives
-        {
-            knownAbilities.Remove(abilitySo);
-            castingHandlers.Remove(GetCasterFromAbility(abilitySo));
-        }
-    }
-
-    public void UpgradeAbility(BaseAbilitySO abilitySo, BaseAbilitySO upgrade)
-    {
-        RemoveAbility(abilitySo);
+        RemoveAbility(ability);
         LearnAbility(upgrade);
     }
 
 
-    public AbilityCaster GetCasterFromAbility(BaseAbilitySO givenAbiltiy)
+    public AbilityCaster GetCasterFromAbility(Ability givenAbility)
     {
         for (int i = 0; i < castingHandlers.Count; i++)
         {
-            if (ReferenceEquals(castingHandlers[i].AbilitySo, givenAbiltiy))
+            if (ReferenceEquals(castingHandlers[i].Ability, givenAbility))
             {
                 return castingHandlers[i];
             }
         }
 
-        //Debug.LogError("Attempted to retrive a non existing caster");
+        //Debug.LogError($"Attempted to retreive a non existing caster for {givenAbility.BaseConfig.Name}");
         return null;
     }
 
-    public BaseAbilitySO GetActiveAbilityFromRoot(BaseAbilitySO rootAbilitySo)
+    public Ability GetActiveAbilityFromRoot(Ability rootAbility)
     {
-        if (KnownAbilities.Contains(rootAbilitySo)) return rootAbilitySo;
+        if (KnownAbilities.Contains(rootAbility)) return rootAbility;
 
-        var upgrades = rootAbilitySo.GetUpgrades();
+        var upgrades = rootAbility.GetUpgrades();
         foreach (var upgrade in upgrades)
         {
             if (KnownAbilities.Contains(upgrade)) return upgrade;
@@ -185,7 +187,7 @@ public class Shaman : BaseUnit
     private void ShamanHoveredEntered()
     {
         shamanVisualHandler.ShowShamanRange();
-        foreach (var powerStructure in _activePowerStructures)
+        foreach (var powerStructure in ActivePowerStructures)
         {
             powerStructure.Key.ProximityRingsManager.ToggleRingSprite(powerStructure.Value,true);
             powerStructure.Key.OnShamanHoverEnter(this,powerStructure.Value);
@@ -218,7 +220,7 @@ public class Shaman : BaseUnit
 
     private void OnHitSFX(bool isCrit)
     {
-        switch (shamanConfig.Sex)
+        switch (ShamanConfig.Sex)
         {
             case Sex.Male:
                 SoundManager.Instance.PlayAudioClip(SoundEffectType.ShamanGetHitMale);
@@ -233,7 +235,7 @@ public class Shaman : BaseUnit
 
     private void DeathSFX()
     {
-        switch (shamanConfig.Sex)
+        switch (ShamanConfig.Sex)
         {
             case Sex.Male:
                 SoundManager.Instance.PlayAudioClip(SoundEffectType.ShamanDeathMale);
@@ -249,7 +251,7 @@ public class Shaman : BaseUnit
     public void ShamanAbilityCastSFX(CastingAbilitySO abilitySo) =>
         SoundManager.Instance.PlayAudioClip(abilitySo.SoundEffectType);
 
-    public void ShamanCastSFX(CastingAbilitySO abilitySo) =>
+    public void ShamanCastSFX(CastingAbility ability) =>
         SoundManager.Instance.PlayAudioClip(SoundEffectType.ShamanCast);
 
     #endregion
