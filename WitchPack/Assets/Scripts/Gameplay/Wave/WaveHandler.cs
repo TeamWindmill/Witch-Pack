@@ -1,9 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class WaveHandler : MonoBehaviour
 {

@@ -1,6 +1,5 @@
 using PathCreation;
 using Sirenix.OdinInspector;
-using Systems.StateMachine;
 using UnityEngine;
 
 public class Enemy : BaseUnit
@@ -67,16 +66,17 @@ public class Enemy : BaseUnit
 
     private void IntializeAbilities()
     {
-        foreach (var ability in enemyConfig.Abilities)
+        foreach (var abilitySo in enemyConfig.Abilities)
         {
-            if (ability is not Passive)
+            var ability = AbilityFactory.CreateAbility(abilitySo, this);
+            if (ability is PassiveAbility passive)
             {
-                ability.OnSetCaster(this);
-                castingHandlers.Add(new AbilityCaster(this, ability as CastingAbility));
+                passive.SubscribePassive();
             }
-            else
+            else if (ability is CastingAbility castingAbility)
             {
-                (ability as Passive).SubscribePassive(this);
+                //abilitySo.OnSetCaster(this);
+                castingHandlers.Add(new AbilityCaster(this, castingAbility));
             }
         }
 
@@ -105,7 +105,7 @@ public class Enemy : BaseUnit
         SoundManager.Instance.PlayAudioClip(isCrit ? SoundEffectType.EnemyGetHitCrit : SoundEffectType.EnemyGetHit);
         enemyVisualHandler.HitEffect.Play();
     }
-    public void AbilityCastSFX(CastingAbility ability) => SoundManager.Instance.PlayAudioClip(ability.SoundEffectType);
+    public void AbilityCastSFX(CastingAbilitySO abilitySo) => SoundManager.Instance.PlayAudioClip(abilitySo.SoundEffectType);
     private void DeathSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.EnemyDeath);
     //private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.EnemyAttack);
     

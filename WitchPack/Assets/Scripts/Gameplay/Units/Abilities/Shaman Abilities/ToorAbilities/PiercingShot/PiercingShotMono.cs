@@ -24,7 +24,7 @@ public class PiercingShotMono : MonoBehaviour
     private int _baseMaxNumberOfHits;
     private int _currentNumberOfHits;
     private int _maxNumberOfHits;
-    private OffensiveAbility _refAbility;
+    private OffensiveAbilitySO refAbilitySo;
     private BaseUnit _owner;
     private Vector2 _dir;
 
@@ -40,11 +40,11 @@ public class PiercingShotMono : MonoBehaviour
     {
         GAME_TIME.OnTimeRateChange -= ChangeVelocity;
     }
-    public void Fire(BaseUnit shooter, OffensiveAbility givenAbility, Vector2 dir, int basePen = 0, bool includePenStat = false)
+    public void Fire(BaseUnit shooter, OffensiveAbilitySO givenAbilitySo, Vector2 dir, int basePen = 0, bool includePenStat = false)
     {
-        EnableVisuals(givenAbility);
+        EnableVisuals(givenAbilitySo);
         _owner = shooter;
-        _refAbility = givenAbility;
+        refAbilitySo = givenAbilitySo;
         _dir = dir;
         Rotate(dir);
         _rb.velocity = (_speed) * GAME_TIME.TimeRate * _dir;
@@ -59,9 +59,9 @@ public class PiercingShotMono : MonoBehaviour
         StartCoroutine(LifeTime());
     }
 
-    private void EnableVisuals(BaseAbility givenAbility)
+    private void EnableVisuals(AbilitySO givenAbilitySo)
     {
-        switch (givenAbility.Name)
+        switch (givenAbilitySo.Name)
         {
             case BASIC_PIERCING_SHOT:
                 _basicPiercingShot.gameObject.SetActive(true);
@@ -96,7 +96,7 @@ public class PiercingShotMono : MonoBehaviour
         BaseUnit target = collision.GetComponent<BaseUnit>();
         if (!ReferenceEquals(target, null) && !ReferenceEquals(_owner, null))
         {
-            target.Damageable.GetHit(_owner.DamageDealer, _refAbility);
+            target.Damageable.GetHit(_owner.DamageDealer, refAbilitySo);
         }
         _currentNumberOfHits++;
         if (_currentNumberOfHits >= _maxNumberOfHits)
@@ -109,7 +109,7 @@ public class PiercingShotMono : MonoBehaviour
     private void Disable()
     {
         _owner = null;
-        _refAbility = null;
+        refAbilitySo = null;
         _currentNumberOfHits = 0;
         _rb.velocity = Vector2.zero;
         gameObject.SetActive(false);

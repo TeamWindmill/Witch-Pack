@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class HighImpactPool : ObjectPool<HighImpactSmokeBomb>
+public class HighImpactPool : ObjectPool<HighImpactSmokeBombMono>
 {
     
 }

@@ -1,15 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-[CreateAssetMenu(fileName = "ability", menuName = "Ability/Heal/BlessingOfSwiftness")]
 public class BlessingOfSwiftness : Heal
 {
-    [SerializeField] private StatusEffectConfig attackSpeedBoost;
+    private BlessingOfSwiftnessSO _config;
+    public BlessingOfSwiftness(BlessingOfSwiftnessSO config, BaseUnit owner) : base(config, owner)
+    {
+        _config = config;
+    }
+
     protected override void HealTarget(Shaman target, BaseUnit caster)
     {
-        target.Damageable.Heal(healAmount);
+        target.Damageable.Heal(_config.HealAmount);
         target.ShamanVisualHandler.HealEffect.Play();
-        target.Effectable.AddEffect(attackSpeedBoost, caster.Affector);
+        target.Effectable.AddEffect(_config.AttackSpeedBoost, caster.Affector);
     }
 }

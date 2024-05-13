@@ -1,10 +1,7 @@
 #if UNITY_EDITOR
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using static VFavorites.Libs.VUtils;
-using static VFavorites.Libs.VGUI;
 
 
 namespace VFavorites

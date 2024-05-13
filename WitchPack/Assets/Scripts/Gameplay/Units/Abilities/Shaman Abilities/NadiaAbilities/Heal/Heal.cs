@@ -1,25 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-[CreateAssetMenu(fileName = "ability", menuName = "Ability/Heal/Heal")]
 public class Heal : CastingAbility
 {
-    [SerializeField] protected int healAmount;
+    private HealSO _config;
+    public Heal(HealSO config, BaseUnit owner) : base(config, owner)
+    {
+        _config = config;
+    }
 
-    public override bool CastAbility(BaseUnit caster)
-    {       
-        Shaman target = caster.ShamanTargetHelper.GetTarget(TargetData); 
+    public override bool CastAbility()
+    {
+        Shaman target = Owner.ShamanTargetHelper.GetTarget(_config.TargetData); 
         if (!ReferenceEquals(target, null)) // any shaman in range?
         {
             // Check if caster has lower hp (ratio) than lowest hp target
-            float maxHp = caster.Stats.MaxHp;
-            float casterCurrentHpRatio = caster.Damageable.CurrentHp / maxHp;
+            float maxHp = Owner.Stats.MaxHp;
+            float casterCurrentHpRatio = Owner.Damageable.CurrentHp / maxHp;
             maxHp = target.Stats.MaxHp;
             float targetCurrentHpRatio = target.Damageable.CurrentHp / maxHp;
             if (casterCurrentHpRatio < targetCurrentHpRatio)
             {
-                target = caster as Shaman;
+                target = Owner as Shaman;
             }
 
             if(target.Damageable.CurrentHp == target.Damageable.MaxHp)
@@ -27,31 +26,31 @@ public class Heal : CastingAbility
                 return false;
             }
 
-            HealTarget(target, caster);
+            HealTarget(target, Owner);
             return true;
         }
         else // no other injured shamans
         {
-            if(caster.Damageable.CurrentHp < caster.Stats.MaxHp) // check if caster is injured
+            if(Owner.Damageable.CurrentHp < Owner.Stats.MaxHp) // check if caster is injured
             {
-                HealTarget(caster as Shaman, caster);
+                HealTarget(Owner as Shaman, Owner);
                 return true;
             }
             return false;
         }
     }
 
-    public override bool CheckCastAvailable(BaseUnit caster)
+    public override bool CheckCastAvailable()
     {
-        Shaman target = caster.ShamanTargetHelper.GetTarget(TargetData); 
+        Shaman target = Owner.ShamanTargetHelper.GetTarget(_config.TargetData); 
         if (!ReferenceEquals(target, null)) // any shaman in range?
         {
             // Check if caster has lower hp (ratio) than lowest hp target
-            float casterCurrentHpRatio = caster.Damageable.CurrentHp / caster.Stats.MaxHp;
+            float casterCurrentHpRatio = Owner.Damageable.CurrentHp / Owner.Stats.MaxHp;
             float targetCurrentHpRatio = target.Damageable.CurrentHp / target.Stats.MaxHp;
             if (casterCurrentHpRatio < targetCurrentHpRatio)
             {
-                target = caster as Shaman;
+                target = Owner as Shaman;
             }
 
             if(target.Damageable.CurrentHp == target.Damageable.MaxHp)
@@ -63,17 +62,18 @@ public class Heal : CastingAbility
         }
         else // no other injured shamans
         {
-            if(caster.Damageable.CurrentHp < caster.Stats.MaxHp) // check if caster is injured
+            if(Owner.Damageable.CurrentHp < Owner.Stats.MaxHp) // check if caster is injured
             {
                 return true;
             }
             return false;
         }
     }
-
+    
+    
     protected virtual void HealTarget(Shaman target, BaseUnit caster)
     {
-        target.Damageable.Heal(healAmount);
+        target.Damageable.Heal(_config.HealAmount);
         target.ShamanVisualHandler.HealEffect.Play();
     }
 }

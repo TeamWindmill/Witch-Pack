@@ -1,23 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
-[CreateAssetMenu(fileName = "ability", menuName = "Ability/Heal/Overheal")]
 public class Overheal : Heal
 {
-    [SerializeField] private int permanentMaxHealthBonus;
+    private OverhealSO _config;
+    public Overheal(OverhealSO config, BaseUnit owner) : base(config, owner)
+    {
+        _config = config;
+    }
 
     protected override void HealTarget(Shaman target, BaseUnit caster)
     {
-        if(target.Damageable.CurrentHp + healAmount > target.Stats.MaxHp)
+        if(target.Damageable.CurrentHp + _config.HealAmount > target.Stats.MaxHp)
         { 
-            target.Stats.AddValueToStat(StatType.MaxHp, permanentMaxHealthBonus);
+            target.Stats.AddValueToStat(StatType.MaxHp, _config.PermanentMaxHealthBonus);
             target.ShamanVisualHandler.OverhealEffect.Play();
         }
         else
         {
             target.ShamanVisualHandler.HealEffect.Play();
         }
-        target.Damageable.Heal(healAmount);
+        target.Damageable.Heal(_config.HealAmount);
     }
 }

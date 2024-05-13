@@ -1,15 +1,7 @@
 #if UNITY_EDITOR
 using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.ShortcutManagement;
-using System.Reflection;
 using System.Linq;
-using System.Text.RegularExpressions;
-using static VInspector.Libs.VUtils;
-using static VInspector.Libs.VGUI;
-
 
 
 namespace VInspector

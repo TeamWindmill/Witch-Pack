@@ -1,9 +1,6 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using Sirenix.Serialization;
 using UnityEngine;
-using UnityEngine.Audio;
 
 
 public class BgMusicManager : MonoSingleton<BgMusicManager>

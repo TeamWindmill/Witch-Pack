@@ -1,36 +1,34 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ability", menuName = "Ability/PiercingShot")]
-
 public class PiercingShot : OffensiveAbility
 {
-    // testing simple projectile pls
-    [SerializeField] private int penetration;
-    public int Penetration { get => penetration; }
-
-    public override bool CastAbility(BaseUnit caster)
+    private PiercingShotSO _config;
+    public PiercingShot(PiercingShotSO config, BaseUnit owner) : base(config, owner)
     {
-        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
+        _config = config;
+    }
+
+    public override bool CastAbility()
+    {
+        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData);
         if (!ReferenceEquals(target, null))
         {
             PiercingShotMono newPew = LevelManager.Instance.PoolManager.PiercingShotPool.GetPooledObject();
-            newPew.transform.position = caster.transform.position;
+            newPew.transform.position = Owner.transform.position;
             newPew.gameObject.SetActive(true);
-            Vector2 dir = (target.transform.position - caster.transform.position) / (target.transform.position - caster.transform.position).magnitude;
-            newPew.Fire(caster, this, dir.normalized, penetration, true);
+            Vector2 dir = (target.transform.position - Owner.transform.position) / (target.transform.position - Owner.transform.position).magnitude;
+            newPew.Fire(Owner, _config, dir.normalized, _config.Penetration, true);
             return true;
         }
         else
         {
             return false;
         }
-
     }
 
-    public override bool CheckCastAvailable(BaseUnit caster)
+    public override bool CheckCastAvailable()
     {
-        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
+        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData);
         return !ReferenceEquals(target, null);
     }
-
 }
