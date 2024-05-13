@@ -10,9 +10,9 @@ public class Shaman : BaseUnit
 
     public override Stats BaseStats => shamanConfig.BaseStats;
     public ShamanConfig ShamanConfig => shamanConfig;
-    public List<BaseAbility> KnownAbilities => knownAbilities;
+    public List<BaseAbilitySO> KnownAbilities => knownAbilities;
     public bool MouseOverShaman => clicker.IsHover;
-    public List<BaseAbility> RootAbilities => rootAbilities;
+    public List<BaseAbilitySO> RootAbilities => rootAbilities;
     public EnergyHandler EnergyHandler => energyHandler;
     public ShamanVisualHandler ShamanVisualHandler => shamanVisualHandler;
     public Dictionary<PowerStructure,int> ActivePowerStructures => _activePowerStructures;
@@ -34,8 +34,8 @@ public class Shaman : BaseUnit
 
     private Dictionary<PowerStructure,int> _activePowerStructures = new();
     private ShamanConfig shamanConfig;
-    private List<BaseAbility> rootAbilities = new List<BaseAbility>();
-    private List<BaseAbility> knownAbilities = new List<BaseAbility>();
+    private List<BaseAbilitySO> rootAbilities = new List<BaseAbilitySO>();
+    private List<BaseAbilitySO> knownAbilities = new List<BaseAbilitySO>();
     [SerializeField] private EnergyHandler energyHandler;
 
     #endregion
@@ -107,7 +107,7 @@ public class Shaman : BaseUnit
             if (ability is not Passive)
             {
                 ability.OnSetCaster(this);
-                castingHandlers.Add(new AbilityCaster(this, ability as CastingAbility));
+                castingHandlers.Add(new AbilityCaster(this, ability as CastingAbilitySO));
             }
             else
             {
@@ -118,13 +118,13 @@ public class Shaman : BaseUnit
         AutoCaster.Init(this, true);
     }
 
-    public void LearnAbility(BaseAbility ability)
+    public void LearnAbility(BaseAbilitySO abilitySo)
     {
-        knownAbilities.Add(ability);
-        if (ability is not Passive passive)
+        knownAbilities.Add(abilitySo);
+        if (abilitySo is not Passive passive)
         {
-            ability.OnSetCaster(this);
-            var caster = new AbilityCaster(this, ability as CastingAbility);
+            abilitySo.OnSetCaster(this);
+            var caster = new AbilityCaster(this, abilitySo as CastingAbilitySO);
             castingHandlers.Add(caster);
             AutoCaster.ReplaceAbility(caster);
         }
@@ -134,27 +134,27 @@ public class Shaman : BaseUnit
         }
     }
 
-    public void RemoveAbility(BaseAbility ability)
+    public void RemoveAbility(BaseAbilitySO abilitySo)
     {
         //if (ability is not Passive) //might cause a problem with some passives
         {
-            knownAbilities.Remove(ability);
-            castingHandlers.Remove(GetCasterFromAbility(ability));
+            knownAbilities.Remove(abilitySo);
+            castingHandlers.Remove(GetCasterFromAbility(abilitySo));
         }
     }
 
-    public void UpgradeAbility(BaseAbility ability, BaseAbility upgrade)
+    public void UpgradeAbility(BaseAbilitySO abilitySo, BaseAbilitySO upgrade)
     {
-        RemoveAbility(ability);
+        RemoveAbility(abilitySo);
         LearnAbility(upgrade);
     }
 
 
-    public AbilityCaster GetCasterFromAbility(BaseAbility givenAbiltiy)
+    public AbilityCaster GetCasterFromAbility(BaseAbilitySO givenAbiltiy)
     {
         for (int i = 0; i < castingHandlers.Count; i++)
         {
-            if (ReferenceEquals(castingHandlers[i].Ability, givenAbiltiy))
+            if (ReferenceEquals(castingHandlers[i].AbilitySo, givenAbiltiy))
             {
                 return castingHandlers[i];
             }
@@ -164,11 +164,11 @@ public class Shaman : BaseUnit
         return null;
     }
 
-    public BaseAbility GetActiveAbilityFromRoot(BaseAbility rootAbility)
+    public BaseAbilitySO GetActiveAbilityFromRoot(BaseAbilitySO rootAbilitySo)
     {
-        if (KnownAbilities.Contains(rootAbility)) return rootAbility;
+        if (KnownAbilities.Contains(rootAbilitySo)) return rootAbilitySo;
 
-        var upgrades = rootAbility.GetUpgrades();
+        var upgrades = rootAbilitySo.GetUpgrades();
         foreach (var upgrade in upgrades)
         {
             if (KnownAbilities.Contains(upgrade)) return upgrade;
@@ -246,10 +246,10 @@ public class Shaman : BaseUnit
 
     private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.BasicAttack);
 
-    public void ShamanAbilityCastSFX(CastingAbility ability) =>
-        SoundManager.Instance.PlayAudioClip(ability.SoundEffectType);
+    public void ShamanAbilityCastSFX(CastingAbilitySO abilitySo) =>
+        SoundManager.Instance.PlayAudioClip(abilitySo.SoundEffectType);
 
-    public void ShamanCastSFX(CastingAbility ability) =>
+    public void ShamanCastSFX(CastingAbilitySO abilitySo) =>
         SoundManager.Instance.PlayAudioClip(SoundEffectType.ShamanCast);
 
     #endregion

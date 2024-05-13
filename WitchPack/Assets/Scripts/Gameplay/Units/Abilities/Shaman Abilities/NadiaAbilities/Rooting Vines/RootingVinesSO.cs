@@ -2,7 +2,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "ability", menuName = "Ability/RootingVines")]
 
-public class RootingVines : OffensiveAbility
+public class RootingVinesSO : OffensiveAbilitySO
 {
     [SerializeField] private float lastingTime;
     [SerializeField] private float _aoeScale = 1;

@@ -72,7 +72,7 @@ public class Enemy : BaseUnit
             if (ability is not Passive)
             {
                 ability.OnSetCaster(this);
-                castingHandlers.Add(new AbilityCaster(this, ability as CastingAbility));
+                castingHandlers.Add(new AbilityCaster(this, ability as CastingAbilitySO));
             }
             else
             {
@@ -105,7 +105,7 @@ public class Enemy : BaseUnit
         SoundManager.Instance.PlayAudioClip(isCrit ? SoundEffectType.EnemyGetHitCrit : SoundEffectType.EnemyGetHit);
         enemyVisualHandler.HitEffect.Play();
     }
-    public void AbilityCastSFX(CastingAbility ability) => SoundManager.Instance.PlayAudioClip(ability.SoundEffectType);
+    public void AbilityCastSFX(CastingAbilitySO abilitySo) => SoundManager.Instance.PlayAudioClip(abilitySo.SoundEffectType);
     private void DeathSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.EnemyDeath);
     //private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.EnemyAttack);
     

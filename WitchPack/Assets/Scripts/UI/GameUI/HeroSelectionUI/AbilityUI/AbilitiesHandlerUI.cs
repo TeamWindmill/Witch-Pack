@@ -93,12 +93,12 @@ public class AbilitiesHandlerUI : MonoBehaviour
         }
     }
 
-    private static bool CheckAbilityUpgradable(Shaman shaman, BaseAbility ability)
+    private static bool CheckAbilityUpgradable(Shaman shaman, BaseAbilitySO abilitySo)
     {
         if (!shaman.EnergyHandler.HasSkillPoints) return false;
-        if (ability is not null)
+        if (abilitySo is not null)
         {
-            if (ability.Upgrades.Length == 0) return false;
+            if (abilitySo.Upgrades.Length == 0) return false;
         }
         return true;
     }

@@ -8,9 +8,9 @@ using UnityEngine;
 
 public class UnitAutoCaster : MonoBehaviour
 {
-    public event Action<CastingAbility> CastTimeStart;
+    public event Action<CastingAbilitySO> CastTimeStart;
     public event Action<CastingHandsEffectType> CastTimeStartVFX;
-    public event Action<CastingAbility> CastTimeEnd;
+    public event Action<CastingAbilitySO> CastTimeEnd;
     public event Action<CastingHandsEffectType> CastTimeEndVFX;
     public bool CanCast { get; private set; }
 
@@ -41,14 +41,14 @@ public class UnitAutoCaster : MonoBehaviour
         var caster = _queuedAbilities.Peek();
         if (caster.CheckCastAvailable())
         {
-            CastTimeStart?.Invoke(caster.Ability);
-            if (caster.Ability.HasCastVisual) CastTimeStartVFX?.Invoke(caster.Ability.CastVisualColor);
-            if (_castTimer > caster.Ability.CastTime)
+            CastTimeStart?.Invoke(caster.AbilitySo);
+            if (caster.AbilitySo.HasCastVisual) CastTimeStartVFX?.Invoke(caster.AbilitySo.CastVisualColor);
+            if (_castTimer > caster.AbilitySo.CastTime)
             {
                 if (caster.CastAbility())
                 {
-                    CastTimeEnd?.Invoke(caster.Ability);
-                    if (caster.Ability.HasCastVisual) CastTimeEndVFX?.Invoke(caster.Ability.CastVisualColor);
+                    CastTimeEnd?.Invoke(caster.AbilitySo);
+                    if (caster.AbilitySo.HasCastVisual) CastTimeEndVFX?.Invoke(caster.AbilitySo.CastVisualColor);
                     _cooldownAbilities.Add(caster, TimerManager.Instance.AddTimer(caster.GetCooldown(), caster, ReturnAbilityFromCooldown, true));
                     _queuedAbilities.Dequeue();
                     _castTimer = 0;
@@ -77,7 +77,7 @@ public class UnitAutoCaster : MonoBehaviour
     public void ReplaceAbility(ICaster caster)
     {
         //if the ability is on cooldown
-        foreach (var ability in _cooldownAbilities.Where(ability => ability.Key.Ability.Upgrades.Contains(caster.Ability)))
+        foreach (var ability in _cooldownAbilities.Where(ability => ability.Key.AbilitySo.Upgrades.Contains(caster.AbilitySo)))
         {
             ability.Value.RemoveThisTimer();
             _cooldownAbilities.Remove(ability.Key);
@@ -94,7 +94,7 @@ public class UnitAutoCaster : MonoBehaviour
                 while (dequeuing)
                 {
                     var ability = _queuedAbilities.Dequeue();
-                    if (ability.Ability.Upgrades.Contains(caster.Ability))
+                    if (ability.AbilitySo.Upgrades.Contains(caster.AbilitySo))
                     {
                         _queuedAbilities.Enqueue(caster);
                         dequeuing = false;
@@ -122,7 +122,7 @@ public class UnitAutoCaster : MonoBehaviour
         CanCast = false;
         _castTimer = 0;
         if (_queuedAbilities.Count <= 0) return;
-        var ability = _queuedAbilities.Peek().Ability;
+        var ability = _queuedAbilities.Peek().AbilitySo;
         CastTimeEnd?.Invoke(ability);
         if (ability.HasCastVisual) CastTimeEndVFX?.Invoke(ability.CastVisualColor);
     }

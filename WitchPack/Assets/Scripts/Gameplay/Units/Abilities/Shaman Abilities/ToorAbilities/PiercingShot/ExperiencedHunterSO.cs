@@ -4,7 +4,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "ability", menuName = "Ability/PenOnKillPiercingShot")]
 
-public class PenOnKillPeircing : PiercingShot
+public class ExperiencedHunterSO : PiercingShotSO
 {
     [SerializeField] private int extraPenPerKill;
     [SerializeField] private int numberOfKillsRequiredToIncreasePierce;
@@ -17,7 +17,7 @@ public class PenOnKillPeircing : PiercingShot
                                                 numberOfKillsRequiredToIncreasePierce);
         eventCounter.OnCountIncrement += IncreasePen;
     }
-    private void IncreasePen(AbilityEventCounter counter, Damageable target, DamageDealer dealer, DamageHandler dmg, BaseAbility ability)
+    private void IncreasePen(AbilityEventCounter counter, Damageable target, DamageDealer dealer, DamageHandler dmg, BaseAbilitySO abilitySo)
     {
         dealer.Owner.Stats.AddValueToStat(StatType.AbilityProjectilePenetration, extraPenPerKill);
         // Play Sound

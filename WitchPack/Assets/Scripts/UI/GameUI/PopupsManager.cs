@@ -35,11 +35,11 @@ public class PopupsManager : MonoBehaviour
         _xOffset = Mathf.Sin(_sinSpeed * GAME_TIME.GameTime) * (_offsetMultiplier / _offsetDivider);
     }
 
-    public void SpawnDamagePopup(Damageable damageable, DamageDealer damageDealer, DamageHandler damage, BaseAbility ability, bool isCrit)
+    public void SpawnDamagePopup(Damageable damageable, DamageDealer damageDealer, DamageHandler damage, BaseAbilitySO abilitySo, bool isCrit)
     {
         _offsetVector = new Vector3(_xOffset, _yOffset);
 
-        _popupColor = DetermineDamagePopupColor(damageDealer, damage, ability, isCrit);
+        _popupColor = DetermineDamagePopupColor(damageDealer, damage, abilitySo, isCrit);
 
          _popupNumber = damage.GetFinalDamage();
         if(damageDealer.Owner is Enemy)
@@ -106,7 +106,7 @@ public class PopupsManager : MonoBehaviour
         levelUpPopupPrefab.Spawn(shaman.transform.position + _offsetVector);
     }
 
-    private Color DetermineDamagePopupColor(DamageDealer damageDealer, DamageHandler damage, BaseAbility ability, bool isCrit)
+    private Color DetermineDamagePopupColor(DamageDealer damageDealer, DamageHandler damage, BaseAbilitySO abilitySo, bool isCrit)
     {
         // First Priority - Specific Damage Color
         if (damage.HasPopupColor)
@@ -114,9 +114,9 @@ public class PopupsManager : MonoBehaviour
             return damage.PopupColor;
         }
         // Second Priority - Specific Ability Color
-        if (ability.HasPopupColor)
+        if (abilitySo.HasPopupColor)
         {
-            return ability.PopupColor;
+            return abilitySo.PopupColor;
         }
 
         // Third Priority - Crit Color

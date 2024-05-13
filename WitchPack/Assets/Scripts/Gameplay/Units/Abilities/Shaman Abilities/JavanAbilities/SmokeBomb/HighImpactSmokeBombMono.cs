@@ -4,7 +4,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class HighImpactSmokeBomb : SmokeBomb
+public class HighImpactSmokeBombMono : SmokeBombMono
 {
     [SerializeField] private ParticleSystem _explosionParticleSystem;
     private bool _explosionActive = true;

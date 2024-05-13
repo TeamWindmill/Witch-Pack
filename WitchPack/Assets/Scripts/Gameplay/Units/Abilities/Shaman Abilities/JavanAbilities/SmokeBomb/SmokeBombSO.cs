@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SmokeBomb", menuName = "Ability/SmokeBomb/SmokeBomb")]
-public class SmokeBombSO : OffensiveAbility
+public class SmokeBombSO : OffensiveAbilitySO
 {
     public float Duration => _duration;
 
@@ -41,10 +41,10 @@ public class SmokeBombSO : OffensiveAbility
 
     protected virtual bool Cast(BaseUnit caster, BaseUnit target)
     {
-        SmokeBomb smokeBomb = LevelManager.Instance.PoolManager.SmokeBombPool.GetPooledObject();
-        smokeBomb.transform.position = target.transform.position;
-        smokeBomb.gameObject.SetActive(true);
-        smokeBomb.SpawnBomb(this, caster);
+        SmokeBombMono smokeBombMono = LevelManager.Instance.PoolManager.SmokeBombPool.GetPooledObject();
+        smokeBombMono.transform.position = target.transform.position;
+        smokeBombMono.gameObject.SetActive(true);
+        smokeBombMono.SpawnBomb(this, caster);
         return true;
     }
 }

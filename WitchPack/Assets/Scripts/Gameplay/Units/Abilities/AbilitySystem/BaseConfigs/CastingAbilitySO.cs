@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public abstract class CastingAbility : BaseAbility
+public abstract class CastingAbilitySO : BaseAbilitySO
 {
     [BoxGroup("Casting")][SerializeField, Tooltip("Interval before casting in real time")] private float castTime;
     [BoxGroup("Casting")][SerializeField] private float cd;

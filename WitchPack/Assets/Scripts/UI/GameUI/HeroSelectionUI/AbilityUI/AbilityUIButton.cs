@@ -6,8 +6,8 @@ using UnityEngine.UI;
 public class AbilityUIButton : ClickableUIElement
 {
     public event Action<AbilityUIButton> OnAbilityClick;
-    public BaseAbility RootAbility => _rootAbility;
-    public BaseAbility ActiveAbility => _activeAbility;
+    public BaseAbilitySO RootAbilitySo => rootAbilitySo;
+    public BaseAbilitySO ActiveAbilitySo => activeAbilitySo;
     public AbilityCaster Caster => _caster;
     
     [SerializeField] private Image _abilitySpriteRenderer;
@@ -18,8 +18,8 @@ public class AbilityUIButton : ClickableUIElement
     [SerializeField] private Sprite defaultFrameSprite;
     
     private AbilityCaster _caster;
-    private BaseAbility _rootAbility;
-    private BaseAbility _activeAbility;
+    private BaseAbilitySO rootAbilitySo;
+    private BaseAbilitySO activeAbilitySo;
     private float _abilityCd;
     private float _abilityLastCast;
 
@@ -27,33 +27,33 @@ public class AbilityUIButton : ClickableUIElement
 
     private bool _activeCd;
     
-    public void Init(BaseAbility rootAbility,BaseAbility activeAbility = null, AbilityCaster caster = null, bool hasSkillPoints = false)
+    public void Init(BaseAbilitySO rootAbilitySo,BaseAbilitySO activeAbilitySo = null, AbilityCaster caster = null, bool hasSkillPoints = false)
     {
         
-        _rootAbility = rootAbility;
-        if (ReferenceEquals(activeAbility,null))
+        this.rootAbilitySo = rootAbilitySo;
+        if (ReferenceEquals(activeAbilitySo,null))
         {
-            _windowInfo.Name = rootAbility.Name;
-            _windowInfo.Discription = rootAbility.Discription;
+            _windowInfo.Name = rootAbilitySo.Name;
+            _windowInfo.Discription = rootAbilitySo.Discription;
             _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
-            _abilitySpriteRenderer.sprite = hasSkillPoints ? rootAbility.UpgradeIcon : rootAbility.DisabledIcon;
-            _activeAbility = null;
+            _abilitySpriteRenderer.sprite = hasSkillPoints ? rootAbilitySo.UpgradeIcon : rootAbilitySo.DisabledIcon;
+            this.activeAbilitySo = null;
             SetCooldownData(0);
         }
         else
         {
-            _activeAbility = activeAbility;
-            _windowInfo.Name = activeAbility.Name;
-            _windowInfo.Discription = activeAbility.Discription;
-            if (_activeAbility.Upgrades.Length > 0)
+            this.activeAbilitySo = activeAbilitySo;
+            _windowInfo.Name = activeAbilitySo.Name;
+            _windowInfo.Discription = activeAbilitySo.Discription;
+            if (this.activeAbilitySo.Upgrades.Length > 0)
             {
                 _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
-                _abilitySpriteRenderer.sprite = hasSkillPoints ? activeAbility.UpgradeIcon : activeAbility.DefaultIcon;
+                _abilitySpriteRenderer.sprite = hasSkillPoints ? activeAbilitySo.UpgradeIcon : activeAbilitySo.DefaultIcon;
             }
             else
             {
                 _frameSpriteRenderer.sprite = defaultFrameSprite;
-                _abilitySpriteRenderer.sprite = activeAbility.DefaultIcon;
+                _abilitySpriteRenderer.sprite = activeAbilitySo.DefaultIcon;
             }
             
             if (caster is not null)
@@ -95,7 +95,7 @@ public class AbilityUIButton : ClickableUIElement
         }
         else
         {
-            _abilityCd = castHandler.Ability.Cd;
+            _abilityCd = castHandler.AbilitySo.Cd;
             _abilityLastCast = castHandler.LastCast;
             _activeCd = true;
         }

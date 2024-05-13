@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ability", menuName = "Ability/Heal/Overheal")]
-public class Overheal : Heal
+public class OverhealSO : HealSO
 {
     [SerializeField] private int permanentMaxHealthBonus;
 

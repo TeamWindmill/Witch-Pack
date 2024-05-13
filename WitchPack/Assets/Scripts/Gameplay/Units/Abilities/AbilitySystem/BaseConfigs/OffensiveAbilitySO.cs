@@ -2,7 +2,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 
 
-public abstract class OffensiveAbility : CastingAbility
+public abstract class OffensiveAbilitySO : CastingAbilitySO
 {
     [BoxGroup("Offensive Ability")] [SerializeField]
     private int baseDamage;

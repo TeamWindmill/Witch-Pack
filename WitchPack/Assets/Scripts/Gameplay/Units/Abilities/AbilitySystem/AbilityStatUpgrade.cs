@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewAbilityUpgrade", menuName = "Ability/AbilityUpgrade")]
 public class AbilityStatUpgrade : ScriptableObject
 {
-    [SerializeField] private BaseAbility _parentAbility;
+    [SerializeField] private BaseAbilitySO _parentAbilitySo;
     [SerializeField] private StatValueType _statValueType;
     
     [SerializeField,ShowIf(nameof(_statValueType),StatValueType.Int)] private AbilityStatInt _abilityStatInt;

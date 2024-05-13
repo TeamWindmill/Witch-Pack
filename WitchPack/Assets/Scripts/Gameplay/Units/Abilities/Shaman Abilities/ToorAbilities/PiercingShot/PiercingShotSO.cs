@@ -2,9 +2,8 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "ability", menuName = "Ability/PiercingShot")]
 
-public class PiercingShot : OffensiveAbility
+public class PiercingShotSO : OffensiveAbilitySO
 {
-    // testing simple projectile pls
     [SerializeField] private int penetration;
     public int Penetration { get => penetration; }
 

@@ -3,7 +3,7 @@ using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "ability", menuName = "Ability/HealingWeeds")]
-public class HealingWeeds : OffensiveAbility
+public class HealingWeedsSO : OffensiveAbilitySO
 {
     [SerializeField] private float aoeScale = 1;
     [SerializeField] private float lastingTime;

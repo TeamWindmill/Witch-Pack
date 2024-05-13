@@ -1,4 +1,4 @@
-public abstract class AutoAttack : OffensiveAbility
+public abstract class AutoAttack : OffensiveAbilitySO
 {
     public virtual int CoreDamage { get; }
 }

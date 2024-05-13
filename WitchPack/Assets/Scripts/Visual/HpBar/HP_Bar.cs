@@ -88,7 +88,7 @@ public class HP_Bar : MonoBehaviour
         }
     }
 
-    public void SetBarValue(Damageable damageable, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4, bool isCrit)
+    public void SetBarValue(Damageable damageable, DamageDealer arg2, DamageHandler arg3, BaseAbilitySO arg4, bool isCrit)
     {
         _maxValue = damageable.MaxHp;
         float ratio = damageable.CurrentHp / _maxValue;

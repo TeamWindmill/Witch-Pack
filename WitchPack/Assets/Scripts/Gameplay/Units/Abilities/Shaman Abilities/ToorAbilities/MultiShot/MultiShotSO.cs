@@ -3,7 +3,7 @@ using System.Linq;
 using Sirenix.OdinInspector;
 
 [CreateAssetMenu(fileName = "MultiShot", menuName = "Ability/MultiShot")]
-public class MultiShotSO : OffensiveAbility
+public class MultiShotSO : OffensiveAbilitySO
 {
     public int Speed => speed;
     public int CurveSpeed => curveSpeed;

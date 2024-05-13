@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public abstract class BaseAbility : ScriptableObject
+public abstract class BaseAbilitySO : ScriptableObject
 {
     [BoxGroup("General Settings/left/Details",centerLabel: true)]
     [LabelWidth(50)][VerticalGroup("General Settings/left")]
@@ -31,7 +31,7 @@ public abstract class BaseAbility : ScriptableObject
     [SerializeField] private Sprite upgradeIcon;
     
     [HorizontalGroup("General Settings")][VerticalGroup("General Settings/left")]
-    [BoxGroup("General Settings/left/Skill Tree")][SerializeField] private BaseAbility[] _upgrades;
+    [BoxGroup("General Settings/left/Skill Tree")][SerializeField] private BaseAbilitySO[] _upgrades;
     
     [BoxGroup("Popup Numbers")][SerializeField] private bool hasPopupColor;
     [BoxGroup("Popup Numbers")][SerializeField, ShowIf(nameof(hasPopupColor))] private Color popupColor;
@@ -44,7 +44,7 @@ public abstract class BaseAbility : ScriptableObject
     public Sprite UpgradeIcon => upgradeIcon;
     public string Name => name;
     public string Discription => discription;
-    public BaseAbility[] Upgrades => _upgrades;
+    public BaseAbilitySO[] Upgrades => _upgrades;
     public AbilityUpgradeState AbilityUpgradeState => _abilityUpgradeState;
 
     public virtual void OnSetCaster(BaseUnit caster)
@@ -67,9 +67,9 @@ public abstract class BaseAbility : ScriptableObject
         }
     }
 
-    public List<BaseAbility> GetUpgrades()
+    public List<BaseAbilitySO> GetUpgrades()
     {
-        var upgrades = new List<BaseAbility>();
+        var upgrades = new List<BaseAbilitySO>();
         foreach (var upgrade in _upgrades)
         {
             upgrades.Add(upgrade);

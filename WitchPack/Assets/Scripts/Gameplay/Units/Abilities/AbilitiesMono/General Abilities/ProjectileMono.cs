@@ -6,16 +6,16 @@ using UnityEngine;
 public class ProjectileMono : PoolableObject
 {
     protected float _speed;
-    protected CastingAbility _ability;
+    protected CastingAbilitySO AbilitySo;
     protected BaseUnit _owner;
     protected IDamagable _target;
 
-    public event Action<CastingAbility, BaseUnit, IDamagable> OnShotHit;
+    public event Action<CastingAbilitySO, BaseUnit, IDamagable> OnShotHit;
 
-    public virtual void Fire(BaseUnit caster, CastingAbility givenAbility, IDamagable target,float speed)
+    public virtual void Fire(BaseUnit caster, CastingAbilitySO givenAbilitySo, IDamagable target,float speed)
     {
         _owner = caster;
-        _ability = givenAbility;
+        AbilitySo = givenAbilitySo;
         _target = target;
         SetSpeed(speed);
         Vector2 dir = (target.GameObject.transform.position - caster.transform.position).normalized;
@@ -35,14 +35,14 @@ public class ProjectileMono : PoolableObject
         if (!ReferenceEquals(target, null) && ReferenceEquals(target, _target))
         {
             OnTargetHit(target);
-            OnShotHit?.Invoke(_ability, _owner, target);
+            OnShotHit?.Invoke(AbilitySo, _owner, target);
             Disable();
         }
     }
 
     protected virtual void OnTargetHit(IDamagable target)
     {
-        target.Damageable.GetHit(_owner.DamageDealer, _ability);
+        target.Damageable.GetHit(_owner.DamageDealer, AbilitySo);
     }
     private IEnumerator TravelTimeCountdown()
     {
@@ -69,7 +69,7 @@ public class ProjectileMono : PoolableObject
     public virtual void Disable()
     {
         _owner = null;
-        _ability = null;
+        AbilitySo = null;
         _target = null;
         OnShotHit = null;
         gameObject.SetActive(false);

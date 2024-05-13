@@ -16,7 +16,7 @@ public class BaseUnitConfig : BaseConfig
     private Sprite unitIndicatorIcon;
     
     [BoxGroup("Unit")][HorizontalGroup("Unit/Split")][VerticalGroup("Unit/Split/Left")]
-    [SerializeField] private OffensiveAbility _autoAttack;
+    [SerializeField] private OffensiveAbilitySO _autoAttack;
     
     [BoxGroup("Unit")][HorizontalGroup("Unit/Split")][VerticalGroup("Unit/Split/Left")]
     [SerializeField] private Stats baseStats;
@@ -28,5 +28,5 @@ public class BaseUnitConfig : BaseConfig
     public Sprite UnitIcon => unitIcon;
     public Stats BaseStats { get => baseStats; }
     public Sprite UnitIndicatorIcon { get => unitIndicatorIcon; }
-    public OffensiveAbility AutoAttack => _autoAttack;
+    public OffensiveAbilitySO AutoAttack => _autoAttack;
 }

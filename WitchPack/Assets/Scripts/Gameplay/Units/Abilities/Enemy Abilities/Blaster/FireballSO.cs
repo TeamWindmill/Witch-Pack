@@ -4,7 +4,7 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Fireball", menuName = "Ability/EnemyAbilities/Fireball")]
-public class FireballSO : OffensiveAbility
+public class FireballSO : OffensiveAbilitySO
 {
     [BoxGroup("Fireball")][SerializeField] private float _speed;
     [BoxGroup("AOE Fire")][SerializeField] private float _duration;

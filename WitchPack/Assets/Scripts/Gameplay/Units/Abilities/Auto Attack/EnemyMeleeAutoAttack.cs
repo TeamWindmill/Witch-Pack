@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "EnemyMeleeAutoAttack", menuName = "Ability/AutoAttack/MeleeAutoAttack")]
-public class EnemyMeleeAutoAttack : OffensiveAbility
+public class EnemyMeleeAutoAttack : OffensiveAbilitySO
 {
    
    public override bool CastAbility(BaseUnit caster)

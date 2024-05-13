@@ -2,7 +2,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "ability", menuName = "Ability/PoisonIvy")]
 
-public class PoisonIvy : OffensiveAbility
+public class PoisonIvySO : OffensiveAbilitySO
 {
     [SerializeField] private float aoeScale = 1;
     [SerializeField] private float lastingTime;

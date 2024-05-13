@@ -31,7 +31,7 @@ public class BaseUnit : BaseEntity , IDamagable
     private UnitTargetHelper<Shaman> shamanTargetHelper;
     private UnitTargetHelper<Enemy> enemyTargetHelper;
     private AutoAttackCaster autoAttackCaster;
-    private OffensiveAbility _autoAttack;
+    private OffensiveAbilitySO _autoAttack;
     private List<ITimer> unitTimers;
     private BaseUnitConfig _unitConfig;
 
@@ -51,7 +51,7 @@ public class BaseUnit : BaseEntity , IDamagable
     public virtual Stats BaseStats => null;
     public UnitStats Stats => stats;
     public AutoAttackCaster AutoAttackCaster => autoAttackCaster;
-    public OffensiveAbility AutoAttack => _autoAttack;
+    public OffensiveAbilitySO AutoAttack => _autoAttack;
     public UnitAutoCaster AutoCaster => _autoCaster;
     public UnitMovement Movement => movement;
     public List<AbilityCaster> CastingHandlers => castingHandlers;

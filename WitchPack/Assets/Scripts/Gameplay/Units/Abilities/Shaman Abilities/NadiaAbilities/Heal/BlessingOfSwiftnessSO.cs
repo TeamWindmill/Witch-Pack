@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ability", menuName = "Ability/Heal/BlessingOfSwiftness")]
-public class BlessingOfSwiftness : Heal
+public class BlessingOfSwiftnessSO : HealSO
 {
     [SerializeField] private StatusEffectConfig attackSpeedBoost;
     protected override void HealTarget(Shaman target, BaseUnit caster)

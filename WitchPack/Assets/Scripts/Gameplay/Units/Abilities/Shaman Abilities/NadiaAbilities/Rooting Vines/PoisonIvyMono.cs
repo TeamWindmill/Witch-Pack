@@ -1,12 +1,12 @@
 
 public class PoisonIvyMono : RootingVinesMono
 {
-    private PoisonIvy poison;
+    private PoisonIvySO poison;
     DamageHandler damage;
-    public override void Init(BaseUnit owner, CastingAbility ability, float lastingTime,float aoeRange)
+    public override void Init(BaseUnit owner, CastingAbilitySO abilitySo, float lastingTime,float aoeRange)
     {
-        base.Init(owner, ability, lastingTime,aoeRange);
-        poison = ability as PoisonIvy;
+        base.Init(owner, abilitySo, lastingTime,aoeRange);
+        poison = abilitySo as PoisonIvySO;
     }
     
 
@@ -29,7 +29,7 @@ public class PoisonIvyMono : RootingVinesMono
         SoundManager.Instance.PlayAudioClip(SoundEffectType.PoisonIvy);
     }
 
-    private void RemovePoisonFromEnemyOnDeath(Damageable damageable, DamageDealer damageDealer, DamageHandler damage, BaseAbility ability)
+    private void RemovePoisonFromEnemyOnDeath(Damageable damageable, DamageDealer damageDealer, DamageHandler damage, BaseAbilitySO abilitySo)
     {
         StopPoisonParticle(damageable.Owner as Enemy);
     }
@@ -38,7 +38,7 @@ public class PoisonIvyMono : RootingVinesMono
     {
         damage = new DamageHandler(poison.PoisonDamage);
         damage.SetPopupColor(poison.PoisonPopupColor);
-        enemy.Damageable.TakeDamage(_owner.DamageDealer, damage, _ability as OffensiveAbility, false);
+        enemy.Damageable.TakeDamage(_owner.DamageDealer, damage, AbilitySo as OffensiveAbilitySO, false);
         
     }
 

@@ -22,7 +22,7 @@ public class SameTargetAutoAttackPassive : Passive
         }
     }
 
-    private void IncreaseAADamage(AbilityEventCounter counter, Damageable target, DamageDealer dealer, DamageHandler dmg, BaseAbility ability)
+    private void IncreaseAADamage(AbilityEventCounter counter, Damageable target, DamageDealer dealer, DamageHandler dmg, BaseAbilitySO abilitySo)
     {
         float mod = ((damageIncreasePerShot / 100) * counter.CurrentCount) + 1;
         dmg.AddMod(mod);
