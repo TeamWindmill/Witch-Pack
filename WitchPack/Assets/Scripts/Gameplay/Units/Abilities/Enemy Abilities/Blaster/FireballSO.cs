@@ -12,7 +12,6 @@ public class FireballSO : OffensiveAbility
     [BoxGroup("AOE Fire")][SerializeField] private int _tickAmount;
     [BoxGroup("AOE Fire")][SerializeField] private float _aoeScale;
     [BoxGroup("AOE Fire")][SerializeField] private int _burnDamage;
-    [BoxGroup("AOE Fire")][SerializeField] private Color _burnPopupColor;
 
     public float Duration => _duration;
     public float Speed => _speed;
@@ -20,7 +19,6 @@ public class FireballSO : OffensiveAbility
     public int TickAmount => _tickAmount;
     public float AoeScale => _aoeScale;
     public int BurnDamage => _burnDamage;
-    public Color BurnPopupColor => _burnPopupColor;
 
     public override bool CastAbility(BaseUnit caster)
     {

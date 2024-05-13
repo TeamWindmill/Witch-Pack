@@ -115,8 +115,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       TransitionTime: 1
-    _effectValues:
-    - ValueType: 0
+    _effectValue:
       StartValue: -0.41
       EndValue: -0.22
     _image: {fileID: 2353761205748111128}
@@ -132,6 +131,7 @@ GameObject:
   - component: {fileID: 7203739942661803222}
   - component: {fileID: 1336628649540534253}
   - component: {fileID: 2270053840377991713}
+  - component: {fileID: 4126958437049633393}
   m_Layer: 5
   m_Name: Screen Brown Vignette
   m_TagString: Untagged
@@ -153,10 +153,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 8493481870404466271}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 7.37, y: -3.71}
-  m_SizeDelta: {x: 1934.73, y: 1937.01}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7203739942661803222
 CanvasRenderer:
@@ -236,10 +236,25 @@ MonoBehaviour:
     TransitionTime: 0.15
   _effectValues:
   - ValueType: 0
-    StartValue: -1.97
+    StartValue: -4
     EndValue: -1
-  CurrentStartValue: 0
+  CurrentStartValue: -4
+  CurrentEndValue: -1
   _vignette: {fileID: 1336628649540534253}
+--- !u!114 &4126958437049633393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 734461530221553990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86710e43de46f6f4bac7c8e50813a599, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 0
+  m_AspectRatio: 1.6002004
 --- !u!1 &1104951084071870112
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,8 +370,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       TransitionTime: 1
-    _effectValues:
-    - ValueType: 0
+    _effectValue:
       StartValue: 0.6
       EndValue: 0.18
     _image: {fileID: 4073838403265448705}
@@ -510,7 +524,8 @@ MonoBehaviour:
   - {fileID: 1516650103217774850}
   - {fileID: 7549801376039547930}
   - {fileID: 2969998564173612047}
-  _cracksVignette: {fileID: 0}
+  _cracksVignette: {fileID: 2270053840377991713}
+  _pulseStrength: 4
 --- !u!1 &2032096878464124248
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,8 +686,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       TransitionTime: 1
-    _effectValues:
-    - ValueType: 0
+    _effectValue:
       StartValue: 0.47
       EndValue: 0.11
     _image: {fileID: 5141551612241671967}
@@ -791,8 +805,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       TransitionTime: 1
-    _effectValues:
-    - ValueType: 0
+    _effectValue:
       StartValue: 0.6
       EndValue: 0.15
     _image: {fileID: 2668509932571346249}
@@ -911,8 +924,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       TransitionTime: 1
-    _effectValues:
-    - ValueType: 0
+    _effectValue:
       StartValue: -0.8
       EndValue: -0.06
     _image: {fileID: 7563344746476593082}
@@ -1031,8 +1043,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       TransitionTime: 1
-    _effectValues:
-    - ValueType: 0
+    _effectValue:
       StartValue: -0.4
       EndValue: -0.1
     _image: {fileID: 612574852527770375}
@@ -1151,8 +1162,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       TransitionTime: 1
-    _effectValues:
-    - ValueType: 0
+    _effectValue:
       StartValue: -0.43
       EndValue: -0.25
     _image: {fileID: 2708880871294343102}
@@ -1271,8 +1281,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       TransitionTime: 1
-    _effectValues:
-    - ValueType: 0
+    _effectValue:
       StartValue: -0.38
       EndValue: -0.25
     _image: {fileID: 4793077543645052573}
@@ -1391,8 +1400,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       TransitionTime: 1
-    _effectValues:
-    - ValueType: 0
+    _effectValue:
       StartValue: -0.52
       EndValue: -0.2
     _image: {fileID: 6533345537870385438}
@@ -1511,8 +1519,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       TransitionTime: 1
-    _effectValues:
-    - ValueType: 0
+    _effectValue:
       StartValue: -0.5
       EndValue: -0.2
     _image: {fileID: 8711098767529769441}

@@ -31,7 +31,6 @@ public class AoeFire : AoeMono
     private void OnFireTick(Shaman shaman)
     {
         var damage = new DamageHandler(_fireball.BurnDamage);
-        damage.SetPopupColor(_fireball.BurnPopupColor);
         shaman.Damageable.TakeDamage(_owner.DamageDealer,damage,_fireball,false);
     }
 }
