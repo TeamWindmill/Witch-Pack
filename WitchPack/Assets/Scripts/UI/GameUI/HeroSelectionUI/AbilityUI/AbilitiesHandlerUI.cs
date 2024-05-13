@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AbilitiesHandlerUI : MonoBehaviour
@@ -93,12 +92,12 @@ public class AbilitiesHandlerUI : MonoBehaviour
         }
     }
 
-    private static bool CheckAbilityUpgradable(Shaman shaman, BaseAbility ability)
+    private static bool CheckAbilityUpgradable(Shaman shaman, Ability ability)
     {
         if (!shaman.EnergyHandler.HasSkillPoints) return false;
         if (ability is not null)
         {
-            if (ability.Upgrades.Length == 0) return false;
+            if (ability.Upgrades.Count == 0) return false;
         }
         return true;
     }

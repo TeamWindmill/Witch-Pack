@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using PathCreation;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
-using UnityEngine;
 
 public class EnemyMovement
 {

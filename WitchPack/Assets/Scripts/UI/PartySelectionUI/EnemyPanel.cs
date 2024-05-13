@@ -28,7 +28,7 @@ public class EnemyPanel : UIElement
 
         foreach (var enemyType in _enemiesInLevel)
         {
-            Debug.Log($"{enemyType.Key.Name}: {enemyType.Value}");
+            //Debug.Log($"{enemyType.Key.Name}: {enemyType.Value}");
             foreach (var config in enemyPanelConfig.EnemyAmounts)
             {
                 if (enemyType.Value > config.AmountRange.x && enemyType.Value < config.AmountRange.y)

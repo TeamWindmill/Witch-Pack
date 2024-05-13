@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class CoreTemple : BaseEntity, IDamagable

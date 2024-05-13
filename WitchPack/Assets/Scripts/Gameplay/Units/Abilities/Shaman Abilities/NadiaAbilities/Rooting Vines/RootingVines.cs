@@ -1,18 +1,18 @@
-using UnityEngine;
-
-[CreateAssetMenu(fileName = "ability", menuName = "Ability/RootingVines")]
-
 public class RootingVines : OffensiveAbility
 {
-    [SerializeField] private float lastingTime;
-    [SerializeField] private float _aoeScale = 1;
-    public override bool CastAbility(BaseUnit caster)
+    private RootingVinesSO _config;
+    public RootingVines(RootingVinesSO config, BaseUnit owner) : base(config, owner)
     {
-        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);    
+        _config = config;
+    }
+
+    public override bool CastAbility()
+    {
+        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData);    
         if (!ReferenceEquals(target, null))
         {
             RootingVinesMono newVines = LevelManager.Instance.PoolManager.RootingVinesPool.GetPooledObject();
-            newVines.Init(caster, this, lastingTime,_aoeScale);
+            newVines.Init(Owner, _config, _config.LastingTime,_config.AoeScale);
             newVines.transform.position = target.transform.position;
             newVines.gameObject.SetActive(true);
             return true;
@@ -21,12 +21,11 @@ public class RootingVines : OffensiveAbility
         {
             return false;
         }
-
     }
 
-    public override bool CheckCastAvailable(BaseUnit caster)
+    public override bool CheckCastAvailable()
     {
-        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
+        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData);
         return !ReferenceEquals(target, null);
     }
 }

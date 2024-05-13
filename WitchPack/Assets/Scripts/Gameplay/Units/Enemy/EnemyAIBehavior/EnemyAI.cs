@@ -1,5 +1,3 @@
-using Sirenix.OdinInspector;
-using Sirenix.Serialization;
 using Systems.StateMachine;
 
 public class EnemyAI: BaseStateMachine<EnemyAI>

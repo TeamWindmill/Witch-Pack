@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HealingWeedsMono : RootingVinesMono
@@ -25,7 +22,7 @@ public class HealingWeedsMono : RootingVinesMono
         timer.Data.Damageable.OnDeath -= HerbalWeeds;
     }
 
-    private void HerbalWeeds(Damageable damageable, DamageDealer damageDealer, DamageHandler damage, BaseAbility ability)
+    private void HerbalWeeds(Damageable damageable, DamageDealer damageDealer, DamageHandler damage, AbilitySO abilitySo)
     {
         damageDealer.Owner.Effectable.AddEffect(speedBoost, damageable.Owner.Affector);
         damageDealer.Owner.Effectable.AddEffect(regenBoost, damageable.Owner.Affector);

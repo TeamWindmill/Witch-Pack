@@ -1,26 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using System;
 
 public class ExperiencedHunterCounter : AbilityEventCounter
 {
     private int numberOfKillsRequiredToIncreasePierce;
-    public ExperiencedHunterCounter(BaseUnit givenOwner, BaseAbility givenAbility, ref Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> eventToSub, int numberOfKillsRequiredToIncreasePierce) : base(givenOwner, givenAbility, ref eventToSub)
+    public ExperiencedHunterCounter(BaseUnit givenOwner, AbilitySO givenAbilitySo, ref Action<Damageable, DamageDealer, DamageHandler, CastingAbilitySO, bool> eventToSub, int numberOfKillsRequiredToIncreasePierce) : base(givenOwner, givenAbilitySo, ref eventToSub)
     {
         this.numberOfKillsRequiredToIncreasePierce = numberOfKillsRequiredToIncreasePierce;        
     }
 
-    protected override void EventFunc(Damageable target, DamageDealer dealer, DamageHandler dmg, BaseAbility ability, bool isCrit)
+    protected override void EventFunc(Damageable target, DamageDealer dealer, DamageHandler dmg, AbilitySO abilitySo, bool isCrit)
     {
-        if (ReferenceEquals(ability, abilityToCount))
+        if (ReferenceEquals(abilitySo, AbilitySoToCount))
         {
             currentCount++;
 
             if(currentCount >= numberOfKillsRequiredToIncreasePierce)
             {
                 currentCount = 0;
-                OnCountIncrement?.Invoke(this, target, dealer, dmg, ability);
+                OnCountIncrement?.Invoke(this, target, dealer, dmg, abilitySo);
             }
         }
     }

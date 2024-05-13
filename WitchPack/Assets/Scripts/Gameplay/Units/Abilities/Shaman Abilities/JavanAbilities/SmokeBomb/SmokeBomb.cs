@@ -1,99 +1,47 @@
-using System;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Playables;
-
-public class SmokeBomb : MonoBehaviour
+public class SmokeBomb : OffensiveAbility
 {
-    public event Action OnAbilityEnd;
-    
-    [SerializeField] private GroundColliderTargeter _targeter;
-    
-    [Header("Timelines")]
-    [SerializeField] private PlayableDirector rangeEnter;
-    [SerializeField] private PlayableDirector rangeExit;
-    [SerializeField] private PlayableDirector cloudsEnter;
-    [SerializeField] private PlayableDirector cloudsIdle;
-    [SerializeField] private PlayableDirector cloudsExit;
-
-    private Dictionary<Shaman,StatusEffect[]> _affectedShamans = new Dictionary<Shaman,StatusEffect[]>();
-    protected SmokeBombSO _ability;
-    protected BaseUnit _owner;
-
-    private void Awake()
+    private SmokeBombSO _config;
+    public SmokeBomb(SmokeBombSO config, BaseUnit owner) : base(config, owner)
     {
-        rangeEnter.gameObject.SetActive(false);
-        rangeExit.gameObject.SetActive(false);
-        cloudsEnter.gameObject.SetActive(false);
-        cloudsIdle.gameObject.SetActive(false);
-        cloudsExit.gameObject.SetActive(false);
+        _config = config;
     }
 
-    public virtual void SpawnBomb(SmokeBombSO config, BaseUnit owner)
+    public override bool CastAbility()
     {
-        _ability = config;
-        _owner = owner;
-        rangeEnter.gameObject.SetActive(true);
-        cloudsEnter.gameObject.SetActive(true);
-        cloudsEnter.stopped += CloudsIdleAnim;
-        transform.localScale = new Vector3(config.Range, config.Range, 0);
-        Invoke(nameof(EndBomb),config.Duration);
-        _targeter.OnTargetAdded += OnTargetEntered;
-        _targeter.OnTargetLost += OnTargetExited;
-    }
-    protected virtual void OnTargetEntered(GroundCollider collider)
-    {
-        var unit = collider.Unit;
-        if (unit is not Shaman shaman) return;
-        if (_affectedShamans.ContainsKey(shaman)) return;
+        BaseUnit target = Owner.ShamanTargetHelper.GetTarget(_config.TargetData);
 
-        StatusEffect[] statusEffects = new StatusEffect[_ability.StatusEffects.Count];
-        for (int i = 0; i < _ability.StatusEffects.Count; i++)
+        if (!ReferenceEquals(target, null))
         {
-            statusEffects[i] = shaman.Effectable.AddEffect(_ability.StatusEffects[i],_owner.Affector);
+            if (Owner.Stats.ThreatLevel > target.Stats.ThreatLevel) target = Owner;
+            if (target.Stats.ThreatLevel <= 0) return false;
+            return Cast(Owner, target);
         }
-        _affectedShamans.Add(shaman,statusEffects);
+
+        if (Owner.Stats.ThreatLevel > 0) return Cast(Owner, Owner);
+        
+        return false;
     }
-    private void OnTargetExited(GroundCollider collider)
+
+    public override bool CheckCastAvailable()
     {
-        if (collider.Unit is Shaman shaman)
+        BaseUnit target = Owner.ShamanTargetHelper.GetTarget(_config.TargetData);
+
+        if (!ReferenceEquals(target, null))
         {
-            if (_affectedShamans.TryGetValue(shaman,out var statusEffects))
-            {
-                foreach (var effect in statusEffects)
-                {
-                    effect.Remove();
-                }
-                _affectedShamans.Remove(shaman);
-            } 
+            if (target.Stats.ThreatLevel > 0) return true;
         }
+
+        if (Owner.Stats.ThreatLevel > 0) return true;
+
+        return false;
     }
     
-    private void CloudsIdleAnim(PlayableDirector clip)
+    protected virtual bool Cast(BaseUnit caster, BaseUnit target)
     {
-        clip.gameObject.SetActive(false);
-        cloudsIdle.gameObject.SetActive(true);
-        clip.stopped -= CloudsIdleAnim;
-    }
-    
-
-    private void EndBomb()
-    {
-        cloudsIdle.gameObject.SetActive(false);
-        rangeEnter.gameObject.SetActive(false);
-        cloudsExit.gameObject.SetActive(true);
-        rangeExit.gameObject.SetActive(true);
-        OnAbilityEnd?.Invoke();
-        rangeExit.stopped += OnEnd;
-    }
-
-    protected virtual void OnEnd(PlayableDirector director)
-    {
-        cloudsExit.gameObject.SetActive(false);
-        rangeExit.gameObject.SetActive(false);
-        gameObject.SetActive(false);
-        director.stopped -= OnEnd;
-        _targeter.OnTargetAdded -= OnTargetEntered;
-        _targeter.OnTargetLost -= OnTargetExited;
+        SmokeBombMono smokeBombMono = LevelManager.Instance.PoolManager.SmokeBombPool.GetPooledObject();
+        smokeBombMono.transform.position = target.transform.position;
+        smokeBombMono.gameObject.SetActive(true);
+        smokeBombMono.SpawnBomb(_config, caster);
+        return true;
     }
 }

@@ -1,6 +1,4 @@
-﻿using UnityEngine.AI;
-using UnityEngine;
-using UnityEditor;
+﻿using UnityEditor;
 using NavMeshPlus.Extensions;
 using NavMeshPlus.Components;
 

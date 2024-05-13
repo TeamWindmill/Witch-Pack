@@ -4,18 +4,18 @@ public class DamageDealer
 {
     private BaseUnit owner;
 
-    public Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> OnHitTarget;
-    public Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> OnKill;
-    public Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> OnAssist;
+    public Action<Damageable, DamageDealer, DamageHandler, CastingAbilitySO, bool> OnHitTarget;
+    public Action<Damageable, DamageDealer, DamageHandler, CastingAbilitySO, bool> OnKill;
+    public Action<Damageable, DamageDealer, DamageHandler, CastingAbilitySO, bool> OnAssist;
 
-    private OffensiveAbility autoAttack;
+    private OffensiveAbilitySO autoAttack;
 
     public BaseUnit Owner
     {
         get => owner;
     }
 
-    public DamageDealer(BaseUnit owner, OffensiveAbility autoAttack)
+    public DamageDealer(BaseUnit owner, OffensiveAbilitySO autoAttack)
     {
         this.owner = owner;
         this.autoAttack = autoAttack;
@@ -24,9 +24,9 @@ public class DamageDealer
     }
 
 
-    public bool CritChance(BaseAbility ability)
+    public bool CritChance(AbilitySO abilitySo)
     {
-        if (ReferenceEquals(ability, owner.AutoAttack) && UnityEngine.Random.Range(0, 100) <= owner.Stats.CritChance)
+        if (ReferenceEquals(abilitySo, owner.AutoAttack) && UnityEngine.Random.Range(0, 100) <= owner.Stats.CritChance)
         {
             return true;
         }
@@ -34,9 +34,9 @@ public class DamageDealer
         return false;
     }
 
-    private void SubscribeStatDamage(Damageable target, DamageDealer dealer, DamageHandler dmg, BaseAbility ability, bool crit)
+    private void SubscribeStatDamage(Damageable target, DamageDealer dealer, DamageHandler dmg, AbilitySO abilitySo, bool crit)
     {
-        if (ReferenceEquals(ability, owner.AutoAttack))
+        if (ReferenceEquals(abilitySo, owner.AutoAttack))
         {
             dmg.AddFlatMod(owner.Stats.BaseDamage);
             if (crit)
@@ -47,14 +47,14 @@ public class DamageDealer
         }
     }
 
-    private void SubscribeDamageBoostsFromAbility(Damageable target, DamageDealer dealer, DamageHandler dmg, CastingAbility ability, bool crit)
+    private void SubscribeDamageBoostsFromAbility(Damageable target, DamageDealer dealer, DamageHandler dmg, CastingAbilitySO abilitySo, bool crit)
     {
-        if (ability is not OffensiveAbility || ReferenceEquals((ability as OffensiveAbility).DamageBoosts, null))
+        if (abilitySo is not OffensiveAbilitySO || ReferenceEquals((abilitySo as OffensiveAbilitySO).DamageBoosts, null))
         {
             return;
         }
 
-        foreach (var item in (ability as OffensiveAbility).DamageBoosts)
+        foreach (var item in (abilitySo as OffensiveAbilitySO).DamageBoosts)
         {
             switch (item.Type)
             {

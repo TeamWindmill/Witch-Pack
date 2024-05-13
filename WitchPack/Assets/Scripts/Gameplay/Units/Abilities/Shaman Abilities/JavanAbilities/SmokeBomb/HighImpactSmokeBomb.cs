@@ -1,51 +1,17 @@
-
-using System;
-using System.Collections;
-using UnityEngine;
-using UnityEngine.Playables;
-
 public class HighImpactSmokeBomb : SmokeBomb
 {
-    [SerializeField] private ParticleSystem _explosionParticleSystem;
-    private bool _explosionActive = true;
-    private float _explosionTimer = 0;
-    private const float _explosionTime = 1;
-    
-    
-    public override void SpawnBomb(SmokeBombSO config, BaseUnit owner)
+    private HighImpactSO _config;
+    public HighImpactSmokeBomb(HighImpactSO config, BaseUnit owner) : base(config, owner)
     {
-        base.SpawnBomb(config, owner);
-        _explosionParticleSystem.gameObject.SetActive(true);
-        _explosionTimer = 0;
-        _explosionActive = true;
-        StartCoroutine(ExplosionTimer());
+        _config = config;
     }
 
-    protected override void OnTargetEntered(GroundCollider collider)
+    protected override bool Cast(BaseUnit caster, BaseUnit target)
     {
-        if (_explosionActive)
-        {
-            if (collider.Unit is Enemy enemy)
-            {
-                enemy.Damageable.GetHit(_owner.DamageDealer,_ability);
-            }
-        }
-        base.OnTargetEntered(collider);
-    }
-
-    private IEnumerator ExplosionTimer()
-    {
-        while (_explosionActive)
-        {
-            _explosionTimer += GAME_TIME.GameDeltaTime;
-            if (_explosionTimer >= _explosionTime) _explosionActive = false;
-            yield return new WaitForEndOfFrame();
-        }
-    }
-
-    protected override void OnEnd(PlayableDirector director)
-    {
-        _explosionParticleSystem.gameObject.SetActive(false);
-        base.OnEnd(director);
+        HighImpactSmokeBombMono highImpact = LevelManager.Instance.PoolManager.HighImpactPool.GetPooledObject();
+        highImpact.transform.position = target.transform.position;
+        highImpact.gameObject.SetActive(true);
+        highImpact.SpawnBomb(_config, caster);
+        return true;
     }
 }

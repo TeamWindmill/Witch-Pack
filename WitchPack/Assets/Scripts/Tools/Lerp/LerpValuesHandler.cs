@@ -1,9 +1,5 @@
 using System;
 using System.Collections;
-using DG.Tweening;
-using DG.Tweening.Core;
-using DG.Tweening.Plugins.Options;
-using Tools.Lerp;
 using UnityEngine;
 
 public class LerpValuesHandler : MonoSingleton<LerpValuesHandler>

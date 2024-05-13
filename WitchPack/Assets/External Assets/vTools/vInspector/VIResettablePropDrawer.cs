@@ -3,7 +3,6 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
-using UnityEditor.ShortcutManagement;
 using System.Reflection;
 using System.Linq;
 using System.Text.RegularExpressions;
