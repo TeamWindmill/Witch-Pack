@@ -1,9 +1,4 @@
-﻿using System;
-using TMPro;
-using UnityEngine;
-
-
-public class CoreHPUIHandler : StatBarUIElement
+﻿public class CoreHPUIHandler : StatBarUIElement
 {
     private CoreTemple _coreTemple;
     public override void Init()

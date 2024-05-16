@@ -1,28 +1,18 @@
-using UnityEngine;
-
-[CreateAssetMenu(fileName = "ability", menuName = "Ability/PoisonIvy")]
-
 public class PoisonIvy : OffensiveAbility
 {
-    [SerializeField] private float aoeScale = 1;
-    [SerializeField] private float lastingTime;
-    [SerializeField] private float poisonDuration;
-    [SerializeField] private float poisonTickRate;
-    [SerializeField] private int poisonDamage;
-    [SerializeField] private Color poisonPopupColor;
-
-    public float PoisonDuration { get => poisonDuration; }
-    public float PoisonTickRate { get => poisonTickRate; }
-    public int PoisonDamage { get => poisonDamage; }
-    public Color PoisonPopupColor { get => poisonPopupColor; }
-
-    public override bool CastAbility(BaseUnit caster)
+    private PoisonIvySO _config;
+    public PoisonIvy(PoisonIvySO config, BaseUnit owner) : base(config, owner)
     {
-        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
+        _config = config;
+    }
+
+    public override bool CastAbility()
+    {
+        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData);
         if (!ReferenceEquals(target, null))
         {
             PoisonIvyMono newIvyPoison = LevelManager.Instance.PoolManager.PoisonIvyPool.GetPooledObject();
-            newIvyPoison.Init(caster, this, lastingTime,aoeScale);
+            newIvyPoison.Init(Owner, _config, _config.LastingTime,_config.AoeScale);
             newIvyPoison.transform.position = target.transform.position;
             newIvyPoison.gameObject.SetActive(true);
             return true;
@@ -34,9 +24,9 @@ public class PoisonIvy : OffensiveAbility
 
     }
 
-    public override bool CheckCastAvailable(BaseUnit caster)
+    public override bool CheckCastAvailable()
     {
-        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
+        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData);
         return !ReferenceEquals(target, null);
     }
 }

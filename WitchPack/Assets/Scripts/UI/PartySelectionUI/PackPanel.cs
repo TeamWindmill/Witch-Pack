@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PackPanel : UIElement
@@ -13,7 +11,7 @@ public class PackPanel : UIElement
         _parent = parent;
         foreach (var icon in _packIcons)
         {
-            icon.UnassignShaman();
+            icon.Init();
             icon.OnIconClick += _parent.UnassignShamanFromPack;
         }
     }
@@ -49,6 +47,14 @@ public class PackPanel : UIElement
         for (int i = 0; i < _parent.ActiveShamanParty.Count; i++)
         {
             _packIcons[i].AssignShaman(_parent.ActiveShamanParty[i]);
+        }
+    }
+
+    public void FlashInRed()
+    {
+        foreach (var icon in _packIcons)
+        {
+            icon.FlashInRed();
         }
     }
 }

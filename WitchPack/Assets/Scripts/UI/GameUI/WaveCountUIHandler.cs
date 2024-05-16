@@ -1,8 +1,4 @@
-﻿using System;
-using TMPro;
-using UnityEngine;
-
-public class WaveCountUIHandler : CounterUIElement
+﻿public class WaveCountUIHandler : CounterUIElement
 {
     public override void Init()
     {

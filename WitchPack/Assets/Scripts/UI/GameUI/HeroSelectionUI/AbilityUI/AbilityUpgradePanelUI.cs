@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -17,9 +16,9 @@ public class AbilityUpgradePanelUI : UIElement
     [SerializeField] private AbilityUpgradeUIButton[] abilityUpgrades2UI;
 
     private AbilityUIButton _abilityUIButton;
-    private BaseAbility _rootAbility;
-    private BaseAbility _activeAbility;
-    private List<BaseAbility> _abilityUpgrades;
+    private Ability rootAbility;
+    private Ability activeAbility;
+    private List<Ability> _abilityUpgrades;
     private Shaman _shaman;
 
     public void SetShaman(Shaman shaman)
@@ -30,9 +29,9 @@ public class AbilityUpgradePanelUI : UIElement
     public void Init(AbilityUIButton abilityUIButton)
     {
         _abilityUIButton = abilityUIButton;
-        _rootAbility = abilityUIButton.RootAbility;
-        _abilityUpgrades = _rootAbility.GetUpgrades();
-        titleTMP.text = abilityUIButton.RootAbility is Passive ? "Passive" : _rootAbility.Name;
+        rootAbility = abilityUIButton.RootAbility;
+        _abilityUpgrades = rootAbility.GetUpgrades();
+        titleTMP.text = abilityUIButton.RootAbility.BaseConfig is PassiveSO ? "Passive" : rootAbility.BaseConfig.Name;
         baseAbilityUpgradeUIButton.OnAbilityClick += UpgradeShamanAbility;
         if (_abilityUpgrades.Count == 3)
         {
@@ -58,7 +57,7 @@ public class AbilityUpgradePanelUI : UIElement
         rectTransform.position = new Vector3(_abilityUIButton.RectTransform.position.x + (_abilityUIButton.RectTransform.rect.width / 2), position.y, position.z);
 
         var shamanHasSkillPoints = _shaman.EnergyHandler.AvailableSkillPoints > 0;
-        baseAbilityUpgradeUIButton.Init(_rootAbility,shamanHasSkillPoints);
+        baseAbilityUpgradeUIButton.Init(rootAbility,shamanHasSkillPoints);
         if (_abilityUpgrades.Count == 3)
         {
             titleTMP.rectTransform.anchoredPosition = new Vector2(0,-30);
@@ -123,7 +122,7 @@ public class AbilityUpgradePanelUI : UIElement
         {
             //Debug.Log($"upgraded {ability.name}");
             _shaman.UpgradeAbility(_abilityUIButton.ActiveAbility, ability);
-            if (_abilityUIButton.ActiveAbility.Upgrades.Length > 0)
+            if (_abilityUIButton.ActiveAbility.Upgrades.Count > 0)
             {
                 foreach (var upgrade in _abilityUIButton.ActiveAbility.Upgrades)
                 {
@@ -140,7 +139,7 @@ public class AbilityUpgradePanelUI : UIElement
         _shaman.EnergyHandler.TryUseSkillPoint();
         var caster = _shaman.GetCasterFromAbility(ability);
         OnAbilityUpgrade?.Invoke();
-        _abilityUIButton.Init(_rootAbility, ability, caster);
+        _abilityUIButton.Init(rootAbility, ability, caster);
         Show();
     }
 }

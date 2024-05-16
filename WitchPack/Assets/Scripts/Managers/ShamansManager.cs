@@ -29,20 +29,24 @@ public class ShamansManager
     
     public void AddShamanToRoster(ShamanConfig shamanConfig)
     {
+        foreach (var saveData in ShamanRoster)
+        {
+            if(saveData.Config == shamanConfig) return; 
+        }
         ShamanRoster.Add(new ShamanSaveData(shamanConfig));
     }
     public void AddShamanToRoster(ShamanConfig[] shamansConfig)
     {
         foreach (var config in shamansConfig)
         {
-            ShamanRoster.Add(new ShamanSaveData(config));
+            AddShamanToRoster(config);
         }
     }
-    public void RemoveShamansFromRoster(ShamanConfig[] shamansConfig)
-    {
-        foreach (var config in shamansConfig)
-        {
-            
-        }
-    }
+    // public void RemoveShamansFromRoster(ShamanConfig[] shamansConfig)
+    // {
+    //     foreach (var config in shamansConfig)
+    //     {
+    //         
+    //     }
+    // }
 }

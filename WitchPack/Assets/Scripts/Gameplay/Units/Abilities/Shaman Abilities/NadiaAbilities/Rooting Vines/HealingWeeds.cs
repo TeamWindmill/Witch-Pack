@@ -1,20 +1,18 @@
-using UnityEngine;
-
-
-
-[CreateAssetMenu(fileName = "ability", menuName = "Ability/HealingWeeds")]
 public class HealingWeeds : OffensiveAbility
 {
-    [SerializeField] private float aoeScale = 1;
-    [SerializeField] private float lastingTime;
-
-    public override bool CastAbility(BaseUnit caster)
+    private HealingWeedsSO _config;
+    public HealingWeeds(HealingWeedsSO config, BaseUnit owner) : base(config, owner)
     {
-        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
+        _config = config;
+    }
+
+    public override bool CastAbility()
+    {
+        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData);
         if (!ReferenceEquals(target, null))
         {
             HealingWeedsMono newHealingWeeds = LevelManager.Instance.PoolManager.HealingWeedsPool.GetPooledObject();
-            newHealingWeeds.Init(caster, this, lastingTime,aoeScale);
+            newHealingWeeds.Init(Owner, _config, _config.LastingTime,_config.AoeScale);
             newHealingWeeds.transform.position = target.transform.position;
             newHealingWeeds.gameObject.SetActive(true);
             return true;
@@ -25,9 +23,9 @@ public class HealingWeeds : OffensiveAbility
         }
     }
 
-    public override bool CheckCastAvailable(BaseUnit caster)
+    public override bool CheckCastAvailable()
     {
-        BaseUnit target = caster.EnemyTargetHelper.GetTarget(TargetData);
+        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData);
         return !ReferenceEquals(target, null);
     }
 }

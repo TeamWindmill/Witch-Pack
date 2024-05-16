@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class SmokeBombPool : ObjectPool<SmokeBomb>
+public class SmokeBombPool : ObjectPool<SmokeBombMono>
 {
     
 }

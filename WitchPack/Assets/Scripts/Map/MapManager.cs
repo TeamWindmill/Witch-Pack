@@ -12,6 +12,7 @@ public class MapManager : MonoBehaviour
 
     [SerializeField] private bool[] _nodeLockState;
     [SerializeField] private ShamanConfig[] _shamanConfigsForInstantUnlock;
+    [SerializeField] private LevelNode[] _testingLevelNodes;
 
     private void Awake()
     {
@@ -35,15 +36,24 @@ public class MapManager : MonoBehaviour
     {
         foreach (var nodeObject in _nodeObjects)
         {
-            if(state)
+            if (state)
                 nodeObject.Unlock();
             else
                 Init();
         }
     }
+
     public void UnlockShamans(bool state)
     {
         GameManager.Instance.ShamansManager.AddShamanToRoster(_shamanConfigsForInstantUnlock);
         //GameManager.Instance.ShamansManager.re(_shamanConfigsForInstantUnlock);
+    }
+
+    public void ToggleTestingLevels(bool state)
+    {
+        foreach (var node in _testingLevelNodes)
+        {
+            node.gameObject.SetActive(state);
+        }
     }
 }

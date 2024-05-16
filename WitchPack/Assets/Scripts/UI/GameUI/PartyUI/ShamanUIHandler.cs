@@ -54,7 +54,7 @@ public class ShamanUIHandler : ClickableUIElement
         _fill.color = Color.Lerp(Color.red, Color.green, hpRatio);
     }
 
-    private void OnChangeHealth(Damageable arg1, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4, bool arg5)
+    private void OnChangeHealth(Damageable arg1, DamageDealer arg2, DamageHandler arg3, AbilitySO arg4, bool arg5)
     {
         OnChangeHealth();
     }
@@ -74,7 +74,7 @@ public class ShamanUIHandler : ClickableUIElement
         base.Hide();
     }
 
-    private void ShamanDeathUI(Damageable arg1, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4)
+    private void ShamanDeathUI(Damageable arg1, DamageDealer arg2, DamageHandler arg3, AbilitySO arg4)
     {
         Color upgradeColor = _upgradeFrame.color;
         upgradeColor.a = 0;

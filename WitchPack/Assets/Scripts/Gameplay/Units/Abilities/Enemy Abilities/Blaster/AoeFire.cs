@@ -1,15 +1,14 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 public class AoeFire : AoeMono
 {
     
     private FireballSO _fireball;
     private Dictionary<Shaman,ITimer> _activeTimers = new();
-    public override void Init(BaseUnit owner, CastingAbility ability, float lastingTime,float aoeRange)
+    public override void Init(BaseUnit owner, CastingAbilitySO abilitySo, float lastingTime,float aoeRange)
     {
-        _fireball = ability as FireballSO;
-        base.Init(owner, ability, lastingTime,aoeRange);
+        _fireball = abilitySo as FireballSO;
+        base.Init(owner, abilitySo, lastingTime,aoeRange);
     }
 
     protected override void OnShamanEnter(Shaman shaman)
@@ -31,7 +30,6 @@ public class AoeFire : AoeMono
     private void OnFireTick(Shaman shaman)
     {
         var damage = new DamageHandler(_fireball.BurnDamage);
-        damage.SetPopupColor(_fireball.BurnPopupColor);
         shaman.Damageable.TakeDamage(_owner.DamageDealer,damage,_fireball,false);
     }
 }

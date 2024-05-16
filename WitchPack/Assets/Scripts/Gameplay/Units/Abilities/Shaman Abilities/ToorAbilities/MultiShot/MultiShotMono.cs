@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-using Tools.Helpers;
 using UnityEngine;
 
 public class MultiShotMono : MonoBehaviour

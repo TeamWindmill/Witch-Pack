@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Sirenix.Utilities;
 using TMPro;
 using UnityEngine;
 
@@ -33,6 +32,11 @@ public class PartySelectionWindow : UIElement
 
     public void StartLevel()
     {
+        if (ActiveShamanParty.Count == 0)
+        {
+            _packPanel.FlashInRed();
+            return;
+        }
         GameManager.Instance.CurrentLevelConfig.Shamans = ActiveShamanParty.ToArray();
         GameManager.SceneHandler.LoadScene(SceneType.Game);
     }
