@@ -15,7 +15,7 @@ public class PackPanel : UIElement
             icon.OnIconClick += _parent.UnassignShamanFromPack;
         }
     }
-    public void AddShamanToPack(ShamanConfig shaman)
+    public void AddShamanToPack(ShamanSaveData shaman)
     {
         foreach (var icon in _packIcons)
         {
@@ -24,11 +24,11 @@ public class PackPanel : UIElement
             return;
         }
     }
-    public void RemoveShamanFromPack(ShamanConfig shaman)
+    public void RemoveShamanFromPack(ShamanSaveData shaman)
     {
         foreach (var icon in _packIcons)
         {
-            if (icon.ShamanConfig == shaman)
+            if (icon.ShamanSaveData == shaman)
             {
                 icon.UnassignShaman();
                 RefreshPackPanel();

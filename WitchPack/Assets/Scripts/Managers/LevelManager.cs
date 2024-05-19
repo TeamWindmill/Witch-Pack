@@ -34,7 +34,7 @@ public class LevelManager : MonoSingleton<LevelManager>
         var levelConfig = GameManager.Instance.CurrentLevelConfig;
         CurrentLevel = Instantiate(levelConfig.levelPrefab, enviromentHolder);
         CurrentLevel.Init(levelConfig);
-        SpawnParty(levelConfig.Shamans);
+        SpawnParty(levelConfig.SelectedShamans);
         CurrentLevel.TurnOffSpawnPoints();
         BgMusicManager.Instance.PlayMusic(MusicClip.GameMusic);
         UIManager.Instance.ShowUIGroup(UIGroup.TopCounterUI);
@@ -60,16 +60,16 @@ public class LevelManager : MonoSingleton<LevelManager>
             GameManager.Instance.LevelsCompleted[CurrentLevel.ID - 1] = win;
     }
 
-    private void SpawnParty(ShamanConfig[] shamanConfigs)
+    private void SpawnParty(List<ShamanSaveData> shamans)
     {
         ShamanParty = new List<Shaman>();
-        if (shamanConfigs.Length > CurrentLevel.ShamanSpawnPoints.Length)
+        if (shamans.Count > CurrentLevel.ShamanSpawnPoints.Length)
         {
             Debug.LogError("there are more shamans than spawn points");
             return;
         }
 
-        foreach (var shamanConfig in shamanConfigs)
+        foreach (var shamanSaveData in shamans)
         {
             int rand = Random.Range(0, CurrentLevel.ShamanSpawnPoints.Length);
             var spawnPoint = CurrentLevel.ShamanSpawnPoints[rand];
@@ -81,7 +81,7 @@ public class LevelManager : MonoSingleton<LevelManager>
             }
 
             var shaman = Instantiate(shamanPrefab, spawnPoint.position, Quaternion.identity, shamanHolder);
-            shaman.Init(shamanConfig);
+            shaman.Init(shamanSaveData);
             ShamanParty.Add(shaman);
             shaman.Damageable.OnDeath += RemoveShamanFromParty;
             shaman.DamageDealer.OnKill += OnEnemyKill;

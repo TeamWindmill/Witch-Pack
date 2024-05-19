@@ -6,38 +6,33 @@ using UnityEngine.UI;
 
 public class PackIcon : ClickableUIElement
 {
-    public event Action<ShamanConfig> OnIconClick;
+    public event Action<ShamanSaveData> OnIconClick;
 
-    public ShamanConfig ShamanConfig { get; private set; }
+    public ShamanSaveData ShamanSaveData { get; private set; }
     public bool Assigned { get; private set; }
     [SerializeField] private Image _splashRenderer;
     [SerializeField] private Image _bgRenderer;
     [SerializeField] private Color _flashColor;
     [SerializeField] private Color _defaultColor;
     [SerializeField] private float _flashDuration;
-    //private Sequence _sequence;
 
     public void Init()
     {
-        // _sequence = DOTween.Sequence();
-        // 
-        // _sequence.Append();
-        // _sequence.Append(_bgRenderer.DOColor(defaultColor, _flashDuration));
         UnassignShaman();
     }
     public void UnassignShaman()
     {
-        ShamanConfig = null;
+        ShamanSaveData = null;
         var color = _splashRenderer.color;
         color.a = 0;
         _splashRenderer.color = color;
         Assigned = false;
     }
 
-    public void AssignShaman(ShamanConfig shamanConfig)
+    public void AssignShaman(ShamanSaveData shamanSaveData)
     {
-        ShamanConfig = shamanConfig;
-        _splashRenderer.sprite = shamanConfig.UnitIcon;
+        ShamanSaveData = shamanSaveData;
+        _splashRenderer.sprite = shamanSaveData.Config.UnitIcon;
         var color = _splashRenderer.color;
         color.a = 1;
         _splashRenderer.color = color;
@@ -53,7 +48,7 @@ public class PackIcon : ClickableUIElement
     {
         if (Assigned)
         {
-            OnIconClick?.Invoke(ShamanConfig); //might change later to show information
+            OnIconClick?.Invoke(ShamanSaveData); //might change later to show information
         }
         
         base.OnClick(eventData);

@@ -5,30 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewAbilityUpgrade", menuName = "Ability/AbilityUpgrade")]
 public class AbilityStatUpgrade : ScriptableObject
 {
-    [SerializeField] private AbilitySO _parentAbilitySo;
-    [SerializeField] private StatValueType _statValueType;
-    
-    [SerializeField,ShowIf(nameof(_statValueType),StatValueType.Int)] private AbilityStatInt _abilityStatInt;
-    [SerializeField,ShowIf(nameof(_statValueType),StatValueType.Float)] private AbilityStatFloat _abilityStatFloat;
+    [SerializeField] private AbilitySO _abilityToUpgrade;
+    [SerializeField] private AbilityStatType _statType;
+    [SerializeField] private float _abilityStatValue;
 
-    public float Value
-    {
-        get
-        {
-            switch (_statValueType)
-            {
-                case StatValueType.Int:
-                    return _abilityStatInt.StatValue;
-                case StatValueType.Float:
-                    return _abilityStatInt.StatValue;
-                default:
-                    throw new Exception("Wrong Type");
-            }
-        }
-    }
-}
-public enum StatValueType
-{
-    Int,
-    Float
+    public AbilitySO AbilityToUpgrade => _abilityToUpgrade;
+    public float AbilityStatValue => _abilityStatValue;
+    public AbilityStatType StatType => _statType;
 }

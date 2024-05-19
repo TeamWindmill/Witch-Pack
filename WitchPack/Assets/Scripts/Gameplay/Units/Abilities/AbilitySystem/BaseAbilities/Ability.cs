@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 public abstract class Ability
@@ -6,6 +7,8 @@ public abstract class Ability
     public AbilityUpgradeState AbilityUpgradeState { get; private set; }
     public List<Ability> Upgrades { get; } = new();
     protected BaseUnit Owner { get; }
+    
+    protected List<AbilityStat> abilityStats = new();
 
     protected Ability(AbilitySO baseConfig, BaseUnit owner)
     {
@@ -46,6 +49,28 @@ public abstract class Ability
         }
 
         return upgrades;
+    }
+
+    protected float GetAbilityStatValue(AbilityStatType abilityStatType)
+    {
+        foreach (var abilityStat in abilityStats)
+        {
+            if (abilityStat.StatType == abilityStatType) return abilityStat.GetStatValue();
+        }
+
+        throw new Exception("ability stat not found in ability");
+    }
+
+    public void AddStatUpgrade(AbilityStatUpgrade abilityStatUpgrade)
+    {
+        foreach (var stat in abilityStats)
+        {
+            if (stat.StatType == abilityStatUpgrade.StatType)
+            {
+                stat.AddModifier(abilityStatUpgrade.AbilityStatValue);
+                return;
+            }
+        }
     }
 
 }

@@ -2,23 +2,37 @@ using System;
 using System.Collections.Generic;
 
 [Serializable]
-public abstract class AbilityStat<TValue> where TValue : struct
+public class AbilityStat
 {
     public AbilityStatType StatType;
-    protected List<TValue> _modifiers;
+    public float BaseStatValue;
+    
+    private List<float> _modifiers;
 
-    public TValue StatValue => GetStatValue();
+    public AbilityStat(AbilityStatType statType, float baseStatValue)
+    {
+        StatType = statType;
+        BaseStatValue = baseStatValue;
+    }
 
-    public void AddModifier(TValue value)
+    public void AddModifier(float value)
     {
         _modifiers.Add(value);
     }
-    public void RemoveModifier(TValue value)
+    public void RemoveModifier(float value)
     {
         _modifiers.Remove(value);
     }
+    public float GetStatValue()
+    {
+        var value = BaseStatValue;
+        foreach (var modifier in _modifiers)
+        {
+            value += modifier;
+        }
 
-    protected abstract TValue GetStatValue();
+        return value;
+    }
 }
 
 public enum AbilityStatType
@@ -28,5 +42,5 @@ public enum AbilityStatType
     Speed,
     Range,
     CastTime,
-    
+    penetration,
 }
