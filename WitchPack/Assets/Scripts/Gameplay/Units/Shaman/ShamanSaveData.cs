@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class ShamanSaveData
 {
     public ShamanConfig Config;
-    public readonly List<AbilityStatUpgrade> AbilityUpgrades = new();
+    public List<AbilityStatUpgrade> AbilityUpgrades;
     public ShamanSaveData(ShamanConfig config)
     {
         Config = config;

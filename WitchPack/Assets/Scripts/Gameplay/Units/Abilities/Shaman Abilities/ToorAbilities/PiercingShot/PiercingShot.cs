@@ -6,7 +6,7 @@ public class PiercingShot : OffensiveAbility
     public PiercingShot(PiercingShotSO config, BaseUnit owner) : base(config, owner)
     {
         _config = config;
-        abilityStats.Add(new AbilityStat(AbilityStatType.penetration,_config.Penetration));
+        abilityStats.Add(new AbilityStat(AbilityStatType.Penetration,_config.Penetration));
     }
 
     public override bool CastAbility()
@@ -15,10 +15,12 @@ public class PiercingShot : OffensiveAbility
         if (!ReferenceEquals(target, null))
         {
             PiercingShotMono newPew = LevelManager.Instance.PoolManager.PiercingShotPool.GetPooledObject();
-            newPew.transform.position = Owner.transform.position;
+            var position = Owner.transform.position;
+            newPew.transform.position = position;
             newPew.gameObject.SetActive(true);
-            Vector2 dir = (target.transform.position - Owner.transform.position) / (target.transform.position - Owner.transform.position).magnitude;
-            newPew.Fire(Owner, _config, dir.normalized, (int)GetAbilityStatValue(AbilityStatType.penetration), true);
+            var position1 = target.transform.position;
+            Vector2 dir = (position1 - position) / (position1 - position).magnitude;
+            newPew.Fire(Owner, this, dir.normalized, (int)GetAbilityStatValue(AbilityStatType.Penetration), true);
             return true;
         }
         else

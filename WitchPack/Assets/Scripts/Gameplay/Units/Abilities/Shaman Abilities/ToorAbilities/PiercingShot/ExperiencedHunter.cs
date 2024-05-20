@@ -4,12 +4,12 @@ public class ExperiencedHunter : PiercingShot
     public ExperiencedHunter(ExperiencedHunterSO config, BaseUnit owner) : base(config, owner)
     {
         _config = config;
-        ExperiencedHunterCounter eventCounter = new ExperiencedHunterCounter(owner, _config, ref owner.DamageDealer.OnKill, 
+        ExperiencedHunterCounter eventCounter = new ExperiencedHunterCounter(owner, this, ref owner.DamageDealer.OnKill, 
             _config.NumberOfKillsRequiredToIncreasePierce);
         eventCounter.OnCountIncrement += IncreasePen;
     }
     
-    private void IncreasePen(AbilityEventCounter counter, Damageable target, DamageDealer dealer, DamageHandler dmg, AbilitySO abilitySo)
+    private void IncreasePen(AbilityEventCounter counter, Damageable target, DamageDealer dealer, DamageHandler dmg, Ability ability)
     {
         dealer.Owner.Stats.AddValueToStat(StatType.AbilityProjectilePenetration, _config.ExtraPenPerKill);
         // Play Sound

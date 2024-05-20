@@ -1,9 +1,9 @@
 public class HighImpactSmokeBomb : SmokeBomb
 {
-    private HighImpactSO _config;
+    private HighImpactSO Config;
     public HighImpactSmokeBomb(HighImpactSO config, BaseUnit owner) : base(config, owner)
     {
-        _config = config;
+        Config = config;
     }
 
     protected override bool Cast(BaseUnit caster, BaseUnit target)
@@ -11,7 +11,7 @@ public class HighImpactSmokeBomb : SmokeBomb
         HighImpactSmokeBombMono highImpact = LevelManager.Instance.PoolManager.HighImpactPool.GetPooledObject();
         highImpact.transform.position = target.transform.position;
         highImpact.gameObject.SetActive(true);
-        highImpact.SpawnBomb(_config, caster);
+        highImpact.SpawnBomb(this, caster);
         return true;
     }
 }

@@ -10,9 +10,9 @@ public class HighImpactSmokeBombMono : SmokeBombMono
     private const float _explosionTime = 1;
     
     
-    public override void SpawnBomb(SmokeBombSO config, BaseUnit owner)
+    public override void SpawnBomb(SmokeBomb ability, BaseUnit owner)
     {
-        base.SpawnBomb(config, owner);
+        base.SpawnBomb(ability, owner);
         _explosionParticleSystem.gameObject.SetActive(true);
         _explosionTimer = 0;
         _explosionActive = true;

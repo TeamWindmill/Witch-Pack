@@ -7,7 +7,7 @@ public class AbilityStat
     public AbilityStatType StatType;
     public float BaseStatValue;
     
-    private List<float> _modifiers;
+    private List<float> _modifiers = new();
 
     public AbilityStat(AbilityStatType statType, float baseStatValue)
     {
@@ -42,5 +42,8 @@ public enum AbilityStatType
     Speed,
     Range,
     CastTime,
-    penetration,
+    Penetration,
+    ExtraPenetrationPerKill,
+    KillToIncreasePenetration,
+    
 }

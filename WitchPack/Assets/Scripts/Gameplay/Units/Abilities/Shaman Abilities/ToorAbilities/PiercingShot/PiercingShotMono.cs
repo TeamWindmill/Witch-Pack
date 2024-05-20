@@ -24,7 +24,7 @@ public class PiercingShotMono : MonoBehaviour
     private int _baseMaxNumberOfHits;
     private int _currentNumberOfHits;
     private int _maxNumberOfHits;
-    private OffensiveAbilitySO refAbilitySo;
+    private OffensiveAbility refAbility;
     private BaseUnit _owner;
     private Vector2 _dir;
 
@@ -40,11 +40,11 @@ public class PiercingShotMono : MonoBehaviour
     {
         GAME_TIME.OnTimeRateChange -= ChangeVelocity;
     }
-    public void Fire(BaseUnit shooter, OffensiveAbilitySO givenAbilitySo, Vector2 dir, int basePen = 0, bool includePenStat = false)
+    public void Fire(BaseUnit shooter, OffensiveAbility givenAbility, Vector2 dir, int basePen = 0, bool includePenStat = false)
     {
-        EnableVisuals(givenAbilitySo);
+        EnableVisuals(givenAbility.OffensiveAbilityConfig);
         _owner = shooter;
-        refAbilitySo = givenAbilitySo;
+        refAbility = givenAbility;
         _dir = dir;
         Rotate(dir);
         _rb.velocity = (_speed) * GAME_TIME.TimeRate * _dir;
@@ -96,7 +96,7 @@ public class PiercingShotMono : MonoBehaviour
         BaseUnit target = collision.GetComponent<BaseUnit>();
         if (!ReferenceEquals(target, null) && !ReferenceEquals(_owner, null))
         {
-            target.Damageable.GetHit(_owner.DamageDealer, refAbilitySo);
+            target.Damageable.GetHit(_owner.DamageDealer, refAbility);
         }
         _currentNumberOfHits++;
         if (_currentNumberOfHits >= _maxNumberOfHits)
@@ -109,7 +109,7 @@ public class PiercingShotMono : MonoBehaviour
     private void Disable()
     {
         _owner = null;
-        refAbilitySo = null;
+        refAbility = null;
         _currentNumberOfHits = 0;
         _rb.velocity = Vector2.zero;
         gameObject.SetActive(false);

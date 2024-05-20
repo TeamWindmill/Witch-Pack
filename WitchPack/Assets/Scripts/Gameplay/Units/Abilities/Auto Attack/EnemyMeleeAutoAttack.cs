@@ -21,7 +21,7 @@ public class EnemyMeleeAutoAttack : OffensiveAbility
       }
       if (ReferenceEquals(target, null)) return false;
       if (Vector2.Distance(target.transform.position, Owner.transform.position) > Owner.Movement.DefaultStoppingDistance) return false;
-      target.Damageable.GetHit(Owner.DamageDealer,OffensiveAbilityConfig);
+      target.Damageable.GetHit(Owner.DamageDealer,this);
       return true;
    }
 

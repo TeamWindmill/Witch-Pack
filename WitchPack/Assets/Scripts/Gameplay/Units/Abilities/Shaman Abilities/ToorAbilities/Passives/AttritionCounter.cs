@@ -5,14 +5,14 @@ public class AttritionCounter : AbilityEventCounter
     private BaseUnit lastTarget;
     private int maxStacks;
 
-    public AttritionCounter(BaseUnit givenOwner, AbilitySO givenAbilitySo, ref Action<Damageable, DamageDealer, DamageHandler, CastingAbilitySO, bool> eventToSub, int maxStacks) : base(givenOwner, givenAbilitySo, ref eventToSub )
+    public AttritionCounter(BaseUnit givenOwner, Ability ability, ref Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> eventToSub, int maxStacks) : base(givenOwner, ability, ref eventToSub )
     {
         this.maxStacks = maxStacks;
     }
 
-    protected override void EventFunc(Damageable target, DamageDealer dealer, DamageHandler dmg, AbilitySO abilitySo, bool isCrit)
+    protected override void EventFunc(Damageable target, DamageDealer dealer, DamageHandler dmg, Ability ability, bool isCrit)
     {
-        if (ReferenceEquals(abilitySo, AbilitySoToCount))
+        if (ReferenceEquals(ability, AbilityToCount))
         {
             if (ReferenceEquals(lastTarget, target.Owner)) // attacking the same target
             {
@@ -20,12 +20,12 @@ public class AttritionCounter : AbilityEventCounter
                 {
                     currentCount++;
                 }
-                OnCountIncrement?.Invoke(this, target, dealer, dmg, abilitySo);
+                OnCountIncrement?.Invoke(this, target, dealer, dmg, ability);
             }
             else // switching target
             {
                 currentCount = 0;
-                OnCountReset?.Invoke(this, target, dealer, dmg, abilitySo);
+                OnCountReset?.Invoke(this, target, dealer, dmg, ability);
                 lastTarget = target.Owner as BaseUnit;
             }
         }

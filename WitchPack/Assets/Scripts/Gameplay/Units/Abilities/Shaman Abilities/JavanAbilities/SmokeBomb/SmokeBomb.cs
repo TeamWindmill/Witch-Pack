@@ -1,14 +1,14 @@
 public class SmokeBomb : OffensiveAbility
 {
-    private SmokeBombSO _config;
+    public readonly SmokeBombSO SmokeBombConfig;
     public SmokeBomb(SmokeBombSO config, BaseUnit owner) : base(config, owner)
     {
-        _config = config;
+        SmokeBombConfig = config;
     }
 
     public override bool CastAbility()
     {
-        BaseUnit target = Owner.ShamanTargetHelper.GetTarget(_config.TargetData);
+        BaseUnit target = Owner.ShamanTargetHelper.GetTarget(SmokeBombConfig.TargetData);
 
         if (!ReferenceEquals(target, null))
         {
@@ -24,7 +24,7 @@ public class SmokeBomb : OffensiveAbility
 
     public override bool CheckCastAvailable()
     {
-        BaseUnit target = Owner.ShamanTargetHelper.GetTarget(_config.TargetData);
+        BaseUnit target = Owner.ShamanTargetHelper.GetTarget(SmokeBombConfig.TargetData);
 
         if (!ReferenceEquals(target, null))
         {
@@ -41,7 +41,7 @@ public class SmokeBomb : OffensiveAbility
         SmokeBombMono smokeBombMono = LevelManager.Instance.PoolManager.SmokeBombPool.GetPooledObject();
         smokeBombMono.transform.position = target.transform.position;
         smokeBombMono.gameObject.SetActive(true);
-        smokeBombMono.SpawnBomb(_config, caster);
+        smokeBombMono.SpawnBomb(this, caster);
         return true;
     }
 }

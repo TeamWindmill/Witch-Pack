@@ -33,11 +33,11 @@ public class PopupsManager : MonoBehaviour
         _xOffset = Mathf.Sin(_sinSpeed * GAME_TIME.GameTime) * (_offsetMultiplier / _offsetDivider);
     }
 
-    public void SpawnDamagePopup(Damageable damageable, DamageDealer damageDealer, DamageHandler damage, AbilitySO abilitySo, bool isCrit)
+    public void SpawnDamagePopup(Damageable damageable, DamageDealer damageDealer, DamageHandler damage, Ability ability, bool isCrit)
     {
         _offsetVector = new Vector3(_xOffset, _yOffset);
 
-        _popupColor = DetermineDamagePopupColor(damageDealer, damage, abilitySo, isCrit);
+        _popupColor = DetermineDamagePopupColor(damageDealer, damage, ability.BaseConfig, isCrit);
 
          _popupNumber = damage.GetFinalDamage();
         if(damageDealer.Owner is Enemy)

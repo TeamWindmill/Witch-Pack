@@ -8,11 +8,11 @@ public class MultiShot : OffensiveAbility
     protected Enemy _target1;
     protected Enemy _target2;
     protected Enemy _target3;
-    private MultiShotSO _config;
+    public readonly MultiShotSO MultishotConfig;
     
     public MultiShot(MultiShotSO config, BaseUnit owner) : base(config, owner)
     {
-        _config = config;
+        MultishotConfig = config;
     }
 
     public override bool CastAbility()
@@ -45,15 +45,15 @@ public class MultiShot : OffensiveAbility
                 shotMono.gameObject.SetActive(true);
                 if (i == 0)
                 {
-                    shotMono.Init(_config.MultiShotType,Owner, _target1, _config, dirAngle);
+                    shotMono.Init(MultishotConfig.MultiShotType,Owner, _target1, this, dirAngle);
                 }
                 else if (i % 2 == 0)
                 {
-                    shotMono.Init(_config.MultiShotType,Owner, _target2, _config, dirAngle + _config.Offset);
+                    shotMono.Init(MultishotConfig.MultiShotType,Owner, _target2, this, dirAngle + MultishotConfig.Offset);
                 }
                 else
                 {
-                    shotMono.Init(_config.MultiShotType,Owner, _target3, _config, dirAngle - _config.Offset);
+                    shotMono.Init(MultishotConfig.MultiShotType,Owner, _target3, this, dirAngle - MultishotConfig.Offset);
                 }
             }
             return true;

@@ -18,7 +18,7 @@ public class ShamanRangedAutoAttack : OffensiveAbility
         AutoAttackMono newPew = LevelManager.Instance.PoolManager.ShamanAutoAttackPool.GetPooledObject();
         newPew.transform.position = Owner.CastPos.transform.position;
         newPew.gameObject.SetActive(true);
-        newPew.Fire(Owner, _config, target, _config.Speed);
+        newPew.Fire(Owner, this, target, _config.Speed);
         return true;
     }
 

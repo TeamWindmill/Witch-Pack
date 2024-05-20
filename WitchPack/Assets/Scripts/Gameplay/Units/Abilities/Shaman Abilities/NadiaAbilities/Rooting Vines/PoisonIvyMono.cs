@@ -1,22 +1,22 @@
 
 public class PoisonIvyMono : RootingVinesMono
 {
-    private PoisonIvySO poison;
+    private PoisonIvy poison;
     DamageHandler damage;
-    public override void Init(BaseUnit owner, CastingAbilitySO abilitySo, float lastingTime,float aoeRange)
+    public override void Init(BaseUnit owner, CastingAbility ability, float lastingTime,float aoeRange)
     {
-        base.Init(owner, abilitySo, lastingTime,aoeRange);
-        poison = abilitySo as PoisonIvySO;
+        base.Init(owner, ability, lastingTime,aoeRange);
+        poison = ability as PoisonIvy;
     }
     
 
     protected override void OnRoot(Enemy enemy)
     {
         base.OnRoot(enemy);
-        int numberOfTicks = (int)(poison.PoisonDuration / poison.PoisonTickRate);
+        int numberOfTicks = (int)(poison.Config.PoisonDuration / poison.Config.PoisonTickRate);
         
         //TimerData timerData = new TimerData(tickTime : poison.PoisonTickRate, tickAmount: numberOfTicks, usingGameTime: true);
-        TimerData<Enemy> timerData = new TimerData<Enemy>(tickTime : poison.PoisonTickRate, enemy, onTimerTick : EnemyTakePoisonDamage, tickAmount: numberOfTicks, usingGameTime: true);
+        TimerData<Enemy> timerData = new TimerData<Enemy>(tickTime : poison.Config.PoisonTickRate, enemy, onTimerTick : EnemyTakePoisonDamage, tickAmount: numberOfTicks, usingGameTime: true);
         
         //DotTimer dotTimer = new DotTimer(timerData, enemy.Damageable.TakeDamage, owner.DamageDealer, poison.PoisonDamage, refAbility, false);
         Timer<Enemy> dotTimer = new Timer<Enemy>(timerData);
@@ -25,20 +25,20 @@ public class PoisonIvyMono : RootingVinesMono
         enemy.UnitTimers.Add(dotTimer);
 
         enemy.Damageable.OnDeath += RemovePoisonFromEnemyOnDeath;
-        enemy.EnemyVisualHandler.PoisonIvyVisuals.PlayPoisonParticle(poison.PoisonDuration);
+        enemy.EnemyVisualHandler.PoisonIvyVisuals.PlayPoisonParticle(poison.Config.PoisonDuration);
         SoundManager.Instance.PlayAudioClip(SoundEffectType.PoisonIvy);
     }
 
-    private void RemovePoisonFromEnemyOnDeath(Damageable damageable, DamageDealer damageDealer, DamageHandler damage, AbilitySO abilitySo)
+    private void RemovePoisonFromEnemyOnDeath(Damageable damageable, DamageDealer damageDealer, DamageHandler damage, Ability ability)
     {
         StopPoisonParticle(damageable.Owner as Enemy);
     }
 
     private void EnemyTakePoisonDamage(Enemy enemy)
     {
-        damage = new DamageHandler(poison.PoisonDamage);
-        damage.SetPopupColor(poison.PoisonPopupColor);
-        enemy.Damageable.TakeDamage(_owner.DamageDealer, damage, AbilitySo as OffensiveAbilitySO, false);
+        damage = new DamageHandler(poison.Config.PoisonDamage);
+        damage.SetPopupColor(poison.Config.PoisonPopupColor);
+        enemy.Damageable.TakeDamage(_owner.DamageDealer, damage, Ability as OffensiveAbility, false);
         
     }
 

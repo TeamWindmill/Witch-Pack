@@ -4,9 +4,9 @@ public class DamageDealer
 {
     private BaseUnit owner;
 
-    public Action<Damageable, DamageDealer, DamageHandler, CastingAbilitySO, bool> OnHitTarget;
-    public Action<Damageable, DamageDealer, DamageHandler, CastingAbilitySO, bool> OnKill;
-    public Action<Damageable, DamageDealer, DamageHandler, CastingAbilitySO, bool> OnAssist;
+    public Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> OnHitTarget;
+    public Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> OnKill;
+    public Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> OnAssist;
 
     private OffensiveAbilitySO autoAttack;
 
@@ -24,9 +24,9 @@ public class DamageDealer
     }
 
 
-    public bool CritChance(AbilitySO abilitySo)
+    public bool CritChance(Ability ability)
     {
-        if (ReferenceEquals(abilitySo, owner.AutoAttack) && UnityEngine.Random.Range(0, 100) <= owner.Stats.CritChance)
+        if (ReferenceEquals(ability, owner.AutoAttackCaster.Ability) && UnityEngine.Random.Range(0, 100) <= owner.Stats.CritChance)
         {
             return true;
         }
@@ -34,9 +34,9 @@ public class DamageDealer
         return false;
     }
 
-    private void SubscribeStatDamage(Damageable target, DamageDealer dealer, DamageHandler dmg, AbilitySO abilitySo, bool crit)
+    private void SubscribeStatDamage(Damageable target, DamageDealer dealer, DamageHandler dmg, Ability ability, bool crit)
     {
-        if (ReferenceEquals(abilitySo, owner.AutoAttack))
+        if (ReferenceEquals(ability, owner.AutoAttackCaster.Ability))
         {
             dmg.AddFlatMod(owner.Stats.BaseDamage);
             if (crit)
@@ -47,14 +47,14 @@ public class DamageDealer
         }
     }
 
-    private void SubscribeDamageBoostsFromAbility(Damageable target, DamageDealer dealer, DamageHandler dmg, CastingAbilitySO abilitySo, bool crit)
+    private void SubscribeDamageBoostsFromAbility(Damageable target, DamageDealer dealer, DamageHandler dmg, CastingAbility ability, bool crit)
     {
-        if (abilitySo is not OffensiveAbilitySO || ReferenceEquals((abilitySo as OffensiveAbilitySO).DamageBoosts, null))
+        if (ability is not OffensiveAbility || ReferenceEquals((ability as OffensiveAbility).OffensiveAbilityConfig.DamageBoosts, null))
         {
             return;
         }
 
-        foreach (var item in (abilitySo as OffensiveAbilitySO).DamageBoosts)
+        foreach (var item in (ability as OffensiveAbility).OffensiveAbilityConfig.DamageBoosts)
         {
             switch (item.Type)
             {
