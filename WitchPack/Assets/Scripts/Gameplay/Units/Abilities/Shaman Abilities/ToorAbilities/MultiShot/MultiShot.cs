@@ -1,59 +1,74 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class MultiShot : OffensiveAbility
 {
-    
-    protected const int NUMBER_OF_SHOTS = 3;
-    protected Enemy _target1;
-    protected Enemy _target2;
-    protected Enemy _target3;
+    protected Enemy[] _targets;
     public readonly MultiShotSO MultishotConfig;
     
     public MultiShot(MultiShotSO config, BaseUnit owner) : base(config, owner)
     {
         MultishotConfig = config;
+        abilityStats.Add(new AbilityStat(AbilityStatType.ProjectilesAmount,config.ProjectilesAmount));
     }
 
     public override bool CastAbility()
     {
-        _target1 = null;
-        _target2 = null;
-        _target3 = null;
+        var projectilesAmount = (int)GetAbilityStatValue(AbilityStatType.ProjectilesAmount);
+
+        _targets = new Enemy[projectilesAmount];
+        var targetsToIgnore = new List<Enemy>();
         
         //get an initial target
-        _target1 = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData);
-        if (!ReferenceEquals(_target1, null))
+        _targets[0] = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData);
+        if (!ReferenceEquals(_targets[0], null))
         {
+            targetsToIgnore.Add(_targets[0]);
             
-            //target 2
-            _target2 = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData, new []{_target1}.ToList());
-            _target2 ??= _target1;
-
-            //target 3
-            _target3 = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData, new []{_target1,_target2}.ToList());
-            _target3 ??= _target1;
+            for (int i = 1; i < _targets.Length; i++)
+            {
+                _targets[i] = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData, targetsToIgnore);
+                _targets[i] ??= _targets[0];
+                targetsToIgnore.Add(_targets[i]);
+            }
             
             //calculate start direction
-            var dir = _target1.transform.position - Owner.transform.position;
+            var dir = _targets[0].transform.position - Owner.transform.position;
             var dirAngle = Vector3.SignedAngle(Vector3.up, dir.normalized,Vector3.forward);
-
-            for (int i = 0; i < NUMBER_OF_SHOTS; i++)
+            for (int i = 0; i < projectilesAmount; i++)
             {
-                var shotMono = LevelManager.Instance.PoolManager.MultiShotPool.GetPooledObject();
+                var offset = MultishotConfig.Offset;
+                var shotMono = GetPooledObject();
                 shotMono.transform.position = Owner.CastPos.position;
                 shotMono.gameObject.SetActive(true);
-                if (i == 0)
+                
+                if (projectilesAmount % 2 == 0)
                 {
-                    shotMono.Init(MultishotConfig.MultiShotType,Owner, _target1, this, dirAngle);
-                }
-                else if (i % 2 == 0)
-                {
-                    shotMono.Init(MultishotConfig.MultiShotType,Owner, _target2, this, dirAngle + MultishotConfig.Offset);
+                    if (i <= 1) offset /= 2;
+                    if (i % 2 != 0)
+                    {
+                        shotMono.Init(MultishotConfig.MultiShotType,Owner, _targets[i], this, dirAngle + offset * (i/2+1));
+                    }
+                    else
+                    {
+                        shotMono.Init(MultishotConfig.MultiShotType,Owner, _targets[i], this, dirAngle - offset * (i/2+1));
+                    }
                 }
                 else
                 {
-                    shotMono.Init(MultishotConfig.MultiShotType,Owner, _target3, this, dirAngle - MultishotConfig.Offset);
+                    if (i == 0)
+                    {
+                        shotMono.Init(MultishotConfig.MultiShotType,Owner, _targets[i], this, dirAngle);
+                    }
+                    else if (i % 2 == 0)
+                    {
+                        shotMono.Init(MultishotConfig.MultiShotType,Owner, _targets[i], this, dirAngle + MultishotConfig.Offset * (i/2));
+                    }
+                    else
+                    {
+                        shotMono.Init(MultishotConfig.MultiShotType,Owner, _targets[i], this, dirAngle - MultishotConfig.Offset * ((i+1)/2));
+                    } 
                 }
             }
             return true;
@@ -68,5 +83,10 @@ public class MultiShot : OffensiveAbility
         if (target != null) return true;
 
         return false;
+    }
+    
+    protected virtual MultiShotMono GetPooledObject()
+    {
+        return LevelManager.Instance.PoolManager.MultiShotPool.GetPooledObject();
     }
 }

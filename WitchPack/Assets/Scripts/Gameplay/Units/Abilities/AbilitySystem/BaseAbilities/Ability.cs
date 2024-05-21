@@ -51,7 +51,7 @@ public abstract class Ability
         return upgrades;
     }
 
-    protected float GetAbilityStatValue(AbilityStatType abilityStatType)
+    public float GetAbilityStatValue(AbilityStatType abilityStatType)
     {
         foreach (var abilityStat in abilityStats)
         {

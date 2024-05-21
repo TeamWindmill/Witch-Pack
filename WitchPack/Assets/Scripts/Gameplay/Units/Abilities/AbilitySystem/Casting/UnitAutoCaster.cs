@@ -41,7 +41,7 @@ public class UnitAutoCaster : MonoBehaviour
         {
             CastTimeStart?.Invoke(caster.Ability);
             if (caster.Ability.CastingConfig.HasCastVisual) CastTimeStartVFX?.Invoke(caster.Ability.CastingConfig.CastVisualColor);
-            if (_castTimer > caster.Ability.CastingConfig.CastTime)
+            if (_castTimer > caster.Ability.GetAbilityStatValue(AbilityStatType.CastTime))
             {
                 if (caster.CastAbility())
                 {

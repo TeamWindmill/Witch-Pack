@@ -40,10 +40,12 @@ public enum AbilityStatType
     Damage,
     Cooldown,
     Speed,
-    Range,
+    Range, //not working currently
     CastTime,
     Penetration,
     ExtraPenetrationPerKill,
     KillToIncreasePenetration,
+    EnergyPointsOnKill,
+    ProjectilesAmount,
     
 }

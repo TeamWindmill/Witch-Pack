@@ -5,5 +5,6 @@ public abstract class OffensiveAbility : CastingAbility
     protected OffensiveAbility(OffensiveAbilitySO config, BaseUnit owner) : base(config, owner)
     {
         OffensiveAbilityConfig = config;
+        abilityStats.Add(new AbilityStat(AbilityStatType.Damage,config.BaseDamage));
     }
 }

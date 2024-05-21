@@ -7,11 +7,12 @@ public class ExperiencedHunter : PiercingShot
         ExperiencedHunterCounter eventCounter = new ExperiencedHunterCounter(owner, this, ref owner.DamageDealer.OnKill, 
             _config.NumberOfKillsRequiredToIncreasePierce);
         eventCounter.OnCountIncrement += IncreasePen;
+        abilityStats.Add(new AbilityStat(AbilityStatType.ExtraPenetrationPerKill,config.ExtraPenPerKill));
     }
     
     private void IncreasePen(AbilityEventCounter counter, Damageable target, DamageDealer dealer, DamageHandler dmg, Ability ability)
     {
-        dealer.Owner.Stats.AddValueToStat(StatType.AbilityProjectilePenetration, _config.ExtraPenPerKill);
+        dealer.Owner.Stats.AddValueToStat(StatType.AbilityProjectilePenetration, GetAbilityStatValue(AbilityStatType.ExtraPenetrationPerKill));
         // Play Sound
         SoundManager.Instance.PlayAudioClip(SoundEffectType.ExperiencedHunterLevelUp);
         // Popup
