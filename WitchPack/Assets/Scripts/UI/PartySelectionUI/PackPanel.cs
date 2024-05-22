@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PackPanel : UIElement
@@ -6,13 +7,16 @@ public class PackPanel : UIElement
 
     private PartySelectionWindow _parent;
 
+    [SerializeField] private ShamanUpgradePanel _shamanUpgradePanel; //tempi temp
+
     public void Init(PartySelectionWindow parent)
     {
         _parent = parent;
         foreach (var icon in _packIcons)
         {
             icon.Init();
-            icon.OnIconClick += _parent.UnassignShamanFromPack;
+            icon.OnIconLeftClick += _parent.UnassignShamanFromPack;
+            icon.OnIconRightClick += OpenUpgradePanel;
         }
     }
     public void AddShamanToPack(ShamanSaveData shaman)
@@ -49,7 +53,6 @@ public class PackPanel : UIElement
             _packIcons[i].AssignShaman(_parent.ActiveShamanParty[i]);
         }
     }
-
     public void FlashInRed()
     {
         foreach (var icon in _packIcons)
@@ -57,4 +60,9 @@ public class PackPanel : UIElement
             icon.FlashInRed();
         }
     }
+    private void OpenUpgradePanel(ShamanSaveData shamanSaveData)
+    {
+        _shamanUpgradePanel.Init(shamanSaveData.Config.ShamanMetaUpgradeConfig);
+    }
+    
 }

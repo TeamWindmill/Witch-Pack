@@ -78,6 +78,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5485349971394883512}
   - component: {fileID: 2199816553211873431}
+  - component: {fileID: 3682646646390802968}
   m_Layer: 0
   m_Name: AbilityUpgradePanel
   m_TagString: Untagged
@@ -92,7 +93,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8787755159999725290}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -132,6 +133,38 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &3682646646390802968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8787755159999725290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1476efb572a5f64c8d5115e53eb6096, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rectTransform: {fileID: 5485349971394883512}
+  showOnAwake: 0
+  hideOnAwake: 0
+  assignUIGroup: 0
+  uiGroup: 0
+  showInfoWindow: 0
+  _windowInfo:
+    Name: 
+    Discription: 
+  _abilityUpgradeIcons:
+  - {fileID: 2800065576683990366}
+  - {fileID: 5576765493506911879}
+  - {fileID: 4041167255826516064}
+  - {fileID: 3533459375350934523}
+  - {fileID: 8917695767720874731}
+  - {fileID: 3677970302686609610}
+  - {fileID: 4297804713521332258}
+  - {fileID: 1838377703399126797}
+  _abilityName: {fileID: 2108441478495774187}
+  _abilityIcon: {fileID: 8904154582533306557}
 --- !u!1 &9072149290168452960
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,6 +338,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
+--- !u!114 &1838377703399126797 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1990871734047520198, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
+  m_PrefabInstance: {fileID: 154184020356154059}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18fc2706a7dae79409fe143a568218ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &5202794714524802033 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5338964266510260538, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
@@ -407,11 +451,33 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3020351c088a10c4d90b68c2dd37c869, type: 3}
+--- !u!114 &2108441478495774187 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1899014117051296924, guid: 3020351c088a10c4d90b68c2dd37c869, type: 3}
+  m_PrefabInstance: {fileID: 511183973800200567}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &6789367853929460100 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6422336524650559731, guid: 3020351c088a10c4d90b68c2dd37c869, type: 3}
   m_PrefabInstance: {fileID: 511183973800200567}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8904154582533306557 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8973983519569850826, guid: 3020351c088a10c4d90b68c2dd37c869, type: 3}
+  m_PrefabInstance: {fileID: 511183973800200567}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2307006116325029348
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -420,6 +486,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6996364674310762613}
     m_Modifications:
+    - target: {fileID: 1990871734047520198, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
+      propertyPath: childNode
+      value: 
+      objectReference: {fileID: 1838377703399126797}
     - target: {fileID: 2787081725451567209, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
       propertyPath: m_Name
       value: AbilityUpgradeIcon_2
@@ -549,6 +619,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
+--- !u!114 &4297804713521332258 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1990871734047520198, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
+  m_PrefabInstance: {fileID: 2307006116325029348}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18fc2706a7dae79409fe143a568218ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7643715090405780702 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5338964266510260538, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
@@ -562,6 +643,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6996364674310762613}
     m_Modifications:
+    - target: {fileID: 1990871734047520198, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
+      propertyPath: childNode
+      value: 
+      objectReference: {fileID: 3533459375350934523}
     - target: {fileID: 2787081725451567209, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
       propertyPath: m_Name
       value: AbilityUpgradeIcon_3
@@ -691,6 +776,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
+--- !u!114 &4041167255826516064 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1990871734047520198, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
+  m_PrefabInstance: {fileID: 2573212892622912934}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18fc2706a7dae79409fe143a568218ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7611695560162501788 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5338964266510260538, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
@@ -704,6 +800,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6996364674310762613}
     m_Modifications:
+    - target: {fileID: 1990871734047520198, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
+      propertyPath: childNode
+      value: 
+      objectReference: {fileID: 4297804713521332258}
     - target: {fileID: 2787081725451567209, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
       propertyPath: m_Name
       value: AbilityUpgradeIcon_4
@@ -833,6 +933,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
+--- !u!114 &3677970302686609610 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1990871734047520198, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
+  m_PrefabInstance: {fileID: 2930218054540784908}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18fc2706a7dae79409fe143a568218ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7115114003894889526 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5338964266510260538, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
@@ -975,6 +1086,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
+--- !u!114 &3533459375350934523 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1990871734047520198, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
+  m_PrefabInstance: {fileID: 3074166203922800189}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18fc2706a7dae79409fe143a568218ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &6971130672220817159 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5338964266510260538, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
@@ -988,6 +1110,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6996364674310762613}
     m_Modifications:
+    - target: {fileID: 1990871734047520198, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
+      propertyPath: childNode
+      value: 
+      objectReference: {fileID: 5576765493506911879}
     - target: {fileID: 2787081725451567209, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
       propertyPath: m_Name
       value: AbilityUpgradeIcon_7
@@ -1117,6 +1243,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
+--- !u!114 &2800065576683990366 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1990871734047520198, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
+  m_PrefabInstance: {fileID: 4430182509674289304}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18fc2706a7dae79409fe143a568218ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8605503898487210402 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5338964266510260538, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
@@ -1130,6 +1267,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6996364674310762613}
     m_Modifications:
+    - target: {fileID: 1990871734047520198, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
+      propertyPath: childNode
+      value: 
+      objectReference: {fileID: 4041167255826516064}
     - target: {fileID: 2787081725451567209, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
       propertyPath: m_Name
       value: AbilityUpgradeIcon_5
@@ -1264,6 +1405,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5338964266510260538, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
   m_PrefabInstance: {fileID: 6252221001730759489}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5576765493506911879 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1990871734047520198, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
+  m_PrefabInstance: {fileID: 6252221001730759489}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18fc2706a7dae79409fe143a568218ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6945388757256595245
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1272,6 +1424,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6996364674310762613}
     m_Modifications:
+    - target: {fileID: 1990871734047520198, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
+      propertyPath: childNode
+      value: 
+      objectReference: {fileID: 3677970302686609610}
     - target: {fileID: 2787081725451567209, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
       propertyPath: m_Name
       value: AbilityUpgradeIcon_6
@@ -1406,3 +1562,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5338964266510260538, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
   m_PrefabInstance: {fileID: 6945388757256595245}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8917695767720874731 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1990871734047520198, guid: b2d152dcd06522e44a2223e5589ae518, type: 3}
+  m_PrefabInstance: {fileID: 6945388757256595245}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18fc2706a7dae79409fe143a568218ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

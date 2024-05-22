@@ -6,7 +6,8 @@ using UnityEngine.UI;
 
 public class PackIcon : ClickableUIElement
 {
-    public event Action<ShamanSaveData> OnIconClick;
+    public event Action<ShamanSaveData> OnIconLeftClick;
+    public event Action<ShamanSaveData> OnIconRightClick;
 
     public ShamanSaveData ShamanSaveData { get; private set; }
     public bool Assigned { get; private set; }
@@ -48,7 +49,15 @@ public class PackIcon : ClickableUIElement
     {
         if (Assigned)
         {
-            OnIconClick?.Invoke(ShamanSaveData); //might change later to show information
+            if (eventData.button == PointerEventData.InputButton.Left)
+            {
+                OnIconLeftClick?.Invoke(ShamanSaveData); 
+            }
+            else if (eventData.button == PointerEventData.InputButton.Right)
+            {
+                OnIconRightClick?.Invoke(ShamanSaveData); 
+            }
+            
         }
         
         base.OnClick(eventData);

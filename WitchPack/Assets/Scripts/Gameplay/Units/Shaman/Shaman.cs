@@ -90,8 +90,11 @@ public class Shaman : BaseUnit
     {
         foreach (var statUpgrade in saveData.AbilityUpgrades)
         {
-            var ability = GetAbilityFromConfig(statUpgrade.AbilityToUpgrade);
-            ability.AddStatUpgrade(statUpgrade);
+            foreach (var abilitySO in statUpgrade.AbilitiesToUpgrade)
+            {
+                var ability = GetAbilityFromConfig(abilitySO);
+                ability.AddStatUpgrade(statUpgrade);
+            }
         }
     }
 
