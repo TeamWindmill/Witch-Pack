@@ -2,10 +2,10 @@ using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-[Serializable]
-public struct AbilityStatUpgrade
+[CreateAssetMenu(menuName = "Ability/Upgrade",fileName = "AbilityUpgrade")]
+public class AbilityStatUpgrade : ScriptableObject
 {
-    public AbilitySO[] AbilitiesToUpgrade;
+    [HideInInspector]public AbilitySO[] AbilitiesToUpgrade;
     
     [SerializeField] private string _name;
     [SerializeField] private AbilityStatType _statType;

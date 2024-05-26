@@ -6,12 +6,12 @@ public class ShamanUpgradePanel : UIElement
     [SerializeField] private AbilityMetaUpgrade[] _abilities;
 
     private ShamanMetaUpgradeConfig _shamanMetaUpgradeConfig;
-    public void Init(ShamanMetaUpgradeConfig shamanMetaUpgradeConfig)
+    public void Init(ShamanSaveData shamanSaveData)
     {
-        _shamanMetaUpgradeConfig = shamanMetaUpgradeConfig;
+        _shamanMetaUpgradeConfig = shamanSaveData.Config.ShamanMetaUpgradeConfig;
         for (int i = 0; i < _abilities.Length; i++)
         {
-            _abilities[i].Init(shamanMetaUpgradeConfig.AbilityPanelUpgrades[i]);
+            _abilities[i].Init(_shamanMetaUpgradeConfig.AbilityPanelUpgrades[i],shamanSaveData.ExperienceHandler.HasExpPoints);
         }
         Show();
     }

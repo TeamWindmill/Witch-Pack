@@ -62,7 +62,7 @@ public class PackPanel : UIElement
     }
     private void OpenUpgradePanel(ShamanSaveData shamanSaveData)
     {
-        _shamanUpgradePanel.Init(shamanSaveData.Config.ShamanMetaUpgradeConfig);
+        _shamanUpgradePanel.Init(shamanSaveData);
     }
     
 }

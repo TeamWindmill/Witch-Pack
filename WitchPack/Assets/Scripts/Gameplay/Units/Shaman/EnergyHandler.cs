@@ -9,14 +9,12 @@ public class EnergyHandler
     public event Action<int,int> OnShamanGainEnergy;
     public event Action<bool> OnShamanUpgrade;
     
-    public int ShamanLevel => _shamanLevel;
-    public int AvailableSkillPoints => _shamanLevel - _usedSkillPoints;
-    public int MaxEnergyToNextLevel => _energyLevels[_shamanLevel-1];
-    public int CurrentEnergy => _currentEnergy;
+    public int ShamanLevel { get; private set; } = 1;
+    public int CurrentEnergy { get; private set; }
+    public int AvailableSkillPoints => ShamanLevel - _usedSkillPoints;
+    public int MaxEnergyToNextLevel => _energyLevels[ShamanLevel-1];
     public bool HasSkillPoints => AvailableSkillPoints > 0;
 
-    private int _shamanLevel = 1;
-    private int _currentEnergy;
     private int[] _energyLevels;
     private int _usedSkillPoints = 1;
     private Shaman _shaman;
@@ -40,10 +38,10 @@ public class EnergyHandler
     public void GainEnergy(int energy = 0)
     {
         //if (energy == 0) energy = 25; //temp
-        if(_shamanLevel == 7) return;
-        _currentEnergy += energy;
-        if(_currentEnergy >= MaxEnergyToNextLevel) LevelUp(_currentEnergy - MaxEnergyToNextLevel);
-        OnShamanGainEnergy?.Invoke(_currentEnergy,MaxEnergyToNextLevel);
+        if(ShamanLevel == 7) return;
+        CurrentEnergy += energy;
+        if(CurrentEnergy >= MaxEnergyToNextLevel) LevelUp(CurrentEnergy - MaxEnergyToNextLevel);
+        OnShamanGainEnergy?.Invoke(CurrentEnergy,MaxEnergyToNextLevel);
     }
 
     public bool TryUseSkillPoint()
@@ -60,9 +58,9 @@ public class EnergyHandler
     
     private void LevelUp(int excessEnergy)
     {
-        _shamanLevel++;
-        if(_shamanLevel != 7) _currentEnergy = 0;
-        OnShamanLevelUp?.Invoke(_shamanLevel);
+        ShamanLevel++;
+        if(ShamanLevel != 7) CurrentEnergy = 0;
+        OnShamanLevelUp?.Invoke(ShamanLevel);
         LevelManager.Instance.PopupsManager.SpawnLevelUpTextPopup(_shaman);
         GainEnergy(excessEnergy);
     }

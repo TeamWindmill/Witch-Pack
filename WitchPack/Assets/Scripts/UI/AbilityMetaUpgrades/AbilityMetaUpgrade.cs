@@ -15,7 +15,7 @@ public class AbilityMetaUpgrade : UIElement
     private AbilitySO[] _abilitiesSo;
     private AbilityPanelUpgrades _abilityPanelUpgrades;
     
-    public void Init(AbilityPanelUpgrades abilityPanelConfig)
+    public void Init(AbilityPanelUpgrades abilityPanelConfig,bool hasSkillPoint)
     {
         _abilityPanelUpgrades = abilityPanelConfig;
         _abilityName.text = abilityPanelConfig.Ability.Name;
@@ -28,7 +28,8 @@ public class AbilityMetaUpgrade : UIElement
         for (int i = 0; i < _abilityUpgradeIcons.Length; i++)
         {
             if(_abilityPanelUpgrades.StatUpgrades.Count - 1 < i) continue;
-            _abilityUpgradeIcons[i].Init(_abilityPanelUpgrades.StatUpgrades[i]); 
+            _abilityUpgradeIcons[i].Init(_abilityPanelUpgrades.StatUpgrades[i],hasSkillPoint); 
+            if(_abilityUpgradeIcons[i].OpenAtStart) _abilityUpgradeIcons[i].ChangeState(AbilityUpgradeState.Open);
         }
     }
 }

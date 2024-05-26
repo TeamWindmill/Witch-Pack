@@ -62,7 +62,6 @@ public class AbilityUpgradeUIButton : ClickableUIElement
                 abilitySprite.sprite = Ability.BaseConfig.DefaultIcon;
                 break;
         }
-
         base.Show();
     }
 
