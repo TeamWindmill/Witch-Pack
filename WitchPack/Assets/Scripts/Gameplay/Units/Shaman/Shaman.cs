@@ -88,12 +88,12 @@ public class Shaman : BaseUnit
 
     private void AddMetaUpgradesToAbilities(ShamanSaveData saveData)
     {
-        foreach (var statUpgrade in saveData.AbilityUpgrades)
+        foreach (var abilityUpgrade in saveData.AbilityUpgrades)
         {
-            foreach (var abilitySO in statUpgrade.AbilitiesToUpgrade)
+            foreach (var abilitySO in abilityUpgrade.AbilitiesToUpgrade)
             {
                 var ability = GetAbilityFromConfig(abilitySO);
-                ability.AddStatUpgrade(statUpgrade);
+                ability.AddStatUpgrade(abilityUpgrade.StatUpgradeConfig);
             }
         }
     }

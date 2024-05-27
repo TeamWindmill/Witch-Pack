@@ -21,7 +21,7 @@ public class PoisonIvyMono : RootingVinesMono
         //DotTimer dotTimer = new DotTimer(timerData, enemy.Damageable.TakeDamage, owner.DamageDealer, poison.PoisonDamage, refAbility, false);
         Timer<Enemy> dotTimer = new Timer<Enemy>(timerData);
         dotTimer.OnTimerEnd += StopPoisonParticle;
-        TimerManager.Instance.AddTimer(dotTimer);
+        TimerManager.AddTimer(dotTimer);
         enemy.UnitTimers.Add(dotTimer);
 
         enemy.Damageable.OnDeath += RemovePoisonFromEnemyOnDeath;

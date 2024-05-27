@@ -35,7 +35,7 @@ public class EnergyHandler
             _config.MaxLevel
         };
     }
-    public void GainEnergy(int energy = 0)
+    public void GainEnergy(int energy)
     {
         //if (energy == 0) energy = 25; //temp
         if(ShamanLevel == 7) return;

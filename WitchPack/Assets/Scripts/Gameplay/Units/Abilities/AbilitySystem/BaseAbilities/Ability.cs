@@ -61,13 +61,13 @@ public abstract class Ability
         throw new Exception("ability stat not found in ability");
     }
 
-    public void AddStatUpgrade(AbilityStatUpgrade abilityStatUpgrade)
+    public void AddStatUpgrade(AbilityStatUpgradeConfig abilityStatUpgradeConfig)
     {
         foreach (var stat in abilityStats)
         {
-            if (stat.StatType == abilityStatUpgrade.StatType)
+            if (stat.StatType == abilityStatUpgradeConfig.StatType)
             {
-                stat.AddModifier(abilityStatUpgrade.AbilityStatValue);
+                stat.AddModifier(abilityStatUpgradeConfig.AbilityStatValue);
                 return;
             }
         }

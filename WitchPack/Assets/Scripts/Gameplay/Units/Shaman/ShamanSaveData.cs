@@ -6,13 +6,10 @@ public class ShamanSaveData
 {
     public ShamanConfig Config;
     public ExperienceHandler ExperienceHandler;
-    public List<AbilityStatUpgrade> AbilityUpgrades;
+    public List<AbilityUpgrade> AbilityUpgrades = new();
     public ShamanSaveData(ShamanConfig config)
     {
         Config = config;
-    }
-    public ShamanSaveData(Shaman shaman)
-    {
-        Config = shaman.ShamanConfig;
+        ExperienceHandler = new ExperienceHandler(config.ExperienceConfig);
     }
 }

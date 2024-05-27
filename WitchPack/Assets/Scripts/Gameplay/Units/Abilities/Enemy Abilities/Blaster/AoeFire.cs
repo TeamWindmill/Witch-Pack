@@ -15,7 +15,7 @@ public class AoeFire : AoeMono
     {
         if (!_activeTimers.ContainsKey(shaman))
         {
-            var timer = TimerManager.Instance.AddTimer(_fireball.Config.TickTime, shaman, OnFireTick, true, _fireball.Config.TickAmount);
+            var timer = TimerManager.AddTimer(_fireball.Config.TickTime, shaman, OnFireTick, true, _fireball.Config.TickAmount);
             _activeTimers.Add(shaman,timer);
         }
     }

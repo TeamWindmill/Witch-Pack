@@ -24,7 +24,7 @@ public class MultiShotMono : MonoBehaviour
         _ability = ability;
         ChangeVisuals(type);
         transform.rotation = Quaternion.Euler(0,0,angle);
-        TimerManager.Instance.AddTimer(ability.MultishotConfig.Delay, () => Launched = true, true);
+        TimerManager.AddTimer(ability.MultishotConfig.Delay, () => Launched = true, true);
     }
 
     

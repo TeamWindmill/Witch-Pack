@@ -32,7 +32,7 @@ public class ShamanMetaUpgradeConfig : SerializedScriptableObject
 public struct AbilityPanelUpgrades
 {
     public AbilitySO Ability;
-    public List<AbilityStatUpgrade> StatUpgrades ;
+    public List<AbilityStatUpgradeConfig> StatUpgrades ;
 
     public AbilityPanelUpgrades(AbilitySO ability)
     {

@@ -103,7 +103,7 @@ public class LevelManager : MonoSingleton<LevelManager>
             if (ShamanParty.Count <= 0)
             {
                 GameManager.Instance.CameraHandler.SetCameraPosition(shaman.transform.position,true);
-                TimerManager.Instance.AddTimer(2, false, EndLevel);
+                TimerManager.AddTimer(2, false, EndLevel);
             }
         }
     }

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 
 public class AbilityMetaUpgradeIcon : ClickableUIElement
 {
+    public event Action<AbilityUpgrade> OnUpgrade;
+    
     [SerializeField] private AbilityMetaUpgradeIcon childNode;
     [SerializeField] private TextMeshProUGUI _name;
     [SerializeField] private TextMeshProUGUI _amount;
@@ -24,14 +26,22 @@ public class AbilityMetaUpgradeIcon : ClickableUIElement
     public bool OpenAtStart => _openAtStart;
 
     private bool _hasSkillPoints;
+    private AbilityStatUpgradeConfig _abilityStatUpgradeConfig;
+    private AbilityUpgrade _abilityUpgrade;
 
-    public void Init(AbilityStatUpgrade abilityUpgrade, bool hasSkillPoints)
+
+    public void Init(AbilityStatUpgradeConfig abilityUpgradeConfig,AbilitySO[] abilitiesToUpgrade, bool hasSkillPoints)
     {
+        
+        _abilityStatUpgradeConfig = abilityUpgradeConfig;
         _hasSkillPoints = hasSkillPoints;
-        _name.text = abilityUpgrade.Name;
-        char factor = abilityUpgrade.Factor == Factor.Add ? '+' : '-';
-        _amount.text = factor + abilityUpgrade.AbilityStatValue.ToString();
-        ChangeState(UpgradeState);
+        _name.text = abilityUpgradeConfig.Name;
+        char factor = abilityUpgradeConfig.Factor == Factor.Add ? '+' : '-';
+        _amount.text = factor + abilityUpgradeConfig.AbilityStatValue.ToString();
+
+
+        _abilityUpgrade = new AbilityUpgrade(abilityUpgradeConfig,abilitiesToUpgrade);
+        ChangeStateVisuals(UpgradeState);
         Show();
     }
 
@@ -44,8 +54,9 @@ public class AbilityMetaUpgradeIcon : ClickableUIElement
             case AbilityUpgradeState.Open:
                 if (_hasSkillPoints)
                 {
-                    ChangeState(AbilityUpgradeState.Upgraded);
-                    if(childNode != null) childNode.ChangeState(AbilityUpgradeState.Open);
+                    ChangeStateVisuals(AbilityUpgradeState.Upgraded);
+                    OnUpgrade?.Invoke(_abilityUpgrade);
+                    if(childNode != null) childNode.ChangeStateVisuals(AbilityUpgradeState.Open);
                 }
                 break;
             case AbilityUpgradeState.Upgraded:
@@ -54,7 +65,7 @@ public class AbilityMetaUpgradeIcon : ClickableUIElement
         base.OnClick(eventData);
     }
 
-    public void ChangeState(AbilityUpgradeState upgradeState)
+    public void ChangeStateVisuals(AbilityUpgradeState upgradeState)
     {
         UpgradeState = upgradeState;
         switch (upgradeState)

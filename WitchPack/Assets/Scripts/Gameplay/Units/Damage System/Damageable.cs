@@ -160,7 +160,7 @@ public class Damageable
     public void SetRegenerationTimer()
     {
         regenTimer = new Timer(new TimerData(1, RegenHp, 1, true, true));
-        TimerManager.Instance.AddTimer(regenTimer);
+        TimerManager.AddTimer(regenTimer);
     }
 
     public void ToggleHitable(bool state)

@@ -6,7 +6,7 @@ public class GameManager : MonoSingleton<GameManager>
 {
     public LevelConfig CurrentLevelConfig { get; private set; }
     public static ISceneHandler SceneHandler { get; private set; }
-    public GameSaveData SaveData;
+    [HideInInspector]public GameSaveData SaveData;
     public ShamansManager ShamansManager => _shamansManager;
 
     public bool TutorialPlayed;
@@ -39,7 +39,7 @@ public class GameManager : MonoSingleton<GameManager>
         if (SceneHandler == null)
             SceneHandler = _sceneHandler;
 
-        //SaveData = LoadDataFromSave(); //need to load save from file
+        SaveData = LoadDataFromSave(); //need to load save from file
         _shamansManager.Init(SaveData);
     }
 
