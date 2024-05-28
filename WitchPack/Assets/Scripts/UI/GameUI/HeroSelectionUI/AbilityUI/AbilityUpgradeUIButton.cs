@@ -35,14 +35,14 @@ public class AbilityUpgradeUIButton : ClickableUIElement
 
     public override void Show()
     {
-        switch (Ability.AbilityUpgradeState)
+        switch (Ability.UpgradeState)
         {
-            case AbilityUpgradeState.Locked:
+            case UpgradeState.Locked:
                 if(showLine) line.sprite = defaultLineSprite;
                 frame.sprite = defaultFrameSprite;
                 abilitySprite.sprite = Ability.BaseConfig.DisabledIcon;
                 break;
-            case AbilityUpgradeState.Open:
+            case UpgradeState.Open:
                 if (!_hasSkillPoints)
                 {
                     if(showLine) line.sprite = defaultLineSprite;
@@ -56,7 +56,7 @@ public class AbilityUpgradeUIButton : ClickableUIElement
                     abilitySprite.sprite = Ability.BaseConfig.UpgradeIcon;
                 }
                 break;
-            case AbilityUpgradeState.Upgraded:
+            case UpgradeState.Upgraded:
                 if(showLine) line.sprite = upgradedLineSprite;
                 frame.sprite = defaultFrameSprite;
                 abilitySprite.sprite = Ability.BaseConfig.DefaultIcon;
@@ -78,25 +78,25 @@ public class AbilityUpgradeUIButton : ClickableUIElement
     protected override void OnClick(PointerEventData eventData)
     {
         base.OnClick(eventData);
-        switch (Ability.AbilityUpgradeState)
+        switch (Ability.UpgradeState)
         {
-            case AbilityUpgradeState.Locked:
+            case UpgradeState.Locked:
                 SoundManager.Instance.PlayAudioClip(SoundEffectType.MenuClick);
                 return;
-            case AbilityUpgradeState.Open:
+            case UpgradeState.Open:
                 if(!_hasSkillPoints) return;
                 Ability.UpgradeAbility();
                 OnAbilityClick?.Invoke(this);
                 SoundManager.Instance.PlayAudioClip(SoundEffectType.UpgradeAbility);
                 return;
-            case AbilityUpgradeState.Upgraded:
+            case UpgradeState.Upgraded:
                 SoundManager.Instance.PlayAudioClip(SoundEffectType.MenuClick);
                 return;
         }
     }
 }
 
-public enum AbilityUpgradeState
+public enum UpgradeState
 {
     Locked,
     Open,

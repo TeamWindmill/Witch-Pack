@@ -5,42 +5,40 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class AbilityMetaUpgradeIcon : ClickableUIElement
+public class MetaUpgradeIcon<T> : ClickableUIElement //where T : 
 {
-    public event Action<AbilityUpgrade> OnUpgrade;
-    
-    [SerializeField] private AbilityMetaUpgradeIcon childNode;
+    public event Action<T> OnUpgrade;
+
+    [SerializeField] private MetaUpgradeIcon<T> childNode;
     [SerializeField] private TextMeshProUGUI _name;
     [SerializeField] private TextMeshProUGUI _amount;
     [SerializeField] private Image _lineImage;
     [SerializeField] private Image _frameImage;
     [SerializeField] private Image _alphaImage;
     [SerializeField] private bool _openAtStart;
-    [Space] 
-    [BoxGroup("Sprites")][SerializeField] private Sprite upgradeReadyFrameSprite;
-    [BoxGroup("Sprites")][SerializeField] private Sprite defaultFrameSprite;
-    [BoxGroup("Sprites")][SerializeField] private Sprite defaultLineSprite;
-    [BoxGroup("Sprites")][SerializeField] private Sprite upgradedLineSprite;
-    public AbilityUpgradeState UpgradeState { get; private set; } = AbilityUpgradeState.Locked;
+
+    [Space] [BoxGroup("Sprites")] [SerializeField]
+    private Sprite upgradeReadyFrameSprite;
+
+    [BoxGroup("Sprites")] [SerializeField] private Sprite defaultFrameSprite;
+    [BoxGroup("Sprites")] [SerializeField] private Sprite defaultLineSprite;
+    [BoxGroup("Sprites")] [SerializeField] private Sprite upgradedLineSprite;
+    public UpgradeState UpgradeState { get; private set; } = UpgradeState.Locked;
 
     public bool OpenAtStart => _openAtStart;
 
     private bool _hasSkillPoints;
-    private AbilityStatUpgradeConfig _abilityStatUpgradeConfig;
-    private AbilityUpgrade _abilityUpgrade;
+    protected T _upgrade;
 
 
-    public void Init(AbilityStatUpgradeConfig abilityUpgradeConfig,AbilitySO[] abilitiesToUpgrade, bool hasSkillPoints)
+    protected void Init(MetaUpgradeConfig upgradeConfig, bool hasSkillPoints)
     {
-        
-        _abilityStatUpgradeConfig = abilityUpgradeConfig;
         _hasSkillPoints = hasSkillPoints;
-        _name.text = abilityUpgradeConfig.Name;
-        char factor = abilityUpgradeConfig.Factor == Factor.Add ? '+' : '-';
-        _amount.text = factor + abilityUpgradeConfig.AbilityStatValue.ToString();
+        _name.text = upgradeConfig.Name;
+        char factor = upgradeConfig.Factor == Factor.Add ? '+' : '-';
+        _amount.text = factor + upgradeConfig.StatValue.ToString();
 
 
-        _abilityUpgrade = new AbilityUpgrade(abilityUpgradeConfig,abilitiesToUpgrade);
         ChangeStateVisuals(UpgradeState);
         Show();
     }
@@ -49,33 +47,34 @@ public class AbilityMetaUpgradeIcon : ClickableUIElement
     {
         switch (UpgradeState)
         {
-            case AbilityUpgradeState.Locked:
+            case UpgradeState.Locked:
                 break;
-            case AbilityUpgradeState.Open:
+            case UpgradeState.Open:
                 if (_hasSkillPoints)
                 {
-                    ChangeStateVisuals(AbilityUpgradeState.Upgraded);
-                    OnUpgrade?.Invoke(_abilityUpgrade);
-                    if(childNode != null) childNode.ChangeStateVisuals(AbilityUpgradeState.Open);
+                    ChangeStateVisuals(UpgradeState.Upgraded);
+                    OnUpgrade?.Invoke(_upgrade);
+                    if (childNode != null) childNode.ChangeStateVisuals(UpgradeState.Open);
                 }
                 break;
-            case AbilityUpgradeState.Upgraded:
+            case UpgradeState.Upgraded:
                 break;
         }
+
         base.OnClick(eventData);
     }
 
-    public void ChangeStateVisuals(AbilityUpgradeState upgradeState)
+    public void ChangeStateVisuals(UpgradeState upgradeState)
     {
         UpgradeState = upgradeState;
         switch (upgradeState)
         {
-            case AbilityUpgradeState.Locked:
+            case UpgradeState.Locked:
                 _alphaImage.gameObject.SetActive(true);
                 _lineImage.sprite = defaultLineSprite;
                 _frameImage.sprite = defaultFrameSprite;
                 break;
-            case AbilityUpgradeState.Open:
+            case UpgradeState.Open:
                 if (_hasSkillPoints)
                 {
                     _alphaImage.gameObject.SetActive(false);
@@ -88,8 +87,9 @@ public class AbilityMetaUpgradeIcon : ClickableUIElement
                     _lineImage.sprite = defaultLineSprite;
                     _frameImage.sprite = defaultLineSprite;
                 }
+
                 break;
-            case AbilityUpgradeState.Upgraded:
+            case UpgradeState.Upgraded:
                 _alphaImage.gameObject.SetActive(false);
                 _lineImage.sprite = upgradedLineSprite;
                 _frameImage.sprite = defaultFrameSprite;

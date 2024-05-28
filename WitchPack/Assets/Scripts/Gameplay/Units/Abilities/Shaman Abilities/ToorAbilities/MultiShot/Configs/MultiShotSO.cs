@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Linq;
 using Sirenix.OdinInspector;
 
 [CreateAssetMenu(fileName = "MultiShot", menuName = "Ability/MultiShot")]

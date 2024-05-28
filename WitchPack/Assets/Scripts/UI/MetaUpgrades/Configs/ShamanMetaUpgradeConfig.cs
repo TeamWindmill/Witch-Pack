@@ -1,17 +1,17 @@
 using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
-using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ShamanMetaUpgradeConfig",fileName = "ShamanMetaUpgradeConfig")]
 public class ShamanMetaUpgradeConfig : SerializedScriptableObject
 {
     [SerializeField] private ShamanConfig _shamanConfig;
-    //[TableMatrix(HorizontalTitle = "AbilityUpgrades")]
     [SerializeField] private List<AbilityPanelUpgrades> _abilityPanelUpgrades;
+    [SerializeField] private List<StatUpgradeConfig> _statPanelUpgrades;
 
     public List<AbilityPanelUpgrades> AbilityPanelUpgrades => _abilityPanelUpgrades;
+    public List<StatUpgradeConfig> StatPanelUpgrades => _statPanelUpgrades;
 
     private void OnValidate()
     {
@@ -32,7 +32,7 @@ public class ShamanMetaUpgradeConfig : SerializedScriptableObject
 public struct AbilityPanelUpgrades
 {
     public AbilitySO Ability;
-    public List<AbilityStatUpgradeConfig> StatUpgrades ;
+    public List<AbilityUpgradeConfig> StatUpgrades ;
 
     public AbilityPanelUpgrades(AbilitySO ability)
     {
@@ -40,3 +40,4 @@ public struct AbilityPanelUpgrades
         StatUpgrades = new();
     }
 }
+

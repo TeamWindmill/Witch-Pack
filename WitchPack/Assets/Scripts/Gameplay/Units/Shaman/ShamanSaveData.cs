@@ -7,6 +7,7 @@ public class ShamanSaveData
     public ShamanConfig Config;
     public ExperienceHandler ExperienceHandler;
     public List<AbilityUpgrade> AbilityUpgrades = new();
+    public List<StatUpgradeConfig> StatUpgrades = new();
     public ShamanSaveData(ShamanConfig config)
     {
         Config = config;

@@ -1,9 +1,9 @@
-using Sirenix.Utilities;
 using UnityEngine;
 
 public class ShamanUpgradePanel : UIElement
 {
-    [SerializeField] private AbilityMetaUpgrade[] _abilities;
+    [SerializeField] private AbilityMetaUpgrade[] _abilityMetaUpgrades;
+    [SerializeField] private StatMetaUpgrade _statMetaUpgrades;
 
     private ShamanMetaUpgradeConfig _shamanMetaUpgradeConfig;
     private ShamanSaveData _shamanSaveData;
@@ -12,10 +12,12 @@ public class ShamanUpgradePanel : UIElement
     {
         _shamanSaveData = shamanSaveData;
         _shamanMetaUpgradeConfig = shamanSaveData.Config.ShamanMetaUpgradeConfig;
-        for (int i = 0; i < _abilities.Length; i++)
+        for (int i = 0; i < _abilityMetaUpgrades.Length; i++)
         {
-            _abilities[i].Init(this, _shamanMetaUpgradeConfig.AbilityPanelUpgrades[i], shamanSaveData.ExperienceHandler.HasSkillPoints);
+            _abilityMetaUpgrades[i].Init(this, _shamanMetaUpgradeConfig.AbilityPanelUpgrades[i], shamanSaveData.ExperienceHandler.HasSkillPoints);
         }
+        
+        _statMetaUpgrades.Init(this, _shamanMetaUpgradeConfig.StatPanelUpgrades, shamanSaveData.ExperienceHandler.HasSkillPoints);
 
         Show();
     }
@@ -23,6 +25,10 @@ public class ShamanUpgradePanel : UIElement
     public void AddUpgradeToShaman(AbilityUpgrade abilityUpgrade)
     {
         _shamanSaveData.AbilityUpgrades.Add(abilityUpgrade);
+    }
+    public void AddUpgradeToShaman(StatUpgradeConfig statUpgrade)
+    {
+        _shamanSaveData.StatUpgrades.Add(statUpgrade);
     }
 
     protected override void Update()

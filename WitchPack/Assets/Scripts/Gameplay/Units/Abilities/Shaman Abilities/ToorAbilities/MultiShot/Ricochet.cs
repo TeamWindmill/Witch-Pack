@@ -1,6 +1,3 @@
-using System.Linq;
-using UnityEngine;
-
 public class Ricochet : MultiShot
 {
     public readonly RicochetSO Config;

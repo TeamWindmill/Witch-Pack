@@ -1,3 +1,4 @@
+using System;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
@@ -50,7 +51,7 @@ public class Shaman : BaseUnit
         energyHandler = new EnergyHandler(this);
         EnemyTargeter.SetRadius(Stats.BonusRange);
         IntializeAbilities();
-        AddMetaUpgradesToAbilities(saveData);
+        AddMetaUpgrades(saveData);
         shamanAnimator.Init(this);
         indicatable.Init(ShamanConfig.UnitIndicatorIcon, action: FocusCameraOnShaman, clickable: true,
             indicatorPointerSprite: IndicatorPointerSpriteType.Cyan);
@@ -86,14 +87,29 @@ public class Shaman : BaseUnit
         Initialized = true;
     }
 
-    private void AddMetaUpgradesToAbilities(ShamanSaveData saveData)
+    private void AddMetaUpgrades(ShamanSaveData saveData)
     {
+        //ability upgrades
         foreach (var abilityUpgrade in saveData.AbilityUpgrades)
         {
             foreach (var abilitySO in abilityUpgrade.AbilitiesToUpgrade)
             {
                 var ability = GetAbilityFromConfig(abilitySO);
-                ability.AddStatUpgrade(abilityUpgrade.StatUpgradeConfig);
+                ability.AddStatUpgrade(abilityUpgrade.UpgradeConfig);
+            }
+        }
+        
+        //stat upgrades
+        foreach (var statUpgrade in saveData.StatUpgrades)
+        {
+            switch (statUpgrade.Factor)
+            {
+                case Factor.Add:
+                    Stats.AddValueToStat(statUpgrade.StatType,statUpgrade.StatValue);
+                    break;
+                case Factor.Subtract:
+                    Stats.AddValueToStat(statUpgrade.StatType,-statUpgrade.StatValue);
+                    break;
             }
         }
     }
@@ -106,10 +122,10 @@ public class Shaman : BaseUnit
             RootAbilities.Add(ability);
             foreach (var upgrade in ability.GetUpgrades())
             {
-                upgrade.ChangeUpgradeState(AbilityUpgradeState.Locked);
+                upgrade.ChangeUpgradeState(UpgradeState.Locked);
             }
 
-            ability.ChangeUpgradeState(AbilityUpgradeState.Open);
+            ability.ChangeUpgradeState(UpgradeState.Open);
         }
 
         foreach (var abilitySo in ShamanConfig.KnownAbilities)

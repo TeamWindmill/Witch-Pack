@@ -172,6 +172,8 @@ public class UnitStats
                 threatLevel += wholeValue;
                 OnStatChanged?.Invoke(statType, ThreatLevel);
                 break;
+            default:
+                throw new ArgumentException("stat type not valid");
         }
 
         
