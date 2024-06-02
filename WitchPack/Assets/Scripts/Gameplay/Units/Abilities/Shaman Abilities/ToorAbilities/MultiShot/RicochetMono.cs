@@ -8,6 +8,8 @@ public class RicochetMono : MultiShotMono
     private Ricochet _ricochet;
     private Enemy _bounceTarget;
     private bool _bouncing = false;
+    private int _bounceCounter = 0;
+    private int _bounceAmount => (int)_ricochet.GetAbilityStatValue(AbilityStatType.BounceAmount);
 
 
     public override void Init(MultiShotType type, BaseUnit caster, BaseUnit target, MultiShot ability, float angle)
@@ -18,9 +20,9 @@ public class RicochetMono : MultiShotMono
         _ricochet = ricochet;
     }
 
-    protected override void OnTriggerStay2D(Collider2D collision)
+    protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        if (_bouncing)
+        if (_bouncing && _bounceCounter >= _bounceAmount)
         {
             Enemy target = collision.GetComponent<Enemy>();
             if (!ReferenceEquals(target, null) && ReferenceEquals(target, _bounceTarget))
@@ -30,7 +32,10 @@ public class RicochetMono : MultiShotMono
             }
         }
         else
-            base.OnTriggerStay2D(collision);
+        {
+            _bounceCounter++;
+            base.OnTriggerEnter2D(collision);
+        }
     }
 
     protected override void OnTargetHit(Enemy target)

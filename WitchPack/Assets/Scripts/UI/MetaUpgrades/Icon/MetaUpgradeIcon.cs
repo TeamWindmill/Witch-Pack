@@ -37,8 +37,7 @@ public class MetaUpgradeIcon<T> : ClickableUIElement //where T :
         _name.text = upgradeConfig.Name;
         char factor = upgradeConfig.Factor == Factor.Add ? '+' : '-';
         _amount.text = factor + upgradeConfig.StatValue.ToString();
-
-
+        
         ChangeStateVisuals(UpgradeState);
         Show();
     }

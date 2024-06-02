@@ -17,14 +17,14 @@ public class PiercingShotMono : MonoBehaviour
     [SerializeField] private ParticleSystem _quickShotPiercingShot;
     [SerializeField] private Rigidbody2D _rb;
     
-    [Header("variables")]
-    [SerializeField] private float _speed;
-    [SerializeField] private float _lifeTime;
     
-    private int _baseMaxNumberOfHits;
+    private float _speed => _ability.GetAbilityStatValue(AbilityStatType.Speed);
+    private float _lifeTime => _ability.GetAbilityStatValue(AbilityStatType.LifeTime);
+
+    private readonly int _baseMaxNumberOfHits = 1;
     private int _currentNumberOfHits;
     private int _maxNumberOfHits;
-    private OffensiveAbility refAbility;
+    private PiercingShot _ability;
     private BaseUnit _owner;
     private Vector2 _dir;
 
@@ -40,11 +40,11 @@ public class PiercingShotMono : MonoBehaviour
     {
         GAME_TIME.OnTimeRateChange -= ChangeVelocity;
     }
-    public void Fire(BaseUnit shooter, OffensiveAbility givenAbility, Vector2 dir, int basePen = 0, bool includePenStat = false)
+    public void Fire(BaseUnit shooter, PiercingShot givenAbility, Vector2 dir, int basePen = 0, bool includePenStat = false)
     {
         EnableVisuals(givenAbility.OffensiveAbilityConfig);
         _owner = shooter;
-        refAbility = givenAbility;
+        _ability = givenAbility;
         _dir = dir;
         Rotate(dir);
         _rb.velocity = (_speed) * GAME_TIME.TimeRate * _dir;
@@ -96,7 +96,7 @@ public class PiercingShotMono : MonoBehaviour
         BaseUnit target = collision.GetComponent<BaseUnit>();
         if (!ReferenceEquals(target, null) && !ReferenceEquals(_owner, null))
         {
-            target.Damageable.GetHit(_owner.DamageDealer, refAbility);
+            target.Damageable.GetHit(_owner.DamageDealer, _ability);
         }
         _currentNumberOfHits++;
         if (_currentNumberOfHits >= _maxNumberOfHits)
@@ -109,22 +109,10 @@ public class PiercingShotMono : MonoBehaviour
     private void Disable()
     {
         _owner = null;
-        refAbility = null;
+        _ability = null;
         _currentNumberOfHits = 0;
         _rb.velocity = Vector2.zero;
         gameObject.SetActive(false);
-    }
-
-    private void OnValidate()
-    {
-        if (_speed <= 1)
-        {
-            _speed = 1;
-        }
-        if (_baseMaxNumberOfHits <= 1)
-        {
-            _baseMaxNumberOfHits = 1;
-        }
     }
 
     private IEnumerator LifeTime()

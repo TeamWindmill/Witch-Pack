@@ -48,7 +48,7 @@ public class MultiShotMono : MonoBehaviour
         if(Vector3.Distance(transform.position, _targetPos) < HIT_POS_OFFSET) Disable();
     }
 
-    protected virtual void OnTriggerStay2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         Enemy target = collision.GetComponent<Enemy>();
         if (!ReferenceEquals(target, null) && ReferenceEquals(target, _target))

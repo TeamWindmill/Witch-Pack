@@ -95,7 +95,7 @@ public class Shaman : BaseUnit
             foreach (var abilitySO in abilityUpgrade.AbilitiesToUpgrade)
             {
                 var ability = GetAbilityFromConfig(abilitySO);
-                ability.AddStatUpgrade(abilityUpgrade.UpgradeConfig);
+                ability.AddStatUpgrade(abilityUpgrade);
             }
         }
         

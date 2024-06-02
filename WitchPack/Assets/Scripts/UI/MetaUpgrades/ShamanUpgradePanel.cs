@@ -22,7 +22,7 @@ public class ShamanUpgradePanel : UIElement
         Show();
     }
 
-    public void AddUpgradeToShaman(AbilityUpgrade abilityUpgrade)
+    public void AddUpgradeToShaman(AbilityUpgradeConfig abilityUpgrade)
     {
         _shamanSaveData.AbilityUpgrades.Add(abilityUpgrade);
     }

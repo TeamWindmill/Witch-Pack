@@ -47,5 +47,7 @@ public enum AbilityStatType
     KillToIncreasePenetration,
     EnergyPointsOnKill,
     ProjectilesAmount,
+    LifeTime,
+    BounceAmount,
     
 }

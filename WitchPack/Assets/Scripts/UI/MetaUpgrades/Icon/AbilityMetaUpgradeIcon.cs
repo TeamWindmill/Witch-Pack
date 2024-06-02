@@ -1,8 +1,8 @@
-public class AbilityMetaUpgradeIcon : MetaUpgradeIcon<AbilityUpgrade>
+public class AbilityMetaUpgradeIcon : MetaUpgradeIcon<AbilityUpgradeConfig>
 {
-    public void Init(MetaUpgradeConfig upgradeConfig, AbilitySO[] abilitiesToUpgrade, bool hasSkillPoints)
+    public void Init(MetaUpgradeConfig upgradeConfig, bool hasSkillPoints)
     {
-        _upgrade = new AbilityUpgrade(upgradeConfig as AbilityUpgradeConfig, abilitiesToUpgrade);
+        _upgrade = upgradeConfig as AbilityUpgradeConfig;
 
         base.Init(upgradeConfig, hasSkillPoints);
     }

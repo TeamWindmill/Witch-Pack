@@ -2,10 +2,10 @@ using System;
 
 public class ExperiencedHunterCounter : AbilityEventCounter
 {
-    private int numberOfKillsRequiredToIncreasePierce;
-    public ExperiencedHunterCounter(BaseUnit givenOwner, Ability ability, ref Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> eventToSub, int numberOfKillsRequiredToIncreasePierce) : base(givenOwner, ability, ref eventToSub)
+    private Ability _ability;
+    public ExperiencedHunterCounter(BaseUnit givenOwner, Ability ability, ref Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> eventToSub) : base(givenOwner, ability, ref eventToSub)
     {
-        this.numberOfKillsRequiredToIncreasePierce = numberOfKillsRequiredToIncreasePierce;        
+        _ability = ability;
     }
 
     protected override void EventFunc(Damageable target, DamageDealer dealer, DamageHandler dmg, Ability ability, bool isCrit)
@@ -14,7 +14,7 @@ public class ExperiencedHunterCounter : AbilityEventCounter
         {
             currentCount++;
 
-            if(currentCount >= numberOfKillsRequiredToIncreasePierce)
+            if(currentCount >= _ability.GetAbilityStatValue(AbilityStatType.KillToIncreasePenetration))
             {
                 currentCount = 0;
                 OnCountIncrement?.Invoke(this, target, dealer, dmg, ability);
