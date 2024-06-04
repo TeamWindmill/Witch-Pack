@@ -11,11 +11,11 @@ public class MultiShotMono : MonoBehaviour
     private BaseUnit _target;
     protected Vector3 _targetPos;
     protected BaseUnit _caster;
-    protected MultiShotSO _ability;
+    protected MultiShot _ability;
 
     protected static readonly float HIT_POS_OFFSET = 0.8f;
 
-    public virtual void Init(MultiShotType type,BaseUnit caster, BaseUnit target,MultiShotSO ability,float angle)
+    public virtual void Init(MultiShotType type,BaseUnit caster, BaseUnit target,MultiShot ability,float angle)
     {
         _caster = caster;
         _target = target;
@@ -24,21 +24,21 @@ public class MultiShotMono : MonoBehaviour
         _ability = ability;
         ChangeVisuals(type);
         transform.rotation = Quaternion.Euler(0,0,angle);
-        TimerManager.Instance.AddTimer(ability.Delay, () => Launched = true, true);
+        TimerManager.AddTimer(ability.MultishotConfig.Delay, () => Launched = true, true);
     }
 
     
 
     protected virtual void FixedUpdate()
     {
-        _rb.velocity = _ability.Speed * GAME_TIME.TimeRate * transform.up;
+        _rb.velocity = _ability.MultishotConfig.Speed * GAME_TIME.TimeRate * transform.up;
         
         if(!Launched) return;
         var dir = _rb.position - (Vector2)_targetPos;
         dir.Normalize();
         float rotateAmount = Vector3.Cross(dir,transform.up).z;
 
-        _rb.angularVelocity = rotateAmount * _ability.CurveSpeed * GAME_TIME.TimeRate;
+        _rb.angularVelocity = rotateAmount * _ability.MultishotConfig.CurveSpeed * GAME_TIME.TimeRate;
 
         if (!_target.IsDead)
         {
@@ -48,10 +48,10 @@ public class MultiShotMono : MonoBehaviour
         if(Vector3.Distance(transform.position, _targetPos) < HIT_POS_OFFSET) Disable();
     }
 
-    protected virtual void OnTriggerStay2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         Enemy target = collision.GetComponent<Enemy>();
-        if (!ReferenceEquals(target, null) && ReferenceEquals(target, _target))
+        if (!ReferenceEquals(target, null))
         {
             OnTargetHit(target);
         }

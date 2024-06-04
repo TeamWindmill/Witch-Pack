@@ -41,13 +41,13 @@ public class UnitAutoCaster : MonoBehaviour
         {
             CastTimeStart?.Invoke(caster.Ability);
             if (caster.Ability.CastingConfig.HasCastVisual) CastTimeStartVFX?.Invoke(caster.Ability.CastingConfig.CastVisualColor);
-            if (_castTimer > caster.Ability.CastingConfig.CastTime)
+            if (_castTimer > caster.Ability.GetAbilityStatValue(AbilityStatType.CastTime))
             {
                 if (caster.CastAbility())
                 {
                     CastTimeEnd?.Invoke(caster.Ability);
                     if (caster.Ability.CastingConfig.HasCastVisual) CastTimeEndVFX?.Invoke(caster.Ability.CastingConfig.CastVisualColor);
-                    _cooldownAbilities.Add(caster, TimerManager.Instance.AddTimer(caster.GetCooldown(), caster, ReturnAbilityFromCooldown, true));
+                    _cooldownAbilities.Add(caster, TimerManager.AddTimer(caster.GetCooldown(), caster, ReturnAbilityFromCooldown, true));
                     _queuedAbilities.Dequeue();
                     _castTimer = 0;
                 }
@@ -110,10 +110,8 @@ public class UnitAutoCaster : MonoBehaviour
         _queuedAbilities.Enqueue(caster);
     }
 
-    public void EnableCaster()
-    {
-        CanCast = true;
-    }
+    public void EnableCaster() => CanCast = true;
+
 
     public void DisableCaster()
     {

@@ -1,37 +1,37 @@
 public class SmokeBomb : OffensiveAbility
 {
-    private SmokeBombSO _config;
+    public readonly SmokeBombSO SmokeBombConfig;
     public SmokeBomb(SmokeBombSO config, BaseUnit owner) : base(config, owner)
     {
-        _config = config;
+        SmokeBombConfig = config;
     }
 
     public override bool CastAbility()
     {
-        BaseUnit target = Owner.ShamanTargetHelper.GetTarget(_config.TargetData);
+        BaseUnit target = Owner.ShamanTargetHelper.GetTarget(SmokeBombConfig.TargetData);
 
         if (!ReferenceEquals(target, null))
         {
-            if (Owner.Stats.ThreatLevel > target.Stats.ThreatLevel) target = Owner;
-            if (target.Stats.ThreatLevel <= 0) return false;
+            if (Owner.Stats[StatType.ThreatLevel].Value > target.Stats[StatType.ThreatLevel].Value) target = Owner;
+            if (target.Stats[StatType.ThreatLevel].Value <= 0) return false;
             return Cast(Owner, target);
         }
 
-        if (Owner.Stats.ThreatLevel > 0) return Cast(Owner, Owner);
+        if (Owner.Stats[StatType.ThreatLevel].Value > 0) return Cast(Owner, Owner);
         
         return false;
     }
 
     public override bool CheckCastAvailable()
     {
-        BaseUnit target = Owner.ShamanTargetHelper.GetTarget(_config.TargetData);
+        BaseUnit target = Owner.ShamanTargetHelper.GetTarget(SmokeBombConfig.TargetData);
 
         if (!ReferenceEquals(target, null))
         {
-            if (target.Stats.ThreatLevel > 0) return true;
+            if (target.Stats[StatType.ThreatLevel].Value > 0) return true;
         }
 
-        if (Owner.Stats.ThreatLevel > 0) return true;
+        if (Owner.Stats[StatType.ThreatLevel].Value > 0) return true;
 
         return false;
     }
@@ -41,7 +41,7 @@ public class SmokeBomb : OffensiveAbility
         SmokeBombMono smokeBombMono = LevelManager.Instance.PoolManager.SmokeBombPool.GetPooledObject();
         smokeBombMono.transform.position = target.transform.position;
         smokeBombMono.gameObject.SetActive(true);
-        smokeBombMono.SpawnBomb(_config, caster);
+        smokeBombMono.SpawnBomb(this, caster);
         return true;
     }
 }

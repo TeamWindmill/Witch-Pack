@@ -127,7 +127,7 @@ public class AbilityUpgradePanelUI : UIElement
                 foreach (var upgrade in _abilityUIButton.ActiveAbility.Upgrades)
                 {
                     if (upgrade == ability) continue;
-                    upgrade.ChangeUpgradeState(AbilityUpgradeState.Locked);
+                    upgrade.ChangeUpgradeState(UpgradeState.Locked);
                 }
             }
         }

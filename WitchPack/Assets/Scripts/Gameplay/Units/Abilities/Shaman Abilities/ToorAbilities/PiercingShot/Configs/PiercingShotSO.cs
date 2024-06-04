@@ -5,6 +5,9 @@ using UnityEngine;
 public class PiercingShotSO : OffensiveAbilitySO
 {
     [SerializeField] private int penetration;
-    public int Penetration { get => penetration; }
-
+    [SerializeField] private int speed;
+    [SerializeField] private int lifeTime;
+    public int Penetration => penetration;
+    public int Speed => speed;
+    public int LifeTime => lifeTime;
 }

@@ -17,7 +17,7 @@ public class SmokeBombMono : MonoBehaviour
     [SerializeField] private PlayableDirector cloudsExit;
 
     private Dictionary<Shaman,StatusEffect[]> _affectedShamans = new Dictionary<Shaman,StatusEffect[]>();
-    protected SmokeBombSO _ability;
+    protected SmokeBomb _ability;
     protected BaseUnit _owner;
 
     private void Awake()
@@ -29,15 +29,15 @@ public class SmokeBombMono : MonoBehaviour
         cloudsExit.gameObject.SetActive(false);
     }
 
-    public virtual void SpawnBomb(SmokeBombSO config, BaseUnit owner)
+    public virtual void SpawnBomb(SmokeBomb ability, BaseUnit owner)
     {
-        _ability = config;
+        _ability = ability;
         _owner = owner;
         rangeEnter.gameObject.SetActive(true);
         cloudsEnter.gameObject.SetActive(true);
         cloudsEnter.stopped += CloudsIdleAnim;
-        transform.localScale = new Vector3(config.Range, config.Range, 0);
-        Invoke(nameof(EndBomb),config.Duration);
+        transform.localScale = new Vector3(ability.SmokeBombConfig.Range, ability.SmokeBombConfig.Range, 0);
+        Invoke(nameof(EndBomb),ability.SmokeBombConfig.Duration);
         _targeter.OnTargetAdded += OnTargetEntered;
         _targeter.OnTargetLost += OnTargetExited;
     }
@@ -47,10 +47,10 @@ public class SmokeBombMono : MonoBehaviour
         if (unit is not Shaman shaman) return;
         if (_affectedShamans.ContainsKey(shaman)) return;
 
-        StatusEffect[] statusEffects = new StatusEffect[_ability.StatusEffects.Count];
-        for (int i = 0; i < _ability.StatusEffects.Count; i++)
+        StatusEffect[] statusEffects = new StatusEffect[_ability.SmokeBombConfig.StatusEffects.Count];
+        for (int i = 0; i < _ability.SmokeBombConfig.StatusEffects.Count; i++)
         {
-            statusEffects[i] = shaman.Effectable.AddEffect(_ability.StatusEffects[i],_owner.Affector);
+            statusEffects[i] = shaman.Effectable.AddEffect(_ability.SmokeBombConfig.StatusEffects[i],_owner.Affector);
         }
         _affectedShamans.Add(shaman,statusEffects);
     }

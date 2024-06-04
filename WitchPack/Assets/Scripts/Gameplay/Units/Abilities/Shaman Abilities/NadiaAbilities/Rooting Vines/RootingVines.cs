@@ -1,9 +1,9 @@
 public class RootingVines : OffensiveAbility
 {
-    private RootingVinesSO _config;
+    public readonly RootingVinesSO Config;
     public RootingVines(RootingVinesSO config, BaseUnit owner) : base(config, owner)
     {
-        _config = config;
+        Config = config;
     }
 
     public override bool CastAbility()
@@ -12,7 +12,7 @@ public class RootingVines : OffensiveAbility
         if (!ReferenceEquals(target, null))
         {
             RootingVinesMono newVines = LevelManager.Instance.PoolManager.RootingVinesPool.GetPooledObject();
-            newVines.Init(Owner, _config, _config.LastingTime,_config.AoeScale);
+            newVines.Init(Owner, this, Config.LastingTime,Config.AoeScale);
             newVines.transform.position = target.transform.position;
             newVines.gameObject.SetActive(true);
             return true;

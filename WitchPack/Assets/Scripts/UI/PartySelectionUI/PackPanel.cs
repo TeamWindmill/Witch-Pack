@@ -6,16 +6,19 @@ public class PackPanel : UIElement
 
     private PartySelectionWindow _parent;
 
+    [SerializeField] private ShamanUpgradePanel _shamanUpgradePanel; //tempi temp
+
     public void Init(PartySelectionWindow parent)
     {
         _parent = parent;
         foreach (var icon in _packIcons)
         {
             icon.Init();
-            icon.OnIconClick += _parent.UnassignShamanFromPack;
+            icon.OnIconLeftClick += _parent.UnassignShamanFromPack;
+            icon.OnIconRightClick += OpenUpgradePanel;
         }
     }
-    public void AddShamanToPack(ShamanConfig shaman)
+    public void AddShamanToPack(ShamanSaveData shaman)
     {
         foreach (var icon in _packIcons)
         {
@@ -24,11 +27,11 @@ public class PackPanel : UIElement
             return;
         }
     }
-    public void RemoveShamanFromPack(ShamanConfig shaman)
+    public void RemoveShamanFromPack(ShamanSaveData shaman)
     {
         foreach (var icon in _packIcons)
         {
-            if (icon.ShamanConfig == shaman)
+            if (icon.ShamanSaveData == shaman)
             {
                 icon.UnassignShaman();
                 RefreshPackPanel();
@@ -49,7 +52,6 @@ public class PackPanel : UIElement
             _packIcons[i].AssignShaman(_parent.ActiveShamanParty[i]);
         }
     }
-
     public void FlashInRed()
     {
         foreach (var icon in _packIcons)
@@ -57,4 +59,9 @@ public class PackPanel : UIElement
             icon.FlashInRed();
         }
     }
+    private void OpenUpgradePanel(ShamanSaveData shamanSaveData)
+    {
+        _shamanUpgradePanel.Init(shamanSaveData);
+    }
+    
 }

@@ -24,7 +24,7 @@ public class FollowPath : IntervalState<EnemyAI>
             if (rand < _agroChance)
             {
                 var target = parent.Enemy.ShamanTargetHelper.GetTarget(parent.Config.TargetData);
-                if(target.Stats.Visibility == 1) return;
+                if(target.Stats[StatType.Visibility].IntValue == 1) return;
                 parent.Enemy.Movement.Agent.stoppingDistance = parent.Enemy.Movement.DefaultStoppingDistance;
                 parent.SetState(typeof(ChaseTarget));
             }

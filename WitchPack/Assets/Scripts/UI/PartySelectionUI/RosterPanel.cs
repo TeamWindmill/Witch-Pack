@@ -9,16 +9,16 @@ public class RosterPanel : UIElement
     private List<RosterIcon> _rosterIcons = new();
     private PartySelectionWindow _parent;
 
-    public void Init(PartySelectionWindow parent, List<ShamanSaveData> configs)
+    public void Init(PartySelectionWindow parent, List<ShamanSaveData> shamanSaveDatas)
     {
         Hide();
         _rosterIcons = new();
         _parent = parent;
-        foreach (var shamanSaveData in configs)
+        foreach (var shamanSaveData in shamanSaveDatas)
         {
             var icon = Instantiate(_rosterIconPrefab, _holder);
             _rosterIcons.Add(icon);
-            icon.Init(shamanSaveData.Config);
+            icon.Init(shamanSaveData);
             icon.OnIconClick += ToggleShaman;
         }
         base.Show();
@@ -36,22 +36,22 @@ public class RosterPanel : UIElement
         }
     }
 
-    public void AssignShaman(ShamanConfig shamanConfig) 
+    public void AssignShaman(ShamanSaveData shamanSaveData) 
     {
         foreach (var icon in _rosterIcons)
         {
-            if (icon.ShamanConfig == shamanConfig)
+            if (icon.ShamanSaveData == shamanSaveData)
             {
                 icon.ToggleAvailable(false);
                 return;
             }
         }
     }
-    public void UnassignShaman(ShamanConfig shamanConfig) 
+    public void UnassignShaman(ShamanSaveData shamanSaveData) 
     {
         foreach (var icon in _rosterIcons)
         {
-            if (icon.ShamanConfig == shamanConfig)
+            if (icon.ShamanSaveData == shamanSaveData)
             {
                 icon.ToggleAvailable(true);
                 return;
@@ -59,9 +59,9 @@ public class RosterPanel : UIElement
         }
     }
 
-    private void ToggleShaman(ShamanConfig config, bool available)
+    private void ToggleShaman(ShamanSaveData saveData, bool available)
     {
-        if (available) _parent.AssignShamanToPack(config);
-        else _parent.UnassignShamanFromPack(config);
+        if (available) _parent.AssignShamanToPack(saveData);
+        else _parent.UnassignShamanFromPack(saveData);
     }
 }

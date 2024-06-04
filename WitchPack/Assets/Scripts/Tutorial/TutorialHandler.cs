@@ -33,7 +33,7 @@ public class TutorialHandler : MonoSingleton<TutorialHandler>
         if (GameManager.Instance.TutorialPlayed) return;
         if(!level.Config.ShowTutorial) return;
 
-        TimerManager.Instance.AddTimer(_levelStartDelay, PlayMovementTutorial);
+        TimerManager.AddTimer(_levelStartDelay, PlayMovementTutorial);
     }
 
     public void PlayMovementTutorial()
@@ -41,7 +41,7 @@ public class TutorialHandler : MonoSingleton<TutorialHandler>
         PlayTutorialVideo(MovementData);
         GAME_TIME.Pause();
         GameManager.Instance.TutorialPlayed = true;
-        TimerManager.Instance.AddTimer(_clickToCancelDelay, () => _isActive = true);
+        TimerManager.AddTimer(_clickToCancelDelay, () => _isActive = true);
         LevelManager.Instance.OnLevelStart -= LevelStart;
         LevelManager.Instance.ShamanParty[0].Movement.OnDestinationReached += PlayPowerStructuresTutorial;
 
@@ -50,14 +50,14 @@ public class TutorialHandler : MonoSingleton<TutorialHandler>
     { 
         PlayTutorialVideo(PowerStructureData);
         GAME_TIME.Pause();
-        TimerManager.Instance.AddTimer(_clickToCancelDelay, () => _isActive = true);
+        TimerManager.AddTimer(_clickToCancelDelay, () => _isActive = true);
         LevelManager.Instance.ShamanParty[0].Movement.OnDestinationReached -= PlayPowerStructuresTutorial;
         LevelManager.Instance.ShamanParty[0].EnergyHandler.OnShamanLevelUp += OnLevelUp;
     }
 
     private void OnLevelUp(int obj)
     {
-        TimerManager.Instance.AddTimer(_onLevelUpTutorialDelay, PlayUpgradeTutorial);
+        TimerManager.AddTimer(_onLevelUpTutorialDelay, PlayUpgradeTutorial);
         LevelManager.Instance.ShamanParty[0].EnergyHandler.OnShamanLevelUp -= OnLevelUp;
     }
 
@@ -65,7 +65,7 @@ public class TutorialHandler : MonoSingleton<TutorialHandler>
     {
         PlayTutorialVideo(UpgradeData);
         GAME_TIME.Pause();
-        TimerManager.Instance.AddTimer(_clickToCancelDelay, () => _isActive = true);
+        TimerManager.AddTimer(_clickToCancelDelay, () => _isActive = true);
     }
     private void PlayTutorialVideo(TutorialData data)
     {

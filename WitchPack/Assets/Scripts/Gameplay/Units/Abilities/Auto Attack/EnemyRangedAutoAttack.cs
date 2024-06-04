@@ -1,10 +1,10 @@
 public class EnemyRangedAutoAttack : OffensiveAbility
 {
-    private RangedAutoAttackSO _config;
+    public readonly EnemyRangedAutoAttackSO Config;
 
     public EnemyRangedAutoAttack(EnemyRangedAutoAttackSO config, BaseUnit owner) : base(config, owner)
     {
-        _config = config;
+        Config = config;
     }
     
     public override bool CastAbility()
@@ -26,7 +26,7 @@ public class EnemyRangedAutoAttack : OffensiveAbility
         AutoAttackMono newPew = LevelManager.Instance.PoolManager.ShamanAutoAttackPool.GetPooledObject();
         newPew.transform.position = Owner.CastPos.transform.position;
         newPew.gameObject.SetActive(true);
-        newPew.Fire(Owner, _config, target,_config.Speed);
+        newPew.Fire(Owner, this, target,Config.Speed);
         return true;
     }
 
