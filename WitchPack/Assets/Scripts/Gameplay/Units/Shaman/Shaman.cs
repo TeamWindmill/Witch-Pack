@@ -49,7 +49,7 @@ public class Shaman : BaseUnit
         ShamanConfig = saveData.Config;
         base.Init(ShamanConfig);
         energyHandler = new EnergyHandler(this);
-        EnemyTargeter.SetRadius(Stats.BonusRange);
+        EnemyTargeter.SetRadius(Stats[StatType.BaseRange].Value);
         IntializeAbilities();
         AddMetaUpgrades(saveData);
         shamanAnimator.Init(this);

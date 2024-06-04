@@ -55,13 +55,13 @@ public abstract class Ability
     {
         foreach (var abilityStat in abilityStats)
         {
-            if (abilityStat.StatType == abilityStatType) return abilityStat.GetStatValue();
+            if (abilityStat.StatType == abilityStatType) return abilityStat.Value;
         }
 
         throw new Exception("ability stat not found in ability");
     }
 
-    public void AddStatUpgrade(AbilityUpgradeConfig abilityUpgradeConfig)
+    public virtual void AddStatUpgrade(AbilityUpgradeConfig abilityUpgradeConfig)
     {
         foreach (var stat in abilityStats)
         {
@@ -74,6 +74,12 @@ public abstract class Ability
                         break;
                     case Factor.Subtract:
                         stat.AddModifier(-abilityUpgradeConfig.StatValue);
+                        break;
+                    case Factor.Multiply:
+                        stat.AddMultiplier(abilityUpgradeConfig.StatValue);
+                        break;
+                    case Factor.Divide:
+                        stat.AddMultiplier(1 / abilityUpgradeConfig.StatValue);
                         break;
                 }
                 return;

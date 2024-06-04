@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 
-[Serializable]
-public class AbilityStat
+public class Stat
 {
-    public AbilityStatType StatType;
+    public event Action OnStatChange;
+    public StatType StatType;
     public float BaseValue { get; }
 
     public float Value
@@ -27,7 +28,6 @@ public class AbilityStat
             return value;
         }
     }
-
     public int IntValue
     {
         get
@@ -52,7 +52,7 @@ public class AbilityStat
     private List<float> _modifiers = new();
     private List<float> _multipliers = new();
 
-    public AbilityStat(AbilityStatType statType, float baseValue)
+    public Stat(StatType statType, float baseValue)
     {
         StatType = statType;
         BaseValue = baseValue;
@@ -61,37 +61,48 @@ public class AbilityStat
     public void AddModifier(float value)
     {
         _modifiers.Add(value);
+        OnStatChange?.Invoke();
     }
 
     public void RemoveModifier(float value)
     {
         _modifiers.Remove(value);
+        OnStatChange?.Invoke();
     }
 
     public void AddMultiplier(float value)
     {
         _multipliers.Add(value);
+        OnStatChange?.Invoke();
     }
 
     public void RemoveMultiplier(float value)
     {
         _multipliers.Remove(value);
+        OnStatChange?.Invoke();
     }
 }
 
-public enum AbilityStatType
+public enum StatType
 {
-    Damage,
-    Cooldown,
-    Speed,
-    Range, //not working currently
-    CastTime,
-    Penetration,
-    ExtraPenetrationPerKill,
-    KillToIncreasePenetration,
-    EnergyPointsOnKill,
-    ProjectilesAmount,
-    LifeTime,
-    BounceAmount,
+    MaxHp,
+    BaseDamage, // =basic attack damage
+    AttackSpeed, //cdr for auto attacks 
+    BaseRange, //range for all attacks 
+    MovementSpeed,
+    CritDamage,
+    CritChance,
+    InvincibleTime, //flat duration of invincibility after recieving damage
+    AbilityCooldownReduction, //cdr for abilities only (anything that isnt an auto attack)
+    Armor, // damage redcutcion from all sources
+    HpRegen, //amount of health resotred every second
+    BonusStatusEffectDuration, //fixed duration added for every effect applied by unit
+    AbilityProjectileSpeed, //if an ability is projectile quicken it by this amount
+    AbilityProjectilePenetration, //the amount of times a projectile ability can hit targets before disabling
+    Visibility,
+    ThreatLevel, //the amount of threat currently on this unit
+    Threat, //the amount of threat added to this unit's targets
+    EnergyGain,
     
 }
+

@@ -35,11 +35,11 @@ public class EnergyHandler
             _config.MaxLevel
         };
     }
-    public void GainEnergy(int energy)
+    public void GainEnergy(float energy)
     {
         //if (energy == 0) energy = 25; //temp
         if(ShamanLevel == 7) return;
-        CurrentEnergy += energy;
+        CurrentEnergy += (int)(energy * _shaman.Stats[StatType.EnergyGain].Value);
         if(CurrentEnergy >= MaxEnergyToNextLevel) LevelUp(CurrentEnergy - MaxEnergyToNextLevel);
         OnShamanGainEnergy?.Invoke(CurrentEnergy,MaxEnergyToNextLevel);
     }

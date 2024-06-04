@@ -15,4 +15,6 @@ public enum Factor
 {
     Add,
     Subtract,
+    Multiply,
+    Divide
 }

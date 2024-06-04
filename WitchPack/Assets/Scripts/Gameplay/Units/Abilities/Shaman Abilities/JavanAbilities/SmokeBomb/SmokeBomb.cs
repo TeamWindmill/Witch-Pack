@@ -12,12 +12,12 @@ public class SmokeBomb : OffensiveAbility
 
         if (!ReferenceEquals(target, null))
         {
-            if (Owner.Stats.ThreatLevel > target.Stats.ThreatLevel) target = Owner;
-            if (target.Stats.ThreatLevel <= 0) return false;
+            if (Owner.Stats[StatType.ThreatLevel].Value > target.Stats[StatType.ThreatLevel].Value) target = Owner;
+            if (target.Stats[StatType.ThreatLevel].Value <= 0) return false;
             return Cast(Owner, target);
         }
 
-        if (Owner.Stats.ThreatLevel > 0) return Cast(Owner, Owner);
+        if (Owner.Stats[StatType.ThreatLevel].Value > 0) return Cast(Owner, Owner);
         
         return false;
     }
@@ -28,10 +28,10 @@ public class SmokeBomb : OffensiveAbility
 
         if (!ReferenceEquals(target, null))
         {
-            if (target.Stats.ThreatLevel > 0) return true;
+            if (target.Stats[StatType.ThreatLevel].Value > 0) return true;
         }
 
-        if (Owner.Stats.ThreatLevel > 0) return true;
+        if (Owner.Stats[StatType.ThreatLevel].Value > 0) return true;
 
         return false;
     }

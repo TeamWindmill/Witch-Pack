@@ -12,9 +12,9 @@ public class Heal : CastingAbility
         if (!ReferenceEquals(target, null)) // any shaman in range?
         {
             // Check if caster has lower hp (ratio) than lowest hp target
-            float maxHp = Owner.Stats.MaxHp;
+            float maxHp = Owner.Stats[StatType.MaxHp].Value;
             float casterCurrentHpRatio = Owner.Damageable.CurrentHp / maxHp;
-            maxHp = target.Stats.MaxHp;
+            maxHp = target.Stats[StatType.MaxHp].Value;
             float targetCurrentHpRatio = target.Damageable.CurrentHp / maxHp;
             if (casterCurrentHpRatio < targetCurrentHpRatio)
             {
@@ -31,7 +31,7 @@ public class Heal : CastingAbility
         }
         else // no other injured shamans
         {
-            if(Owner.Damageable.CurrentHp < Owner.Stats.MaxHp) // check if caster is injured
+            if(Owner.Damageable.CurrentHp < Owner.Stats[StatType.MaxHp].Value) // check if caster is injured
             {
                 HealTarget(Owner as Shaman, Owner);
                 return true;
@@ -46,8 +46,8 @@ public class Heal : CastingAbility
         if (!ReferenceEquals(target, null)) // any shaman in range?
         {
             // Check if caster has lower hp (ratio) than lowest hp target
-            float casterCurrentHpRatio = Owner.Damageable.CurrentHp / Owner.Stats.MaxHp;
-            float targetCurrentHpRatio = target.Damageable.CurrentHp / target.Stats.MaxHp;
+            float casterCurrentHpRatio = Owner.Damageable.CurrentHp / Owner.Stats[StatType.MaxHp].Value;
+            float targetCurrentHpRatio = target.Damageable.CurrentHp / target.Stats[StatType.MaxHp].Value;
             if (casterCurrentHpRatio < targetCurrentHpRatio)
             {
                 target = Owner as Shaman;
@@ -62,7 +62,7 @@ public class Heal : CastingAbility
         }
         else // no other injured shamans
         {
-            if(Owner.Damageable.CurrentHp < Owner.Stats.MaxHp) // check if caster is injured
+            if(Owner.Damageable.CurrentHp < Owner.Stats[StatType.MaxHp].Value) // check if caster is injured
             {
                 return true;
             }

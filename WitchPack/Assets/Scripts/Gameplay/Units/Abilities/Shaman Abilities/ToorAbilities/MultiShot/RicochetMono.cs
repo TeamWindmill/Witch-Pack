@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Tools.Targeter;
 using UnityEngine;
@@ -7,6 +8,7 @@ public class RicochetMono : MultiShotMono
     
     private Ricochet _ricochet;
     private Enemy _bounceTarget;
+    private List<Enemy> _bouncedTargets = new ();
     private bool _bouncing = false;
     private int _bounceCounter = 0;
     private int _bounceAmount => (int)_ricochet.GetAbilityStatValue(AbilityStatType.BounceAmount);
@@ -16,16 +18,16 @@ public class RicochetMono : MultiShotMono
     {
         base.Init(type,caster, target, ability, angle);
         _bouncing = false;
-        if(ability is not Ricochet ricochet) return;
-        _ricochet = ricochet;
+        _bounceCounter = 0;
+        _ricochet = ability as Ricochet;
     }
 
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        if (_bouncing && _bounceCounter >= _bounceAmount)
+        if (_bounceCounter >= _bounceAmount)
         {
             Enemy target = collision.GetComponent<Enemy>();
-            if (!ReferenceEquals(target, null) && ReferenceEquals(target, _bounceTarget))
+            if (!ReferenceEquals(target, null))
             {
                 target.Damageable.GetHit(_caster.DamageDealer, _ability);
                 Disable();
@@ -33,18 +35,19 @@ public class RicochetMono : MultiShotMono
         }
         else
         {
-            _bounceCounter++;
             base.OnTriggerEnter2D(collision);
         }
     }
 
     protected override void OnTargetHit(Enemy target)
     {
-        if (!_bouncing)
+        if (_bounceCounter < _bounceAmount)
         {
+            _bounceCounter++;
             target.Damageable.GetHit(_caster.DamageDealer, _ability);
+            _bouncedTargets.Add(target);
             var availableTargets = TargetingHelper<Enemy>.GetAvailableTargets(transform.position,_ricochet.Config.BounceRange,_ricochet.Config.TargetingLayer);
-            _bounceTarget = TargetingHelper<Enemy>.GetTarget(availableTargets, _ricochet.Config.RicochetTargetData,new []{target}.ToList(),transform);
+            _bounceTarget = TargetingHelper<Enemy>.GetTarget(availableTargets, _ricochet.Config.RicochetTargetData,_bouncedTargets,transform);
             if(!ReferenceEquals(_bounceTarget,null)) _bouncing = true;
             else Disable();
         }

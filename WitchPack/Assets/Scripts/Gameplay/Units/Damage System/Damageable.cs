@@ -8,7 +8,7 @@ public class Damageable
     private List<DamageDealer> _damageDealers = new List<DamageDealer>();
     private IDamagable owner;
     private int currentHp;
-    public int MaxHp => owner.Stats.MaxHp;
+    public int MaxHp => owner.Stats[StatType.MaxHp].IntValue;
     public int CurrentHp => currentHp;
 
     private bool hitable;
@@ -77,7 +77,7 @@ public class Damageable
 
     public void RegenHp()
     {
-        Heal(owner.Stats.HpRegen);
+        Heal(owner.Stats[StatType.HpRegen].IntValue);
     }
 
     public void TakeDamage(DamageDealer dealer, DamageHandler damage, OffensiveAbility ability, bool isCrit)
@@ -148,7 +148,7 @@ public class Damageable
 
     private void AddStatsDamageReduction(Damageable target, DamageDealer dealer, DamageHandler dmg, Ability ability, bool crit)
     {
-        float damageReductionModifier = 100f / (owner.Stats.Armor + 100f);
+        float damageReductionModifier = 100f / (owner.Stats[StatType.Armor].Value + 100f);
         dmg.AddMod(damageReductionModifier);
     }
 

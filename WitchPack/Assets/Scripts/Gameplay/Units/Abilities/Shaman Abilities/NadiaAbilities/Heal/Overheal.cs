@@ -9,7 +9,7 @@ public class Overheal : Heal
 
     protected override void HealTarget(Shaman target, BaseUnit caster)
     {
-        if(target.Damageable.CurrentHp + _config.HealAmount > target.Stats.MaxHp)
+        if(target.Damageable.CurrentHp + _config.HealAmount > target.Stats[StatType.MaxHp].Value)
         { 
             target.Stats.AddValueToStat(StatType.MaxHp, _config.PermanentMaxHealthBonus);
             target.ShamanVisualHandler.OverhealEffect.Play();

@@ -26,7 +26,7 @@ public class DamageDealer
 
     public bool CritChance(Ability ability)
     {
-        if (ReferenceEquals(ability, owner.AutoAttackCaster.Ability) && UnityEngine.Random.Range(0, 100) <= owner.Stats.CritChance)
+        if (ReferenceEquals(ability, owner.AutoAttackCaster.Ability) && UnityEngine.Random.Range(0, 100) <= owner.Stats[StatType.CritChance].Value)
         {
             return true;
         }
@@ -38,10 +38,10 @@ public class DamageDealer
     {
         if (ReferenceEquals(ability, owner.AutoAttackCaster.Ability))
         {
-            dmg.AddFlatMod(owner.Stats.BaseDamage);
+            dmg.AddFlatMod(owner.Stats[StatType.BaseDamage].IntValue);
             if (crit)
             {
-                float critDamage = (Owner.Stats.CritDamage / 100f) + 1f;
+                float critDamage = (Owner.Stats[StatType.CritDamage].Value / 100f) + 1f;
                 dmg.AddMod(critDamage); //not sure what the math is supposed to be here - ask gd
             }
         }
@@ -49,12 +49,9 @@ public class DamageDealer
 
     private void SubscribeDamageBoostsFromAbility(Damageable target, DamageDealer dealer, DamageHandler dmg, CastingAbility ability, bool crit)
     {
-        if (ability is not OffensiveAbility || ReferenceEquals((ability as OffensiveAbility).OffensiveAbilityConfig.DamageBoosts, null))
-        {
-            return;
-        }
+        if (ability is not OffensiveAbility offensiveAbility) return;
 
-        foreach (var item in (ability as OffensiveAbility).OffensiveAbilityConfig.DamageBoosts)
+        foreach (var item in offensiveAbility.DamageBoosts)
         {
             switch (item.Type)
             {

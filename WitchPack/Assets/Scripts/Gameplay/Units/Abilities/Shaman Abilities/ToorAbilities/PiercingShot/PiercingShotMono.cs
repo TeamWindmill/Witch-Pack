@@ -50,7 +50,7 @@ public class PiercingShotMono : MonoBehaviour
         _rb.velocity = (_speed) * GAME_TIME.TimeRate * _dir;
         if (includePenStat)
         {
-            _maxNumberOfHits = _baseMaxNumberOfHits + shooter.Stats.AbilityProjectilePenetration + basePen;
+            _maxNumberOfHits = _baseMaxNumberOfHits + shooter.Stats[StatType.AbilityProjectilePenetration].IntValue + basePen;
         }
         else
         {

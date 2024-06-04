@@ -51,7 +51,7 @@ public class MultiShotMono : MonoBehaviour
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         Enemy target = collision.GetComponent<Enemy>();
-        if (!ReferenceEquals(target, null) && ReferenceEquals(target, _target))
+        if (!ReferenceEquals(target, null))
         {
             OnTargetHit(target);
         }
