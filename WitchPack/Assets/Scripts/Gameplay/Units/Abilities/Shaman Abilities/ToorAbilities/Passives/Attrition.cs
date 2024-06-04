@@ -1,10 +1,11 @@
 
-    public class SameTargetAutoAttackPassive : PassiveAbility
+    public class Attrition : PassiveAbility
     {
-        private SameTargetAutoAttackPassiveSO _config;
-        public SameTargetAutoAttackPassive(SameTargetAutoAttackPassiveSO config, BaseUnit owner) : base(config, owner)
+        private AttritionSO _config;
+        public Attrition(AttritionSO config, BaseUnit owner) : base(config, owner)
         {
             _config = config;
+            abilityStats.Add(new AbilityStat(AbilityStatType.DamageIncreasePerShot,config.DamageIncreasePerShot));
         }
         
         public override void SubscribePassive()
@@ -25,7 +26,7 @@
 
         private void IncreaseAADamage(AbilityEventCounter counter, Damageable target, DamageDealer dealer, DamageHandler dmg, Ability ability)
         {
-            float mod = ((_config.DamageIncreasePerShot / 100) * counter.CurrentCount) + 1;
+            float mod = ((GetAbilityStatValue(AbilityStatType.DamageIncreasePerShot) / 100) * counter.CurrentCount) + 1;
             dmg.AddMod(mod);
         }
     }

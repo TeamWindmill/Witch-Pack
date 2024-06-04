@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SameTargetAA", menuName = "Ability/Passive/SameTargetAA")]
-public class SameTargetAutoAttackPassiveSO : PassiveSO
+public class AttritionSO : PassiveSO
 {
     [SerializeField] private EventToCount eventToCount;
     [SerializeField] private int maxStacks;

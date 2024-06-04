@@ -22,5 +22,5 @@ public enum AbilityStatType
     ProjectilesAmount,
     LifeTime,
     BounceAmount,
-    
+    DamageIncreasePerShot,
 }
