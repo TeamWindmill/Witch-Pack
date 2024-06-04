@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 
-public class MetaUpgradeConfig : ScriptableObject
+[Serializable]
+public class MetaUpgradeConfig 
 {
     [SerializeField] private string _name;
     [SerializeField] private float _statValue;
