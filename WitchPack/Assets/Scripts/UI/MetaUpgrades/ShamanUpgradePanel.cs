@@ -17,7 +17,7 @@ public class ShamanUpgradePanel : UIElement
             _abilityMetaUpgrades[i].Init(this, _shamanMetaUpgradeConfig.AbilityPanelUpgrades[i], shamanSaveData.ExperienceHandler.HasSkillPoints);
         }
         
-        _statMetaUpgrades.Init(this, _shamanMetaUpgradeConfig.StatPanelUpgrades, shamanSaveData.ExperienceHandler.HasSkillPoints);
+        _statMetaUpgrades.Init(this, _shamanMetaUpgradeConfig.StatPanelUpgrades.StatUpgrades, shamanSaveData.ExperienceHandler.HasSkillPoints);
 
         Show();
     }
