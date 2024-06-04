@@ -22,7 +22,7 @@ public class ChaseTarget : IntervalState<EnemyAI>
         var target = parent.Enemy.ShamanTargetHelper.CurrentTarget;
         if (target is null) return;
 
-        if (target.Stats.Visibility == 1 || target.IsDead)
+        if (target.Stats[StatType.Visibility].IntValue == 1 || target.IsDead)
         {
             parent.SetState(typeof(ReturnToPath));
         }
@@ -64,7 +64,7 @@ public class ChaseTarget : IntervalState<EnemyAI>
         var rand = Random.Range(0f, 1f);
         var distance = _distanceModifier * Vector3.Distance(target.transform.position, parent.Enemy.transform.position);
         //Debug.Log("Distance is: " + distance);
-        if (distance > parent.Enemy.Stats.BonusRange)
+        if (distance > parent.Enemy.Stats[StatType.BaseRange].Value)
         {
             //shaman is out of defined range
             _isOutOfRange = true;

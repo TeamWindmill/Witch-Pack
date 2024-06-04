@@ -30,7 +30,7 @@ public class AttackState : State<EnemyAI>
             return;
         }
 
-        if (target.Stats.Visibility == 1 || target.IsDead)
+        if (target.Stats[StatType.Visibility].IntValue == 1 || target.IsDead)
         {
             parent.SetState(typeof(FollowPathBoss));
         }

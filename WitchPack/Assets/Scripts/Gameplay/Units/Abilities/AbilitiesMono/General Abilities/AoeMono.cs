@@ -8,13 +8,13 @@ public class AoeMono : MonoBehaviour
     [SerializeField] private Transform _rangeVisuals;
     [SerializeField] private GroundColliderTargeter _groundColliderTargeter;
 
-    protected CastingAbilitySO AbilitySo;
+    protected CastingAbility Ability;
     protected BaseUnit _owner;
-    public virtual void Init(BaseUnit owner, CastingAbilitySO abilitySo, float lastingTime,float aoeRange)
+    public virtual void Init(BaseUnit owner, CastingAbility ability, float lastingTime,float aoeRange)
     {
         ringLastingTime = lastingTime;
         _owner = owner;
-        AbilitySo = abilitySo;
+        Ability = ability;
         _holder.transform.localScale = new Vector3(aoeRange,aoeRange,aoeRange);
         _rangeVisuals.transform.localScale = new Vector3(aoeRange,aoeRange,aoeRange);
         _groundColliderTargeter.OnTargetAdded += OnTargetEnter;

@@ -17,7 +17,7 @@ public class EnemyMovement
     
     public void FollowPath()
     {
-        _dstTravelled += _enemy.Stats.MovementSpeed * GAME_TIME.GameDeltaTime;
+        _dstTravelled += _enemy.Stats[StatType.MovementSpeed].Value * GAME_TIME.GameDeltaTime;
         _enemy.transform.position = _path.path.GetPointAtDistance(_dstTravelled, EndOfPathInstruction.Stop);
     }
 

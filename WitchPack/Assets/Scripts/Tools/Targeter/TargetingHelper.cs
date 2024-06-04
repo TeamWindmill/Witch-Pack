@@ -81,18 +81,18 @@ namespace Tools.Targeter
             {
                 if (TargetGeneralChecks(availableTargets, targetData, i)) continue;
                 
-                if (availableTargets[i].Stats.ThreatLevel <= 0) continue;
+                if (availableTargets[i].Stats[StatType.ThreatLevel].Value <= 0) continue;
 
                 if (targetData.Modifier == TargetModifier.Most)
                 {
-                    if (cur.Stats.ThreatLevel < availableTargets[i].Stats.ThreatLevel)
+                    if (cur.Stats[StatType.ThreatLevel].Value < availableTargets[i].Stats[StatType.ThreatLevel].Value)
                     {
                         cur = availableTargets[i];
                     }
                 }
                 else
                 {
-                    if (cur.Stats.ThreatLevel > availableTargets[i].Stats.ThreatLevel)
+                    if (cur.Stats[StatType.ThreatLevel].Value > availableTargets[i].Stats[StatType.ThreatLevel].Value)
                     {
                         cur = availableTargets[i];
                     }

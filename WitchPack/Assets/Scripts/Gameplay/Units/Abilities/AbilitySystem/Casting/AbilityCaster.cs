@@ -14,7 +14,6 @@ public class AbilityCaster : ICaster
     {
         _unit = owner;
         this.ability = ability;
-        //ability.AddStatUpgrade();
         if (owner is Shaman shaman)
         {
             if(ability.CastingConfig.HasSfx) OnCastGFX += shaman.ShamanAbilityCastSFX;
@@ -52,7 +51,7 @@ public class AbilityCaster : ICaster
         return ability.GetUpgrades().Contains(caster.Ability);
     }
 
-    public float GetCooldown() => ability.CastingConfig.Cd;
+    public float GetCooldown() => ability.GetAbilityStatValue(AbilityStatType.Cooldown);
 
 }
 
