@@ -55,3 +55,19 @@ public struct AbilityPanelUpgrades
     }
 }
 
+public struct StatPanelUpgrades
+{
+    public List<StatUpgradeConfig> LeftStatUpgrades;
+    public List<StatUpgradeConfig> RightStatUpgrades;
+
+    public List<StatUpgradeConfig> StatUpgrades
+    {
+        get
+        {
+            List<StatUpgradeConfig> upgrades = new();
+            upgrades.AddRange(LeftStatUpgrades);
+            upgrades.AddRange(RightStatUpgrades);
+            return upgrades;
+        }
+    }
+}
