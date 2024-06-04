@@ -20,9 +20,9 @@ public class UnitStats
         _baseStats = baseStats;
 
         Stats.Add(baseStats.MaxHp.statType,new Stat(baseStats.MaxHp.statType,baseStats.MaxHp.value));
-        Stats.Add(baseStats.BaseDamage.statType,new Stat(baseStats.BaseDamage.statType,baseStats.BaseDamage.value));
+        Stats.Add(baseStats._damage.statType,new Stat(baseStats._damage.statType,baseStats._damage.value));
         Stats.Add(baseStats.AttackSpeed.statType,new Stat(baseStats.AttackSpeed.statType,baseStats.AttackSpeed.value));
-        Stats.Add(baseStats.BaseRange.statType,new Stat(baseStats.BaseRange.statType,baseStats.BaseRange.value));
+        Stats.Add(baseStats._range.statType,new Stat(baseStats._range.statType,baseStats._range.value));
         Stats.Add(baseStats.MovementSpeed.statType,new Stat(baseStats.MovementSpeed.statType,baseStats.MovementSpeed.value));
         Stats.Add(baseStats.CritDamage.statType,new Stat(baseStats.CritDamage.statType,baseStats.CritDamage.value));
         Stats.Add(baseStats.CritChance.statType,new Stat(baseStats.CritChance.statType,baseStats.CritChance.value));

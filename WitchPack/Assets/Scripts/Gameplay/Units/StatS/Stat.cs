@@ -1,85 +1,11 @@
 using System;
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 
-public class Stat
+[Serializable]
+public class Stat : BaseStat<StatType>
 {
-    public event Action OnStatChange;
-    public StatType StatType;
-    public float BaseValue { get; }
-
-    public float Value
+    public Stat(StatType statType, float baseValue) : base(statType, baseValue)
     {
-        get
-        {
-            var value = BaseValue;
-            foreach (var modifier in _modifiers)
-            {
-                value += modifier;
-            }
-
-            float multipliersSum = 0;
-            foreach (var multiplier in _multipliers)
-            {
-                multipliersSum += multiplier;
-            }
-
-            if (multipliersSum > 0) return value * multipliersSum;
-            return value;
-        }
-    }
-    public int IntValue
-    {
-        get
-        {
-            var value = BaseValue;
-            foreach (var modifier in _modifiers)
-            {
-                value += modifier;
-            }
-
-            float multipliersSum = 0;
-            foreach (var multiplier in _multipliers)
-            {
-                multipliersSum += multiplier;
-            }
-
-            if (multipliersSum > 0) return (int)(value * multipliersSum);
-            return (int)value;
-        }
-    }
-
-    private List<float> _modifiers = new();
-    private List<float> _multipliers = new();
-
-    public Stat(StatType statType, float baseValue)
-    {
-        StatType = statType;
-        BaseValue = baseValue;
-    }
-
-    public void AddModifier(float value)
-    {
-        _modifiers.Add(value);
-        OnStatChange?.Invoke();
-    }
-
-    public void RemoveModifier(float value)
-    {
-        _modifiers.Remove(value);
-        OnStatChange?.Invoke();
-    }
-
-    public void AddMultiplier(float value)
-    {
-        _multipliers.Add(value);
-        OnStatChange?.Invoke();
-    }
-
-    public void RemoveMultiplier(float value)
-    {
-        _multipliers.Remove(value);
-        OnStatChange?.Invoke();
     }
 }
 
