@@ -26,6 +26,7 @@ MonoBehaviour:
   - Ability: {fileID: 11400000, guid: c2510545251b0be44938eba499e478f4, type: 2}
     LeftStatUpgrades:
     - _name: projectile speed
+      _valueName: +5
       _statValue: 5
       _factor: 0
       _statType: 2
@@ -36,6 +37,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 3881dc7b74790b7448a3ca17179d3b55, type: 2}
       - {fileID: 11400000, guid: 81793bfa9ec8f584987c2c0dd6fd9f4d, type: 2}
     - _name: damage
+      _valueName: +20
       _statValue: 20
       _factor: 0
       _statType: 0
@@ -45,7 +47,8 @@ MonoBehaviour:
       - {fileID: 11400000, guid: c2510545251b0be44938eba499e478f4, type: 2}
       - {fileID: 11400000, guid: 3881dc7b74790b7448a3ca17179d3b55, type: 2}
       - {fileID: 11400000, guid: 81793bfa9ec8f584987c2c0dd6fd9f4d, type: 2}
-    - _name: sec cooldown
+    - _name: cooldown
+      _valueName: -2s
       _statValue: 2
       _factor: 1
       _statType: 1
@@ -56,6 +59,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 3881dc7b74790b7448a3ca17179d3b55, type: 2}
       - {fileID: 11400000, guid: 81793bfa9ec8f584987c2c0dd6fd9f4d, type: 2}
     - _name: quick shot damage
+      _valueName: +50
       _statValue: 50
       _factor: 0
       _statType: 0
@@ -64,6 +68,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 81793bfa9ec8f584987c2c0dd6fd9f4d, type: 2}
     RightStatUpgrades:
     - _name: damage
+      _valueName: +20
       _statValue: 20
       _factor: 0
       _statType: 0
@@ -74,6 +79,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 3881dc7b74790b7448a3ca17179d3b55, type: 2}
       - {fileID: 11400000, guid: 81793bfa9ec8f584987c2c0dd6fd9f4d, type: 2}
     - _name: cast time
+      _valueName: -0.25s
       _statValue: 0.25
       _factor: 1
       _statType: 4
@@ -84,6 +90,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 3881dc7b74790b7448a3ca17179d3b55, type: 2}
       - {fileID: 11400000, guid: 81793bfa9ec8f584987c2c0dd6fd9f4d, type: 2}
     - _name: projectile pierce
+      _valueName: +1
       _statValue: 1
       _factor: 0
       _statType: 5
@@ -93,7 +100,8 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 48800fa2149d0b942a7df83b48b69c31, type: 2}
       - {fileID: 11400000, guid: 3881dc7b74790b7448a3ca17179d3b55, type: 2}
       - {fileID: 11400000, guid: 81793bfa9ec8f584987c2c0dd6fd9f4d, type: 2}
-    - _name: kills required for experienced hunter
+    - _name: for experienced hunter
+      _valueName: -1 kills
       _statValue: 1
       _factor: 1
       _statType: 7
@@ -102,7 +110,8 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 48800fa2149d0b942a7df83b48b69c31, type: 2}
   - Ability: {fileID: 11400000, guid: 53bfc36c6d742b846a66701c6400458a, type: 2}
     LeftStatUpgrades:
-    - _name: sec cooldown
+    - _name: cooldown
+      _valueName: -2s
       _statValue: 2
       _factor: 1
       _statType: 1
@@ -112,6 +121,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 53bfc36c6d742b846a66701c6400458a, type: 2}
       - {fileID: 11400000, guid: c70b65cf65fce404aa5515456d2121df, type: 2}
     - _name: damage
+      _valueName: +10
       _statValue: 10
       _factor: 0
       _statType: 0
@@ -121,6 +131,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 53bfc36c6d742b846a66701c6400458a, type: 2}
       - {fileID: 11400000, guid: c70b65cf65fce404aa5515456d2121df, type: 2}
     - _name: projectile
+      _valueName: +1
       _statValue: 1
       _factor: 0
       _statType: 9
@@ -129,7 +140,8 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 566adf5104243da46a387aacf86fe5ac, type: 2}
       - {fileID: 11400000, guid: 53bfc36c6d742b846a66701c6400458a, type: 2}
       - {fileID: 11400000, guid: c70b65cf65fce404aa5515456d2121df, type: 2}
-    - _name: precent essense shot damage
+    - _name: essense shot damage
+      _valueName: +5%
       _statValue: 0
       _factor: 0
       _statType: 0
@@ -138,7 +150,8 @@ MonoBehaviour:
         damageBonusInPercent: 5
       _abilitiesToUpgrade: []
     RightStatUpgrades:
-    - _name: Reduced 0.25 cast time
+    - _name: cast time
+      _valueName: -0.25s
       _statValue: 0.25
       _factor: 1
       _statType: 4
@@ -147,7 +160,8 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 566adf5104243da46a387aacf86fe5ac, type: 2}
       - {fileID: 11400000, guid: 53bfc36c6d742b846a66701c6400458a, type: 2}
       - {fileID: 11400000, guid: c70b65cf65fce404aa5515456d2121df, type: 2}
-    - _name: Additional 1 projectile
+    - _name: projectile
+      _valueName: +1
       _statValue: 1
       _factor: 0
       _statType: 9
@@ -156,7 +170,8 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 566adf5104243da46a387aacf86fe5ac, type: 2}
       - {fileID: 11400000, guid: 53bfc36c6d742b846a66701c6400458a, type: 2}
       - {fileID: 11400000, guid: c70b65cf65fce404aa5515456d2121df, type: 2}
-    - _name: Additional 10 damage
+    - _name: damage
+      _valueName: +10
       _statValue: 10
       _factor: 0
       _statType: 0
@@ -165,7 +180,8 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 566adf5104243da46a387aacf86fe5ac, type: 2}
       - {fileID: 11400000, guid: 53bfc36c6d742b846a66701c6400458a, type: 2}
       - {fileID: 11400000, guid: c70b65cf65fce404aa5515456d2121df, type: 2}
-    - _name: Additional 1 bounce to richochet
+    - _name: bounce to richochet
+      _valueName: +1
       _statValue: 1
       _factor: 0
       _statType: 11
@@ -174,36 +190,44 @@ MonoBehaviour:
       - {fileID: 11400000, guid: c70b65cf65fce404aa5515456d2121df, type: 2}
   _statPanelUpgrades:
     LeftStatUpgrades:
-    - _name: Additional 0.25 attack speed
+    - _name: attack speed
+      _valueName: +0.25
       _statValue: 0.25
       _factor: 0
       _statType: 2
-    - _name: Additional 10 base damage
+    - _name: base damage
+      _valueName: +10
       _statValue: 10
       _factor: 0
       _statType: 1
-    - _name: Additional 1 range
+    - _name: range
+      _valueName: +1
       _statValue: 1
       _factor: 0
       _statType: 3
-    - _name: Additional 2 movement speed
+    - _name: movement speed
+      _valueName: +2
       _statValue: 2
       _factor: 0
       _statType: 4
     RightStatUpgrades:
-    - _name: Additional 100 max HP
+    - _name: max HP
+      _valueName: +100
       _statValue: 100
       _factor: 0
       _statType: 0
-    - _name: Additional 20% energy gain
+    - _name: energy gain
+      _valueName: +20%
       _statValue: 20
       _factor: 0
       _statType: 17
-    - _name: Additional 10% crit chance
+    - _name: crit chance
+      _valueName: +10%
       _statValue: 10
       _factor: 0
       _statType: 6
-    - _name: Additional 5 damage to attrition
+    - _name: damage to attrition
+      _valueName: +5
       _statValue: 5
       _factor: 0
       _statType: 0
