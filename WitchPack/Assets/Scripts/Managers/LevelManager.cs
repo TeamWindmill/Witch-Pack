@@ -34,7 +34,7 @@ public class LevelManager : MonoSingleton<LevelManager>
         var levelConfig = GameManager.Instance.CurrentLevelConfig;
         CurrentLevel = Instantiate(levelConfig.levelPrefab, enviromentHolder);
         CurrentLevel.Init(levelConfig);
-        SpawnParty(levelConfig.Shamans);
+        SpawnParty(levelConfig.SelectedShamans);
         CurrentLevel.TurnOffSpawnPoints();
         BgMusicManager.Instance.PlayMusic(MusicClip.GameMusic);
         UIManager.Instance.ShowUIGroup(UIGroup.TopCounterUI);
@@ -60,16 +60,16 @@ public class LevelManager : MonoSingleton<LevelManager>
             GameManager.Instance.LevelsCompleted[CurrentLevel.ID - 1] = win;
     }
 
-    private void SpawnParty(ShamanConfig[] shamanConfigs)
+    private void SpawnParty(List<ShamanSaveData> shamans)
     {
         ShamanParty = new List<Shaman>();
-        if (shamanConfigs.Length > CurrentLevel.ShamanSpawnPoints.Length)
+        if (shamans.Count > CurrentLevel.ShamanSpawnPoints.Length)
         {
             Debug.LogError("there are more shamans than spawn points");
             return;
         }
 
-        foreach (var shamanConfig in shamanConfigs)
+        foreach (var shamanSaveData in shamans)
         {
             int rand = Random.Range(0, CurrentLevel.ShamanSpawnPoints.Length);
             var spawnPoint = CurrentLevel.ShamanSpawnPoints[rand];
@@ -81,7 +81,7 @@ public class LevelManager : MonoSingleton<LevelManager>
             }
 
             var shaman = Instantiate(shamanPrefab, spawnPoint.position, Quaternion.identity, shamanHolder);
-            shaman.Init(shamanConfig);
+            shaman.Init(shamanSaveData);
             ShamanParty.Add(shaman);
             shaman.Damageable.OnDeath += RemoveShamanFromParty;
             shaman.DamageDealer.OnKill += OnEnemyKill;
@@ -89,12 +89,12 @@ public class LevelManager : MonoSingleton<LevelManager>
         }
     }
 
-    private void OnEnemyKill(Damageable arg1, DamageDealer arg2, DamageHandler arg3, AbilitySO arg4, bool crit)
+    private void OnEnemyKill(Damageable arg1, DamageDealer arg2, DamageHandler arg3, Ability arg4, bool crit)
     {
         _scoreHandler.UpdateScore(kills: 1);
     }
 
-    private void RemoveShamanFromParty(Damageable arg1, DamageDealer arg2, DamageHandler arg3, AbilitySO arg4)
+    private void RemoveShamanFromParty(Damageable arg1, DamageDealer arg2, DamageHandler arg3, Ability arg4)
     {
         if (arg1.Owner is Shaman shaman)
         {
@@ -103,7 +103,7 @@ public class LevelManager : MonoSingleton<LevelManager>
             if (ShamanParty.Count <= 0)
             {
                 GameManager.Instance.CameraHandler.SetCameraPosition(shaman.transform.position,true);
-                TimerManager.Instance.AddTimer(2, false, EndLevel);
+                TimerManager.AddTimer(2, false, EndLevel);
             }
         }
     }

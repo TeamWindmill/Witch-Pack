@@ -1,10 +1,10 @@
-public class Fireball : CastingAbility
+public class Fireball : OffensiveAbility
 {
-    private FireballSO _fireballConfig;
+    public readonly FireballSO Config;
     
     public Fireball(FireballSO config, BaseUnit owner) : base(config, owner)
     {
-        _fireballConfig = config;
+        Config = config;
     }
 
     public override bool CastAbility()
@@ -18,7 +18,7 @@ public class Fireball : CastingAbility
         FireballMono fireball = LevelManager.Instance.PoolManager.FireballPool.GetPooledObject();
         fireball.transform.position = Owner.CastPos.transform.position;
         fireball.gameObject.SetActive(true);
-        fireball.Fire(Owner, _fireballConfig, target,_fireballConfig.Speed);
+        fireball.Fire(Owner, this, target,Config.Speed);
         return true;
     }
 

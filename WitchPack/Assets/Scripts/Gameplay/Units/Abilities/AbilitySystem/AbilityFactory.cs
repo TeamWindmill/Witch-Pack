@@ -76,6 +76,6 @@ public class AbilityFactory
                 return new Fireball(ability, owner);
         }
 
-        throw new Exception($"{config.Name} Ability config not found in the ability factory");
+        throw new Exception($"{owner.UnitConfig.Name}'s Ability config not found in the ability factory");
     }
 }

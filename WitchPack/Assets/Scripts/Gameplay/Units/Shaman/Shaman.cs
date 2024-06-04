@@ -1,3 +1,4 @@
+using System;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
@@ -29,12 +30,12 @@ public class Shaman : BaseUnit
     [SerializeField] private ClickHelper clicker;
     [SerializeField] private Indicatable indicatable;
     [SerializeField] private ParticleSystem levelUpEffect;
+    [SerializeField] private EnergyHandler energyHandler;
 
     #endregion
 
     #region private
 
-    [SerializeField] private EnergyHandler energyHandler;
 
     #endregion
 
@@ -43,19 +44,20 @@ public class Shaman : BaseUnit
         shamanAnimator ??= GetComponentInChildren<ShamanAnimator>();
     }
 
-    public override void Init(BaseUnitConfig baseUnitConfig)
+    public void Init(ShamanSaveData saveData)
     {
-        ShamanConfig = baseUnitConfig as ShamanConfig;
+        ShamanConfig = saveData.Config;
         base.Init(ShamanConfig);
         energyHandler = new EnergyHandler(this);
-        EnemyTargeter.SetRadius(Stats.BonusRange);
+        EnemyTargeter.SetRadius(Stats[StatType.BaseRange].Value);
         IntializeAbilities();
+        AddMetaUpgrades(saveData);
         shamanAnimator.Init(this);
         indicatable.Init(ShamanConfig.UnitIndicatorIcon, action: FocusCameraOnShaman, clickable: true,
             indicatorPointerSprite: IndicatorPointerSpriteType.Cyan);
         Indicator newIndicator = LevelManager.Instance.IndicatorManager.CreateIndicator(indicatable);
         newIndicator.gameObject.SetActive(false);
-        shamanVisualHandler.Init(this, baseUnitConfig);
+        shamanVisualHandler.Init(this, saveData.Config);
         AutoCaster.Init(this, true);
 
         #region Events
@@ -85,6 +87,33 @@ public class Shaman : BaseUnit
         Initialized = true;
     }
 
+    private void AddMetaUpgrades(ShamanSaveData saveData)
+    {
+        //ability upgrades
+        foreach (var abilityUpgrade in saveData.AbilityUpgrades)
+        {
+            foreach (var abilitySO in abilityUpgrade.AbilitiesToUpgrade)
+            {
+                var ability = GetAbilityFromConfig(abilitySO);
+                ability.AddStatUpgrade(abilityUpgrade);
+            }
+        }
+        
+        //stat upgrades
+        foreach (var statUpgrade in saveData.StatUpgrades)
+        {
+            switch (statUpgrade.Factor)
+            {
+                case Factor.Add:
+                    Stats.AddValueToStat(statUpgrade.StatType,statUpgrade.StatValue);
+                    break;
+                case Factor.Subtract:
+                    Stats.AddValueToStat(statUpgrade.StatType,-statUpgrade.StatValue);
+                    break;
+            }
+        }
+    }
+
     private void IntializeAbilities()
     {
         foreach (var abilitySo in ShamanConfig.RootAbilities)
@@ -93,10 +122,10 @@ public class Shaman : BaseUnit
             RootAbilities.Add(ability);
             foreach (var upgrade in ability.GetUpgrades())
             {
-                upgrade.ChangeUpgradeState(AbilityUpgradeState.Locked);
+                upgrade.ChangeUpgradeState(UpgradeState.Locked);
             }
 
-            ability.ChangeUpgradeState(AbilityUpgradeState.Open);
+            ability.ChangeUpgradeState(UpgradeState.Open);
         }
 
         foreach (var abilitySo in ShamanConfig.KnownAbilities)
@@ -174,6 +203,21 @@ public class Shaman : BaseUnit
         foreach (var upgrade in upgrades)
         {
             if (KnownAbilities.Contains(upgrade)) return upgrade;
+        }
+
+        return null;
+    }
+
+    public Ability GetAbilityFromConfig(AbilitySO config)
+    {
+        foreach (var ability in RootAbilities)
+        {
+            if (ability.BaseConfig == config) return ability;
+            
+            foreach (var upgrade in ability.GetUpgrades())
+            {
+                if (upgrade.BaseConfig == config) return upgrade;
+            }
         }
 
         return null;

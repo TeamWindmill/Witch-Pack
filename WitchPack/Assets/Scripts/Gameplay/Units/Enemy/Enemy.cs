@@ -41,8 +41,8 @@ public class Enemy : BaseUnit
         _path = enemyConfig.Path;
         _coreDamage = enemyConfig.CoreDamage;
         _energyPoints = enemyConfig.EnergyPoints;
-        ShamanTargeter.SetRadius(Stats.BonusRange);
-        EnemyTargeter.SetRadius(Stats.BonusRange);
+        ShamanTargeter.SetRadius(Stats[StatType.BaseRange].Value);
+        EnemyTargeter.SetRadius(Stats[StatType.BaseRange].Value);
         _enemyMovement = new EnemyMovement(this);
         enemyAnimator.Init(this);
         enemyVisualHandler.Init(this, givenConfig);

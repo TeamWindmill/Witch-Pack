@@ -67,12 +67,12 @@ public class Timer : ITimer
 
     public void RemoveThisTimer()
     {
-        TimerManager.Instance.RemoveTimer(this);
+        TimerManager.RemoveTimer(this);
     }
 
     public void AddThisTimer()
     {
-        TimerManager.Instance.AddTimer(this);
+        TimerManager.AddTimer(this);
     }
 }
 public class Timer<T> : ITimer
@@ -145,12 +145,12 @@ public class Timer<T> : ITimer
 
     public void RemoveThisTimer()
     {
-        TimerManager.Instance.RemoveTimer<T>(this);
+        TimerManager.RemoveTimer<T>(this);
     }
 
     public void AddThisTimer()
     {
-        TimerManager.Instance.AddTimer<T>(this);
+        TimerManager.AddTimer<T>(this);
     }
 }
 

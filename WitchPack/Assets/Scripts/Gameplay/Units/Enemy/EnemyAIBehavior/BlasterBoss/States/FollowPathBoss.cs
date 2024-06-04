@@ -26,7 +26,7 @@ public class FollowPathBoss : IntervalState<EnemyAI>
         if (parent.Enemy.ShamanTargeter.HasTarget)
         {
             var target = parent.Enemy.ShamanTargetHelper.GetTarget(parent.Config.TargetData);
-            if (target.Stats.Visibility == 1) return;
+            if (target.Stats[StatType.Visibility].IntValue == 1) return;
             parent.SetState(typeof(AttackState));
         }
     }
