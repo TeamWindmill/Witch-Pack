@@ -149,7 +149,7 @@ public class Damageable
     private void AddStatsDamageReduction(Damageable target, DamageDealer dealer, DamageHandler dmg, Ability ability, bool crit)
     {
         float damageReductionModifier = 100f / (owner.Stats[StatType.Armor].Value + 100f);
-        dmg.AddMod(damageReductionModifier);
+        dmg.AddMultiplierMod(damageReductionModifier);
     }
 
     public void DamageTick()
