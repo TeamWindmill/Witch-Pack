@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "PowerStructureConfig", menuName = "Configs/PowerStructure", order = 0)]
 public class PowerStructureConfig : ScriptableObject
 {
-    [Range(0, 20)] public float Range;
+    [Range(0, 50)] public float Range;
     [Range(0, 1)] public float[] RingsRanges;
     public Color RingDefaultColor;
     public Color PowerStructureTypeColor;
