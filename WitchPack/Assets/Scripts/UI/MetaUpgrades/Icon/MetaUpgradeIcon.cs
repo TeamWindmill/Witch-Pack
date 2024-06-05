@@ -35,9 +35,7 @@ public class MetaUpgradeIcon<T> : ClickableUIElement //where T :
     {
         _hasSkillPoints = hasSkillPoints;
         _name.text = upgradeConfig.Name;
-        char factor = upgradeConfig.Factor == Factor.Add ? '+' : '-';
-        _amount.text = factor + upgradeConfig.StatValue.ToString();
-        
+        _amount.text = upgradeConfig.ValueName;
         ChangeStateVisuals(UpgradeState);
         Show();
     }
