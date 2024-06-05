@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "MetaUpgrade/AbilityUpgrade",fileName = "AbilityUpgrade")]
+[Serializable]
 public class AbilityUpgradeConfig : MetaUpgradeConfig
 {
     [SerializeField] private AbilityStatType _statType;

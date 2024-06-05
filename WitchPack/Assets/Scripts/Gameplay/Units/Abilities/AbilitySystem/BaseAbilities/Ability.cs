@@ -76,10 +76,35 @@ public abstract class Ability
                         stat.AddModifier(-abilityUpgradeConfig.StatValue);
                         break;
                     case Factor.Multiply:
-                        stat.AddMultiplier(abilityUpgradeConfig.StatValue);
+                        stat.AddMultiplier((100 + abilityUpgradeConfig.StatValue) /100);
                         break;
                     case Factor.Divide:
-                        stat.AddMultiplier(1 / abilityUpgradeConfig.StatValue);
+                        stat.AddMultiplier(-(100 + abilityUpgradeConfig.StatValue) /100);
+                        break;
+                }
+                return;
+            }
+        }
+    }
+    public virtual void AddStatUpgrade(StatUpgradeConfig statUpgradeConfig)
+    {
+        foreach (var stat in abilityStats)
+        {
+            if (stat.StatType == statUpgradeConfig.AbilityStatType)
+            {
+                switch (statUpgradeConfig.Factor)
+                {
+                    case Factor.Add:
+                        stat.AddModifier(statUpgradeConfig.StatValue);
+                        break;
+                    case Factor.Subtract:
+                        stat.AddModifier(-statUpgradeConfig.StatValue);
+                        break;
+                    case Factor.Multiply:
+                        stat.AddMultiplier(statUpgradeConfig.StatValue);
+                        break;
+                    case Factor.Divide:
+                        stat.AddMultiplier(1 / statUpgradeConfig.StatValue);
                         break;
                 }
                 return;

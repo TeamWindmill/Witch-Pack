@@ -14,8 +14,8 @@ public class AbilityFactory
             case AffectedByUnitsStatPassiveSO ability:
                 return new AffectedByUnitsStatPassive(ability, owner);
             
-            case SameTargetAutoAttackPassiveSO ability:
-                return new SameTargetAutoAttackPassive(ability, owner);
+            case AttritionSO ability:
+                return new Attrition(ability, owner);
             
             case StatPassiveSO ability:
                 return new StatPassive(ability, owner);
