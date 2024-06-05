@@ -14,9 +14,10 @@ public class StatBlockUI : MonoBehaviour
     private float _bonusValue;
     public StatType StatTypeId => statTypeId;
     
-    public void Init(float currentValue, Color addColor, Color reduceColor)
+    public void Init(Stat stat, Color addColor, Color reduceColor)
     {
-        _baseValue = currentValue;
+        _baseValue = stat.Value;
+        stat.OnStatChange += UpdateBaseStat;
         _statBonusAdditionColor = addColor;
         _statBonusReductionColor = reduceColor;
         SetStatText(_baseValue,0);

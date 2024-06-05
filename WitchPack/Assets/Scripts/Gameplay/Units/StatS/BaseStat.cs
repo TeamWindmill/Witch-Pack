@@ -4,7 +4,7 @@ using System.Linq;
 
 public abstract class BaseStat<T>
 {
-    public event Action OnStatChange;
+    public event Action<float> OnStatChange;
     public T StatType;
     public float BaseValue { get; }
 
@@ -64,24 +64,24 @@ public abstract class BaseStat<T>
     public void AddModifier(float value)
     {
         _modifiers.Add(value);
-        OnStatChange?.Invoke();
+        OnStatChange?.Invoke(Value);
     }
 
     public void RemoveModifier(float value)
     {
         _modifiers.Remove(value);
-        OnStatChange?.Invoke();
+        OnStatChange?.Invoke(Value);
     }
 
     public void AddMultiplier(float value)
     {
         _multipliers.Add(value);
-        OnStatChange?.Invoke();
+        OnStatChange?.Invoke(Value);
     }
 
     public void RemoveMultiplier(float value)
     {
         _multipliers.Remove(value);
-        OnStatChange?.Invoke();
+        OnStatChange?.Invoke(Value);
     }
 }

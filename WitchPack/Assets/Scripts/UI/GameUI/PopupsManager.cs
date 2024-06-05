@@ -33,7 +33,7 @@ public class PopupsManager : MonoBehaviour
         _xOffset = Mathf.Sin(_sinSpeed * GAME_TIME.GameTime) * (_offsetMultiplier / _offsetDivider);
     }
 
-    public void SpawnDamagePopup(Damageable damageable, DamageDealer damageDealer, DamageHandler damage, Ability ability, bool isCrit)
+    public void SpawnDamagePopup()
     {
         _offsetVector = new Vector3(_xOffset, _yOffset);
 

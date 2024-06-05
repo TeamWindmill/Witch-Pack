@@ -17,7 +17,7 @@ public class Damageable
     Timer regenTimer;
 
     public event Action<Damageable, DamageDealer , DamageHandler, Ability, bool > OnGetHit;
-    public event Action<int> OnTakeDamage;
+    //public event Action<int> OnTakeDamage;
     public event Action<Damageable, DamageDealer, DamageHandler, Ability, bool> OnDamageCalc;
     public event Action<Damageable, DamageDealer, DamageHandler, Ability> OnDeath;
     public event Action OnDeathGFX;
@@ -33,7 +33,7 @@ public class Damageable
         this.owner = owner;
         hitable = true;
         currentHp = MaxHp;
-        OnGetHit += AddStatsDamageReduction;
+        //OnGetHit += ApplyArmorDamageReduction;
     }
 
     public void GetHit(DamageDealer dealer, CastingAbility ability)
@@ -85,11 +85,10 @@ public class Damageable
         if(!hitable) return;
         dealer.OnHitTarget?.Invoke(this, dealer, damage, ability, isCrit);
         OnGetHit?.Invoke(this, dealer, damage, ability, isCrit);
-        OnTakeDamage?.Invoke(damage.GetFinalDamage());
+        OnTakeDamage?.Invoke(ApplyArmorDamageReduction(damage.GetFinalDamage()));
         OnHitGFX?.Invoke(isCrit);
-
-        currentHp -= damage.GetFinalDamage();
-        //Debug.Log($"{owner.gameObject} took {handler.GetFinalDamage()} damage from {dealer.Owner.name}");
+        
+        currentHp -= ApplyArmorDamageReduction(damage.GetFinalDamage());
         OnDamageCalc?.Invoke(this, dealer, damage, ability, isCrit);
 
         if (currentHp <= 0)
@@ -146,10 +145,10 @@ public class Damageable
         currentHp = Mathf.Clamp(currentHp, 0, MaxHp);
     }
 
-    private void AddStatsDamageReduction(Damageable target, DamageDealer dealer, DamageHandler dmg, Ability ability, bool crit)
+    private int ApplyArmorDamageReduction(int damage)
     {
         float damageReductionModifier = 100f / (owner.Stats[StatType.Armor].Value + 100f);
-        dmg.AddMultiplierMod(damageReductionModifier);
+        return (int)(damage * damageReductionModifier);
     }
 
     public void DamageTick()
