@@ -102,14 +102,31 @@ public class Shaman : BaseUnit
         //stat upgrades
         foreach (var statUpgrade in saveData.StatUpgrades)
         {
-            switch (statUpgrade.Factor)
+            if (statUpgrade.UpgradeAbility)
             {
-                case Factor.Add:
-                    Stats.AddValueToStat(statUpgrade.StatType,statUpgrade.StatValue);
-                    break;
-                case Factor.Subtract:
-                    Stats.AddValueToStat(statUpgrade.StatType,-statUpgrade.StatValue);
-                    break;
+                foreach (var abilitySO in statUpgrade.AbilitiesToUpgrade)
+                {
+                    var ability = GetAbilityFromConfig(abilitySO);
+                    ability.AddStatUpgrade(statUpgrade);
+                }
+            }
+            else
+            {
+                switch (statUpgrade.Factor)
+                {
+                    case Factor.Add:
+                        Stats.AddValueToStat(statUpgrade.StatType,statUpgrade.StatValue);
+                        break;
+                    case Factor.Subtract:
+                        Stats.AddValueToStat(statUpgrade.StatType,-statUpgrade.StatValue);
+                        break;
+                    case Factor.Multiply:
+                        Stats.AddMultiplierToStat(statUpgrade.StatType,(100 + statUpgrade.StatValue)/100);
+                        break;
+                    case Factor.Divide:
+                        Stats.AddMultiplierToStat(statUpgrade.StatType,-(100 + statUpgrade.StatValue)/100);
+                        break;
+                }
             }
         }
     }

@@ -8,10 +8,10 @@ public class ShamanMetaUpgradeConfig : SerializedScriptableObject
 {
     [SerializeField] private ShamanConfig _shamanConfig;
     [SerializeField] private List<AbilityPanelUpgrades> _abilityPanelUpgrades;
-    [SerializeField] private List<StatUpgradeConfig> _statPanelUpgrades;
+    [SerializeField] private StatPanelUpgrades _statPanelUpgrades;
 
     public List<AbilityPanelUpgrades> AbilityPanelUpgrades => _abilityPanelUpgrades;
-    public List<StatUpgradeConfig> StatPanelUpgrades => _statPanelUpgrades;
+    public StatPanelUpgrades StatPanelUpgrades => _statPanelUpgrades;
 
     private void OnValidate()
     {
@@ -32,12 +32,43 @@ public class ShamanMetaUpgradeConfig : SerializedScriptableObject
 public struct AbilityPanelUpgrades
 {
     public AbilitySO Ability;
-    public List<AbilityUpgradeConfig> StatUpgrades ;
+    public List<AbilityUpgradeConfig> LeftStatUpgrades;
+    public List<AbilityUpgradeConfig> RightStatUpgrades ;
+
+    public List<AbilityUpgradeConfig> StatUpgrades
+    {
+        get
+        {
+            List<AbilityUpgradeConfig> upgrades = new();
+            upgrades.AddRange(LeftStatUpgrades);
+            upgrades.AddRange(RightStatUpgrades);
+            return upgrades;
+        }
+    }
+
 
     public AbilityPanelUpgrades(AbilitySO ability)
     {
         Ability = ability;
-        StatUpgrades = new();
+        LeftStatUpgrades = new();
+        RightStatUpgrades = new();
     }
 }
 
+[Serializable]
+public struct StatPanelUpgrades
+{
+    public List<StatUpgradeConfig> LeftStatUpgrades;
+    public List<StatUpgradeConfig> RightStatUpgrades;
+
+    public List<StatUpgradeConfig> StatUpgrades
+    {
+        get
+        {
+            List<StatUpgradeConfig> upgrades = new();
+            upgrades.AddRange(LeftStatUpgrades);
+            upgrades.AddRange(RightStatUpgrades);
+            return upgrades;
+        }
+    }
+}
