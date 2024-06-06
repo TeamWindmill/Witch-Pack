@@ -361,8 +361,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -480,14 +480,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 780574282, guid: 4d2bb598253c7834facc60e1b9411673, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -506,6 +506,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4030798911921254015}
+  - component: {fileID: 9152195444775290396}
   m_Layer: 5
   m_Name: DialogBox
   m_TagString: Untagged
@@ -534,6 +535,31 @@ RectTransform:
   m_AnchoredPosition: {x: -16.645386, y: 0}
   m_SizeDelta: {x: 1100, y: 400}
   m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &9152195444775290396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7177835798386302577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0ec304844f62c94d84c1d4a8d1a6a93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rectTransform: {fileID: 4030798911921254015}
+  showOnAwake: 0
+  hideOnAwake: 0
+  assignUIGroup: 0
+  uiGroup: 0
+  showInfoWindow: 0
+  _windowInfo:
+    Name: 
+    Discription: 
+  config: {fileID: 11400000, guid: 2074203bd3a10454bb32ac645bafeaf9, type: 2}
+  _nameText: {fileID: 466139624172624316}
+  _textField: {fileID: 7951261533752955262}
+  _characterSplash: {fileID: 5135321853866108186}
 --- !u!1 &7660124832558768028
 GameObject:
   m_ObjectHideFlags: 0
