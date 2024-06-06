@@ -94,7 +94,7 @@ public class LevelManager : MonoSingleton<LevelManager>
         _scoreHandler.UpdateScore(kills: 1);
     }
 
-    private void RemoveShamanFromParty(Damageable arg1, DamageDealer arg2, DamageHandler arg3, Ability arg4)
+    private void RemoveShamanFromParty(Damageable arg1, DamageDealer arg2)
     {
         if (arg1.Owner is Shaman shaman)
         {

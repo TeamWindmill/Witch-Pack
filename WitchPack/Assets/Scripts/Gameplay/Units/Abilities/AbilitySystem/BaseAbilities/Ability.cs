@@ -76,10 +76,10 @@ public abstract class Ability
                         stat.AddModifier(-abilityUpgradeConfig.StatValue);
                         break;
                     case Factor.Multiply:
-                        stat.AddMultiplier(abilityUpgradeConfig.StatValue/100 + 1);
+                        stat.AddMultiplier(abilityUpgradeConfig.StatValue/100);
                         break;
                     case Factor.Divide:
-                        stat.AddMultiplier(-(abilityUpgradeConfig.StatValue/100 + 1));
+                        stat.AddMultiplier(-(abilityUpgradeConfig.StatValue/100));
                         break;
                 }
                 return;
@@ -101,10 +101,10 @@ public abstract class Ability
                         stat.AddModifier(-statUpgradeConfig.StatValue);
                         break;
                     case Factor.Multiply:
-                        stat.AddMultiplier(statUpgradeConfig.StatValue/100 + 1);
+                        stat.AddMultiplier(statUpgradeConfig.StatValue/100);
                         break;
                     case Factor.Divide:
-                        stat.AddMultiplier(-(statUpgradeConfig.StatValue/100 + 1));
+                        stat.AddMultiplier(-(statUpgradeConfig.StatValue/100));
                         break;
                 }
                 return;

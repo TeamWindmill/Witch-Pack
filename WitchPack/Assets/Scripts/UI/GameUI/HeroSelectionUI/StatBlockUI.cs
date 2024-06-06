@@ -10,12 +10,14 @@ public class StatBlockUI : MonoBehaviour
     private Color _statBonusAdditionColor;
     private Color _statBonusReductionColor;
 
+    private Stat _stat;
     private float _baseValue;
     private float _bonusValue;
     public StatType StatTypeId => statTypeId;
     
     public void Init(Stat stat, Color addColor, Color reduceColor)
     {
+        _stat = stat;
         _baseValue = stat.Value;
         stat.OnStatChange += UpdateBaseStat;
         _statBonusAdditionColor = addColor;
@@ -33,6 +35,7 @@ public class StatBlockUI : MonoBehaviour
     public void HideBonusStatUI()
     {
         SetStatText(_baseValue,0);
+        _stat.OnStatChange -= UpdateBaseStat;
     }
 
     public void UpdateBaseStat(float newValue)

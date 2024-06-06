@@ -48,8 +48,6 @@ public class StatBlockPanel : MonoBehaviour
 
     public void HideStatBlocks()
     {
-        _shaman.Stats.OnStatChanged -= OnBaseStatChange;
-
         foreach (var statBarHandler in _statBarHandlers)
         {
             statBarHandler.Hide();

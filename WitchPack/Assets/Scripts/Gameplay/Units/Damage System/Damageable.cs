@@ -16,15 +16,13 @@ public class Damageable
 
     Timer regenTimer;
 
-    public event Action<Damageable, DamageDealer , DamageHandler, Ability, bool > OnGetHit;
-    //public event Action<int> OnTakeDamage;
-    public event Action<Damageable, DamageDealer, DamageHandler, Ability, bool> OnDamageCalc;
-    public event Action<Damageable, DamageDealer, DamageHandler, Ability> OnDeath;
+    public event Action<int> OnHealthChange;
+    public event Action<Damageable, DamageDealer, DamageHandler, Ability, bool> OnTakeDamage;
+    public event Action<Damageable,int> OnTakeFlatDamage;
+    public event Action<Damageable, int> OnHeal;
+    public event Action<Damageable, DamageDealer> OnDeath;
     public event Action OnDeathGFX;
     public event Action<bool> OnHitGFX;
-    public event Action<Damageable, float> OnHeal;
-
-    //add gfx events later
 
     public IDamagable Owner { get => owner; }
 
@@ -38,10 +36,7 @@ public class Damageable
 
     public void GetHit(DamageDealer dealer, CastingAbility ability)
     {
-        if (!hitable)
-        {
-            return;
-        }
+        if (!hitable) return;
         
         foreach (var item in ability.CastingConfig.StatusEffects)
         {
@@ -61,35 +56,20 @@ public class Damageable
         else // in case we want to make an ability that only applys status effects
         {
             dealer.OnHitTarget?.Invoke(this, dealer, null, ability, false);
-            OnGetHit?.Invoke(this, dealer, null, ability, false);
             OnHitGFX?.Invoke(false);
         }
-    }
-
-    public void Heal(int healAmount)
-    {
-        if(currentHp < MaxHp && healAmount > 0)
-        {
-            currentHp = Mathf.Clamp(currentHp + healAmount, 0, MaxHp);
-            OnHeal?.Invoke(this, healAmount);
-        }        
-    }
-
-    public void RegenHp()
-    {
-        Heal(owner.Stats[StatType.HpRegen].IntValue);
     }
 
     public void TakeDamage(DamageDealer dealer, DamageHandler damage, OffensiveAbility ability, bool isCrit)
     {
         if(!hitable) return;
         dealer.OnHitTarget?.Invoke(this, dealer, damage, ability, isCrit);
-        OnGetHit?.Invoke(this, dealer, damage, ability, isCrit);
-        OnTakeDamage?.Invoke(ApplyArmorDamageReduction(damage.GetFinalDamage()));
         OnHitGFX?.Invoke(isCrit);
+        damage.ApplyArmorReduction(owner.Stats[StatType.Armor].IntValue);
         
-        currentHp -= ApplyArmorDamageReduction(damage.GetFinalDamage());
-        OnDamageCalc?.Invoke(this, dealer, damage, ability, isCrit);
+        currentHp -= damage.GetDamage();
+        OnTakeDamage?.Invoke(this, dealer, damage, ability, isCrit);
+        OnHealthChange?.Invoke(currentHp);
 
         if (currentHp <= 0)
         {
@@ -97,10 +77,23 @@ public class Damageable
         }
         ClampHp();
     }
+    public void Heal(int healAmount)
+    {
+        if(currentHp < MaxHp && healAmount > 0)
+        {
+            currentHp = Mathf.Clamp(currentHp + healAmount, 0, MaxHp);
+            OnHeal?.Invoke(this, healAmount);
+            OnHealthChange?.Invoke(currentHp);
+        }        
+    }
 
+    public void RegenHp()
+    {
+        Heal(owner.Stats[StatType.HpRegen].IntValue);
+    }
     private void Die(DamageDealer dealer, DamageHandler damage, OffensiveAbility ability, bool isCrit)
     {
-        OnDeath?.Invoke(this, dealer, damage, ability);
+        OnDeath?.Invoke(this, dealer);
         OnDeathGFX?.Invoke();
         dealer.OnKill?.Invoke(this, dealer, damage, ability, isCrit);
         owner.ClearUnitTimers();
@@ -132,7 +125,8 @@ public class Damageable
     public void TakeFlatDamage(int amount)  
     {
         currentHp -= amount;
-        OnTakeDamage?.Invoke(amount);
+        OnTakeFlatDamage?.Invoke(this,amount);
+        OnHealthChange?.Invoke(currentHp);
         if (currentHp <= 0)
         {
             OnDeathGFX?.Invoke();
@@ -143,17 +137,6 @@ public class Damageable
     private void ClampHp()
     {
         currentHp = Mathf.Clamp(currentHp, 0, MaxHp);
-    }
-
-    private int ApplyArmorDamageReduction(int damage)
-    {
-        float damageReductionModifier = 100f / (owner.Stats[StatType.Armor].Value + 100f);
-        return (int)(damage * damageReductionModifier);
-    }
-
-    public void DamageTick()
-    {
-        
     }
 
     public void SetRegenerationTimer()

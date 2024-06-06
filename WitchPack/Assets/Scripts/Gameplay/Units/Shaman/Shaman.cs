@@ -121,10 +121,10 @@ public class Shaman : BaseUnit
                         Stats.AddValueToStat(statUpgrade.StatType,-statUpgrade.StatValue);
                         break;
                     case Factor.Multiply:
-                        Stats.AddMultiplierToStat(statUpgrade.StatType,statUpgrade.StatValue/100 + 1);
+                        Stats.AddMultiplierToStat(statUpgrade.StatType,statUpgrade.StatValue/100);
                         break;
                     case Factor.Divide:
-                        Stats.AddMultiplierToStat(statUpgrade.StatType,-(statUpgrade.StatValue/100 + 1));
+                        Stats.AddMultiplierToStat(statUpgrade.StatType,-(statUpgrade.StatValue/100));
                         break;
                 }
             }

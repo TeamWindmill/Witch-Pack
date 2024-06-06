@@ -41,8 +41,8 @@ public class DamageDealer
             dmg.AddFlatMod(owner.Stats[StatType.BaseDamage].IntValue);
             if (crit)
             {
-                float critDamage = (Owner.Stats[StatType.CritDamage].Value / 100f) + 1f;
-                dmg.AddMultiplierMod(critDamage); //not sure what the math is supposed to be here - ask gd
+                float critDamage = (Owner.Stats[StatType.CritDamage].Value / 100f);
+                dmg.AddMultiplierMod(critDamage); 
             }
         }
     }
@@ -59,7 +59,7 @@ public class DamageDealer
                     dmg.AddFlatMod(GetModCurHp(item, target));
                     break;
                 case DamageBonusType.MissingHp:
-                    dmg.AddMultiplierMod(GetModMissingHp(item, target));
+                    dmg.AddFlatMod(GetModMissingHp(item, target));
                     break;
             }
         }
@@ -71,7 +71,7 @@ public class DamageDealer
         return (int)damageBasedOnCurrentHP;
     }
 
-    private float GetModMissingHp(DamageBoostData boostData, Damageable target)
+    private int GetModMissingHp(DamageBoostData boostData, Damageable target)
     {
         var missingHp = (target.MaxHp - target.CurrentHp);
         float damageBasedOnMissingHp = missingHp * (boostData.damageBonusInPercent / 100);

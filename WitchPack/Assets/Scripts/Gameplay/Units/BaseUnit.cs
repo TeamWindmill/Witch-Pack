@@ -85,11 +85,10 @@ public class BaseUnit : BaseEntity , IDamagable
         {
             hpBar.gameObject.SetActive(true);
             hpBar.Init(damageable.MaxHp, unitType);
-            damageable.OnDamageCalc += hpBar.SetBarValue;
-            damageable.OnHeal += hpBar.SetBarBasedOnOwner;
+            damageable.OnHealthChange += hpBar.SetBarValue;
         }
 
-        damageable.OnDamageCalc += LevelManager.Instance.PopupsManager.SpawnDamagePopup;
+        damageable.OnTakeDamage += LevelManager.Instance.PopupsManager.SpawnDamagePopup;
         damageable.OnHeal += LevelManager.Instance.PopupsManager.SpawnHealPopup;
         effectable.OnAffected += LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
         Stats.OnStatChanged += EnemyTargeter.AddRadius;
@@ -102,14 +101,10 @@ public class BaseUnit : BaseEntity , IDamagable
         if (ReferenceEquals(LevelManager.Instance, null)) return;
         if (ReferenceEquals(damageable, null)) return;
         if (ReferenceEquals(effectable, null)) return;
-        damageable.OnDamageCalc -= LevelManager.Instance.PopupsManager.SpawnDamagePopup;
+        damageable.OnTakeDamage -= LevelManager.Instance.PopupsManager.SpawnDamagePopup;
         damageable.OnHeal -= LevelManager.Instance.PopupsManager.SpawnHealPopup;
         effectable.OnAffected -= LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
-        if (hasHPBar)
-        {
-            damageable.OnDamageCalc -= hpBar.SetBarValue;
-            damageable.OnHeal -= hpBar.SetBarBasedOnOwner;
-        }
+        if (hasHPBar) damageable.OnHealthChange -= hpBar.SetBarValue;
         Stats.OnStatChanged -= EnemyTargeter.AddRadius;
         Stats.OnStatChanged -= movement.OnSpeedChange;
     }
