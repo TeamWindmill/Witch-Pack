@@ -51,7 +51,7 @@ public class MultiShotMono : MonoBehaviour
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         Enemy target = collision.GetComponent<Enemy>();
-        if (!ReferenceEquals(target, null))
+        if (!ReferenceEquals(target, null) && ReferenceEquals(_target,target))
         {
             OnTargetHit(target);
         }
@@ -59,6 +59,11 @@ public class MultiShotMono : MonoBehaviour
 
     protected virtual void OnTargetHit(Enemy target)
     {
+        if (target == null)
+        {
+            Disable();
+            return;
+        }
         target.Damageable.GetHit(_caster.DamageDealer, _ability);
         Disable();
     }

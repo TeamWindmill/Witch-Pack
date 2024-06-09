@@ -27,7 +27,7 @@ public class RicochetMono : MultiShotMono
         if (_bounceCounter >= _bounceAmount)
         {
             Enemy target = collision.GetComponent<Enemy>();
-            if (!ReferenceEquals(target, null))
+            if (!ReferenceEquals(target, null) && ReferenceEquals(target,_bounceTarget))
             {
                 target.Damageable.GetHit(_caster.DamageDealer, _ability);
                 Disable();
