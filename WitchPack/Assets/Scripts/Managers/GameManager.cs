@@ -6,11 +6,10 @@ public class GameManager : MonoSingleton<GameManager>
 {
     public LevelConfig CurrentLevelConfig { get; private set; }
     public static ISceneHandler SceneHandler { get; private set; }
-    [HideInInspector]public GameSaveData SaveData;
     public ShamansManager ShamansManager => _shamansManager;
 
+    public static GameSaveData SaveData;
     public bool TutorialPlayed;
-    public bool[] LevelsCompleted = new bool[3]; //temp
 
     [SerializeField] private ShamansManager _shamansManager;
     [SerializeField] private SceneHandler _sceneHandler;
