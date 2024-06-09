@@ -11,10 +11,15 @@ public class DialogBox : UIElement
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _textField;
     [SerializeField] private Image _characterSplash;
+    [SerializeField] private GameObject _nameTextBox;
 
     private DialogSequence _dialogSequence;
     private bool _mouseClickListen;
     private int _currentDialogBoxIndex = 0;
+
+    private Color _transparentImageColor = new Color(1,1,1,0);
+    private Color _opaqueImageColor = new Color(1,1,1,1);
+
 
     private void Start() //temp for testing
     {
@@ -30,9 +35,20 @@ public class DialogBox : UIElement
 
     private void SetDialogBox(DialogBoxConfig boxConfig)
     {
-        _nameText.text = boxConfig.Speaker.Name;
-        _characterSplash.sprite = boxConfig.Speaker.UnitSprite;
         _textField.text = boxConfig.DialogText;
+
+        if(boxConfig.IsCharacterDialog)
+        {
+            _nameTextBox.gameObject.SetActive(true);
+            _nameText.text = boxConfig.Speaker.Name;
+            _characterSplash.sprite = boxConfig.Speaker.UnitSprite;
+            _characterSplash.color = _opaqueImageColor;
+        }        
+        else
+        {
+            _nameTextBox.gameObject.SetActive(false);
+            _characterSplash.color = _transparentImageColor;
+        }
     }
     private void MoveToNextDialogBox()
     {
@@ -47,6 +63,7 @@ public class DialogBox : UIElement
             Hide();
         }
     }
+
     protected override void Update()
     {
         if (_mouseClickListen)
@@ -56,7 +73,5 @@ public class DialogBox : UIElement
                 MoveToNextDialogBox();
             }
         }
-    }
-
-    
+    } 
 }
