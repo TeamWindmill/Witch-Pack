@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class MapManager : MonoBehaviour
 {
-    [SerializeField] private LevelNode[] _nodeObjects;
-    [SerializeField] private bool _unLockAll;
+    [SerializeField] private MapNode[] _nodeObjects;
 
     [Header("Camera Control")] [SerializeField]
     private Vector2 _cameraLockedPos;
@@ -16,14 +15,28 @@ public class MapManager : MonoBehaviour
 
     private void Awake()
     {
-        Init();
+        Init(GameManager.SaveData.MapNodes);
     }
 
-    private void Init()
+    private void Init(MapNode[] mapNodes)
     {
-        for (int i = 0; i < _nodeObjects.Length; i++)
+        if (mapNodes == null)
         {
-            _nodeObjects[i].Init(GameManager.Instance.LevelsCompleted[i], _nodeLockState[i]);
+            mapNodes = new MapNode[_nodeObjects.Length];
+            for (int i = 0; i < _nodeObjects.Length; i++)
+            {
+                mapNodes[i] = _nodeObjects[i];
+                _nodeObjects[i].Init(NodeState.Locked);
+                GameManager.SaveData.MapNodes = mapNodes;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < mapNodes.Length; i++)
+            {
+                //_nodeObjects[i] = mapNodes[i];
+                _nodeObjects[i].Init(mapNodes[i].State);
+            }
         }
     }
 
@@ -39,7 +52,7 @@ public class MapManager : MonoBehaviour
             if (state)
                 nodeObject.Unlock();
             else
-                Init();
+                Init(GameManager.SaveData.MapNodes);
         }
     }
 
