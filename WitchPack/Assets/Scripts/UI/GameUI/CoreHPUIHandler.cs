@@ -5,21 +5,16 @@
     {
         _coreTemple = LevelManager.Instance.CurrentLevel.CoreTemple;
         ElementInit(_coreTemple.Damageable.MaxHp);
-        _coreTemple.Damageable.OnTakeDamage += UpdateUIOnDamage;
-        _coreTemple.Damageable.OnHeal += UpdateUIOnHeal;
+        _coreTemple.Damageable.OnHealthChange += UpdateUI;
+    }
+
+    private void UpdateUI(int hp)
+    {
+        UpdateUIData(_coreTemple.Damageable.CurrentHp);
     }
 
     public override void Hide()
     {
-        _coreTemple.Damageable.OnTakeDamage -= UpdateUIOnDamage;
-        _coreTemple.Damageable.OnHeal -= UpdateUIOnHeal;
-    }
-    private void UpdateUIOnDamage(int value)
-    {
-        UpdateUIData(_coreTemple.Damageable.CurrentHp);
-    }
-    private void UpdateUIOnHeal(Damageable damageable, float f)
-    {
-        UpdateUIData(_coreTemple.Damageable.CurrentHp);
+        _coreTemple.Damageable.OnHealthChange -= UpdateUI;
     }
 }

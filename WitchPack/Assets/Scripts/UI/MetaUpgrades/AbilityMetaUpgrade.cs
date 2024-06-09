@@ -22,9 +22,6 @@ public class AbilityMetaUpgrade : UIElement
         _shamanUpgradePanel = shamanUpgradePanel;
         _abilityName.text = abilityPanelConfig.Ability.Name;
         _abilityIcon.sprite = abilityPanelConfig.Ability.DefaultIcon;
-        //var abilities = new List<AbilitySO>();
-        //abilities.Add(abilityPanelConfig.Ability); 
-        //abilities.AddRange(abilityPanelConfig.Ability.GetUpgrades());
         
         for (int i = 0; i < _abilityUpgradeIcons.Length; i++)
         {
@@ -35,13 +32,4 @@ public class AbilityMetaUpgrade : UIElement
     }
 }
 
-// public readonly struct AbilityUpgrade
-// {
-//     public readonly AbilityUpgradeConfig UpgradeConfig;
-//     //public readonly AbilitySO[] AbilitiesToUpgrade;
-//
-//     public AbilityUpgrade(AbilityUpgradeConfig upgradeConfig)
-//     {
-//         UpgradeConfig = upgradeConfig;
-//     }
-// }
+

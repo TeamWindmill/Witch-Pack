@@ -22,7 +22,7 @@ public class HealingWeedsMono : RootingVinesMono
         timer.Data.Damageable.OnDeath -= HerbalWeeds;
     }
 
-    private void HerbalWeeds(Damageable damageable, DamageDealer damageDealer, DamageHandler damage, Ability ability)
+    private void HerbalWeeds(Damageable damageable, DamageDealer damageDealer)
     {
         damageDealer.Owner.Effectable.AddEffect(speedBoost, damageable.Owner.Affector);
         damageDealer.Owner.Effectable.AddEffect(regenBoost, damageable.Owner.Affector);

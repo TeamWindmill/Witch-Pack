@@ -28,11 +28,11 @@ public class CoreTemple : BaseEntity, IDamagable
         hpBar.Init(_damageable.MaxHp,UnitType.Temple);
         ScreenCracksHandler.Instance.InitByCore(this);
         _damageable.OnDeathGFX += OnCoreDeath;
-        _damageable.OnTakeDamage += OnGetHit;
+        _damageable.OnTakeFlatDamage += OnGetHit;
         _damageable.OnHeal += Heal;
     }
 
-    private void OnGetHit(int damage)
+    private void OnGetHit(Damageable damageable, int damage)
     {
         SoundManager.Instance.PlayAudioClip(SoundEffectType.CoreGetHit);
         ScreenCracksHandler.Instance.StartCracksAnimation(damage);
@@ -68,7 +68,7 @@ public class CoreTemple : BaseEntity, IDamagable
         Invoke(nameof(DestroyCoreAnimation),destroyAnimationsDelay);
     }
 
-    public void Heal(Damageable damageable,float amount)
+    public void Heal(Damageable damageable,int amount)
     {
         hpBar.SetBarValue(_damageable.CurrentHp);
         ScreenCracksHandler.Instance.SetStartValue();

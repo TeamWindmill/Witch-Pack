@@ -27,8 +27,7 @@ public class StatBarHandler : MonoBehaviour
                 name = "Health:";
                 baseValue = shaman.Damageable.MaxHp;
                 currentValue = shaman.Damageable.CurrentHp;
-                shaman.Damageable.OnGetHit += UpdateStatBarHealth;
-                shaman.Damageable.OnHeal += UpdateStatBarHealthBasedOnShaman;
+                shaman.Damageable.OnHealthChange += UpdateStatBarHealth;
                 break;
              case StatBarType.EnergyBar:
                  name = "Energy:";
@@ -43,6 +42,7 @@ public class StatBarHandler : MonoBehaviour
          _statBarValue.text = currentValue.ToString();
          _statBarFill.fillAmount = (float)currentValue / baseValue;
      }
+    
 
      private void UpdateStatbarEnergy(int currentEnergy, int maxEnergy)
      {
@@ -51,27 +51,21 @@ public class StatBarHandler : MonoBehaviour
          _statBarFill.fillAmount = (float)currentEnergy / maxEnergy;
      }
 
-     public void UpdateStatBarHealth(Damageable damageable, DamageDealer arg2, DamageHandler arg3, Ability arg4, bool arg5)
+     public void UpdateStatBarHealth(int currentHp)
      {
-         var currentHP = damageable.CurrentHp;
-         var maxHP = damageable.MaxHp;
+         var currentHP = _shaman.Damageable.CurrentHp;
+         var maxHP = _shaman.Damageable.MaxHp;
          _statBarValue.text = currentHP.ToString();
         _statBarBaseValue.text = maxHP.ToString();
          _statBarFill.fillAmount = (float)currentHP / maxHP;
      }
-
-    public void UpdateStatBarHealthBasedOnShaman(Damageable damageable, float uselessAmount)
-    {
-        UpdateStatBarHealth(damageable, null, null, null, false);
-    }
     
      public void Hide()
      {
          switch (statBarType)
          {
              case StatBarType.HealthBar:
-                _shaman.Damageable.OnGetHit -= UpdateStatBarHealth;
-                _shaman.Damageable.OnHeal -= UpdateStatBarHealthBasedOnShaman;
+                _shaman.Damageable.OnHealthChange -= UpdateStatBarHealth;
                 break;
              case StatBarType.EnergyBar:
                  _shaman.EnergyHandler.OnShamanGainEnergy -= UpdateStatbarEnergy;
