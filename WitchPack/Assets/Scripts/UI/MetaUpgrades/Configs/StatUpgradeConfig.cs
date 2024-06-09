@@ -8,15 +8,17 @@ public class StatUpgradeConfig : MetaUpgradeConfig
 {
     [SerializeField] private bool _upgradeAbility;
     [SerializeField,HideIf(nameof(_upgradeAbility))] private StatValueUpgradeConfig[] _stats;
-    [SerializeField,ShowIf(nameof(_upgradeAbility))] private AbilityStatType _abilityStatType;
-    [SerializeField,ShowIf(nameof(_upgradeAbility))] private AbilitySO[] _abilitiesToUpgrade;
+    [SerializeField,ShowIf(nameof(_upgradeAbility))] private AbilityStatConfig[] _abilityStats;
+    [SerializeField,ShowIf(nameof(_upgradeAbility))] private AbilityBehavior[] _abilitiesBehaviors;
     [SerializeField,ShowIf(nameof(_upgradeAbility))] private DamageBoostData[] _damageBoosts;
+    [SerializeField,ShowIf(nameof(_upgradeAbility))] private AbilitySO[] _abilitiesToUpgrade;
 
     public StatValueUpgradeConfig[] Stats => _stats;
-    public AbilityStatType AbilityStatType => _abilityStatType;
+    public AbilityStatConfig[] AbilityStats => _abilityStats;
     public bool UpgradeAbility => _upgradeAbility;
     public AbilitySO[] AbilitiesToUpgrade => _abilitiesToUpgrade;
     public DamageBoostData[] DamageBoosts => _damageBoosts;
+    public AbilityBehavior[] AbilitiesBehaviors => _abilitiesBehaviors;
 }
 
 [Serializable]

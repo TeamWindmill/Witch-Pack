@@ -9,6 +9,8 @@ public abstract class Ability
     protected BaseUnit Owner { get; }
     
     protected List<AbilityStat> abilityStats = new();
+    
+    protected AbilityBehavior[] _abilitiesBehaviors;
 
     protected Ability(AbilitySO baseConfig, BaseUnit owner)
     {
@@ -63,6 +65,7 @@ public abstract class Ability
 
     public virtual void AddStatUpgrade(AbilityUpgradeConfig abilityUpgradeConfig)
     {
+        //stat modifiers
         foreach (var stat in abilityStats)
         {
             foreach (var statConfig in abilityUpgradeConfig.Stats)
@@ -88,28 +91,30 @@ public abstract class Ability
                 }
             }
         }
+        
+        //
     }
     public virtual void AddStatUpgrade(StatUpgradeConfig statUpgradeConfig)
     {
         foreach (var stat in abilityStats)
         {
-            foreach (var statConfig in statUpgradeConfig.Stats)
+            foreach (var abilityStatConfig in statUpgradeConfig.AbilityStats)
             {
-                if (stat.StatType == statUpgradeConfig.AbilityStatType)
+                if (stat.StatType == abilityStatConfig.StatType)
                 {
-                    switch (statConfig.Factor)
+                    switch (abilityStatConfig.Factor)
                     {
                         case Factor.Add:
-                            stat.AddModifier(statConfig.StatValue);
+                            stat.AddModifier(abilityStatConfig.StatValue);
                             break;
                         case Factor.Subtract:
-                            stat.AddModifier(-statConfig.StatValue);
+                            stat.AddModifier(-abilityStatConfig.StatValue);
                             break;
                         case Factor.Multiply:
-                            stat.AddMultiplier(statConfig.StatValue/100);
+                            stat.AddMultiplier(abilityStatConfig.StatValue/100);
                             break;
                         case Factor.Divide:
-                            stat.AddMultiplier(-(statConfig.StatValue/100));
+                            stat.AddMultiplier(-(abilityStatConfig.StatValue/100));
                             break;
                     }
                     return;
