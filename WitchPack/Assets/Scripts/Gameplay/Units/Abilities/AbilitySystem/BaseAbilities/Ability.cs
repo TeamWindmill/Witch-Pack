@@ -65,24 +65,27 @@ public abstract class Ability
     {
         foreach (var stat in abilityStats)
         {
-            if (stat.StatType == abilityUpgradeConfig.StatType)
+            foreach (var statConfig in abilityUpgradeConfig.Stats)
             {
-                switch (abilityUpgradeConfig.Factor)
+                if (stat.StatType == statConfig.StatType)
                 {
-                    case Factor.Add:
-                        stat.AddModifier(abilityUpgradeConfig.StatValue);
-                        break;
-                    case Factor.Subtract:
-                        stat.AddModifier(-abilityUpgradeConfig.StatValue);
-                        break;
-                    case Factor.Multiply:
-                        stat.AddMultiplier(abilityUpgradeConfig.StatValue/100);
-                        break;
-                    case Factor.Divide:
-                        stat.AddMultiplier(-(abilityUpgradeConfig.StatValue/100));
-                        break;
+                    switch (statConfig.Factor)
+                    {
+                        case Factor.Add:
+                            stat.AddModifier(statConfig.StatValue);
+                            break;
+                        case Factor.Subtract:
+                            stat.AddModifier(-statConfig.StatValue);
+                            break;
+                        case Factor.Multiply:
+                            stat.AddMultiplier(statConfig.StatValue/100);
+                            break;
+                        case Factor.Divide:
+                            stat.AddMultiplier(-(statConfig.StatValue/100));
+                            break;
+                    }
+                    return;
                 }
-                return;
             }
         }
     }
@@ -90,24 +93,27 @@ public abstract class Ability
     {
         foreach (var stat in abilityStats)
         {
-            if (stat.StatType == statUpgradeConfig.AbilityStatType)
+            foreach (var statConfig in statUpgradeConfig.Stats)
             {
-                switch (statUpgradeConfig.Factor)
+                if (stat.StatType == statUpgradeConfig.AbilityStatType)
                 {
-                    case Factor.Add:
-                        stat.AddModifier(statUpgradeConfig.StatValue);
-                        break;
-                    case Factor.Subtract:
-                        stat.AddModifier(-statUpgradeConfig.StatValue);
-                        break;
-                    case Factor.Multiply:
-                        stat.AddMultiplier(statUpgradeConfig.StatValue/100);
-                        break;
-                    case Factor.Divide:
-                        stat.AddMultiplier(-(statUpgradeConfig.StatValue/100));
-                        break;
+                    switch (statConfig.Factor)
+                    {
+                        case Factor.Add:
+                            stat.AddModifier(statConfig.StatValue);
+                            break;
+                        case Factor.Subtract:
+                            stat.AddModifier(-statConfig.StatValue);
+                            break;
+                        case Factor.Multiply:
+                            stat.AddMultiplier(statConfig.StatValue/100);
+                            break;
+                        case Factor.Divide:
+                            stat.AddMultiplier(-(statConfig.StatValue/100));
+                            break;
+                    }
+                    return;
                 }
-                return;
             }
         }
     }
