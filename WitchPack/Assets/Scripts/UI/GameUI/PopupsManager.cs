@@ -39,7 +39,7 @@ public class PopupsManager : MonoBehaviour
 
         _popupColor = DetermineDamagePopupColor(damageDealer, damage, ability.BaseConfig, isCrit);
 
-         _popupNumber = damage.GetFinalDamage();
+         _popupNumber = damage.GetDamage();
         if(damageDealer.Owner is Enemy)
         {
             enemyDamagePopupPrefab.Spawn(damageable.Owner.GameObject.transform.position + _offsetVector, _popupNumber, _popupColor);
@@ -85,7 +85,7 @@ public class PopupsManager : MonoBehaviour
         PopupPrefab.Spawn(position + _offsetVector, text, color);
     }
 
-    public void SpawnHealPopup(Damageable damageable, float healAmount)
+    public void SpawnHealPopup(Damageable damageable, int healAmount)
     {
         _offsetVector = new Vector3(0, _yOffset);
 

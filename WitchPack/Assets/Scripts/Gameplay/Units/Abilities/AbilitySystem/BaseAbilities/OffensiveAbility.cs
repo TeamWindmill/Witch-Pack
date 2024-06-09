@@ -17,4 +17,10 @@ public abstract class OffensiveAbility : CastingAbility
         base.AddStatUpgrade(abilityUpgradeConfig);
         DamageBoosts.AddRange(abilityUpgradeConfig.DamageBoosts);
     }
+
+    public override void AddStatUpgrade(StatUpgradeConfig statUpgradeConfig)
+    {
+        base.AddStatUpgrade(statUpgradeConfig);
+        DamageBoosts.AddRange(statUpgradeConfig.DamageBoosts);
+    }
 }

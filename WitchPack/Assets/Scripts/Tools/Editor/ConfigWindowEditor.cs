@@ -20,11 +20,12 @@ public class ConfigWindowEditor : OdinMenuEditorWindow
         var tree = new OdinMenuTree();
         //_createNewConfigDatas = new CreateNewConfigDatas();
         //tree.Add("Create New Configs", _createNewConfigDatas);
-        tree.AddAllAssetsAtPath("Units/Enemies/Base",                   "Assets/Configs/UnitConfigs/EnemyConfigs",typeof(EnemyConfig));
-        tree.AddAllAssetsAtPath("Units/Enemies/Bosses",                   "Assets/Configs/UnitConfigs/EnemyConfigs/Bosses",typeof(EnemyConfig));
-        tree.AddAllAssetsAtPath("Units/Shamans/Base",                   "Assets/Configs/UnitConfigs/ShamanConfigs",typeof(ShamanConfig));
-        tree.AddAllAssetsAtPath("Units/PowerStructures",                "Assets/Configs/UnitConfigs/StructuresConfig",typeof(PowerStructureConfig));
-        tree.AddAllAssetsAtPath("Units/Shamans",                        "Assets/Configs/UnitConfigs/ShamanConfigs",typeof(EnergyConfig));
+        tree.AddAllAssetsAtPath("Units/Enemies/Base",                   "Assets/Configs/EnemyConfigs",typeof(EnemyConfig));
+        tree.AddAllAssetsAtPath("Units/Enemies/Bosses",                   "Assets/Configs/EnemyConfigs/Bosses",typeof(EnemyConfig));
+        tree.AddAllAssetsAtPath("Units/Shamans/Base",                   "Assets/Configs/ShamanConfigs",typeof(ShamanConfig));
+        tree.AddAllAssetsAtPath("Units/Shamans/Energy",                        "Assets/Configs/ExpAndEnergy/Energy",typeof(EnergyConfig));
+        tree.AddAllAssetsAtPath("Units/Shamans/Exp",                        "Assets/Configs/ExpAndEnergy/Experience",typeof(ExperienceConfig));
+        tree.AddAllAssetsAtPath("PowerStructures",                "Assets/Configs/StructuresConfig",typeof(PowerStructureConfig));
         tree.AddAllAssetsAtPath("Abilities/Shamans/AutoAttack",         "Assets/Configs/Abilities/Shamans",typeof(AbilitySO));
         tree.AddAllAssetsAtPath("Abilities/Shamans/Toor/Multishot",     "Assets/Configs/Abilities/Shamans/Toor/Multishot",typeof(AbilitySO));
         tree.AddAllAssetsAtPath("Abilities/Shamans/Toor/PiercingShot",  "Assets/Configs/Abilities/Shamans/Toor/PiercingShot",typeof(AbilitySO));
@@ -38,6 +39,7 @@ public class ConfigWindowEditor : OdinMenuEditorWindow
         tree.AddAllAssetsAtPath("Abilities/Enemies",                    "Assets/Configs/Abilities/Enemies",typeof(AbilitySO));
         tree.AddAllAssetsAtPath("Abilities/StatusEffects/Roots",        "Assets/Configs/Abilities/StatusEffects/Roots",typeof(StatusEffectConfig));
         tree.AddAllAssetsAtPath("Abilities/StatusEffects/SmokeBomb",    "Assets/Configs/Abilities/StatusEffects/SmokeBomb",typeof(StatusEffectConfig));
+        tree.AddAllAssetsAtPath("MetaUpgrades",    "Assets/Configs/MetaUpgrades/ShamanConfigs",typeof(ShamanMetaUpgradeConfig));
         tree.AddAllAssetsAtPath("Level/Levels",                         "Assets/Configs/Levels",typeof(LevelConfig));
         tree.AddAllAssetsAtPath("Level/Waves",                          "Assets/Configs/Waves",typeof(WaveData));
         return tree;
