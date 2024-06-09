@@ -2,22 +2,22 @@ using System;
 public class AbilityEventCounter 
 {
     protected BaseUnit owner;
-    protected AbilitySO AbilitySoToCount;
+    protected Ability AbilityToCount;
     protected int currentCount;
 
-    public Action<AbilityEventCounter, Damageable, DamageDealer, DamageHandler, AbilitySO> OnCountReset;
-    public Action<AbilityEventCounter, Damageable, DamageDealer, DamageHandler, AbilitySO> OnCountIncrement;
+    public Action<AbilityEventCounter, Damageable, DamageDealer, DamageHandler, Ability> OnCountReset;
+    public Action<AbilityEventCounter, Damageable, DamageDealer, DamageHandler, Ability> OnCountIncrement;
 
     public int CurrentCount { get => currentCount;}
 
-    public AbilityEventCounter(BaseUnit givenOwner, AbilitySO givenAbilitySo, ref Action<Damageable, DamageDealer, DamageHandler, CastingAbilitySO, bool> eventToSub)
+    public AbilityEventCounter(BaseUnit givenOwner, Ability ability, ref Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> eventToSub)
     {
         owner = givenOwner;
-        AbilitySoToCount = givenAbilitySo;
+        AbilityToCount = ability;
         eventToSub += EventFunc;
     }
 
-    protected virtual void EventFunc(Damageable target, DamageDealer dealer, DamageHandler dmg, AbilitySO abilitySo, bool isCrit)
+    protected virtual void EventFunc(Damageable target, DamageDealer dealer, DamageHandler dmg, Ability ability, bool isCrit)
     {
         
     }

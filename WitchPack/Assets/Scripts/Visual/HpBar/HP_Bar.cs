@@ -62,6 +62,13 @@ public class HP_Bar : MonoBehaviour
     {
         fillSprite.localScale = new Vector3(value / _maxValue, _originalScale.y, _originalScale.z);
     }
+    public void SetBarValue(Damageable damageable)
+    {
+        _maxValue = damageable.MaxHp;
+        float ratio = damageable.CurrentHp / _maxValue;
+        if (ratio < 0) ratio = 0;
+        fillSprite.localScale = new Vector3(ratio, _originalScale.y, _originalScale.z);
+    }
 
     public void SetBarValueSmoothly(float value)
     {
@@ -87,18 +94,7 @@ public class HP_Bar : MonoBehaviour
         }
     }
 
-    public void SetBarValue(Damageable damageable, DamageDealer arg2, DamageHandler arg3, AbilitySO arg4, bool isCrit)
-    {
-        _maxValue = damageable.MaxHp;
-        float ratio = damageable.CurrentHp / _maxValue;
-        if (ratio < 0) ratio = 0;
-        fillSprite.localScale = new Vector3(ratio, _originalScale.y, _originalScale.z);
-    }
-
-    public void SetBarBasedOnOwner(Damageable damageable, float uselessAmount)
-    {
-        SetBarValue(damageable, null, null, null, false);
-    }
+    
 }
 
 public enum UnitType

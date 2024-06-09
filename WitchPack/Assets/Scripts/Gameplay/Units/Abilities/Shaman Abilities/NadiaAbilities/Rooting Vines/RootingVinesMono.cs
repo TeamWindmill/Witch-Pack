@@ -6,6 +6,6 @@ public class RootingVinesMono : AoeMono
     protected override void OnEnemyEnter(Enemy enemy)
     {
         OnRoot(enemy);
-        enemy.Damageable.GetHit(_owner.DamageDealer, AbilitySo);
+        enemy.Damageable.GetHit(_owner.DamageDealer, Ability);
     }
 }

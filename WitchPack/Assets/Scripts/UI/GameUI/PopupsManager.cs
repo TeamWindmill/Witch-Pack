@@ -33,13 +33,13 @@ public class PopupsManager : MonoBehaviour
         _xOffset = Mathf.Sin(_sinSpeed * GAME_TIME.GameTime) * (_offsetMultiplier / _offsetDivider);
     }
 
-    public void SpawnDamagePopup(Damageable damageable, DamageDealer damageDealer, DamageHandler damage, AbilitySO abilitySo, bool isCrit)
+    public void SpawnDamagePopup(Damageable damageable, DamageDealer damageDealer, DamageHandler damage, Ability ability, bool isCrit)
     {
         _offsetVector = new Vector3(_xOffset, _yOffset);
 
-        _popupColor = DetermineDamagePopupColor(damageDealer, damage, abilitySo, isCrit);
+        _popupColor = DetermineDamagePopupColor(damageDealer, damage, ability.BaseConfig, isCrit);
 
-         _popupNumber = damage.GetFinalDamage();
+         _popupNumber = damage.GetDamage();
         if(damageDealer.Owner is Enemy)
         {
             enemyDamagePopupPrefab.Spawn(damageable.Owner.GameObject.transform.position + _offsetVector, _popupNumber, _popupColor);
@@ -85,7 +85,7 @@ public class PopupsManager : MonoBehaviour
         PopupPrefab.Spawn(position + _offsetVector, text, color);
     }
 
-    public void SpawnHealPopup(Damageable damageable, float healAmount)
+    public void SpawnHealPopup(Damageable damageable, int healAmount)
     {
         _offsetVector = new Vector3(0, _yOffset);
 

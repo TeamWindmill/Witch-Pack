@@ -5,13 +5,12 @@ using System.Collections.Generic;
 public class ShamanSaveData
 {
     public ShamanConfig Config;
-    public readonly List<AbilityStatUpgrade> AbilityUpgrades;
+    public ExperienceHandler ExperienceHandler;
+    public List<AbilityUpgradeConfig> AbilityUpgrades = new();
+    public List<StatUpgradeConfig> StatUpgrades = new();
     public ShamanSaveData(ShamanConfig config)
     {
         Config = config;
-    }
-    public ShamanSaveData(Shaman shaman)
-    {
-        Config = shaman.ShamanConfig;
+        ExperienceHandler = new ExperienceHandler(config.ExperienceConfig);
     }
 }

@@ -5,11 +5,11 @@ public class AutoAttackMono : ProjectileMono
         switch (target)
         {
             case CoreTemple:
-                if (AbilitySo is EnemyRangedAutoAttackSO enemyAutoAttackSO)
-                    target.Damageable.TakeFlatDamage(enemyAutoAttackSO.CoreDamage);
+                if (Ability is EnemyRangedAutoAttack enemyAutoAttack)
+                    target.Damageable.TakeFlatDamage(enemyAutoAttack.Config.CoreDamage);
                 break;
             case BaseUnit:
-                target.Damageable.GetHit(_owner.DamageDealer, AbilitySo);
+                target.Damageable.GetHit(_owner.DamageDealer, Ability);
                 break;
         }
     }

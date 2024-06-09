@@ -6,65 +6,43 @@ using UnityEngine;
 public class Stats
 {
     //base stats here - affects every unit 
-    public BaseStat MaxHp = new BaseStat(StatType.MaxHp);
-    public BaseStat BaseDamage = new BaseStat(StatType.BaseDamage);
-    public BaseStatDecimal AttackSpeed = new BaseStatDecimal(StatType.AttackSpeed);//capped at unit stats 
-    public BaseStatDecimal BaseRange = new BaseStatDecimal(StatType.BaseRange);
-    public BaseStatDecimal MovementSpeed = new BaseStatDecimal(StatType.MovementSpeed);
-    public BaseStat CritDamage = new BaseStat(StatType.CritDamage);
-    public BaseStat CritChance = new BaseStat(StatType.CritChance);
-    public BaseStat Armor = new BaseStat(StatType.Armor);
-    public BaseStat HpRegen = new BaseStat(StatType.HpRegen);
-    public BaseStat Threat = new BaseStat(StatType.Threat);
-    [HideInInspector] public BaseStat AbilityProjectilePenetration = new BaseStat(StatType.AbilityProjectilePenetration);
-    [HideInInspector] public BaseStat Visibility = new BaseStat(StatType.Visibility);
-    [HideInInspector] public BaseStat ThreatLevel = new BaseStat(StatType.ThreatLevel);
+    public StatConfig MaxHp = new StatConfig(StatType.MaxHp);
+    public StatConfig _damage = new StatConfig(StatType.BaseDamage);
+    public StatDecimalConfig AttackSpeed = new StatDecimalConfig(StatType.AttackSpeed);//capped at unit stats 
+    public StatDecimalConfig _range = new StatDecimalConfig(StatType.BaseRange);
+    public StatDecimalConfig MovementSpeed = new StatDecimalConfig(StatType.MovementSpeed);
+    public StatConfig CritDamage = new StatConfig(StatType.CritDamage);
+    public StatConfig CritChance = new StatConfig(StatType.CritChance);
+    public StatConfig Armor = new StatConfig(StatType.Armor);
+    public StatConfig HpRegen = new StatConfig(StatType.HpRegen);
+    public StatConfig Threat = new StatConfig(StatType.Threat);
+    public StatDecimalConfig EnergyGain = new StatDecimalConfig(StatType.EnergyGain);
+    [HideInInspector] public StatConfig AbilityProjectilePenetration = new StatConfig(StatType.AbilityProjectilePenetration);
+    [HideInInspector] public StatConfig Visibility = new StatConfig(StatType.Visibility);
+    [HideInInspector] public StatConfig ThreatLevel = new StatConfig(StatType.ThreatLevel);
 
-}
-
-public enum StatType
-{
-    MaxHp,
-    BaseDamage,// =basic attack damage
-    AttackSpeed,//cdr for auto attacks 
-    BaseRange,//range for all attacks 
-    MovementSpeed,
-    CritDamage,
-    CritChance,
-    InvincibleTime,//flat duration of invincibility after recieving damage
-    AbilityCooldownReduction,//cdr for abilities only (anything that isnt an auto attack)
-    Armor,// damage redcutcion from all sources
-    HpRegen,//amount of health resotred every second
-    BonusStatusEffectDuration,//fixed duration added for every effect applied by unit
-    AbilityProjectileSpeed,//if an ability is projectile quicken it by this amount
-    AbilityProjectilePenetration,//the amount of times a projectile ability can hit targets before disabling
-    Visibility,
-    ThreatLevel, //the amount of threat currently on this unit
-    Threat, //the amount of threat added to this unit's targets
 }
 
 [Serializable]
-public class BaseStat
+public class StatConfig
 {
     [ReadOnly] public StatType statType;
     public int value;
 
-    public BaseStat(StatType givenStatType)
+    public StatConfig(StatType givenStatType)
     {
         statType = givenStatType;
     }
-
 }
 
 [Serializable]
-public class BaseStatDecimal
+public class StatDecimalConfig
 {
     [ReadOnly] public StatType statType;
     public float value;
 
-    public BaseStatDecimal(StatType givenStatType)
+    public StatDecimalConfig(StatType givenStatType)
     {
         statType = givenStatType;
     }
-
 }

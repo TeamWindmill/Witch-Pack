@@ -1,24 +1,11 @@
 using System;
-using System.Collections.Generic;
 
 [Serializable]
-public abstract class AbilityStat<TValue> where TValue : struct
+public class AbilityStat : BaseStat<AbilityStatType>
 {
-    public AbilityStatType StatType;
-    protected List<TValue> _modifiers;
-
-    public TValue StatValue => GetStatValue();
-
-    public void AddModifier(TValue value)
+    public AbilityStat(AbilityStatType statType, float baseValue) : base(statType, baseValue)
     {
-        _modifiers.Add(value);
     }
-    public void RemoveModifier(TValue value)
-    {
-        _modifiers.Remove(value);
-    }
-
-    protected abstract TValue GetStatValue();
 }
 
 public enum AbilityStatType
@@ -26,7 +13,14 @@ public enum AbilityStatType
     Damage,
     Cooldown,
     Speed,
-    Range,
+    Range, //not working currently
     CastTime,
-    
+    Penetration,
+    ExtraPenetrationPerKill,
+    KillToIncreasePenetration,
+    EnergyPointsOnKill,
+    ProjectilesAmount,
+    LifeTime,
+    BounceAmount,
+    DamageIncreasePerShot,
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ public class LevelConfig : ScriptableObject
     public bool ShowTutorial;
     
 
-    [NonSerialized]public ShamanConfig[] Shamans;
+    [NonSerialized]public List<ShamanSaveData> SelectedShamans;
 }
 
 [Serializable]

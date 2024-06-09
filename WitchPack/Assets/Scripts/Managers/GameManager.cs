@@ -6,7 +6,7 @@ public class GameManager : MonoSingleton<GameManager>
 {
     public LevelConfig CurrentLevelConfig { get; private set; }
     public static ISceneHandler SceneHandler { get; private set; }
-    public GameSaveData SaveData { get; private set; }
+    [HideInInspector]public GameSaveData SaveData;
     public ShamansManager ShamansManager => _shamansManager;
 
     public bool TutorialPlayed;
@@ -31,17 +31,18 @@ public class GameManager : MonoSingleton<GameManager>
             return _cameraHandler;
         }
     }
-    
+
     protected override void Awake()
     {
         base.Awake();
-        
+
         if (SceneHandler == null)
             SceneHandler = _sceneHandler;
 
-        LoadDataFromSave(SaveData); //need to load save from file
+        SaveData = LoadDataFromSave(); //need to load save from file
         _shamansManager.Init(SaveData);
     }
+
     void Start()
     {
         SceneHandler.LoadScene(SceneType.MainMenu);
@@ -52,12 +53,9 @@ public class GameManager : MonoSingleton<GameManager>
         CurrentLevelConfig = levelConfig;
     }
 
-    private void LoadDataFromSave(GameSaveData saveData) //this is temp need to connect to a save system
+    private GameSaveData LoadDataFromSave() //this is temp need to connect to a save system
     {
-        if (saveData == null)
-        {
-            SaveData = new GameSaveData();
-        }
+        return new GameSaveData();
     }
 
     private void OnValidate()
@@ -75,5 +73,4 @@ public class GameManager : MonoSingleton<GameManager>
     {
         Application.Quit();
     }
-
 }

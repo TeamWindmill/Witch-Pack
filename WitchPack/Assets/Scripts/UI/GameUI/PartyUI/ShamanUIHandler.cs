@@ -38,15 +38,14 @@ public class ShamanUIHandler : ClickableUIElement
         _upgradeFrame.color = upgradeColor;
         shaman.EnergyHandler.OnShamanUpgrade += OnShamanUpgrade;
         shaman.EnergyHandler.OnShamanLevelUp += OnShamanLevelUp;
-        shaman.Damageable.OnGetHit += OnChangeHealth;
-        shaman.Damageable.OnHeal += OnChangeHealth;
+        shaman.Damageable.OnHealthChange += OnChangeHealth;
         shaman.Damageable.OnDeath += ShamanDeathUI;
         OnClickEvent += GoToShaman;
         OnClickEvent += ShowShamanInfo;
         Show();
     }
 
-    private void OnChangeHealth()
+    private void OnChangeHealth(int newHP)
     {
         float hpRatio = _shaman.Damageable.CurrentHp / (float)_shaman.Damageable.MaxHp;
         _redInjuryImage.fillAmount = 1 - hpRatio;
@@ -54,27 +53,16 @@ public class ShamanUIHandler : ClickableUIElement
         _fill.color = Color.Lerp(Color.red, Color.green, hpRatio);
     }
 
-    private void OnChangeHealth(Damageable arg1, DamageDealer arg2, DamageHandler arg3, AbilitySO arg4, bool arg5)
-    {
-        OnChangeHealth();
-    }
-
-    private void OnChangeHealth(Damageable arg1, float healAmount)
-    {
-        OnChangeHealth();
-    }
-
     public override void Hide()
     {
-        _shaman.Damageable.OnGetHit -= OnChangeHealth;
-        _shaman.Damageable.OnHeal -= OnChangeHealth;
+        _shaman.Damageable.OnHealthChange -= OnChangeHealth;
         _shaman.Damageable.OnDeath -= ShamanDeathUI;
         OnClickEvent -= GoToShaman;
         OnClickEvent -= ShowShamanInfo;
         base.Hide();
     }
 
-    private void ShamanDeathUI(Damageable arg1, DamageDealer arg2, DamageHandler arg3, AbilitySO arg4)
+    private void ShamanDeathUI(Damageable arg1, DamageDealer arg2)
     {
         Color upgradeColor = _upgradeFrame.color;
         upgradeColor.a = 0;

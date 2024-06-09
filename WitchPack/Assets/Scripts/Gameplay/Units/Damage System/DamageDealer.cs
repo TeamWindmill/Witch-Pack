@@ -4,9 +4,9 @@ public class DamageDealer
 {
     private BaseUnit owner;
 
-    public Action<Damageable, DamageDealer, DamageHandler, CastingAbilitySO, bool> OnHitTarget;
-    public Action<Damageable, DamageDealer, DamageHandler, CastingAbilitySO, bool> OnKill;
-    public Action<Damageable, DamageDealer, DamageHandler, CastingAbilitySO, bool> OnAssist;
+    public Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> OnHitTarget;
+    public Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> OnKill;
+    public Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> OnAssist;
 
     private OffensiveAbilitySO autoAttack;
 
@@ -24,9 +24,9 @@ public class DamageDealer
     }
 
 
-    public bool CritChance(AbilitySO abilitySo)
+    public bool CritChance(Ability ability)
     {
-        if (ReferenceEquals(abilitySo, owner.AutoAttack) && UnityEngine.Random.Range(0, 100) <= owner.Stats.CritChance)
+        if (ReferenceEquals(ability, owner.AutoAttackCaster.Ability) && UnityEngine.Random.Range(0, 100) <= owner.Stats[StatType.CritChance].Value)
         {
             return true;
         }
@@ -34,27 +34,24 @@ public class DamageDealer
         return false;
     }
 
-    private void SubscribeStatDamage(Damageable target, DamageDealer dealer, DamageHandler dmg, AbilitySO abilitySo, bool crit)
+    private void SubscribeStatDamage(Damageable target, DamageDealer dealer, DamageHandler dmg, Ability ability, bool crit)
     {
-        if (ReferenceEquals(abilitySo, owner.AutoAttack))
+        if (ReferenceEquals(ability, owner.AutoAttackCaster.Ability))
         {
-            dmg.AddFlatMod(owner.Stats.BaseDamage);
+            dmg.AddFlatMod(owner.Stats[StatType.BaseDamage].IntValue);
             if (crit)
             {
-                float critDamage = (Owner.Stats.CritDamage / 100f) + 1f;
-                dmg.AddMod(critDamage); //not sure what the math is supposed to be here - ask gd
+                float critDamage = (Owner.Stats[StatType.CritDamage].Value / 100f);
+                dmg.AddMultiplierMod(critDamage); 
             }
         }
     }
 
-    private void SubscribeDamageBoostsFromAbility(Damageable target, DamageDealer dealer, DamageHandler dmg, CastingAbilitySO abilitySo, bool crit)
+    private void SubscribeDamageBoostsFromAbility(Damageable target, DamageDealer dealer, DamageHandler dmg, CastingAbility ability, bool crit)
     {
-        if (abilitySo is not OffensiveAbilitySO || ReferenceEquals((abilitySo as OffensiveAbilitySO).DamageBoosts, null))
-        {
-            return;
-        }
+        if (ability is not OffensiveAbility offensiveAbility) return;
 
-        foreach (var item in (abilitySo as OffensiveAbilitySO).DamageBoosts)
+        foreach (var item in offensiveAbility.DamageBoosts)
         {
             switch (item.Type)
             {
@@ -62,7 +59,7 @@ public class DamageDealer
                     dmg.AddFlatMod(GetModCurHp(item, target));
                     break;
                 case DamageBonusType.MissingHp:
-                    dmg.AddMod(GetModMissingHp(item, target));
+                    dmg.AddFlatMod(GetModMissingHp(item, target));
                     break;
             }
         }
@@ -74,7 +71,7 @@ public class DamageDealer
         return (int)damageBasedOnCurrentHP;
     }
 
-    private float GetModMissingHp(DamageBoostData boostData, Damageable target)
+    private int GetModMissingHp(DamageBoostData boostData, Damageable target)
     {
         var missingHp = (target.MaxHp - target.CurrentHp);
         float damageBasedOnMissingHp = missingHp * (boostData.damageBonusInPercent / 100);

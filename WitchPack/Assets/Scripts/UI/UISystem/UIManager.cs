@@ -106,4 +106,6 @@ public enum UIGroup
     InfoWindow,
     DevTools,
     PartySelectionWindow,
+    ShamanUpgradePanel,
+    
 }

@@ -9,7 +9,7 @@ public class PartySelectionWindow : UIElement
     [SerializeField] private PackPanel _packPanel;
     [SerializeField] private EnemyPanel _enemyPanel;
     [SerializeField] private TextMeshProUGUI _levelTitle;
-    public List<ShamanConfig> ActiveShamanParty { get; private set; }
+    public List<ShamanSaveData> ActiveShamanParty { get; private set; }
     private LevelConfig _levelConfig;
 
     public override void Show()
@@ -37,26 +37,20 @@ public class PartySelectionWindow : UIElement
             _packPanel.FlashInRed();
             return;
         }
-        GameManager.Instance.CurrentLevelConfig.Shamans = ActiveShamanParty.ToArray();
+        GameManager.Instance.CurrentLevelConfig.SelectedShamans = ActiveShamanParty;
         GameManager.SceneHandler.LoadScene(SceneType.Game);
     }
 
-    public void AssignShamanToPack(ShamanConfig shaman)
+    public void AssignShamanToPack(ShamanSaveData shaman)
     {
         ActiveShamanParty.Add(shaman);
         _packPanel.AddShamanToPack(shaman);
         _rosterPanel.AssignShaman(shaman);
     }
-    public void UnassignShamanFromPack(ShamanConfig shaman)
+    public void UnassignShamanFromPack(ShamanSaveData shaman)
     {
         ActiveShamanParty.Remove(shaman);
         _rosterPanel.UnassignShaman(shaman);
         _packPanel.RemoveShamanFromPack(shaman);
-    }
-
-    protected override void OnValidate()
-    {
-        //_enemyPanelConfig.EnemyAmounts.ForEach((amount) => amount.RoundToInt());
-        base.OnValidate();
     }
 }

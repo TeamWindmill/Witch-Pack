@@ -8,7 +8,7 @@ public class Damageable
     private List<DamageDealer> _damageDealers = new List<DamageDealer>();
     private IDamagable owner;
     private int currentHp;
-    public int MaxHp => owner.Stats.MaxHp;
+    public int MaxHp => owner.Stats[StatType.MaxHp].IntValue;
     public int CurrentHp => currentHp;
 
     private bool hitable;
@@ -16,15 +16,13 @@ public class Damageable
 
     Timer regenTimer;
 
-    public event Action<Damageable, DamageDealer , DamageHandler, AbilitySO, bool > OnGetHit;
-    public event Action<int> OnTakeDamage;
-    public event Action<Damageable, DamageDealer, DamageHandler, AbilitySO, bool> OnDamageCalc;
-    public event Action<Damageable, DamageDealer, DamageHandler, AbilitySO> OnDeath;
+    public event Action<int> OnHealthChange;
+    public event Action<Damageable, DamageDealer, DamageHandler, Ability, bool> OnTakeDamage;
+    public event Action<Damageable,int> OnTakeFlatDamage;
+    public event Action<Damageable, int> OnHeal;
+    public event Action<Damageable, DamageDealer> OnDeath;
     public event Action OnDeathGFX;
     public event Action<bool> OnHitGFX;
-    public event Action<Damageable, float> OnHeal;
-
-    //add gfx events later
 
     public IDamagable Owner { get => owner; }
 
@@ -33,24 +31,21 @@ public class Damageable
         this.owner = owner;
         hitable = true;
         currentHp = MaxHp;
-        OnGetHit += AddStatsDamageReduction;
+        //OnGetHit += ApplyArmorDamageReduction;
     }
 
-    public void GetHit(DamageDealer dealer, CastingAbilitySO abilitySo)
+    public void GetHit(DamageDealer dealer, CastingAbility ability)
     {
-        if (!hitable)
-        {
-            return;
-        }
+        if (!hitable) return;
         
-        foreach (var item in abilitySo.StatusEffects)
+        foreach (var item in ability.CastingConfig.StatusEffects)
         {
             owner.Effectable.AddEffect(item, dealer.Owner.Affector);
         }
         
-        if (abilitySo is OffensiveAbilitySO offensiveAbility)
+        if (ability is OffensiveAbility offensiveAbility)
         {
-            DamageHandler dmg = new DamageHandler(offensiveAbility.BaseDamage);
+            DamageHandler dmg = new DamageHandler(offensiveAbility.GetAbilityStatValue(AbilityStatType.Damage));
             bool isCrit = dealer.CritChance(offensiveAbility);
 
             TakeDamage(dealer, dmg, offensiveAbility, isCrit);
@@ -60,59 +55,56 @@ public class Damageable
         }
         else // in case we want to make an ability that only applys status effects
         {
-            dealer.OnHitTarget?.Invoke(this, dealer, null, abilitySo, false);
-            OnGetHit?.Invoke(this, dealer, null, abilitySo, false);
+            dealer.OnHitTarget?.Invoke(this, dealer, null, ability, false);
             OnHitGFX?.Invoke(false);
         }
     }
 
+    public void TakeDamage(DamageDealer dealer, DamageHandler damage, OffensiveAbility ability, bool isCrit)
+    {
+        if(!hitable) return;
+        dealer.OnHitTarget?.Invoke(this, dealer, damage, ability, isCrit);
+        OnHitGFX?.Invoke(isCrit);
+        damage.ApplyArmorReduction(owner.Stats[StatType.Armor].IntValue);
+        
+        currentHp -= damage.GetDamage();
+        OnTakeDamage?.Invoke(this, dealer, damage, ability, isCrit);
+        OnHealthChange?.Invoke(currentHp);
+
+        if (currentHp <= 0)
+        {
+            Die(dealer, damage, ability, isCrit);
+        }
+        ClampHp();
+    }
     public void Heal(int healAmount)
     {
         if(currentHp < MaxHp && healAmount > 0)
         {
             currentHp = Mathf.Clamp(currentHp + healAmount, 0, MaxHp);
             OnHeal?.Invoke(this, healAmount);
+            OnHealthChange?.Invoke(currentHp);
         }        
     }
 
     public void RegenHp()
     {
-        Heal(owner.Stats.HpRegen);
+        Heal(owner.Stats[StatType.HpRegen].IntValue);
     }
-
-    public void TakeDamage(DamageDealer dealer, DamageHandler damage, OffensiveAbilitySO abilitySo, bool isCrit)
+    private void Die(DamageDealer dealer, DamageHandler damage, OffensiveAbility ability, bool isCrit)
     {
-        if(!hitable) return;
-        dealer.OnHitTarget?.Invoke(this, dealer, damage, abilitySo, isCrit);
-        OnGetHit?.Invoke(this, dealer, damage, abilitySo, isCrit);
-        OnTakeDamage?.Invoke(damage.GetFinalDamage());
-        OnHitGFX?.Invoke(isCrit);
-
-        currentHp -= damage.GetFinalDamage();
-        //Debug.Log($"{owner.gameObject} took {handler.GetFinalDamage()} damage from {dealer.Owner.name}");
-        OnDamageCalc?.Invoke(this, dealer, damage, abilitySo, isCrit);
-
-        if (currentHp <= 0)
-        {
-            Die(dealer, damage, abilitySo, isCrit);
-        }
-        ClampHp();
-    }
-
-    private void Die(DamageDealer dealer, DamageHandler damage, OffensiveAbilitySO abilitySo, bool isCrit)
-    {
-        OnDeath?.Invoke(this, dealer, damage, abilitySo);
+        OnDeath?.Invoke(this, dealer);
         OnDeathGFX?.Invoke();
-        dealer.OnKill?.Invoke(this, dealer, damage, abilitySo, isCrit);
+        dealer.OnKill?.Invoke(this, dealer, damage, ability, isCrit);
         owner.ClearUnitTimers();
         foreach (var damageDealer in _damageDealers)
         {
             if (damageDealer == dealer) continue;
-            damageDealer.OnAssist?.Invoke(this, dealer, damage, abilitySo, isCrit);
+            damageDealer.OnAssist?.Invoke(this, dealer, damage, ability, isCrit);
         }
     }
 
-    public IEnumerator TakeDamageOverTime(DamageDealer dealer, DamageHandler damage, OffensiveAbilitySO abilitySo, bool isCrit, float duration, float tickRate)
+    public IEnumerator TakeDamageOverTime(DamageDealer dealer, DamageHandler damage, OffensiveAbility ability, bool isCrit, float duration, float tickRate)
     {
         float elapsedTime = 0;
         float tickTimer = 0;
@@ -123,7 +115,7 @@ public class Damageable
             if(tickTimer >= tickRate)
             {
                 tickTimer = 0;
-                TakeDamage(dealer, damage, abilitySo, isCrit);
+                TakeDamage(dealer, damage, ability, isCrit);
             }
             yield return new WaitForEndOfFrame();
         }
@@ -133,7 +125,8 @@ public class Damageable
     public void TakeFlatDamage(int amount)  
     {
         currentHp -= amount;
-        OnTakeDamage?.Invoke(amount);
+        OnTakeFlatDamage?.Invoke(this,amount);
+        OnHealthChange?.Invoke(currentHp);
         if (currentHp <= 0)
         {
             OnDeathGFX?.Invoke();
@@ -146,21 +139,10 @@ public class Damageable
         currentHp = Mathf.Clamp(currentHp, 0, MaxHp);
     }
 
-    private void AddStatsDamageReduction(Damageable target, DamageDealer dealer, DamageHandler dmg, AbilitySO abilitySo, bool crit)
-    {
-        float damageReductionModifier = 100f / (owner.Stats.Armor + 100f);
-        dmg.AddMod(damageReductionModifier);
-    }
-
-    public void DamageTick()
-    {
-        
-    }
-
     public void SetRegenerationTimer()
     {
         regenTimer = new Timer(new TimerData(1, RegenHp, 1, true, true));
-        TimerManager.Instance.AddTimer(regenTimer);
+        TimerManager.AddTimer(regenTimer);
     }
 
     public void ToggleHitable(bool state)

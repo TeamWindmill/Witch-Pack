@@ -1,9 +1,9 @@
 public class PoisonIvy : OffensiveAbility
 {
-    private PoisonIvySO _config;
+    public readonly PoisonIvySO Config;
     public PoisonIvy(PoisonIvySO config, BaseUnit owner) : base(config, owner)
     {
-        _config = config;
+        Config = config;
     }
 
     public override bool CastAbility()
@@ -12,7 +12,7 @@ public class PoisonIvy : OffensiveAbility
         if (!ReferenceEquals(target, null))
         {
             PoisonIvyMono newIvyPoison = LevelManager.Instance.PoolManager.PoisonIvyPool.GetPooledObject();
-            newIvyPoison.Init(Owner, _config, _config.LastingTime,_config.AoeScale);
+            newIvyPoison.Init(Owner, this, Config.LastingTime,Config.AoeScale);
             newIvyPoison.transform.position = target.transform.position;
             newIvyPoison.gameObject.SetActive(true);
             return true;

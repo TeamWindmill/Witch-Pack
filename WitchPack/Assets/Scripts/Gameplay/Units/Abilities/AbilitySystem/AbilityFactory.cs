@@ -14,8 +14,8 @@ public class AbilityFactory
             case AffectedByUnitsStatPassiveSO ability:
                 return new AffectedByUnitsStatPassive(ability, owner);
             
-            case SameTargetAutoAttackPassiveSO ability:
-                return new SameTargetAutoAttackPassive(ability, owner);
+            case AttritionSO ability:
+                return new Attrition(ability, owner);
             
             case StatPassiveSO ability:
                 return new StatPassive(ability, owner);
@@ -76,6 +76,6 @@ public class AbilityFactory
                 return new Fireball(ability, owner);
         }
 
-        throw new Exception($"{config.Name} Ability config not found in the ability factory");
+        throw new Exception($"{owner.UnitConfig.Name}'s Ability config not found in the ability factory");
     }
 }
