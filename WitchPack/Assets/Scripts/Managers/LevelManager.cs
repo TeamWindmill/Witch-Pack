@@ -53,11 +53,11 @@ public class LevelManager : MonoSingleton<LevelManager>
         {
             SoundManager.Instance.PlayAudioClip(SoundEffectType.Victory);
             GameManager.Instance.ShamansManager.AddShamanToRoster(CurrentLevel.Config.shamansToAddAfterComplete);
+            GameManager.SaveData.MapNodes[CurrentLevel.ID - 1].State = NodeState.Completed;
         }
         UIManager.Instance.ShowUIGroup(UIGroup.EndGameUI);
         OnLevelEnd?.Invoke(CurrentLevel);
-        if(!GameManager.Instance.LevelsCompleted[CurrentLevel.ID - 1])
-            GameManager.Instance.LevelsCompleted[CurrentLevel.ID - 1] = win;
+            
     }
 
     private void SpawnParty(List<ShamanSaveData> shamans)
@@ -94,7 +94,7 @@ public class LevelManager : MonoSingleton<LevelManager>
         _scoreHandler.UpdateScore(kills: 1);
     }
 
-    private void RemoveShamanFromParty(Damageable arg1, DamageDealer arg2, DamageHandler arg3, Ability arg4)
+    private void RemoveShamanFromParty(Damageable arg1, DamageDealer arg2)
     {
         if (arg1.Owner is Shaman shaman)
         {

@@ -26,7 +26,7 @@
 
         private void IncreaseAADamage(AbilityEventCounter counter, Damageable target, DamageDealer dealer, DamageHandler dmg, Ability ability)
         {
-            float mod = ((GetAbilityStatValue(AbilityStatType.DamageIncreasePerShot) / 100) * counter.CurrentCount) + 1;
-            dmg.AddMod(mod);
+            float mod = GetAbilityStatValue(AbilityStatType.DamageIncreasePerShot) * counter.CurrentCount;
+            dmg.AddFlatMod((int)mod);
         }
     }

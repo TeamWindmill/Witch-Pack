@@ -13,11 +13,11 @@ public class StatBlockPanel : MonoBehaviour
     public void Init(Shaman shaman)
     {
         _shaman = shaman;
-        _shaman.Stats.OnStatChanged += OnBaseStatChange;
         foreach (var statBlock in _statBlocks)
         {
-            var statValue = shaman.Stats.GetStatValue(statBlock.StatTypeId);
-            statBlock.Init(statValue, _statBonusAdditionColor, _statBonusReductionColor);
+            var stat = shaman.Stats[statBlock.StatTypeId];
+            statBlock.Init(stat, _statBonusAdditionColor, _statBonusReductionColor);
+            
         }
 
         foreach (var statBar in _statBarHandlers)
@@ -25,14 +25,7 @@ public class StatBlockPanel : MonoBehaviour
             statBar.Init(shaman);
         }
     }
-
-    private void OnBaseStatChange(StatType statType, float value)
-    {
-        foreach (var statBlock in _statBlocks)
-        {
-            if(statBlock.StatTypeId == statType) statBlock.UpdateBaseStat(value);
-        }
-    }
+    
 
     public void UpdateStatBlocks(StatType shamanStatType, float newValue)
     {
@@ -55,8 +48,6 @@ public class StatBlockPanel : MonoBehaviour
 
     public void HideStatBlocks()
     {
-        _shaman.Stats.OnStatChanged -= OnBaseStatChange;
-
         foreach (var statBarHandler in _statBarHandlers)
         {
             statBarHandler.Hide();
