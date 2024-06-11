@@ -25,9 +25,12 @@ MonoBehaviour:
   _abilityPanelUpgrades:
   - Ability: {fileID: 11400000, guid: c2510545251b0be44938eba499e478f4, type: 2}
     LeftStatUpgrades:
-    - _name: projectile speed
-      _valueName: +5
-      _stats: []
+    - _valueName: +5
+      _name: projectile speed
+      _stats:
+      - _statType: 2
+        _statValue: 5
+        _factor: 0
       _damageBoosts: []
       _abilitiesBehaviors: 
       _abilitiesToUpgrade:
@@ -35,9 +38,12 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 48800fa2149d0b942a7df83b48b69c31, type: 2}
       - {fileID: 11400000, guid: 3881dc7b74790b7448a3ca17179d3b55, type: 2}
       - {fileID: 11400000, guid: 81793bfa9ec8f584987c2c0dd6fd9f4d, type: 2}
-    - _name: damage
-      _valueName: +20
-      _stats: []
+    - _valueName: +20
+      _name: damage
+      _stats:
+      - _statType: 0
+        _statValue: 20
+        _factor: 0
       _damageBoosts: []
       _abilitiesBehaviors: 
       _abilitiesToUpgrade:
@@ -45,9 +51,12 @@ MonoBehaviour:
       - {fileID: 11400000, guid: c2510545251b0be44938eba499e478f4, type: 2}
       - {fileID: 11400000, guid: 3881dc7b74790b7448a3ca17179d3b55, type: 2}
       - {fileID: 11400000, guid: 81793bfa9ec8f584987c2c0dd6fd9f4d, type: 2}
-    - _name: cooldown
-      _valueName: -2s
-      _stats: []
+    - _valueName: -2s
+      _name: cooldown
+      _stats:
+      - _statType: 1
+        _statValue: 2
+        _factor: 1
       _damageBoosts: []
       _abilitiesBehaviors: 
       _abilitiesToUpgrade:
@@ -55,17 +64,23 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 48800fa2149d0b942a7df83b48b69c31, type: 2}
       - {fileID: 11400000, guid: 3881dc7b74790b7448a3ca17179d3b55, type: 2}
       - {fileID: 11400000, guid: 81793bfa9ec8f584987c2c0dd6fd9f4d, type: 2}
-    - _name: quick shot damage
-      _valueName: +50
-      _stats: []
+    - _valueName: +50
+      _name: quick shot damage
+      _stats:
+      - _statType: 0
+        _statValue: 50
+        _factor: 0
       _damageBoosts: []
       _abilitiesBehaviors: 
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 81793bfa9ec8f584987c2c0dd6fd9f4d, type: 2}
     RightStatUpgrades:
-    - _name: damage
-      _valueName: +20
-      _stats: []
+    - _valueName: +20
+      _name: damage
+      _stats:
+      - _statType: 0
+        _statValue: 20
+        _factor: 0
       _damageBoosts: []
       _abilitiesBehaviors: 
       _abilitiesToUpgrade:
@@ -73,9 +88,12 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 48800fa2149d0b942a7df83b48b69c31, type: 2}
       - {fileID: 11400000, guid: 3881dc7b74790b7448a3ca17179d3b55, type: 2}
       - {fileID: 11400000, guid: 81793bfa9ec8f584987c2c0dd6fd9f4d, type: 2}
-    - _name: cast time
-      _valueName: -0.25s
-      _stats: []
+    - _valueName: -0.25s
+      _name: cast time
+      _stats:
+      - _statType: 4
+        _statValue: 0.25
+        _factor: 0
       _damageBoosts: []
       _abilitiesBehaviors: 
       _abilitiesToUpgrade:
@@ -83,9 +101,12 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 48800fa2149d0b942a7df83b48b69c31, type: 2}
       - {fileID: 11400000, guid: 3881dc7b74790b7448a3ca17179d3b55, type: 2}
       - {fileID: 11400000, guid: 81793bfa9ec8f584987c2c0dd6fd9f4d, type: 2}
-    - _name: projectile pierce
-      _valueName: +1
-      _stats: []
+    - _valueName: +1
+      _name: projectile pierce
+      _stats:
+      - _statType: 5
+        _statValue: 1
+        _factor: 0
       _damageBoosts: []
       _abilitiesBehaviors: 
       _abilitiesToUpgrade:
@@ -93,44 +114,56 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 48800fa2149d0b942a7df83b48b69c31, type: 2}
       - {fileID: 11400000, guid: 3881dc7b74790b7448a3ca17179d3b55, type: 2}
       - {fileID: 11400000, guid: 81793bfa9ec8f584987c2c0dd6fd9f4d, type: 2}
-    - _name: for experienced hunter
-      _valueName: -1 kills
-      _stats: []
+    - _valueName: -1 kills
+      _name: for experienced hunter
+      _stats:
+      - _statType: 7
+        _statValue: 1
+        _factor: 1
       _damageBoosts: []
       _abilitiesBehaviors: 
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 48800fa2149d0b942a7df83b48b69c31, type: 2}
   - Ability: {fileID: 11400000, guid: 53bfc36c6d742b846a66701c6400458a, type: 2}
     LeftStatUpgrades:
-    - _name: cooldown
-      _valueName: -2s
-      _stats: []
+    - _valueName: -2s
+      _name: cooldown
+      _stats:
+      - _statType: 1
+        _statValue: 2
+        _factor: 1
       _damageBoosts: []
       _abilitiesBehaviors: 
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 566adf5104243da46a387aacf86fe5ac, type: 2}
       - {fileID: 11400000, guid: 53bfc36c6d742b846a66701c6400458a, type: 2}
       - {fileID: 11400000, guid: c70b65cf65fce404aa5515456d2121df, type: 2}
-    - _name: damage
-      _valueName: +10
-      _stats: []
+    - _valueName: +10
+      _name: damage
+      _stats:
+      - _statType: 0
+        _statValue: 10
+        _factor: 0
       _damageBoosts: []
       _abilitiesBehaviors: 
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 566adf5104243da46a387aacf86fe5ac, type: 2}
       - {fileID: 11400000, guid: 53bfc36c6d742b846a66701c6400458a, type: 2}
       - {fileID: 11400000, guid: c70b65cf65fce404aa5515456d2121df, type: 2}
-    - _name: projectile
-      _valueName: +1
-      _stats: []
+    - _valueName: +1
+      _name: projectile
+      _stats:
+      - _statType: 9
+        _statValue: 1
+        _factor: 0
       _damageBoosts: []
       _abilitiesBehaviors: 
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 566adf5104243da46a387aacf86fe5ac, type: 2}
       - {fileID: 11400000, guid: 53bfc36c6d742b846a66701c6400458a, type: 2}
       - {fileID: 11400000, guid: c70b65cf65fce404aa5515456d2121df, type: 2}
-    - _name: essense shot damage
-      _valueName: +5%
+    - _valueName: +5%
+      _name: essense shot damage
       _stats: []
       _damageBoosts:
       - Type: 0
@@ -138,104 +171,138 @@ MonoBehaviour:
       _abilitiesBehaviors: 
       _abilitiesToUpgrade: []
     RightStatUpgrades:
-    - _name: cast time
-      _valueName: -0.25s
-      _stats: []
+    - _valueName: -0.25s
+      _name: cast time
+      _stats:
+      - _statType: 4
+        _statValue: 0.25
+        _factor: 1
       _damageBoosts: []
       _abilitiesBehaviors: 
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 566adf5104243da46a387aacf86fe5ac, type: 2}
       - {fileID: 11400000, guid: 53bfc36c6d742b846a66701c6400458a, type: 2}
       - {fileID: 11400000, guid: c70b65cf65fce404aa5515456d2121df, type: 2}
-    - _name: projectile
-      _valueName: +1
-      _stats: []
+    - _valueName: +1
+      _name: projectile
+      _stats:
+      - _statType: 9
+        _statValue: 1
+        _factor: 0
       _damageBoosts: []
       _abilitiesBehaviors: 
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 566adf5104243da46a387aacf86fe5ac, type: 2}
       - {fileID: 11400000, guid: 53bfc36c6d742b846a66701c6400458a, type: 2}
       - {fileID: 11400000, guid: c70b65cf65fce404aa5515456d2121df, type: 2}
-    - _name: damage
-      _valueName: +10
-      _stats: []
+    - _valueName: +10
+      _name: damage
+      _stats:
+      - _statType: 0
+        _statValue: 10
+        _factor: 0
       _damageBoosts: []
       _abilitiesBehaviors: 
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 566adf5104243da46a387aacf86fe5ac, type: 2}
       - {fileID: 11400000, guid: 53bfc36c6d742b846a66701c6400458a, type: 2}
       - {fileID: 11400000, guid: c70b65cf65fce404aa5515456d2121df, type: 2}
-    - _name: bounce to richochet
-      _valueName: +1
-      _stats: []
+    - _valueName: +1
+      _name: bounce to richochet
+      _stats:
+      - _statType: 11
+        _statValue: 1
+        _factor: 0
       _damageBoosts: []
       _abilitiesBehaviors: 
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: c70b65cf65fce404aa5515456d2121df, type: 2}
   _statPanelUpgrades:
     LeftStatUpgrades:
-    - _name: attack speed
-      _valueName: +0.25
+    - _valueName: +0.25
+      _name: attack speed
       _upgradeAbility: 0
-      _stats: []
+      _stats:
+      - _statType: 2
+        _statValue: 0.25
+        _factor: 0
       _abilityStats: []
       _abilitiesBehaviors: 
       _damageBoosts: []
       _abilitiesToUpgrade: []
-    - _name: base damage
-      _valueName: +10
+    - _valueName: +10
+      _name: base damage
       _upgradeAbility: 0
-      _stats: []
+      _stats:
+      - _statType: 1
+        _statValue: 10
+        _factor: 0
       _abilityStats: []
       _abilitiesBehaviors: 
       _damageBoosts: []
       _abilitiesToUpgrade: []
-    - _name: range
-      _valueName: +1
+    - _valueName: +1
+      _name: range
       _upgradeAbility: 0
-      _stats: []
+      _stats:
+      - _statType: 3
+        _statValue: 1
+        _factor: 0
       _abilityStats: []
       _abilitiesBehaviors: 
       _damageBoosts: []
       _abilitiesToUpgrade: []
-    - _name: movement speed
-      _valueName: +2
-      _upgradeAbility: 0
-      _stats: []
-      _abilityStats: []
-      _abilitiesBehaviors: 
-      _damageBoosts: []
-      _abilitiesToUpgrade: []
-    RightStatUpgrades:
-    - _name: max HP
-      _valueName: +100
-      _upgradeAbility: 0
-      _stats: []
-      _abilityStats: []
-      _abilitiesBehaviors: 
-      _damageBoosts: []
-      _abilitiesToUpgrade: []
-    - _name: energy gain
-      _valueName: +20%
-      _upgradeAbility: 0
-      _stats: []
-      _abilityStats: []
-      _abilitiesBehaviors: 
-      _damageBoosts: []
-      _abilitiesToUpgrade: []
-    - _name: crit chance
-      _valueName: +10%
-      _upgradeAbility: 0
-      _stats: []
-      _abilityStats: []
-      _abilitiesBehaviors: 
-      _damageBoosts: []
-      _abilitiesToUpgrade: []
-    - _name: damage to attrition
-      _valueName: +5
+    - _valueName: +2
+      _name: Swift Hyrax movement speed
       _upgradeAbility: 1
       _stats: []
       _abilityStats: []
+      _abilitiesBehaviors: 00000000
+      _damageBoosts: []
+      _abilitiesToUpgrade:
+      - {fileID: 11400000, guid: bea3c57d5751c7c499a794f7cf673e60, type: 2}
+    RightStatUpgrades:
+    - _valueName: +100
+      _name: max HP
+      _upgradeAbility: 0
+      _stats:
+      - _statType: 0
+        _statValue: 100
+        _factor: 0
+      _abilityStats: []
+      _abilitiesBehaviors: 
+      _damageBoosts: []
+      _abilitiesToUpgrade: []
+    - _valueName: +20%
+      _name: energy gain
+      _upgradeAbility: 0
+      _stats:
+      - _statType: 17
+        _statValue: 20
+        _factor: 0
+      _abilityStats: []
+      _abilitiesBehaviors: 
+      _damageBoosts: []
+      _abilitiesToUpgrade: []
+    - _valueName: +10%
+      _name: crit chance
+      _upgradeAbility: 0
+      _stats:
+      - _statType: 6
+        _statValue: 10
+        _factor: 0
+      _abilityStats: []
+      _abilitiesBehaviors: 
+      _damageBoosts: []
+      _abilitiesToUpgrade: []
+    - _valueName: +5
+      _name: damage to attrition
+      _upgradeAbility: 1
+      _stats: []
+      _abilityStats:
+      - _statType: 12
+        _statValue: 5
+        _factor: 0
       _abilitiesBehaviors: 
       _damageBoosts: []
       _abilitiesToUpgrade:
