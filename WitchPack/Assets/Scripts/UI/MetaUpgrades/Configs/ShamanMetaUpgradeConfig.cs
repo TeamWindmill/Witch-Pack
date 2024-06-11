@@ -32,8 +32,8 @@ public class ShamanMetaUpgradeConfig : SerializedScriptableObject
 public struct AbilityPanelUpgrades
 {
     public AbilitySO Ability;
-    public List<AbilityUpgradeConfig> LeftStatUpgrades;
-    public List<AbilityUpgradeConfig> RightStatUpgrades ;
+    [BoxGroup("Left")] public List<AbilityUpgradeConfig> LeftStatUpgrades;
+    [BoxGroup("Right")] public List<AbilityUpgradeConfig> RightStatUpgrades ;
 
     public List<AbilityUpgradeConfig> StatUpgrades
     {

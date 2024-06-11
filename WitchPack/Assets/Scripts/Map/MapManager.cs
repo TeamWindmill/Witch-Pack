@@ -1,3 +1,4 @@
+using Sirenix.Utilities;
 using UnityEngine;
 
 public class MapManager : MonoBehaviour
@@ -26,7 +27,7 @@ public class MapManager : MonoBehaviour
             for (int i = 0; i < _nodeObjects.Length; i++)
             {
                 mapNodes[i] = _nodeObjects[i];
-                _nodeObjects[i].Init(NodeState.Locked);
+                _nodeObjects[i].Init();
                 GameManager.SaveData.MapNodes = mapNodes;
             }
         }
@@ -35,8 +36,10 @@ public class MapManager : MonoBehaviour
             for (int i = 0; i < mapNodes.Length; i++)
             {
                 //_nodeObjects[i] = mapNodes[i];
-                _nodeObjects[i].Init(mapNodes[i].State);
+                _nodeObjects[i].SetState(mapNodes[i].State);
             }
+
+            _nodeObjects.ForEach(node => node.Init());
         }
     }
 
