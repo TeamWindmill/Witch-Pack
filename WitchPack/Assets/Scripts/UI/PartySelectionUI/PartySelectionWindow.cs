@@ -38,6 +38,7 @@ public class PartySelectionWindow : UIElement
             return;
         }
         GameManager.Instance.CurrentLevelConfig.SelectedShamans = ActiveShamanParty;
+        
         GameManager.SceneHandler.LoadScene(SceneType.Game);
     }
 
