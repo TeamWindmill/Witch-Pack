@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using DG.Tweening.Core;
 using DG.Tweening.Plugins.Options;
+using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using Unity.Mathematics;
 using UnityEngine;
@@ -14,13 +15,11 @@ public class MapManager : MonoSingleton<MapManager>
 
     [SerializeField] private MapNode[] _nodeObjects;
     [SerializeField] private PartyTokenHandler _partyTokenHandler;
-
-    [Header("Camera Control")] 
-    [SerializeField] private Vector2 _cameraLockedPos;
-    [SerializeField] private int _cameraLockedZoom;
     
-    [SerializeField] private ShamanConfig[] _shamanConfigsForInstantUnlock;
-    [SerializeField] private LevelNode[] _testingLevelNodes;
+    [BoxGroup("Camera")][SerializeField] private CameraLevelSettings _cameraLevelSettings;
+    
+    [BoxGroup("Temp")][SerializeField] private ShamanConfig[] _shamanConfigsForInstantUnlock;
+    [BoxGroup("Temp")][SerializeField] private LevelNode[] _testingLevelNodes;
 
     protected override void Awake()
     {
@@ -56,7 +55,8 @@ public class MapManager : MonoSingleton<MapManager>
 
     private void Start()
     {
-        GameManager.Instance.CameraHandler.LockCamera(_cameraLockedPos, _cameraLockedZoom);
+        GameManager.Instance.CameraHandler.SetCameraLevelSettings(_cameraLevelSettings);
+        GameManager.Instance.CameraHandler.ResetCamera();
     }
 
     public void UnlockLevels(bool state)
@@ -81,5 +81,10 @@ public class MapManager : MonoSingleton<MapManager>
         {
             node.gameObject.SetActive(state);
         }
+    }
+    
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(Vector3.zero, _cameraLevelSettings.CameraBorders);
     }
 }

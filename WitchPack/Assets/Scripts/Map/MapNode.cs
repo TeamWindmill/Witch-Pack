@@ -72,7 +72,8 @@ public class MapNode : MonoBehaviour
     {
         if (button != PointerEventData.InputButton.Left) return;
         SoundManager.Instance.PlayAudioClip(SoundEffectType.MenuClick);
-        GameManager.SaveData.CurrentNode = this;
+        GameManager.SaveData.CurrentNode = this; //temp
+        GameManager.Instance.CameraHandler.SetCameraPosition(transform.position);
     }
     
     protected virtual void OnNodeHoverExit()
