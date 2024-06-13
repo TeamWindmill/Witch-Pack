@@ -9,7 +9,6 @@ public class InformationWindow : UIElement
     [SerializeField] private Transform _holder;
     [SerializeField] private TextMeshProUGUI _titleTMP;
     [SerializeField] private TextMeshProUGUI _discriptionTMP;
-    [SerializeField]private RectTransform _rectTransform;
     [Space] 
     [SerializeField] private Vector2 _windowSize;
     [SerializeField] private float _delayTime;
@@ -41,7 +40,7 @@ public class InformationWindow : UIElement
 
     private void Show(UIElement uiElement, WindowInfo windowInfo)
     {
-        _rectTransform.rect.Set(0,0,_windowSize.x,_windowSize.y);
+        rectTransform.rect.Set(0,0,_windowSize.x,_windowSize.y);
         
         _titleTMP.text = windowInfo.Name;
         _discriptionTMP.text = windowInfo.Discription;
@@ -55,18 +54,12 @@ public class InformationWindow : UIElement
         isActive = true;
     }
 
-    public void Hide()
+    public override void Hide()
     {
         _activeShowRequest = false;
         isActive = false;
         _holder.gameObject.SetActive(false);
     }
-
-    private void OnValidate()
-    {
-        _rectTransform ??= GetComponent<RectTransform>();
-    }
-
     protected override void Update()
     {
         if (_activeShowRequest)

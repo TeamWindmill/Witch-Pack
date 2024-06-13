@@ -9,25 +9,21 @@ using UnityEngine;
 public class PartyTokenHandler : MonoBehaviour
 {
     [SerializeField] private float _pathMaskInterval;
+    [SerializeField] private float _pathMaskRadius;
     [SerializeField] private Transform _partyToken;
-    [SerializeField] private PathType _pathType;
     [SerializeField] private Transform _maskPrefab;
+    [SerializeField] private int _pathResolution;
     [SerializeField] private Transform _maskSpawnPoint;
     
     private List<Transform> _pathMasks = new();
     private float _pathMaskTimer;
     private TweenerCore<Vector3, Path, PathOptions> _tokenAnimation;
-    
-    public void AnimateToken(Transform pathParent, float duration)
-    {
-        Vector3[] pathArray = new Vector3[pathParent.childCount];
-        for (int i = 0; i < pathArray.Length; i++)
-        {
-            pathArray[i] = pathParent.GetChild(i).position;
-        }
 
-        _partyToken.position = pathArray[0];
-        _tokenAnimation = _partyToken.DOPath(pathArray, duration, PathType.CatmullRom);
+    /// <param name="pathPoints"> works according to DoPath points format</param>
+    public void AnimateToken(Vector3 startPos, Vector3[] pathPoints, float duration)
+    {
+        _partyToken.position = startPos;
+        _tokenAnimation = _partyToken.DOPath(pathPoints, duration, PathType.CubicBezier,PathMode.TopDown2D,_pathResolution,Color.blue);
         _tokenAnimation.onComplete += OnFinishTokenAnimation;
         _tokenAnimation.onUpdate += SpawnPathMasks;
         _pathMaskTimer = 0;
@@ -39,6 +35,7 @@ public class PartyTokenHandler : MonoBehaviour
         if (_pathMaskTimer > _pathMaskInterval)
         {
             var mask = Instantiate(_maskPrefab, _maskSpawnPoint.position, Quaternion.identity,transform);
+            mask.localScale = new Vector3(_pathMaskRadius, _pathMaskRadius, _pathMaskRadius);
             _pathMasks.Add(mask);
             _pathMaskTimer = 0;
         }
@@ -61,7 +58,12 @@ public class PartyTokenHandler : MonoBehaviour
         {
             _partyToken.position = MapManager.Instance.NodeObjects[0].transform.position;
         }
-        
+
+        ClearPath();
+    }
+
+    public void ClearPath()
+    {
         if(_pathMasks.Count <= 0) return;
         foreach (var mask in _pathMasks)
         {

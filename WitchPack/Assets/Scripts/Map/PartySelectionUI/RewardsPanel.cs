@@ -12,11 +12,14 @@ public class RewardsPanel : UIElement
     public void Init(LevelConfig levelConfig)
     {
         Hide();
-        foreach (var shamanReward in levelConfig.shamansToAddAfterComplete)
+        if (levelConfig.shamansToAddAfterComplete != null)
         {
-            var shamanRewardUI = Instantiate(_levelRewardUIPrefab, _holder);
-            shamanRewardUI.Init(shamanReward.UnitIcon,shamanReward.Name);
-            _activeLevelRewards.Add(shamanRewardUI);
+            foreach (var shamanReward in levelConfig.shamansToAddAfterComplete)
+            {
+                var shamanRewardUI = Instantiate(_levelRewardUIPrefab, _holder);
+                shamanRewardUI.Init(shamanReward.UnitIcon,shamanReward.Name);
+                _activeLevelRewards.Add(shamanRewardUI);
+            }
         }
     }
 

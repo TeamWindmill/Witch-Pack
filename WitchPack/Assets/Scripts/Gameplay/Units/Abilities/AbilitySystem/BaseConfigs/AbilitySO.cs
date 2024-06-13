@@ -7,7 +7,7 @@ public abstract class AbilitySO : ScriptableObject
     [BoxGroup("General Settings/left/Details",centerLabel: true)]
     [LabelWidth(50)][VerticalGroup("General Settings/left")]
     [HorizontalGroup("General Settings")]
-    [SerializeField] private string name;
+    [SerializeField] private string _name;
     
     [BoxGroup("General Settings/left/Details",centerLabel: true)]
     [TextArea(4, 14)][VerticalGroup("General Settings/left")]
@@ -40,7 +40,7 @@ public abstract class AbilitySO : ScriptableObject
     public Sprite DefaultIcon => defaultIcon;
     public Sprite DisabledIcon => disabledIcon;
     public Sprite UpgradeIcon => upgradeIcon;
-    public string Name => name;
+    public string Name => _name;
     public string Discription => discription;
     public AbilitySO[] Upgrades => _upgrades;
 

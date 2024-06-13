@@ -30,6 +30,7 @@ public class PartySelectionWindow : UIElement
         _rosterPanel.Hide();
         _enemyPanel.Hide();
         _rewardsPanel.Hide();
+        MapManager.Instance.Init();
         base.Hide();
     }
 

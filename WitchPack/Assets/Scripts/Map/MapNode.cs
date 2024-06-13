@@ -3,22 +3,26 @@ using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.U2D;
 
 public class MapNode : MonoBehaviour
 {
-    public NodeState State { get; private set; }
-    public bool IsActive => gameObject.activeSelf;
+    public event Action<MapNode> OnMouseEnter;
+    public event Action<MapNode> OnMouseExit;
+    public event Action<MapNode> OnClick;
     
+    public NodeState State { get; private set; } = NodeState.Locked;
+    public int Index { get; private set; }
+    public bool IsActive => gameObject.activeSelf;
+    public LevelPath Path => _path;
+
     [BoxGroup("Node")][SerializeField] protected ClickHelper _clickHelper;
     [BoxGroup("Node")][SerializeField] protected MapNode _parentNode;
-    [BoxGroup("Node")][SerializeField] private Transform _path;
-    //[BoxGroup("Node")][SerializeField] private float _pathMaskSize;
-    //[BoxGroup("Node")][SerializeField] private float _pathMaskAnimationTime;
+    [BoxGroup("Node")][SerializeField] private LevelPath _path;
     [BoxGroup("Icon")][SerializeField] protected SpriteRenderer _spriteRenderer;
     [BoxGroup("Icon")][SerializeField] private Sprite _defaultIcon;
     [BoxGroup("Icon")][SerializeField] private Sprite _hoverIcon;
     [BoxGroup("Icon")][SerializeField] private Sprite _pressedIcon;
-    
 
     protected virtual void Start()
     {
@@ -29,8 +33,9 @@ public class MapNode : MonoBehaviour
         _clickHelper.OnMouseDown += OnNodeMouseDown;
         _clickHelper.OnMouseUp += OnNodeMouseUp;
     }
-    public virtual void Init()
+    public virtual void Init(int index)
     {
+        Index = index;
         switch (State)
         {
             case NodeState.Completed:
@@ -40,11 +45,12 @@ public class MapNode : MonoBehaviour
                 Unlock();
                 break;
             case NodeState.Locked:
-                Lock();
+                if(_parentNode == null || _parentNode.State == NodeState.Completed) Unlock();
+                else Lock();
                 break;
         }
         
-        if(_parentNode == null || _parentNode.State == NodeState.Completed) Unlock();
+        
     }
     public virtual void SetState(NodeState nodeState)
     {
@@ -59,12 +65,15 @@ public class MapNode : MonoBehaviour
     public virtual void Unlock()
     {
         gameObject.SetActive(true); 
+        _path?.TogglePathMask(SpriteMaskInteraction.VisibleInsideMask);
         State = NodeState.Open;
     }
+
 
     protected virtual void Complete()
     {
         State = NodeState.Completed;
+        _path?.TogglePathMask(SpriteMaskInteraction.None);
         gameObject.SetActive(true); 
     }
 
@@ -74,6 +83,9 @@ public class MapNode : MonoBehaviour
         SoundManager.Instance.PlayAudioClip(SoundEffectType.MenuClick);
         GameManager.SaveData.CurrentNode = this; //temp
         GameManager.Instance.CameraHandler.SetCameraPosition(transform.position);
+        _path?.TogglePathMask(SpriteMaskInteraction.None);
+        MapManager.Instance.ResetVisuals();
+        OnClick?.Invoke(this);
     }
     
     protected virtual void OnNodeHoverExit()
@@ -81,20 +93,17 @@ public class MapNode : MonoBehaviour
         if (!IsActive) return;
         _spriteRenderer.sprite = _defaultIcon;
         MapManager.Instance.PartyTokenHandler.ResetToken();
+        OnMouseExit?.Invoke(this);
     }
 
     protected virtual void OnNodeHoverEnter()
     {
         if (!IsActive) return;
         _spriteRenderer.sprite = _hoverIcon;
+
+
         
-        if(_path != null) MapManager.Instance.PartyTokenHandler.AnimateToken(_path,2); 
-       
-        
-        
-        // _pathMask.localScale = new Vector3(0, 0, 0);
-        // if(_childNode.State == NodeState.Open)
-        //     _pathMask.DOScale(new Vector3(_pathMaskSize, _pathMaskSize, _pathMaskSize), _pathMaskAnimationTime).onComplete += UnlockChild;
+        OnMouseEnter?.Invoke(this);
     }
     
     protected virtual void OnNodeMouseDown(PointerEventData.InputButton obj)
