@@ -11,7 +11,7 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
     public RectTransform RectTransform => rectTransform;
     public bool isMouseOver { get; private set; }
 
-    [SerializeField, HideInInspector] protected RectTransform rectTransform;
+    [SerializeField] protected RectTransform rectTransform;
     [BoxGroup("UI Element")][SerializeField] private bool showOnAwake = false;
     [BoxGroup("UI Element")][SerializeField] private bool hideOnAwake = false;
     [BoxGroup("UI Element")][SerializeField] private bool assignUIGroup = false;
