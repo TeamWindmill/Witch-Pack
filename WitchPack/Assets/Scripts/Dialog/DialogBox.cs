@@ -7,30 +7,41 @@ using UnityEngine.UI;
 
 public class DialogBox : UIElement
 {
-    [SerializeField] private DialogSequence config; //temp for testing
+    public static DialogBox Instance { get; private set; }
+
     [SerializeField] private TextMeshProUGUI _nameText;
     [SerializeField] private TextMeshProUGUI _textField;
     [SerializeField] private Image _characterSplash;
     [SerializeField] private GameObject _nameTextBox;
+    [SerializeField] private float _clickListenDelay;
 
     private DialogSequence _dialogSequence;
+    private Action _dialogEndTrigger;
     private bool _mouseClickListen;
     private int _currentDialogBoxIndex = 0;
 
     private Color _transparentImageColor = new Color(1,1,1,0);
     private Color _opaqueImageColor = new Color(1,1,1,1);
-
-
-    private void Start() //temp for testing
+    protected override void Awake()
     {
-        Init(config);
+        if (Instance != null && Instance != this)
+        {
+            Destroy(Instance);
+        }
+        else Instance = this;
+        base.Awake();
     }
-
-    public void Init(DialogSequence dialogSequence)
+    public void SetDialogSequence(DialogSequence dialogSequence, Action dialogEndTrigger = null)
     {
         _dialogSequence = dialogSequence;
-        SetDialogBox(dialogSequence[_currentDialogBoxIndex]);
-        _mouseClickListen = true;
+        _dialogEndTrigger = dialogEndTrigger;
+    }
+
+    public override void Show()
+    {
+        SetDialogBox(_dialogSequence[_currentDialogBoxIndex]);
+        TimerManager.AddTimer(_clickListenDelay, () => _mouseClickListen = true);
+        base.Show();
     }
 
     private void SetDialogBox(DialogBoxConfig boxConfig)
@@ -61,6 +72,7 @@ public class DialogBox : UIElement
         {
             _mouseClickListen = false;
             Hide();
+            _dialogEndTrigger?.Invoke();
         }
     }
 

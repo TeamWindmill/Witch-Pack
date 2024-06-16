@@ -55,12 +55,13 @@ public class HeroSelectionUI : UIElement
         shamanLevel.text = "Lvl: " + level;
     }
 
-    public void Hide()
+    public override void Hide()
     {
         statBlockPanel.HideStatBlocks();
         abilitiesHandlerUI.Hide();
+        InformationWindow.Instance.Hide();
         IsActive = false;
-        gameObject.SetActive(false);
+        base.Hide();
     }
 
     public override void OnPointerEnter(PointerEventData eventData)

@@ -11,6 +11,8 @@ public class LevelConfig : ScriptableObject
     public LevelHandler levelPrefab;
     public ShamanConfig[] shamansToAddAfterComplete;
     public bool ShowTutorial;
+    public DialogSequence StartDialog;
+    public DialogSequence EndDialog;
     
 
     [NonSerialized]public List<ShamanSaveData> SelectedShamans;
