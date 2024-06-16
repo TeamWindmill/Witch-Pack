@@ -25,112 +25,262 @@ MonoBehaviour:
   _abilityPanelUpgrades:
   - Ability: {fileID: 11400000, guid: 924811fde887b0546abb2d36b3f6421d, type: 2}
     LeftStatUpgrades:
-    - _name: Cast time
-      _valueName: -0.5s
-      _statValue: 0.5
-      _factor: 1
-      _statType: 4
+    - _valueName: -0.5s
+      _name: Cast time
+      _stats:
+      - _statType: 4
+        _statValue: 0.5
+        _factor: 1
       _damageBoosts: []
+      _abilitiesBehaviors: 
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 72143ee0ce2cc0d4a80413ec1aadf076, type: 2}
       - {fileID: 11400000, guid: f18952c34f2b73e48857261afed7668b, type: 2}
       - {fileID: 11400000, guid: 5d9e322acf68612498997c967e1df803, type: 2}
       - {fileID: 11400000, guid: 924811fde887b0546abb2d36b3f6421d, type: 2}
-    - _name: Radius
-      _valueName: +1
-      _statValue: 1
-      _factor: 0
-      _statType: 3
+    - _valueName: +1
+      _name: Radius
+      _stats:
+      - _statType: 3
+        _statValue: 1
+        _factor: 0
       _damageBoosts: []
+      _abilitiesBehaviors: 
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 72143ee0ce2cc0d4a80413ec1aadf076, type: 2}
       - {fileID: 11400000, guid: f18952c34f2b73e48857261afed7668b, type: 2}
       - {fileID: 11400000, guid: 5d9e322acf68612498997c967e1df803, type: 2}
       - {fileID: 11400000, guid: 924811fde887b0546abb2d36b3f6421d, type: 2}
-    - _name: Cooldown
-      _valueName: -2
-      _statValue: 2
-      _factor: 1
-      _statType: 1
+    - _valueName: -2
+      _name: Cooldown
+      _stats:
+      - _statType: 1
+        _statValue: 2
+        _factor: 1
       _damageBoosts: []
+      _abilitiesBehaviors: 
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 72143ee0ce2cc0d4a80413ec1aadf076, type: 2}
       - {fileID: 11400000, guid: f18952c34f2b73e48857261afed7668b, type: 2}
       - {fileID: 11400000, guid: 5d9e322acf68612498997c967e1df803, type: 2}
       - {fileID: 11400000, guid: 924811fde887b0546abb2d36b3f6421d, type: 2}
-    - _name: High impact damage
-      _valueName: +100
-      _statValue: 100
-      _factor: 0
-      _statType: 0
+    - _valueName: +100
+      _name: High impact damage
+      _stats:
+      - _statType: 0
+        _statValue: 100
+        _factor: 0
       _damageBoosts: []
+      _abilitiesBehaviors: 
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: f18952c34f2b73e48857261afed7668b, type: 2}
     RightStatUpgrades:
-    - _name: Radius
-      _valueName: +1
-      _statValue: 1
-      _factor: 0
-      _statType: 3
+    - _valueName: +1
+      _name: Radius
+      _stats:
+      - _statType: 3
+        _statValue: 1
+        _factor: 0
       _damageBoosts: []
+      _abilitiesBehaviors: 
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 72143ee0ce2cc0d4a80413ec1aadf076, type: 2}
       - {fileID: 11400000, guid: f18952c34f2b73e48857261afed7668b, type: 2}
       - {fileID: 11400000, guid: 5d9e322acf68612498997c967e1df803, type: 2}
       - {fileID: 11400000, guid: 924811fde887b0546abb2d36b3f6421d, type: 2}
-    - _name: Duration
-      _valueName: +2s
-      _statValue: 2
-      _factor: 0
-      _statType: 10
+    - _valueName: +2s
+      _name: Duration
+      _stats:
+      - _statType: 10
+        _statValue: 2
+        _factor: 0
       _damageBoosts: []
+      _abilitiesBehaviors: 
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 72143ee0ce2cc0d4a80413ec1aadf076, type: 2}
       - {fileID: 11400000, guid: f18952c34f2b73e48857261afed7668b, type: 2}
       - {fileID: 11400000, guid: 5d9e322acf68612498997c967e1df803, type: 2}
       - {fileID: 11400000, guid: 924811fde887b0546abb2d36b3f6421d, type: 2}
-    - _name: Cast time
-      _valueName: -0.5s
-      _statValue: 0.5
-      _factor: 1
-      _statType: 4
+    - _valueName: -0.5s
+      _name: Cast time
+      _stats:
+      - _statType: 4
+        _statValue: 0.5
+        _factor: 1
       _damageBoosts: []
+      _abilitiesBehaviors: 
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 72143ee0ce2cc0d4a80413ec1aadf076, type: 2}
       - {fileID: 11400000, guid: f18952c34f2b73e48857261afed7668b, type: 2}
       - {fileID: 11400000, guid: 5d9e322acf68612498997c967e1df803, type: 2}
       - {fileID: 11400000, guid: 924811fde887b0546abb2d36b3f6421d, type: 2}
-    - _name: to inspire
-      _valueName: +1AS +2MS
-      _statValue: 0
-      _factor: 0
-      _statType: 0
+    - _valueName: +1AS +2MS
+      _name: to inspire
+      _stats: []
       _damageBoosts: []
+      _abilitiesBehaviors: 
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 5d9e322acf68612498997c967e1df803, type: 2}
   - Ability: {fileID: 11400000, guid: d5c2cbf6b0250ba43be4408df31b9d5d, type: 2}
     LeftStatUpgrades:
-    - _name: Cast time
-      _valueName: -0.5s
-      _statValue: 0.5
-      _factor: 1
-      _statType: 4
+    - _valueName: -0.5s
+      _name: Cast time
+      _stats:
+      - _statType: 4
+        _statValue: 0.5
+        _factor: 1
       _damageBoosts: []
+      _abilitiesBehaviors: 
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: d5c2cbf6b0250ba43be4408df31b9d5d, type: 2}
       - {fileID: 11400000, guid: 09389887f58dcfc4088caa9f572e4fdb, type: 2}
       - {fileID: 11400000, guid: cf82a5de5a0148a4c805eb3387bba94d, type: 2}
-    - _name: 
-      _valueName: 
-      _statValue: 0
-      _factor: 0
-      _statType: 0
+    - _valueName: +1
+      _name: Charmed movement speed
+      _stats: []
+      _damageBoosts: []
+      _abilitiesBehaviors: 
+      _abilitiesToUpgrade:
+      - {fileID: 11400000, guid: d5c2cbf6b0250ba43be4408df31b9d5d, type: 2}
+      - {fileID: 11400000, guid: 09389887f58dcfc4088caa9f572e4fdb, type: 2}
+      - {fileID: 11400000, guid: cf82a5de5a0148a4c805eb3387bba94d, type: 2}
+    - _valueName: +1
+      _name: Charm Charges
+      _stats: []
+      _damageBoosts: []
+      _abilitiesBehaviors: 
+      _abilitiesToUpgrade:
+      - {fileID: 11400000, guid: d5c2cbf6b0250ba43be4408df31b9d5d, type: 2}
+      - {fileID: 11400000, guid: 09389887f58dcfc4088caa9f572e4fdb, type: 2}
+      - {fileID: 11400000, guid: cf82a5de5a0148a4c805eb3387bba94d, type: 2}
+    - _valueName: Charmer
+      _name: Charms enemies until they die
+      _stats: []
+      _damageBoosts: []
+      _abilitiesBehaviors: 
+      _abilitiesToUpgrade:
+      - {fileID: 11400000, guid: 09389887f58dcfc4088caa9f572e4fdb, type: 2}
+    RightStatUpgrades:
+    - _valueName: +1
+      _name: Charmed movement speed
+      _stats: []
+      _damageBoosts: []
+      _abilitiesBehaviors: 
+      _abilitiesToUpgrade:
+      - {fileID: 11400000, guid: d5c2cbf6b0250ba43be4408df31b9d5d, type: 2}
+      - {fileID: 11400000, guid: 09389887f58dcfc4088caa9f572e4fdb, type: 2}
+      - {fileID: 11400000, guid: cf82a5de5a0148a4c805eb3387bba94d, type: 2}
+    - _valueName: +1
+      _name: Charm Charges
+      _stats: []
+      _damageBoosts: []
+      _abilitiesBehaviors: 
+      _abilitiesToUpgrade:
+      - {fileID: 11400000, guid: d5c2cbf6b0250ba43be4408df31b9d5d, type: 2}
+      - {fileID: 11400000, guid: 09389887f58dcfc4088caa9f572e4fdb, type: 2}
+      - {fileID: 11400000, guid: cf82a5de5a0148a4c805eb3387bba94d, type: 2}
+    - _valueName: -3s
+      _name: Cooldows
+      _stats:
+      - _statType: 1
+        _statValue: 3
+        _factor: 1
+      _damageBoosts: []
+      _abilitiesBehaviors: 
+      _abilitiesToUpgrade:
+      - {fileID: 11400000, guid: d5c2cbf6b0250ba43be4408df31b9d5d, type: 2}
+      - {fileID: 11400000, guid: 09389887f58dcfc4088caa9f572e4fdb, type: 2}
+      - {fileID: 11400000, guid: cf82a5de5a0148a4c805eb3387bba94d, type: 2}
+    - _valueName: X2
+      _name: Damage for frenzied enemies
+      _stats: []
+      _damageBoosts: []
+      _abilitiesBehaviors: 
+      _abilitiesToUpgrade:
+      - {fileID: 11400000, guid: cf82a5de5a0148a4c805eb3387bba94d, type: 2}
+  _statPanelUpgrades:
+    LeftStatUpgrades:
+    - _valueName: +10
+      _name: Base Damage
+      _upgradeAbility: 0
+      _stats:
+      - _statType: 1
+        _statValue: 10
+        _factor: 0
+      _abilityStats: []
+      _abilitiesBehaviors: 
       _damageBoosts: []
       _abilitiesToUpgrade: []
-    RightStatUpgrades: []
-  - Ability: {fileID: 11400000, guid: 2f7f24155066659409d4c33ebb5403f2, type: 2}
-    LeftStatUpgrades: []
-    RightStatUpgrades: []
-  _statPanelUpgrades:
-    LeftStatUpgrades: []
-    RightStatUpgrades: []
+    - _valueName: +0.25
+      _name: Attack speed
+      _upgradeAbility: 0
+      _stats:
+      - _statType: 2
+        _statValue: 0.25
+        _factor: 0
+      _abilityStats: []
+      _abilitiesBehaviors: 
+      _damageBoosts: []
+      _abilitiesToUpgrade: []
+    - _valueName: +1
+      _name: Range
+      _upgradeAbility: 0
+      _stats:
+      - _statType: 3
+        _statValue: 1
+        _factor: 0
+      _abilityStats: []
+      _abilitiesBehaviors: 
+      _damageBoosts: []
+      _abilitiesToUpgrade: []
+    - _valueName: +40%
+      _name: Backstab crit chance bonus
+      _upgradeAbility: 1
+      _stats: []
+      _abilityStats: []
+      _abilitiesBehaviors: 
+      _damageBoosts: []
+      _abilitiesToUpgrade:
+      - {fileID: 11400000, guid: 8f95e15918809034c83c8a9fff2acb74, type: 2}
+    RightStatUpgrades:
+    - _valueName: +1
+      _name: Range
+      _upgradeAbility: 0
+      _stats:
+      - _statType: 3
+        _statValue: 1
+        _factor: 0
+      _abilityStats: []
+      _abilitiesBehaviors: 
+      _damageBoosts: []
+      _abilitiesToUpgrade: []
+    - _valueName: +20%
+      _name: Energy Gain
+      _upgradeAbility: 0
+      _stats:
+      - _statType: 17
+        _statValue: 20
+        _factor: 0
+      _abilityStats: []
+      _abilitiesBehaviors: 
+      _damageBoosts: []
+      _abilitiesToUpgrade: []
+    - _valueName: +30%
+      _name: Crit damage
+      _upgradeAbility: 0
+      _stats:
+      - _statType: 5
+        _statValue: 0
+        _factor: 0
+      _abilityStats: []
+      _abilitiesBehaviors: 
+      _damageBoosts: []
+      _abilitiesToUpgrade: []
+    - _valueName: +5
+      _name: Courage damage per friendly unit
+      _upgradeAbility: 0
+      _stats: []
+      _abilityStats: []
+      _abilitiesBehaviors: 
+      _damageBoosts: []
+      _abilitiesToUpgrade: []

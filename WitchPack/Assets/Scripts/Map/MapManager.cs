@@ -1,20 +1,30 @@
+using System.Collections.Generic;
+using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
+using Sirenix.Utilities;
+using Unity.Mathematics;
 using UnityEngine;
+using Path = DG.Tweening.Plugins.Core.PathCore.Path;
 
-public class MapManager : MonoBehaviour
+public class MapManager : MonoSingleton<MapManager>
 {
+    public MapNode[] NodeObjects => _nodeObjects;
+    public PartyTokenHandler PartyTokenHandler => _partyTokenHandler;
+
     [SerializeField] private MapNode[] _nodeObjects;
+    [SerializeField] private PartyTokenHandler _partyTokenHandler;
 
-    [Header("Camera Control")] [SerializeField]
-    private Vector2 _cameraLockedPos;
-
+    [Header("Camera Control")] 
+    [SerializeField] private Vector2 _cameraLockedPos;
     [SerializeField] private int _cameraLockedZoom;
-
-    [SerializeField] private bool[] _nodeLockState;
+    
     [SerializeField] private ShamanConfig[] _shamanConfigsForInstantUnlock;
     [SerializeField] private LevelNode[] _testingLevelNodes;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         Init(GameManager.SaveData.MapNodes);
     }
 
@@ -26,7 +36,7 @@ public class MapManager : MonoBehaviour
             for (int i = 0; i < _nodeObjects.Length; i++)
             {
                 mapNodes[i] = _nodeObjects[i];
-                _nodeObjects[i].Init(NodeState.Locked);
+                _nodeObjects[i].Init();
                 GameManager.SaveData.MapNodes = mapNodes;
             }
         }
@@ -35,9 +45,13 @@ public class MapManager : MonoBehaviour
             for (int i = 0; i < mapNodes.Length; i++)
             {
                 //_nodeObjects[i] = mapNodes[i];
-                _nodeObjects[i].Init(mapNodes[i].State);
+                _nodeObjects[i].SetState(mapNodes[i].State);
             }
+
+            _nodeObjects.ForEach(node => node.Init());
         }
+
+        _partyTokenHandler.ResetToken();
     }
 
     private void Start()
@@ -59,7 +73,6 @@ public class MapManager : MonoBehaviour
     public void UnlockShamans(bool state)
     {
         GameManager.Instance.ShamansManager.AddShamanToRoster(_shamanConfigsForInstantUnlock);
-        //GameManager.Instance.ShamansManager.re(_shamanConfigsForInstantUnlock);
     }
 
     public void ToggleTestingLevels(bool state)

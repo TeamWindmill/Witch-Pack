@@ -9,6 +9,8 @@ public abstract class Ability
     protected BaseUnit Owner { get; }
     
     protected List<AbilityStat> abilityStats = new();
+    
+    protected AbilityBehavior[] _abilitiesBehaviors;
 
     protected Ability(AbilitySO baseConfig, BaseUnit owner)
     {
@@ -63,51 +65,60 @@ public abstract class Ability
 
     public virtual void AddStatUpgrade(AbilityUpgradeConfig abilityUpgradeConfig)
     {
+        //stat modifiers
         foreach (var stat in abilityStats)
         {
-            if (stat.StatType == abilityUpgradeConfig.StatType)
+            foreach (var statConfig in abilityUpgradeConfig.Stats)
             {
-                switch (abilityUpgradeConfig.Factor)
+                if (stat.StatType == statConfig.StatType)
                 {
-                    case Factor.Add:
-                        stat.AddModifier(abilityUpgradeConfig.StatValue);
-                        break;
-                    case Factor.Subtract:
-                        stat.AddModifier(-abilityUpgradeConfig.StatValue);
-                        break;
-                    case Factor.Multiply:
-                        stat.AddMultiplier(abilityUpgradeConfig.StatValue/100);
-                        break;
-                    case Factor.Divide:
-                        stat.AddMultiplier(-(abilityUpgradeConfig.StatValue/100));
-                        break;
+                    switch (statConfig.Factor)
+                    {
+                        case Factor.Add:
+                            stat.AddModifier(statConfig.StatValue);
+                            break;
+                        case Factor.Subtract:
+                            stat.AddModifier(-statConfig.StatValue);
+                            break;
+                        case Factor.Multiply:
+                            stat.AddMultiplier(statConfig.StatValue/100);
+                            break;
+                        case Factor.Divide:
+                            stat.AddMultiplier(-(statConfig.StatValue/100));
+                            break;
+                    }
+                    return;
                 }
-                return;
             }
         }
+        
+        //
     }
     public virtual void AddStatUpgrade(StatUpgradeConfig statUpgradeConfig)
     {
         foreach (var stat in abilityStats)
         {
-            if (stat.StatType == statUpgradeConfig.AbilityStatType)
+            foreach (var abilityStatConfig in statUpgradeConfig.AbilityStats)
             {
-                switch (statUpgradeConfig.Factor)
+                if (stat.StatType == abilityStatConfig.StatType)
                 {
-                    case Factor.Add:
-                        stat.AddModifier(statUpgradeConfig.StatValue);
-                        break;
-                    case Factor.Subtract:
-                        stat.AddModifier(-statUpgradeConfig.StatValue);
-                        break;
-                    case Factor.Multiply:
-                        stat.AddMultiplier(statUpgradeConfig.StatValue/100);
-                        break;
-                    case Factor.Divide:
-                        stat.AddMultiplier(-(statUpgradeConfig.StatValue/100));
-                        break;
+                    switch (abilityStatConfig.Factor)
+                    {
+                        case Factor.Add:
+                            stat.AddModifier(abilityStatConfig.StatValue);
+                            break;
+                        case Factor.Subtract:
+                            stat.AddModifier(-abilityStatConfig.StatValue);
+                            break;
+                        case Factor.Multiply:
+                            stat.AddMultiplier(abilityStatConfig.StatValue/100);
+                            break;
+                        case Factor.Divide:
+                            stat.AddMultiplier(-(abilityStatConfig.StatValue/100));
+                            break;
+                    }
+                    return;
                 }
-                return;
             }
         }
     }
