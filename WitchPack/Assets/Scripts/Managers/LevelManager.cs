@@ -53,7 +53,8 @@ public class LevelManager : MonoSingleton<LevelManager>
         {
             SoundManager.Instance.PlayAudioClip(SoundEffectType.Victory);
             GameManager.Instance.ShamansManager.AddShamanToRoster(CurrentLevel.Config.shamansToAddAfterComplete);
-            GameManager.SaveData.MapNodes[CurrentLevel.ID - 1].State = NodeState.Completed;
+            GameManager.SaveData.MapNodes[CurrentLevel.ID - 1].SetState(NodeState.Completed);
+            GameManager.SaveData.LastLevelCompletedIndex = CurrentLevel.ID - 1;
         }
         UIManager.Instance.ShowUIGroup(UIGroup.EndGameUI);
         OnLevelEnd?.Invoke(CurrentLevel);
