@@ -2,7 +2,6 @@ using Systems.StateMachine;
 
 public class EnemyAI: BaseStateMachine<EnemyAI>
 {
-    public State<EnemyAI> ActiveState => _activeState;
     public Enemy Enemy { get; private set; }
     public EnemyAIConfig Config { get; private set; }
 

@@ -1,33 +1,49 @@
+using System;
+using Sirenix.OdinInspector;
 using Sirenix.Utilities;
 using UnityEngine;
 
-public class MapManager : MonoBehaviour
+public class MapManager : MonoSingleton<MapManager>
 {
+    public MapNode[] NodeObjects => _nodeObjects;
+    public PartyTokenHandler PartyTokenHandler => _partyTokenHandler;
+
     [SerializeField] private MapNode[] _nodeObjects;
+    [SerializeField] private PartyTokenHandler _partyTokenHandler;
 
-    [Header("Camera Control")] [SerializeField]
-    private Vector2 _cameraLockedPos;
+    [BoxGroup("Camera")] [SerializeField] private CameraLevelSettings _cameraLevelSettings;
 
-    [SerializeField] private int _cameraLockedZoom;
+    [BoxGroup("Temp")] [SerializeField] private ShamanConfig[] _shamanConfigsForInstantUnlock;
+    [BoxGroup("Temp")] [SerializeField] private LevelNode[] _testingLevelNodes;
 
-    [SerializeField] private bool[] _nodeLockState;
-    [SerializeField] private ShamanConfig[] _shamanConfigsForInstantUnlock;
-    [SerializeField] private LevelNode[] _testingLevelNodes;
+    public bool LevelSelectOpen;
 
-    private void Awake()
+    protected override void Awake()
     {
-        Init(GameManager.SaveData.MapNodes);
+        base.Awake();
+        Init();
     }
 
-    private void Init(MapNode[] mapNodes)
+    private void Start()
     {
+        _nodeObjects.ForEach(node => node.OnMouseEnter += AnimateToken);
+        _nodeObjects.ForEach(node => node.OnClick += (node) => LevelSelectOpen = true);
+
+        GameManager.Instance.CameraHandler.SetCameraLevelSettings(_cameraLevelSettings);
+        GameManager.Instance.CameraHandler.ResetCamera();
+    }
+
+    public void Init()
+    {
+        LevelSelectOpen = false;
+        var mapNodes = GameManager.SaveData.MapNodes;
         if (mapNodes == null)
         {
             mapNodes = new MapNode[_nodeObjects.Length];
             for (int i = 0; i < _nodeObjects.Length; i++)
             {
                 mapNodes[i] = _nodeObjects[i];
-                _nodeObjects[i].Init();
+                _nodeObjects[i].Init(i);
                 GameManager.SaveData.MapNodes = mapNodes;
             }
         }
@@ -35,18 +51,42 @@ public class MapManager : MonoBehaviour
         {
             for (int i = 0; i < mapNodes.Length; i++)
             {
-                //_nodeObjects[i] = mapNodes[i];
                 _nodeObjects[i].SetState(mapNodes[i].State);
             }
+            
+            for (int i = 0; i < _nodeObjects.Length; i++)
+            {
+                _nodeObjects[i].Init(i);
+            }
 
-            _nodeObjects.ForEach(node => node.Init());
+            GameManager.SaveData.CurrentNode = _nodeObjects[GameManager.SaveData.LastLevelCompletedIndex];
+        }
+
+        _partyTokenHandler.ResetToken();
+    }
+
+    public void ResetVisuals()
+    {
+        _partyTokenHandler.ClearPath();
+        foreach (MapNode mapNode in _nodeObjects)
+        {
+            switch (mapNode.State)
+            {
+                case NodeState.Completed:
+                    mapNode.Path?.TogglePathMask(SpriteMaskInteraction.None);
+                    break;
+                case NodeState.Open:
+                    if(mapNode == GameManager.SaveData.CurrentNode)
+                        mapNode.Path?.TogglePathMask(SpriteMaskInteraction.None);
+                    else
+                        mapNode.Path?.TogglePathMask(SpriteMaskInteraction.VisibleInsideMask);
+                    break;
+                case NodeState.Locked:
+                    break;
+            }
         }
     }
 
-    private void Start()
-    {
-        GameManager.Instance.CameraHandler.LockCamera(_cameraLockedPos, _cameraLockedZoom);
-    }
 
     public void UnlockLevels(bool state)
     {
@@ -55,14 +95,13 @@ public class MapManager : MonoBehaviour
             if (state)
                 nodeObject.Unlock();
             else
-                Init(GameManager.SaveData.MapNodes);
+                Init();
         }
     }
 
     public void UnlockShamans(bool state)
     {
         GameManager.Instance.ShamansManager.AddShamanToRoster(_shamanConfigsForInstantUnlock);
-        //GameManager.Instance.ShamansManager.re(_shamanConfigsForInstantUnlock);
     }
 
     public void ToggleTestingLevels(bool state)
@@ -71,5 +110,21 @@ public class MapManager : MonoBehaviour
         {
             node.gameObject.SetActive(state);
         }
+    }
+
+    private void AnimateToken(MapNode mapNode)
+    {
+        if(LevelSelectOpen) return;
+        if(mapNode.State != NodeState.Open) return;
+        if (mapNode.Path != null)
+        {
+            var startPos = _nodeObjects[mapNode.Index - 1].transform.position;
+            PartyTokenHandler.AnimateToken(startPos, mapNode.Path.GetPathPoints(startPos), mapNode.Path.PathDuration);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(Vector3.zero, _cameraLevelSettings.CameraBorders);
     }
 }

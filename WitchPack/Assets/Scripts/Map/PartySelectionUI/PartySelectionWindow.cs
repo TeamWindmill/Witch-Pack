@@ -8,6 +8,7 @@ public class PartySelectionWindow : UIElement
     [SerializeField] private RosterPanel _rosterPanel;
     [SerializeField] private PackPanel _packPanel;
     [SerializeField] private EnemyPanel _enemyPanel;
+    [SerializeField] private RewardsPanel _rewardsPanel;
     [SerializeField] private TextMeshProUGUI _levelTitle;
     public List<ShamanSaveData> ActiveShamanParty { get; private set; }
     private LevelConfig _levelConfig;
@@ -19,6 +20,7 @@ public class PartySelectionWindow : UIElement
         _rosterPanel.Init(this,GameManager.Instance.ShamansManager.ShamanRoster);
         _packPanel.Init(this);
         _enemyPanel.Init(_levelConfig,_enemyPanelConfig);
+        _rewardsPanel.Init(_levelConfig);
         _levelTitle.text = $"Level {_levelConfig.Number} - {_levelConfig.Name}";
         base.Show();
     }
@@ -27,6 +29,8 @@ public class PartySelectionWindow : UIElement
     {
         _rosterPanel.Hide();
         _enemyPanel.Hide();
+        _rewardsPanel.Hide();
+        MapManager.Instance.Init();
         base.Hide();
     }
 
@@ -38,6 +42,7 @@ public class PartySelectionWindow : UIElement
             return;
         }
         GameManager.Instance.CurrentLevelConfig.SelectedShamans = ActiveShamanParty;
+        
         GameManager.SceneHandler.LoadScene(SceneType.Game);
     }
 

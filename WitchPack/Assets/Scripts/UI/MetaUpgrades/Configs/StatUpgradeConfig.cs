@@ -2,7 +2,6 @@ using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "MetaUpgrade/StatUpgrade",fileName = "StatUpgrade")]
 [Serializable]
 public class StatUpgradeConfig : MetaUpgradeConfig
 {

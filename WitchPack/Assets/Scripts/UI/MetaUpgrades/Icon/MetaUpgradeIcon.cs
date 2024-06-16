@@ -31,7 +31,7 @@ public class MetaUpgradeIcon<T> : ClickableUIElement //where T :
     protected T _upgrade;
 
 
-    protected void Init(MetaUpgradeConfig upgradeConfig, bool hasSkillPoints)
+    public virtual void Init(MetaUpgradeConfig upgradeConfig, bool hasSkillPoints)
     {
         _hasSkillPoints = hasSkillPoints;
         _name.text = upgradeConfig.Name;
