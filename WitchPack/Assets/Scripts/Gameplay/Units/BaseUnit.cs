@@ -4,6 +4,33 @@ using UnityEngine;
 
 public class BaseUnit : BaseEntity , IDamagable
 {
+    #region Public
+
+    public bool Initialized { get; protected set; }
+    public bool IsDead => damageable.CurrentHp <= 0;
+    public BaseUnitConfig UnitConfig => _unitConfig;
+    public HP_Bar HpBar => hpBar;
+    public Damageable Damageable => damageable;
+    public DamageDealer DamageDealer => damageDealer;
+    public Affector Affector => affector;
+    public Transform Transform => transform;
+    public Effectable Effectable => effectable;
+    public virtual Stats BaseStats => null;
+    public UnitStats Stats => stats;
+    public AutoAttackCaster AutoAttackCaster => autoAttackCaster;
+    public OffensiveAbilitySO AutoAttack => _autoAttack;
+    public UnitAutoCaster AutoCaster => _autoCaster;
+    public UnitMovement Movement => movement;
+    public List<AbilityCaster> CastingHandlers => castingHandlers;
+    public Transform CastPos => _castPos;
+    public EnemyTargeter EnemyTargeter => enemyTargeter;
+    public ShamanTargeter ShamanTargeter => shamanTargeter;
+    public UnitTargetHelper<Shaman> ShamanTargetHelper => shamanTargetHelper;
+    public UnitTargetHelper<Enemy> EnemyTargetHelper => enemyTargetHelper;
+
+    public List<ITimer> UnitTimers { get => unitTimers; }
+    #endregion
+
     #region Serialized
     
     [SerializeField] private UnitType unitType;
@@ -36,33 +63,7 @@ public class BaseUnit : BaseEntity , IDamagable
 
     #endregion
     
-    #region Public
-
-    public bool Initialized { get; protected set; }
-    public bool IsDead => damageable.CurrentHp <= 0;
-    public BaseUnitConfig UnitConfig => _unitConfig;
-    public HP_Bar HpBar => hpBar;
-    public Damageable Damageable => damageable;
-    public DamageDealer DamageDealer => damageDealer;
-    public Affector Affector => affector;
-    public Transform Transform => transform;
-    public Effectable Effectable => effectable;
-    public virtual Stats BaseStats => null;
-    public UnitStats Stats => stats;
-    public AutoAttackCaster AutoAttackCaster => autoAttackCaster;
-    public OffensiveAbilitySO AutoAttack => _autoAttack;
-    public UnitAutoCaster AutoCaster => _autoCaster;
-    public UnitMovement Movement => movement;
-    public List<AbilityCaster> CastingHandlers => castingHandlers;
-    public Transform CastPos => _castPos;
-    public EnemyTargeter EnemyTargeter => enemyTargeter;
-    public ShamanTargeter ShamanTargeter => shamanTargeter;
-    public UnitTargetHelper<Shaman> ShamanTargetHelper => shamanTargetHelper;
-    public UnitTargetHelper<Enemy> EnemyTargetHelper => enemyTargetHelper;
-
-    public List<ITimer> UnitTimers { get => unitTimers; }
-    #endregion
-
+    
     public virtual void Init(BaseUnitConfig givenConfig)
     {
         _unitConfig = givenConfig;

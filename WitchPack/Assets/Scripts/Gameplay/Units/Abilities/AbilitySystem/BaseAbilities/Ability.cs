@@ -8,8 +8,7 @@ public abstract class Ability
     public List<Ability> Upgrades { get; } = new();
     protected BaseUnit Owner { get; }
     
-    protected List<AbilityStat> abilityStats = new();
-    
+    protected List<AbilityStat> abilityStats = new();    
     protected AbilityBehavior[] _abilitiesBehaviors;
 
     protected Ability(AbilitySO baseConfig, BaseUnit owner)
@@ -91,8 +90,6 @@ public abstract class Ability
                 }
             }
         }
-        
-        //
     }
     public virtual void AddStatUpgrade(StatUpgradeConfig statUpgradeConfig)
     {

@@ -4,6 +4,7 @@ public class PoisonIvy : OffensiveAbility
     public PoisonIvy(PoisonIvySO config, BaseUnit owner) : base(config, owner)
     {
         Config = config;
+        abilityStats.Add(new AbilityStat(AbilityStatType.Damage,config.PoisonDamage));
     }
 
     public override bool CastAbility()
