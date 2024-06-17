@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3591a7a019640064aa28faca6f55398d, type: 3}
   m_Name: Heal
   m_EditorClassIdentifier: 
-  name: Heal
+  _name: Heal
   discription: Heals a wounded shaman
   defaultIcon: {fileID: -1916488337, guid: 8a1c0a843806e364080d5a6ae48d09fb, type: 3}
   disabledIcon: {fileID: -1888129184, guid: 8a1c0a843806e364080d5a6ae48d09fb, type: 3}
@@ -32,6 +32,7 @@ MonoBehaviour:
     Priority: 5
     Modifier: 1
     StatType: 0
+    AvoidCharmedTargets: 0
   _hasCastVisual: 1
   castVisualColor: 5
   _hasSFX: 1

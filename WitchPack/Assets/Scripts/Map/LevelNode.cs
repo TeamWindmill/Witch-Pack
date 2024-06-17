@@ -5,14 +5,8 @@ using UnityEngine.EventSystems;
 public class LevelNode : MapNode
 {
     [BoxGroup("Level")][SerializeField] private LevelConfig _levelConfig;
-    //[BoxGroup("Level")][SerializeField] private LevelNode[] _nextNodes;
     [BoxGroup("Icon")][SerializeField] private Color _winNodeColor;
     [BoxGroup("Icon")][SerializeField] private Color _avilableNodeColor;
-
-    
-
-    //public int Id => _levelConfig.LevelId;
-
 
     protected override void Complete()
     {
@@ -27,4 +21,6 @@ public class LevelNode : MapNode
         GameManager.Instance.SetLevelConfig(_levelConfig);
         UIManager.Instance.ShowUIGroup(UIGroup.PartySelectionWindow);
     }
+
+    
 }

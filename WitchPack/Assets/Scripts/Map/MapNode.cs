@@ -100,9 +100,6 @@ public class MapNode : MonoBehaviour
     {
         if (!IsActive) return;
         _spriteRenderer.sprite = _hoverIcon;
-
-
-        
         OnMouseEnter?.Invoke(this);
     }
     

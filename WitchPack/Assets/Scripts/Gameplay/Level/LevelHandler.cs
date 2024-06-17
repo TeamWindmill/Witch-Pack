@@ -30,12 +30,17 @@ public class LevelHandler : MonoBehaviour
         GameManager.Instance.CameraHandler.SetCameraLevelSettings(cameraLevelSettings);
         GameManager.Instance.CameraHandler.ResetCamera();
         navMeshSurface.BuildNavMeshAsync(); //bakes navmesh
-        waveHandler.Init();
         coreTemple.Init();
         foreach (var powerStructure in powerStructures)
         {
             powerStructure.Init();
         }
+    }
+
+    public void StartLevel()
+    {
+        waveHandler.Init();
+
     }
 
     public void TurnOffSpawnPoints()

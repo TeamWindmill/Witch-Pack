@@ -222,6 +222,7 @@ MonoBehaviour:
     - _valueName: +0.25
       _name: attack speed
       _upgradeAbility: 0
+      _upgradePassiveAbility: 0
       _stats:
       - _statType: 2
         _statValue: 0.25
@@ -233,6 +234,7 @@ MonoBehaviour:
     - _valueName: +10
       _name: base damage
       _upgradeAbility: 0
+      _upgradePassiveAbility: 0
       _stats:
       - _statType: 1
         _statValue: 10
@@ -244,6 +246,7 @@ MonoBehaviour:
     - _valueName: +1
       _name: range
       _upgradeAbility: 0
+      _upgradePassiveAbility: 0
       _stats:
       - _statType: 3
         _statValue: 1
@@ -254,10 +257,14 @@ MonoBehaviour:
       _abilitiesToUpgrade: []
     - _valueName: +2
       _name: Swift Hyrax movement speed
-      _upgradeAbility: 1
-      _stats: []
+      _upgradeAbility: 0
+      _upgradePassiveAbility: 1
+      _stats:
+      - _statType: 4
+        _statValue: 2
+        _factor: 0
       _abilityStats: []
-      _abilitiesBehaviors: 00000000
+      _abilitiesBehaviors: 
       _damageBoosts: []
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: bea3c57d5751c7c499a794f7cf673e60, type: 2}
@@ -265,6 +272,7 @@ MonoBehaviour:
     - _valueName: +100
       _name: max HP
       _upgradeAbility: 0
+      _upgradePassiveAbility: 0
       _stats:
       - _statType: 0
         _statValue: 100
@@ -276,6 +284,7 @@ MonoBehaviour:
     - _valueName: +20%
       _name: energy gain
       _upgradeAbility: 0
+      _upgradePassiveAbility: 0
       _stats:
       - _statType: 17
         _statValue: 20
@@ -287,6 +296,7 @@ MonoBehaviour:
     - _valueName: +10%
       _name: crit chance
       _upgradeAbility: 0
+      _upgradePassiveAbility: 0
       _stats:
       - _statType: 6
         _statValue: 10
@@ -298,6 +308,7 @@ MonoBehaviour:
     - _valueName: +5
       _name: damage to attrition
       _upgradeAbility: 1
+      _upgradePassiveAbility: 0
       _stats: []
       _abilityStats:
       - _statType: 12
