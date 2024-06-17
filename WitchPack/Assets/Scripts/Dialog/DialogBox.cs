@@ -33,6 +33,7 @@ public class DialogBox : UIElement
     }
     public void SetDialogSequence(DialogSequence dialogSequence, Action dialogEndTrigger = null)
     {
+        _currentDialogBoxIndex = 0;
         _dialogSequence = dialogSequence;
         _dialogEndTrigger = dialogEndTrigger;
     }

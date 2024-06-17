@@ -31,5 +31,10 @@ public class EndScreenUIHandler : UIElement
         gameObject.SetActive(false);
         BgMusicManager.Instance.PlayMusic(MusicClip.MenuMusic);
         GameManager.SceneHandler.LoadScene(SceneType.Map);
+        if (LevelManager.Instance.CurrentLevel.Config.AfterDialog != null)
+        {
+            DialogBox.Instance.SetDialogSequence(LevelManager.Instance.CurrentLevel.Config.AfterDialog);
+            DialogBox.Instance.Show();
+        }
     }
 }

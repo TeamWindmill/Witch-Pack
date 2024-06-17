@@ -6,13 +6,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "LevelConfig", menuName = "Configs/LevelConfig", order = 0)]
 public class LevelConfig : ScriptableObject
 {
-    [Header("Level")] public int Number;
-    public string Name;
-    public LevelHandler levelPrefab;
-    public ShamanConfig[] shamansToAddAfterComplete;
-    public bool ShowTutorial;
-    public DialogSequence StartDialog;
-    public DialogSequence EndDialog;
+    [BoxGroup("Level")] public int Number;
+    [BoxGroup("Level")] public string Name;
+    [BoxGroup("Level")] public LevelHandler levelPrefab;
+    [BoxGroup("Level")] public ShamanConfig[] shamansToAddAfterComplete;
+    [BoxGroup("Level")] public bool ShowTutorial;
+    [BoxGroup("Dialog")] public DialogSequence BeforeDialog;
+    [BoxGroup("Dialog")] public DialogSequence StartDialog;
+    [BoxGroup("Dialog")] public DialogSequence EndDialog;
+    [BoxGroup("Dialog")] public DialogSequence AfterDialog;
     
 
     [NonSerialized]public List<ShamanSaveData> SelectedShamans;
