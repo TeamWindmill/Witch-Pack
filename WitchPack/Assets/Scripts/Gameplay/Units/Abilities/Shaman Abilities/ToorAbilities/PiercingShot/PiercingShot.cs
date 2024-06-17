@@ -8,7 +8,7 @@ public class PiercingShot : OffensiveAbility
         PiercingShotConfig = config;
         abilityStats.Add(new AbilityStat(AbilityStatType.Penetration,PiercingShotConfig.Penetration));
         abilityStats.Add(new AbilityStat(AbilityStatType.Speed,PiercingShotConfig.Speed));
-        abilityStats.Add(new AbilityStat(AbilityStatType.LifeTime,PiercingShotConfig.LifeTime));
+        abilityStats.Add(new AbilityStat(AbilityStatType.Duration,PiercingShotConfig.LifeTime));
     }
 
     public override bool CastAbility()

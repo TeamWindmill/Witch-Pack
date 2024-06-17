@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 public class DialogNode : MapNode
 {
     [BoxGroup("Dialog")][SerializeField] private DialogSequence _dialogConfig;
+    [BoxGroup("Dialog")] public ShamanConfig[] shamansToAddAfterComplete;
+
     protected override void OnNodeClick(PointerEventData.InputButton button)
     {
         base.OnNodeClick(button);
@@ -15,6 +17,7 @@ public class DialogNode : MapNode
     protected override void Complete()
     {
         base.Complete();
+        GameManager.Instance.ShamansManager.AddShamanToRoster(shamansToAddAfterComplete);
         GameManager.SaveData.MapNodes[Index].SetState(NodeState.Completed);
         GameManager.SaveData.LastLevelCompletedIndex = Index;
     }

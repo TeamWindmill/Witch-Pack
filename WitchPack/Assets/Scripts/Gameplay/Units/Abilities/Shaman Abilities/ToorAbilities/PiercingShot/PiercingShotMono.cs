@@ -16,7 +16,7 @@ public class PiercingShotMono : MonoBehaviour
     
     
     private float _speed => _ability.GetAbilityStatValue(AbilityStatType.Speed);
-    private float _lifeTime => _ability.GetAbilityStatValue(AbilityStatType.LifeTime);
+    private float _lifeTime => _ability.GetAbilityStatValue(AbilityStatType.Duration);
 
     private readonly int _baseMaxNumberOfHits = 1;
     private int _currentNumberOfHits;

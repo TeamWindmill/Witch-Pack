@@ -5,6 +5,7 @@ public class AbilityStat : BaseStat<AbilityStatType>
 {
     public AbilityStat(AbilityStatType statType, float baseValue) : base(statType, baseValue)
     {
+        
     }
 }
 
@@ -20,7 +21,9 @@ public enum AbilityStatType
     KillToIncreasePenetration,
     EnergyPointsOnKill,
     ProjectilesAmount,
-    LifeTime,
+    Duration,
     BounceAmount,
     DamageIncreasePerShot,
+    Size,
+    Heal,
 }
