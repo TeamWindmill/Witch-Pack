@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -5,10 +6,6 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PiercingShotMono : MonoBehaviour
 {
-    private const string BASIC_PIERCING_SHOT = "Piercing Shot";
-    private const string MARKSMAN = "Marksman";
-    private const string EXPERIENCED_HUNTER = "Experienced Hunter";
-    private const string QUICK_SHOT = "Quick Shot";
     
     [Header("refs")]
     [SerializeField] private ParticleSystem _basicPiercingShot;
@@ -42,7 +39,7 @@ public class PiercingShotMono : MonoBehaviour
     }
     public void Fire(BaseUnit shooter, PiercingShot givenAbility, Vector2 dir, int basePen = 0, bool includePenStat = false)
     {
-        EnableVisuals(givenAbility.OffensiveAbilityConfig);
+        EnableVisuals(givenAbility.PiercingShotConfig);
         _owner = shooter;
         _ability = givenAbility;
         _dir = dir;
@@ -59,21 +56,21 @@ public class PiercingShotMono : MonoBehaviour
         StartCoroutine(LifeTime());
     }
 
-    private void EnableVisuals(AbilitySO givenAbilitySo)
+    private void EnableVisuals(PiercingShotSO givenAbilitySo)
     {
-        switch (givenAbilitySo.Name)
+        switch (givenAbilitySo.Type)
         {
-            case BASIC_PIERCING_SHOT:
+            case PiercingShotType.PiercingShot:
                 _basicPiercingShot.gameObject.SetActive(true);
                 break;
-            case MARKSMAN:
+            case PiercingShotType.QuickShot:
+                _quickShotPiercingShot.gameObject.SetActive(true);
+                break;
+            case PiercingShotType.Marksman:
                 _marksmanPiercingShot.gameObject.SetActive(true);
                 break;
-            case EXPERIENCED_HUNTER:
+            case PiercingShotType.ExperiencedHunter:
                 _experiencedHunterPiercingShot.gameObject.SetActive(true);
-                break;
-            case QUICK_SHOT:
-                _quickShotPiercingShot.gameObject.SetActive(true);
                 break;
         }
     }

@@ -2,13 +2,13 @@ using UnityEngine;
 
 public class PiercingShot : OffensiveAbility
 {
-    private PiercingShotSO _config;
+    public readonly PiercingShotSO PiercingShotConfig;
     public PiercingShot(PiercingShotSO config, BaseUnit owner) : base(config, owner)
     {
-        _config = config;
-        abilityStats.Add(new AbilityStat(AbilityStatType.Penetration,_config.Penetration));
-        abilityStats.Add(new AbilityStat(AbilityStatType.Speed,_config.Speed));
-        abilityStats.Add(new AbilityStat(AbilityStatType.LifeTime,_config.LifeTime));
+        PiercingShotConfig = config;
+        abilityStats.Add(new AbilityStat(AbilityStatType.Penetration,PiercingShotConfig.Penetration));
+        abilityStats.Add(new AbilityStat(AbilityStatType.Speed,PiercingShotConfig.Speed));
+        abilityStats.Add(new AbilityStat(AbilityStatType.LifeTime,PiercingShotConfig.LifeTime));
     }
 
     public override bool CastAbility()

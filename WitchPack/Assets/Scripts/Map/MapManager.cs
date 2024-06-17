@@ -1,11 +1,7 @@
-using System.Collections.Generic;
-using DG.Tweening;
-using DG.Tweening.Core;
-using DG.Tweening.Plugins.Options;
+using System;
+using Sirenix.OdinInspector;
 using Sirenix.Utilities;
-using Unity.Mathematics;
 using UnityEngine;
-using Path = DG.Tweening.Plugins.Core.PathCore.Path;
 
 public class MapManager : MonoSingleton<MapManager>
 {
@@ -15,28 +11,39 @@ public class MapManager : MonoSingleton<MapManager>
     [SerializeField] private MapNode[] _nodeObjects;
     [SerializeField] private PartyTokenHandler _partyTokenHandler;
 
-    [Header("Camera Control")] 
-    [SerializeField] private Vector2 _cameraLockedPos;
-    [SerializeField] private int _cameraLockedZoom;
-    
-    [SerializeField] private ShamanConfig[] _shamanConfigsForInstantUnlock;
-    [SerializeField] private LevelNode[] _testingLevelNodes;
+    [BoxGroup("Camera")] [SerializeField] private CameraLevelSettings _cameraLevelSettings;
+
+    [BoxGroup("Temp")] [SerializeField] private ShamanConfig[] _shamanConfigsForInstantUnlock;
+    [BoxGroup("Temp")] [SerializeField] private LevelNode[] _testingLevelNodes;
+
+    public bool LevelSelectOpen;
 
     protected override void Awake()
     {
         base.Awake();
-        Init(GameManager.SaveData.MapNodes);
+        Init();
     }
 
-    private void Init(MapNode[] mapNodes)
+    private void Start()
     {
+        _nodeObjects.ForEach(node => node.OnMouseEnter += AnimateToken);
+        _nodeObjects.ForEach(node => node.OnClick += (node) => LevelSelectOpen = true);
+
+        GameManager.Instance.CameraHandler.SetCameraLevelSettings(_cameraLevelSettings);
+        GameManager.Instance.CameraHandler.ResetCamera();
+    }
+
+    public void Init()
+    {
+        LevelSelectOpen = false;
+        var mapNodes = GameManager.SaveData.MapNodes;
         if (mapNodes == null)
         {
             mapNodes = new MapNode[_nodeObjects.Length];
             for (int i = 0; i < _nodeObjects.Length; i++)
             {
                 mapNodes[i] = _nodeObjects[i];
-                _nodeObjects[i].Init();
+                _nodeObjects[i].Init(i);
                 GameManager.SaveData.MapNodes = mapNodes;
             }
         }
@@ -44,20 +51,42 @@ public class MapManager : MonoSingleton<MapManager>
         {
             for (int i = 0; i < mapNodes.Length; i++)
             {
-                //_nodeObjects[i] = mapNodes[i];
                 _nodeObjects[i].SetState(mapNodes[i].State);
             }
+            
+            for (int i = 0; i < _nodeObjects.Length; i++)
+            {
+                _nodeObjects[i].Init(i);
+            }
 
-            _nodeObjects.ForEach(node => node.Init());
+            GameManager.SaveData.CurrentNode = _nodeObjects[GameManager.SaveData.LastLevelCompletedIndex];
         }
 
         _partyTokenHandler.ResetToken();
     }
 
-    private void Start()
+    public void ResetVisuals()
     {
-        GameManager.Instance.CameraHandler.LockCamera(_cameraLockedPos, _cameraLockedZoom);
+        _partyTokenHandler.ClearPath();
+        foreach (MapNode mapNode in _nodeObjects)
+        {
+            switch (mapNode.State)
+            {
+                case NodeState.Completed:
+                    mapNode.Path?.TogglePathMask(SpriteMaskInteraction.None);
+                    break;
+                case NodeState.Open:
+                    if(mapNode == GameManager.SaveData.CurrentNode)
+                        mapNode.Path?.TogglePathMask(SpriteMaskInteraction.None);
+                    else
+                        mapNode.Path?.TogglePathMask(SpriteMaskInteraction.VisibleInsideMask);
+                    break;
+                case NodeState.Locked:
+                    break;
+            }
+        }
     }
+
 
     public void UnlockLevels(bool state)
     {
@@ -66,7 +95,7 @@ public class MapManager : MonoSingleton<MapManager>
             if (state)
                 nodeObject.Unlock();
             else
-                Init(GameManager.SaveData.MapNodes);
+                Init();
         }
     }
 
@@ -81,5 +110,21 @@ public class MapManager : MonoSingleton<MapManager>
         {
             node.gameObject.SetActive(state);
         }
+    }
+
+    private void AnimateToken(MapNode mapNode)
+    {
+        if(LevelSelectOpen) return;
+        if(mapNode.State != NodeState.Open) return;
+        if (mapNode.Path != null)
+        {
+            var startPos = _nodeObjects[mapNode.Index - 1].transform.position;
+            PartyTokenHandler.AnimateToken(startPos, mapNode.Path.GetPathPoints(startPos), mapNode.Path.PathDuration);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(Vector3.zero, _cameraLevelSettings.CameraBorders);
     }
 }

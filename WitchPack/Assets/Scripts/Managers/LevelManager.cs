@@ -26,7 +26,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     [SerializeField] private Canvas gameUi;
     [SerializeField] private PopupsManager popupsManager;
     [SerializeField] private SelectionManager _selectionManager;
-    
+
     private readonly ScoreHandler _scoreHandler = new ScoreHandler();
 
     private void Start()
@@ -37,6 +37,17 @@ public class LevelManager : MonoSingleton<LevelManager>
         SpawnParty(levelConfig.SelectedShamans);
         CurrentLevel.TurnOffSpawnPoints();
         BgMusicManager.Instance.PlayMusic(MusicClip.GameMusic);
+        if (levelConfig.StartDialog != null)
+        {
+            DialogBox.Instance.SetDialogSequence(levelConfig.StartDialog, StartLevel);
+            DialogBox.Instance.Show();
+        }
+        else StartLevel();
+    }
+
+    private void StartLevel()
+    {
+        CurrentLevel.StartLevel();
         UIManager.Instance.ShowUIGroup(UIGroup.TopCounterUI);
         UIManager.Instance.ShowUIGroup(UIGroup.PartyUI);
         GAME_TIME.StartGame();
@@ -47,17 +58,39 @@ public class LevelManager : MonoSingleton<LevelManager>
     public void EndLevel(bool win)
     {
         IsWon = win;
+        StartEndLevelSequence();
+    }
+
+    private void StartEndLevelSequence()
+    {
         GAME_TIME.Pause();
-        BgMusicManager.Instance.StopMusic();
-        if (win)
+        HeroSelectionUI.Instance.Hide();
+        GameManager.Instance.CameraHandler.ToggleCameraLock(true);
+        if (IsWon)
+        {
+            if (CurrentLevel.Config.EndDialog != null)
+            {
+                DialogBox.Instance.SetDialogSequence(CurrentLevel.Config.EndDialog,FinishEndLevelSequence);
+                DialogBox.Instance.Show();
+            }
+            else FinishEndLevelSequence();
+        }
+        else FinishEndLevelSequence();
+    }
+
+    private void FinishEndLevelSequence()
+    {
+        if (IsWon)
         {
             SoundManager.Instance.PlayAudioClip(SoundEffectType.Victory);
             GameManager.Instance.ShamansManager.AddShamanToRoster(CurrentLevel.Config.shamansToAddAfterComplete);
             GameManager.SaveData.MapNodes[CurrentLevel.ID - 1].SetState(NodeState.Completed);
+            GameManager.SaveData.LastLevelCompletedIndex = CurrentLevel.ID - 1;
         }
+
+        BgMusicManager.Instance.StopMusic();
         UIManager.Instance.ShowUIGroup(UIGroup.EndGameUI);
         OnLevelEnd?.Invoke(CurrentLevel);
-            
     }
 
     private void SpawnParty(List<ShamanSaveData> shamans)
@@ -102,7 +135,7 @@ public class LevelManager : MonoSingleton<LevelManager>
             ShamanParty.Remove(shaman);
             if (ShamanParty.Count <= 0)
             {
-                GameManager.Instance.CameraHandler.SetCameraPosition(shaman.transform.position,true);
+                GameManager.Instance.CameraHandler.SetCameraPosition(shaman.transform.position, true);
                 TimerManager.AddTimer(2, false, EndLevel);
             }
         }

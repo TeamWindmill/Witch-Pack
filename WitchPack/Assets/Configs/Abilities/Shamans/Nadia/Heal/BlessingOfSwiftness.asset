@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 869224aa6f25bdc46a0b9f460a721a08, type: 3}
   m_Name: BlessingOfSwiftness
   m_EditorClassIdentifier: 
-  name: Blessing of Swiftness
+  _name: Blessing of Swiftness
   discription: Heals the target and grants it extra attack speed for a short while
   defaultIcon: {fileID: -373580773, guid: 8a1c0a843806e364080d5a6ae48d09fb, type: 3}
   disabledIcon: {fileID: -1445153362, guid: 8a1c0a843806e364080d5a6ae48d09fb, type: 3}
@@ -30,6 +30,7 @@ MonoBehaviour:
     Priority: 5
     Modifier: 1
     StatType: 0
+    AvoidCharmedTargets: 0
   _hasCastVisual: 1
   castVisualColor: 4
   _hasSFX: 1
