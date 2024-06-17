@@ -17,9 +17,9 @@ public class PartySelectionWindow : UIElement
     {
         _levelConfig = GameManager.Instance.CurrentLevelConfig;
         ActiveShamanParty = new();
-        _rosterPanel.Init(this,GameManager.Instance.ShamansManager.ShamanRoster);
+        _rosterPanel.Init(this, GameManager.Instance.ShamansManager.ShamanRoster);
         _packPanel.Init(this);
-        _enemyPanel.Init(_levelConfig,_enemyPanelConfig);
+        _enemyPanel.Init(_levelConfig, _enemyPanelConfig);
         _rewardsPanel.Init(_levelConfig);
         _levelTitle.text = $"Level {_levelConfig.Number} - {_levelConfig.Name}";
         base.Show();
@@ -41,9 +41,17 @@ public class PartySelectionWindow : UIElement
             _packPanel.FlashInRed();
             return;
         }
+
         GameManager.Instance.CurrentLevelConfig.SelectedShamans = ActiveShamanParty;
         
-        GameManager.SceneHandler.LoadScene(SceneType.Game);
+        base.Hide();
+        
+        if (_levelConfig.BeforeDialog != null)
+        {
+            DialogBox.Instance.SetDialogSequence(_levelConfig.BeforeDialog, () => GameManager.SceneHandler.LoadScene(SceneType.Game));
+            DialogBox.Instance.Show();
+        }
+        else GameManager.SceneHandler.LoadScene(SceneType.Game);
     }
 
     public void AssignShamanToPack(ShamanSaveData shaman)
@@ -52,6 +60,7 @@ public class PartySelectionWindow : UIElement
         _packPanel.AddShamanToPack(shaman);
         _rosterPanel.AssignShaman(shaman);
     }
+
     public void UnassignShamanFromPack(ShamanSaveData shaman)
     {
         ActiveShamanParty.Remove(shaman);
