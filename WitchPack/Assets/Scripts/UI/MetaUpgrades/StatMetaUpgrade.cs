@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Sirenix.Utilities;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class StatMetaUpgrade : UIElement
 {
@@ -26,7 +25,7 @@ public class StatMetaUpgrade : UIElement
         {
             if(statUpgradeConfigs.Count - 1 < i) continue;
             _statUpgradeIcons[i].Init(statUpgradeConfigs[i],hasSkillPoint);
-            if(_statUpgradeIcons[i].OpenAtStart) _statUpgradeIcons[i].ChangeStateVisuals(UpgradeState.Open);
+            if(_statUpgradeIcons[i].OpenAtStart && !statUpgradeConfigs[i].NotWorking) _statUpgradeIcons[i].ChangeState(UpgradeState.Open);
         }
     }
 }

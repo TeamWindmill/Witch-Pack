@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Sirenix.Utilities;
 using TMPro;
 using UnityEngine;
@@ -27,7 +26,7 @@ public class AbilityMetaUpgrade : UIElement
         {
             if(abilityPanelConfig.StatUpgrades.Count - 1 < i) continue;
             _abilityUpgradeIcons[i].Init(abilityPanelConfig.StatUpgrades[i],hasSkillPoint);
-            if(_abilityUpgradeIcons[i].OpenAtStart) _abilityUpgradeIcons[i].ChangeStateVisuals(UpgradeState.Open);
+            if(_abilityUpgradeIcons[i].OpenAtStart && !abilityPanelConfig.StatUpgrades[i].NotWorking) _abilityUpgradeIcons[i].ChangeState(UpgradeState.Open);
         }
     }
 }

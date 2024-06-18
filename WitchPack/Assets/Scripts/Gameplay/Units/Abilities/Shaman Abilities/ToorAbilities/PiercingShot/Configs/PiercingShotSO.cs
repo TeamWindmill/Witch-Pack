@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ability", menuName = "Ability/PiercingShot")]
+[CreateAssetMenu(fileName = "ability", menuName = "Ability/Toor/PiercingShot/PiercingShot")]
 
 public class PiercingShotSO : OffensiveAbilitySO
 {

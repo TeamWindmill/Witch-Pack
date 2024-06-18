@@ -19,7 +19,7 @@ namespace Systems.StateMachine
             base.Enter(parent);
         }
 
-        public override void UpdateState(T parent)
+        public sealed override void UpdateState(T parent)
         {
             if (_executionTimer >= _executionInterval)
             {
@@ -32,7 +32,7 @@ namespace Systems.StateMachine
             }
         }
         protected abstract void IntervalUpdate(T parent);
-        public override void ChangeState(T parent)
+        public /* sealed */ override void ChangeState(T parent)
         {
             if (_stateCheckTimer >= _stateCheckInterval)
             {

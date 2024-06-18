@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ability", menuName = "Ability/Heal/Overheal")]
+[CreateAssetMenu(fileName = "ability", menuName = "Ability/Nadia/Heal/Overheal")]
 public class OverhealSO : HealSO
 {
     [SerializeField] private int permanentMaxHealthBonus;

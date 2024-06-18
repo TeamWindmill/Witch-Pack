@@ -1,7 +1,7 @@
 using UnityEngine;
 using Sirenix.OdinInspector;
 
-[CreateAssetMenu(fileName = "MultiShot", menuName = "Ability/MultiShot")]
+[CreateAssetMenu(fileName = "MultiShot", menuName = "Ability/Toor/MultiShot/MultiShot")]
 public class MultiShotSO : OffensiveAbilitySO
 {
     [BoxGroup("MultiShot")][SerializeField] protected MultiShotType multiShotType;

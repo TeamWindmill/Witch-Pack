@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "SameTargetAA", menuName = "Ability/Passive/SameTargetAA")]
+[CreateAssetMenu(fileName = "Attrition", menuName = "Ability/Toor/Attrition")]
 public class AttritionSO : PassiveSO
 {
     [SerializeField] private EventToCount eventToCount;

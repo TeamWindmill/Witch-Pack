@@ -5,19 +5,34 @@ public class Overheal : Heal
     public Overheal(OverhealSO config, BaseUnit owner) : base(config, owner)
     {
         _config = config;
+        abilityStats.Add(new AbilityStat(AbilityStatType.Heal,config.HealAmount));
     }
 
     protected override void HealTarget(Shaman target, BaseUnit caster)
     {
-        if(target.Damageable.CurrentHp + _config.HealAmount > target.Stats[StatType.MaxHp].Value)
+        if (HasAbilityBehavior(AbilityBehavior.OverhealExcessHealing)) ExcessHealthGain(target);
+        else FixedHealthGain(target);
+        
+        target.ShamanVisualHandler.OverhealEffect.Play();
+        target.Damageable.Heal((int)GetAbilityStatValue(AbilityStatType.Heal));
+    }
+
+    private void ExcessHealthGain(Shaman target)
+    {
+        var healAmount = (int)GetAbilityStatValue(AbilityStatType.Heal);
+        if(target.Damageable.CurrentHp + healAmount > target.Stats[StatType.MaxHp].Value)
+        {
+            var excessHeal = target.Damageable.CurrentHp + healAmount - target.Stats[StatType.MaxHp].Value;
+            target.Stats.AddValueToStat(StatType.MaxHp, excessHeal);
+        }
+    }
+
+    private void FixedHealthGain(Shaman target)
+    {
+        var healAmount = (int)GetAbilityStatValue(AbilityStatType.Heal);
+        if(target.Damageable.CurrentHp + healAmount > target.Stats[StatType.MaxHp].Value)
         { 
             target.Stats.AddValueToStat(StatType.MaxHp, _config.PermanentMaxHealthBonus);
-            target.ShamanVisualHandler.OverhealEffect.Play();
         }
-        else
-        {
-            target.ShamanVisualHandler.HealEffect.Play();
-        }
-        target.Damageable.Heal(_config.HealAmount);
     }
 }
