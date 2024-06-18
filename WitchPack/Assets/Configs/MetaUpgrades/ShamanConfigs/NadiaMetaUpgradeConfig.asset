@@ -40,7 +40,10 @@ MonoBehaviour:
       - {fileID: 11400000, guid: cf604a1d59ad27a42916c478ad04cb00, type: 2}
     - _valueName: +1s
       _name: Root duration
-      _stats: []
+      _stats:
+      - _statType: 10
+        _statValue: 1
+        _factor: 0
       _damageBoosts: []
       _abilitiesBehaviors: 
       _abilitiesToUpgrade:
@@ -63,7 +66,10 @@ MonoBehaviour:
       - {fileID: 11400000, guid: cf604a1d59ad27a42916c478ad04cb00, type: 2}
     - _valueName: X2
       _name: Poison damage
-      _stats: []
+      _stats:
+      - _statType: 0
+        _statValue: 2
+        _factor: 2
       _damageBoosts: []
       _abilitiesBehaviors: 
       _abilitiesToUpgrade:
@@ -128,7 +134,10 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 7bffac782568f71458ae230b8f3ade8d, type: 2}
     - _valueName: +10
       _name: Health healed
-      _stats: []
+      _stats:
+      - _statType: 14
+        _statValue: 10
+        _factor: 0
       _damageBoosts: []
       _abilitiesBehaviors: 
       _abilitiesToUpgrade:
@@ -194,6 +203,7 @@ MonoBehaviour:
     - _valueName: +0.25
       _name: Attack speed
       _upgradeAbility: 0
+      _upgradePassiveAbility: 0
       _stats:
       - _statType: 2
         _statValue: 0.25
@@ -205,6 +215,7 @@ MonoBehaviour:
     - _valueName: +40%
       _name: Crit damage
       _upgradeAbility: 0
+      _upgradePassiveAbility: 0
       _stats:
       - _statType: 5
         _statValue: 40
@@ -216,6 +227,7 @@ MonoBehaviour:
     - _valueName: -20%
       _name: Cooldown reduction
       _upgradeAbility: 0
+      _upgradePassiveAbility: 0
       _stats:
       - _statType: 8
         _statValue: 20
@@ -227,6 +239,7 @@ MonoBehaviour:
     - _valueName: +3
       _name: Leopard heart movement speed
       _upgradeAbility: 1
+      _upgradePassiveAbility: 0
       _stats: []
       _abilityStats: []
       _abilitiesBehaviors: 
@@ -237,6 +250,7 @@ MonoBehaviour:
     - _valueName: +10
       _name: Base damage
       _upgradeAbility: 0
+      _upgradePassiveAbility: 0
       _stats:
       - _statType: 1
         _statValue: 10
@@ -248,6 +262,7 @@ MonoBehaviour:
     - _valueName: +20%
       _name: Energy gain
       _upgradeAbility: 0
+      _upgradePassiveAbility: 0
       _stats:
       - _statType: 17
         _statValue: 20
@@ -259,6 +274,7 @@ MonoBehaviour:
     - _valueName: +200
       _name: Max health
       _upgradeAbility: 0
+      _upgradePassiveAbility: 0
       _stats:
       - _statType: 0
         _statValue: 200
@@ -270,6 +286,7 @@ MonoBehaviour:
     - _valueName: +10
       _name: Bear heart regeneration
       _upgradeAbility: 1
+      _upgradePassiveAbility: 0
       _stats: []
       _abilityStats: []
       _abilitiesBehaviors: 

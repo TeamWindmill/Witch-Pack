@@ -37,8 +37,9 @@ public class AbilitiesHandlerUI : MonoBehaviour
 
     public void Hide()
     {
+        
         abilityUpgradePanelUI.OnAbilityUpgrade -= OnAbilityUpgrade;
-        _shaman.EnergyHandler.OnShamanLevelUp -= OnShamanLevelUp;
+        if(_shaman != null) _shaman.EnergyHandler.OnShamanLevelUp -= OnShamanLevelUp;
         abilityUpgradePanelUI.Hide();
         foreach (var uiBlock in abilityUIButtons)
         {

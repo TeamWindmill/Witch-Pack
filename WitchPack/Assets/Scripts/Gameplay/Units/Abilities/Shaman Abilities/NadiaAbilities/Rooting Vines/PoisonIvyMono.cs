@@ -1,22 +1,22 @@
 
 public class PoisonIvyMono : RootingVinesMono
 {
-    private PoisonIvy poison;
+    private PoisonIvy poisonIvy;
     DamageHandler damage;
     public override void Init(BaseUnit owner, CastingAbility ability, float lastingTime,float aoeRange)
     {
         base.Init(owner, ability, lastingTime,aoeRange);
-        poison = ability as PoisonIvy;
+        poisonIvy = ability as PoisonIvy;
     }
     
 
     protected override void OnRoot(Enemy enemy)
     {
         base.OnRoot(enemy);
-        int numberOfTicks = (int)(poison.Config.PoisonDuration / poison.Config.PoisonTickRate);
+        int numberOfTicks = (int)(poisonIvy.Config.PoisonDuration / poisonIvy.Config.PoisonTickRate);
         
         //TimerData timerData = new TimerData(tickTime : poison.PoisonTickRate, tickAmount: numberOfTicks, usingGameTime: true);
-        TimerData<Enemy> timerData = new TimerData<Enemy>(tickTime : poison.Config.PoisonTickRate, enemy, onTimerTick : EnemyTakePoisonDamage, tickAmount: numberOfTicks, usingGameTime: true);
+        TimerData<Enemy> timerData = new TimerData<Enemy>(tickTime : poisonIvy.Config.PoisonTickRate, enemy, onTimerTick : EnemyTakePoisonDamage, tickAmount: numberOfTicks, usingGameTime: true);
         
         //DotTimer dotTimer = new DotTimer(timerData, enemy.Damageable.TakeDamage, owner.DamageDealer, poison.PoisonDamage, refAbility, false);
         Timer<Enemy> dotTimer = new Timer<Enemy>(timerData);
@@ -25,7 +25,7 @@ public class PoisonIvyMono : RootingVinesMono
         enemy.UnitTimers.Add(dotTimer);
 
         enemy.Damageable.OnDeath += RemovePoisonFromEnemyOnDeath;
-        enemy.EnemyVisualHandler.PoisonIvyVisuals.PlayPoisonParticle(poison.Config.PoisonDuration);
+        enemy.EnemyVisualHandler.PoisonIvyVisuals.PlayPoisonParticle(poisonIvy.Config.PoisonDuration);
         SoundManager.Instance.PlayAudioClip(SoundEffectType.PoisonIvy);
     }
 
@@ -36,8 +36,8 @@ public class PoisonIvyMono : RootingVinesMono
 
     private void EnemyTakePoisonDamage(Enemy enemy)
     {
-        damage = new DamageHandler(poison.Config.PoisonDamage);
-        damage.SetPopupColor(poison.Config.PoisonPopupColor);
+        damage = new DamageHandler(poisonIvy.GetAbilityStatValue(AbilityStatType.Damage));
+        damage.SetPopupColor(poisonIvy.Config.PoisonPopupColor);
         enemy.Damageable.TakeDamage(_owner.DamageDealer, damage, Ability as OffensiveAbility, false);
         
     }

@@ -57,6 +57,7 @@ public class HeroSelectionUI : UIElement
 
     public override void Hide()
     {
+        if(!IsActive) return;
         statBlockPanel.HideStatBlocks();
         abilitiesHandlerUI.Hide();
         InformationWindow.Instance.Hide();

@@ -4,6 +4,7 @@ public class Heal : CastingAbility
     public Heal(HealSO config, BaseUnit owner) : base(config, owner)
     {
         _config = config;
+        abilityStats.Add(new AbilityStat(AbilityStatType.Heal,config.HealAmount));
     }
 
     public override bool CastAbility()
@@ -73,7 +74,7 @@ public class Heal : CastingAbility
     
     protected virtual void HealTarget(Shaman target, BaseUnit caster)
     {
-        target.Damageable.Heal(_config.HealAmount);
+        target.Damageable.Heal((int)GetAbilityStatValue(AbilityStatType.Heal));
         target.ShamanVisualHandler.HealEffect.Play();
     }
 }

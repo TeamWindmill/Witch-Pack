@@ -35,7 +35,7 @@ public class StatBlockUI : MonoBehaviour
     public void HideBonusStatUI()
     {
         SetStatText(_baseValue,0);
-        _stat.OnStatChange -= UpdateBaseStat;
+        if(_stat != null) _stat.OnStatChange -= UpdateBaseStat;
     }
 
     public void UpdateBaseStat(float newValue)

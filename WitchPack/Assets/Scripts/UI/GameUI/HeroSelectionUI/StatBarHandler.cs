@@ -62,6 +62,7 @@ public class StatBarHandler : MonoBehaviour
     
      public void Hide()
      {
+         if(_shaman == null) return;
          switch (statBarType)
          {
              case StatBarType.HealthBar:

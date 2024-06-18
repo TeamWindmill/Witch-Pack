@@ -110,6 +110,15 @@ public class Shaman : BaseUnit
                     ability.AddStatUpgrade(statUpgrade);
                 }
             }
+            else if (statUpgrade.UpgradePassiveAbility)
+            {
+                foreach (var abilitySO in statUpgrade.AbilitiesToUpgrade)
+                {
+                    var ability = GetAbilityFromConfig(abilitySO);
+                    if(ability is not StatPassive statPassive) return;
+                    statPassive.AddPassiveStatUpgrade(statUpgrade);
+                }
+            }
             else
             {
                 foreach (var statConfig in statUpgrade.Stats)
