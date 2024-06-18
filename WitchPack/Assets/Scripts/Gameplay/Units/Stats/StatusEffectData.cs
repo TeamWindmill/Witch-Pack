@@ -1,73 +1,92 @@
 using System;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 
 public readonly struct StatusEffectData
 {
-    public readonly float Duration
-    {
-        get
-        {
-            float value = _duration;
-            foreach (var upgrade in Upgrades)
-            {
-                value += upgrade.DurationAddition;
-            }
-
-            return value;
-        }
-    }
-    public readonly float StatValue
-    {
-        get
-        {
-            float value = _statValue;
-            foreach (var upgrade in Upgrades)
-            {
-                value += upgrade.ValueAddition;
-            }
-
-            return value;
-        }
-    }
-    
-    private readonly float _duration;
-    private readonly float _statValue;
+    public readonly StatusEffectStat Duration;
+    public readonly StatusEffectStat StatValue;
     public readonly StatusEffectProcess Process;
     public readonly StatType StatTypeAffected;
     public readonly StatusEffectType StatusEffectType;
     public readonly StatusEffectValueType ValueType;
     public readonly bool ShowStatusEffectPopup;
-    public readonly List<StatusEffectUpgradeConfig> Upgrades;
     public StatusEffectData(StatusEffectConfig config)
     {
-        _duration = config.Duration;
-        _statValue = config.Amount;
+        Duration = new StatusEffectStat(StatusEffectStatType.Duration,config.Duration);
+        StatValue = new StatusEffectStat(StatusEffectStatType.Value,config.Amount);
         Process = config.Process;
         StatTypeAffected = config.StatTypeAffected;
         StatusEffectType = config.StatusEffectType;
         ValueType = config.ValueType;
         ShowStatusEffectPopup = config.ShowStatusEffectPopup;
-        Upgrades = new();
     }
 
     public StatusEffectData(float duration, float statValue, StatusEffectProcess process, StatType statTypeAffected, StatusEffectType statusEffectType, StatusEffectValueType valueType, bool showStatusEffectPopup)
     {
-        _duration = duration;
-        _statValue = statValue;
+        Duration = new StatusEffectStat(StatusEffectStatType.Duration,duration);
+        StatValue = new StatusEffectStat(StatusEffectStatType.Value,statValue);
         Process = process;
         StatTypeAffected = statTypeAffected;
         StatusEffectType = statusEffectType;
         ValueType = valueType;
         ShowStatusEffectPopup = showStatusEffectPopup;
-        Upgrades = new();
+    }
+
+    public void AddUpgrade(StatusEffectUpgradeConfig upgradeConfig)
+    {
+        Duration.AddUpgrade(upgradeConfig.Duration);
+        StatValue.AddUpgrade(upgradeConfig.Value);
     }
 }
 
 [Serializable]
-public struct StatusEffectUpgradeConfig
+public class StatusEffectUpgradeConfig
 {
-    public float DurationAddition;
-    public float ValueAddition;
+    public StatusEffectStatUpgradeConfig Duration = new (StatusEffectStatType.Duration);
+    public StatusEffectStatUpgradeConfig Value = new (StatusEffectStatType.Value);
     public StatusEffectProcess Process;
     public StatType StatType;
+}
+
+public class StatusEffectStat : BaseStat<StatusEffectStatType>
+{
+    public StatusEffectStat(StatusEffectStatType statType, float baseValue) : base(statType, baseValue)
+    {
+    }
+
+    public void AddUpgrade(StatusEffectStatUpgradeConfig statUpgradeConfig)
+    {
+        switch (statUpgradeConfig.Factor)
+        {
+            case Factor.Add:
+                AddModifier(statUpgradeConfig.StatValue);
+                break;
+            case Factor.Subtract:
+                AddModifier(-statUpgradeConfig.StatValue);
+                break;
+            case Factor.Multiply:
+                AddMultiplier(statUpgradeConfig.StatValue / 100);
+                break;
+            case Factor.Divide:
+                AddMultiplier(-statUpgradeConfig.StatValue / 100);
+                break;
+        }
+    }
+}
+
+[Serializable]
+public struct StatusEffectStatUpgradeConfig
+{
+    [ReadOnly] public StatusEffectStatType StatType;
+    public float StatValue;
+    public Factor Factor;
+
+    public StatusEffectStatUpgradeConfig(StatusEffectStatType statType) : this() => StatType = statType;
+}
+
+public enum StatusEffectStatType
+{
+    Duration,
+    Value,
 }

@@ -4,12 +4,12 @@ using UnityEngine;
 [Serializable]
 public class AbilityUpgradeConfig : MetaUpgradeConfig
 {
-    [SerializeField] private AbilityStatConfig[] _stats;
+    [SerializeField] private AbilityStatUpgradeConfig[] _stats;
     [SerializeField] private DamageBoostData[] _damageBoosts;
     [SerializeField] private AbilityBehavior[] _abilitiesBehaviors;
     [SerializeField] private StatusEffectUpgradeConfig[] _statusEffectUpgrades;
     [SerializeField] private AbilitySO[] _abilitiesToUpgrade;
-    public AbilityStatConfig[] Stats => _stats;
+    public AbilityStatUpgradeConfig[] Stats => _stats;
     public AbilitySO[] AbilitiesToUpgrade => _abilitiesToUpgrade;
     public DamageBoostData[] DamageBoosts => _damageBoosts;
     public AbilityBehavior[] AbilitiesBehaviors => _abilitiesBehaviors;
@@ -17,7 +17,7 @@ public class AbilityUpgradeConfig : MetaUpgradeConfig
 }
 
 [Serializable]
-public struct AbilityStatConfig
+public struct AbilityStatUpgradeConfig
 {
     [SerializeField] private AbilityStatType _statType;
     [SerializeField] private float _statValue;

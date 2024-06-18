@@ -42,8 +42,8 @@ public class StatusEffect
     public StatusEffect(Effectable host, StatusEffectData data)
     {
         this.host = host;
-        duration = data.Duration;
-        statValue = data.StatValue;
+        duration = data.Duration.Value;
+        statValue = data.StatValue.Value;
         _statType = data.StatTypeAffected;
         process = data.Process;
         statusEffectType = data.StatusEffectType;

@@ -16,7 +16,7 @@ public class RockMonolith : OffensiveAbility
     {
         var targets = Owner.EnemyTargetHelper.GetAvailableTargets(_config.TargetData);
         
-        //apply status effects
+        //apply status effects on lila
         
 
         if (targets.Count > 0)

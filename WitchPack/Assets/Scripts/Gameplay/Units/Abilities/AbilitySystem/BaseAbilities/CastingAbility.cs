@@ -26,6 +26,7 @@ public abstract class CastingAbility : Ability
     {
         base.AddStatUpgrade(abilityUpgradeConfig);
         
+        //adding status effect upgrades
         if(abilityUpgradeConfig.StatusEffectUpgrades.Length <= 0) return;
         
         foreach (var statusEffect in StatusEffects)
@@ -34,7 +35,7 @@ public abstract class CastingAbility : Ability
             {
                 if (statusEffect.StatTypeAffected == statusEffectUpgrade.StatType && statusEffect.Process == statusEffectUpgrade.Process)
                 {
-                    statusEffect.Upgrades.Add(statusEffectUpgrade);
+                    statusEffect.AddUpgrade(statusEffectUpgrade);
                 }
             }
         }
@@ -44,6 +45,7 @@ public abstract class CastingAbility : Ability
     {
         base.AddStatUpgrade(statUpgradeConfig);
         
+        //adding status effect upgrades
         if(statUpgradeConfig.StatusEffectUpgrades.Length <= 0) return;
         
         foreach (var statusEffect in StatusEffects)
@@ -52,7 +54,7 @@ public abstract class CastingAbility : Ability
             {
                 if (statusEffect.StatTypeAffected == statusEffectUpgrade.StatType && statusEffect.Process == statusEffectUpgrade.Process)
                 {
-                    statusEffect.Upgrades.Add(statusEffectUpgrade);
+                    statusEffect.AddUpgrade(statusEffectUpgrade);
                 }
             }
         }
