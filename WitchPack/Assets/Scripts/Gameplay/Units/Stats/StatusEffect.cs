@@ -11,7 +11,7 @@ public class StatusEffect
     protected Effectable host;//the unit this ss is on
     protected float timeCounter;//how long until the duration is over
     protected float duration;//ss lifetime
-    private float amount;//the amount to change each stat by (might be flat or %)
+    private float statValue;//the amount to change each stat by (might be flat or %)
     private StatType _statType;//the stats to affect
     private StatusEffectProcess process;
     private StatusEffectType statusEffectType;
@@ -32,14 +32,24 @@ public class StatusEffect
     {
         this.host = host;
         duration = config.Duration;
-        amount = config.Amount;
+        statValue = config.Amount;
         _statType = config.StatTypeAffected;
         process = config.Process;
         statusEffectType = config.StatusEffectType;
         statusEffectValueType = config.ValueType;
         _showStatusEffectPopup = config.ShowStatusEffectPopup;
     }
-
+    public StatusEffect(Effectable host, StatusEffectData data)
+    {
+        this.host = host;
+        duration = data.Duration;
+        statValue = data.StatValue;
+        _statType = data.StatTypeAffected;
+        process = data.Process;
+        statusEffectType = data.StatusEffectType;
+        statusEffectValueType = data.ValueType;
+        _showStatusEffectPopup = data.ShowStatusEffectPopup;
+    }
 
     public virtual void Activate()
     {
@@ -75,13 +85,13 @@ public class StatusEffect
         switch (statusEffectValueType)
         {
             case StatusEffectValueType.FlatToInt:
-                _statValue = Mathf.RoundToInt(amount);
+                _statValue = Mathf.RoundToInt(statValue);
                 break;
             case StatusEffectValueType.Percentage:
-                _statValue = (amount / 100) * host.Owner.Stats.GetStatValue(_statType);
+                _statValue = (statValue / 100) * host.Owner.Stats.GetStatValue(_statType);
                 break;
             case StatusEffectValueType.FlatToFloat:
-                _statValue = amount;
+                _statValue = statValue;
                 break;
         }
         host.Owner.Stats.AddValueToStat(StatType, _statValue);
@@ -93,13 +103,13 @@ public class StatusEffect
         switch (statusEffectValueType)
         {
             case StatusEffectValueType.FlatToInt:
-                _statValue = Mathf.RoundToInt(amount / duration);
+                _statValue = Mathf.RoundToInt(statValue / duration);
                 break;
             case StatusEffectValueType.Percentage:
-                _statValue = (amount / 100) * host.Owner.Stats.GetStatValue(_statType) / duration;
+                _statValue = (statValue / 100) * host.Owner.Stats.GetStatValue(_statType) / duration;
                 break;
             case StatusEffectValueType.FlatToFloat:
-                _statValue = amount / duration;
+                _statValue = statValue / duration;
                 break;
         }
 
@@ -122,13 +132,13 @@ public class StatusEffect
         switch (statusEffectValueType)
         {
             case StatusEffectValueType.FlatToInt:
-                _statValue = Mathf.RoundToInt(amount);
+                _statValue = Mathf.RoundToInt(statValue);
                 break;
             case StatusEffectValueType.Percentage:
-                _statValue = (amount / 100) * host.Owner.Stats.GetStatValue(_statType);
+                _statValue = (statValue / 100) * host.Owner.Stats.GetStatValue(_statType);
                 break;
             case StatusEffectValueType.FlatToFloat:
-                _statValue = amount;
+                _statValue = statValue;
                 break;
         }
         host.Owner.Stats.AddValueToStat(StatType, _statValue);
@@ -145,3 +155,4 @@ public class StatusEffect
         Remove();
     }
 }
+

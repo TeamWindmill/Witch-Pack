@@ -45,24 +45,24 @@ public class ConfigWindowEditor : OdinMenuEditorWindow
         return tree;
     }
 
-    protected override void OnBeginDrawEditors()
-    {
-        var selected = this.MenuTree.Selection;
-
-        SirenixEditorGUI.BeginHorizontalToolbar();
-        {
-            GUILayout.FlexibleSpace();
-
-            if (SirenixEditorGUI.ToolbarButton("Delete"))
-            {
-                var asset = selected.SelectedValue;
-                string path = AssetDatabase.GetAssetPath((Object)asset);
-                AssetDatabase.DeleteAsset(path);
-                AssetDatabase.SaveAssets();
-            }
-        }
-        SirenixEditorGUI.EndHorizontalToolbar();
-    }
+    // protected override void OnBeginDrawEditors()
+    // {
+    //     var selected = this.MenuTree.Selection;
+    //
+    //     SirenixEditorGUI.BeginHorizontalToolbar();
+    //     {
+    //         GUILayout.FlexibleSpace();
+    //
+    //         if (SirenixEditorGUI.ToolbarButton("Delete"))
+    //         {
+    //             var asset = selected.SelectedValue;
+    //             string path = AssetDatabase.GetAssetPath((Object)asset);
+    //             AssetDatabase.DeleteAsset(path);
+    //             AssetDatabase.SaveAssets();
+    //         }
+    //     }
+    //     SirenixEditorGUI.EndHorizontalToolbar();
+    // }
 
     protected override void OnDestroy()
     {

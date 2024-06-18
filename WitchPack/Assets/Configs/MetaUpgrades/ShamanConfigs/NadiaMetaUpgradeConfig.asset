@@ -27,6 +27,7 @@ MonoBehaviour:
     LeftStatUpgrades:
     - _valueName: +10
       _name: Base damage
+      _notWorking: 0
       _stats:
       - _statType: 0
         _statValue: 10
@@ -40,6 +41,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: cf604a1d59ad27a42916c478ad04cb00, type: 2}
     - _valueName: +1s
       _name: Root duration
+      _notWorking: 0
       _stats:
       - _statType: 10
         _statValue: 1
@@ -53,6 +55,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: cf604a1d59ad27a42916c478ad04cb00, type: 2}
     - _valueName: -1s
       _name: Reduced cooldown
+      _notWorking: 0
       _stats:
       - _statType: 1
         _statValue: 1
@@ -66,6 +69,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: cf604a1d59ad27a42916c478ad04cb00, type: 2}
     - _valueName: X2
       _name: Poison damage
+      _notWorking: 0
       _stats:
       - _statType: 0
         _statValue: 2
@@ -77,6 +81,7 @@ MonoBehaviour:
     RightStatUpgrades:
     - _valueName: -0.25s
       _name: Cast time
+      _notWorking: 0
       _stats:
       - _statType: 4
         _statValue: 0.25
@@ -90,6 +95,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: cf604a1d59ad27a42916c478ad04cb00, type: 2}
     - _valueName: +10
       _name: damage
+      _notWorking: 0
       _stats:
       - _statType: 0
         _statValue: 10
@@ -103,6 +109,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: cf604a1d59ad27a42916c478ad04cb00, type: 2}
     - _valueName: +1s
       _name: Root duration
+      _notWorking: 0
       _stats: []
       _damageBoosts: []
       _abilitiesBehaviors: 
@@ -113,6 +120,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: cf604a1d59ad27a42916c478ad04cb00, type: 2}
     - _valueName: X2
       _name: Movement speed & regeneration
+      _notWorking: 1
       _stats: []
       _damageBoosts: []
       _abilitiesBehaviors: 
@@ -122,6 +130,7 @@ MonoBehaviour:
     LeftStatUpgrades:
     - _valueName: -0.25s
       _name: cast time
+      _notWorking: 0
       _stats:
       - _statType: 4
         _statValue: 0.25
@@ -134,6 +143,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 7bffac782568f71458ae230b8f3ade8d, type: 2}
     - _valueName: +10
       _name: Health healed
+      _notWorking: 0
       _stats:
       - _statType: 14
         _statValue: 10
@@ -146,6 +156,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: a375fee6a9a1909459661c3f78f6da65, type: 2}
     - _valueName: -2
       _name: Cooldown
+      _notWorking: 0
       _stats:
       - _statType: 1
         _statValue: 2
@@ -158,15 +169,20 @@ MonoBehaviour:
       - {fileID: 11400000, guid: a375fee6a9a1909459661c3f78f6da65, type: 2}
     - _valueName: Overheal
       _name: Increase max health by heal amount
+      _notWorking: 0
       _stats: []
       _damageBoosts: []
-      _abilitiesBehaviors: 
+      _abilitiesBehaviors: 00000000
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 7bffac782568f71458ae230b8f3ade8d, type: 2}
     RightStatUpgrades:
     - _valueName: +10
       _name: Health healed
-      _stats: []
+      _notWorking: 0
+      _stats:
+      - _statType: 14
+        _statValue: 10
+        _factor: 0
       _damageBoosts: []
       _abilitiesBehaviors: 
       _abilitiesToUpgrade:
@@ -175,7 +191,11 @@ MonoBehaviour:
       - {fileID: 11400000, guid: a375fee6a9a1909459661c3f78f6da65, type: 2}
     - _valueName: +2
       _name: Energy gained
-      _stats: []
+      _notWorking: 0
+      _stats:
+      - _statType: 8
+        _statValue: 2
+        _factor: 0
       _damageBoosts: []
       _abilitiesBehaviors: 
       _abilitiesToUpgrade:
@@ -184,15 +204,17 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 7bffac782568f71458ae230b8f3ade8d, type: 2}
     - _valueName: Cast
       _name: on full health shamans
+      _notWorking: 0
       _stats: []
       _damageBoosts: []
-      _abilitiesBehaviors: 
+      _abilitiesBehaviors: 01000000
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: a375fee6a9a1909459661c3f78f6da65, type: 2}
       - {fileID: 11400000, guid: df884db4984f9c347b0621e1056cf9e2, type: 2}
       - {fileID: 11400000, guid: 7bffac782568f71458ae230b8f3ade8d, type: 2}
     - _valueName: +0.5
       _name: Blessing of swifftness Attack speed
+      _notWorking: 1
       _stats: []
       _damageBoosts: []
       _abilitiesBehaviors: 
@@ -202,6 +224,7 @@ MonoBehaviour:
     LeftStatUpgrades:
     - _valueName: +0.25
       _name: Attack speed
+      _notWorking: 0
       _upgradeAbility: 0
       _upgradePassiveAbility: 0
       _stats:
@@ -214,6 +237,7 @@ MonoBehaviour:
       _abilitiesToUpgrade: []
     - _valueName: +40%
       _name: Crit damage
+      _notWorking: 0
       _upgradeAbility: 0
       _upgradePassiveAbility: 0
       _stats:
@@ -226,11 +250,12 @@ MonoBehaviour:
       _abilitiesToUpgrade: []
     - _valueName: -20%
       _name: Cooldown reduction
+      _notWorking: 0
       _upgradeAbility: 0
       _upgradePassiveAbility: 0
       _stats:
       - _statType: 8
-        _statValue: 20
+        _statValue: 0.2
         _factor: 1
       _abilityStats: []
       _abilitiesBehaviors: 
@@ -238,9 +263,13 @@ MonoBehaviour:
       _abilitiesToUpgrade: []
     - _valueName: +3
       _name: Leopard heart movement speed
-      _upgradeAbility: 1
-      _upgradePassiveAbility: 0
-      _stats: []
+      _notWorking: 0
+      _upgradeAbility: 0
+      _upgradePassiveAbility: 1
+      _stats:
+      - _statType: 4
+        _statValue: 3
+        _factor: 0
       _abilityStats: []
       _abilitiesBehaviors: 
       _damageBoosts: []
@@ -249,6 +278,7 @@ MonoBehaviour:
     RightStatUpgrades:
     - _valueName: +10
       _name: Base damage
+      _notWorking: 0
       _upgradeAbility: 0
       _upgradePassiveAbility: 0
       _stats:
@@ -261,11 +291,12 @@ MonoBehaviour:
       _abilitiesToUpgrade: []
     - _valueName: +20%
       _name: Energy gain
+      _notWorking: 0
       _upgradeAbility: 0
       _upgradePassiveAbility: 0
       _stats:
       - _statType: 17
-        _statValue: 20
+        _statValue: 0.2
         _factor: 0
       _abilityStats: []
       _abilitiesBehaviors: 
@@ -273,6 +304,7 @@ MonoBehaviour:
       _abilitiesToUpgrade: []
     - _valueName: +200
       _name: Max health
+      _notWorking: 0
       _upgradeAbility: 0
       _upgradePassiveAbility: 0
       _stats:
@@ -285,9 +317,13 @@ MonoBehaviour:
       _abilitiesToUpgrade: []
     - _valueName: +10
       _name: Bear heart regeneration
-      _upgradeAbility: 1
-      _upgradePassiveAbility: 0
-      _stats: []
+      _notWorking: 0
+      _upgradeAbility: 0
+      _upgradePassiveAbility: 1
+      _stats:
+      - _statType: 10
+        _statValue: 10
+        _factor: 0
       _abilityStats: []
       _abilitiesBehaviors: 
       _damageBoosts: []

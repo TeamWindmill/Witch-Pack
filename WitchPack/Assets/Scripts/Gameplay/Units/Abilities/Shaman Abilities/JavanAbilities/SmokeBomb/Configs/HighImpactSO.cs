@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "HighImpact", menuName = "Ability/SmokeBomb/HighImpact")]
+[CreateAssetMenu(fileName = "HighImpact", menuName = "Ability/Javan/SmokeBomb/HighImpact")]
 public class HighImpactSO : SmokeBombSO
 {
 }

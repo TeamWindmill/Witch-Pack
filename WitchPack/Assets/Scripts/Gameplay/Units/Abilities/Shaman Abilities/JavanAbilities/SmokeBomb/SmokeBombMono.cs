@@ -36,8 +36,8 @@ public class SmokeBombMono : MonoBehaviour
         rangeEnter.gameObject.SetActive(true);
         cloudsEnter.gameObject.SetActive(true);
         cloudsEnter.stopped += CloudsIdleAnim;
-        transform.localScale = new Vector3(ability.SmokeBombConfig.Range, ability.SmokeBombConfig.Range, 0);
-        Invoke(nameof(EndBomb),ability.SmokeBombConfig.Duration);
+        transform.localScale = new Vector3(ability.GetAbilityStatValue(AbilityStatType.Size), ability.GetAbilityStatValue(AbilityStatType.Size), 0);
+        Invoke(nameof(EndBomb),ability.GetAbilityStatValue(AbilityStatType.Duration));
         _targeter.OnTargetAdded += OnTargetEntered;
         _targeter.OnTargetLost += OnTargetExited;
     }

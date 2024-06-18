@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 [Serializable]
 public class Stat : BaseStat<StatType>
@@ -18,17 +17,17 @@ public enum StatType
     MovementSpeed,
     CritDamage,
     CritChance,
-    InvincibleTime, //flat duration of invincibility after recieving damage
+    InvincibleTimeNotWorking, //flat duration of invincibility after recieving damage
     AbilityCooldownReduction, //cdr for abilities only (anything that isnt an auto attack)
     Armor, // damage redcutcion from all sources
     HpRegen, //amount of health resotred every second
-    BonusStatusEffectDuration, //fixed duration added for every effect applied by unit
-    AbilityProjectileSpeed, //if an ability is projectile quicken it by this amount
-    AbilityProjectilePenetration, //the amount of times a projectile ability can hit targets before disabling
+    BonusStatusEffectDurationNotWorking, //fixed duration added for every effect applied by unit
+    AbilityProjectileSpeedNotWorking, //if an ability is projectile quicken it by this amount
+    AbilityProjectilePenetrationNotWorking, //the amount of times a projectile ability can hit targets before disabling
     Visibility,
     ThreatLevel, //the amount of threat currently on this unit
     Threat, //the amount of threat added to this unit's targets
-    EnergyGain,
+    EnergyGainMultiplier,
     
 }
 

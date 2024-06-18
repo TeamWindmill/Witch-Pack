@@ -37,6 +37,24 @@ public class Effectable
         OnAffectedVFX?.Invoke(givenEffectData.StatusEffectType); // maybe also added this to the if above? line 32
         return ss;
     }
+    public StatusEffect AddEffect(StatusEffect givenEffect, Affector affector)
+    {
+        for (int i = 0; i < activeEffects.Count; i++)//check if affected by a similar ss already
+        {
+            if (activeEffects[i].StatType == givenEffect.StatType && activeEffects[i].Process == givenEffect.Process)
+            {
+                activeEffects[i] = givenEffect;
+                givenEffect.Reset();
+                givenEffect.Activate();
+                return givenEffect;
+            }
+        }
+        activeEffects.Add(givenEffect);
+        givenEffect.Activate();
+        OnAffected?.Invoke(this, affector, givenEffect);
+        OnAffectedVFX?.Invoke(givenEffect.StatusEffectType); // maybe also added this to the if above? line 32
+        return givenEffect;
+    }
 
     public void RemoveEffect(StatusEffect effect)
     {
