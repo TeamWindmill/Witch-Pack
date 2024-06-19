@@ -4,8 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "StateMachine/States/ChaseTarget", fileName = "ChaseTarget")]
 public class ChaseTarget : IntervalState<EnemyAI>
 {
-    [SerializeField] float _outOfRangeInterval;
-    [SerializeField] float _distanceModifier;
+    [SerializeField,Tooltip("a different interval for changing state when the enemy's target is out of range")] float _outOfRangeInterval;
+    [SerializeField,Tooltip("a modifier added to the enemy base range that enables outOfRangeInterval state checks")] float _distanceModifier;
     [SerializeField,Range(0,1)] float _returnChance;
     private bool _isOutOfRange;
 

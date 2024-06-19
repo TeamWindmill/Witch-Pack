@@ -23,13 +23,16 @@ public class Effectable
         AddEffect(ss,affector);
         return ss;
     }
-    public void AddEffects(List<StatusEffectData> givenEffectDatas, Affector affector)
+    public List<StatusEffect> AddEffects(List<StatusEffectData> givenEffectDatas, Affector affector)
     {
+        List<StatusEffect> statusEffects = new();
         foreach (var data in givenEffectDatas)
         {
             StatusEffect ss = new StatusEffect(this, data);
-            AddEffect(ss,affector);
+            statusEffects.Add(AddEffect(ss,affector));
         }
+
+        return statusEffects;
     }
     public StatusEffect AddEffect(StatusEffect givenEffect, Affector affector)
     {

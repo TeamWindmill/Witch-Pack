@@ -1,3 +1,4 @@
+using Sirenix.OdinInspector;
 using Systems.StateMachine;
 using UnityEngine;
 
@@ -5,11 +6,12 @@ using UnityEngine;
 public class Taunt : IntervalState<EnemyAI>
 {
     private float _durationTimer;
-    
+
     public override void Enter(EnemyAI parent)
     {
         parent.Enemy.Movement.ToggleMovement(true);
         parent.Enemy.AutoCaster.EnableCaster();
+        parent.Enemy.Movement.SetDestination(parent.Enemy.ShamanTargetHelper.CurrentTarget.transform.position);
         base.Enter(parent);
     }
 
@@ -36,7 +38,10 @@ public class Taunt : IntervalState<EnemyAI>
         }
     }
 
-
+    public void EndTaunt(Effectable parent,StatusEffect statusEffect)
+    {
+        (parent.Owner as Enemy)?.EnemyAI.SetState(typeof(ReturnToPath));
+    }
     public override void Exit(EnemyAI parent)
     {
         parent.Enemy.AutoCaster.DisableCaster();
