@@ -17,25 +17,19 @@ public class Effectable
     { 
         _owner = owner;
     } 
-
-    public StatusEffect AddEffect(StatusEffectConfig givenEffectData, Affector affector)
+    public StatusEffect AddEffect(StatusEffectData givenEffectData, Affector affector)
     {
         StatusEffect ss = new StatusEffect(this, givenEffectData);
-        for (int i = 0; i < activeEffects.Count; i++)//check if affected by a similar ss already
-        {
-            if (activeEffects[i].StatType == givenEffectData.StatTypeAffected && activeEffects[i].Process == givenEffectData.Process)
-            {
-                activeEffects[i] = ss;
-                ss.Reset();
-                ss.Activate();
-                return ss;
-            }
-        }
-        activeEffects.Add(ss);
-        ss.Activate();
-        OnAffected?.Invoke(this, affector, ss);
-        OnAffectedVFX?.Invoke(givenEffectData.StatusEffectType); // maybe also added this to the if above? line 32
+        AddEffect(ss,affector);
         return ss;
+    }
+    public void AddEffects(List<StatusEffectData> givenEffectDatas, Affector affector)
+    {
+        foreach (var data in givenEffectDatas)
+        {
+            StatusEffect ss = new StatusEffect(this, data);
+            AddEffect(ss,affector);
+        }
     }
     public StatusEffect AddEffect(StatusEffect givenEffect, Affector affector)
     {

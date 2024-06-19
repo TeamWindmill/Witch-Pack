@@ -27,8 +27,7 @@ public class HealingWeedsMono : RootingVinesMono
 
     private void HerbalWeeds(Damageable damageable, DamageDealer damageDealer)
     {
-        damageDealer.Owner.Effectable.AddEffect(_healingWeedsAbility.Config.SpeedBoost, damageable.Owner.Affector);
-        damageDealer.Owner.Effectable.AddEffect(_healingWeedsAbility.Config.RegenBoost, damageable.Owner.Affector);
+        damageDealer.Owner.Effectable.AddEffects(_healingWeedsAbility.StatusEffects, damageable.Owner.Affector);
         if (damageDealer.Owner is Shaman shaman)
         {
             shaman.ShamanVisualHandler.HealingWeedsEffect.Play();
