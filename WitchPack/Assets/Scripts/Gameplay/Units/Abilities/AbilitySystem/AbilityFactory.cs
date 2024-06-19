@@ -76,6 +76,9 @@ public class AbilityFactory
                 return new Fireball(ability, owner);
             
             //Lila Abilities
+            case AftershockSO ability:
+                return new Aftershock(ability, owner);
+            
             case FortifySO ability:
                 return new Fortify(ability, owner);
             
