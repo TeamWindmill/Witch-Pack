@@ -32,7 +32,7 @@ public class Taunt : IntervalState<EnemyAI>
             return;
         }
         
-        if (target.Stats[StatType.Visibility].IntValue == 1 || target.IsDead)
+        if (/*target.Stats[StatType.Visibility].IntValue == 1 ||*/ target.IsDead)
         {
             parent.SetState(typeof(ReturnToPath));
         }

@@ -1,3 +1,6 @@
+
+using UnityEngine;
+
 public class Aftershock : RockMonolith
 {
     public AftershockSO AftershockConfig;
@@ -10,9 +13,13 @@ public class Aftershock : RockMonolith
     {
         
         var aftershockMono = LevelManager.Instance.PoolManager.AftershockPool.GetPooledObject();
-        aftershockMono.Activate(_shamanOwner,this,_damageIncrement,true);
+        aftershockMono.transform.position = Owner.transform.position;
+        aftershockMono.gameObject.SetActive(true);
+        aftershockMono.Init(_shamanOwner,this,true,0);
         
         _shamanOwner.Damageable.OnHitGFX -= IncrementDamage;
-        _damageIncrement = 0;
+        DamageIncrement = 0;
     }
+    
+    
 }
