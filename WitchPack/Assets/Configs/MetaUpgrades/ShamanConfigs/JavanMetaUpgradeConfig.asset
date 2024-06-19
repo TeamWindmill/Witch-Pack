@@ -27,6 +27,7 @@ MonoBehaviour:
     LeftStatUpgrades:
     - _valueName: -0.5s
       _name: Cast time
+      _notWorking: 0
       _stats:
       - _statType: 4
         _statValue: 0.5
@@ -40,8 +41,9 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 924811fde887b0546abb2d36b3f6421d, type: 2}
     - _valueName: +1
       _name: Radius
+      _notWorking: 0
       _stats:
-      - _statType: 3
+      - _statType: 13
         _statValue: 1
         _factor: 0
       _damageBoosts: []
@@ -53,6 +55,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 924811fde887b0546abb2d36b3f6421d, type: 2}
     - _valueName: -2
       _name: Cooldown
+      _notWorking: 0
       _stats:
       - _statType: 1
         _statValue: 2
@@ -66,6 +69,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 924811fde887b0546abb2d36b3f6421d, type: 2}
     - _valueName: +100
       _name: High impact damage
+      _notWorking: 0
       _stats:
       - _statType: 0
         _statValue: 100
@@ -77,8 +81,9 @@ MonoBehaviour:
     RightStatUpgrades:
     - _valueName: +1
       _name: Radius
+      _notWorking: 0
       _stats:
-      - _statType: 3
+      - _statType: 13
         _statValue: 1
         _factor: 0
       _damageBoosts: []
@@ -90,6 +95,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 924811fde887b0546abb2d36b3f6421d, type: 2}
     - _valueName: +2s
       _name: Duration
+      _notWorking: 0
       _stats:
       - _statType: 10
         _statValue: 2
@@ -103,6 +109,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 924811fde887b0546abb2d36b3f6421d, type: 2}
     - _valueName: -0.5s
       _name: Cast time
+      _notWorking: 0
       _stats:
       - _statType: 4
         _statValue: 0.5
@@ -116,6 +123,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 924811fde887b0546abb2d36b3f6421d, type: 2}
     - _valueName: +1AS +2MS
       _name: to inspire
+      _notWorking: 1
       _stats: []
       _damageBoosts: []
       _abilitiesBehaviors: 
@@ -125,6 +133,7 @@ MonoBehaviour:
     LeftStatUpgrades:
     - _valueName: -0.5s
       _name: Cast time
+      _notWorking: 0
       _stats:
       - _statType: 4
         _statValue: 0.5
@@ -137,6 +146,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: cf82a5de5a0148a4c805eb3387bba94d, type: 2}
     - _valueName: +1
       _name: Charmed movement speed
+      _notWorking: 1
       _stats: []
       _damageBoosts: []
       _abilitiesBehaviors: 
@@ -146,6 +156,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: cf82a5de5a0148a4c805eb3387bba94d, type: 2}
     - _valueName: +1
       _name: Charm Charges
+      _notWorking: 1
       _stats: []
       _damageBoosts: []
       _abilitiesBehaviors: 
@@ -155,6 +166,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: cf82a5de5a0148a4c805eb3387bba94d, type: 2}
     - _valueName: Charmer
       _name: Charms enemies until they die
+      _notWorking: 1
       _stats: []
       _damageBoosts: []
       _abilitiesBehaviors: 
@@ -163,6 +175,7 @@ MonoBehaviour:
     RightStatUpgrades:
     - _valueName: +1
       _name: Charmed movement speed
+      _notWorking: 1
       _stats: []
       _damageBoosts: []
       _abilitiesBehaviors: 
@@ -172,6 +185,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: cf82a5de5a0148a4c805eb3387bba94d, type: 2}
     - _valueName: +1
       _name: Charm Charges
+      _notWorking: 1
       _stats: []
       _damageBoosts: []
       _abilitiesBehaviors: 
@@ -181,6 +195,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: cf82a5de5a0148a4c805eb3387bba94d, type: 2}
     - _valueName: -3s
       _name: Cooldows
+      _notWorking: 1
       _stats:
       - _statType: 1
         _statValue: 3
@@ -193,6 +208,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: cf82a5de5a0148a4c805eb3387bba94d, type: 2}
     - _valueName: X2
       _name: Damage for frenzied enemies
+      _notWorking: 1
       _stats: []
       _damageBoosts: []
       _abilitiesBehaviors: 
@@ -202,7 +218,9 @@ MonoBehaviour:
     LeftStatUpgrades:
     - _valueName: +10
       _name: Base Damage
+      _notWorking: 0
       _upgradeAbility: 0
+      _upgradePassiveAbility: 0
       _stats:
       - _statType: 1
         _statValue: 10
@@ -213,7 +231,9 @@ MonoBehaviour:
       _abilitiesToUpgrade: []
     - _valueName: +0.25
       _name: Attack speed
+      _notWorking: 0
       _upgradeAbility: 0
+      _upgradePassiveAbility: 0
       _stats:
       - _statType: 2
         _statValue: 0.25
@@ -224,7 +244,9 @@ MonoBehaviour:
       _abilitiesToUpgrade: []
     - _valueName: +1
       _name: Range
+      _notWorking: 0
       _upgradeAbility: 0
+      _upgradePassiveAbility: 0
       _stats:
       - _statType: 3
         _statValue: 1
@@ -235,8 +257,13 @@ MonoBehaviour:
       _abilitiesToUpgrade: []
     - _valueName: +40%
       _name: Backstab crit chance bonus
-      _upgradeAbility: 1
-      _stats: []
+      _notWorking: 0
+      _upgradeAbility: 0
+      _upgradePassiveAbility: 1
+      _stats:
+      - _statType: 6
+        _statValue: 40
+        _factor: 0
       _abilityStats: []
       _abilitiesBehaviors: 
       _damageBoosts: []
@@ -245,7 +272,9 @@ MonoBehaviour:
     RightStatUpgrades:
     - _valueName: +1
       _name: Range
+      _notWorking: 0
       _upgradeAbility: 0
+      _upgradePassiveAbility: 0
       _stats:
       - _statType: 3
         _statValue: 1
@@ -256,10 +285,12 @@ MonoBehaviour:
       _abilitiesToUpgrade: []
     - _valueName: +20%
       _name: Energy Gain
+      _notWorking: 0
       _upgradeAbility: 0
+      _upgradePassiveAbility: 0
       _stats:
       - _statType: 17
-        _statValue: 20
+        _statValue: 0.2
         _factor: 0
       _abilityStats: []
       _abilitiesBehaviors: 
@@ -267,10 +298,12 @@ MonoBehaviour:
       _abilitiesToUpgrade: []
     - _valueName: +30%
       _name: Crit damage
+      _notWorking: 0
       _upgradeAbility: 0
+      _upgradePassiveAbility: 0
       _stats:
       - _statType: 5
-        _statValue: 0
+        _statValue: 30
         _factor: 0
       _abilityStats: []
       _abilitiesBehaviors: 
@@ -278,9 +311,15 @@ MonoBehaviour:
       _abilitiesToUpgrade: []
     - _valueName: +5
       _name: Courage damage per friendly unit
+      _notWorking: 0
       _upgradeAbility: 0
-      _stats: []
+      _upgradePassiveAbility: 1
+      _stats:
+      - _statType: 1
+        _statValue: 5
+        _factor: 0
       _abilityStats: []
       _abilitiesBehaviors: 
       _damageBoosts: []
-      _abilitiesToUpgrade: []
+      _abilitiesToUpgrade:
+      - {fileID: 11400000, guid: 7add2b47021dbcd4493f1a677a7abeff, type: 2}

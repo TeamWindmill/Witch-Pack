@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class MetaUpgradeIcon<T> : ClickableUIElement //where T : 
+public class MetaUpgradeIcon<T> : ClickableUIElement
 {
     public event Action<T> OnUpgrade;
 
@@ -23,20 +23,32 @@ public class MetaUpgradeIcon<T> : ClickableUIElement //where T :
     [BoxGroup("Sprites")] [SerializeField] private Sprite defaultFrameSprite;
     [BoxGroup("Sprites")] [SerializeField] private Sprite defaultLineSprite;
     [BoxGroup("Sprites")] [SerializeField] private Sprite upgradedLineSprite;
-    public UpgradeState UpgradeState { get; private set; } = UpgradeState.Locked;
+    public UpgradeState UpgradeState { get; private set; }
 
     public bool OpenAtStart => _openAtStart;
 
     private bool _hasSkillPoints;
-    protected T _upgrade;
+    protected T Upgrade;
+    private MetaUpgradeConfig _upgradeConfig;
 
 
     public virtual void Init(MetaUpgradeConfig upgradeConfig, bool hasSkillPoints)
     {
+        UpgradeState = UpgradeState.Locked;
+        _upgradeConfig = upgradeConfig;
         _hasSkillPoints = hasSkillPoints;
-        _name.text = upgradeConfig.Name;
-        _amount.text = upgradeConfig.ValueName;
-        ChangeStateVisuals(UpgradeState);
+        if (!upgradeConfig.NotWorking)
+        {
+            _name.text = upgradeConfig.Name;
+            _amount.text = upgradeConfig.ValueName;
+        }
+        else
+        {
+            _name.text = "WIP";
+            _amount.text = "";
+        }
+        
+        ChangeState(UpgradeState);
         Show();
     }
 
@@ -49,9 +61,9 @@ public class MetaUpgradeIcon<T> : ClickableUIElement //where T :
             case UpgradeState.Open:
                 if (_hasSkillPoints)
                 {
-                    ChangeStateVisuals(UpgradeState.Upgraded);
-                    OnUpgrade?.Invoke(_upgrade);
-                    if (childNode != null) childNode.ChangeStateVisuals(UpgradeState.Open);
+                    ChangeState(UpgradeState.Upgraded);
+                    OnUpgrade?.Invoke(Upgrade);
+                    if (childNode != null) childNode.ChangeState(UpgradeState.Open);
                 }
                 break;
             case UpgradeState.Upgraded:
@@ -61,7 +73,7 @@ public class MetaUpgradeIcon<T> : ClickableUIElement //where T :
         base.OnClick(eventData);
     }
 
-    public void ChangeStateVisuals(UpgradeState upgradeState)
+    public void ChangeState(UpgradeState upgradeState)
     {
         UpgradeState = upgradeState;
         switch (upgradeState)
@@ -74,6 +86,7 @@ public class MetaUpgradeIcon<T> : ClickableUIElement //where T :
             case UpgradeState.Open:
                 if (_hasSkillPoints)
                 {
+                    if(_upgradeConfig.NotWorking) return;
                     _alphaImage.gameObject.SetActive(false);
                     _lineImage.sprite = defaultLineSprite;
                     _frameImage.sprite = upgradeReadyFrameSprite;

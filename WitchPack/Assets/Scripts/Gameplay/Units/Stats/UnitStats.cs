@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 
 [System.Serializable]
 public class UnitStats
@@ -29,7 +28,7 @@ public class UnitStats
         Stats.Add(baseStats.Armor.statType,new Stat(baseStats.Armor.statType,baseStats.Armor.value));
         Stats.Add(baseStats.HpRegen.statType,new Stat(baseStats.HpRegen.statType,baseStats.HpRegen.value));
         Stats.Add(baseStats.Threat.statType,new Stat(baseStats.Threat.statType,baseStats.Threat.value));
-        Stats.Add(baseStats.AbilityProjectilePenetration.statType,new Stat(baseStats.AbilityProjectilePenetration.statType,baseStats.AbilityProjectilePenetration.value));
+        Stats.Add(baseStats.AbilityCooldownReduction.statType,new Stat(baseStats.AbilityCooldownReduction.statType,baseStats.AbilityCooldownReduction.value));
         Stats.Add(baseStats.Visibility.statType,new Stat(baseStats.Visibility.statType,baseStats.Visibility.value));
         Stats.Add(baseStats.ThreatLevel.statType,new Stat(baseStats.ThreatLevel.statType,baseStats.ThreatLevel.value));
         Stats.Add(baseStats.EnergyGain.statType,new Stat(baseStats.EnergyGain.statType,baseStats.EnergyGain.value));

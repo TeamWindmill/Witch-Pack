@@ -9,7 +9,7 @@ public abstract class Ability
     protected BaseUnit Owner { get; }
     
     protected List<AbilityStat> abilityStats = new();    
-    protected AbilityBehavior[] _abilitiesBehaviors;
+    protected List<AbilityBehavior> _abilitiesBehaviors = new();
 
     protected Ability(AbilitySO baseConfig, BaseUnit owner)
     {
@@ -52,6 +52,31 @@ public abstract class Ability
         return upgrades;
     }
 
+    public virtual bool HasAbilityBehavior(AbilityBehavior abilityBehavior)
+    {
+        foreach (var behavior in _abilitiesBehaviors)
+        {
+            if (behavior == abilityBehavior) return true;
+        }
+
+        return false;
+    }
+    
+
+    public virtual void AddAbilityBehavior(AbilityUpgradeConfig abilityUpgradeConfig)
+    {
+        foreach (var behavior in abilityUpgradeConfig.AbilitiesBehaviors)
+        {
+            _abilitiesBehaviors.Add(behavior);
+        }
+    }
+    public virtual void AddAbilityBehavior(StatUpgradeConfig statUpgradeConfig)
+    {
+        foreach (var behavior in statUpgradeConfig.AbilitiesBehaviors)
+        {
+            _abilitiesBehaviors.Add(behavior);
+        }
+    }
     public float GetAbilityStatValue(AbilityStatType abilityStatType)
     {
         foreach (var abilityStat in abilityStats)

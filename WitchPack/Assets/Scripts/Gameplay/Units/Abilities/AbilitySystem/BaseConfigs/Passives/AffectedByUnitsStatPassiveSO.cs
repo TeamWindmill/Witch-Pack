@@ -1,7 +1,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Courage", menuName = "Ability/Passive/JavanCourage")]
+[CreateAssetMenu(fileName = "AffectedByUnitsStatPassive", menuName = "Ability/Passive/AffectedByUnitsStatPassive")]
 public class AffectedByUnitsStatPassiveSO : PassiveSO
 {
     [Header("Affected By Units Stat Passive")] [SerializeField]

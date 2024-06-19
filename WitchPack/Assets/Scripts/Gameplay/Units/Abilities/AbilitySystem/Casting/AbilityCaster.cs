@@ -51,7 +51,7 @@ public class AbilityCaster : ICaster
         return ability.GetUpgrades().Contains(caster.Ability);
     }
 
-    public float GetCooldown() => ability.GetAbilityStatValue(AbilityStatType.Cooldown);
+    public float GetCooldown() => ability.GetAbilityStatValue(AbilityStatType.Cooldown) * _unit.Stats[StatType.AbilityCooldownReduction].Value;
 
 }
 

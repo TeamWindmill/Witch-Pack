@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "StatusEffectConfig", menuName = "StatusEffect")]
 public class StatusEffectConfig : ScriptableObject
 {
-    [SerializeField] private float amount;//this might be useless 
+    [SerializeField] private float amount; 
     [SerializeField, Tooltip("Instant means a stat will change by the amount given for a duration then return to normal, " +
         "Over Time means a stat will decrease every 1 second by a fixed amount until reaching the given amount 1 second before the duration ends")]
     private StatusEffectProcess process;

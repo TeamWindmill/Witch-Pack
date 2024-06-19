@@ -16,10 +16,10 @@ public class Stats
     public StatConfig Armor = new StatConfig(StatType.Armor);
     public StatConfig HpRegen = new StatConfig(StatType.HpRegen);
     public StatConfig Threat = new StatConfig(StatType.Threat);
-    public StatDecimalConfig EnergyGain = new StatDecimalConfig(StatType.EnergyGain);
-    [HideInInspector] public StatConfig AbilityProjectilePenetration = new StatConfig(StatType.AbilityProjectilePenetration);
-    [HideInInspector] public StatConfig Visibility = new StatConfig(StatType.Visibility);
-    [HideInInspector] public StatConfig ThreatLevel = new StatConfig(StatType.ThreatLevel);
+    [ReadOnly] public StatDecimalConfig AbilityCooldownReduction = new StatDecimalConfig(StatType.AbilityCooldownReduction,1);
+    [ReadOnly] public StatDecimalConfig EnergyGain = new StatDecimalConfig(StatType.EnergyGainMultiplier,1);
+    [ReadOnly] public StatConfig Visibility = new StatConfig(StatType.Visibility,0);
+    [ReadOnly] public StatConfig ThreatLevel = new StatConfig(StatType.ThreatLevel,0);
 
 }
 
@@ -33,6 +33,12 @@ public class StatConfig
     {
         statType = givenStatType;
     }
+
+    public StatConfig(StatType statType, int value)
+    {
+        this.statType = statType;
+        this.value = value;
+    }
 }
 
 [Serializable]
@@ -44,5 +50,11 @@ public class StatDecimalConfig
     public StatDecimalConfig(StatType givenStatType)
     {
         statType = givenStatType;
+    }
+
+    public StatDecimalConfig(StatType statType, float value)
+    {
+        this.statType = statType;
+        this.value = value;
     }
 }

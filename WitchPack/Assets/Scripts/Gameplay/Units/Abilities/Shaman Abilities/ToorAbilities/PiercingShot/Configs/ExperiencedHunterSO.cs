@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ability", menuName = "Ability/ExperiencedHunter")]
+[CreateAssetMenu(fileName = "ability", menuName = "Ability/Toor/PiercingShot/ExperiencedHunter")]
 
 public class ExperiencedHunterSO : PiercingShotSO
 {
