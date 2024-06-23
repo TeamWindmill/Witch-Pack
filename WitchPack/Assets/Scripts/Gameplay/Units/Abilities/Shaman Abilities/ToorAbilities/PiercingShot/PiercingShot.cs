@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class PiercingShot : OffensiveAbility
 {
+    public int ProjectilePenetration { get; protected set; }
+
     public readonly PiercingShotSO PiercingShotConfig;
     public PiercingShot(PiercingShotSO config, BaseUnit owner) : base(config, owner)
     {

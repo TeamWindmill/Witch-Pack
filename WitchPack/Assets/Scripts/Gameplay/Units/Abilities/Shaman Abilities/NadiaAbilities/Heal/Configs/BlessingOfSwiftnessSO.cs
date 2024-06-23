@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ability", menuName = "Ability/Heal/BlessingOfSwiftness")]
+[CreateAssetMenu(fileName = "ability", menuName = "Ability/Nadia/Heal/BlessingOfSwiftness")]
 public class BlessingOfSwiftnessSO : HealSO
 {
     [SerializeField] private StatusEffectConfig attackSpeedBoost;

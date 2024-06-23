@@ -1,9 +1,7 @@
 using System;
-using DG.Tweening;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.U2D;
 
 public class MapNode : MonoBehaviour
 {

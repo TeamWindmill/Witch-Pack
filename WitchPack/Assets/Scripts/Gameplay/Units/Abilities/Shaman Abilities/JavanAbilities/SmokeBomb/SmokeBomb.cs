@@ -4,6 +4,8 @@ public class SmokeBomb : OffensiveAbility
     public SmokeBomb(SmokeBombSO config, BaseUnit owner) : base(config, owner)
     {
         SmokeBombConfig = config;
+        abilityStats.Add(new AbilityStat(AbilityStatType.Duration,config.Duration));
+        abilityStats.Add(new AbilityStat(AbilityStatType.Size,config.Size));
     }
 
     public override bool CastAbility()

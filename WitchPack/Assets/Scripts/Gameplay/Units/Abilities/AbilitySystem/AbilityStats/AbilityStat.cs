@@ -14,7 +14,7 @@ public enum AbilityStatType
     Damage,
     Cooldown,
     Speed,
-    Range, //not working currently
+    TargetingRangeNotWorking, //not supported currently
     CastTime,
     Penetration,
     ExtraPenetrationPerKill,
@@ -26,4 +26,6 @@ public enum AbilityStatType
     DamageIncreasePerShot,
     Size,
     Heal,
+    MovementSpeedSlow,
+    Armor
 }

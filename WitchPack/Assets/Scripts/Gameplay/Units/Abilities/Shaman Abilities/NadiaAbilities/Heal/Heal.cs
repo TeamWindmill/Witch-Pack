@@ -22,9 +22,12 @@ public class Heal : CastingAbility
                 target = Owner as Shaman;
             }
 
-            if(target.Damageable.CurrentHp == target.Damageable.MaxHp)
+            if (!HasAbilityBehavior(AbilityBehavior.HealOnFullHealth))
             {
-                return false;
+                if(target.Damageable.CurrentHp == target.Damageable.MaxHp)
+                {
+                    return false;
+                }
             }
 
             HealTarget(target, Owner);

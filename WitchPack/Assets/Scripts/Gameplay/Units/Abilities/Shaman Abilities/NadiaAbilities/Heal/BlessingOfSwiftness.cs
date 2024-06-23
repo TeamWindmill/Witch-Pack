@@ -4,11 +4,12 @@ public class BlessingOfSwiftness : Heal
     public BlessingOfSwiftness(BlessingOfSwiftnessSO config, BaseUnit owner) : base(config, owner)
     {
         _config = config;
+        abilityStats.Add(new AbilityStat(AbilityStatType.Heal,config.HealAmount));
     }
 
     protected override void HealTarget(Shaman target, BaseUnit caster)
     {
-        target.Damageable.Heal(_config.HealAmount);
+        target.Damageable.Heal((int)GetAbilityStatValue(AbilityStatType.Heal));
         target.ShamanVisualHandler.HealEffect.Play();
         target.Effectable.AddEffect(_config.AttackSpeedBoost, caster.Affector);
     }

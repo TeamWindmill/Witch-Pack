@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ability", menuName = "Ability/PoisonIvy")]
+[CreateAssetMenu(fileName = "ability", menuName = "Ability/Nadia/RootingVines/PoisonIvy")]
 
 public class PoisonIvySO : OffensiveAbilitySO
 {

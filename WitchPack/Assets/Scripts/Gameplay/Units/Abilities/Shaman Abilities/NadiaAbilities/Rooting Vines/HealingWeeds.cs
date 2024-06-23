@@ -4,6 +4,8 @@ public class HealingWeeds : OffensiveAbility
     public HealingWeeds(HealingWeedsSO config, BaseUnit owner) : base(config, owner)
     {
         Config = config;
+        abilityStats.Add(new AbilityStat(AbilityStatType.Duration,config.LastingTime));
+        abilityStats.Add(new AbilityStat(AbilityStatType.Size,config.AoeScale));
     }
 
     public override bool CastAbility()
@@ -12,7 +14,7 @@ public class HealingWeeds : OffensiveAbility
         if (!ReferenceEquals(target, null))
         {
             HealingWeedsMono newHealingWeeds = LevelManager.Instance.PoolManager.HealingWeedsPool.GetPooledObject();
-            newHealingWeeds.Init(Owner, this, Config.LastingTime,Config.AoeScale);
+            newHealingWeeds.Init(Owner, this, GetAbilityStatValue(AbilityStatType.Duration),GetAbilityStatValue(AbilityStatType.Size));
             newHealingWeeds.transform.position = target.transform.position;
             newHealingWeeds.gameObject.SetActive(true);
             return true;

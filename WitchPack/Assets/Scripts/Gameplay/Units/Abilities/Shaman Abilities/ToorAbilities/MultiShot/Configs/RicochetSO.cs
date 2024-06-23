@@ -1,7 +1,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Ricochet", menuName = "Ability/Ricochet")]
+[CreateAssetMenu(fileName = "Ricochet", menuName = "Ability/Toor/MultiShot/Ricochet")]
 public class RicochetSO : MultiShotSO
 {
     [BoxGroup("Ricochet")][SerializeField] private TargetData _ricochetTargetData; 

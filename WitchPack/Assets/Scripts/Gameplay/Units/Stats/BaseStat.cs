@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
-public abstract class BaseStat<T>
+public abstract class BaseStat<T> //float type basic stat
 {
     public event Action<float> OnStatChange;
     public T StatType;
@@ -35,31 +36,18 @@ public abstract class BaseStat<T>
                 multipliersSum += multiplier;
             }
 
+            if (multipliersSum < 0)
+            {
+                Debug.LogError($"{StatType} Multipliers are smaller than 0");
+                return value;
+            }
+            
             return value * multipliersSum;
         }
     }
 
-    public int IntValue
-    {
-        get
-        {
-            var value = BaseValue;
-            foreach (var modifier in _modifiers)
-            {
-                value += modifier;
-            }
-
-            if (_multipliers.Sum() == 0) return (int)value;
-
-            float multipliersSum = 1;
-            foreach (var multiplier in _multipliers)
-            {
-                multipliersSum += multiplier;
-            }
-
-            return (int)(value * multipliersSum);
-        }
-    }
+    public int IntValue => (int)Value;
+    
 
     public void AddModifier(float value)
     {

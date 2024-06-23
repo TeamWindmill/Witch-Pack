@@ -7,20 +7,23 @@ public class UnitTargetHelper<T> where T : BaseUnit
     public event Action<BaseUnit> OnTarget;
 
     public T CurrentTarget { get; private set; }
+    public bool IsTaunted { get; private set; }
     private BaseUnit owner;
-    private List<T> _targets;
+    private List<T> _availableTargets;
     private List<T> _targetsToAvoid;
 
     public UnitTargetHelper(Targeter<T> targeter, BaseUnit givenOwner,List<T> targetsToAvoid = null)
     {
         _targetsToAvoid = targetsToAvoid;
         owner = givenOwner;
-        _targets = targeter.AvailableTargets;
+        _availableTargets = targeter.AvailableTargets;
         owner.Damageable.OnDeathGFX += OnDeath;
     }
 
     public T GetTarget(TargetData givenData, List<T> targetsToAvoid = null)
     {
+        if (IsTaunted) return CurrentTarget;
+        
         List<T> totalTargetsToAvoid = null;
         if (targetsToAvoid != null || _targetsToAvoid != null)
         {
@@ -29,7 +32,7 @@ public class UnitTargetHelper<T> where T : BaseUnit
             if (targetsToAvoid is { Count: > 0 }) totalTargetsToAvoid.AddRange(targetsToAvoid);
         }
         
-        var target = TargetingHelper<T>.GetTarget(_targets, givenData, totalTargetsToAvoid, owner.transform);
+        var target = TargetingHelper<T>.GetTarget(_availableTargets, givenData, totalTargetsToAvoid, owner.transform);
         if (!ReferenceEquals(target, null))
         {
             if (givenData.AvoidCharmedTargets)
@@ -44,6 +47,38 @@ public class UnitTargetHelper<T> where T : BaseUnit
         }
 
         return target;
+    }
+
+    public List<T> GetAvailableTargets(TargetData givenData, List<T> targetsToAvoid = null)
+    {
+        var validTargets = new List<T>();
+        foreach (var target in _availableTargets)
+        {
+            if (targetsToAvoid != null)
+            {
+                if (_targetsToAvoid.Contains(target)) continue;
+            }
+            if(target.IsDead) continue;
+            if(givenData.AvoidCharmedTargets && target.Effectable.ContainsStatusEffect(StatusEffectType.Charm)) continue;
+                
+            
+            validTargets.Add(target);
+        }
+
+        return validTargets;
+    }
+
+    public void ApplyTaunt(T target, float duration)
+    {
+        IsTaunted = true;
+        CurrentTarget = target;
+        TimerManager.AddTimer(duration, RemoveTaunt);
+    }
+
+    private void RemoveTaunt()
+    {
+        IsTaunted = false;
+        CurrentTarget = null;
     }
 
     public void RemoveCurrentTarget()

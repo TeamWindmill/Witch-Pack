@@ -1,4 +1,3 @@
-using System;
 using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
@@ -87,21 +86,38 @@ public class Shaman : BaseUnit
         Initialized = true;
     }
 
+    #region MetaUpgrades
+
     private void AddMetaUpgrades(ShamanSaveData saveData)
     {
-        //ability upgrades
+        AddAbilityMetaUpgrades(saveData);
+        AddStatMetaUpgrades(saveData);
+    }
+    private void AddAbilityMetaUpgrades(ShamanSaveData saveData)
+    {
         foreach (var abilityUpgrade in saveData.AbilityUpgrades)
         {
             foreach (var abilitySO in abilityUpgrade.AbilitiesToUpgrade)
             {
                 var ability = GetAbilityFromConfig(abilitySO);
                 ability.AddStatUpgrade(abilityUpgrade);
+                if(abilityUpgrade.AbilitiesBehaviors.Length > 0) ability.AddAbilityBehavior(abilityUpgrade);
             }
         }
-        
-        //stat upgrades
+    }
+
+    private void AddStatMetaUpgrades(ShamanSaveData saveData)
+    {
         foreach (var statUpgrade in saveData.StatUpgrades)
         {
+            if (statUpgrade.AbilitiesBehaviors.Length > 0)
+            {
+                foreach (var abilitySO in statUpgrade.AbilitiesToUpgrade)
+                {
+                    var ability = GetAbilityFromConfig(abilitySO);
+                    ability.AddAbilityBehavior(statUpgrade);
+                }
+            }
             if (statUpgrade.UpgradeAbility)
             {
                 foreach (var abilitySO in statUpgrade.AbilitiesToUpgrade)
@@ -142,6 +158,10 @@ public class Shaman : BaseUnit
             }
         }
     }
+
+    #endregion
+
+    #region Abilities
 
     private void IntializeAbilities()
     {
@@ -196,7 +216,7 @@ public class Shaman : BaseUnit
 
     public void RemoveAbility(Ability ability)
     {
-        if (ability is not PassiveAbility) //might cause a problem with some passives
+        if (ability is not PassiveAbility) //unsubscribe passives currently doesnt work
         {
             KnownAbilities.Remove(ability);
             castingHandlers.Remove(GetCasterFromAbility(ability));
@@ -220,7 +240,6 @@ public class Shaman : BaseUnit
             }
         }
 
-        //Debug.LogError($"Attempted to retreive a non existing caster for {givenAbility.BaseConfig.Name}");
         return null;
     }
 
@@ -251,6 +270,10 @@ public class Shaman : BaseUnit
 
         return null;
     }
+    
+    #endregion
+
+    #region Selection
 
     public void SetSelectedShaman(PointerEventData.InputButton button)
     {
@@ -282,6 +305,7 @@ public class Shaman : BaseUnit
         clicker.enabled = state;
     }
 
+    #endregion
 
     #region SFX
 
@@ -329,10 +353,7 @@ public class Shaman : BaseUnit
 
     #endregion
 
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-    }
+    #region Indicator
 
     private void SetOffIndicator()
     {
@@ -343,4 +364,8 @@ public class Shaman : BaseUnit
     {
         GameManager.Instance.CameraHandler.SetCameraPosition(transform.position, false);
     }
+
+    #endregion
+
+    
 }
