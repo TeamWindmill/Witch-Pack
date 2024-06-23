@@ -89,8 +89,8 @@ SpriteShapeRenderer:
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   - {fileID: 21300000, guid: 608e61deb05c54660bebf5a4dd2ee02d, type: 3}
   m_LocalAABB:
-    m_Center: {x: -25.028763, y: -8.43153, z: 0}
-    m_Extent: {x: 33.8576, y: 20.937714, z: 0}
+    m_Center: {x: -25.028751, y: -8.43153, z: 0}
+    m_Extent: {x: 33.857594, y: 20.937714, z: 0}
   m_SpriteSortPoint: 0
 --- !u!114 &726754574508884074
 MonoBehaviour:
@@ -132,8 +132,8 @@ MonoBehaviour:
       corner: 1
       m_CornerMode: 1
     - position: {x: -34.885246, y: 2.3575792, z: 0}
-      leftTangent: {x: -1.8135452, y: -0.37542439, z: 0}
-      rightTangent: {x: 4.6433887, y: 0.9612341, z: 0}
+      leftTangent: {x: -1.9068222, y: -0.39408016, z: 0}
+      rightTangent: {x: 4.6437035, y: 0.9597063, z: 0}
       mode: 1
       height: 2.09
       spriteIndex: 0
@@ -156,8 +156,8 @@ MonoBehaviour:
       corner: 1
       m_CornerMode: 1
     - position: {x: -14.244952, y: -2.4080496, z: 0}
-      leftTangent: {x: -2.7582712, y: 0.9826822, z: 0}
-      rightTangent: {x: 1.6520214, y: -0.58856153, z: 0}
+      leftTangent: {x: -2.7477179, y: 1.011828, z: 0}
+      rightTangent: {x: 1.9116516, y: -0.7039523, z: 0}
       mode: 1
       height: 1.67
       spriteIndex: 0
@@ -681,6 +681,7 @@ Transform:
   - {fileID: 763702162486530112}
   - {fileID: 8204952307172199192}
   - {fileID: 7238949686475026761}
+  - {fileID: 6912255933273461571}
   - {fileID: 7355126937971497104}
   - {fileID: 312179086980341262}
   - {fileID: 944124443828228225}
@@ -1244,7 +1245,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8204952307172199192
 Transform:
   m_ObjectHideFlags: 0
@@ -1260,7 +1261,6 @@ Transform:
   m_Children:
   - {fileID: 8899779692251004220}
   - {fileID: 4501274227989232674}
-  - {fileID: 6912255933273461571}
   m_Father: {fileID: 4319940627422526649}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5376400695241557796
@@ -6253,7 +6253,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 8204952307172199192}
+    m_TransformParent: {fileID: 4319940627422526649}
     m_Modifications:
     - target: {fileID: 3214560799020912183, guid: f0fab68ef2998ae42aca57311d5490ad, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6273,15 +6273,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3214560799020912183, guid: f0fab68ef2998ae42aca57311d5490ad, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3214560799020912183, guid: f0fab68ef2998ae42aca57311d5490ad, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3214560799020912183, guid: f0fab68ef2998ae42aca57311d5490ad, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 3214560799020912183, guid: f0fab68ef2998ae42aca57311d5490ad, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6667,6 +6667,22 @@ PrefabInstance:
       propertyPath: m_LocalAABB.m_Extent.y
       value: 7.9771376
       objectReference: {fileID: 0}
+    - target: {fileID: 1469523707722285127, guid: 2cd70cb9e1e87974ea9c7bbd93212f1c, type: 3}
+      propertyPath: m_Sprites.Array.data[0]
+      value: 
+      objectReference: {fileID: -1827808837, guid: c715bd5479688744497967d59e066c0b, type: 3}
+    - target: {fileID: 1469523707722285127, guid: 2cd70cb9e1e87974ea9c7bbd93212f1c, type: 3}
+      propertyPath: m_Sprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 1079708418, guid: c715bd5479688744497967d59e066c0b, type: 3}
+    - target: {fileID: 1469523707722285127, guid: 2cd70cb9e1e87974ea9c7bbd93212f1c, type: 3}
+      propertyPath: m_Sprites.Array.data[2]
+      value: 
+      objectReference: {fileID: -1141035795, guid: c715bd5479688744497967d59e066c0b, type: 3}
+    - target: {fileID: 1469523707722285127, guid: 2cd70cb9e1e87974ea9c7bbd93212f1c, type: 3}
+      propertyPath: m_Sprites.Array.data[3]
+      value: 
+      objectReference: {fileID: -140269690, guid: c715bd5479688744497967d59e066c0b, type: 3}
     - target: {fileID: 2279085236646415103, guid: 2cd70cb9e1e87974ea9c7bbd93212f1c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
