@@ -27,5 +27,6 @@ public enum AbilityStatType
     Size,
     Heal,
     MovementSpeedSlow,
-    Armor
+    Armor,
+    DotDamage,
 }
