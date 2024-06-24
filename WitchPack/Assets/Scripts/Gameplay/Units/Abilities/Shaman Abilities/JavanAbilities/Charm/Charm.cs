@@ -14,7 +14,7 @@ public class Charm : CastingAbility
 
         _config.CharmedState.StartCharm(target);
 
-        foreach (var statusEffect in _config.StatusEffects)
+        foreach (var statusEffect in StatusEffects)
         {
             if (!target.Effectable.ContainsStatusEffect(statusEffect.StatusEffectType))
             {

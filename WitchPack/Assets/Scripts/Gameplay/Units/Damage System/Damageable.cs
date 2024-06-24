@@ -38,10 +38,7 @@ public class Damageable
     {
         if (!hitable) return;
         
-        foreach (var item in ability.CastingConfig.StatusEffects)
-        {
-            owner.Effectable.AddEffect(item, dealer.Owner.Affector);
-        }
+        owner.Effectable.AddEffects(ability.StatusEffects, dealer.Owner.Affector);
         
         if (ability is OffensiveAbility offensiveAbility)
         {

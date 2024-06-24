@@ -11,6 +11,6 @@ public class BlessingOfSwiftness : Heal
     {
         target.Damageable.Heal((int)GetAbilityStatValue(AbilityStatType.Heal));
         target.ShamanVisualHandler.HealEffect.Play();
-        target.Effectable.AddEffect(_config.AttackSpeedBoost, caster.Affector);
+        target.Effectable.AddEffects(StatusEffects, caster.Affector);
     }
 }
