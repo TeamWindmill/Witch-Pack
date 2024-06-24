@@ -86,6 +86,15 @@ public abstract class Ability
 
         throw new Exception("ability stat not found in ability");
     }
+    public int GetAbilityStatIntValue(AbilityStatType abilityStatType)
+    {
+        foreach (var abilityStat in abilityStats)
+        {
+            if (abilityStat.StatType == abilityStatType) return abilityStat.IntValue;
+        }
+
+        throw new Exception("ability stat not found in ability");
+    }
 
     public virtual void AddStatUpgrade(AbilityUpgradeConfig abilityUpgradeConfig)
     {
