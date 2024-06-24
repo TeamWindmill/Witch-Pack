@@ -1,3 +1,5 @@
+using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class PoolManager : MonoBehaviour
@@ -15,6 +17,9 @@ public class PoolManager : MonoBehaviour
     [SerializeField] private HealingWeedsPool healingWeedsPool;
     [SerializeField] private FireballPool _fireballPool;
     [SerializeField] private AoeFirePool _aoeFirePool;
+    [SerializeField] private AftershockPool _aftershockPool;
+
+    #region Pointers
 
     public AoeFirePool AoeFirePool => _aoeFirePool;
     public FireballPool FireballPool => _fireballPool;
@@ -29,4 +34,24 @@ public class PoolManager : MonoBehaviour
     public HighImpactPool HighImpactPool => highImpactPool;
     public PoisonIvyPool PoisonIvyPool { get => poisonIvyPool; }
     public HealingWeedsPool HealingWeedsPool { get => healingWeedsPool; }
+    public AftershockPool AftershockPool => _aftershockPool;
+
+    #endregion
+    private void OnValidate()
+    {
+        _piercingShotPool ??= GetComponentInChildren<PiercingShotPool>();
+        rootingVinesPool ??= GetComponentInChildren<RootingVinesPool>();
+        shamanAutoAttackPool ??= GetComponentInChildren<AutoAttackPool>();
+        enemyPool ??= GetComponentInChildren<EnemyPool>();
+        inidcatorPool ??= GetComponentInChildren<IndicatorPool>();
+        _multiShotPool ??= GetComponentInChildren<MultiShotPool>();
+        _ricochetPool ??= GetComponentInChildren<RicochetPool>();
+        smokeBombPool ??= GetComponentInChildren<SmokeBombPool>();
+        highImpactPool ??= GetComponentInChildren<HighImpactPool>();
+        poisonIvyPool ??= GetComponentInChildren<PoisonIvyPool>();
+        healingWeedsPool ??= GetComponentInChildren<HealingWeedsPool>();
+        _fireballPool ??= GetComponentInChildren<FireballPool>();
+        _aoeFirePool ??= GetComponentInChildren<AoeFirePool>();
+        _aftershockPool ??= GetComponentInChildren<AftershockPool>();
+    }
 }

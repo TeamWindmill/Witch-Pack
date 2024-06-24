@@ -74,6 +74,17 @@ public class AbilityFactory
             
             case FireballSO ability:
                 return new Fireball(ability, owner);
+            
+            //Lila Abilities
+            case AftershockSO ability:
+                return new Aftershock(ability, owner);
+            
+            case FortifySO ability:
+                return new Fortify(ability, owner);
+            
+            case RockMonolithSO ability:
+                return new RockMonolith(ability, owner);
+            
         }
 
         throw new Exception($"{owner.UnitConfig.Name}'s Ability config not found in the ability factory");
