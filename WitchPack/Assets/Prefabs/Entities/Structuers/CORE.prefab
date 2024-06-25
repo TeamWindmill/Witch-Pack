@@ -5043,7 +5043,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 4
-  m_Sprite: {fileID: 940953928, guid: b22b0b6ce16995343bad3f9c721ed171, type: 3}
+  m_Sprite: {fileID: -300688787, guid: 8bd1689f1f1cad84cb97a70a19735ee4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -9957,7 +9957,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5428795594096456548
 Transform:
   m_ObjectHideFlags: 0
@@ -10098,7 +10098,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1879777116, guid: b22b0b6ce16995343bad3f9c721ed171, type: 3}
+  m_Sprite: {fileID: -1426908649, guid: 8bd1689f1f1cad84cb97a70a19735ee4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -15050,13 +15050,13 @@ MonoBehaviour:
     MaxHp:
       statType: 0
       value: 10
-    BaseDamage:
+    _damage:
       statType: 1
       value: 0
     AttackSpeed:
       statType: 2
       value: 0
-    BaseRange:
+    _range:
       statType: 3
       value: 0
     MovementSpeed:
@@ -15074,9 +15074,15 @@ MonoBehaviour:
     HpRegen:
       statType: 10
       value: 0
-    AbilityProjectilePenetration:
-      statType: 13
+    Threat:
+      statType: 16
       value: 0
+    AbilityCooldownReduction:
+      statType: 8
+      value: 1
+    EnergyGain:
+      statType: 17
+      value: 1
     Visibility:
       statType: 14
       value: 0
@@ -15214,7 +15220,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 535422104, guid: b22b0b6ce16995343bad3f9c721ed171, type: 3}
+  m_Sprite: {fileID: -1066530099, guid: 8bd1689f1f1cad84cb97a70a19735ee4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -20184,8 +20190,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
-  m_Sprite: {fileID: 1142845571, guid: b22b0b6ce16995343bad3f9c721ed171, type: 3}
+  m_SortingOrder: 4
+  m_Sprite: {fileID: -774830902, guid: 8bd1689f1f1cad84cb97a70a19735ee4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -30042,8 +30048,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
-  m_Sprite: {fileID: -1345292474, guid: b22b0b6ce16995343bad3f9c721ed171, type: 3}
+  m_SortingOrder: 3
+  m_Sprite: {fileID: -1987555545, guid: 8bd1689f1f1cad84cb97a70a19735ee4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -30549,7 +30555,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 1298440256, guid: b22b0b6ce16995343bad3f9c721ed171, type: 3}
+  m_Sprite: {fileID: -19553603, guid: 8bd1689f1f1cad84cb97a70a19735ee4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -40367,7 +40373,7 @@ SortingGroup:
   m_GameObject: {fileID: 6938383808930832632}
   m_Enabled: 1
   m_SortingLayerID: -1222986967
-  m_SortingLayer: 5
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!4 &9118778157147415037 stripped
