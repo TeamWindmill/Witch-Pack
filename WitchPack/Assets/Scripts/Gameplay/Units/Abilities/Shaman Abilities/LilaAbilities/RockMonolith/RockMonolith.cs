@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class RockMonolith : OffensiveAbility
 {
+    public int DamageIncrement { get; protected set; }
     public RockMonolithSO RockMonolithConfig;
     protected Shaman _shamanOwner;
-    public int DamageIncrement { get; protected set; }
+    private AftershockMono _activeAftershock;
     public RockMonolith(OffensiveAbilitySO config, BaseUnit owner) : base(config, owner)
     {
         _shamanOwner = Owner as Shaman;
@@ -52,17 +53,23 @@ public class RockMonolith : OffensiveAbility
 
     protected virtual void OnTauntEnd()
     {
-        var aftershockMono = LevelManager.Instance.PoolManager.AftershockPool.GetPooledObject();
-        aftershockMono.transform.position = Owner.transform.position;
-        aftershockMono.gameObject.SetActive(true);
-        aftershockMono.Init(_shamanOwner,this,false,0);
-
-        _shamanOwner.Damageable.OnHitGFX -= IncrementDamage;
-        DamageIncrement = 0;
+        _activeAftershock = LevelManager.Instance.PoolManager.AftershockPool.GetPooledObject();
+        _activeAftershock.transform.position = Owner.transform.position;
+        _activeAftershock.gameObject.SetActive(true);
+        _activeAftershock.Init(_shamanOwner,this,false,0);
+        _activeAftershock.OnActivation += OnAftershockActivation;
     }
     
     protected void IncrementDamage(bool isCrit)
     {
         DamageIncrement++;
+    }
+
+    private void OnAftershockActivation()
+    {
+        _activeAftershock.OnActivation -= OnAftershockActivation;
+        _activeAftershock = null;
+        _shamanOwner.Damageable.OnHitGFX -= IncrementDamage;
+        DamageIncrement = 0;
     }
 }

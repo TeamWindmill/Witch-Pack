@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class AftershockMono : MonoBehaviour
 {
+    public event Action OnActivation;
     [SerializeField] private GroundColliderTargeter _targeter;
     [SerializeField] private float _lifetime;
 
@@ -21,7 +22,8 @@ public class AftershockMono : MonoBehaviour
         _chainIndex = chainDamageReductionIndex;
         _chainReaction = chainReaction;
         SetRange(owner.Stats[StatType.BaseRange].Value);
-        TimerManager.AddTimer(0.2f,Activate);
+        TimerManager.AddTimer(0.1f,Activate); //gives time for the targeter to add all the targets
+
     }
 
     private void SetRange(float range)
@@ -36,30 +38,30 @@ public class AftershockMono : MonoBehaviour
             if (collider.Unit is Enemy enemy)
             {
                 var damageHandler = new DamageHandler(CalculateDamage());
-                if(_chainReaction) enemy.Damageable.OnDeath += OnEnemyDeath;
+                if(_chainReaction) damageHandler.OnKill += OnEnemyDeath;
                 enemy.Damageable.TakeDamage(_owner.DamageDealer,damageHandler,_ability,false);
             }
         }
 
+        OnActivation?.Invoke();
         TimerManager.AddTimer(_lifetime, Disable);
     }
 
     private float CalculateDamage()
     {
-        var damage = _ability.GetAbilityStatValue(AbilityStatType.Damage) + _ability.RockMonolithConfig.DamageIncreasePerHit * _ability.DamageIncrement;
-        var damageReductionInPercent = _chainIndex * _aftershockAbility.AftershockConfig.DamageReductionPerBounceInPercent;
-        float damageReduction = 1 - ((float)damageReductionInPercent / 100);
-        return  damage * damageReduction;
+        return _ability.GetAbilityStatValue(AbilityStatType.Damage) + _ability.RockMonolithConfig.DamageIncreasePerHit * _ability.DamageIncrement;
+        //var damageReductionInPercent = _chainIndex * _aftershockAbility.AftershockConfig.DamageReductionPerBounceInPercent;
+        //float damageReduction = 1 - ((float)damageReductionInPercent / 100);
     }
 
-    private void OnEnemyDeath(Damageable damageable, DamageDealer damageDealer)
+    private void OnEnemyDeath(Damageable damageable, DamageHandler damageHandler)
     {
         var aftershockMono = LevelManager.Instance.PoolManager.AftershockPool.GetPooledObject();
         var enemy = damageable.Owner as Enemy;
         aftershockMono.transform.position = enemy.transform.position;
         aftershockMono.gameObject.SetActive(true);
         aftershockMono.Init(_owner,_ability,true,_chainIndex + 1);
-        enemy.Damageable.OnDeath -= OnEnemyDeath;
+        damageHandler.OnKill -= OnEnemyDeath;
     }
 
     private void Disable()

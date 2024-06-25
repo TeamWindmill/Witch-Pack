@@ -139,21 +139,7 @@ public class Shaman : BaseUnit
             {
                 foreach (var statConfig in statUpgrade.Stats)
                 {
-                    switch (statConfig.Factor)
-                    {
-                        case Factor.Add:
-                            Stats.AddValueToStat(statConfig.StatType,statConfig.StatValue);
-                            break;
-                        case Factor.Subtract:
-                            Stats.AddValueToStat(statConfig.StatType,-statConfig.StatValue);
-                            break;
-                        case Factor.Multiply:
-                            Stats.AddMultiplierToStat(statConfig.StatType,statConfig.StatValue/100);
-                            break;
-                        case Factor.Divide:
-                            Stats.AddMultiplierToStat(statConfig.StatType,-(statConfig.StatValue/100));
-                            break;
-                    }
+                    Stats.AddValueToStat(statConfig.StatType,statConfig.Factor,statConfig.StatValue);
                 }
             }
         }

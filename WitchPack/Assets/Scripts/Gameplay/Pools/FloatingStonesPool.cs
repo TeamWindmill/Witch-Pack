@@ -1,3 +1,3 @@
-public class FloatingStonesPool : ObjectPool<OrbitalStone>
+public class FloatingStonesPool : ObjectPool<FloatingStoneMono>
 {
 }

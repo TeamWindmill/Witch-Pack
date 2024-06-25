@@ -18,7 +18,7 @@ public class ConditionalStatPassive : StatPassive
         {
             foreach (StatValue increase in _config.StatIncreases)
             {
-                Owner.Stats.AddValueToStat(increase.StatType, increase.Value);
+                Owner.Stats.AddModifierToStat(increase.StatType, increase.Value);
             }
         }
     }
@@ -28,7 +28,7 @@ public class ConditionalStatPassive : StatPassive
         {
             foreach (StatValue increase in _config.StatIncreases)
             {
-                Owner.Stats.AddValueToStat(increase.StatType, -increase.Value);
+                Owner.Stats.AddModifierToStat(increase.StatType, -increase.Value);
             }
         }
     }

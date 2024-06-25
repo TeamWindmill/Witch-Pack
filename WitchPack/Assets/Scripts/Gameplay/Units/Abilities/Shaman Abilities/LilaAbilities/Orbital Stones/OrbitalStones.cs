@@ -8,6 +8,7 @@ public class OrbitalStones : OffensiveAbility
         abilityStats.Add(new AbilityStat(AbilityStatType.ProjectilesAmount,Config.StoneAmount));
         abilityStats.Add(new AbilityStat(AbilityStatType.Size,Config.Radius));
         abilityStats.Add(new AbilityStat(AbilityStatType.Speed,Config.AngularSpeed));
+        
     }
 
     public override bool CastAbility()
@@ -17,10 +18,10 @@ public class OrbitalStones : OffensiveAbility
         {
             var ability = LevelManager.Instance.PoolManager.OrbitalStonesPool.GetPooledObject();
             ability.transform.position = Owner.transform.position; //change orbit pos
-            ability.Init(Owner,this,GetAbilityStatIntValue(AbilityStatType.ProjectilesAmount));
-            ability.gameObject.SetActive(true);
+            ability.Init(Owner,this);
             return true;
         }
+     
         return false;
     }
 

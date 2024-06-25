@@ -55,7 +55,7 @@ public class PowerStructure : MonoBehaviour
         if (_testing) Debug.Log($"shaman entered ring {ringId}");
 
         var statAdditionValue = GetStatEffectValue(ringId, shaman.Stats);
-        shaman.Stats.AddValueToStat(_statType,statAdditionValue);
+        shaman.Stats.AddModifierToStat(_statType,statAdditionValue);
         shaman.ActivePowerStructures[this] = ringId;
     }
     private void OnShamanRingExit(int ringId, Shaman shaman)
@@ -63,7 +63,7 @@ public class PowerStructure : MonoBehaviour
         if (_testing) Debug.Log($"shaman exited ring {ringId}");
         
         var statAdditionValue = GetStatEffectValue(ringId, shaman.Stats);
-        shaman.Stats.AddValueToStat(_statType,-statAdditionValue);
+        shaman.Stats.AddModifierToStat(_statType,-statAdditionValue);
 
         if (ringId < proximityRingsManager.RingHandlers.Length - 1) shaman.ActivePowerStructures[this] = ringId + 1;
         else shaman.ActivePowerStructures.Remove(this);

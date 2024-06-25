@@ -57,7 +57,7 @@ public class Damageable
         }
     }
 
-    public void TakeDamage(DamageDealer dealer, DamageHandler damage, OffensiveAbility ability, bool isCrit)
+    public void TakeDamage(DamageDealer dealer, DamageHandler damage, Ability ability, bool isCrit)
     {
         if(!hitable) return;
         dealer.OnHitTarget?.Invoke(this, dealer, damage, ability, isCrit);
@@ -71,6 +71,18 @@ public class Damageable
         if (currentHp <= 0)
         {
             Die(dealer, damage, ability, isCrit);
+        }
+        ClampHp();
+    }
+    public void TakeFlatDamage(int amount)  
+    {
+        OnHitGFX?.Invoke(false);
+        currentHp -= amount;
+        OnTakeFlatDamage?.Invoke(this,amount);
+        OnHealthChange?.Invoke(currentHp);
+        if (currentHp <= 0)
+        {
+            OnDeathGFX?.Invoke();
         }
         ClampHp();
     }
@@ -88,11 +100,12 @@ public class Damageable
     {
         Heal(owner.Stats[StatType.HpRegen].IntValue);
     }
-    private void Die(DamageDealer dealer, DamageHandler damage, OffensiveAbility ability, bool isCrit)
+    private void Die(DamageDealer dealer, DamageHandler damage, Ability ability, bool isCrit)
     {
         OnDeath?.Invoke(this, dealer);
         OnDeathGFX?.Invoke();
         dealer.OnKill?.Invoke(this, dealer, damage, ability, isCrit);
+        damage.OnKill?.Invoke(this,damage);
         owner.ClearUnitTimers();
         foreach (var damageDealer in _damageDealers)
         {
@@ -117,18 +130,6 @@ public class Damageable
             yield return new WaitForEndOfFrame();
         }
         Debug.Log(elapsedTime);
-    }
-
-    public void TakeFlatDamage(int amount)  
-    {
-        currentHp -= amount;
-        OnTakeFlatDamage?.Invoke(this,amount);
-        OnHealthChange?.Invoke(currentHp);
-        if (currentHp <= 0)
-        {
-            OnDeathGFX?.Invoke();
-        }
-        ClampHp();
     }
 
     private void ClampHp()

@@ -23,7 +23,7 @@ public class Overheal : Heal
         if(target.Damageable.CurrentHp + healAmount > target.Stats[StatType.MaxHp].Value)
         {
             var excessHeal = target.Damageable.CurrentHp + healAmount - target.Stats[StatType.MaxHp].Value;
-            target.Stats.AddValueToStat(StatType.MaxHp, excessHeal);
+            target.Stats.AddModifierToStat(StatType.MaxHp, excessHeal);
         }
     }
 
@@ -32,7 +32,7 @@ public class Overheal : Heal
         var healAmount = (int)GetAbilityStatValue(AbilityStatType.Heal);
         if(target.Damageable.CurrentHp + healAmount > target.Stats[StatType.MaxHp].Value)
         { 
-            target.Stats.AddValueToStat(StatType.MaxHp, _config.PermanentMaxHealthBonus);
+            target.Stats.AddModifierToStat(StatType.MaxHp, _config.PermanentMaxHealthBonus);
         }
     }
 }

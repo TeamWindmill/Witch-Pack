@@ -57,5 +57,7 @@ public class PoolManager : MonoBehaviour
         _fireballPool ??= GetComponentInChildren<FireballPool>();
         _aoeFirePool ??= GetComponentInChildren<AoeFirePool>();
         _aftershockPool ??= GetComponentInChildren<AftershockPool>();
+        _orbitalStonesPool ??= GetComponentInChildren<OrbitalStonesPool>();
+        _floatingStonesPool ??= GetComponentInChildren<FloatingStonesPool>();
     }
 }

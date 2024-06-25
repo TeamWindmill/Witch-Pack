@@ -19,9 +19,6 @@ public class Enemy : BaseUnit
     [SerializeField, TabGroup("Visual")] private EnemyAnimator enemyAnimator;
     private int _coreDamage;
     private int _energyPoints;
-    //testing 
-    public int Id => gameObject.GetHashCode();
-
     private EnemyMovement _enemyMovement;
     private EnemyConfig enemyConfig;
     private PathCreator _path;
@@ -56,6 +53,7 @@ public class Enemy : BaseUnit
         Effectable.OnEffectRemovedVFX += enemyVisualHandler.EffectHandler.DisableEffect;
         Damageable.OnHitGFX += GetHitSFX;
         Damageable.OnDeathGFX += DeathSFX;
+        DamageDealer.OnHitTarget += OnTargetHit;
         //AutoAttackCaster.OnAttack += AttackSFX;
         
 
@@ -63,7 +61,24 @@ public class Enemy : BaseUnit
 
         Initialized = true;
     }
+    
+    protected override void OnDisable() //enemy death
+    {
+        base.OnDisable();
+        if(!Initialized) return;
+        if (ReferenceEquals(LevelManager.Instance, null)) return;
+        enemyAI.OnDisable();
+        Damageable.OnHitGFX -= GetHitSFX;
+        Damageable.OnDeathGFX -= DeathSFX;
+        //if (AutoAttackCaster != null) AutoAttackCaster.OnAttack -= AttackSFX;
+        Effectable.OnAffectedVFX -= enemyVisualHandler.EffectHandler.PlayEffect;
+        Effectable.OnEffectRemovedVFX -= enemyVisualHandler.EffectHandler.DisableEffect;
+        enemyVisualHandler.OnSpriteFlip -= enemyAnimator.FlipAnimations;
+        DamageDealer.OnHitTarget -= OnTargetHit;
 
+        Initialized = false;
+    }
+    
     private void IntializeAbilities()
     {
         foreach (var abilitySo in enemyConfig.Abilities)
@@ -82,20 +97,10 @@ public class Enemy : BaseUnit
 
         AutoCaster.Init(this, false);
     }
-    protected override void OnDisable() //enemy death
-    {
-        base.OnDisable();
-        if(!Initialized) return;
-        if (ReferenceEquals(LevelManager.Instance, null)) return;
-        enemyAI.OnDisable();
-        Damageable.OnHitGFX -= GetHitSFX;
-        Damageable.OnDeathGFX -= DeathSFX;
-        //if (AutoAttackCaster != null) AutoAttackCaster.OnAttack -= AttackSFX;
-        Effectable.OnAffectedVFX -= enemyVisualHandler.EffectHandler.PlayEffect;
-        Effectable.OnEffectRemovedVFX -= enemyVisualHandler.EffectHandler.DisableEffect;
-        enemyVisualHandler.OnSpriteFlip -= enemyAnimator.FlipAnimations;
 
-        Initialized = false;
+    private void OnTargetHit(Damageable target, DamageDealer dealer, DamageHandler dmg, Ability ability, bool crit)
+    {
+         //temp
     }
 
     #region SFX

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using Tools.Lerp;
@@ -13,42 +14,62 @@ public class OrbitalStonesMono : MonoBehaviour
     public BaseUnit Owner{ get; private set; }
     public OrbitalStones Ability { get; private set; }
     
-    [SerializeField] private OrbitalStone _orbitalStonePrefab;
-
-    private List<OrbitalStone> _activeStones = new();
+    private List<FloatingStoneMono> _activeStones = new();
     private float _angularSpeed;
     private float _radius;
     private float _ellipseScale;
     private bool _isActive;
+    private int _stoneAmount;
     
     
-    public void Init(BaseUnit owner, OrbitalStones ability,int stoneAmount)
+    public void Init(BaseUnit owner, OrbitalStones ability)
     {
         Owner = owner;
         Ability = ability;
         _ellipseScale = ability.Config.EllipseScale;
         _angularSpeed = ability.GetAbilityStatValue(AbilityStatType.Speed);
         _radius = ability.GetAbilityStatValue(AbilityStatType.Size);
-        
-        var angleDiff = 360 / (stoneAmount);
+        gameObject.SetActive(true);
+
+        _stoneAmount = Ability.GetAbilityStatIntValue(AbilityStatType.ProjectilesAmount);
+        var angleDiff = 360 / _stoneAmount;
+
+        var timeToSpawn = angleDiff / (Ability.GetAbilityStatValue(AbilityStatType.Speed));
+        StartCoroutine(SpawnStones(_stoneAmount, timeToSpawn));
+
+        _isActive = true;
+    }
+
+    public IEnumerator SpawnStones(int stoneAmount, float timeInterval)
+    {
         for (int i = 0; i < stoneAmount; i++)
         {
+            SpawnStone();
+            yield return new WaitForSeconds(timeInterval);
+        }
+    }
+
+    public void SpawnStone()
+    {
+        //if (_activeStones.Count < stoneAmount)
+        {
             var stone = LevelManager.Instance.PoolManager.FloatingStonesPool.GetPooledObject();
-            stone.Init(this,angleDiff * (i));
+            stone.Init(this);
             _activeStones.Add(stone);
         }
-
-        TimerManager.AddTimer(ability.GetAbilityStatValue(AbilityStatType.Duration), DisableStones);
-
     }
-    
-    public void DisableStones()
+
+    private int stoneCounter;
+    public void OnStoneDisable()
     {
-        foreach (var stone in _activeStones)
+        stoneCounter++;
+        if (stoneCounter == _stoneAmount)
         {
-            stone.Disable();
+            _activeStones.Clear();
+            gameObject.SetActive(false);
+            _isActive = false;
+            stoneCounter = 0;
         }
-        _activeStones.Clear();
     }
 
     private void Update()
