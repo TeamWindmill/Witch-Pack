@@ -34,6 +34,7 @@ MonoBehaviour:
         _factor: 1
       _damageBoosts: []
       _abilitiesBehaviors: 
+      _statusEffectUpgrades: []
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 72143ee0ce2cc0d4a80413ec1aadf076, type: 2}
       - {fileID: 11400000, guid: f18952c34f2b73e48857261afed7668b, type: 2}
@@ -48,6 +49,7 @@ MonoBehaviour:
         _factor: 0
       _damageBoosts: []
       _abilitiesBehaviors: 
+      _statusEffectUpgrades: []
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 72143ee0ce2cc0d4a80413ec1aadf076, type: 2}
       - {fileID: 11400000, guid: f18952c34f2b73e48857261afed7668b, type: 2}
@@ -62,6 +64,7 @@ MonoBehaviour:
         _factor: 1
       _damageBoosts: []
       _abilitiesBehaviors: 
+      _statusEffectUpgrades: []
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 72143ee0ce2cc0d4a80413ec1aadf076, type: 2}
       - {fileID: 11400000, guid: f18952c34f2b73e48857261afed7668b, type: 2}
@@ -76,6 +79,7 @@ MonoBehaviour:
         _factor: 0
       _damageBoosts: []
       _abilitiesBehaviors: 
+      _statusEffectUpgrades: []
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: f18952c34f2b73e48857261afed7668b, type: 2}
     RightStatUpgrades:
@@ -88,6 +92,7 @@ MonoBehaviour:
         _factor: 0
       _damageBoosts: []
       _abilitiesBehaviors: 
+      _statusEffectUpgrades: []
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 72143ee0ce2cc0d4a80413ec1aadf076, type: 2}
       - {fileID: 11400000, guid: f18952c34f2b73e48857261afed7668b, type: 2}
@@ -102,6 +107,7 @@ MonoBehaviour:
         _factor: 0
       _damageBoosts: []
       _abilitiesBehaviors: 
+      _statusEffectUpgrades: []
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 72143ee0ce2cc0d4a80413ec1aadf076, type: 2}
       - {fileID: 11400000, guid: f18952c34f2b73e48857261afed7668b, type: 2}
@@ -116,6 +122,7 @@ MonoBehaviour:
         _factor: 1
       _damageBoosts: []
       _abilitiesBehaviors: 
+      _statusEffectUpgrades: []
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 72143ee0ce2cc0d4a80413ec1aadf076, type: 2}
       - {fileID: 11400000, guid: f18952c34f2b73e48857261afed7668b, type: 2}
@@ -123,10 +130,31 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 924811fde887b0546abb2d36b3f6421d, type: 2}
     - _valueName: +1AS +2MS
       _name: to inspire
-      _notWorking: 1
+      _notWorking: 0
       _stats: []
       _damageBoosts: []
       _abilitiesBehaviors: 
+      _statusEffectUpgrades:
+      - Duration:
+          StatType: 0
+          StatValue: 0
+          Factor: 4
+        Value:
+          StatType: 1
+          StatValue: 1
+          Factor: 2
+        Process: 0
+        StatType: 2
+      - Duration:
+          StatType: 0
+          StatValue: 0
+          Factor: 4
+        Value:
+          StatType: 1
+          StatValue: 1
+          Factor: 2
+        Process: 0
+        StatType: 4
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 5d9e322acf68612498997c967e1df803, type: 2}
   - Ability: {fileID: 11400000, guid: d5c2cbf6b0250ba43be4408df31b9d5d, type: 2}
@@ -140,6 +168,7 @@ MonoBehaviour:
         _factor: 1
       _damageBoosts: []
       _abilitiesBehaviors: 
+      _statusEffectUpgrades: []
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: d5c2cbf6b0250ba43be4408df31b9d5d, type: 2}
       - {fileID: 11400000, guid: 09389887f58dcfc4088caa9f572e4fdb, type: 2}
@@ -150,6 +179,7 @@ MonoBehaviour:
       _stats: []
       _damageBoosts: []
       _abilitiesBehaviors: 
+      _statusEffectUpgrades: []
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: d5c2cbf6b0250ba43be4408df31b9d5d, type: 2}
       - {fileID: 11400000, guid: 09389887f58dcfc4088caa9f572e4fdb, type: 2}
@@ -160,6 +190,7 @@ MonoBehaviour:
       _stats: []
       _damageBoosts: []
       _abilitiesBehaviors: 
+      _statusEffectUpgrades: []
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: d5c2cbf6b0250ba43be4408df31b9d5d, type: 2}
       - {fileID: 11400000, guid: 09389887f58dcfc4088caa9f572e4fdb, type: 2}
@@ -170,6 +201,7 @@ MonoBehaviour:
       _stats: []
       _damageBoosts: []
       _abilitiesBehaviors: 
+      _statusEffectUpgrades: []
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 09389887f58dcfc4088caa9f572e4fdb, type: 2}
     RightStatUpgrades:
@@ -179,6 +211,7 @@ MonoBehaviour:
       _stats: []
       _damageBoosts: []
       _abilitiesBehaviors: 
+      _statusEffectUpgrades: []
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: d5c2cbf6b0250ba43be4408df31b9d5d, type: 2}
       - {fileID: 11400000, guid: 09389887f58dcfc4088caa9f572e4fdb, type: 2}
@@ -189,6 +222,7 @@ MonoBehaviour:
       _stats: []
       _damageBoosts: []
       _abilitiesBehaviors: 
+      _statusEffectUpgrades: []
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: d5c2cbf6b0250ba43be4408df31b9d5d, type: 2}
       - {fileID: 11400000, guid: 09389887f58dcfc4088caa9f572e4fdb, type: 2}
@@ -202,6 +236,7 @@ MonoBehaviour:
         _factor: 1
       _damageBoosts: []
       _abilitiesBehaviors: 
+      _statusEffectUpgrades: []
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: d5c2cbf6b0250ba43be4408df31b9d5d, type: 2}
       - {fileID: 11400000, guid: 09389887f58dcfc4088caa9f572e4fdb, type: 2}
@@ -212,6 +247,7 @@ MonoBehaviour:
       _stats: []
       _damageBoosts: []
       _abilitiesBehaviors: 
+      _statusEffectUpgrades: []
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: cf82a5de5a0148a4c805eb3387bba94d, type: 2}
   _statPanelUpgrades:
@@ -228,6 +264,7 @@ MonoBehaviour:
       _abilityStats: []
       _abilitiesBehaviors: 
       _damageBoosts: []
+      _statusEffectUpgrades: []
       _abilitiesToUpgrade: []
     - _valueName: +0.25
       _name: Attack speed
@@ -241,6 +278,7 @@ MonoBehaviour:
       _abilityStats: []
       _abilitiesBehaviors: 
       _damageBoosts: []
+      _statusEffectUpgrades: []
       _abilitiesToUpgrade: []
     - _valueName: +1
       _name: Range
@@ -254,6 +292,7 @@ MonoBehaviour:
       _abilityStats: []
       _abilitiesBehaviors: 
       _damageBoosts: []
+      _statusEffectUpgrades: []
       _abilitiesToUpgrade: []
     - _valueName: +40%
       _name: Backstab crit chance bonus
@@ -267,6 +306,7 @@ MonoBehaviour:
       _abilityStats: []
       _abilitiesBehaviors: 
       _damageBoosts: []
+      _statusEffectUpgrades: []
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 8f95e15918809034c83c8a9fff2acb74, type: 2}
     RightStatUpgrades:
@@ -282,6 +322,7 @@ MonoBehaviour:
       _abilityStats: []
       _abilitiesBehaviors: 
       _damageBoosts: []
+      _statusEffectUpgrades: []
       _abilitiesToUpgrade: []
     - _valueName: +20%
       _name: Energy Gain
@@ -295,6 +336,7 @@ MonoBehaviour:
       _abilityStats: []
       _abilitiesBehaviors: 
       _damageBoosts: []
+      _statusEffectUpgrades: []
       _abilitiesToUpgrade: []
     - _valueName: +30%
       _name: Crit damage
@@ -308,6 +350,7 @@ MonoBehaviour:
       _abilityStats: []
       _abilitiesBehaviors: 
       _damageBoosts: []
+      _statusEffectUpgrades: []
       _abilitiesToUpgrade: []
     - _valueName: +5
       _name: Courage damage per friendly unit
@@ -321,5 +364,6 @@ MonoBehaviour:
       _abilityStats: []
       _abilitiesBehaviors: 
       _damageBoosts: []
+      _statusEffectUpgrades: []
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 7add2b47021dbcd4493f1a677a7abeff, type: 2}

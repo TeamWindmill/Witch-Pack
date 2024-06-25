@@ -7,6 +7,7 @@ public class PoisonIvy : OffensiveAbility
         abilityStats.Add(new AbilityStat(AbilityStatType.Damage,config.PoisonDamage));
         abilityStats.Add(new AbilityStat(AbilityStatType.Duration,config.LastingTime));
         abilityStats.Add(new AbilityStat(AbilityStatType.Size,config.AoeScale));
+        abilityStats.Add(new AbilityStat(AbilityStatType.DotDamage,config.PoisonDamage));
     }
 
     public override bool CastAbility()

@@ -47,11 +47,7 @@ public class SmokeBombMono : MonoBehaviour
         if (unit is not Shaman shaman) return;
         if (_affectedShamans.ContainsKey(shaman)) return;
 
-        StatusEffect[] statusEffects = new StatusEffect[_ability.SmokeBombConfig.StatusEffects.Count];
-        for (int i = 0; i < _ability.SmokeBombConfig.StatusEffects.Count; i++)
-        {
-            statusEffects[i] = shaman.Effectable.AddEffect(_ability.SmokeBombConfig.StatusEffects[i],_owner.Affector);
-        }
+        StatusEffect[] statusEffects = shaman.Effectable.AddEffects(_ability.StatusEffects,_owner.Affector).ToArray();
         _affectedShamans.Add(shaman,statusEffects);
     }
     private void OnTargetExited(GroundCollider collider)

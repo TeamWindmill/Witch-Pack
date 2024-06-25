@@ -1,25 +1,31 @@
-using Tools.Targeter;
+
+using UnityEngine;
 
 public class RockMonolith : OffensiveAbility
 {
-    private RockMonolithSO _config;
-    private Shaman _shamanOwner;
+    public RockMonolithSO RockMonolithConfig;
+    protected Shaman _shamanOwner;
+    public int DamageIncrement { get; protected set; }
     public RockMonolith(OffensiveAbilitySO config, BaseUnit owner) : base(config, owner)
     {
         _shamanOwner = Owner as Shaman;
-        _config = config as RockMonolithSO;
-        abilityStats.Add(new AbilityStat(AbilityStatType.Duration,_config.Duration));
-        abilityStats.Add(new AbilityStat(AbilityStatType.Size,_config.TauntRadius));
+        RockMonolithConfig = config as RockMonolithSO;
+        abilityStats.Add(new AbilityStat(AbilityStatType.Duration,RockMonolithConfig.Duration));
+        //abilityStats.Add(new AbilityStat(AbilityStatType.Size,_config.TauntRadius));
     }
 
     public override bool CastAbility()
     {
-        var targets = Owner.EnemyTargetHelper.GetAvailableTargets(_config.TargetData);
+        var targets = Owner.EnemyTargetHelper.GetAvailableTargets(RockMonolithConfig.TargetData);
         
-        //apply status effects on lila
-        
+        var statusEffects = _shamanOwner.Effectable.AddEffects(StatusEffects,_shamanOwner.Affector);
+        statusEffects[0].Ended += RockMonolithConfig.TauntState.EndTaunt;
 
-        if (targets.Count > 0)
+        TimerManager.AddTimer(GetAbilityStatValue(AbilityStatType.Duration), OnTauntEnd);
+
+        _shamanOwner.Damageable.OnHitGFX += IncrementDamage;
+
+        if (targets.Count >= RockMonolithConfig.MinEnemiesForTaunt)
         {
             foreach (var target in targets)
             {
@@ -35,12 +41,28 @@ public class RockMonolith : OffensiveAbility
 
     public override bool CheckCastAvailable()
     {
-        Enemy target = Owner.EnemyTargetHelper.GetTarget(_config.TargetData);
+        Enemy target = Owner.EnemyTargetHelper.GetTarget(RockMonolithConfig.TargetData);
         if (!ReferenceEquals(target, null)) //might want to change to multiple enemies near her
         {
             return true;
         }
 
         return false;
+    }
+
+    protected virtual void OnTauntEnd()
+    {
+        var aftershockMono = LevelManager.Instance.PoolManager.AftershockPool.GetPooledObject();
+        aftershockMono.transform.position = Owner.transform.position;
+        aftershockMono.gameObject.SetActive(true);
+        aftershockMono.Init(_shamanOwner,this,false,0);
+
+        _shamanOwner.Damageable.OnHitGFX -= IncrementDamage;
+        DamageIncrement = 0;
+    }
+    
+    protected void IncrementDamage(bool isCrit)
+    {
+        DamageIncrement++;
     }
 }
