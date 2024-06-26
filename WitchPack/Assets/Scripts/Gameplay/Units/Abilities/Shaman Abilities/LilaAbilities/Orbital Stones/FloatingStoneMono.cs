@@ -59,7 +59,7 @@ public class FloatingStoneMono : MonoBehaviour
         {
             target.Damageable.GetHit(_orbitalStones.Owner.DamageDealer,_orbitalStones.Ability);
             target.DamageDealer.OnHitTarget += DisableStatusEffects;
-            Disable();
+            //Disable();
         }
     }
 
