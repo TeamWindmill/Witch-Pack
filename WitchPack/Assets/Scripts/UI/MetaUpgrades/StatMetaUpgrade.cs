@@ -26,6 +26,17 @@ public class StatMetaUpgrade : UIElement
             if(statUpgradeConfigs.Count - 1 < i) continue;
             _statUpgradeIcons[i].Init(statUpgradeConfigs[i],hasSkillPoint);
             if(_statUpgradeIcons[i].OpenAtStart && !statUpgradeConfigs[i].NotWorking) _statUpgradeIcons[i].ChangeState(UpgradeState.Open);
+            
         }
+
+        foreach (var upgradeIcon in _statUpgradeIcons)
+        {
+            foreach (var abilityUpgrade in _shamanUpgradePanel.ShamanSaveData.StatUpgrades)
+            {
+                if(ReferenceEquals(abilityUpgrade,upgradeIcon.UpgradeConfig)) upgradeIcon.ChangeState(UpgradeState.Upgraded);
+            }
+        }
+        
+        
     }
 }

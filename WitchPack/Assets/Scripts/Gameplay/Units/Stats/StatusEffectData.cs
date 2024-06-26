@@ -57,21 +57,7 @@ public class StatusEffectStat : BaseStat<StatusEffectStatType>
 
     public void AddUpgrade(StatusEffectStatUpgradeConfig statUpgradeConfig)
     {
-        switch (statUpgradeConfig.Factor)
-        {
-            case Factor.Add:
-                AddModifier(statUpgradeConfig.StatValue);
-                break;
-            case Factor.Subtract:
-                AddModifier(-statUpgradeConfig.StatValue);
-                break;
-            case Factor.Multiply:
-                AddMultiplier(statUpgradeConfig.StatValue / 100);
-                break;
-            case Factor.Divide:
-                AddMultiplier(-statUpgradeConfig.StatValue / 100);
-                break;
-        }
+        AddStatValue(statUpgradeConfig.Factor,statUpgradeConfig.StatValue);
     }
 }
 

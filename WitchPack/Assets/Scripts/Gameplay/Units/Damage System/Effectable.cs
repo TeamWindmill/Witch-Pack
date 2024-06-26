@@ -14,29 +14,32 @@ public class Effectable
     private IDamagable _owner;
 
     public Effectable(IDamagable owner)
-    { 
+    {
         _owner = owner;
-    } 
+    }
+
     public StatusEffect AddEffect(StatusEffectData givenEffectData, Affector affector)
     {
         StatusEffect ss = new StatusEffect(this, givenEffectData);
-        AddEffect(ss,affector);
+        AddEffect(ss, affector);
         return ss;
     }
+
     public List<StatusEffect> AddEffects(List<StatusEffectData> givenEffectDatas, Affector affector)
     {
         List<StatusEffect> statusEffects = new();
         foreach (var data in givenEffectDatas)
         {
             StatusEffect ss = new StatusEffect(this, data);
-            statusEffects.Add(AddEffect(ss,affector));
+            statusEffects.Add(AddEffect(ss, affector));
         }
 
         return statusEffects;
     }
+
     public StatusEffect AddEffect(StatusEffect givenEffect, Affector affector)
     {
-        for (int i = 0; i < activeEffects.Count; i++)//check if affected by a similar ss already
+        for (int i = 0; i < activeEffects.Count; i++) //check if affected by a similar ss already
         {
             if (activeEffects[i].StatType == givenEffect.StatType && activeEffects[i].Process == givenEffect.Process)
             {
@@ -46,6 +49,7 @@ public class Effectable
                 return givenEffect;
             }
         }
+
         activeEffects.Add(givenEffect);
         givenEffect.Activate();
         OnAffected?.Invoke(this, affector, givenEffect);
@@ -59,9 +63,10 @@ public class Effectable
         OnEffectRemoved?.Invoke(effect);
         OnEffectRemovedVFX?.Invoke(effect.StatusEffectType);
     }
+
     public void RemoveEffectsOfType(StatusEffectType effectType)
     {
-        if(activeEffects.Count == 0) return;
+        if (activeEffects.Count == 0) return;
         foreach (var effect in ActiveEffects)
         {
             if (effect.StatusEffectType == effectType)

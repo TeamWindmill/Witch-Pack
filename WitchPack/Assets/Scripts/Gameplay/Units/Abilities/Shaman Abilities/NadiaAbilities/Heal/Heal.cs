@@ -35,12 +35,19 @@ public class Heal : CastingAbility
         }
         else // no other injured shamans
         {
-            if(Owner.Damageable.CurrentHp < Owner.Stats[StatType.MaxHp].Value) // check if caster is injured
+            if (HasAbilityBehavior(AbilityBehavior.HealOnFullHealth))
             {
                 HealTarget(Owner as Shaman, Owner);
                 return true;
             }
+            
+            if(Owner.Damageable.CurrentHp < Owner.Stats[StatType.MaxHp].Value) // check if caster is injured
+            {
+                HealTarget(Owner as Shaman, Owner);
+                return true;
+            } 
             return false;
+            
         }
     }
 
@@ -56,6 +63,8 @@ public class Heal : CastingAbility
             {
                 target = Owner as Shaman;
             }
+            
+            if (HasAbilityBehavior(AbilityBehavior.HealOnFullHealth)) return true;
 
             if(target.Damageable.CurrentHp == target.Damageable.MaxHp)
             {
@@ -66,6 +75,7 @@ public class Heal : CastingAbility
         }
         else // no other injured shamans
         {
+            if (HasAbilityBehavior(AbilityBehavior.HealOnFullHealth)) return true;
             if(Owner.Damageable.CurrentHp < Owner.Stats[StatType.MaxHp].Value) // check if caster is injured
             {
                 return true;

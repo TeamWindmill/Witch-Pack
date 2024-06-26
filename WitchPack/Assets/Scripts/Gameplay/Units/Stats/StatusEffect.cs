@@ -18,12 +18,12 @@ public class StatusEffect
     private Factor factor;
     private bool _showStatusEffectPopup;
 
-    public Effectable Host { get => host; }
-    public float Counter { get => timeCounter; }
-    public float Duration { get => duration; }
-    public StatType StatType { get => _statType; }
-    public StatusEffectProcess Process { get => process; }
-    public StatusEffectType StatusEffectType { get => statusEffectType; }
+    public Effectable Host => host;
+    public float Counter => timeCounter;
+    public float Duration => duration;
+    public StatType StatType => _statType;
+    public StatusEffectProcess Process => process;
+    public StatusEffectType StatusEffectType => statusEffectType;
     public Factor Factor => factor;
     public bool ShowStatusEffectPopup => _showStatusEffectPopup;
 
