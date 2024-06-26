@@ -13,12 +13,10 @@ public class BaseUnit : BaseEntity , IDamagable
     public Damageable Damageable => damageable;
     public DamageDealer DamageDealer => damageDealer;
     public Affector Affector => affector;
-    public Transform Transform => transform;
     public Effectable Effectable => effectable;
     public virtual Stats BaseStats => null;
     public UnitStats Stats => stats;
     public AutoAttackCaster AutoAttackCaster => autoAttackCaster;
-    public OffensiveAbilitySO AutoAttack => _autoAttack;
     public UnitAutoCaster AutoCaster => _autoCaster;
     public UnitMovement Movement => movement;
     public List<AbilityCaster> CastingHandlers => castingHandlers;
@@ -27,8 +25,8 @@ public class BaseUnit : BaseEntity , IDamagable
     public ShamanTargeter ShamanTargeter => shamanTargeter;
     public UnitTargetHelper<Shaman> ShamanTargetHelper => shamanTargetHelper;
     public UnitTargetHelper<Enemy> EnemyTargetHelper => enemyTargetHelper;
+    public List<ITimer> UnitTimers => unitTimers;
 
-    public List<ITimer> UnitTimers { get => unitTimers; }
     #endregion
 
     #region Serialized
@@ -69,11 +67,11 @@ public class BaseUnit : BaseEntity , IDamagable
         _unitConfig = givenConfig;
         _autoAttack = givenConfig.AutoAttack;
         stats = new UnitStats(BaseStats);
-        damageable = new Damageable(this);
         damageDealer = new DamageDealer(this, givenConfig.AutoAttack);
         affector = new Affector(this);
         effectable = new Effectable(this);
         autoAttackCaster = new AutoAttackCaster(this, AbilityFactory.CreateAbility(givenConfig.AutoAttack,this) as OffensiveAbility);
+        damageable = new Damageable(this);
         shamanTargetHelper = new UnitTargetHelper<Shaman>(ShamanTargeter, this);
         enemyTargetHelper = new UnitTargetHelper<Enemy>(EnemyTargeter, this);
         unitTimers = new List<ITimer>();
@@ -139,4 +137,5 @@ public class BaseUnit : BaseEntity , IDamagable
     {
         boxCollider ??= GetComponent<BoxCollider2D>();
     }
+    
 }

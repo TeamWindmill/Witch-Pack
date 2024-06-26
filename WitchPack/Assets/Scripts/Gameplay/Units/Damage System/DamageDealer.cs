@@ -4,9 +4,9 @@ public class DamageDealer
 {
     private BaseUnit owner;
 
-    public Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> OnHitTarget;
-    public Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> OnKill;
-    public Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> OnAssist;
+    public Action<Damageable, DamageDealer, DamageHandler, Ability, bool> OnHitTarget;
+    public Action<Damageable, DamageDealer, DamageHandler, Ability, bool> OnKill;
+    public Action<Damageable, DamageDealer, DamageHandler, Ability, bool> OnAssist;
 
     private OffensiveAbilitySO autoAttack;
 
@@ -47,7 +47,7 @@ public class DamageDealer
         }
     }
 
-    private void SubscribeDamageBoostsFromAbility(Damageable target, DamageDealer dealer, DamageHandler dmg, CastingAbility ability, bool crit)
+    private void SubscribeDamageBoostsFromAbility(Damageable target, DamageDealer dealer, DamageHandler dmg, Ability ability, bool crit)
     {
         if (ability is not OffensiveAbility offensiveAbility) return;
 

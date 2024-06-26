@@ -9,7 +9,7 @@ public readonly struct StatusEffectData
     public readonly StatusEffectProcess Process;
     public readonly StatType StatTypeAffected;
     public readonly StatusEffectType StatusEffectType;
-    public readonly StatusEffectValueType ValueType;
+    public readonly Factor Factor;
     public readonly bool ShowStatusEffectPopup;
     public StatusEffectData(StatusEffectConfig config)
     {
@@ -18,19 +18,19 @@ public readonly struct StatusEffectData
         Process = config.Process;
         StatTypeAffected = config.StatTypeAffected;
         StatusEffectType = config.StatusEffectType;
-        ValueType = config.ValueType;
         ShowStatusEffectPopup = config.ShowStatusEffectPopup;
+        Factor = config.Factor;
     }
 
-    public StatusEffectData(float duration, float statValue, StatusEffectProcess process, StatType statTypeAffected, StatusEffectType statusEffectType, StatusEffectValueType valueType, bool showStatusEffectPopup)
+    public StatusEffectData(float duration, float statValue, StatusEffectProcess process, StatType statTypeAffected, StatusEffectType statusEffectType, Factor factor, bool showStatusEffectPopup)
     {
         Duration = new StatusEffectStat(StatusEffectStatType.Duration,duration);
         StatValue = new StatusEffectStat(StatusEffectStatType.Value,statValue);
         Process = process;
         StatTypeAffected = statTypeAffected;
         StatusEffectType = statusEffectType;
-        ValueType = valueType;
         ShowStatusEffectPopup = showStatusEffectPopup;
+        Factor = factor;
     }
 
     public void AddUpgrade(StatusEffectUpgradeConfig upgradeConfig)

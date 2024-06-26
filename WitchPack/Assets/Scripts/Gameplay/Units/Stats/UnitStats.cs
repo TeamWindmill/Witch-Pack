@@ -49,7 +49,15 @@ public class UnitStats
         return Stats[statTypeId].BaseValue;
     }
 
-    public void AddValueToStat(StatType statType, float decimalValue) //can be used to reduce or increase
+    public void AddValueToStat(StatType statType, Factor factor, float decimalValue)
+    {
+        Stats[statType].AddStatValue(factor,decimalValue);
+    }
+    public void RemoveValueFromStat(StatType statType, Factor factor, float decimalValue)
+    {
+        Stats[statType].RemoveStatValue(factor,decimalValue);
+    }
+    public void AddModifierToStat(StatType statType, float decimalValue)
     {
         Stats[statType].AddModifier(decimalValue);
     }

@@ -13,12 +13,3 @@ public class MetaUpgradeConfig
 
     public bool NotWorking => _notWorking;
 }
-
-public enum Factor
-{
-    Add,
-    Subtract,
-    Multiply,
-    Divide,
-    None
-}

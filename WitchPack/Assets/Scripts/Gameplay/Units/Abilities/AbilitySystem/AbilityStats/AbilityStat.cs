@@ -19,7 +19,7 @@ public enum AbilityStatType
     Penetration,
     ExtraPenetrationPerKill,
     KillToIncreasePenetration,
-    EnergyPointsOnKill,
+    EnergyPointsOnCast,
     ProjectilesAmount,
     Duration,
     BounceAmount,

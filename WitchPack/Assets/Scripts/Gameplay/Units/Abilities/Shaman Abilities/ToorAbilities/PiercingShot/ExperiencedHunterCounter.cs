@@ -3,7 +3,7 @@ using System;
 public class ExperiencedHunterCounter : AbilityEventCounter
 {
     private Ability _ability;
-    public ExperiencedHunterCounter(BaseUnit givenOwner, Ability ability, ref Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> eventToSub) : base(givenOwner, ability, ref eventToSub)
+    public ExperiencedHunterCounter(BaseUnit givenOwner, Ability ability, ref Action<Damageable, DamageDealer, DamageHandler, Ability, bool> eventToSub) : base(givenOwner, ability, ref eventToSub)
     {
         _ability = ability;
     }
