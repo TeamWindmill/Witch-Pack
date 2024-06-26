@@ -50,8 +50,8 @@ public class Enemy : BaseUnit
         #region Events
         //remember to unsubscribe in OnDisable!!!
         enemyVisualHandler.OnSpriteFlip += enemyAnimator.FlipAnimations;
-        Effectable.OnAffectedVFX += enemyVisualHandler.EffectHandler.PlayEffect;
-        Effectable.OnEffectRemovedVFX += enemyVisualHandler.EffectHandler.DisableEffect;
+        Effectable.OnAffected += enemyVisualHandler.EffectHandler.PlayEffect;
+        Effectable.OnEffectRemoved += enemyVisualHandler.EffectHandler.DisableEffect;
         Damageable.OnHitGFX += GetHitSFX;
         Damageable.OnDeathGFX += DeathSFX;
         DamageDealer.OnHitTarget += OnTargetHit;
@@ -72,8 +72,8 @@ public class Enemy : BaseUnit
         Damageable.OnHitGFX -= GetHitSFX;
         Damageable.OnDeathGFX -= DeathSFX;
         //if (AutoAttackCaster != null) AutoAttackCaster.OnAttack -= AttackSFX;
-        Effectable.OnAffectedVFX -= enemyVisualHandler.EffectHandler.PlayEffect;
-        Effectable.OnEffectRemovedVFX -= enemyVisualHandler.EffectHandler.DisableEffect;
+        Effectable.OnAffected -= enemyVisualHandler.EffectHandler.PlayEffect;
+        Effectable.OnEffectRemoved -= enemyVisualHandler.EffectHandler.DisableEffect;
         enemyVisualHandler.OnSpriteFlip -= enemyAnimator.FlipAnimations;
         DamageDealer.OnHitTarget -= OnTargetHit;
 

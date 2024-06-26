@@ -13,7 +13,7 @@ public class HealingWeedsMono : RootingVinesMono
     {
         base.OnRoot(enemy);
         enemy.Damageable.OnDeath += HerbalWeeds;
-        TimerData<Enemy> timerData = new TimerData<Enemy>(tickTime: 1, data: enemy, tickAmount: _healingWeedsAbility.Config.Root.Duration, usingGameTime: true);
+        TimerData<Enemy> timerData = new TimerData<Enemy>(tickTime: 1, data: enemy, tickAmount: _healingWeedsAbility.StatusEffects[0].Duration.Value, usingGameTime: true);
         Timer<Enemy> timer = new Timer<Enemy>(timerData);
         timer.OnTimerEnd += RemoveHerbalWeeds;
         TimerManager.AddTimer(timer);
@@ -27,7 +27,7 @@ public class HealingWeedsMono : RootingVinesMono
 
     private void HerbalWeeds(Damageable damageable, DamageDealer damageDealer)
     {
-        damageDealer.Owner.Effectable.AddEffects(_healingWeedsAbility.StatusEffects, damageable.Owner.Affector);
+        damageDealer.Owner.Effectable.AddEffects(_healingWeedsAbility.HealStatusEffects, damageable.Owner.Affector);
         if (damageDealer.Owner is Shaman shaman)
         {
             shaman.ShamanVisualHandler.HealingWeedsEffect.Play();

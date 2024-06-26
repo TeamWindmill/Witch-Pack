@@ -1,41 +1,40 @@
+using System;
 using UnityEngine;
 using UnityEngine.Playables;
 
 public class RootingVinesVisuals : MonoBehaviour
 {
-    [SerializeField] StatusEffectConfig root;
-    float elapsedTime;
+    //[SerializeField] StatusEffectConfig root;
     [SerializeField] PlayableDirector exitAnimation;
-    float exitTime;
-
     [SerializeField] private GameObject entryGameObject;
     [SerializeField] private GameObject exitGameObject;
 
-    private void InitializeState()
+    float elapsedTime;
+    float exitTime;
+    private bool _isInitialized;
+
+    public void Init(float duration)
     {
+        exitTime = duration - (float)exitAnimation.duration;
         elapsedTime = 0;
         SwitchGameObjects(true);
-    }
-
-    private void Start()
-    {
-        exitTime = root.Duration - (float)exitAnimation.duration;
-        InitializeState();
-    }
-
-    private void OnDisable()
-    {
-        InitializeState();
+        _isInitialized = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(!_isInitialized) return;
         elapsedTime += GAME_TIME.GameDeltaTime;
         if (elapsedTime >= exitTime)
         {
             SwitchGameObjects(false);
         }
+    }
+
+    private void OnDisable()
+    {
+        _isInitialized = false;
     }
 
     private void SwitchGameObjects(bool entryState)

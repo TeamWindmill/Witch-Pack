@@ -28,6 +28,14 @@ public class AbilityMetaUpgrade : UIElement
             _abilityUpgradeIcons[i].Init(abilityPanelConfig.StatUpgrades[i],hasSkillPoint);
             if(_abilityUpgradeIcons[i].OpenAtStart && !abilityPanelConfig.StatUpgrades[i].NotWorking) _abilityUpgradeIcons[i].ChangeState(UpgradeState.Open);
         }
+        foreach (var upgradeIcon in _abilityUpgradeIcons)
+        {
+            foreach (var abilityUpgrade in _shamanUpgradePanel.ShamanSaveData.AbilityUpgrades)
+            {
+                if(ReferenceEquals(abilityUpgrade,upgradeIcon.UpgradeConfig)) upgradeIcon.ChangeState(UpgradeState.Upgraded);
+            }
+        }
+        
     }
 }
 

@@ -1,14 +1,12 @@
-
 using UnityEngine;
 
 public class EnemyVisualHandler : UnitVisualHandler
 {
     private Enemy _enemy;
+    public EnemyEffectHandler EnemyEffectHandler => EffectHandler as EnemyEffectHandler;
 
-    [SerializeField] private PoisonIvyVisuals poisonIvyVisuals;
     [SerializeField] private ParticleSystem _hitEffect;
 
-    public PoisonIvyVisuals PoisonIvyVisuals { get => poisonIvyVisuals; }
     public ParticleSystem HitEffect => _hitEffect;
 
     public override void Init(BaseUnit unit, BaseUnitConfig config)

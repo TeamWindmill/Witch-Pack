@@ -6,11 +6,11 @@ public class ShamanUpgradePanel : UIElement
     [SerializeField] private StatMetaUpgrade _statMetaUpgrades;
 
     private ShamanMetaUpgradeConfig _shamanMetaUpgradeConfig;
-    private ShamanSaveData _shamanSaveData;
+    public ShamanSaveData ShamanSaveData { get; private set; }
 
     public void Init(ShamanSaveData shamanSaveData)
     {
-        _shamanSaveData = shamanSaveData;
+        ShamanSaveData = shamanSaveData;
         _shamanMetaUpgradeConfig = shamanSaveData.Config.ShamanMetaUpgradeConfig;
         for (int i = 0; i < _abilityMetaUpgrades.Length; i++)
         {
@@ -24,11 +24,11 @@ public class ShamanUpgradePanel : UIElement
 
     public void AddUpgradeToShaman(AbilityUpgradeConfig abilityUpgrade)
     {
-        _shamanSaveData.AbilityUpgrades.Add(abilityUpgrade);
+        ShamanSaveData.AbilityUpgrades.Add(abilityUpgrade);
     }
     public void AddUpgradeToShaman(StatUpgradeConfig statUpgrade)
     {
-        _shamanSaveData.StatUpgrades.Add(statUpgrade);
+        ShamanSaveData.StatUpgrades.Add(statUpgrade);
     }
 
     protected override void Update()

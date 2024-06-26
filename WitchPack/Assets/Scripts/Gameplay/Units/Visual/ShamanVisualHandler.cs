@@ -9,6 +9,7 @@ public class ShamanVisualHandler : UnitVisualHandler
     [SerializeField] private ParticleSystem _hitEffect;
     [SerializeField] private ParticleSystem _selectionRing;
     [SerializeField] private Transform _rangeVisual;
+    public ShamanEffectHandler ShamanEffectHandler => EffectHandler as ShamanEffectHandler;
 
 
     public ParticleSystem HealEffect { get => healEffect; }

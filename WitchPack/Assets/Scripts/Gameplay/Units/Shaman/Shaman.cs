@@ -76,8 +76,8 @@ public class Shaman : BaseUnit
         Damageable.OnDeathGFX += DeathSFX;
         Damageable.OnDeathGFX += SetOffIndicator;
         AutoAttackCaster.OnAttack += AttackSFX;
-        Effectable.OnAffectedVFX += ShamanVisualHandler.EffectHandler.PlayEffect;
-        Effectable.OnEffectRemovedVFX += ShamanVisualHandler.EffectHandler.DisableEffect;
+        Effectable.OnAffected += ShamanVisualHandler.EffectHandler.PlayEffect;
+        Effectable.OnEffectRemoved += ShamanVisualHandler.EffectHandler.DisableEffect;
         AutoCaster.CastTimeStartVFX += ShamanVisualHandler.EffectHandler.PlayEffect;
         AutoCaster.CastTimeEndVFX += ShamanVisualHandler.EffectHandler.DisableEffect;
         AutoCaster.CastTimeStart += ShamanCastSFX;

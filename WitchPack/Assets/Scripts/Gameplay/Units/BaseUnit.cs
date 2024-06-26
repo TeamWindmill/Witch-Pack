@@ -51,7 +51,7 @@ public class BaseUnit : BaseEntity , IDamagable
 
     #region Private
 
-    protected List<AbilityCaster> castingHandlers = new List<AbilityCaster>();
+    protected List<AbilityCaster> castingHandlers = new();
     private UnitTargetHelper<Shaman> shamanTargetHelper;
     private UnitTargetHelper<Enemy> enemyTargetHelper;
     private AutoAttackCaster autoAttackCaster;
