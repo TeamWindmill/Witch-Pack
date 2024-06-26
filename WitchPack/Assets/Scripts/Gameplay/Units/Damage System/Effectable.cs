@@ -59,6 +59,17 @@ public class Effectable
         OnEffectRemoved?.Invoke(effect);
         OnEffectRemovedVFX?.Invoke(effect.StatusEffectType);
     }
+    public void RemoveEffectsOfType(StatusEffectType effectType)
+    {
+        if(activeEffects.Count == 0) return;
+        foreach (var effect in ActiveEffects)
+        {
+            if (effect.StatusEffectType == effectType)
+            {
+                RemoveEffect(effect);
+            }
+        }
+    }
 
     public bool ContainsStatusEffect(StatusEffectType statusEffectType)
     {

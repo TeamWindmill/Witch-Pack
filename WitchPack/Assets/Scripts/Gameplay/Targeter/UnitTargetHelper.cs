@@ -42,7 +42,7 @@ public class UnitTargetHelper<T> where T : BaseUnit
             RemoveCurrentTarget();
 
             CurrentTarget = target;
-            CurrentTarget.Stats.AddValueToStat(StatType.ThreatLevel, owner.UnitConfig.BaseStats.Threat.value);
+            CurrentTarget.Stats.AddModifierToStat(StatType.ThreatLevel, owner.UnitConfig.BaseStats.Threat.value);
             OnTarget?.Invoke(target);
         }
 
@@ -85,7 +85,7 @@ public class UnitTargetHelper<T> where T : BaseUnit
     {
         if (!ReferenceEquals(CurrentTarget, null))
         {
-            CurrentTarget.Stats.AddValueToStat(StatType.ThreatLevel, -owner.UnitConfig.BaseStats.Threat.value);
+            CurrentTarget.Stats.AddModifierToStat(StatType.ThreatLevel, -owner.UnitConfig.BaseStats.Threat.value);
         }
 
         CurrentTarget = null;

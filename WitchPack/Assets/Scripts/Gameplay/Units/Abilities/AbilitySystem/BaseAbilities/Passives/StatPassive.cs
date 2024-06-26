@@ -21,7 +21,7 @@ public class StatPassive : PassiveAbility
     {
         foreach (var increase in PassiveAbilityStats)
         {
-            Owner.Stats.AddValueToStat(increase.StatType, increase.Value);
+            Owner.Stats.AddModifierToStat(increase.StatType, increase.Value);
         }
     }
 
@@ -33,21 +33,7 @@ public class StatPassive : PassiveAbility
             {
                 if (stat.StatType == statConfig.StatType)
                 {
-                    switch (statConfig.Factor)
-                    {
-                        case Factor.Add:
-                            stat.AddModifier(statConfig.StatValue);
-                            break;
-                        case Factor.Subtract:
-                            stat.AddModifier(-statConfig.StatValue);
-                            break;
-                        case Factor.Multiply:
-                            stat.AddMultiplier(statConfig.StatValue/100);
-                            break;
-                        case Factor.Divide:
-                            stat.AddMultiplier(-(statConfig.StatValue/100));
-                            break;
-                    }
+                    stat.AddStatValue(statConfig.Factor,statConfig.StatValue);
                     return;
                 }
             }

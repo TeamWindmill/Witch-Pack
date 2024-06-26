@@ -12,7 +12,7 @@ public class StatusEffectConfig : ScriptableObject
     [SerializeField] private StatType statTypeAffected;//all stats you wish to affect on the target
     [SerializeField] private StatusEffectType statusEffectType;
     [SerializeField] private bool _showStatusEffectPopup;
-    [SerializeField] private StatusEffectValueType valueType;
+    [SerializeField] private Factor factor;
     private bool hasDuration => process != StatusEffectProcess.InstantWithoutDuration;
 
     public float Duration { get => duration; }
@@ -20,7 +20,7 @@ public class StatusEffectConfig : ScriptableObject
     public StatusEffectProcess Process { get => process; }
     public StatType StatTypeAffected { get => statTypeAffected; }
     public StatusEffectType StatusEffectType { get => statusEffectType; }
-    public StatusEffectValueType ValueType { get => valueType; }
+    public Factor Factor => factor;
     public bool ShowStatusEffectPopup => _showStatusEffectPopup;
 }
 
@@ -29,13 +29,6 @@ public enum StatusEffectProcess
     InstantWithDuration, //change a value instantly for a duration
     OverTime,//change value over a duration, every second the value will decrease or increase by a fixed amount
     InstantWithoutDuration,
-}
-
-public enum StatusEffectValueType
-{
-    FlatToInt,
-    Percentage,
-    FlatToFloat,
 }
 
 public enum StatusEffectType
@@ -54,4 +47,5 @@ public enum StatusEffectType
     MovementSpeed,
     PermanentMaxHealthBonus,
     Frenzy,
+    Weak,
 }

@@ -50,11 +50,11 @@ public class AffectedByUnitsStatPassive : PassiveAbility
     {
         foreach (var stat in _config.StatsIncrease)
         {
-            if (addition) Owner.Stats.AddValueToStat(stat.StatType, stat.Value);
+            if (addition) Owner.Stats.AddModifierToStat(stat.StatType, stat.Value);
             else
             {
                 if(Owner.Stats.GetBaseStatValue(stat.StatType) >= Owner.Stats.GetStatValue(stat.StatType)) return;
-                Owner.Stats.AddValueToStat(stat.StatType, -stat.Value);
+                Owner.Stats.AddModifierToStat(stat.StatType, -stat.Value);
             }
         }
     }

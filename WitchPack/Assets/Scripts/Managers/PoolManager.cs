@@ -18,6 +18,8 @@ public class PoolManager : MonoBehaviour
     [SerializeField] private FireballPool _fireballPool;
     [SerializeField] private AoeFirePool _aoeFirePool;
     [SerializeField] private AftershockPool _aftershockPool;
+    [SerializeField] private OrbitalStonesPool _orbitalStonesPool;
+    [SerializeField] private FloatingStonesPool _floatingStonesPool;
 
     #region Pointers
 
@@ -35,6 +37,8 @@ public class PoolManager : MonoBehaviour
     public PoisonIvyPool PoisonIvyPool { get => poisonIvyPool; }
     public HealingWeedsPool HealingWeedsPool { get => healingWeedsPool; }
     public AftershockPool AftershockPool => _aftershockPool;
+    public OrbitalStonesPool OrbitalStonesPool => _orbitalStonesPool;
+    public FloatingStonesPool FloatingStonesPool => _floatingStonesPool;
 
     #endregion
     private void OnValidate()
@@ -53,5 +57,7 @@ public class PoolManager : MonoBehaviour
         _fireballPool ??= GetComponentInChildren<FireballPool>();
         _aoeFirePool ??= GetComponentInChildren<AoeFirePool>();
         _aftershockPool ??= GetComponentInChildren<AftershockPool>();
+        _orbitalStonesPool ??= GetComponentInChildren<OrbitalStonesPool>();
+        _floatingStonesPool ??= GetComponentInChildren<FloatingStonesPool>();
     }
 }

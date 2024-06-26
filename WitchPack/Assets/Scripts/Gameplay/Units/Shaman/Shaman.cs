@@ -47,10 +47,11 @@ public class Shaman : BaseUnit
     {
         ShamanConfig = saveData.Config;
         base.Init(ShamanConfig);
-        energyHandler = new EnergyHandler(this);
-        EnemyTargeter.SetRadius(Stats[StatType.BaseRange].Value);
         IntializeAbilities();
         AddMetaUpgrades(saveData);
+        Damageable.Init();
+        energyHandler = new EnergyHandler(this);
+        EnemyTargeter.SetRadius(Stats[StatType.BaseRange].Value);
         shamanAnimator.Init(this);
         indicatable.Init(ShamanConfig.UnitIndicatorIcon, action: FocusCameraOnShaman, clickable: true,
             indicatorPointerSprite: IndicatorPointerSpriteType.Cyan);
@@ -139,21 +140,7 @@ public class Shaman : BaseUnit
             {
                 foreach (var statConfig in statUpgrade.Stats)
                 {
-                    switch (statConfig.Factor)
-                    {
-                        case Factor.Add:
-                            Stats.AddValueToStat(statConfig.StatType,statConfig.StatValue);
-                            break;
-                        case Factor.Subtract:
-                            Stats.AddValueToStat(statConfig.StatType,-statConfig.StatValue);
-                            break;
-                        case Factor.Multiply:
-                            Stats.AddMultiplierToStat(statConfig.StatType,statConfig.StatValue/100);
-                            break;
-                        case Factor.Divide:
-                            Stats.AddMultiplierToStat(statConfig.StatType,-(statConfig.StatValue/100));
-                            break;
-                    }
+                    Stats.AddValueToStat(statConfig.StatType,statConfig.Factor,statConfig.StatValue);
                 }
             }
         }
@@ -256,6 +243,7 @@ public class Shaman : BaseUnit
         return null;
     }
 
+    
     public Ability GetAbilityFromConfig(AbilitySO config)
     {
         foreach (var ability in RootAbilities)

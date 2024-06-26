@@ -23,6 +23,9 @@ public class SlowMotionManager : MonoSingleton<SlowMotionManager>
         _audioFilters.Init(BgMusicManager.Instance.AudioSource,
             BgMusicManager.Instance.AudioReverbFilter, BgMusicManager.Instance.AudioLowPassFilter);
         _postProcessFilters.Init(GameManager.Instance.CameraHandler.PostProcessVolume);
+        
+        if(LevelManager.Instance.CurrentLevel.EnviromentHandler == null) return;
+        
         _windEffectHandler.Init(LevelManager.Instance.CurrentLevel.EnviromentHandler.WindEffects);
         _butterflyEffectHandler.Init(LevelManager.Instance.CurrentLevel.EnviromentHandler.ButteflyEffects);
         _waterfallEffectHandler.Init(LevelManager.Instance.CurrentLevel.EnviromentHandler.WaterfallAnimator);
@@ -34,9 +37,12 @@ public class SlowMotionManager : MonoSingleton<SlowMotionManager>
         if(_previousTimeRate == 0) return;
         GAME_TIME.SetTimeStep(_slowTime, _slowTimeTransitionTime, _startSlowTimeCurve);
         _audioFilters.StartTransition();
+        _postProcessFilters.StartTransition();
+        
+        if(LevelManager.Instance.CurrentLevel.EnviromentHandler == null) return;
+
         _windEffectHandler.StartTransition();
         _butterflyEffectHandler.StartTransition();
-        _postProcessFilters.StartTransition();
         _waterfallEffectHandler.StartTransition();
         IsActive = true;
     }
@@ -47,10 +53,13 @@ public class SlowMotionManager : MonoSingleton<SlowMotionManager>
         if(GAME_TIME.TimeRate == 0) return;
         GAME_TIME.SetTimeStep(_previousTimeRate, _slowTimeTransitionTime, _endSlowTimeCurve);
         _audioFilters.EndTransition();
+        _postProcessFilters.EndTransition();
+        
+        if(LevelManager.Instance.CurrentLevel.EnviromentHandler == null) return;
+
         _windEffectHandler.EndTransition();
         _butterflyEffectHandler.EndTransition();
         _waterfallEffectHandler.EndTransition();
-        _postProcessFilters.EndTransition();
         IsActive = false;
     }
 }

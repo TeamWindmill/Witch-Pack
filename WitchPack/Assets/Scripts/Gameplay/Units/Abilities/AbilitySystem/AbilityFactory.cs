@@ -85,6 +85,12 @@ public class AbilityFactory
             case RockMonolithSO ability:
                 return new RockMonolith(ability, owner);
             
+            case OrbitalStonesSO ability:
+                return new OrbitalStones(ability, owner);
+            
+            case ReflectSO ability:
+                return new Reflect(ability, owner);
+            
         }
 
         throw new Exception($"{owner.UnitConfig.Name}'s Ability config not found in the ability factory");

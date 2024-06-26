@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 
 public class DamageHandler
 {
+    public Action<Damageable,DamageHandler> OnKill;
     public bool HasPopupColor => hasPopupColor;
     public Color PopupColor => popupColor;
 
