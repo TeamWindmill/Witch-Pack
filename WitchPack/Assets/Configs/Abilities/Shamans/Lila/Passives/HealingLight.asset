@@ -9,15 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78d571b527464621bf940f409440e6a8, type: 3}
-  m_Name: Reflect
+  m_Script: {fileID: 11500000, guid: 432ef5572b8ef0641a9ee1a7002d5110, type: 3}
+  m_Name: HealingLight
   m_EditorClassIdentifier: 
-  _name: Reflect
-  discription: When taking damage, deals a small amount of damage back to the attacker.
+  _name: Healing Light
+  discription: Heal percentage of Max Health per Interval
   defaultIcon: {fileID: 0}
   disabledIcon: {fileID: 0}
   upgradeIcon: {fileID: 0}
-  _upgrades: []
+  _upgrades:
+  - {fileID: 11400000, guid: 50df8216260818c43b23b9ebb88beb25, type: 2}
+  - {fileID: 11400000, guid: 70dc02f9a5df9954995e8c4ac0a7c99f, type: 2}
   hasPopupColor: 0
   popupColor: {r: 0, g: 0, b: 0, a: 0}
-  _reflectedDamagePercent: 0.1
+  statIncreases:
+  - StatType: 10
+    Value: 5

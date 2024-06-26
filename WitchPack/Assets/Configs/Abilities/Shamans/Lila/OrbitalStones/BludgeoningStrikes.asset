@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd1e5805988944a9882242a9ea781103, type: 3}
-  m_Name: OrbitalTornado
+  m_Name: BludgeoningStrikes
   m_EditorClassIdentifier: 
-  _name: Orbital Tornado
-  discription: 
+  _name: Bludgeoning Strikes
+  discription: Stones weaken the enemy next attack
   defaultIcon: {fileID: 0}
   disabledIcon: {fileID: 0}
   upgradeIcon: {fileID: 0}
@@ -24,10 +24,11 @@ MonoBehaviour:
   cd: 10
   givesEnergyPoints: 0
   energyPoints: 0
-  statusEffects: []
+  statusEffects:
+  - {fileID: 11400000, guid: 7148748a92226d5438b4d5315ac68e56, type: 2}
   targetData:
     Priority: 0
-    Modifier: 0
+    Modifier: 1
     StatType: 0
     AvoidCharmedTargets: 0
   _hasCastVisual: 1
@@ -36,7 +37,7 @@ MonoBehaviour:
   soundEffectType: 0
   baseDamage: 50
   damageBoosts: []
-  _angularSpeed: 400
+  _angularSpeed: 200
   _radius: 1.5
   _ellipseScale: 1.3
   _stoneAmount: 3

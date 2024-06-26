@@ -10,25 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd1e5805988944a9882242a9ea781103, type: 3}
-  m_Name: BludgeoningStrikes
+  m_Name: OrbitalStones
   m_EditorClassIdentifier: 
-  _name: Bludgeoning Strikes
-  discription: 
+  _name: Orbital Stones
+  discription: Creates stone projectiles around lila that damage enemies
   defaultIcon: {fileID: 0}
   disabledIcon: {fileID: 0}
   upgradeIcon: {fileID: 0}
-  _upgrades: []
+  _upgrades:
+  - {fileID: 11400000, guid: bab550b8fcccdf14d89cc2187b230117, type: 2}
+  - {fileID: 11400000, guid: b6c2f44114effbe43bf02ac8830adf93, type: 2}
   hasPopupColor: 0
   popupColor: {r: 0, g: 0, b: 0, a: 0}
   castTime: 1.5
   cd: 10
   givesEnergyPoints: 0
   energyPoints: 0
-  statusEffects:
-  - {fileID: 11400000, guid: 7148748a92226d5438b4d5315ac68e56, type: 2}
+  statusEffects: []
   targetData:
     Priority: 0
-    Modifier: 1
+    Modifier: 0
     StatType: 0
     AvoidCharmedTargets: 0
   _hasCastVisual: 1

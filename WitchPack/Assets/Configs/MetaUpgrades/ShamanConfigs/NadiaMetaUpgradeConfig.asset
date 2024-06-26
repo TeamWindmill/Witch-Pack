@@ -165,7 +165,7 @@ MonoBehaviour:
           Factor: 4
         Value:
           StatType: 1
-          StatValue: 100
+          StatValue: 1
           Factor: 2
         Process: 0
         StatType: 10
@@ -241,8 +241,11 @@ MonoBehaviour:
       - {fileID: 11400000, guid: a375fee6a9a1909459661c3f78f6da65, type: 2}
     - _valueName: +2
       _name: Energy gained
-      _notWorking: 1
-      _stats: []
+      _notWorking: 0
+      _stats:
+      - _statType: 8
+        _statValue: 2
+        _factor: 0
       _damageBoosts: []
       _abilitiesBehaviors: 
       _statusEffectUpgrades: []
