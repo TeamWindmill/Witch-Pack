@@ -92,6 +92,6 @@ public class EnergyHandler
     }
     public void OnShamanCast(AbilityCaster caster)
     {
-        GainEnergy((int)caster.Ability.GetAbilityStatValue(AbilityStatType.EnergyPointsOnKill)); 
+        GainEnergy(caster.Ability.GetAbilityStatIntValue(AbilityStatType.EnergyPointsOnCast));
     }
 }

@@ -47,10 +47,11 @@ public class Shaman : BaseUnit
     {
         ShamanConfig = saveData.Config;
         base.Init(ShamanConfig);
-        energyHandler = new EnergyHandler(this);
-        EnemyTargeter.SetRadius(Stats[StatType.BaseRange].Value);
         IntializeAbilities();
         AddMetaUpgrades(saveData);
+        Damageable.Init();
+        energyHandler = new EnergyHandler(this);
+        EnemyTargeter.SetRadius(Stats[StatType.BaseRange].Value);
         shamanAnimator.Init(this);
         indicatable.Init(ShamanConfig.UnitIndicatorIcon, action: FocusCameraOnShaman, clickable: true,
             indicatorPointerSprite: IndicatorPointerSpriteType.Cyan);
@@ -242,6 +243,7 @@ public class Shaman : BaseUnit
         return null;
     }
 
+    
     public Ability GetAbilityFromConfig(AbilitySO config)
     {
         foreach (var ability in RootAbilities)

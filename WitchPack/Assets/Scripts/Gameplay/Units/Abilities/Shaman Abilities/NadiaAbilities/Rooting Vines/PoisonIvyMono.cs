@@ -36,7 +36,7 @@ public class PoisonIvyMono : RootingVinesMono
 
     private void EnemyTakePoisonDamage(Enemy enemy)
     {
-        damage = new DamageHandler(poisonIvy.GetAbilityStatValue(AbilityStatType.Damage));
+        damage = new DamageHandler(poisonIvy.GetAbilityStatValue(AbilityStatType.DotDamage));
         damage.SetPopupColor(poisonIvy.Config.PoisonPopupColor);
         enemy.Damageable.TakeDamage(_owner.DamageDealer, damage, Ability as OffensiveAbility, false);
         

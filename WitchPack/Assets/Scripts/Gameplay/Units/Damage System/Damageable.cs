@@ -29,9 +29,12 @@ public class Damageable
     public Damageable(IDamagable owner)
     {
         this.owner = owner;
+    }
+
+    public void Init()
+    {
         hitable = true;
         currentHp = MaxHp;
-        //OnGetHit += ApplyArmorDamageReduction;
     }
 
     public void GetHit(DamageDealer dealer, CastingAbility ability)
