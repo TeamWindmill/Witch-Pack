@@ -15,6 +15,7 @@ public class MetaUpgradeIcon<T> : ClickableUIElement
     [SerializeField] private MetaUpgradeIcon<T> childNode;
     [SerializeField] private TextMeshProUGUI _name;
     [SerializeField] private TextMeshProUGUI _amount;
+    [SerializeField] private TextMeshProUGUI _cost;
     [SerializeField] private Image _lineImage;
     [SerializeField] private Image _frameImage;
     [SerializeField] private Image _alphaImage;
@@ -28,16 +29,17 @@ public class MetaUpgradeIcon<T> : ClickableUIElement
     [BoxGroup("Sprites")] [SerializeField] private Sprite upgradedLineSprite;
     
 
-    private bool _hasSkillPoints;
+    private int _availableSkillPoints;
     protected T Upgrade;
     private MetaUpgradeConfig _upgradeConfig;
 
 
-    public virtual void Init(MetaUpgradeConfig upgradeConfig, bool hasSkillPoints)
+    public virtual void Init(MetaUpgradeConfig upgradeConfig, int availableSkillPoints)
     {
         UpgradeState = UpgradeState.Locked;
         _upgradeConfig = upgradeConfig;
-        _hasSkillPoints = hasSkillPoints;
+        _availableSkillPoints = availableSkillPoints;
+        _cost.text = upgradeConfig.SkillPointsCost.ToString();
         if (!upgradeConfig.NotWorking)
         {
             _name.text = upgradeConfig.Name;
@@ -60,7 +62,7 @@ public class MetaUpgradeIcon<T> : ClickableUIElement
             case UpgradeState.Locked:
                 break;
             case UpgradeState.Open:
-                if (_hasSkillPoints)
+                if (_availableSkillPoints >= _upgradeConfig.SkillPointsCost)
                 {
                     ChangeState(UpgradeState.Upgraded);
                     OnUpgrade?.Invoke(Upgrade);
@@ -84,7 +86,7 @@ public class MetaUpgradeIcon<T> : ClickableUIElement
                 _frameImage.sprite = defaultFrameSprite;
                 break;
             case UpgradeState.Open:
-                if (_hasSkillPoints)
+                if (_availableSkillPoints >= _upgradeConfig.SkillPointsCost)
                 {
                     if(_upgradeConfig.NotWorking) return;
                     _alphaImage.gameObject.SetActive(false);

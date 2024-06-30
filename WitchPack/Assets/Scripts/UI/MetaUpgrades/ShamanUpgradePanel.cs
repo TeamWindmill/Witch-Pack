@@ -21,10 +21,10 @@ public class ShamanUpgradePanel : UIElement
         _shamanMetaUpgradeConfig = shamanSaveData.Config.ShamanMetaUpgradeConfig;
         for (int i = 0; i < _abilityMetaUpgrades.Length; i++)
         {
-            _abilityMetaUpgrades[i].Init(this, _shamanMetaUpgradeConfig.AbilityPanelUpgrades[i], shamanSaveData.ShamanExperienceHandler.HasSkillPoints);
+            _abilityMetaUpgrades[i].Init(this, _shamanMetaUpgradeConfig.AbilityPanelUpgrades[i]);
         }
         
-        _statMetaUpgrades.Init(this, _shamanMetaUpgradeConfig.StatPanelUpgrades.StatUpgrades, shamanSaveData.ShamanExperienceHandler.HasSkillPoints);
+        _statMetaUpgrades.Init(this, _shamanMetaUpgradeConfig.StatPanelUpgrades.StatUpgrades);
 
         Show();
     }

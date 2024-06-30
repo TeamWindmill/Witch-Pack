@@ -1,8 +1,8 @@
 public class StatMetaUpgradeIcon : MetaUpgradeIcon<StatUpgradeConfig>
 {
-    public override void Init(MetaUpgradeConfig upgradeConfig, bool hasSkillPoints)
+    public override void Init(MetaUpgradeConfig upgradeConfig, int availableSkillPoints)
     {
         Upgrade = upgradeConfig as StatUpgradeConfig;
-        base.Init(upgradeConfig, hasSkillPoints);
+        base.Init(upgradeConfig, availableSkillPoints);
     }
 }

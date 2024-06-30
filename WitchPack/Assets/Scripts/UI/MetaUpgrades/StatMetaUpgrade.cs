@@ -16,7 +16,7 @@ public class StatMetaUpgrade : UIElement
         _statUpgradeIcons.ForEach(i => i.OnUpgrade += _shamanUpgradePanel.AddUpgradeToShaman);
     }
 
-    public void Init(ShamanUpgradePanel shamanUpgradePanel,List<StatUpgradeConfig> statUpgradeConfigs,bool hasSkillPoint)
+    public void Init(ShamanUpgradePanel shamanUpgradePanel,List<StatUpgradeConfig> statUpgradeConfigs)
     {
         _shamanUpgradePanel = shamanUpgradePanel;
         _abilityName.text = _title;
@@ -24,7 +24,8 @@ public class StatMetaUpgrade : UIElement
         for (int i = 0; i < _statUpgradeIcons.Length; i++)
         {
             if(statUpgradeConfigs.Count - 1 < i) continue;
-            _statUpgradeIcons[i].Init(statUpgradeConfigs[i],hasSkillPoint);
+            var availableSkillPoints = _shamanUpgradePanel.ShamanSaveData.ShamanExperienceHandler.AvailableSkillPoints;
+            _statUpgradeIcons[i].Init(statUpgradeConfigs[i],availableSkillPoints);
             if(_statUpgradeIcons[i].OpenAtStart && !statUpgradeConfigs[i].NotWorking) _statUpgradeIcons[i].ChangeState(UpgradeState.Open);
             
         }
