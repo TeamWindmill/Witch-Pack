@@ -7,75 +7,67 @@ public class UnitEffectHandler : MonoBehaviour
     [SerializeField] private EffectVisual<StatusEffectType>[] _statusEffectVisuals;
     [SerializeField] private EffectVisual<CastingHandsEffectType>[] _castingHandsVisuals;
 
-    
-
     public virtual void Init(BaseUnitConfig config)
     {
         DisableAllEffects();
     }
-
-    public void PlayEffect<T>(T effectType) where T : Enum
+    
+    public virtual void PlayEffect(Effectable effectable, Affector affector, StatusEffect statusEffect)
     {
-        switch (effectType)
+        foreach (var effectVisual in _statusEffectVisuals)
         {
-            case StatusEffectType statusEffectType:
-                foreach (var effectVisual in _statusEffectVisuals)
+            if (effectVisual.StatusEffectType == statusEffect.StatusEffectType)
+            {
+                if (effectVisual.PlayAllEffects)
                 {
-                    if (effectVisual.StatusEffectType == statusEffectType)
+                    foreach (var go in effectVisual.visualGameObjects)
                     {
-                        if (effectVisual.PlayAllEffects)
-                        {
-                            foreach (var go in effectVisual.visualGameObjects)
-                            {
-                                go.SetActive(true);
-                            }
-                        }
-                        else
-                        {
-                            effectVisual.GetGameObject().SetActive(true);                            
-                        }
-                        return;
+                        go.SetActive(true);
                     }
                 }
-                break;
-            case CastingHandsEffectType castingHandsEffectType:
-                foreach (var effectVisual in _castingHandsVisuals)
+                else
                 {
-                    if (effectVisual.StatusEffectType == castingHandsEffectType)
-                    {                
-                        effectVisual.GetGameObject().SetActive(true);                            
-                        return;
-                    }
+                    effectVisual.GetGameObject().SetActive(true);                            
                 }
-                break;
+                return;
+            }
+        }
+        
+    }
+    public virtual void PlayEffect(CastingHandsEffectType effectType)
+    {
+        foreach (var effectVisual in _castingHandsVisuals)
+        {
+            if (effectVisual.StatusEffectType == effectType)
+            {                
+                effectVisual.GetGameObject().SetActive(true);                            
+                return;
+            }
+        }
+        
+    }
+    public virtual void DisableEffect(StatusEffect statusEffect)
+    {
+        foreach (var effectVisual in _statusEffectVisuals)
+        {
+            if (effectVisual.StatusEffectType == statusEffect.StatusEffectType)
+            {
+                effectVisual.SetOffAllVisualGameObjects();
+                return;
+            }
         }
     }
-
-    public void DisableEffect<T>(T effectType) where T : Enum
+    public virtual void DisableEffect(CastingHandsEffectType effectType)
     {
-        switch (effectType)
+        foreach (var effectVisual in _castingHandsVisuals)
         {
-            case StatusEffectType statusEffectType:
-                foreach (var effectVisual in _statusEffectVisuals)
-                {
-                    if (effectVisual.StatusEffectType == statusEffectType)
-                    {
-                        effectVisual.SetOffAllVisualGameObjects();
-                        return;
-                    }
-                }
-                break;
-            case CastingHandsEffectType castingHandsEffectType:
-                foreach (var effectVisual in _castingHandsVisuals)
-                {
-                    if (effectVisual.StatusEffectType == castingHandsEffectType)
-                    {
-                        effectVisual.SetOffAllVisualGameObjects();
-                        return;
-                    }
-                }
-                break;
+            if (effectVisual.StatusEffectType == effectType)
+            {
+                effectVisual.SetOffAllVisualGameObjects();
+                return;
+            }
         }
+        
     }
 
     public void DisableAllEffects()

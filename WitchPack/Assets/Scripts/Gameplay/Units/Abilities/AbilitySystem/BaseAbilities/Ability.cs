@@ -86,32 +86,25 @@ public abstract class Ability
 
         throw new Exception("ability stat not found in ability");
     }
+    public int GetAbilityStatIntValue(AbilityStatType abilityStatType)
+    {
+        foreach (var abilityStat in abilityStats)
+        {
+            if (abilityStat.StatType == abilityStatType) return abilityStat.IntValue;
+        }
+
+        throw new Exception("ability stat not found in ability");
+    }
 
     public virtual void AddStatUpgrade(AbilityUpgradeConfig abilityUpgradeConfig)
     {
-        //stat modifiers
         foreach (var stat in abilityStats)
         {
             foreach (var statConfig in abilityUpgradeConfig.Stats)
             {
                 if (stat.StatType == statConfig.StatType)
                 {
-                    switch (statConfig.Factor)
-                    {
-                        case Factor.Add:
-                            stat.AddModifier(statConfig.StatValue);
-                            break;
-                        case Factor.Subtract:
-                            stat.AddModifier(-statConfig.StatValue);
-                            break;
-                        case Factor.Multiply:
-                            stat.AddMultiplier(statConfig.StatValue/100);
-                            break;
-                        case Factor.Divide:
-                            stat.AddMultiplier(-(statConfig.StatValue/100));
-                            break;
-                    }
-                    return;
+                    stat.AddStatValue(statConfig.Factor,statConfig.StatValue);
                 }
             }
         }
@@ -124,22 +117,7 @@ public abstract class Ability
             {
                 if (stat.StatType == abilityStatConfig.StatType)
                 {
-                    switch (abilityStatConfig.Factor)
-                    {
-                        case Factor.Add:
-                            stat.AddModifier(abilityStatConfig.StatValue);
-                            break;
-                        case Factor.Subtract:
-                            stat.AddModifier(-abilityStatConfig.StatValue);
-                            break;
-                        case Factor.Multiply:
-                            stat.AddMultiplier(abilityStatConfig.StatValue/100);
-                            break;
-                        case Factor.Divide:
-                            stat.AddMultiplier(-(abilityStatConfig.StatValue/100));
-                            break;
-                    }
-                    return;
+                    stat.AddStatValue(abilityStatConfig.Factor,abilityStatConfig.StatValue);
                 }
             }
         }

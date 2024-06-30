@@ -8,7 +8,10 @@ using UnityEngine.UI;
 public class MetaUpgradeIcon<T> : ClickableUIElement
 {
     public event Action<T> OnUpgrade;
-
+    public UpgradeState UpgradeState { get; private set; }
+    public bool OpenAtStart => _openAtStart;
+    public MetaUpgradeConfig UpgradeConfig => _upgradeConfig;
+    
     [SerializeField] private MetaUpgradeIcon<T> childNode;
     [SerializeField] private TextMeshProUGUI _name;
     [SerializeField] private TextMeshProUGUI _amount;
@@ -23,9 +26,7 @@ public class MetaUpgradeIcon<T> : ClickableUIElement
     [BoxGroup("Sprites")] [SerializeField] private Sprite defaultFrameSprite;
     [BoxGroup("Sprites")] [SerializeField] private Sprite defaultLineSprite;
     [BoxGroup("Sprites")] [SerializeField] private Sprite upgradedLineSprite;
-    public UpgradeState UpgradeState { get; private set; }
-
-    public bool OpenAtStart => _openAtStart;
+    
 
     private bool _hasSkillPoints;
     protected T Upgrade;
@@ -63,7 +64,6 @@ public class MetaUpgradeIcon<T> : ClickableUIElement
                 {
                     ChangeState(UpgradeState.Upgraded);
                     OnUpgrade?.Invoke(Upgrade);
-                    if (childNode != null) childNode.ChangeState(UpgradeState.Open);
                 }
                 break;
             case UpgradeState.Upgraded:
@@ -103,6 +103,7 @@ public class MetaUpgradeIcon<T> : ClickableUIElement
                 _alphaImage.gameObject.SetActive(false);
                 _lineImage.sprite = upgradedLineSprite;
                 _frameImage.sprite = defaultFrameSprite;
+                if (childNode != null) childNode.ChangeState(UpgradeState.Open);
                 break;
         }
     }

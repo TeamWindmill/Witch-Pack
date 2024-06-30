@@ -10,7 +10,7 @@ public class AbilityEventCounter
 
     public int CurrentCount { get => currentCount;}
 
-    public AbilityEventCounter(BaseUnit givenOwner, Ability ability, ref Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> eventToSub)
+    public AbilityEventCounter(BaseUnit givenOwner, Ability ability, ref Action<Damageable, DamageDealer, DamageHandler, Ability, bool> eventToSub)
     {
         owner = givenOwner;
         AbilityToCount = ability;

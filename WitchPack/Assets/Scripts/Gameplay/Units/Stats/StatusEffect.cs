@@ -15,17 +15,16 @@ public class StatusEffect
     private StatType _statType;//the stats to affect
     private StatusEffectProcess process;
     private StatusEffectType statusEffectType;
-    private StatusEffectValueType statusEffectValueType;
-    private float _statValue;
+    private Factor factor;
     private bool _showStatusEffectPopup;
 
-    public Effectable Host { get => host; }
-    public float Counter { get => timeCounter; }
-    public float Duration { get => duration; }
-    public StatType StatType { get => _statType; }
-    public StatusEffectProcess Process { get => process; }
-    public StatusEffectType StatusEffectType { get => statusEffectType; }
-    public StatusEffectValueType StatusEffectValueType { get => statusEffectValueType; }
+    public Effectable Host => host;
+    public float Counter => timeCounter;
+    public float Duration => duration;
+    public StatType StatType => _statType;
+    public StatusEffectProcess Process => process;
+    public StatusEffectType StatusEffectType => statusEffectType;
+    public Factor Factor => factor;
     public bool ShowStatusEffectPopup => _showStatusEffectPopup;
 
     public StatusEffect(Effectable host, StatusEffectConfig config)
@@ -36,8 +35,8 @@ public class StatusEffect
         _statType = config.StatTypeAffected;
         process = config.Process;
         statusEffectType = config.StatusEffectType;
-        statusEffectValueType = config.ValueType;
         _showStatusEffectPopup = config.ShowStatusEffectPopup;
+        factor = config.Factor;
     }
     public StatusEffect(Effectable host, StatusEffectData data)
     {
@@ -47,8 +46,8 @@ public class StatusEffect
         _statType = data.StatTypeAffected;
         process = data.Process;
         statusEffectType = data.StatusEffectType;
-        statusEffectValueType = data.ValueType;
         _showStatusEffectPopup = data.ShowStatusEffectPopup;
+        factor = data.Factor;
     }
 
     public virtual void Activate()
@@ -71,7 +70,7 @@ public class StatusEffect
     public virtual void Remove()
     {
         host.RemoveEffect(this);
-        host?.Owner.Stats.AddValueToStat(StatType, -_statValue);
+        host?.Owner.Stats.RemoveValueFromStat(StatType, factor, statValue);
         Ended?.Invoke(host,this);
     }
     public virtual void Reset()
@@ -81,41 +80,17 @@ public class StatusEffect
 
     private void InstantEffectWithoutDuration()
     {
-        _statValue = 0;
-        switch (statusEffectValueType)
-        {
-            case StatusEffectValueType.FlatToInt:
-                _statValue = Mathf.RoundToInt(statValue);
-                break;
-            case StatusEffectValueType.Percentage:
-                _statValue = (statValue / 100) * host.Owner.Stats.GetStatValue(_statType);
-                break;
-            case StatusEffectValueType.FlatToFloat:
-                _statValue = statValue;
-                break;
-        }
-        host.Owner.Stats.AddValueToStat(StatType, _statValue);
+        host.Owner.Stats.AddValueToStat(StatType, factor, statValue);
         
     }
+
     private IEnumerator OverTimeEffect()
     {
-        _statValue = 0;
-        switch (statusEffectValueType)
-        {
-            case StatusEffectValueType.FlatToInt:
-                _statValue = Mathf.RoundToInt(statValue / duration);
-                break;
-            case StatusEffectValueType.Percentage:
-                _statValue = (statValue / 100) * host.Owner.Stats.GetStatValue(_statType) / duration;
-                break;
-            case StatusEffectValueType.FlatToFloat:
-                _statValue = statValue / duration;
-                break;
-        }
+        statValue /= duration;
 
         while (timeCounter <= duration)
         {
-            host.Owner.Stats.AddValueToStat(StatType, _statValue);
+            host.Owner.Stats.AddValueToStat(StatType, factor, statValue);
             float counter = 0f;
             while (counter < 1)
             {
@@ -128,20 +103,7 @@ public class StatusEffect
     }
     private IEnumerator InstantEffect()
     {
-        _statValue = 0;
-        switch (statusEffectValueType)
-        {
-            case StatusEffectValueType.FlatToInt:
-                _statValue = Mathf.RoundToInt(statValue);
-                break;
-            case StatusEffectValueType.Percentage:
-                _statValue = (statValue / 100) * host.Owner.Stats.GetStatValue(_statType);
-                break;
-            case StatusEffectValueType.FlatToFloat:
-                _statValue = statValue;
-                break;
-        }
-        host.Owner.Stats.AddValueToStat(StatType, _statValue);
+        host.Owner.Stats.AddValueToStat(StatType, factor, statValue);
         while (timeCounter < duration)
         {
             float counter = 0f;

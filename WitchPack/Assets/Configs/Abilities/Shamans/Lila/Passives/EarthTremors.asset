@@ -10,14 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 432ef5572b8ef0641a9ee1a7002d5110, type: 3}
-  m_Name: Reflect
+  m_Name: EarthTremors
   m_EditorClassIdentifier: 
-  _name: Reflect
-  discription: Reflect a small amount of damage taen back to the attacker
+  _name: Earth Tremors
+  discription: Reduced Cooldown for all abilities
   defaultIcon: {fileID: 0}
   disabledIcon: {fileID: 0}
   upgradeIcon: {fileID: 0}
   _upgrades: []
   hasPopupColor: 0
   popupColor: {r: 0, g: 0, b: 0, a: 0}
-  statIncreases: []
+  statIncreases:
+  - StatType: 8
+    Value: -0.1
