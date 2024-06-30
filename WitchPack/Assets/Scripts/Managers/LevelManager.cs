@@ -26,6 +26,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     [SerializeField] private Canvas gameUi;
     [SerializeField] private PopupsManager popupsManager;
     [SerializeField] private SelectionManager _selectionManager;
+    [SerializeField] private ExpCalculatorConfig _expConfig;
 
     private readonly ScoreHandler _scoreHandler = new ScoreHandler();
 
@@ -90,7 +91,24 @@ public class LevelManager : MonoSingleton<LevelManager>
 
         BgMusicManager.Instance.StopMusic();
         UIManager.Instance.ShowUIGroup(UIGroup.EndGameUI);
+        GiveExpToParty();
         OnLevelEnd?.Invoke(CurrentLevel);
+    }
+
+    private void GiveExpToParty()
+    {
+        var levelData = new EndLevelData(
+            completed: IsWon,
+            firstTimeReward: false,
+            coreRemainingHp: CurrentLevel.CoreTemple.Damageable.CurrentHp,
+            wavesCompletedPercentage: (float)CurrentLevel.WaveHandler.CurrentWave / CurrentLevel.WaveHandler.TotalWaves
+        );
+        var expGained = LevelExpCalculator.CalculateExpGainedFromLevel(_expConfig, levelData);
+        foreach (var shaman in ShamanParty)
+        {
+            shaman.SaveData.ShamanExperienceHandler.GainExp(expGained);
+            Debug.Log($"{shaman.ShamanConfig.Name} Gained {expGained} Exp");
+        }
     }
 
     private void SpawnParty(List<ShamanSaveData> shamans)
