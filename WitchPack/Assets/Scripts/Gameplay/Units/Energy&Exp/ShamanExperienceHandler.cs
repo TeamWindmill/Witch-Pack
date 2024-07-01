@@ -1,22 +1,24 @@
 using System;
 using Sirenix.OdinInspector;
 
-public class ExperienceHandler
+public class ShamanExperienceHandler
 {
     public event Action<int> OnShamanLevelUp;
     public event Action<int,int> OnShamanGainExp;
     public event Action<bool> OnShamanUpgrade;
     public int ShamanLevel { get; private set; } = 1;
     public int CurrentExp { get; private set; }
-    public int AvailableSkillPoints => ShamanLevel - _usedSkillPoints;
+    public int AvailableSkillPoints => (ShamanLevel - 1) * _config.SkillPointsPerLevel - _usedSkillPoints;
     public int MaxExpToNextLevel => _shamanLevels[ShamanLevel-1];
     public bool HasSkillPoints => AvailableSkillPoints > 0;
     private int _usedSkillPoints;
     private int[] _shamanLevels;
+    private ShamanExperienceConfig _config;
 
-    public ExperienceHandler(ExperienceConfig config)
+    public ShamanExperienceHandler(ShamanExperienceConfig config)
     {
         _shamanLevels = config.LevelValues;
+        _config = config;
     }
 
     public void GainExp(int value)

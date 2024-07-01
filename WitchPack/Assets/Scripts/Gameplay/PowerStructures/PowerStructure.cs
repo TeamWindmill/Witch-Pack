@@ -52,7 +52,7 @@ public class PowerStructure : MonoBehaviour
 
     private void OnShamanRingEnter(int ringId, Shaman shaman)
     {
-        if (_testing) Debug.Log($"shaman entered ring {ringId}");
+        //if (_testing) Debug.Log($"shaman entered ring {ringId}");
 
         var statAdditionValue = GetStatEffectValue(ringId, shaman.Stats);
         shaman.Stats.AddModifierToStat(_statType,statAdditionValue);
@@ -60,7 +60,7 @@ public class PowerStructure : MonoBehaviour
     }
     private void OnShamanRingExit(int ringId, Shaman shaman)
     {
-        if (_testing) Debug.Log($"shaman exited ring {ringId}");
+        //if (_testing) Debug.Log($"shaman exited ring {ringId}");
         
         var statAdditionValue = GetStatEffectValue(ringId, shaman.Stats);
         shaman.Stats.AddModifierToStat(_statType,-statAdditionValue);
@@ -70,7 +70,7 @@ public class PowerStructure : MonoBehaviour
     }
     private void OnShadowRingEnter(int ringId, Shadow shadow)
     {
-        if (_testing) Debug.Log($"Shadow Enter: {ringId}");
+        //if (_testing) Debug.Log($"Shadow Enter: {ringId}");
         
         //switch between ring sprites
         if (_activeShadowRingIds.Count > 0)
@@ -102,7 +102,7 @@ public class PowerStructure : MonoBehaviour
     {
         _activeShadowRingIds.Remove(ringId);
 
-        if (_testing) Debug.Log($"Shadow Exit: {ringId}");
+        //if (_testing) Debug.Log($"Shadow Exit: {ringId}");
 
         var statAdditionValue = GetStatEffectValue(ringId, shadow.Stats);
         shadow.SetPSStatValue(_statType,-statAdditionValue);
