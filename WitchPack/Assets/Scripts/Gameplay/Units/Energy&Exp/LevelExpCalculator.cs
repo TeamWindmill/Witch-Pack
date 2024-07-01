@@ -9,7 +9,7 @@ public static class LevelExpCalculator
             totalExp += calculatorConfig.CompletionExp;
             if (levelData.FirstTimeReward) totalExp += calculatorConfig.FirstTimeExp;
         }
-        totalExp += calculatorConfig.ExpPerCoreRemainingHealth * levelData.CoreRemainingHP;
+        totalExp += calculatorConfig.CoreRemainingHealthExp * levelData.CoreRemainingHPPercentage;
         totalExp += (int)(calculatorConfig.WaveCompletedExp * levelData.WavesCompletedPercentage);
         
         return totalExp;
@@ -20,14 +20,14 @@ public readonly struct EndLevelData
 {
     public readonly bool Completed;
     public readonly bool FirstTimeReward;
-    public readonly int CoreRemainingHP;
+    public readonly int CoreRemainingHPPercentage;
     public readonly float WavesCompletedPercentage;
 
     public EndLevelData(bool completed, bool firstTimeReward, int coreRemainingHp, float wavesCompletedPercentage)
     {
         Completed = completed;
         FirstTimeReward = firstTimeReward;
-        CoreRemainingHP = coreRemainingHp;
+        CoreRemainingHPPercentage = coreRemainingHp;
         WavesCompletedPercentage = wavesCompletedPercentage;
     }
 }

@@ -99,7 +99,7 @@ public class LevelManager : MonoSingleton<LevelManager>
         var levelData = new EndLevelData(
             completed: IsWon,
             firstTimeReward: false,
-            coreRemainingHp: CurrentLevel.CoreTemple.Damageable.CurrentHp,
+            coreRemainingHp: CurrentLevel.CoreTemple.Damageable.CurrentHp /  CurrentLevel.CoreTemple.Damageable.MaxHp,
             wavesCompletedPercentage: (float)CurrentLevel.WaveHandler.CurrentWave / CurrentLevel.WaveHandler.TotalWaves
         );
         var expGained = LevelExpCalculator.CalculateExpGainedFromLevel(CurrentLevel.Config.ExpCalculatorConfig, levelData);
