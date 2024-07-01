@@ -11,7 +11,6 @@ public class LevelHandler : MonoBehaviour
     public CustomPath[] Paths => paths;
     public WaveHandler WaveHandler => waveHandler;
     public PowerStructure[] PowerStructures => powerStructures;
-    public ExpCalculatorConfig ExpCalculatorConfig => expCalculatorConfig;
 
     [SerializeField] private Transform[] shamanSpawnPoints;
     [SerializeField] private CustomPath[] paths;
@@ -21,7 +20,6 @@ public class LevelHandler : MonoBehaviour
     [SerializeField] private NavMeshSurface navMeshSurface;
     [SerializeField] private WaveHandler waveHandler;
     [SerializeField] private CameraLevelSettings cameraLevelSettings;
-    [SerializeField] private ExpCalculatorConfig  expCalculatorConfig;
     
     private bool _tempSlowMotion; //TEMP
 

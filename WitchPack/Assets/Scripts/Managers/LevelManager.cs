@@ -102,7 +102,7 @@ public class LevelManager : MonoSingleton<LevelManager>
             coreRemainingHp: CurrentLevel.CoreTemple.Damageable.CurrentHp,
             wavesCompletedPercentage: (float)CurrentLevel.WaveHandler.CurrentWave / CurrentLevel.WaveHandler.TotalWaves
         );
-        var expGained = LevelExpCalculator.CalculateExpGainedFromLevel(CurrentLevel.ExpCalculatorConfig, levelData);
+        var expGained = LevelExpCalculator.CalculateExpGainedFromLevel(CurrentLevel.Config.ExpCalculatorConfig, levelData);
         foreach (var shaman in ShamanParty)
         {
             shaman.SaveData.ShamanExperienceHandler.GainExp(expGained);
