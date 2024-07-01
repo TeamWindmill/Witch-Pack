@@ -11,6 +11,7 @@ public class LevelConfig : ScriptableObject
     [BoxGroup("Level")] public LevelHandler levelPrefab;
     [BoxGroup("Level")] public ShamanConfig[] shamansToAddAfterComplete;
     [BoxGroup("Level")] public bool ShowTutorial;
+    [BoxGroup("Level")] public ExpCalculatorConfig  ExpCalculatorConfig;
     [BoxGroup("Dialog")] public DialogSequence BeforeDialog;
     [BoxGroup("Dialog")] public DialogSequence StartDialog;
     [BoxGroup("Dialog")] public DialogSequence EndDialog;

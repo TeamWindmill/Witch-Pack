@@ -48,8 +48,8 @@ public class LevelManager : MonoSingleton<LevelManager>
     private void StartLevel()
     {
         CurrentLevel.StartLevel();
-        UIManager.Instance.ShowUIGroup(UIGroup.TopCounterUI);
-        UIManager.Instance.ShowUIGroup(UIGroup.PartyUI);
+        UIManager.ShowUIGroup(UIGroup.TopCounterUI);
+        UIManager.ShowUIGroup(UIGroup.PartyUI);
         GAME_TIME.StartGame();
         TutorialHandler.Instance.LevelStart(CurrentLevel);
         OnLevelStart?.Invoke(CurrentLevel);
@@ -89,7 +89,7 @@ public class LevelManager : MonoSingleton<LevelManager>
         }
 
         BgMusicManager.Instance.StopMusic();
-        UIManager.Instance.ShowUIGroup(UIGroup.EndGameUI);
+        UIManager.ShowUIGroup(UIGroup.EndGameUI);
         GiveExpToParty();
         OnLevelEnd?.Invoke(CurrentLevel);
     }
@@ -102,7 +102,7 @@ public class LevelManager : MonoSingleton<LevelManager>
             coreRemainingHp: CurrentLevel.CoreTemple.Damageable.CurrentHp,
             wavesCompletedPercentage: (float)CurrentLevel.WaveHandler.CurrentWave / CurrentLevel.WaveHandler.TotalWaves
         );
-        var expGained = LevelExpCalculator.CalculateExpGainedFromLevel(CurrentLevel.ExpCalculatorConfig, levelData);
+        var expGained = LevelExpCalculator.CalculateExpGainedFromLevel(CurrentLevel.Config.ExpCalculatorConfig, levelData);
         foreach (var shaman in ShamanParty)
         {
             shaman.SaveData.ShamanExperienceHandler.GainExp(expGained);

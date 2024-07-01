@@ -40,6 +40,7 @@ public class GameManager : MonoSingleton<GameManager>
 
         SaveData = LoadDataFromSave(); //need to load save from file
         _shamansManager.Init(SaveData);
+        UIManager.Init();
     }
 
     void Start()

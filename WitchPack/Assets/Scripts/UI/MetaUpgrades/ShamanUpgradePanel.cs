@@ -29,23 +29,20 @@ public class ShamanUpgradePanel : UIElement
         Show();
     }
 
+    public override void Hide()
+    {
+        ShamanSaveData = null;
+        base.Hide();
+    }
+
     public void AddUpgradeToShaman(AbilityUpgradeConfig abilityUpgrade)
     {
         ShamanSaveData.AbilityUpgrades.Add(abilityUpgrade);
+        ShamanSaveData.ShamanExperienceHandler.UseSkillPoints(abilityUpgrade.SkillPointsCost);
     }
     public void AddUpgradeToShaman(StatUpgradeConfig statUpgrade)
     {
         ShamanSaveData.StatUpgrades.Add(statUpgrade);
-    }
-
-    protected override void Update()
-    {
-        if (!isMouseOver)
-        {
-            if (Input.GetMouseButtonDown(0))
-            {
-                Hide();
-            }
-        }
+        ShamanSaveData.ShamanExperienceHandler.UseSkillPoints(statUpgrade.SkillPointsCost);
     }
 }
