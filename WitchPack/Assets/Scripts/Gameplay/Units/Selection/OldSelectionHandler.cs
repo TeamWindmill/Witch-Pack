@@ -57,7 +57,7 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
     private void Update()
     {
         if (ReferenceEquals(_selectedShaman, null)) return;
-        if (UIManager.Instance.MouseOverUI) return;
+        if (UIManager.MouseOverUI) return;
         if (SelectMode == SelectionType.Info)
         {
             if (!_mouseOverSelectionUI)

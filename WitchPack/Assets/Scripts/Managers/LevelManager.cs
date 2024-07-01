@@ -48,8 +48,8 @@ public class LevelManager : MonoSingleton<LevelManager>
     private void StartLevel()
     {
         CurrentLevel.StartLevel();
-        UIManager.Instance.ShowUIGroup(UIGroup.TopCounterUI);
-        UIManager.Instance.ShowUIGroup(UIGroup.PartyUI);
+        UIManager.ShowUIGroup(UIGroup.TopCounterUI);
+        UIManager.ShowUIGroup(UIGroup.PartyUI);
         GAME_TIME.StartGame();
         TutorialHandler.Instance.LevelStart(CurrentLevel);
         OnLevelStart?.Invoke(CurrentLevel);
@@ -89,7 +89,7 @@ public class LevelManager : MonoSingleton<LevelManager>
         }
 
         BgMusicManager.Instance.StopMusic();
-        UIManager.Instance.ShowUIGroup(UIGroup.EndGameUI);
+        UIManager.ShowUIGroup(UIGroup.EndGameUI);
         GiveExpToParty();
         OnLevelEnd?.Invoke(CurrentLevel);
     }

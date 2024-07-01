@@ -11,20 +11,40 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
     public RectTransform RectTransform => rectTransform;
     public bool isMouseOver { get; private set; }
 
-    [SerializeField,HideInInspector] protected RectTransform rectTransform;
-    [BoxGroup("UI Element")][SerializeField] private bool showOnAwake = false;
-    [BoxGroup("UI Element")][SerializeField] private bool hideOnAwake = false;
-    [BoxGroup("UI Element")][SerializeField] private bool assignUIGroup = false;
-    [BoxGroup("UI Element")][SerializeField, ShowIf(nameof(assignUIGroup))] protected UIGroup uiGroup;
-    [BoxGroup("UI Element")][SerializeField] private bool showInfoWindow = false;
-    [BoxGroup("UI Element")][SerializeField, ShowIf(nameof(showInfoWindow))] protected WindowInfo _windowInfo;
-    
+    [SerializeField, HideInInspector] protected RectTransform rectTransform;
 
-    
+    [BoxGroup("UI Element")] [SerializeField]
+    private bool showOnAwake = false;
+
+    [BoxGroup("UI Element")] [SerializeField]
+    private bool hideOnAwake = false;
+
+    [BoxGroup("UI Element")] [SerializeField]
+    private bool assignUIGroup = false;
+
+    [BoxGroup("UI Element")] [SerializeField, ShowIf(nameof(assignUIGroup))]
+    protected bool isUIGroupManager;
+
+    [BoxGroup("UI Element")] [SerializeField, ShowIf(nameof(assignUIGroup))]
+    protected UIGroup uiGroup;
+
+    [BoxGroup("UI Element")] [SerializeField]
+    private bool showInfoWindow = false;
+
+    [BoxGroup("UI Element")] [SerializeField, ShowIf(nameof(showInfoWindow))]
+    protected WindowInfo _windowInfo;
+
 
     protected virtual void Awake()
     {
-        if (assignUIGroup) UIManager.Instance.AddUIElement(this, uiGroup);
+        if (assignUIGroup)
+        {
+            if (isUIGroupManager)
+                UIManager.AddUIGroupManager(this, uiGroup);
+            else
+                UIManager.AddUIElement(this, uiGroup);
+        }
+
         if (showOnAwake)
             Show();
         if (hideOnAwake)
@@ -36,9 +56,8 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
         gameObject.SetActive(true);
     }
 
-    public virtual void UpdateVisual()
+    public virtual void Refresh()
     {
-        
     }
 
     public virtual void Hide()
@@ -56,21 +75,22 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
         OnMouseExit?.Invoke(this);
         if (assignUIGroup)
         {
-            if (UIManager.Instance is not null)
-                UIManager.Instance.RemoveUIElement(this, uiGroup);
+            if (isUIGroupManager)
+                UIManager.RemoveUIGroupManager(this, uiGroup);
+            else
+                UIManager.RemoveUIElement(this, uiGroup);
         }
     }
 
     protected virtual void Update()
     {
-        
     }
 
     public virtual void OnPointerEnter(PointerEventData eventData)
     {
         isMouseOver = true;
         OnMouseEnter?.Invoke(this);
-        if (showInfoWindow) InformationWindow.Instance.RequestShow(this,_windowInfo);
+        if (showInfoWindow) InformationWindow.Instance.RequestShow(this, _windowInfo);
     }
 
     public virtual void OnPointerExit(PointerEventData eventData)
@@ -79,9 +99,10 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
         OnMouseExit?.Invoke(this);
         if (showInfoWindow)
         {
-            if(InformationWindow.Instance.isActive) InformationWindow.Instance.Hide();
+            if (InformationWindow.Instance.isActive) InformationWindow.Instance.Hide();
         }
     }
+
     protected virtual void OnDisable()
     {
         isMouseOver = false;
