@@ -12,8 +12,30 @@ public class StatBarHandler : MonoBehaviour
     [SerializeField] private Image _statBarFill;
 
     private Shaman _shaman;
+    private ShamanSaveData _shamanSaveData;
 
     public StatBarType StatBarType => statBarType;
+
+    public void Init(ShamanSaveData shamanSaveData) //for meta upgrades before shaman is initialized
+    {
+        _shamanSaveData = shamanSaveData;
+        string name = "";
+        int baseValue = 0;
+        int currentValue = 0;
+        switch (statBarType)
+        {
+            case StatBarType.ExpBar:
+                name = "Exp:";
+                baseValue = shamanSaveData.ShamanExperienceHandler.MaxExpToNextLevel;
+                currentValue = shamanSaveData.ShamanExperienceHandler.CurrentExp;
+                _shamanSaveData.ShamanExperienceHandler.OnShamanGainExp += UpdateStatbarEnergy;
+                break;
+        }
+        _statBarName.text = name;
+        _statBarBaseValue.text = baseValue.ToString();
+        _statBarValue.text = currentValue.ToString();
+        _statBarFill.fillAmount = (float)currentValue / baseValue;
+    }
 
      public void Init(Shaman shaman)
      {
@@ -34,6 +56,12 @@ public class StatBarHandler : MonoBehaviour
                  baseValue = shaman.EnergyHandler.MaxEnergyToNextLevel;
                  currentValue = shaman.EnergyHandler.CurrentEnergy;
                  shaman.EnergyHandler.OnShamanGainEnergy += UpdateStatbarEnergy;
+                 break;
+             case StatBarType.ExpBar:
+                 name = "Exp:";
+                 baseValue = shaman.SaveData.ShamanExperienceHandler.MaxExpToNextLevel;
+                 currentValue = shaman.SaveData.ShamanExperienceHandler.CurrentExp;
+                 shaman.SaveData.ShamanExperienceHandler.OnShamanGainExp += UpdateStatbarEnergy;
                  break;
          }
 
@@ -62,17 +90,20 @@ public class StatBarHandler : MonoBehaviour
     
      public void Hide()
      {
-         if(_shaman == null) return;
          switch (statBarType)
          {
              case StatBarType.HealthBar:
+                 if(ReferenceEquals(_shaman,null)) return;
                 _shaman.Damageable.OnHealthChange -= UpdateStatBarHealth;
                 break;
              case StatBarType.EnergyBar:
+                 if(ReferenceEquals(_shaman,null)) return;
                  _shaman.EnergyHandler.OnShamanGainEnergy -= UpdateStatbarEnergy;
                  break;
-             default:
-                 throw new ArgumentOutOfRangeException();
+             case StatBarType.ExpBar:
+                 if(_shamanSaveData == null) return;
+                 _shamanSaveData.ShamanExperienceHandler.OnShamanGainExp -= UpdateStatbarEnergy;
+                 break;
          }
          
      }
@@ -81,5 +112,6 @@ public class StatBarHandler : MonoBehaviour
 public enum StatBarType
 {
     HealthBar,
-    EnergyBar
+    EnergyBar,
+    ExpBar,
 }

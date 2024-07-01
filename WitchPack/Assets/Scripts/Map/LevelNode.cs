@@ -19,7 +19,7 @@ public class LevelNode : MapNode
     {
         base.OnNodeClick(button);
         GameManager.Instance.SetLevelConfig(_levelConfig);
-        UIManager.Instance.ShowUIGroup(UIGroup.PartySelectionWindow);
+        UIManager.ShowUIGroup(UIGroup.PartySelectionWindow);
     }
 
     

@@ -48,7 +48,7 @@ public class OrbitalStonesMono : MonoBehaviour
             yield return new WaitForSeconds(timeInterval);
         }
     }
-
+    
     public void SpawnStone()
     {
         //if (_activeStones.Count < stoneAmount)

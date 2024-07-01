@@ -16,16 +16,16 @@ public class AbilityMetaUpgrade : UIElement
         _abilityUpgradeIcons.ForEach(i => i.OnUpgrade += _shamanUpgradePanel.AddUpgradeToShaman);
     }
 
-    public void Init(ShamanUpgradePanel shamanUpgradePanel,AbilityPanelUpgrades abilityPanelConfig,bool hasSkillPoint)
+    public void Init(ShamanUpgradePanel shamanUpgradePanel,AbilityPanelUpgrades abilityPanelConfig)
     {
         _shamanUpgradePanel = shamanUpgradePanel;
         _abilityName.text = abilityPanelConfig.Ability.Name;
         _abilityIcon.sprite = abilityPanelConfig.Ability.DefaultIcon;
-        
+        var availableSkillPoints = _shamanUpgradePanel.ShamanSaveData.ShamanExperienceHandler.AvailableSkillPoints;
         for (int i = 0; i < _abilityUpgradeIcons.Length; i++)
         {
             if(abilityPanelConfig.StatUpgrades.Count - 1 < i) continue;
-            _abilityUpgradeIcons[i].Init(abilityPanelConfig.StatUpgrades[i],hasSkillPoint);
+            _abilityUpgradeIcons[i].Init(abilityPanelConfig.StatUpgrades[i],availableSkillPoints);
             if(_abilityUpgradeIcons[i].OpenAtStart && !abilityPanelConfig.StatUpgrades[i].NotWorking) _abilityUpgradeIcons[i].ChangeState(UpgradeState.Open);
         }
         foreach (var upgradeIcon in _abilityUpgradeIcons)
