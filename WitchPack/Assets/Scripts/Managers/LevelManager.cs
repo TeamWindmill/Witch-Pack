@@ -26,7 +26,6 @@ public class LevelManager : MonoSingleton<LevelManager>
     [SerializeField] private Canvas gameUi;
     [SerializeField] private PopupsManager popupsManager;
     [SerializeField] private SelectionManager _selectionManager;
-    [SerializeField] private ExpCalculatorConfig _expConfig;
 
     private readonly ScoreHandler _scoreHandler = new ScoreHandler();
 
@@ -103,7 +102,7 @@ public class LevelManager : MonoSingleton<LevelManager>
             coreRemainingHp: CurrentLevel.CoreTemple.Damageable.CurrentHp,
             wavesCompletedPercentage: (float)CurrentLevel.WaveHandler.CurrentWave / CurrentLevel.WaveHandler.TotalWaves
         );
-        var expGained = LevelExpCalculator.CalculateExpGainedFromLevel(_expConfig, levelData);
+        var expGained = LevelExpCalculator.CalculateExpGainedFromLevel(CurrentLevel.ExpCalculatorConfig, levelData);
         foreach (var shaman in ShamanParty)
         {
             shaman.SaveData.ShamanExperienceHandler.GainExp(expGained);

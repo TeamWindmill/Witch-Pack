@@ -1,7 +1,8 @@
+using System;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "LevelExperienceConfig",fileName = "LevelExperienceConfig")]
-public class ExpCalculatorConfig : ScriptableObject
+[Serializable]
+public struct ExpCalculatorConfig 
 {
     [SerializeField] private int _completionExp;
     [SerializeField] private int _firstTimeExp;

@@ -2,27 +2,27 @@ using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class FloatingStoneMono : MonoBehaviour
 {
-    [SerializeField] private PolygonCollider2D polygonCollider;
-    [SerializeField] private Sprite sprite;
+    [SerializeField] private PolygonCollider2D _polygonCollider;
+    [SerializeField] private Sprite[] _sprites;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
     
     
     private OrbitalStonesMono _orbitalStones;
     [Unity.Collections.ReadOnly] public float _currentAngle;
     private float _lerpTimer;
     private bool _isActive;
-    //private Action _spawnNextStone;
-    //private float _angleDiff;
 
     public void Init(OrbitalStonesMono orbitalStones)
     {
+        _spriteRenderer.sprite = _sprites[Random.Range(0,_sprites.Length)];
+        ResetCollider();
         _orbitalStones = orbitalStones;
         _currentAngle = 0;
         SetCirclePos();
-        //_spawnNextStone = spawnNextStone;
-        //_angleDiff = angleDiff;
         _isActive = true;
         gameObject.SetActive(true);
 
@@ -33,15 +33,12 @@ public class FloatingStoneMono : MonoBehaviour
     {
         //rotation
         if(!_isActive) return;
-        // if (_currentAngle >= _angleDiff)
-        // {
-        //     _spawnNextStone?.Invoke();
-        //     _spawnNextStone = null;
-        // }
+        
         if (_currentAngle >= 360) _currentAngle = 0;
         _currentAngle += _orbitalStones.AngularSpeed * Time.fixedDeltaTime;
                                                       
         SetCirclePos();
+        //transform.LookAt(_orbitalStones.Owner.transform);
     }
 
     private void SetCirclePos()
@@ -73,28 +70,26 @@ public class FloatingStoneMono : MonoBehaviour
     {
         _isActive = false;
         gameObject.SetActive(false);
-        // _spawnNextStone?.Invoke();
-        // _spawnNextStone = null;
         _orbitalStones.OnStoneDisable();
     }
 
     [Button]
     public void ResetCollider()
     {
-        for (int i = 0; i < polygonCollider.pathCount; i++) polygonCollider.SetPath(i, new List<Vector2>());
-        polygonCollider.pathCount = sprite.GetPhysicsShapeCount();
+        for (int i = 0; i < _polygonCollider.pathCount; i++) _polygonCollider.SetPath(i, new List<Vector2>());
+        _polygonCollider.pathCount = _spriteRenderer.sprite.GetPhysicsShapeCount();
 
         List<Vector2> path = new List<Vector2>();
-        for (int i = 0; i < polygonCollider.pathCount; i++) {
+        for (int i = 0; i < _polygonCollider.pathCount; i++) {
             path.Clear();
-            sprite.GetPhysicsShape(i, path);
-            polygonCollider.SetPath(i, path.ToArray());
+            _spriteRenderer.sprite.GetPhysicsShape(i, path);
+            _polygonCollider.SetPath(i, path.ToArray());
         }
     }
 
     private void OnValidate()
     {
-        polygonCollider = GetComponent<PolygonCollider2D>();
-        sprite = GetComponent<SpriteRenderer>().sprite;
+        _polygonCollider ??= GetComponent<PolygonCollider2D>();
+        _spriteRenderer ??= GetComponent<SpriteRenderer>();
     }
 }
