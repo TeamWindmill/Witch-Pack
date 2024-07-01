@@ -54,7 +54,6 @@ public class Enemy : BaseUnit
         Effectable.OnEffectRemoved += enemyVisualHandler.EffectHandler.DisableEffect;
         Damageable.OnHitGFX += GetHitSFX;
         Damageable.OnDeathGFX += DeathSFX;
-        DamageDealer.OnHitTarget += OnTargetHit;
         //AutoAttackCaster.OnAttack += AttackSFX;
         
 
@@ -75,7 +74,6 @@ public class Enemy : BaseUnit
         Effectable.OnAffected -= enemyVisualHandler.EffectHandler.PlayEffect;
         Effectable.OnEffectRemoved -= enemyVisualHandler.EffectHandler.DisableEffect;
         enemyVisualHandler.OnSpriteFlip -= enemyAnimator.FlipAnimations;
-        DamageDealer.OnHitTarget -= OnTargetHit;
 
         Initialized = false;
     }
@@ -97,11 +95,6 @@ public class Enemy : BaseUnit
         }
 
         AutoCaster.Init(this, false);
-    }
-
-    private void OnTargetHit(Damageable target, DamageDealer dealer, DamageHandler dmg, Ability ability, bool crit)
-    {
-         //temp
     }
 
     #region SFX

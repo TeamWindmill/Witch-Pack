@@ -24,9 +24,10 @@ public class CoreTemple : BaseEntity, IDamagable
         _affector = new Affector(this);
         _effectable = new Effectable(this);
         _damageable = new Damageable(this); 
+        _damageable.Init();
         enemyGroundCollider.OnTargetAdded += OnEnemyEnter;
         hpBar.Init(_damageable.MaxHp,UnitType.Temple);
-        ScreenCracksHandler.Instance.InitByCore(this);
+        //ScreenCracksHandler.Instance.InitByCore(this);
         _damageable.OnDeathGFX += OnCoreDeath;
         _damageable.OnTakeFlatDamage += OnGetHit;
         _damageable.OnHeal += Heal;
@@ -35,7 +36,7 @@ public class CoreTemple : BaseEntity, IDamagable
     private void OnGetHit(Damageable damageable, int damage)
     {
         SoundManager.Instance.PlayAudioClip(SoundEffectType.CoreGetHit);
-        ScreenCracksHandler.Instance.StartCracksAnimation(damage);
+        //ScreenCracksHandler.Instance.StartCracksAnimation(damage);
         hpBar.SetBarValue(_damageable.CurrentHp);
         
         if (_damageable.CurrentHp <= _damageable.MaxHp * 0.33)
@@ -71,7 +72,7 @@ public class CoreTemple : BaseEntity, IDamagable
     public void Heal(Damageable damageable,int amount)
     {
         hpBar.SetBarValue(_damageable.CurrentHp);
-        ScreenCracksHandler.Instance.SetStartValue();
+        //ScreenCracksHandler.Instance.SetStartValue();
     }
 
     private void DestroyCoreAnimation()
