@@ -19,6 +19,7 @@ public class LevelConfig : ScriptableObject
     
 
     [NonSerialized]public List<ShamanSaveData> SelectedShamans;
+    [NonSerialized]public LevelChallenge SelectedChallenge;
 }
 
 [Serializable]

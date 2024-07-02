@@ -2539,6 +2539,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 743365502}
     m_Modifications:
+    - target: {fileID: 1223021207044405127, guid: c0b598803de49a7428914318c1b47ffb, type: 3}
+      propertyPath: _statBarType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1223021207044405127, guid: c0b598803de49a7428914318c1b47ffb, type: 3}
+      propertyPath: _statBarMaxValue
+      value: 
+      objectReference: {fileID: 337771090056511540}
     - target: {fileID: 1549325706831790175, guid: c0b598803de49a7428914318c1b47ffb, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2763,6 +2771,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6708958053655371991, guid: c0b598803de49a7428914318c1b47ffb, type: 3}
+      propertyPath: _statBarMaxValue
+      value: 
+      objectReference: {fileID: 337771090056511541}
     - target: {fileID: 8016832712774174772, guid: c0b598803de49a7428914318c1b47ffb, type: 3}
       propertyPath: m_Name
       value: HeroSelectionUI
@@ -2772,6 +2784,28 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0b598803de49a7428914318c1b47ffb, type: 3}
+--- !u!114 &337771090056511540 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1755835427707080491, guid: c0b598803de49a7428914318c1b47ffb, type: 3}
+  m_PrefabInstance: {fileID: 337771090056511539}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &337771090056511541 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6178922780180846715, guid: c0b598803de49a7428914318c1b47ffb, type: 3}
+  m_PrefabInstance: {fileID: 337771090056511539}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3493799603263318553
 PrefabInstance:
   m_ObjectHideFlags: 0

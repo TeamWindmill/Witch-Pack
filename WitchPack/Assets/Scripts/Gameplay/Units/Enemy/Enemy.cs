@@ -29,7 +29,7 @@ public class Enemy : BaseUnit
     {
         enemyAnimator ??= GetComponentInChildren<EnemyAnimator>();
     }
-    public override void Init(BaseUnitConfig givenConfig)
+    public void Init(BaseUnitConfig givenConfig)
     {
         pointIndex = 0;
         enemyConfig = givenConfig as EnemyConfig;
@@ -44,7 +44,7 @@ public class Enemy : BaseUnit
         _enemyMovement = new EnemyMovement(this);
         enemyAnimator.Init(this);
         enemyVisualHandler.Init(this, givenConfig);
-        IntializeAbilities();
+        if (enemyConfig.Abilities.Count > 0) IntializeAbilities();
         enemyAI.Init(this);
         Movement.ToggleMovement(false);
         #region Events
@@ -109,7 +109,5 @@ public class Enemy : BaseUnit
     //private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.EnemyAttack);
     
     #endregion
-    
-
     
 }

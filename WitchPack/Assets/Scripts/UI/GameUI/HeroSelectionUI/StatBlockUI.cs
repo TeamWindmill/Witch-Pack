@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class StatBlockUI : MonoBehaviour
+public class StatBlockUI : UIElement
 {
     [SerializeField] private StatType statTypeId;
     [SerializeField] private TextMeshProUGUI _statText;
@@ -24,6 +24,13 @@ public class StatBlockUI : MonoBehaviour
         _statBonusReductionColor = reduceColor;
         SetStatText(_baseValue,0);
     }
+
+    public override void Hide()
+    {
+        _stat.OnStatChange -= UpdateBaseStat;
+        base.Hide();
+    }
+
     public void UpdateBonusStatUI(float newValue)
     {
         if(ReferenceEquals(HeroSelectionUI.Instance,null)) return;
@@ -35,7 +42,6 @@ public class StatBlockUI : MonoBehaviour
     public void HideBonusStatUI()
     {
         SetStatText(_baseValue,0);
-        if(_stat != null) _stat.OnStatChange -= UpdateBaseStat;
     }
 
     public void UpdateBaseStat(float newValue)

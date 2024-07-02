@@ -6,7 +6,7 @@ public class ShamanUpgradePanel : UIElement
 {
     [SerializeField] private AbilityMetaUpgrade[] _abilityMetaUpgrades;
     [SerializeField] private StatMetaUpgrade _statMetaUpgrades;
-    [SerializeField] private StatBarHandler _expStatBar;
+    [SerializeField] private StatBar _expStatBar;
     [SerializeField] private TextMeshProUGUI _skillPointsText;
     [SerializeField] private TextMeshProUGUI _levelText;
 
@@ -18,7 +18,9 @@ public class ShamanUpgradePanel : UIElement
         Hide();
         ShamanSaveData = shamanSaveData;
         _shamanMetaUpgradeConfig = shamanSaveData.Config.ShamanMetaUpgradeConfig;
-        _expStatBar.Init(shamanSaveData);
+        var statbarData = new StatBarData("Exp", shamanSaveData.ShamanExperienceHandler.CurrentExp, shamanSaveData.ShamanExperienceHandler.MaxExpToNextLevel);
+        shamanSaveData.ShamanExperienceHandler.OnShamanGainExp += _expStatBar.UpdateStatbar;
+        _expStatBar.Init(statbarData);
         _skillPointsText.text = shamanSaveData.ShamanExperienceHandler.AvailableSkillPoints.ToString();
         _levelText.text = shamanSaveData.ShamanExperienceHandler.ShamanLevel.ToString();
         for (int i = 0; i < _abilityMetaUpgrades.Length; i++)
@@ -33,7 +35,6 @@ public class ShamanUpgradePanel : UIElement
 
     public override void Refresh()
     {
-        _expStatBar.Init(ShamanSaveData);
         _skillPointsText.text = ShamanSaveData.ShamanExperienceHandler.AvailableSkillPoints.ToString();
         _levelText.text = ShamanSaveData.ShamanExperienceHandler.ShamanLevel.ToString();
 
@@ -43,6 +44,7 @@ public class ShamanUpgradePanel : UIElement
 
     public override void Hide()
     {
+        if(ShamanSaveData != null) ShamanSaveData.ShamanExperienceHandler.OnShamanGainExp -= _expStatBar.UpdateStatbar;
         _expStatBar.Hide();
         ShamanSaveData = null;
         base.Hide();

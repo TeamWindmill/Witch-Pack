@@ -13,25 +13,25 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     [SerializeField, HideInInspector] protected RectTransform rectTransform;
 
-    [BoxGroup("UI Element")] [SerializeField]
+    [FoldoutGroup("UI Element")] [SerializeField]
     private bool showOnAwake = false;
 
-    [BoxGroup("UI Element")] [SerializeField]
+    [FoldoutGroup("UI Element")] [SerializeField]
     private bool hideOnAwake = false;
 
-    [BoxGroup("UI Element")] [SerializeField]
+    [FoldoutGroup("UI Element")] [SerializeField]
     private bool assignUIGroup = false;
 
-    [BoxGroup("UI Element")] [SerializeField, ShowIf(nameof(assignUIGroup))]
+    [FoldoutGroup("UI Element")] [SerializeField, ShowIf(nameof(assignUIGroup))]
     protected bool isUIGroupManager;
 
-    [BoxGroup("UI Element")] [SerializeField, ShowIf(nameof(assignUIGroup))]
+    [FoldoutGroup("UI Element")] [SerializeField, ShowIf(nameof(assignUIGroup))]
     protected UIGroup uiGroup;
 
-    [BoxGroup("UI Element")] [SerializeField]
+    [FoldoutGroup("UI Element")] [SerializeField]
     private bool showInfoWindow = false;
 
-    [BoxGroup("UI Element")] [SerializeField, ShowIf(nameof(showInfoWindow))]
+    [FoldoutGroup("UI Element")] [SerializeField, ShowIf(nameof(showInfoWindow))]
     protected WindowInfo _windowInfo;
 
 
@@ -108,4 +108,13 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
         isMouseOver = false;
         OnMouseExit?.Invoke(this);
     }
+}
+
+public abstract class UIElement<T> : UIElement
+{
+    public abstract void Init(T data);
+}
+public abstract class UIElement<T1,T2> : UIElement
+{
+    public abstract void Init(T1 data1,T2 data2);
 }

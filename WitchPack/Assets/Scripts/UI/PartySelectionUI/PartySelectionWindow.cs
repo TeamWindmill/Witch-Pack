@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class PartySelectionWindow : UIElement
 {
+    #region PanelPointers
+    public RosterPanel RosterPanel => _rosterPanel;
+    public PackPanel PackPanel => _packPanel;
+    public EnemyPanel EnemyPanel => _enemyPanel;
+    public RewardsPanel RewardsPanel => _rewardsPanel;
+    public ChallengesPanel ChallengesPanel => _challengesPanel;
+
+    #endregion
+
     [SerializeField] private EnemyPanelConfig _enemyPanelConfig;
     [SerializeField] private RosterPanel _rosterPanel;
     [SerializeField] private PackPanel _packPanel;
     [SerializeField] private EnemyPanel _enemyPanel;
     [SerializeField] private RewardsPanel _rewardsPanel;
+    [SerializeField] private ChallengesPanel _challengesPanel;
     [SerializeField] private TextMeshProUGUI _levelTitle;
     public List<ShamanSaveData> ActiveShamanParty { get; private set; }
+    public int MaxShamanPartyCap { get; private set; } = DEFAULT_PARTY_SIZE;
     private LevelConfig _levelConfig;
 
+    private const int DEFAULT_PARTY_SIZE = 4;
     public override void Show()
     {
         _levelConfig = GameManager.Instance.CurrentLevelConfig;
@@ -21,6 +33,7 @@ public class PartySelectionWindow : UIElement
         _packPanel.Init(this);
         _enemyPanel.Init(_levelConfig, _enemyPanelConfig);
         _rewardsPanel.Init(_levelConfig);
+        _challengesPanel.Init(_levelConfig,this);
         _levelTitle.text = $"Level {_levelConfig.Number} - {_levelConfig.Name}";
         base.Show();
     }
@@ -54,17 +67,25 @@ public class PartySelectionWindow : UIElement
         else GameManager.SceneHandler.LoadScene(SceneType.Game);
     }
 
-    public void AssignShamanToPack(ShamanSaveData shaman)
+    public void AssignShamanToParty(ShamanSaveData shaman)
     {
+        if(ActiveShamanParty.Count >= MaxShamanPartyCap) return;
         ActiveShamanParty.Add(shaman);
         _packPanel.AddShamanToPack(shaman);
-        _rosterPanel.AssignShaman(shaman);
+        _rosterPanel.RemoveShamanFromRoster(shaman);
     }
 
-    public void UnassignShamanFromPack(ShamanSaveData shaman)
+    public void UnassignShamanFromParty(ShamanSaveData shaman)
     {
         ActiveShamanParty.Remove(shaman);
-        _rosterPanel.UnassignShaman(shaman);
+        _rosterPanel.AddShamanBackToRoster(shaman);
         _packPanel.RemoveShamanFromPack(shaman);
+    }
+
+    public void ReduceShamanSlots(int amountToReduce)
+    {
+        MaxShamanPartyCap = DEFAULT_PARTY_SIZE;
+        MaxShamanPartyCap -= amountToReduce;
+        _packPanel.ReduceShamanSlots(MaxShamanPartyCap);
     }
 }

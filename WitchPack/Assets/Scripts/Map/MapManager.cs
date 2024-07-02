@@ -35,25 +35,27 @@ public class MapManager : MonoSingleton<MapManager>
     public void Init()
     {
         LevelSelectOpen = false;
-        var levelSaveData = GameManager.SaveData.LevelSaves;
-        if (levelSaveData == null)
+        var levelSaves = GameManager.SaveData.LevelSaves;
+        if (levelSaves == null)
         {
-            levelSaveData = new LevelSaveData[_nodeObjects.Length];
+            levelSaves = new LevelSaveData[_nodeObjects.Length];
             for (int i = 0; i < _nodeObjects.Length; i++)
             {
-                levelSaveData[i] = new LevelSaveData()
+                levelSaves[i] = new LevelSaveData()
                 {
                     State = NodeState.Locked,
                     FirstTimePlaying = true,
                 };
-                _nodeObjects[i].Init(i,levelSaveData[i]);
+                _nodeObjects[i].Init(i,levelSaves[i]);
             }
+
+            GameManager.SaveData.LevelSaves = levelSaves;
         }
         else
         {
             for (int i = 0; i < _nodeObjects.Length; i++)
             {
-                _nodeObjects[i].Init(i,levelSaveData[i]);
+                _nodeObjects[i].Init(i,levelSaves[i]);
             }
             GameManager.SaveData.CurrentNode = _nodeObjects[GameManager.SaveData.LastLevelCompletedIndex];
         }

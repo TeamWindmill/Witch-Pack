@@ -1,10 +1,12 @@
+using System;
+using Sirenix.Utilities;
 using UnityEngine;
 
 
-public class StatBlockPanel : MonoBehaviour
+public class StatBlockPanel : UIElement
 {
     [SerializeField] private StatBlockUI[] _statBlocks;
-    [SerializeField] private StatBarHandler[] _statBarHandlers;
+    [SerializeField] private StatBar[] _statBarHandlers;
     [SerializeField] private Color _statBonusAdditionColor;
     [SerializeField] private Color _statBonusReductionColor;
 
@@ -22,11 +24,19 @@ public class StatBlockPanel : MonoBehaviour
 
         foreach (var statBar in _statBarHandlers)
         {
-            statBar.Init(shaman);
+            switch (statBar.StatBarType)
+            {
+                case StatBarType.Health:
+                    statBar.Init(new StatBarData("Health", _shaman.Damageable.CurrentHp, _shaman.Damageable.MaxHp));
+                    _shaman.Damageable.OnHealthChangeStatBar += statBar.UpdateStatbar;
+                    break;
+                case StatBarType.Energy:
+                    statBar.Init(new StatBarData("Energy", _shaman.EnergyHandler.CurrentEnergy, _shaman.EnergyHandler.MaxEnergyToNextLevel));
+                    _shaman.EnergyHandler.OnShamanGainEnergy += statBar.UpdateStatbar;
+                    break;
+            }
         }
     }
-    
-
     public void UpdateStatBlocks(StatType shamanStatType, float newValue)
     {
         foreach (var statBlock in _statBlocks)
@@ -46,11 +56,21 @@ public class StatBlockPanel : MonoBehaviour
         }
     }
 
-    public void HideStatBlocks()
+    public override void Hide()
     {
-        foreach (var statBarHandler in _statBarHandlers)
+        _statBlocks.ForEach(statBlock => statBlock.Hide());
+        
+        foreach (var statBar in _statBarHandlers)
         {
-            statBarHandler.Hide();
+            switch (statBar.StatBarType)
+            {
+                case StatBarType.Health:
+                    _shaman.Damageable.OnHealthChangeStatBar -= statBar.UpdateStatbar;
+                    break;
+                case StatBarType.Energy:
+                    _shaman.EnergyHandler.OnShamanGainEnergy -= statBar.UpdateStatbar;
+                    break;
+            }
         }
     }
 }

@@ -17,6 +17,7 @@ public class Damageable
     Timer regenTimer;
 
     public event Action<int> OnHealthChange;
+    public event Action<int,int> OnHealthChangeStatBar;
     public event Action<Damageable, DamageDealer, DamageHandler, Ability, bool> OnTakeDamage;
     public event Action<Damageable,int> OnTakeFlatDamage;
     public event Action<Damageable, int> OnHeal;
@@ -29,6 +30,7 @@ public class Damageable
     public Damageable(IDamagable owner)
     {
         this.owner = owner;
+        OnHealthChange += hp => OnHealthChangeStatBar?.Invoke(hp,MaxHp);
     }
 
     public void Init()
