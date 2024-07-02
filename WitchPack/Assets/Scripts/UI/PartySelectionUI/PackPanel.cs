@@ -2,12 +2,13 @@ using UnityEngine;
 
 public class PackPanel : UIElement
 {
+    public PackIcon[] PackIcons => _packIcons;
 
     [SerializeField] private PackIcon[] _packIcons;
 
     private PartySelectionWindow _parent;
 
-    [SerializeField] private ShamanUpgradePanel _shamanUpgradePanel; //tempi temp
+    [SerializeField] private ShamanUpgradePanel _shamanUpgradePanel;
 
     public void Init(PartySelectionWindow parent)
     {
@@ -51,6 +52,7 @@ public class PackPanel : UIElement
     {
         foreach (var icon in _packIcons)
         {
+            if(icon.Locked) continue;
             icon.UnassignShaman();
         }
 
@@ -74,7 +76,8 @@ public class PackPanel : UIElement
             }
             else
             {
-                _packIcons[i].ToggleLockIcon(false);
+                if(_packIcons[i].ShamanSaveData == null)
+                    _packIcons[i].ToggleLockIcon(false);
             }
         }
     }

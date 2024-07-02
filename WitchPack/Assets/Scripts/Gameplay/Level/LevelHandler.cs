@@ -41,7 +41,7 @@ public class LevelHandler : MonoBehaviour
 
     public void StartLevel()
     {
-        waveHandler.Init();
+        waveHandler.Init(Config);
     }
 
     public void TurnOffSpawnPoints()

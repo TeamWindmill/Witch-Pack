@@ -91,13 +91,13 @@ public class Shaman : BaseUnit
 
     private void AddMetaUpgrades(ShamanSaveData saveData)
     {
-        AddAbilityMetaUpgrades(saveData);
-        AddStatMetaUpgrades(saveData);
+        AddAbilityMetaUpgrades(saveData.AbilityUpgrades);
+        AddStatMetaUpgrades(saveData.StatUpgrades);
     }
 
-    private void AddAbilityMetaUpgrades(ShamanSaveData saveData)
+    private void AddAbilityMetaUpgrades(List<AbilityUpgradeConfig> abilityUpgrades)
     {
-        foreach (var abilityUpgrade in saveData.AbilityUpgrades)
+        foreach (var abilityUpgrade in abilityUpgrades)
         {
             foreach (var abilitySO in abilityUpgrade.AbilitiesToUpgrade)
             {
@@ -108,9 +108,9 @@ public class Shaman : BaseUnit
         }
     }
 
-    private void AddStatMetaUpgrades(ShamanSaveData saveData)
+    private void AddStatMetaUpgrades(List<StatUpgradeConfig> statUpgrades)
     {
-        foreach (var statUpgrade in saveData.StatUpgrades)
+        foreach (var statUpgrade in statUpgrades)
         {
             if (statUpgrade.AbilitiesBehaviors.Length > 0)
             {

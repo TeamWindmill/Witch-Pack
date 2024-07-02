@@ -85,6 +85,7 @@ public class LevelManager : MonoSingleton<LevelManager>
             SoundManager.Instance.PlayAudioClip(SoundEffectType.Victory);
             GameManager.Instance.ShamansManager.AddShamanToRoster(CurrentLevel.Config.shamansToAddAfterComplete);
             GameManager.SaveData.LevelSaves[CurrentLevel.ID - 1].State = NodeState.Completed;
+            GameManager.SaveData.LevelSaves[CurrentLevel.ID - 1].ChallengesFirstTimes[CurrentLevel.Config.SelectedChallenge.ChallengeType] = false;
             GameManager.SaveData.LastLevelCompletedIndex = CurrentLevel.ID - 1;
         }
 
@@ -98,9 +99,11 @@ public class LevelManager : MonoSingleton<LevelManager>
     {
         var levelData = new EndLevelStats(
             completed: IsWon,
-            firstTimeReward: CurrentLevel.LevelSaveData.FirstTimePlaying,
+            firstTimeReward: CurrentLevel.LevelSaveData.ChallengesFirstTimes[CurrentLevel.Config.SelectedChallenge.ChallengeType],
             coreRemainingHp: CurrentLevel.CoreTemple.Damageable.CurrentHp /  CurrentLevel.CoreTemple.Damageable.MaxHp,
-            wavesCompletedPercentage: (float)(CurrentLevel.WaveHandler.CurrentWave - 1) / CurrentLevel.WaveHandler.TotalWaves
+            wavesCompletedPercentage: (float)(CurrentLevel.WaveHandler.CurrentWave - 1) / CurrentLevel.WaveHandler.TotalWaves,
+            expMultiplier: CurrentLevel.Config.SelectedChallenge.ExpMultiplier,
+            firstTimeExpMultiplier: CurrentLevel.Config.SelectedChallenge.FirstTimeExpMultiplier
         );
         var expGained = LevelExpCalculator.CalculateExpGainedFromLevel(CurrentLevel.Config.ExpCalculatorConfig, levelData);
         foreach (var shaman in ShamanParty)
@@ -126,6 +129,10 @@ public class LevelManager : MonoSingleton<LevelManager>
             var shaman = Instantiate(shamanPrefab, spawnPoint.position, Quaternion.identity, shamanHolder);
             shaman.Init(shamanSaveData);
             ShamanParty.Add(shaman);
+            
+            if(CurrentLevel.Config.SelectedChallenge.ChallengeType == LevelChallengeType.AffectShamans) 
+                shaman.AddStatUpgrades(CurrentLevel.Config.SelectedChallenge.StatUpgrades);
+            
             shaman.Damageable.OnDeath += RemoveShamanFromParty;
             shaman.DamageDealer.OnKill += OnEnemyKill;
             spawnPoint.gameObject.SetActive(false);

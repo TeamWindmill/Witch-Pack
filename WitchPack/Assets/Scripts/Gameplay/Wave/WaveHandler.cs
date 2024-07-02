@@ -23,8 +23,10 @@ public class WaveHandler : MonoBehaviour
     public WaveData WaveData => waveData;
 
     private List<Indicator> activeWaveIndicators;
-    public void Init()
+    private LevelConfig _levelConfig;
+    public void Init(LevelConfig levelConfig)
     {
+        _levelConfig = levelConfig;
         spawnData = new List<EnemySpawnData>();
         activeWaveIndicators = new List<Indicator>();
         foreach (EnemySpawnData item in waveData.waves)
@@ -80,22 +82,6 @@ public class WaveHandler : MonoBehaviour
         LevelManager.Instance.EndLevel(true);
     }
 
-    //private IEnumerator SpawnWave(EnemySpawnData givenData)
-    //{
-    //    for (int i = 0; i < givenData.TotalSpawns; i++) //loop over how many spawns there are in total
-    //    {
-    //        for (int j = 0; j < givenData.Groups.Count; j++)
-    //        {
-    //            if(i >= givenData.Groups[j].SpawnedAtInterval)
-    //            {
-    //                StartCoroutine(SpawnGroup(givenData.Groups[j]));
-    //            }
-    //        }
-
-    //        yield return StartCoroutine(IntervalDelay(givenData.TimeBetweenIntervals));
-    //    }
-    //}
-
     private IEnumerator SpawnWave(EnemySpawnData givenData)
     {
         bool waveCompletedSpawning = false;
@@ -141,7 +127,7 @@ public class WaveHandler : MonoBehaviour
             {
                 break;
             }           
-            spawnPoint.SpawnEnemy(givenGroup.Enemy);
+            spawnPoint.SpawnEnemy(givenGroup.Enemy,_levelConfig);
             givenGroup.NumSpawned++;
 
             yield return StartCoroutine(IntervalDelay(fixedSpawnInterval));

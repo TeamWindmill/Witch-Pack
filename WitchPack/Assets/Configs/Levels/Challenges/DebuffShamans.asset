@@ -13,9 +13,14 @@ MonoBehaviour:
   m_Name: DebuffShamans
   m_EditorClassIdentifier: 
   _challengeType: 2
-  _displayName: 1 less shaman
+  _displayName: ' slower shamans + 1 less shaman'
   _bonusesDescription:
   - 'EXP Modifier: 100%'
   - 'First time bonus: +50%'
-  _statUpgrades: []
+  _statUpgrades:
+  - _statType: 4
+    _statValue: 2
+    _factor: 1
   _reduceShamanSlots: 1
+  _expMultiplier: 1
+  _firstTimeExpMultiplier: 0.5

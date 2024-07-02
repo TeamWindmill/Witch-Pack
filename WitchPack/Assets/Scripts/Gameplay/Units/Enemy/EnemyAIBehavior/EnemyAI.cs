@@ -11,7 +11,7 @@ public class EnemyAI: BaseStateMachine<EnemyAI>
         Config = owner.EnemyConfig.EnemyAIConfig;
         BaseInit(Config.EnemyStates);
     }
-    public void OnDisable()
+    public void Disable()
     {
         if(_activeState != null) _activeState.Exit(this);
     }

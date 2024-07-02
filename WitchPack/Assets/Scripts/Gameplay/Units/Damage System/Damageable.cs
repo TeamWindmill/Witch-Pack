@@ -16,8 +16,7 @@ public class Damageable
 
     Timer regenTimer;
 
-    public event Action<int> OnHealthChange;
-    public event Action<int,int> OnHealthChangeStatBar;
+    public event Action<int,int> OnHealthChange;
     public event Action<Damageable, DamageDealer, DamageHandler, Ability, bool> OnTakeDamage;
     public event Action<Damageable,int> OnTakeFlatDamage;
     public event Action<Damageable, int> OnHeal;
@@ -30,9 +29,14 @@ public class Damageable
     public Damageable(IDamagable owner)
     {
         this.owner = owner;
-        OnHealthChange += hp => OnHealthChangeStatBar?.Invoke(hp,MaxHp);
+        owner.Stats[StatType.MaxHp].OnStatChange += OnMaxHpChange;
     }
 
+    public void Disable()
+    {
+        owner.Stats[StatType.MaxHp].OnStatChange -= OnMaxHpChange;
+    }
+    
     public void Init()
     {
         hitable = true;
@@ -71,7 +75,7 @@ public class Damageable
         
         currentHp -= damage.GetDamage();
         OnTakeDamage?.Invoke(this, dealer, damage, ability, isCrit);
-        OnHealthChange?.Invoke(currentHp);
+        OnHealthChange?.Invoke(currentHp,MaxHp);
 
         if (currentHp <= 0)
         {
@@ -84,7 +88,7 @@ public class Damageable
         OnHitGFX?.Invoke(false);
         currentHp -= amount;
         OnTakeFlatDamage?.Invoke(this,amount);
-        OnHealthChange?.Invoke(currentHp);
+        OnHealthChange?.Invoke(currentHp,MaxHp);
         if (currentHp <= 0)
         {
             OnDeathGFX?.Invoke();
@@ -97,7 +101,7 @@ public class Damageable
         {
             currentHp = Mathf.Clamp(currentHp + healAmount, 0, MaxHp);
             OnHeal?.Invoke(this, healAmount);
-            OnHealthChange?.Invoke(currentHp);
+            OnHealthChange?.Invoke(currentHp,MaxHp);
         }        
     }
 
@@ -117,6 +121,11 @@ public class Damageable
             if (damageDealer == dealer) continue;
             damageDealer.OnAssist?.Invoke(this, dealer, damage, ability, isCrit);
         }
+    }
+    private void OnMaxHpChange(float newValue)
+    {
+        currentHp = MaxHp;
+        OnHealthChange?.Invoke(currentHp, MaxHp);
     }
 
     public IEnumerator TakeDamageOverTime(DamageDealer dealer, DamageHandler damage, OffensiveAbility ability, bool isCrit, float duration, float tickRate)

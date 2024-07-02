@@ -41,11 +41,7 @@ public class MapManager : MonoSingleton<MapManager>
             levelSaves = new LevelSaveData[_nodeObjects.Length];
             for (int i = 0; i < _nodeObjects.Length; i++)
             {
-                levelSaves[i] = new LevelSaveData()
-                {
-                    State = NodeState.Locked,
-                    FirstTimePlaying = true,
-                };
+                levelSaves[i] = new LevelSaveData(NodeState.Locked);
                 _nodeObjects[i].Init(i,levelSaves[i]);
             }
 

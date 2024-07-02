@@ -35,6 +35,7 @@ public class PartySelectionWindow : UIElement
         _rewardsPanel.Init(_levelConfig);
         _challengesPanel.Init(_levelConfig,this);
         _levelTitle.text = $"Level {_levelConfig.Number} - {_levelConfig.Name}";
+        AutoAssignShamansFromRoster();
         base.Show();
     }
 
@@ -55,6 +56,7 @@ public class PartySelectionWindow : UIElement
             return;
         }
 
+        RefreshActiveParty();
         GameManager.Instance.CurrentLevelConfig.SelectedShamans = ActiveShamanParty;
         
         base.Hide();
@@ -87,5 +89,29 @@ public class PartySelectionWindow : UIElement
         MaxShamanPartyCap = DEFAULT_PARTY_SIZE;
         MaxShamanPartyCap -= amountToReduce;
         _packPanel.ReduceShamanSlots(MaxShamanPartyCap);
+    }
+
+    private void AutoAssignShamansFromRoster()
+    {
+        foreach (var icon in _rosterPanel.RosterIcons)
+        {
+            if (icon.ShamanSaveData != null)
+            {
+                AssignShamanToParty(icon.ShamanSaveData);
+            }
+        }
+    }
+
+    private void RefreshActiveParty()
+    {
+        ActiveShamanParty = new List<ShamanSaveData>();
+
+        foreach (var icon in _packPanel.PackIcons)
+        {
+            if (icon.Assigned)
+            {
+                ActiveShamanParty.Add(icon.ShamanSaveData);
+            }
+        }
     }
 }

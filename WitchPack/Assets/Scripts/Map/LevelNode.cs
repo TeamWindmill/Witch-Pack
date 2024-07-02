@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -26,6 +29,15 @@ public class LevelNode : MapNode
 
 public class LevelSaveData
 {
-    public bool FirstTimePlaying;
+    public Dictionary<LevelChallengeType,bool>  ChallengesFirstTimes = new();
     public NodeState State;
+
+    public LevelSaveData(NodeState state)
+    {
+        State = state;
+        for (int i = 0; i < Enum.GetValues(typeof(LevelChallengeType)).Length; i++)
+        {
+            ChallengesFirstTimes.Add((LevelChallengeType)i,true);
+        }
+    }
 }

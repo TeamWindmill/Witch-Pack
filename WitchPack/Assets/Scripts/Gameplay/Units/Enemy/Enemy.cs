@@ -61,13 +61,15 @@ public class Enemy : BaseUnit
 
         Initialized = true;
     }
+
     
     protected override void OnDisable() //enemy death
     {
         base.OnDisable();
         if(!Initialized) return;
         if (ReferenceEquals(LevelManager.Instance, null)) return;
-        enemyAI.OnDisable();
+        enemyAI.Disable();
+        Damageable.Disable();
         Damageable.OnHitGFX -= GetHitSFX;
         Damageable.OnDeathGFX -= DeathSFX;
         //if (AutoAttackCaster != null) AutoAttackCaster.OnAttack -= AttackSFX;

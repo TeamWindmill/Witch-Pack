@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class RosterPanel : UIElement
 {
+    public List<RosterIcon> RosterIcons => _rosterIcons;
+
     [SerializeField] private RosterIcon _rosterIconPrefab;
     [SerializeField] private Transform _holder;
 

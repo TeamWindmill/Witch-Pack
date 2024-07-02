@@ -68,7 +68,6 @@ public class MapNode : MonoBehaviour
     public virtual void Complete()
     {
         LevelSaveData.State = NodeState.Completed;
-        LevelSaveData.FirstTimePlaying = false;
         _path?.TogglePathMask(SpriteMaskInteraction.None);
         gameObject.SetActive(true); 
     }

@@ -10,6 +10,7 @@ public class PackIcon : ClickableUIElement
     public event Action<ShamanSaveData> OnIconRightClick;
 
     public ShamanSaveData ShamanSaveData { get; private set; }
+    public bool Locked { get; private set; }
     public bool Assigned { get; private set; }
     [SerializeField] private Image _splashRenderer;
     [SerializeField] private Image _bgRenderer;
@@ -47,6 +48,7 @@ public class PackIcon : ClickableUIElement
 
     public void ToggleLockIcon(bool state)
     {
+        Locked = state;
         if (state)
         {
             SetSplashAlpha(1);

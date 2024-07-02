@@ -17,13 +17,17 @@ public class EnemySpawnPoint : MonoBehaviour
         return newIndicator;
     }
 
-    public Enemy SpawnEnemy(EnemyConfig givenConf)
+    public Enemy SpawnEnemy(EnemyConfig givenConf,LevelConfig levelConfig)
     {
         Enemy enemy = LevelManager.Instance.PoolManager.EnemyPool.GetPooledObject();
         enemy.transform.position = transform.position;
         enemy.gameObject.SetActive(true);
         givenConf.Path = path;
         enemy.Init(givenConf);
+        
+        if(levelConfig.SelectedChallenge.ChallengeType == LevelChallengeType.AffectEnemies)
+            enemy.AddStatUpgrades(levelConfig.SelectedChallenge.StatUpgrades);
+        
         queuedEnemies.Enqueue(enemy);
         return enemy;
     }

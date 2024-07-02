@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class ChallengesPanel : UIElement<LevelConfig, PartySelectionWindow>
 {
-    [SerializeField] private LevelChallenge[] _levelChallengeConfig;
+    public LevelChallenge[] LevelChallengeConfigs => _levelChallengeConfigs;
+
+    [SerializeField] private LevelChallenge[] _levelChallengeConfigs;
     [SerializeField] private Button[] _challengeButtons;
     [SerializeField] private TextMeshProUGUI[] _challengeButtonsText;
     [SerializeField] private TextMeshProUGUI _challengeBonusesText;
@@ -20,7 +22,7 @@ public class ChallengesPanel : UIElement<LevelConfig, PartySelectionWindow>
         _partySelectionWindow = partySelectionWindow;
         for (int i = 0; i < _challengeButtons.Length; i++)
         {
-            _challengeButtonsText[i].text = _levelChallengeConfig[i].DisplayName;
+            _challengeButtonsText[i].text = _levelChallengeConfigs[i].DisplayName;
         }
 
         SelectChallenge(0);
@@ -34,10 +36,10 @@ public class ChallengesPanel : UIElement<LevelConfig, PartySelectionWindow>
             _challengeButtons[i].interactable = true;
             if(i == buttonIndex) _challengeButtons[buttonIndex].interactable = false;
             
-            _challengeBonusesText.text = GetBonusesDescriptions(_levelChallengeConfig[buttonIndex].BonusesDescription);
+            _challengeBonusesText.text = GetBonusesDescriptions(_levelChallengeConfigs[buttonIndex].BonusesDescription);
         }
-        _levelConfig.SelectedChallenge = _levelChallengeConfig[buttonIndex];
-        _partySelectionWindow.ReduceShamanSlots(_levelChallengeConfig[buttonIndex].ReduceShamanSlots);
+        _levelConfig.SelectedChallenge = _levelChallengeConfigs[buttonIndex];
+        _partySelectionWindow.ReduceShamanSlots(_levelChallengeConfigs[buttonIndex].ReduceShamanSlots);
     }
 
     public string GetBonusesDescriptions(string[] bonusesDescription)
@@ -45,7 +47,7 @@ public class ChallengesPanel : UIElement<LevelConfig, PartySelectionWindow>
         string finalValue = "";
         foreach (var str in bonusesDescription)
         {
-            finalValue += str;
+            finalValue += "-" + str;
             finalValue += "\n";
         }
 
