@@ -5,24 +5,27 @@ using UnityEngine.UI;
 
 public class ChallengesPanel : UIElement<LevelConfig, PartySelectionWindow>
 {
-    public LevelChallenge[] LevelChallengeConfigs => _levelChallengeConfigs;
 
-    [SerializeField] private LevelChallenge[] _levelChallengeConfigs;
     [SerializeField] private Button[] _challengeButtons;
     [SerializeField] private TextMeshProUGUI[] _challengeButtonsText;
     [SerializeField] private TextMeshProUGUI _challengeBonusesText;
 
     private LevelConfig _levelConfig;
     private PartySelectionWindow _partySelectionWindow;
-    private int _selectedChallengeIndex;
 
     public override void Init(LevelConfig levelConfig, PartySelectionWindow partySelectionWindow)
     {
         _levelConfig = levelConfig;
         _partySelectionWindow = partySelectionWindow;
+        
+        if (_levelConfig.LevelChallenges.Length == 0)
+        {
+            Debug.LogError("missing level challenges in config");
+            return;
+        }
         for (int i = 0; i < _challengeButtons.Length; i++)
         {
-            _challengeButtonsText[i].text = _levelChallengeConfigs[i].DisplayName;
+            _challengeButtonsText[i].text = levelConfig.LevelChallenges[i].DisplayName;
         }
 
         SelectChallenge(0);
@@ -30,16 +33,15 @@ public class ChallengesPanel : UIElement<LevelConfig, PartySelectionWindow>
 
     public void SelectChallenge(int buttonIndex)
     {
-        _selectedChallengeIndex = buttonIndex;
         for (int i = 0; i < _challengeButtons.Length; i++)
         {
             _challengeButtons[i].interactable = true;
             if(i == buttonIndex) _challengeButtons[buttonIndex].interactable = false;
             
-            _challengeBonusesText.text = GetBonusesDescriptions(_levelChallengeConfigs[buttonIndex].BonusesDescription);
+            _challengeBonusesText.text = GetBonusesDescriptions(_levelConfig.LevelChallenges[buttonIndex].BonusesDescription);
         }
-        _levelConfig.SelectedChallenge = _levelChallengeConfigs[buttonIndex];
-        _partySelectionWindow.ReduceShamanSlots(_levelChallengeConfigs[buttonIndex].ReduceShamanSlots);
+        _levelConfig.SelectedChallenge = _levelConfig.LevelChallenges[buttonIndex];
+        _partySelectionWindow.ReduceShamanSlots(_levelConfig.LevelChallenges[buttonIndex].ReduceShamanSlots);
     }
 
     public string GetBonusesDescriptions(string[] bonusesDescription)
