@@ -33,7 +33,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     {
         var levelConfig = GameManager.Instance.CurrentLevelConfig;
         CurrentLevel = Instantiate(levelConfig.levelPrefab, enviromentHolder);
-        CurrentLevel.Init(levelConfig);
+        CurrentLevel.Init(levelConfig,GameManager.SaveData.LevelSaves[GameManager.SaveData.CurrentNode.Index]);
         SpawnParty(levelConfig.SelectedShamans);
         CurrentLevel.TurnOffSpawnPoints();
         BgMusicManager.Instance.PlayMusic(MusicClip.GameMusic);
@@ -84,7 +84,7 @@ public class LevelManager : MonoSingleton<LevelManager>
         {
             SoundManager.Instance.PlayAudioClip(SoundEffectType.Victory);
             GameManager.Instance.ShamansManager.AddShamanToRoster(CurrentLevel.Config.shamansToAddAfterComplete);
-            GameManager.SaveData.MapNodes[CurrentLevel.ID - 1].SetState(NodeState.Completed);
+            GameManager.SaveData.MapNodes[CurrentLevel.ID - 1].Complete();
             GameManager.SaveData.LastLevelCompletedIndex = CurrentLevel.ID - 1;
         }
 
@@ -96,11 +96,11 @@ public class LevelManager : MonoSingleton<LevelManager>
 
     private void GiveExpToParty()
     {
-        var levelData = new EndLevelData(
+        var levelData = new EndLevelStats(
             completed: IsWon,
-            firstTimeReward: false,
+            firstTimeReward: CurrentLevel.LevelSaveData.FirstTimePlaying,
             coreRemainingHp: CurrentLevel.CoreTemple.Damageable.CurrentHp /  CurrentLevel.CoreTemple.Damageable.MaxHp,
-            wavesCompletedPercentage: (float)CurrentLevel.WaveHandler.CurrentWave / CurrentLevel.WaveHandler.TotalWaves
+            wavesCompletedPercentage: (float)(CurrentLevel.WaveHandler.CurrentWave - 1) / CurrentLevel.WaveHandler.TotalWaves
         );
         var expGained = LevelExpCalculator.CalculateExpGainedFromLevel(CurrentLevel.Config.ExpCalculatorConfig, levelData);
         foreach (var shaman in ShamanParty)
@@ -121,14 +121,7 @@ public class LevelManager : MonoSingleton<LevelManager>
 
         foreach (var shamanSaveData in shamans)
         {
-            int rand = Random.Range(0, CurrentLevel.ShamanSpawnPoints.Length);
-            var spawnPoint = CurrentLevel.ShamanSpawnPoints[rand];
-
-            while (!spawnPoint.gameObject.activeSelf)
-            {
-                rand = Random.Range(0, CurrentLevel.ShamanSpawnPoints.Length);
-                spawnPoint = CurrentLevel.ShamanSpawnPoints[rand];
-            }
+            var spawnPoint = GetSpawnPoint();
 
             var shaman = Instantiate(shamanPrefab, spawnPoint.position, Quaternion.identity, shamanHolder);
             shaman.Init(shamanSaveData);
@@ -139,12 +132,26 @@ public class LevelManager : MonoSingleton<LevelManager>
         }
     }
 
+    private Transform GetSpawnPoint()
+    {
+        int rand = Random.Range(0, CurrentLevel.ShamanSpawnPoints.Length);
+        var spawnPoint = CurrentLevel.ShamanSpawnPoints[rand];
+
+        while (!spawnPoint.gameObject.activeSelf)
+        {
+            rand = Random.Range(0, CurrentLevel.ShamanSpawnPoints.Length);
+            spawnPoint = CurrentLevel.ShamanSpawnPoints[rand];
+        }
+
+        return spawnPoint;
+    }
+
     private void OnEnemyKill(Damageable arg1, DamageDealer arg2, DamageHandler arg3, Ability arg4, bool crit)
     {
         _scoreHandler.UpdateScore(kills: 1);
     }
 
-    private void RemoveShamanFromParty(Damageable arg1, DamageDealer arg2)
+    private void RemoveShamanFromParty(Damageable arg1, DamageDealer arg2) //no exp for dead shamans
     {
         if (arg1.Owner is Shaman shaman)
         {

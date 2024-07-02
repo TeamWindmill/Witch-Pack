@@ -25,6 +25,7 @@ public class DevToolsUI : UIElement
         if (shamanUpgradePanel.ShamanSaveData != null)
         {
             shamanUpgradePanel.ShamanSaveData.ShamanExperienceHandler.ManualExpGain();
+            UIManager.RefreshUIGroup(UIGroup.ShamanUpgradePanel);
         }
     }
 

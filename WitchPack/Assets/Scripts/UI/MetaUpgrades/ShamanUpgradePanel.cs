@@ -1,3 +1,4 @@
+using Sirenix.Utilities;
 using TMPro;
 using UnityEngine;
 
@@ -14,11 +15,12 @@ public class ShamanUpgradePanel : UIElement
 
     public void Init(ShamanSaveData shamanSaveData)
     {
+        Hide();
         ShamanSaveData = shamanSaveData;
+        _shamanMetaUpgradeConfig = shamanSaveData.Config.ShamanMetaUpgradeConfig;
         _expStatBar.Init(shamanSaveData);
         _skillPointsText.text = shamanSaveData.ShamanExperienceHandler.AvailableSkillPoints.ToString();
         _levelText.text = shamanSaveData.ShamanExperienceHandler.ShamanLevel.ToString();
-        _shamanMetaUpgradeConfig = shamanSaveData.Config.ShamanMetaUpgradeConfig;
         for (int i = 0; i < _abilityMetaUpgrades.Length; i++)
         {
             _abilityMetaUpgrades[i].Init(this, _shamanMetaUpgradeConfig.AbilityPanelUpgrades[i]);
@@ -29,8 +31,19 @@ public class ShamanUpgradePanel : UIElement
         Show();
     }
 
+    public override void Refresh()
+    {
+        _expStatBar.Init(ShamanSaveData);
+        _skillPointsText.text = ShamanSaveData.ShamanExperienceHandler.AvailableSkillPoints.ToString();
+        _levelText.text = ShamanSaveData.ShamanExperienceHandler.ShamanLevel.ToString();
+
+        _abilityMetaUpgrades.ForEach(upgrade => upgrade.Refresh());
+        _statMetaUpgrades.Refresh();
+    }
+
     public override void Hide()
     {
+        _expStatBar.Hide();
         ShamanSaveData = null;
         base.Hide();
     }
@@ -38,11 +51,18 @@ public class ShamanUpgradePanel : UIElement
     public void AddUpgradeToShaman(AbilityUpgradeConfig abilityUpgrade)
     {
         ShamanSaveData.AbilityUpgrades.Add(abilityUpgrade);
-        ShamanSaveData.ShamanExperienceHandler.UseSkillPoints(abilityUpgrade.SkillPointsCost);
+        UpgradeShaman(abilityUpgrade.SkillPointsCost);
+
     }
     public void AddUpgradeToShaman(StatUpgradeConfig statUpgrade)
     {
         ShamanSaveData.StatUpgrades.Add(statUpgrade);
-        ShamanSaveData.ShamanExperienceHandler.UseSkillPoints(statUpgrade.SkillPointsCost);
+        UpgradeShaman(statUpgrade.SkillPointsCost);
+    }
+
+    private void UpgradeShaman(int skillPointCost)
+    {
+        ShamanSaveData.ShamanExperienceHandler.UseSkillPoints(skillPointCost);
+        Refresh();
     }
 }

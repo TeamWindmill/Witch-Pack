@@ -4,6 +4,7 @@ public class GameSaveData
 {
     public List<ShamanSaveData> ShamanRoster;
     public MapNode[] MapNodes; 
+    public LevelSaveData[] LevelSaves; 
     public MapNode CurrentNode; 
     public int LastLevelCompletedIndex; 
 

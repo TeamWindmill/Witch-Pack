@@ -35,29 +35,26 @@ public class MapManager : MonoSingleton<MapManager>
     public void Init()
     {
         LevelSelectOpen = false;
-        var mapNodes = GameManager.SaveData.MapNodes;
-        if (mapNodes == null)
+        var levelSaveData = GameManager.SaveData.LevelSaves;
+        if (levelSaveData == null)
         {
-            mapNodes = new MapNode[_nodeObjects.Length];
+            levelSaveData = new LevelSaveData[_nodeObjects.Length];
             for (int i = 0; i < _nodeObjects.Length; i++)
             {
-                mapNodes[i] = _nodeObjects[i];
-                _nodeObjects[i].Init(i);
-                GameManager.SaveData.MapNodes = mapNodes;
+                levelSaveData[i] = new LevelSaveData()
+                {
+                    State = NodeState.Locked,
+                    FirstTimePlaying = true,
+                };
+                _nodeObjects[i].Init(i,levelSaveData[i]);
             }
         }
         else
         {
-            for (int i = 0; i < mapNodes.Length; i++)
-            {
-                _nodeObjects[i].SetState(mapNodes[i].State);
-            }
-            
             for (int i = 0; i < _nodeObjects.Length; i++)
             {
-                _nodeObjects[i].Init(i);
+                _nodeObjects[i].Init(i,levelSaveData[i]);
             }
-
             GameManager.SaveData.CurrentNode = _nodeObjects[GameManager.SaveData.LastLevelCompletedIndex];
         }
 
@@ -69,7 +66,7 @@ public class MapManager : MonoSingleton<MapManager>
         _partyTokenHandler.ClearPath();
         foreach (MapNode mapNode in _nodeObjects)
         {
-            switch (mapNode.State)
+            switch (mapNode.LevelSaveData.State)
             {
                 case NodeState.Completed:
                     mapNode.Path?.TogglePathMask(SpriteMaskInteraction.None);
@@ -114,7 +111,7 @@ public class MapManager : MonoSingleton<MapManager>
     private void AnimateToken(MapNode mapNode)
     {
         if(LevelSelectOpen) return;
-        if(mapNode.State != NodeState.Open) return;
+        if(mapNode.LevelSaveData.State != NodeState.Open) return;
         if (mapNode.Path != null)
         {
             var startPos = _nodeObjects[mapNode.Index - 1].transform.position;
