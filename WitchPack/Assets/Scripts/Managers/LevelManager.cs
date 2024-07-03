@@ -99,11 +99,10 @@ public class LevelManager : MonoSingleton<LevelManager>
     {
         var levelData = new EndLevelStats(
             completed: IsWon,
-            firstTimeReward: CurrentLevel.LevelSaveData.ChallengesFirstTimes[CurrentLevel.Config.SelectedChallenge.ChallengeType],
+            firstTime: CurrentLevel.LevelSaveData.ChallengesFirstTimes[CurrentLevel.Config.SelectedChallenge.ChallengeType],
             coreRemainingHp: CurrentLevel.CoreTemple.Damageable.CurrentHp /  CurrentLevel.CoreTemple.Damageable.MaxHp,
             wavesCompletedPercentage: (float)(CurrentLevel.WaveHandler.CurrentWave - 1) / CurrentLevel.WaveHandler.TotalWaves,
-            expMultiplier: CurrentLevel.Config.SelectedChallenge.ExpMultiplier,
-            firstTimeExpMultiplier: CurrentLevel.Config.SelectedChallenge.FirstTimeExpMultiplier
+            expMultiplier: CurrentLevel.Config.SelectedChallenge.ExpMultiplier
         );
         var expGained = LevelExpCalculator.CalculateExpGainedFromLevel(CurrentLevel.Config.ExpCalculatorConfig, levelData);
         foreach (var shaman in ShamanParty)
@@ -130,7 +129,7 @@ public class LevelManager : MonoSingleton<LevelManager>
             shaman.Init(shamanSaveData);
             ShamanParty.Add(shaman);
             
-            if(CurrentLevel.Config.SelectedChallenge.ChallengeType == LevelChallengeType.AffectShamans) 
+            if(CurrentLevel.Config.SelectedChallenge.ChallengeType is LevelChallengeType.AffectShamans or LevelChallengeType.AffectBoth) 
                 shaman.AddStatUpgrades(CurrentLevel.Config.SelectedChallenge.StatUpgrades);
             
             shaman.Damageable.OnDeath += RemoveShamanFromParty;
