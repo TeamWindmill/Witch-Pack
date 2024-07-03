@@ -23,9 +23,29 @@ MonoBehaviour:
     _waveCompletedExp: 15
     _coreRemainingHealthExp: 20
   LevelChallenges:
-  - {fileID: 11400000, guid: 971cee2075bc6fe48a5634c09b98f330, type: 2}
-  - {fileID: 11400000, guid: c2c64867083b633459d97cf3147dee12, type: 2}
-  - {fileID: 11400000, guid: fa9596829665f8640a44a8d5ecfe4896, type: 2}
+  - _challengeType: 0
+    _displayName: 
+    _bonusesDescription: []
+    _statUpgrades: []
+    _reduceShamanSlots: 2
+    _expMultiplier: 0
+  - _challengeType: 1
+    _displayName: +15 Enemy Health Regeneration
+    _bonusesDescription:
+    - 'EXP Modifier: +100%'
+    _statUpgrades:
+    - _statType: 10
+      _statValue: 15
+      _factor: 0
+    _reduceShamanSlots: 2
+    _expMultiplier: 1
+  - _challengeType: 0
+    _displayName: -1 Shaman Slot
+    _bonusesDescription:
+    - 'EXP Modifier: +200%'
+    _statUpgrades: []
+    _reduceShamanSlots: 3
+    _expMultiplier: 2
   BeforeDialog: {fileID: 11400000, guid: d741f59513e7421479a0f0be52918642, type: 2}
   StartDialog: {fileID: 0}
   EndDialog: {fileID: 11400000, guid: b8916e4591f15324b806749eb6417761, type: 2}
