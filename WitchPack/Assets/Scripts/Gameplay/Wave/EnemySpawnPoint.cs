@@ -25,7 +25,7 @@ public class EnemySpawnPoint : MonoBehaviour
         givenConf.Path = path;
         enemy.Init(givenConf);
         
-        if(levelConfig.SelectedChallenge.ChallengeType == LevelChallengeType.AffectEnemies)
+        if(levelConfig.SelectedChallenge.ChallengeType is LevelChallengeType.AffectEnemies or LevelChallengeType.AffectBoth)
             enemy.AddStatUpgrades(levelConfig.SelectedChallenge.StatUpgrades);
         
         queuedEnemies.Enqueue(enemy);

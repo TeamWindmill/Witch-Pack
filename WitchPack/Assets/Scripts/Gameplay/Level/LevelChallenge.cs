@@ -2,8 +2,8 @@ using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Level/Challenge",fileName = "LevelChallenge")]
-public class LevelChallenge : ScriptableObject
+[Serializable]
+public struct LevelChallenge
 {
     [SerializeField] private LevelChallengeType _challengeType;
     [SerializeField] private string _displayName;
@@ -11,7 +11,6 @@ public class LevelChallenge : ScriptableObject
     [SerializeField,HideIf(nameof(_challengeType),LevelChallengeType.None)] private StatValueUpgradeConfig[] _statUpgrades;
     [SerializeField] private int _reduceShamanSlots;
     [SerializeField] private float _expMultiplier;
-    [SerializeField] private float _firstTimeExpMultiplier;
 
     public LevelChallengeType ChallengeType => _challengeType;
     public string DisplayName => _displayName;
@@ -19,7 +18,6 @@ public class LevelChallenge : ScriptableObject
     public StatValueUpgradeConfig[] StatUpgrades => _statUpgrades;
     public int ReduceShamanSlots => _reduceShamanSlots;
     public float ExpMultiplier => 1 + _expMultiplier;
-    public float FirstTimeExpMultiplier => 1 + _firstTimeExpMultiplier;
 }
 
 public enum LevelChallengeType
