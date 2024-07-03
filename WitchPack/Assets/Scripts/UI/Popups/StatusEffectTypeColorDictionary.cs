@@ -7,12 +7,12 @@ public class StatusEffectTypeColorDictionary : ScriptableObject
 {
     public List<StatusEffectTypeVisualData> DataList;
 
-    public StatusEffectTypeVisualData GetData(StatusEffectType givenType)
+    public StatusEffectTypeVisualData GetData(StatusEffectVisual givenVisual)
     {
         foreach (StatusEffectTypeVisualData data in DataList)
         {
             
-            if(data.StatusEffectType == givenType)
+            if(data.StatusEffectVisual == givenVisual)
             {
                 return data;
             }

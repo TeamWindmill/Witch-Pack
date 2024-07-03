@@ -4,9 +4,9 @@ using System.Collections.Generic;
 public class Effectable
 {
     public event Action<Effectable, Affector, StatusEffect> OnAffected;
-    public event Action<StatusEffectType> OnAffectedVFX;
+    public event Action<StatusEffectVisual> OnAffectedVFX;
     public event Action<StatusEffect> OnEffectRemoved;
-    public event Action<StatusEffectType> OnEffectRemovedVFX;
+    public event Action<StatusEffectVisual> OnEffectRemovedVFX;
     public IDamagable Owner => _owner;
     public List<StatusEffect> ActiveEffects => activeEffects;
 
@@ -53,7 +53,7 @@ public class Effectable
         activeEffects.Add(givenEffect);
         givenEffect.Activate();
         OnAffected?.Invoke(this, affector, givenEffect);
-        OnAffectedVFX?.Invoke(givenEffect.StatusEffectType); // maybe also added this to the if above? line 32
+        OnAffectedVFX?.Invoke(givenEffect.StatusEffectVisual); // maybe also added this to the if above? line 32
         return givenEffect;
     }
 
@@ -61,26 +61,26 @@ public class Effectable
     {
         activeEffects.Remove(effect);
         OnEffectRemoved?.Invoke(effect);
-        OnEffectRemovedVFX?.Invoke(effect.StatusEffectType);
+        OnEffectRemovedVFX?.Invoke(effect.StatusEffectVisual);
     }
 
-    public void RemoveEffectsOfType(StatusEffectType effectType)
+    public void RemoveEffectsOfType(StatusEffectVisual effectVisual)
     {
         if (activeEffects.Count == 0) return;
         foreach (var effect in ActiveEffects)
         {
-            if (effect.StatusEffectType == effectType)
+            if (effect.StatusEffectVisual == effectVisual)
             {
                 RemoveEffect(effect);
             }
         }
     }
 
-    public bool ContainsStatusEffect(StatusEffectType statusEffectType)
+    public bool ContainsStatusEffect(StatusEffectVisual statusEffectVisual)
     {
         foreach (var statusEffect in ActiveEffects)
         {
-            if (statusEffect.StatusEffectType == statusEffectType) return true;
+            if (statusEffect.StatusEffectVisual == statusEffectVisual) return true;
         }
 
         return false;

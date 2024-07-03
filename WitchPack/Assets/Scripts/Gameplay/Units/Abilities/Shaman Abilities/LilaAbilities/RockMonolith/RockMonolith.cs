@@ -18,10 +18,11 @@ public class RockMonolith : OffensiveAbility
 
     public override bool CastAbility()
     {
-        var targets = Owner.EnemyTargetHelper.GetAvailableTargets(RockMonolithConfig.TargetData);
+        var targets = Owner.EnemyTargetHelper.GetAvailableTargets(TargetData);
         
-        var statusEffects = _shamanOwner.Effectable.AddEffects(StatusEffects,_shamanOwner.Affector);
-        //statusEffects[0].Ended += RockMonolithConfig.TauntState.EndTaunt; //this is wierd
+        _shamanOwner.Effectable.AddEffects(StatusEffects,_shamanOwner.Affector);
+        
+        _shamanOwner.ShamanVisualHandler.ShamanEffectHandler.PlayEffect(StatusEffectVisual.RockMonolithTaunt);
 
         TimerManager.AddTimer(GetAbilityStatValue(AbilityStatType.Duration), OnTauntEnd,true);
 
@@ -43,7 +44,7 @@ public class RockMonolith : OffensiveAbility
 
     public override bool CheckCastAvailable()
     {
-        Enemy target = Owner.EnemyTargetHelper.GetTarget(RockMonolithConfig.TargetData);
+        Enemy target = Owner.EnemyTargetHelper.GetTarget(TargetData);
         if (!ReferenceEquals(target, null)) //might want to change to multiple enemies near her
         {
             return true;
@@ -54,6 +55,8 @@ public class RockMonolith : OffensiveAbility
 
     protected virtual void OnTauntEnd()
     {
+        _shamanOwner.ShamanVisualHandler.ShamanEffectHandler.DisableEffect(StatusEffectVisual.RockMonolithTaunt);
+        
         _activeAftershock = LevelManager.Instance.PoolManager.AftershockPool.GetPooledObject();
         _activeAftershock.transform.position = Owner.transform.position;
         _activeAftershock.gameObject.SetActive(true);

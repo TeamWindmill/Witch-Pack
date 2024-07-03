@@ -16,7 +16,7 @@ public class EnemyRangedAutoAttack : OffensiveAbility
         }
         else
         {
-            target = Owner.ShamanTargetHelper.GetTarget(CastingConfig.TargetData);
+            target = Owner.ShamanTargetHelper.GetTarget(TargetData);
         }
         
         if (ReferenceEquals(target, null))
@@ -33,7 +33,7 @@ public class EnemyRangedAutoAttack : OffensiveAbility
     public override bool CheckCastAvailable()
     {
         if ((Owner as Enemy)?.EnemyAI.ActiveState.GetType() == typeof(AttackCoreState)) return true;
-        BaseUnit target = Owner.ShamanTargetHelper.GetTarget(CastingConfig.TargetData);
+        BaseUnit target = Owner.ShamanTargetHelper.GetTarget(TargetData);
         return !ReferenceEquals(target, null);
     }
 

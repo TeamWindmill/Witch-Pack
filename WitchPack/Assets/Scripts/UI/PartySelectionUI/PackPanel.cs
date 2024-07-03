@@ -20,6 +20,17 @@ public class PackPanel : UIElement
             icon.OnIconRightClick += OpenUpgradePanel;
         }
     }
+
+    public override void Hide()
+    {
+        foreach (var icon in _packIcons)
+        {
+            icon.OnIconLeftClick -= _parent.UnassignShamanFromParty;
+            icon.OnIconRightClick -= OpenUpgradePanel;
+        }
+        base.Hide();
+    }
+
     public void AddShamanToPack(ShamanSaveData shaman)
     {
         foreach (var icon in _packIcons)

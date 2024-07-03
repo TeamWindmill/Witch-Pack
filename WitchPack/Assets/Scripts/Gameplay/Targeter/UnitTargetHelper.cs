@@ -36,7 +36,7 @@ public class UnitTargetHelper<T> where T : BaseUnit
         if (!ReferenceEquals(target, null))
         {
             if (givenData.AvoidCharmedTargets)
-                if (target.Effectable.ContainsStatusEffect(StatusEffectType.Charm))
+                if (target.Effectable.ContainsStatusEffect(StatusEffectVisual.Charm))
                     return null;
 
             RemoveCurrentTarget();
@@ -59,7 +59,7 @@ public class UnitTargetHelper<T> where T : BaseUnit
                 if (_targetsToAvoid.Contains(target)) continue;
             }
             if(target.IsDead) continue;
-            if(givenData.AvoidCharmedTargets && target.Effectable.ContainsStatusEffect(StatusEffectType.Charm)) continue;
+            if(givenData.AvoidCharmedTargets && target.Effectable.ContainsStatusEffect(StatusEffectVisual.Charm)) continue;
                 
             
             validTargets.Add(target);

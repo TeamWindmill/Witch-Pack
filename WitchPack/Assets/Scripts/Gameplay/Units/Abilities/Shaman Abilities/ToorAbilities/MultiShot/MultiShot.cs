@@ -20,14 +20,14 @@ public class MultiShot : OffensiveAbility
         var targetsToIgnore = new List<Enemy>();
         
         //get an initial target
-        _targets[0] = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData);
+        _targets[0] = Owner.EnemyTargetHelper.GetTarget(TargetData);
         if (!ReferenceEquals(_targets[0], null))
         {
             targetsToIgnore.Add(_targets[0]);
             
             for (int i = 1; i < _targets.Length; i++)
             {
-                _targets[i] = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData, targetsToIgnore);
+                _targets[i] = Owner.EnemyTargetHelper.GetTarget(TargetData, targetsToIgnore);
                 _targets[i] ??= _targets[0];
                 targetsToIgnore.Add(_targets[i]);
             }
@@ -78,7 +78,7 @@ public class MultiShot : OffensiveAbility
 
     public override bool CheckCastAvailable()
     {
-        var target = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData);
+        var target = Owner.EnemyTargetHelper.GetTarget(TargetData);
         if (target != null) return true;
 
         return false;

@@ -40,7 +40,6 @@ public class AbilityCaster : ICaster
         
         return false;
     }
-
     public bool CheckCastAvailable()
     {
         return ability.CheckCastAvailable();
@@ -50,6 +49,8 @@ public class AbilityCaster : ICaster
     {
         return ability.GetUpgrades().Contains(caster.Ability);
     }
+    public float GetCastTime() => ability.GetAbilityStatValue(AbilityStatType.CastTime);
+    
 
     public float GetCooldown() => ability.GetAbilityStatValue(AbilityStatType.Cooldown) * _unit.Stats[StatType.AbilityCooldownReduction].Value;
 

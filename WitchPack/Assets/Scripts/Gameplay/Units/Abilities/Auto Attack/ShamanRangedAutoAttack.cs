@@ -9,7 +9,7 @@ public class ShamanRangedAutoAttack : OffensiveAbility
 
     public override bool CastAbility()
     {
-        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData);
+        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(TargetData);
         if (ReferenceEquals(target, null))
         {
             return false;
@@ -24,7 +24,7 @@ public class ShamanRangedAutoAttack : OffensiveAbility
 
     public override bool CheckCastAvailable()
     {
-        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData);
+        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(TargetData);
         return !ReferenceEquals(target, null);
     }
 }

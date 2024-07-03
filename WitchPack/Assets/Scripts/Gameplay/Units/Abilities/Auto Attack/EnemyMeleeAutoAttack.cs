@@ -11,13 +11,13 @@ public class EnemyMeleeAutoAttack : OffensiveAbility
    public override bool CastAbility()
    {
       BaseUnit target;
-      if(Owner.Effectable.ContainsStatusEffect(StatusEffectType.Charm) || Owner.Effectable.ContainsStatusEffect(StatusEffectType.Frenzy))
+      if(Owner.Effectable.ContainsStatusEffect(StatusEffectVisual.Charm) || Owner.Effectable.ContainsStatusEffect(StatusEffectVisual.Frenzy))
       {
-         target = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData);
+         target = Owner.EnemyTargetHelper.GetTarget(TargetData);
       }
       else
       {
-         target = Owner.ShamanTargetHelper.GetTarget(CastingConfig.TargetData);
+         target = Owner.ShamanTargetHelper.GetTarget(TargetData);
       }
       if (ReferenceEquals(target, null)) return false;
       if (Vector2.Distance(target.transform.position, Owner.transform.position) > Owner.Movement.DefaultStoppingDistance) return false;
@@ -28,13 +28,13 @@ public class EnemyMeleeAutoAttack : OffensiveAbility
    public override bool CheckCastAvailable()
    {
       BaseUnit target;
-      if(Owner.Effectable.ContainsStatusEffect(StatusEffectType.Charm) || Owner.Effectable.ContainsStatusEffect(StatusEffectType.Frenzy))
+      if(Owner.Effectable.ContainsStatusEffect(StatusEffectVisual.Charm) || Owner.Effectable.ContainsStatusEffect(StatusEffectVisual.Frenzy))
       {
-         target = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData);
+         target = Owner.EnemyTargetHelper.GetTarget(TargetData);
       }
       else
       {
-         target = Owner.ShamanTargetHelper.GetTarget(CastingConfig.TargetData);
+         target = Owner.ShamanTargetHelper.GetTarget(TargetData);
       }
       return !ReferenceEquals(target, null);
    }

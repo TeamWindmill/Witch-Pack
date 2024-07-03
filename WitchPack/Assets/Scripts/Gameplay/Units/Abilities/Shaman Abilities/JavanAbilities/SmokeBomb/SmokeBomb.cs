@@ -10,7 +10,7 @@ public class SmokeBomb : OffensiveAbility
 
     public override bool CastAbility()
     {
-        BaseUnit target = Owner.ShamanTargetHelper.GetTarget(SmokeBombConfig.TargetData);
+        BaseUnit target = Owner.ShamanTargetHelper.GetTarget(TargetData);
 
         if (!ReferenceEquals(target, null))
         {
@@ -26,7 +26,7 @@ public class SmokeBomb : OffensiveAbility
 
     public override bool CheckCastAvailable()
     {
-        BaseUnit target = Owner.ShamanTargetHelper.GetTarget(SmokeBombConfig.TargetData);
+        BaseUnit target = Owner.ShamanTargetHelper.GetTarget(TargetData);
 
         if (!ReferenceEquals(target, null))
         {

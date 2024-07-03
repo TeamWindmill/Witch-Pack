@@ -10,12 +10,12 @@ public class EnemyEffectHandler : UnitEffectHandler
     [SerializeField] private PoisonIvyVisuals poisonIvyVisuals;
     public override void PlayEffect(Effectable effectable, Affector affector, StatusEffect statusEffect)
     {
-        switch (statusEffect.StatusEffectType)
+        switch (statusEffect.StatusEffectVisual)
         {
-            case StatusEffectType.Root:
-            case StatusEffectType.HealingRoot:
-            case StatusEffectType.LongerRoot:
-            case StatusEffectType.PoisonRoot:
+            case StatusEffectVisual.Root:
+            case StatusEffectVisual.HealingRoot:
+            case StatusEffectVisual.LongerRoot:
+            case StatusEffectVisual.PoisonRoot:
                 foreach (var visual in rootingVinesVisuals)
                 {
                     visual.Init(statusEffect.Duration);

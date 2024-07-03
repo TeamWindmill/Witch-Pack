@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UnitEffectHandler : MonoBehaviour
 {
-    [SerializeField] private EffectVisual<StatusEffectType>[] _statusEffectVisuals;
+    [SerializeField] private EffectVisual<StatusEffectVisual>[] _statusEffectVisuals;
     [SerializeField] private EffectVisual<CastingHandsEffectType>[] _castingHandsVisuals;
 
     public virtual void Init(BaseUnitConfig config)
@@ -16,7 +16,29 @@ public class UnitEffectHandler : MonoBehaviour
     {
         foreach (var effectVisual in _statusEffectVisuals)
         {
-            if (effectVisual.StatusEffectType == statusEffect.StatusEffectType)
+            if (effectVisual.StatusEffectType == statusEffect.StatusEffectVisual)
+            {
+                if (effectVisual.PlayAllEffects)
+                {
+                    foreach (var go in effectVisual.visualGameObjects)
+                    {
+                        go.SetActive(true);
+                    }
+                }
+                else
+                {
+                    effectVisual.GetGameObject().SetActive(true);                            
+                }
+                return;
+            }
+        }
+        
+    }
+    public virtual void PlayEffect(StatusEffectVisual statusEffectVisual)
+    {
+        foreach (var effectVisual in _statusEffectVisuals)
+        {
+            if (effectVisual.StatusEffectType == statusEffectVisual)
             {
                 if (effectVisual.PlayAllEffects)
                 {
@@ -50,7 +72,18 @@ public class UnitEffectHandler : MonoBehaviour
     {
         foreach (var effectVisual in _statusEffectVisuals)
         {
-            if (effectVisual.StatusEffectType == statusEffect.StatusEffectType)
+            if (effectVisual.StatusEffectType == statusEffect.StatusEffectVisual)
+            {
+                effectVisual.SetOffAllVisualGameObjects();
+                return;
+            }
+        }
+    }
+    public virtual void DisableEffect(StatusEffectVisual statusEffectVisual)
+    {
+        foreach (var effectVisual in _statusEffectVisuals)
+        {
+            if (effectVisual.StatusEffectType == statusEffectVisual)
             {
                 effectVisual.SetOffAllVisualGameObjects();
                 return;

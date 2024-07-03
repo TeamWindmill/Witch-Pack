@@ -13,7 +13,7 @@ public class AffectedByUnitsStatPassiveSO : PassiveSO
     private bool _affectedByEnemiesWithStatusEffect;
 
     [SerializeField] [ShowIf(nameof(_affectedByEnemiesWithStatusEffect))]
-    private StatusEffectType _enemyStatusEffect;
+    private StatusEffectVisual _enemyStatusEffect;
 
     [SerializeField] private bool _affectedByShamans;
 
@@ -21,17 +21,17 @@ public class AffectedByUnitsStatPassiveSO : PassiveSO
     private bool _affectedByShamansWithStatusEffect;
 
     [SerializeField] [ShowIf(nameof(_affectedByShamansWithStatusEffect))]
-    private StatusEffectType _shamanStatusEffect;
+    private StatusEffectVisual _shamanStatusEffect;
 
     public StatValue[] StatsIncrease => _statsIncrease;
     public bool AffectedByEnemies => _affectedByEnemies;
 
     public bool AffectedByEnemiesWithStatusEffect => _affectedByEnemiesWithStatusEffect;
 
-    public StatusEffectType EnemyStatusEffect => _enemyStatusEffect;
+    public StatusEffectVisual EnemyStatusEffect => _enemyStatusEffect;
     public bool AffectedByShamans => _affectedByShamans;
 
     public bool AffectedByShamansWithStatusEffect => _affectedByShamansWithStatusEffect;
 
-    public StatusEffectType ShamanStatusEffect => _shamanStatusEffect;
+    public StatusEffectVisual ShamanStatusEffect => _shamanStatusEffect;
 }

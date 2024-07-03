@@ -9,7 +9,7 @@ public class Heal : CastingAbility
 
     public override bool CastAbility()
     {
-        Shaman target = Owner.ShamanTargetHelper.GetTarget(_config.TargetData); 
+        Shaman target = Owner.ShamanTargetHelper.GetTarget(TargetData); 
         if (!ReferenceEquals(target, null)) // any shaman in range?
         {
             // Check if caster has lower hp (ratio) than lowest hp target
@@ -53,7 +53,7 @@ public class Heal : CastingAbility
 
     public override bool CheckCastAvailable()
     {
-        Shaman target = Owner.ShamanTargetHelper.GetTarget(_config.TargetData); 
+        Shaman target = Owner.ShamanTargetHelper.GetTarget(TargetData); 
         if (!ReferenceEquals(target, null)) // any shaman in range?
         {
             // Check if caster has lower hp (ratio) than lowest hp target

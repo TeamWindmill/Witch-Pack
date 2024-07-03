@@ -62,7 +62,7 @@ public class FloatingStoneMono : MonoBehaviour
 
     private void DisableStatusEffects(Damageable arg1, DamageDealer damageDealer, DamageHandler arg3, Ability arg4, bool arg5)
     {
-        damageDealer.Owner.Effectable.RemoveEffectsOfType(StatusEffectType.Weak);
+        damageDealer.Owner.Effectable.RemoveEffectsOfType(StatusEffectVisual.Weak);
         damageDealer.OnHitTarget -= DisableStatusEffects;
     }
 
