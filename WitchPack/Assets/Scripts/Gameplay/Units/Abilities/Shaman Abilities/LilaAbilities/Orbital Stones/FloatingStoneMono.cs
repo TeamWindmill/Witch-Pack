@@ -26,7 +26,7 @@ public class FloatingStoneMono : MonoBehaviour
         _isActive = true;
         gameObject.SetActive(true);
 
-        TimerManager.AddTimer(orbitalStones.Ability.GetAbilityStatValue(AbilityStatType.Duration), Disable);
+        TimerManager.AddTimer(orbitalStones.Ability.GetAbilityStatValue(AbilityStatType.Duration), Disable,true);
     }
 
     private void FixedUpdate()
@@ -35,10 +35,10 @@ public class FloatingStoneMono : MonoBehaviour
         if(!_isActive) return;
         
         if (_currentAngle >= 360) _currentAngle = 0;
-        _currentAngle += _orbitalStones.AngularSpeed * Time.fixedDeltaTime;
+        _currentAngle += _orbitalStones.AngularSpeed * GAME_TIME.GameFixedDeltaTime;
                                                       
         SetCirclePos();
-        //transform.LookAt(_orbitalStones.Owner.transform);
+        
     }
 
     private void SetCirclePos()

@@ -1,4 +1,5 @@
 
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RockMonolith : OffensiveAbility
@@ -20,9 +21,9 @@ public class RockMonolith : OffensiveAbility
         var targets = Owner.EnemyTargetHelper.GetAvailableTargets(RockMonolithConfig.TargetData);
         
         var statusEffects = _shamanOwner.Effectable.AddEffects(StatusEffects,_shamanOwner.Affector);
-        statusEffects[0].Ended += RockMonolithConfig.TauntState.EndTaunt;
+        //statusEffects[0].Ended += RockMonolithConfig.TauntState.EndTaunt; //this is wierd
 
-        TimerManager.AddTimer(GetAbilityStatValue(AbilityStatType.Duration), OnTauntEnd);
+        TimerManager.AddTimer(GetAbilityStatValue(AbilityStatType.Duration), OnTauntEnd,true);
 
         _shamanOwner.Damageable.OnHitGFX += IncrementDamage;
 

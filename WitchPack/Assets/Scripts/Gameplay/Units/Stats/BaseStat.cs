@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public abstract class BaseStat<T> //float type basic stat
+public abstract class BaseStat<T> //float/int type basic stat
 {
     public event Action<float> OnStatChange;
     public T StatType;
@@ -20,7 +20,7 @@ public abstract class BaseStat<T> //float type basic stat
         StatType = statType;
         BaseValue = baseValue;
     }
-
+    public int IntValue => (int)Value;
     public float Value
     {
         get
@@ -60,8 +60,6 @@ public abstract class BaseStat<T> //float type basic stat
             return value * multipliersSum * dividerSum;
         }
     }
-
-    public int IntValue => (int)Value;
 
     public void AddStatValue(Factor factor, float value)
     {
