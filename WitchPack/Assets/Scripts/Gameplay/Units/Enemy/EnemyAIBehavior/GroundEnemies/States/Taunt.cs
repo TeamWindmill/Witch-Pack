@@ -5,8 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "StateMachine/States/Taunt", fileName = "Taunt")]
 public class Taunt : IntervalState<EnemyAI>
 {
-    private float _durationTimer;
-
     public override void Enter(EnemyAI parent)
     {
         parent.Enemy.Movement.ToggleMovement(true);

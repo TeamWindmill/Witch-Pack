@@ -94,7 +94,6 @@ public class BaseUnit : BaseEntity , IDamagable
         Stats.OnStatChanged += movement.OnSpeedChange;
 
     }
-
     protected virtual void OnDisable() //unsubscribe to events
     {
         if (ReferenceEquals(LevelManager.Instance, null)) return;
@@ -106,6 +105,13 @@ public class BaseUnit : BaseEntity , IDamagable
         if (hasHPBar) damageable.OnHealthChange -= hpBar.SetBarValue;
         Stats.OnStatChanged -= EnemyTargeter.AddRadius;
         Stats.OnStatChanged -= movement.OnSpeedChange;
+    }
+    public void AddStatUpgrades(StatValueUpgradeConfig[] statUpgrades)
+    {
+        foreach (var statUpgrade in statUpgrades)
+        {
+            Stats[statUpgrade.StatType].AddStatValue(statUpgrade.Factor,statUpgrade.StatValue);
+        }
     }
 
     public void ToggleCollider(bool state)

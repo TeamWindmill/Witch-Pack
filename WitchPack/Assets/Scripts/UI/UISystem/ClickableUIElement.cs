@@ -9,9 +9,9 @@ public abstract class ClickableUIElement : UIElement, IPointerClickHandler
     public event Action<PointerEventData> OnClickEvent;
     public event Action OnDoubleClickEvent;
 
-    [BoxGroup("UI Element")][SerializeField] private bool enableDoubleClick;
+    [FoldoutGroup("UI Element")][SerializeField] private bool enableDoubleClick;
 
-    [BoxGroup("UI Element")][SerializeField, ShowIf(nameof(enableDoubleClick))]
+    [FoldoutGroup("UI Element")][SerializeField, ShowIf(nameof(enableDoubleClick))]
     private float doubleClickSpeed = 0.5f;
 
     private int _clickNum;
@@ -69,4 +69,9 @@ public abstract class ClickableUIElement : UIElement, IPointerClickHandler
         _clickNum = 0;
         _doubleClickTimer = 0;
     }
+}
+
+public abstract class ClickableUIElement<T> : ClickableUIElement
+{
+    public abstract void Init(T data);
 }

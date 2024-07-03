@@ -27,6 +27,7 @@ MonoBehaviour:
     LeftStatUpgrades:
     - _valueName: +10
       _name: Base damage
+      _skillPointsCost: 1
       _notWorking: 0
       _stats:
       - _statType: 0
@@ -42,8 +43,12 @@ MonoBehaviour:
       - {fileID: 11400000, guid: cf604a1d59ad27a42916c478ad04cb00, type: 2}
     - _valueName: +1s
       _name: Root duration
+      _skillPointsCost: 2
       _notWorking: 0
-      _stats: []
+      _stats:
+      - _statType: 10
+        _statValue: 1
+        _factor: 0
       _damageBoosts: []
       _abilitiesBehaviors: 
       _statusEffectUpgrades:
@@ -57,6 +62,16 @@ MonoBehaviour:
           Factor: 4
         Process: 0
         StatType: 4
+      - Duration:
+          StatType: 0
+          StatValue: 1
+          Factor: 0
+        Value:
+          StatType: 1
+          StatValue: 0
+          Factor: 4
+        Process: 0
+        StatType: 10
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: d190281f00062eb48ab27020e3d083f8, type: 2}
       - {fileID: 11400000, guid: 38ce83318f3509e48849324c620c3205, type: 2}
@@ -64,6 +79,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: cf604a1d59ad27a42916c478ad04cb00, type: 2}
     - _valueName: -1s
       _name: Reduced cooldown
+      _skillPointsCost: 2
       _notWorking: 0
       _stats:
       - _statType: 1
@@ -79,6 +95,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: cf604a1d59ad27a42916c478ad04cb00, type: 2}
     - _valueName: X2
       _name: Poison damage
+      _skillPointsCost: 4
       _notWorking: 0
       _stats:
       - _statType: 17
@@ -92,6 +109,7 @@ MonoBehaviour:
     RightStatUpgrades:
     - _valueName: -0.25s
       _name: Cast time
+      _skillPointsCost: 1
       _notWorking: 0
       _stats:
       - _statType: 4
@@ -107,6 +125,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: cf604a1d59ad27a42916c478ad04cb00, type: 2}
     - _valueName: +10
       _name: damage
+      _skillPointsCost: 2
       _notWorking: 0
       _stats:
       - _statType: 0
@@ -122,8 +141,12 @@ MonoBehaviour:
       - {fileID: 11400000, guid: cf604a1d59ad27a42916c478ad04cb00, type: 2}
     - _valueName: +1s
       _name: Root duration
+      _skillPointsCost: 3
       _notWorking: 0
-      _stats: []
+      _stats:
+      - _statType: 10
+        _statValue: 1
+        _factor: 0
       _damageBoosts: []
       _abilitiesBehaviors: 
       _statusEffectUpgrades:
@@ -137,6 +160,16 @@ MonoBehaviour:
           Factor: 4
         Process: 0
         StatType: 4
+      - Duration:
+          StatType: 0
+          StatValue: 1
+          Factor: 0
+        Value:
+          StatType: 1
+          StatValue: 0
+          Factor: 4
+        Process: 0
+        StatType: 10
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: d190281f00062eb48ab27020e3d083f8, type: 2}
       - {fileID: 11400000, guid: 38ce83318f3509e48849324c620c3205, type: 2}
@@ -144,6 +177,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: cf604a1d59ad27a42916c478ad04cb00, type: 2}
     - _valueName: X2
       _name: Movement speed & regeneration
+      _skillPointsCost: 3
       _notWorking: 0
       _stats: []
       _damageBoosts: []
@@ -175,6 +209,7 @@ MonoBehaviour:
     LeftStatUpgrades:
     - _valueName: -0.25s
       _name: cast time
+      _skillPointsCost: 1
       _notWorking: 0
       _stats:
       - _statType: 4
@@ -189,6 +224,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 7bffac782568f71458ae230b8f3ade8d, type: 2}
     - _valueName: +10
       _name: Health healed
+      _skillPointsCost: 2
       _notWorking: 0
       _stats:
       - _statType: 14
@@ -203,6 +239,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: a375fee6a9a1909459661c3f78f6da65, type: 2}
     - _valueName: -2
       _name: Cooldown
+      _skillPointsCost: 2
       _notWorking: 0
       _stats:
       - _statType: 1
@@ -217,6 +254,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: a375fee6a9a1909459661c3f78f6da65, type: 2}
     - _valueName: Overheal
       _name: Increase max health by heal amount
+      _skillPointsCost: 4
       _notWorking: 0
       _stats: []
       _damageBoosts: []
@@ -227,6 +265,7 @@ MonoBehaviour:
     RightStatUpgrades:
     - _valueName: +10
       _name: Health healed
+      _skillPointsCost: 1
       _notWorking: 0
       _stats:
       - _statType: 14
@@ -241,6 +280,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: a375fee6a9a1909459661c3f78f6da65, type: 2}
     - _valueName: +2
       _name: Energy gained
+      _skillPointsCost: 2
       _notWorking: 0
       _stats:
       - _statType: 8
@@ -255,6 +295,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 7bffac782568f71458ae230b8f3ade8d, type: 2}
     - _valueName: Cast
       _name: on full health shamans
+      _skillPointsCost: 3
       _notWorking: 0
       _stats: []
       _damageBoosts: []
@@ -266,6 +307,7 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 7bffac782568f71458ae230b8f3ade8d, type: 2}
     - _valueName: +0.5
       _name: Blessing of swifftness Attack speed
+      _skillPointsCost: 3
       _notWorking: 0
       _stats: []
       _damageBoosts: []
@@ -287,6 +329,7 @@ MonoBehaviour:
     LeftStatUpgrades:
     - _valueName: +0.25
       _name: Attack speed
+      _skillPointsCost: 1
       _notWorking: 0
       _upgradeAbility: 0
       _upgradePassiveAbility: 0
@@ -301,6 +344,7 @@ MonoBehaviour:
       _abilitiesToUpgrade: []
     - _valueName: +40%
       _name: Crit damage
+      _skillPointsCost: 2
       _notWorking: 0
       _upgradeAbility: 0
       _upgradePassiveAbility: 0
@@ -315,6 +359,7 @@ MonoBehaviour:
       _abilitiesToUpgrade: []
     - _valueName: -20%
       _name: Cooldown reduction
+      _skillPointsCost: 3
       _notWorking: 0
       _upgradeAbility: 0
       _upgradePassiveAbility: 0
@@ -329,6 +374,7 @@ MonoBehaviour:
       _abilitiesToUpgrade: []
     - _valueName: +3
       _name: Leopard heart movement speed
+      _skillPointsCost: 3
       _notWorking: 0
       _upgradeAbility: 0
       _upgradePassiveAbility: 1
@@ -345,6 +391,7 @@ MonoBehaviour:
     RightStatUpgrades:
     - _valueName: +10
       _name: Base damage
+      _skillPointsCost: 1
       _notWorking: 0
       _upgradeAbility: 0
       _upgradePassiveAbility: 0
@@ -359,6 +406,7 @@ MonoBehaviour:
       _abilitiesToUpgrade: []
     - _valueName: +20%
       _name: Energy gain
+      _skillPointsCost: 2
       _notWorking: 0
       _upgradeAbility: 0
       _upgradePassiveAbility: 0
@@ -373,6 +421,7 @@ MonoBehaviour:
       _abilitiesToUpgrade: []
     - _valueName: +200
       _name: Max health
+      _skillPointsCost: 3
       _notWorking: 0
       _upgradeAbility: 0
       _upgradePassiveAbility: 0
@@ -387,6 +436,7 @@ MonoBehaviour:
       _abilitiesToUpgrade: []
     - _valueName: +10
       _name: Bear heart regeneration
+      _skillPointsCost: 3
       _notWorking: 0
       _upgradeAbility: 0
       _upgradePassiveAbility: 1

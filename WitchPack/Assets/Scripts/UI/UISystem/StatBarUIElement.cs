@@ -33,8 +33,8 @@ public abstract class StatBarUIElement : UIElement
         _statBar.fillAmount = (float)value / _maxValue;
     }
 
-    public sealed override void UpdateVisual()
+    public sealed override void Refresh()
     {
-        base.UpdateVisual();
+        base.Refresh();
     }
 }

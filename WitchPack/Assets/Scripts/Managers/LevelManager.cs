@@ -33,7 +33,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     {
         var levelConfig = GameManager.Instance.CurrentLevelConfig;
         CurrentLevel = Instantiate(levelConfig.levelPrefab, enviromentHolder);
-        CurrentLevel.Init(levelConfig);
+        CurrentLevel.Init(levelConfig,GameManager.SaveData.LevelSaves[GameManager.SaveData.CurrentNode.Index]);
         SpawnParty(levelConfig.SelectedShamans);
         CurrentLevel.TurnOffSpawnPoints();
         BgMusicManager.Instance.PlayMusic(MusicClip.GameMusic);
@@ -48,8 +48,8 @@ public class LevelManager : MonoSingleton<LevelManager>
     private void StartLevel()
     {
         CurrentLevel.StartLevel();
-        UIManager.Instance.ShowUIGroup(UIGroup.TopCounterUI);
-        UIManager.Instance.ShowUIGroup(UIGroup.PartyUI);
+        UIManager.ShowUIGroup(UIGroup.TopCounterUI);
+        UIManager.ShowUIGroup(UIGroup.PartyUI);
         GAME_TIME.StartGame();
         TutorialHandler.Instance.LevelStart(CurrentLevel);
         OnLevelStart?.Invoke(CurrentLevel);
@@ -84,13 +84,32 @@ public class LevelManager : MonoSingleton<LevelManager>
         {
             SoundManager.Instance.PlayAudioClip(SoundEffectType.Victory);
             GameManager.Instance.ShamansManager.AddShamanToRoster(CurrentLevel.Config.shamansToAddAfterComplete);
-            GameManager.SaveData.MapNodes[CurrentLevel.ID - 1].SetState(NodeState.Completed);
+            GameManager.SaveData.LevelSaves[CurrentLevel.ID - 1].State = NodeState.Completed;
+            GameManager.SaveData.LevelSaves[CurrentLevel.ID - 1].ChallengesFirstTimes[CurrentLevel.Config.SelectedChallenge.ChallengeType] = false;
             GameManager.SaveData.LastLevelCompletedIndex = CurrentLevel.ID - 1;
         }
 
         BgMusicManager.Instance.StopMusic();
-        UIManager.Instance.ShowUIGroup(UIGroup.EndGameUI);
+        UIManager.ShowUIGroup(UIGroup.EndGameUI);
+        GiveExpToParty();
         OnLevelEnd?.Invoke(CurrentLevel);
+    }
+
+    private void GiveExpToParty()
+    {
+        var levelData = new EndLevelStats(
+            completed: IsWon,
+            firstTime: CurrentLevel.LevelSaveData.ChallengesFirstTimes[CurrentLevel.Config.SelectedChallenge.ChallengeType],
+            coreRemainingHp: CurrentLevel.CoreTemple.Damageable.CurrentHp /  CurrentLevel.CoreTemple.Damageable.MaxHp,
+            wavesCompletedPercentage: (float)(CurrentLevel.WaveHandler.CurrentWave - 1) / CurrentLevel.WaveHandler.TotalWaves,
+            expMultiplier: CurrentLevel.Config.SelectedChallenge.ExpMultiplier
+        );
+        var expGained = LevelExpCalculator.CalculateExpGainedFromLevel(CurrentLevel.Config.ExpCalculatorConfig, levelData);
+        foreach (var shaman in ShamanParty)
+        {
+            shaman.SaveData.ShamanExperienceHandler.GainExp(expGained);
+            Debug.Log($"{shaman.ShamanConfig.Name} Gained {expGained} Exp");
+        }
     }
 
     private void SpawnParty(List<ShamanSaveData> shamans)
@@ -104,22 +123,33 @@ public class LevelManager : MonoSingleton<LevelManager>
 
         foreach (var shamanSaveData in shamans)
         {
-            int rand = Random.Range(0, CurrentLevel.ShamanSpawnPoints.Length);
-            var spawnPoint = CurrentLevel.ShamanSpawnPoints[rand];
-
-            while (!spawnPoint.gameObject.activeSelf)
-            {
-                rand = Random.Range(0, CurrentLevel.ShamanSpawnPoints.Length);
-                spawnPoint = CurrentLevel.ShamanSpawnPoints[rand];
-            }
+            var spawnPoint = GetSpawnPoint();
 
             var shaman = Instantiate(shamanPrefab, spawnPoint.position, Quaternion.identity, shamanHolder);
             shaman.Init(shamanSaveData);
             ShamanParty.Add(shaman);
+            
+            if(CurrentLevel.Config.SelectedChallenge.ChallengeType is LevelChallengeType.AffectShamans or LevelChallengeType.AffectBoth) 
+                shaman.AddStatUpgrades(CurrentLevel.Config.SelectedChallenge.StatUpgrades);
+            
             shaman.Damageable.OnDeath += RemoveShamanFromParty;
             shaman.DamageDealer.OnKill += OnEnemyKill;
             spawnPoint.gameObject.SetActive(false);
         }
+    }
+
+    private Transform GetSpawnPoint()
+    {
+        int rand = Random.Range(0, CurrentLevel.ShamanSpawnPoints.Length);
+        var spawnPoint = CurrentLevel.ShamanSpawnPoints[rand];
+
+        while (!spawnPoint.gameObject.activeSelf)
+        {
+            rand = Random.Range(0, CurrentLevel.ShamanSpawnPoints.Length);
+            spawnPoint = CurrentLevel.ShamanSpawnPoints[rand];
+        }
+
+        return spawnPoint;
     }
 
     private void OnEnemyKill(Damageable arg1, DamageDealer arg2, DamageHandler arg3, Ability arg4, bool crit)
@@ -127,7 +157,7 @@ public class LevelManager : MonoSingleton<LevelManager>
         _scoreHandler.UpdateScore(kills: 1);
     }
 
-    private void RemoveShamanFromParty(Damageable arg1, DamageDealer arg2)
+    private void RemoveShamanFromParty(Damageable arg1, DamageDealer arg2) //no exp for dead shamans
     {
         if (arg1.Owner is Shaman shaman)
         {

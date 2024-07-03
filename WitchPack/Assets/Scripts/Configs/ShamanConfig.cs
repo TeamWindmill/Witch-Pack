@@ -9,7 +9,7 @@ public class ShamanConfig : BaseUnitConfig
     [SerializeField] private List<AbilitySO> rootAbilities = new();
     [SerializeField] private List<AbilitySO> knownAbilities = new();
     [SerializeField] private EnergyConfig _energyConfig;
-    [SerializeField] private ExperienceConfig _experienceConfig;
+    [SerializeField] private ShamanExperienceConfig _shamanExperienceConfig;
     [SerializeField] private ShamanMetaUpgradeConfig _shamanMetaUpgradeConfig;
 
 
@@ -17,7 +17,7 @@ public class ShamanConfig : BaseUnitConfig
     public List<AbilitySO> KnownAbilities { get => knownAbilities; }
     public List<AbilitySO> RootAbilities { get => rootAbilities; }
     public EnergyConfig EnergyConfig => _energyConfig;
-    public ExperienceConfig ExperienceConfig => _experienceConfig;
+    public ShamanExperienceConfig ShamanExperienceConfig => _shamanExperienceConfig;
     public Sex Sex => _sex;
 }
 

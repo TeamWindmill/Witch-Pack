@@ -10,13 +10,13 @@ public class Shaman : BaseUnit
 
     public override Stats BaseStats => ShamanConfig.BaseStats;
     public ShamanConfig ShamanConfig { get; private set; }
-
+    public ShamanSaveData SaveData { get; private set; }
     public List<Ability> KnownAbilities { get; } = new();
     public List<Ability> RootAbilities { get; } = new();
     public bool MouseOverShaman => clicker.IsHover;
     public EnergyHandler EnergyHandler => energyHandler;
     public ShamanVisualHandler ShamanVisualHandler => shamanVisualHandler;
-    public Dictionary<PowerStructure,int> ActivePowerStructures { get; } = new();
+    public Dictionary<PowerStructure, int> ActivePowerStructures { get; } = new();
 
     public ClickHelper Clicker => clicker;
 
@@ -35,7 +35,6 @@ public class Shaman : BaseUnit
 
     #region private
 
-
     #endregion
 
     private void OnValidate()
@@ -45,6 +44,7 @@ public class Shaman : BaseUnit
 
     public void Init(ShamanSaveData saveData)
     {
+        SaveData = saveData;
         ShamanConfig = saveData.Config;
         base.Init(ShamanConfig);
         IntializeAbilities();
@@ -91,25 +91,26 @@ public class Shaman : BaseUnit
 
     private void AddMetaUpgrades(ShamanSaveData saveData)
     {
-        AddAbilityMetaUpgrades(saveData);
-        AddStatMetaUpgrades(saveData);
+        AddAbilityMetaUpgrades(saveData.AbilityUpgrades);
+        AddStatMetaUpgrades(saveData.StatUpgrades);
     }
-    private void AddAbilityMetaUpgrades(ShamanSaveData saveData)
+
+    private void AddAbilityMetaUpgrades(List<AbilityUpgradeConfig> abilityUpgrades)
     {
-        foreach (var abilityUpgrade in saveData.AbilityUpgrades)
+        foreach (var abilityUpgrade in abilityUpgrades)
         {
             foreach (var abilitySO in abilityUpgrade.AbilitiesToUpgrade)
             {
                 var ability = GetAbilityFromConfig(abilitySO);
                 ability.AddStatUpgrade(abilityUpgrade);
-                if(abilityUpgrade.AbilitiesBehaviors.Length > 0) ability.AddAbilityBehavior(abilityUpgrade);
+                if (abilityUpgrade.AbilitiesBehaviors.Length > 0) ability.AddAbilityBehavior(abilityUpgrade);
             }
         }
     }
 
-    private void AddStatMetaUpgrades(ShamanSaveData saveData)
+    private void AddStatMetaUpgrades(List<StatUpgradeConfig> statUpgrades)
     {
-        foreach (var statUpgrade in saveData.StatUpgrades)
+        foreach (var statUpgrade in statUpgrades)
         {
             if (statUpgrade.AbilitiesBehaviors.Length > 0)
             {
@@ -119,6 +120,7 @@ public class Shaman : BaseUnit
                     ability.AddAbilityBehavior(statUpgrade);
                 }
             }
+
             if (statUpgrade.UpgradeAbility)
             {
                 foreach (var abilitySO in statUpgrade.AbilitiesToUpgrade)
@@ -132,7 +134,7 @@ public class Shaman : BaseUnit
                 foreach (var abilitySO in statUpgrade.AbilitiesToUpgrade)
                 {
                     var ability = GetAbilityFromConfig(abilitySO);
-                    if(ability is not StatPassive statPassive) return;
+                    if (ability is not StatPassive statPassive) return;
                     statPassive.AddPassiveStatUpgrade(statUpgrade);
                 }
             }
@@ -140,7 +142,7 @@ public class Shaman : BaseUnit
             {
                 foreach (var statConfig in statUpgrade.Stats)
                 {
-                    Stats.AddValueToStat(statConfig.StatType,statConfig.Factor,statConfig.StatValue);
+                    Stats.AddValueToStat(statConfig.StatType, statConfig.Factor, statConfig.StatValue);
                 }
             }
         }
@@ -243,13 +245,13 @@ public class Shaman : BaseUnit
         return null;
     }
 
-    
+
     public Ability GetAbilityFromConfig(AbilitySO config)
     {
         foreach (var ability in RootAbilities)
         {
             if (ability.BaseConfig == config) return ability;
-            
+
             foreach (var upgrade in ability.GetUpgrades())
             {
                 if (upgrade.BaseConfig == config) return upgrade;
@@ -258,7 +260,7 @@ public class Shaman : BaseUnit
 
         return null;
     }
-    
+
     #endregion
 
     #region Selection
@@ -273,8 +275,8 @@ public class Shaman : BaseUnit
         shamanVisualHandler.ShowShamanRange();
         foreach (var powerStructure in ActivePowerStructures)
         {
-            powerStructure.Key.ProximityRingsManager.ToggleRingSprite(powerStructure.Value,true);
-            powerStructure.Key.OnShamanHoverEnter(this,powerStructure.Value);
+            powerStructure.Key.ProximityRingsManager.ToggleRingSprite(powerStructure.Value, true);
+            powerStructure.Key.OnShamanHoverEnter(this, powerStructure.Value);
         }
     }
 
@@ -314,7 +316,7 @@ public class Shaman : BaseUnit
                 SoundManager.Instance.PlayAudioClip(SoundEffectType.ShamanGetHitFemale);
                 break;
         }
-        
+
         shamanVisualHandler.HitEffect.Play();
     }
 
@@ -354,6 +356,4 @@ public class Shaman : BaseUnit
     }
 
     #endregion
-
-    
 }

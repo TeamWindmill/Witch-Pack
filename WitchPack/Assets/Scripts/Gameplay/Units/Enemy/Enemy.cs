@@ -29,7 +29,7 @@ public class Enemy : BaseUnit
     {
         enemyAnimator ??= GetComponentInChildren<EnemyAnimator>();
     }
-    public override void Init(BaseUnitConfig givenConfig)
+    public void Init(BaseUnitConfig givenConfig)
     {
         pointIndex = 0;
         enemyConfig = givenConfig as EnemyConfig;
@@ -44,7 +44,7 @@ public class Enemy : BaseUnit
         _enemyMovement = new EnemyMovement(this);
         enemyAnimator.Init(this);
         enemyVisualHandler.Init(this, givenConfig);
-        IntializeAbilities();
+        if (enemyConfig.Abilities.Count > 0) IntializeAbilities();
         enemyAI.Init(this);
         Movement.ToggleMovement(false);
         #region Events
@@ -54,7 +54,6 @@ public class Enemy : BaseUnit
         Effectable.OnEffectRemoved += enemyVisualHandler.EffectHandler.DisableEffect;
         Damageable.OnHitGFX += GetHitSFX;
         Damageable.OnDeathGFX += DeathSFX;
-        DamageDealer.OnHitTarget += OnTargetHit;
         //AutoAttackCaster.OnAttack += AttackSFX;
         
 
@@ -62,20 +61,21 @@ public class Enemy : BaseUnit
 
         Initialized = true;
     }
+
     
     protected override void OnDisable() //enemy death
     {
         base.OnDisable();
         if(!Initialized) return;
         if (ReferenceEquals(LevelManager.Instance, null)) return;
-        enemyAI.OnDisable();
+        enemyAI.Disable();
+        Damageable.Disable();
         Damageable.OnHitGFX -= GetHitSFX;
         Damageable.OnDeathGFX -= DeathSFX;
         //if (AutoAttackCaster != null) AutoAttackCaster.OnAttack -= AttackSFX;
         Effectable.OnAffected -= enemyVisualHandler.EffectHandler.PlayEffect;
         Effectable.OnEffectRemoved -= enemyVisualHandler.EffectHandler.DisableEffect;
         enemyVisualHandler.OnSpriteFlip -= enemyAnimator.FlipAnimations;
-        DamageDealer.OnHitTarget -= OnTargetHit;
 
         Initialized = false;
     }
@@ -99,11 +99,6 @@ public class Enemy : BaseUnit
         AutoCaster.Init(this, false);
     }
 
-    private void OnTargetHit(Damageable target, DamageDealer dealer, DamageHandler dmg, Ability ability, bool crit)
-    {
-         //temp
-    }
-
     #region SFX
 
     private void GetHitSFX(bool isCrit)
@@ -116,7 +111,5 @@ public class Enemy : BaseUnit
     //private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.EnemyAttack);
     
     #endregion
-    
-
     
 }

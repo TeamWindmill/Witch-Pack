@@ -2,11 +2,13 @@ using UnityEngine;
 
 public class PackPanel : UIElement
 {
+    public PackIcon[] PackIcons => _packIcons;
+
     [SerializeField] private PackIcon[] _packIcons;
 
     private PartySelectionWindow _parent;
 
-    [SerializeField] private ShamanUpgradePanel _shamanUpgradePanel; //tempi temp
+    [SerializeField] private ShamanUpgradePanel _shamanUpgradePanel;
 
     public void Init(PartySelectionWindow parent)
     {
@@ -14,7 +16,7 @@ public class PackPanel : UIElement
         foreach (var icon in _packIcons)
         {
             icon.Init();
-            icon.OnIconLeftClick += _parent.UnassignShamanFromPack;
+            icon.OnIconLeftClick += _parent.UnassignShamanFromParty;
             icon.OnIconRightClick += OpenUpgradePanel;
         }
     }
@@ -39,11 +41,18 @@ public class PackPanel : UIElement
             }
         }
     }
-
+    public void FlashInRed()
+    {
+        foreach (var icon in _packIcons)
+        {
+            icon.FlashInRed();
+        }
+    }
     private void RefreshPackPanel()
     {
         foreach (var icon in _packIcons)
         {
+            if(icon.Locked) continue;
             icon.UnassignShaman();
         }
 
@@ -52,16 +61,24 @@ public class PackPanel : UIElement
             _packIcons[i].AssignShaman(_parent.ActiveShamanParty[i]);
         }
     }
-    public void FlashInRed()
-    {
-        foreach (var icon in _packIcons)
-        {
-            icon.FlashInRed();
-        }
-    }
     private void OpenUpgradePanel(ShamanSaveData shamanSaveData)
     {
         _shamanUpgradePanel.Init(shamanSaveData);
     }
-    
+    public void ReduceShamanSlots(int availableSlots)
+    {
+        for (int i = 0; i < _packIcons.Length; i++)
+        {
+            if (i >= availableSlots)
+            {
+                if(_packIcons[i].ShamanSaveData != null) _parent.UnassignShamanFromParty(_packIcons[i].ShamanSaveData);
+                _packIcons[i].ToggleLockIcon(true);
+            }
+            else
+            {
+                if(_packIcons[i].ShamanSaveData == null)
+                    _packIcons[i].ToggleLockIcon(false);
+            }
+        }
+    }
 }

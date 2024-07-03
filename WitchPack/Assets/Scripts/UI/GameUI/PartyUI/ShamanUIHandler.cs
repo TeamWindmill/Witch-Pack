@@ -38,14 +38,14 @@ public class ShamanUIHandler : ClickableUIElement
         _upgradeFrame.color = upgradeColor;
         shaman.EnergyHandler.OnShamanUpgrade += OnShamanUpgrade;
         shaman.EnergyHandler.OnShamanLevelUp += OnShamanLevelUp;
-        shaman.Damageable.OnHealthChange += OnChangeHealth;
+        shaman.Damageable.OnHealthChange += OnCurrentChangeHealth;
         shaman.Damageable.OnDeath += ShamanDeathUI;
         OnClickEvent += GoToShaman;
         OnClickEvent += ShowShamanInfo;
         Show();
     }
 
-    private void OnChangeHealth(int newHP)
+    private void OnCurrentChangeHealth(int hp,int maxHp)
     {
         float hpRatio = _shaman.Damageable.CurrentHp / (float)_shaman.Damageable.MaxHp;
         _redInjuryImage.fillAmount = 1 - hpRatio;
@@ -55,7 +55,7 @@ public class ShamanUIHandler : ClickableUIElement
 
     public override void Hide()
     {
-        _shaman.Damageable.OnHealthChange -= OnChangeHealth;
+        _shaman.Damageable.OnHealthChange -= OnCurrentChangeHealth;
         _shaman.Damageable.OnDeath -= ShamanDeathUI;
         OnClickEvent -= GoToShaman;
         OnClickEvent -= ShowShamanInfo;

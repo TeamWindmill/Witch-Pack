@@ -9,7 +9,7 @@ public class MapNode : MonoBehaviour
     public event Action<MapNode> OnMouseExit;
     public event Action<MapNode> OnClick;
     
-    public NodeState State { get; private set; } = NodeState.Locked;
+    public LevelSaveData LevelSaveData { get; private set; }
     public int Index { get; private set; }
     public bool IsActive => gameObject.activeSelf;
     public LevelPath Path => _path;
@@ -31,10 +31,11 @@ public class MapNode : MonoBehaviour
         _clickHelper.OnMouseDown += OnNodeMouseDown;
         _clickHelper.OnMouseUp += OnNodeMouseUp;
     }
-    public virtual void Init(int index)
+    public virtual void Init(int index, LevelSaveData levelSaveData)
     {
         Index = index;
-        switch (State)
+        LevelSaveData = levelSaveData;
+        switch (LevelSaveData.State)
         {
             case NodeState.Completed:
                 Complete();
@@ -43,34 +44,30 @@ public class MapNode : MonoBehaviour
                 Unlock();
                 break;
             case NodeState.Locked:
-                if(_parentNode == null || _parentNode.State == NodeState.Completed) Unlock();
+                if(_parentNode == null || _parentNode.LevelSaveData.State == NodeState.Completed) Unlock();
                 else Lock();
                 break;
         }
         
         
     }
-    public virtual void SetState(NodeState nodeState)
-    {
-        State = nodeState;
-    }
     public virtual void Lock()
     {
         gameObject.SetActive(false);
-        State = NodeState.Locked;
+        LevelSaveData.State = NodeState.Locked;
     }
    
     public virtual void Unlock()
     {
         gameObject.SetActive(true); 
         _path?.TogglePathMask(SpriteMaskInteraction.VisibleInsideMask);
-        State = NodeState.Open;
+        LevelSaveData.State = NodeState.Open;
     }
 
 
-    protected virtual void Complete()
+    public virtual void Complete()
     {
-        State = NodeState.Completed;
+        LevelSaveData.State = NodeState.Completed;
         _path?.TogglePathMask(SpriteMaskInteraction.None);
         gameObject.SetActive(true); 
     }
@@ -79,7 +76,7 @@ public class MapNode : MonoBehaviour
     {
         if (button != PointerEventData.InputButton.Left) return;
         SoundManager.Instance.PlayAudioClip(SoundEffectType.MenuClick);
-        GameManager.SaveData.CurrentNode = this; //temp
+        GameManager.SaveData.CurrentNode = this;
         GameManager.Instance.CameraHandler.SetCameraPosition(transform.position);
         _path?.TogglePathMask(SpriteMaskInteraction.None);
         MapManager.Instance.ResetVisuals();

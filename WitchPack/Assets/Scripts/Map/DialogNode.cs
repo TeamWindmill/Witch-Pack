@@ -14,11 +14,11 @@ public class DialogNode : MapNode
         DialogBox.Instance.Show();
     }
 
-    protected override void Complete()
+    public override void Complete()
     {
         base.Complete();
         GameManager.Instance.ShamansManager.AddShamanToRoster(shamansToAddAfterComplete);
-        GameManager.SaveData.MapNodes[Index].SetState(NodeState.Completed);
+        //GameManager.SaveData.MapNodes[Index].Complete();
         GameManager.SaveData.LastLevelCompletedIndex = Index;
     }
 

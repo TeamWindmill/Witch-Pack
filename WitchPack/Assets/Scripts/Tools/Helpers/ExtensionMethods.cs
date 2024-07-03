@@ -1,4 +1,5 @@
 using System.Text.RegularExpressions;
+using UnityEngine;
 
 namespace Tools.Helpers
 {
@@ -12,6 +13,13 @@ namespace Tools.Helpers
                  (?<=[A-Za-z])(?=[^A-Za-z])", RegexOptions.IgnorePatternWhitespace);
 
             return r.Replace(s, " ").ToLower();
+        }
+
+        public static void ChangeAlpha(this ref Color color, float alphaValue)
+        {
+            var newColor = color;
+            newColor.a = alphaValue;
+            color = newColor;
         }
     }
 }

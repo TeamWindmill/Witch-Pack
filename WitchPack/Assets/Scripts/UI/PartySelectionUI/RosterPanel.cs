@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class RosterPanel : UIElement
 {
+    public List<RosterIcon> RosterIcons => _rosterIcons;
+
     [SerializeField] private RosterIcon _rosterIconPrefab;
     [SerializeField] private Transform _holder;
 
@@ -36,7 +38,7 @@ public class RosterPanel : UIElement
         }
     }
 
-    public void AssignShaman(ShamanSaveData shamanSaveData) 
+    public void RemoveShamanFromRoster(ShamanSaveData shamanSaveData) 
     {
         foreach (var icon in _rosterIcons)
         {
@@ -47,7 +49,7 @@ public class RosterPanel : UIElement
             }
         }
     }
-    public void UnassignShaman(ShamanSaveData shamanSaveData) 
+    public void AddShamanBackToRoster(ShamanSaveData shamanSaveData) 
     {
         foreach (var icon in _rosterIcons)
         {
@@ -61,7 +63,7 @@ public class RosterPanel : UIElement
 
     private void ToggleShaman(ShamanSaveData saveData, bool available)
     {
-        if (available) _parent.AssignShamanToPack(saveData);
-        else _parent.UnassignShamanFromPack(saveData);
+        if (available) _parent.AssignShamanToParty(saveData);
+        else _parent.UnassignShamanFromParty(saveData);
     }
 }

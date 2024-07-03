@@ -26,8 +26,8 @@ public abstract class CounterUIElement : UIElement
         currentValueText.text = value.ToString();
     }
 
-    public sealed override void UpdateVisual()
+    public sealed override void Refresh()
     {
-        base.UpdateVisual();
+        base.Refresh();
     }
 }
