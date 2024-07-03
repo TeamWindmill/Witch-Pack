@@ -44,7 +44,7 @@ public class Enemy : BaseUnit
         _enemyMovement = new EnemyMovement(this);
         enemyAnimator.Init(this);
         enemyVisualHandler.Init(this, givenConfig);
-        if (enemyConfig.Abilities.Count > 0) IntializeAbilities();
+        IntializeAbilities();
         enemyAI.Init(this);
         Movement.ToggleMovement(false);
         #region Events
