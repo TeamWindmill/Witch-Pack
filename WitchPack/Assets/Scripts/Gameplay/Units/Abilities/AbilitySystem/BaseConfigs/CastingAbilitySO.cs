@@ -9,8 +9,9 @@ public abstract class CastingAbilitySO : AbilitySO
     //[BoxGroup("Casting")][SerializeField] private float range; //currently not in use
     [BoxGroup("Casting")][SerializeField] private bool givesEnergyPoints;
     [BoxGroup("Casting")][SerializeField,ShowIf(nameof(givesEnergyPoints))] private int energyPoints;
-    [BoxGroup("Casting")][SerializeField] private List<StatusEffectConfig> statusEffects = new List<StatusEffectConfig>();
+    [BoxGroup("Casting")][SerializeField] private List<StatusEffectConfig> statusEffects = new();
     [BoxGroup("Casting")][SerializeField] private TargetData targetData;
+    [BoxGroup("Casting")][SerializeField] private TargetData underAttackTargetData;
 
     [BoxGroup("Visual & Sound")][SerializeField] private bool _hasCastVisual;
     [BoxGroup("Visual & Sound")][SerializeField,ShowIf(nameof(_hasCastVisual))] private CastingHandsEffectType castVisualColor;
@@ -27,6 +28,7 @@ public abstract class CastingAbilitySO : AbilitySO
     public SoundEffectType SoundEffectType => soundEffectType;
     public float CastTime => castTime; 
     public TargetData TargetData => targetData;
+    public TargetData UnderAttackTargetData => underAttackTargetData;
     public List<StatusEffectConfig> StatusEffects => statusEffects;
 }
 

@@ -14,7 +14,7 @@ public class ConditionalStatPassive : StatPassive
     
     private void TryAddStat(Effectable arg1, Affector arg2, StatusEffect statusEffect)
     {
-        if (statusEffect.StatusEffectType == _config.ConditionalStatusEffect.StatusEffectType)
+        if (statusEffect.StatusEffectVisual == _config.ConditionalStatusEffect.StatusEffectVisual)
         {
             foreach (StatValue increase in _config.StatIncreases)
             {
@@ -24,7 +24,7 @@ public class ConditionalStatPassive : StatPassive
     }
     private void TryRemoveStat(StatusEffect statusEffect)
     {
-        if (statusEffect.StatusEffectType == _config.ConditionalStatusEffect.StatusEffectType)
+        if (statusEffect.StatusEffectVisual == _config.ConditionalStatusEffect.StatusEffectVisual)
         {
             foreach (StatValue increase in _config.StatIncreases)
             {

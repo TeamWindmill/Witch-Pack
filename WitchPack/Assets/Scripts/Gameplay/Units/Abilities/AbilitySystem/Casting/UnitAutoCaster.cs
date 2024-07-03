@@ -15,6 +15,8 @@ public class UnitAutoCaster : MonoBehaviour
     [ShowInInspector] private Queue<ICaster> _queuedAbilities = new();
     [ShowInInspector] private Dictionary<ICaster, Timer<ICaster>> _cooldownAbilities = new();
     private float _castTimer;
+    private bool _castTimerStarted;
+    private bool _castTimerEnded;
     private float _currentCastTime;
     private BaseUnit owner;
 
@@ -37,11 +39,16 @@ public class UnitAutoCaster : MonoBehaviour
         if (!CanCast) return;
         if (_queuedAbilities.Count <= 0) return;
         var caster = _queuedAbilities.Peek();
-        if (caster.CheckCastAvailable())
+        if (caster.CheckCastAvailable()) //if a target is available to cast on
         {
-            CastTimeStart?.Invoke(caster.Ability);
-            if (caster.Ability.CastingConfig.HasCastVisual) CastTimeStartVFX?.Invoke(caster.Ability.CastingConfig.CastVisualColor);
-            if (_castTimer > caster.Ability.GetAbilityStatValue(AbilityStatType.CastTime))
+            if (!_castTimerStarted)
+            {
+                CastTimeStart?.Invoke(caster.Ability);
+                if (caster.Ability.CastingConfig.HasCastVisual) CastTimeStartVFX?.Invoke(caster.Ability.CastingConfig.CastVisualColor);
+                _castTimerStarted = true;
+                _castTimerEnded = false;
+            }
+            if (_castTimer > caster.GetCastTime())
             {
                 if (caster.CastAbility())
                 {
@@ -50,6 +57,8 @@ public class UnitAutoCaster : MonoBehaviour
                     _cooldownAbilities.Add(caster, TimerManager.AddTimer(caster.GetCooldown(), caster, ReturnAbilityFromCooldown, true));
                     _queuedAbilities.Dequeue();
                     _castTimer = 0;
+                    _castTimerStarted = false;
+                    _castTimerEnded = false;
                 }
             }
             else
@@ -57,9 +66,16 @@ public class UnitAutoCaster : MonoBehaviour
                 _castTimer += GAME_TIME.GameDeltaTime;
             }
         }
-        else
+        else //if there is no target to cast on
         {
+            if (!_castTimerEnded)
+            {
+                CastTimeEnd?.Invoke(caster.Ability);
+                if (caster.Ability.CastingConfig.HasCastVisual) CastTimeEndVFX?.Invoke(caster.Ability.CastingConfig.CastVisualColor);
+                _castTimerEnded = true;
+            }
             _castTimer = 0;
+            _castTimerStarted = false;
             _queuedAbilities.Dequeue();
             _queuedAbilities.Enqueue(caster);
         }
@@ -117,6 +133,8 @@ public class UnitAutoCaster : MonoBehaviour
     {
         CanCast = false;
         _castTimer = 0;
+        _castTimerStarted = false;
+        _castTimerEnded = false;
         if (_queuedAbilities.Count <= 0) return;
         var ability = _queuedAbilities.Peek().Ability;
         CastTimeEnd?.Invoke(ability);

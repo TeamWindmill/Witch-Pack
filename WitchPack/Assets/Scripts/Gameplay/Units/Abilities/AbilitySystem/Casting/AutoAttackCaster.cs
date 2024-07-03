@@ -29,6 +29,9 @@ public class AutoAttackCaster : ICaster
     }
 
     public float GetCooldown() => 1 / _unit.Stats[StatType.AttackSpeed].Value;
+    public float GetCastTime() => ability.GetAbilityStatValue(AbilityStatType.CastTime);
+    
+
     public bool CheckCastAvailable()
     {
         return ability.CheckCastAvailable();

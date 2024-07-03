@@ -10,7 +10,7 @@ public class StatusEffectConfig : ScriptableObject
     private StatusEffectProcess process;
     [SerializeField, ShowIf(nameof(hasDuration))] private float duration;//every status effects only works for a duration
     [SerializeField] private StatType statTypeAffected;//all stats you wish to affect on the target
-    [SerializeField] private StatusEffectType statusEffectType;
+    [SerializeField] private StatusEffectVisual _statusEffectVisual;
     [SerializeField] private bool _showStatusEffectPopup;
     [SerializeField] private Factor factor;
     private bool hasDuration => process != StatusEffectProcess.InstantWithoutDuration;
@@ -19,7 +19,7 @@ public class StatusEffectConfig : ScriptableObject
     public float Amount { get => amount; }
     public StatusEffectProcess Process { get => process; }
     public StatType StatTypeAffected { get => statTypeAffected; }
-    public StatusEffectType StatusEffectType { get => statusEffectType; }
+    public StatusEffectVisual StatusEffectVisual { get => _statusEffectVisual; }
     public Factor Factor => factor;
     public bool ShowStatusEffectPopup => _showStatusEffectPopup;
 }
@@ -31,7 +31,7 @@ public enum StatusEffectProcess
     InstantWithoutDuration,
 }
 
-public enum StatusEffectType
+public enum StatusEffectVisual
 {
     None,
     Root,
@@ -48,4 +48,5 @@ public enum StatusEffectType
     PermanentMaxHealthBonus,
     Frenzy,
     Weak,
+    RockMonolithTaunt,
 }

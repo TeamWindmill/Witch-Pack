@@ -56,12 +56,12 @@ public class PopupsManager : MonoBehaviour
 
     public void SpawnStatusEffectPopup(Effectable effectable, Affector affector, StatusEffect statusEffect)
     {
-        if(statusEffect.StatusEffectType == StatusEffectType.None) return;
+        if(statusEffect.StatusEffectVisual == StatusEffectVisual.None) return;
         if(!statusEffect.ShowStatusEffectPopup) return;
 
         _offsetVector = new Vector3(0, _yOffset);
 
-        StatusEffectTypeVisualData data = _dictionary.GetData(statusEffect.StatusEffectType);
+        StatusEffectTypeVisualData data = _dictionary.GetData(statusEffect.StatusEffectVisual);
         _popupColor = data.Color;
 
         _popupText = "";
@@ -120,7 +120,7 @@ public class PopupsManager : MonoBehaviour
         // Third Priority - Crit Color
         if (isCrit)
         {
-            if (damageDealer.Owner is Enemy enemy && !enemy.Effectable.ContainsStatusEffect(StatusEffectType.Charm))
+            if (damageDealer.Owner is Enemy enemy && !enemy.Effectable.ContainsStatusEffect(StatusEffectVisual.Charm))
             {
                 return _dictionary.EnemyCritAutoAttackColor;
             }
@@ -131,7 +131,7 @@ public class PopupsManager : MonoBehaviour
         }
 
         // Fourth Priority - Default Colors
-        else if (damageDealer.Owner is Enemy enemy && !enemy.Effectable.ContainsStatusEffect(StatusEffectType.Charm))
+        else if (damageDealer.Owner is Enemy enemy && !enemy.Effectable.ContainsStatusEffect(StatusEffectVisual.Charm))
         {
             return _dictionary.EnemyAutoAttackColor;
         }

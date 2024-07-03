@@ -8,7 +8,7 @@ public class Charm : CastingAbility
 
     public override bool CastAbility()
     {
-        Enemy target = Owner.EnemyTargetHelper.GetTarget(_config.TargetData);
+        Enemy target = Owner.EnemyTargetHelper.GetTarget(TargetData);
 
         if (ReferenceEquals(target, null)) return false;
 
@@ -16,7 +16,7 @@ public class Charm : CastingAbility
 
         foreach (var statusEffect in StatusEffects)
         {
-            if (!target.Effectable.ContainsStatusEffect(statusEffect.StatusEffectType))
+            if (!target.Effectable.ContainsStatusEffect(statusEffect.StatusEffectVisual))
             {
                 var effect = target.Effectable.AddEffect(statusEffect, Owner.Affector);
                 effect.Ended += _config.CharmedState.EndCharm;
@@ -32,7 +32,7 @@ public class Charm : CastingAbility
 
     public override bool CheckCastAvailable()
     {
-        var target = Owner.EnemyTargetHelper.GetTarget(_config.TargetData);
+        var target = Owner.EnemyTargetHelper.GetTarget(TargetData);
         return !ReferenceEquals(target, null) && target.EnemyAI.States.ContainsKey(typeof(Charmed));
     }
 }

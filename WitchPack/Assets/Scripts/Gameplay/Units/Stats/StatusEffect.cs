@@ -14,7 +14,7 @@ public class StatusEffect
     private float statValue;//the amount to change each stat by (might be flat or %)
     private StatType _statType;//the stats to affect
     private StatusEffectProcess process;
-    private StatusEffectType statusEffectType;
+    private StatusEffectVisual _statusEffectVisual;
     private Factor factor;
     private bool _showStatusEffectPopup;
 
@@ -23,7 +23,7 @@ public class StatusEffect
     public float Duration => duration;
     public StatType StatType => _statType;
     public StatusEffectProcess Process => process;
-    public StatusEffectType StatusEffectType => statusEffectType;
+    public StatusEffectVisual StatusEffectVisual => _statusEffectVisual;
     public Factor Factor => factor;
     public bool ShowStatusEffectPopup => _showStatusEffectPopup;
 
@@ -34,7 +34,7 @@ public class StatusEffect
         statValue = config.Amount;
         _statType = config.StatTypeAffected;
         process = config.Process;
-        statusEffectType = config.StatusEffectType;
+        _statusEffectVisual = config.StatusEffectVisual;
         _showStatusEffectPopup = config.ShowStatusEffectPopup;
         factor = config.Factor;
     }
@@ -45,7 +45,7 @@ public class StatusEffect
         statValue = data.StatValue.Value;
         _statType = data.StatTypeAffected;
         process = data.Process;
-        statusEffectType = data.StatusEffectType;
+        _statusEffectVisual = data.StatusEffectVisual;
         _showStatusEffectPopup = data.ShowStatusEffectPopup;
         factor = data.Factor;
     }

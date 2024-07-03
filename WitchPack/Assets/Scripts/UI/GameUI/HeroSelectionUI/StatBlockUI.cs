@@ -28,7 +28,6 @@ public class StatBlockUI : UIElement
     public override void Hide()
     {
         _stat.OnStatChange -= UpdateBaseStat;
-        base.Hide();
     }
 
     public void UpdateBonusStatUI(float newValue)
@@ -78,6 +77,12 @@ public class StatBlockUI : UIElement
             case StatType.CritChance:
                 statName = "Crit Chance";
                 modifier = "%";
+                break;
+            case StatType.HpRegen:
+                statName = "HP Regen";
+                break;
+            case StatType.Armor:
+                statName = "Armor";
                 break;
         }
     

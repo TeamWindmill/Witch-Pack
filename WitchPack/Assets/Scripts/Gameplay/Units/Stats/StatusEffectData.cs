@@ -8,7 +8,7 @@ public readonly struct StatusEffectData
     public readonly StatusEffectStat StatValue;
     public readonly StatusEffectProcess Process;
     public readonly StatType StatTypeAffected;
-    public readonly StatusEffectType StatusEffectType;
+    public readonly StatusEffectVisual StatusEffectVisual;
     public readonly Factor Factor;
     public readonly bool ShowStatusEffectPopup;
     public StatusEffectData(StatusEffectConfig config)
@@ -17,18 +17,18 @@ public readonly struct StatusEffectData
         StatValue = new StatusEffectStat(StatusEffectStatType.Value,config.Amount);
         Process = config.Process;
         StatTypeAffected = config.StatTypeAffected;
-        StatusEffectType = config.StatusEffectType;
+        StatusEffectVisual = config.StatusEffectVisual;
         ShowStatusEffectPopup = config.ShowStatusEffectPopup;
         Factor = config.Factor;
     }
 
-    public StatusEffectData(float duration, float statValue, StatusEffectProcess process, StatType statTypeAffected, StatusEffectType statusEffectType, Factor factor, bool showStatusEffectPopup)
+    public StatusEffectData(float duration, float statValue, StatusEffectProcess process, StatType statTypeAffected, StatusEffectVisual statusEffectVisual, Factor factor, bool showStatusEffectPopup)
     {
         Duration = new StatusEffectStat(StatusEffectStatType.Duration,duration);
         StatValue = new StatusEffectStat(StatusEffectStatType.Value,statValue);
         Process = process;
         StatTypeAffected = statTypeAffected;
-        StatusEffectType = statusEffectType;
+        StatusEffectVisual = statusEffectVisual;
         ShowStatusEffectPopup = showStatusEffectPopup;
         Factor = factor;
     }

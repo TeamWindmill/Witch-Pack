@@ -15,7 +15,7 @@ public class PiercingShot : OffensiveAbility
 
     public override bool CastAbility()
     {
-        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData);
+        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(TargetData);
         if (!ReferenceEquals(target, null))
         {
             PiercingShotMono newPew = LevelManager.Instance.PoolManager.PiercingShotPool.GetPooledObject();
@@ -35,7 +35,7 @@ public class PiercingShot : OffensiveAbility
 
     public override bool CheckCastAvailable()
     {
-        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData);
+        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(TargetData);
         return !ReferenceEquals(target, null);
     }
 }

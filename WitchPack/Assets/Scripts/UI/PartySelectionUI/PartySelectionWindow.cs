@@ -93,6 +93,12 @@ public class PartySelectionWindow : UIElement
 
     private void AutoAssignShamansFromRoster()
     {
+        var assignedShamans = 0;
+        foreach (var packIcon in _packPanel.PackIcons)
+        {
+            if (packIcon.Assigned) assignedShamans++;
+        }
+        if(assignedShamans > 0) return;
         foreach (var icon in _rosterPanel.RosterIcons)
         {
             if (icon.ShamanSaveData != null)

@@ -17,7 +17,7 @@ public class HealingWeeds : OffensiveAbility
 
     public override bool CastAbility()
     {
-        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData);
+        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(TargetData);
         if (!ReferenceEquals(target, null))
         {
             HealingWeedsMono newHealingWeeds = LevelManager.Instance.PoolManager.HealingWeedsPool.GetPooledObject();
@@ -34,7 +34,7 @@ public class HealingWeeds : OffensiveAbility
 
     public override bool CheckCastAvailable()
     {
-        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData);
+        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(TargetData);
         return !ReferenceEquals(target, null);
     }
 

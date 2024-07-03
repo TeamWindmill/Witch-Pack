@@ -13,7 +13,7 @@ public class OrbitalStones : OffensiveAbility
 
     public override bool CastAbility()
     {
-        var target = Owner.EnemyTargetHelper.GetTarget(Config.TargetData);
+        var target = Owner.EnemyTargetHelper.GetTarget(TargetData);
         if (target != null)
         {
             var ability = LevelManager.Instance.PoolManager.OrbitalStonesPool.GetPooledObject();
@@ -27,7 +27,7 @@ public class OrbitalStones : OffensiveAbility
 
     public override bool CheckCastAvailable()
     {
-        var target = Owner.EnemyTargetHelper.GetTarget(Config.TargetData);
+        var target = Owner.EnemyTargetHelper.GetTarget(TargetData);
         if (target != null)
         {
             return true;

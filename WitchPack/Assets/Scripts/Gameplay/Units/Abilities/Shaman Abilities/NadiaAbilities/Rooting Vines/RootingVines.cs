@@ -10,7 +10,7 @@ public class RootingVines : OffensiveAbility
 
     public override bool CastAbility()
     {
-        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData);    
+        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(TargetData);    
         if (!ReferenceEquals(target, null))
         {
             RootingVinesMono newVines = LevelManager.Instance.PoolManager.RootingVinesPool.GetPooledObject();
@@ -27,7 +27,7 @@ public class RootingVines : OffensiveAbility
 
     public override bool CheckCastAvailable()
     {
-        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(CastingConfig.TargetData);
+        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(TargetData);
         return !ReferenceEquals(target, null);
     }
 }
