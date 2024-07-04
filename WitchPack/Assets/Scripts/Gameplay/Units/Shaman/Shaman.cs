@@ -302,7 +302,7 @@ public class Shaman : BaseUnit
     private void OnLevelUpGFX(int obj)
     {
         levelUpEffect.Play();
-        SoundManager.Instance.PlayAudioClip(SoundEffectType.ShamanLevelUp);
+        SoundManager.PlayAudioClip(SoundEffectType.ShamanLevelUp);
     }
 
     private void OnHitSFX(bool isCrit)
@@ -310,10 +310,10 @@ public class Shaman : BaseUnit
         switch (ShamanConfig.Sex)
         {
             case Sex.Male:
-                SoundManager.Instance.PlayAudioClip(SoundEffectType.ShamanGetHitMale);
+                SoundManager.PlayAudioClip(SoundEffectType.ShamanGetHitMale);
                 break;
             case Sex.Female:
-                SoundManager.Instance.PlayAudioClip(SoundEffectType.ShamanGetHitFemale);
+                SoundManager.PlayAudioClip(SoundEffectType.ShamanGetHitFemale);
                 break;
         }
 
@@ -325,21 +325,21 @@ public class Shaman : BaseUnit
         switch (ShamanConfig.Sex)
         {
             case Sex.Male:
-                SoundManager.Instance.PlayAudioClip(SoundEffectType.ShamanDeathMale);
+                SoundManager.PlayAudioClip(SoundEffectType.ShamanDeathMale);
                 break;
             case Sex.Female:
-                SoundManager.Instance.PlayAudioClip(SoundEffectType.ShamanDeathFemale);
+                SoundManager.PlayAudioClip(SoundEffectType.ShamanDeathFemale);
                 break;
         }
     }
 
-    private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.BasicAttack);
+    private void AttackSFX() => SoundManager.PlayAudioClip(SoundEffectType.BasicAttack);
 
     public void ShamanAbilityCastSFX(CastingAbilitySO abilitySo) =>
-        SoundManager.Instance.PlayAudioClip(abilitySo.SoundEffectType);
+        SoundManager.PlayAudioClip(abilitySo.SoundEffectType);
 
     public void ShamanCastSFX(CastingAbility ability) =>
-        SoundManager.Instance.PlayAudioClip(SoundEffectType.ShamanCast);
+        SoundManager.PlayAudioClip(SoundEffectType.ShamanCast);
 
     #endregion
 
@@ -352,7 +352,7 @@ public class Shaman : BaseUnit
 
     private void FocusCameraOnShaman()
     {
-        GameManager.Instance.CameraHandler.SetCameraPosition(transform.position, false);
+        GameManager.CameraHandler.SetCameraPosition(transform.position, false);
     }
 
     #endregion

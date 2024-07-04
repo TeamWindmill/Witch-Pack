@@ -52,7 +52,7 @@ public class Shadow : MonoBehaviour
     {
         if (_isActive)
         {
-            Vector3 newPos = GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 newPos = GameManager.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
             newPos.z = _shaman.transform.position.z;
             transform.position = newPos;
             lineRenderer.positionCount = 2; 

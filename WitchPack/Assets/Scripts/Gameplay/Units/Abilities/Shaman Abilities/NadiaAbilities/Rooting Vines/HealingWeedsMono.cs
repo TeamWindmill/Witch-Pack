@@ -32,6 +32,6 @@ public class HealingWeedsMono : RootingVinesMono
         {
             shaman.ShamanVisualHandler.HealingWeedsEffect.Play();
         }
-        SoundManager.Instance.PlayAudioClip(SoundEffectType.HealingWeeds);
+        SoundManager.PlayAudioClip(SoundEffectType.HealingWeeds);
     }
 }

@@ -11,9 +11,9 @@ public class SoundManager : MonoSingleton<SoundManager>
     [SerializeField] private AudioSource _lowPrioPrefab;
     [SerializeField] private SoundsConfig _soundsConfig;
     
-    private List<AudioSource> _highPriorityAudioSources = new();
-    private List<AudioSource> _lowPriorityAudioSources = new();
-    private Dictionary<SoundEffectCategory, SoundEffect[]> _soundEffects;
+    private static List<AudioSource> _highPriorityAudioSources = new();
+    private static List<AudioSource> _lowPriorityAudioSources = new();
+    private static Dictionary<SoundEffectCategory, SoundEffect[]> _soundEffects;
     protected override void Awake()
     {
         base.Awake();
@@ -29,23 +29,23 @@ public class SoundManager : MonoSingleton<SoundManager>
         }
     }
 
-    private AudioSource CreateAudioSource(bool highPrio)
+    private static AudioSource CreateAudioSource(bool highPrio)
     {
         AudioSource source;
         if (highPrio)
         {
-            source = Instantiate(_highPrioPrefab, transform);
+            source = Instantiate(Instance._highPrioPrefab, Instance.transform);
             _highPriorityAudioSources.Add(source);
         }
         else
         {
-            source = Instantiate(_lowPrioPrefab, transform);
+            source = Instantiate(Instance._lowPrioPrefab, Instance.transform);
             _lowPriorityAudioSources.Add(source);
         }
         return source;
     }
 
-    public void PlayAudioClip(SoundEffectType soundEffectType, float pitch = 1, float volume = 1, bool loop = false)
+    public static void PlayAudioClip(SoundEffectType soundEffectType, float pitch = 1, float volume = 1, bool loop = false)
     {
         SoundEffect soundEffect = GetSoundEffect(soundEffectType);
 
@@ -63,7 +63,7 @@ public class SoundManager : MonoSingleton<SoundManager>
         if (ReferenceEquals(audioClip, null))
         {
 #if UNITY_EDITOR
-            if(_testing)
+            if(Instance._testing)
             {
                 var title = ColorLogHelper.SetColorToString("SOUND:", Color.cyan);
                 Debug.Log($"{title} Playing {soundEffectType} Sound Effect");
@@ -118,7 +118,7 @@ public class SoundManager : MonoSingleton<SoundManager>
         audioSource.Play();
     }
 
-    private SoundEffect GetSoundEffect(SoundEffectType soundEffectType)
+    private static SoundEffect GetSoundEffect(SoundEffectType soundEffectType)
     {
         var category = GetCategoryBySound(soundEffectType);
         if (_soundEffects.TryGetValue(category, out var soundEffects))
@@ -134,7 +134,7 @@ public class SoundManager : MonoSingleton<SoundManager>
 
         return null;
     }
-    private SoundEffectCategory GetCategoryBySound(SoundEffectType soundEffectType)
+    private static SoundEffectCategory GetCategoryBySound(SoundEffectType soundEffectType)
     {
         switch (soundEffectType)
         {

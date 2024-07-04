@@ -85,7 +85,7 @@ public class SelectionHandler : MonoBehaviour, ISelection
     }
     private void QuickMove()
     {
-        var newDest = GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+        var newDest = GameManager.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
         SelectedShaman.Movement.SetDestination(newDest);
         newDest.z = 0;
         quickMoveEffect.transform.position = newDest;
@@ -104,7 +104,7 @@ public class SelectionHandler : MonoBehaviour, ISelection
 
         SlowMotionManager.Instance.EndSlowMotionEffects();
         shadow.Hide();
-        var newDest = GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+        var newDest = GameManager.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
         SelectedShaman.Movement.SetDestination(newDest);
         OnShadowDeselected?.Invoke(shadow);
     }

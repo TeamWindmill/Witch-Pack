@@ -15,7 +15,7 @@ public class ExperiencedHunter : PiercingShot
     {
         ProjectilePenetration += (int)GetAbilityStatValue(AbilityStatType.ExtraPenetrationPerKill);
         // Play Sound
-        SoundManager.Instance.PlayAudioClip(SoundEffectType.ExperiencedHunterLevelUp);
+        SoundManager.PlayAudioClip(SoundEffectType.ExperiencedHunterLevelUp);
         // Popup
         LevelManager.Instance.PopupsManager.SpawnGeneralPopup("PIERCE UP+", _config.TextPopupColor, dealer.Owner.transform.position, yOffset: true);
     }

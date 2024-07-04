@@ -9,7 +9,7 @@ public class StatMetaUpgrade : UIElement
     [SerializeField] private TextMeshProUGUI _abilityName;
     
     [SerializeField] private StatMetaUpgradeIcon[] _statUpgradeIcons;
-    private ShamanUpgradePanel _shamanUpgradePanel;
+    [SerializeField]private ShamanUpgradePanel _shamanUpgradePanel;
     private List<StatUpgradeConfig> _statUpgradeConfigs;
     
     private void Start()
@@ -17,9 +17,8 @@ public class StatMetaUpgrade : UIElement
         _statUpgradeIcons.ForEach(i => i.OnUpgrade += _shamanUpgradePanel.AddUpgradeToShaman);
     }
 
-    public void Init(ShamanUpgradePanel shamanUpgradePanel,List<StatUpgradeConfig> statUpgradeConfigs)
+    public void Init(List<StatUpgradeConfig> statUpgradeConfigs)
     {
-        _shamanUpgradePanel = shamanUpgradePanel;
         _statUpgradeConfigs = statUpgradeConfigs;
         _abilityName.text = _title;
         

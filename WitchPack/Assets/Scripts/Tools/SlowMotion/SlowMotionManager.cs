@@ -22,7 +22,7 @@ public class SlowMotionManager : MonoSingleton<SlowMotionManager>
     {
         _audioFilters.Init(BgMusicManager.Instance.AudioSource,
             BgMusicManager.Instance.AudioReverbFilter, BgMusicManager.Instance.AudioLowPassFilter);
-        _postProcessFilters.Init(GameManager.Instance.CameraHandler.PostProcessVolume);
+        _postProcessFilters.Init(GameManager.CameraHandler.PostProcessVolume);
         
         if(LevelManager.Instance.CurrentLevel.EnviromentHandler == null) return;
         

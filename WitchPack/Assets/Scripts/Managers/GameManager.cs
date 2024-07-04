@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
-    public LevelConfig CurrentLevelConfig { get; private set; }
+    public static LevelConfig CurrentLevelConfig { get; private set; }
     public static ISceneHandler SceneHandler { get; private set; }
-    public ShamansManager ShamansManager => _shamansManager;
+    public static ShamansManager ShamansManager => Instance._shamansManager;
 
     public static GameSaveData SaveData;
     public bool TutorialPlayed;
@@ -14,9 +14,9 @@ public class GameManager : MonoSingleton<GameManager>
     [SerializeField] private ShamansManager _shamansManager;
     [SerializeField] private SceneHandler _sceneHandler;
 
-    private CameraHandler _cameraHandler;
+    private static CameraHandler _cameraHandler;
 
-    public CameraHandler CameraHandler
+    public static CameraHandler CameraHandler
     {
         get
         {

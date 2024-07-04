@@ -28,8 +28,8 @@ public class MapManager : MonoSingleton<MapManager>
         _nodeObjects.ForEach(node => node.OnMouseEnter += AnimateToken);
         _nodeObjects.ForEach(node => node.OnClick += (node) => LevelSelectOpen = true);
 
-        GameManager.Instance.CameraHandler.SetCameraLevelSettings(_cameraLevelSettings);
-        GameManager.Instance.CameraHandler.ResetCamera();
+        GameManager.CameraHandler.SetCameraLevelSettings(_cameraLevelSettings);
+        GameManager.CameraHandler.ResetCamera();
     }
 
     public void Init()
@@ -95,7 +95,7 @@ public class MapManager : MonoSingleton<MapManager>
 
     public void UnlockShamans(bool state)
     {
-        GameManager.Instance.ShamansManager.AddShamanToRoster(_shamanConfigsForInstantUnlock);
+        GameManager.ShamansManager.AddShamanToRoster(_shamanConfigsForInstantUnlock);
     }
 
     public void ToggleTestingLevels(bool state)

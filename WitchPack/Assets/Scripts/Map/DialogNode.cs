@@ -17,7 +17,7 @@ public class DialogNode : MapNode
     public override void Complete()
     {
         base.Complete();
-        GameManager.Instance.ShamansManager.AddShamanToRoster(shamansToAddAfterComplete);
+        GameManager.ShamansManager.AddShamanToRoster(shamansToAddAfterComplete);
         //GameManager.SaveData.MapNodes[Index].Complete();
         GameManager.SaveData.LastLevelCompletedIndex = Index;
     }

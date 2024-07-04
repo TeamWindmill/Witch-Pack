@@ -75,9 +75,9 @@ public class MapNode : MonoBehaviour
     protected virtual void OnNodeClick(PointerEventData.InputButton button)
     {
         if (button != PointerEventData.InputButton.Left) return;
-        SoundManager.Instance.PlayAudioClip(SoundEffectType.MenuClick);
+        SoundManager.PlayAudioClip(SoundEffectType.MenuClick);
         GameManager.SaveData.CurrentNode = this;
-        GameManager.Instance.CameraHandler.SetCameraPosition(transform.position);
+        GameManager.CameraHandler.SetCameraPosition(transform.position);
         _path?.TogglePathMask(SpriteMaskInteraction.None);
         MapManager.Instance.ResetVisuals();
         OnClick?.Invoke(this);

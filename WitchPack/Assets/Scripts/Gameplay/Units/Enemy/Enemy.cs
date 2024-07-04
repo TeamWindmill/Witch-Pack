@@ -29,7 +29,7 @@ public class Enemy : BaseUnit
     {
         enemyAnimator ??= GetComponentInChildren<EnemyAnimator>();
     }
-    public void Init(BaseUnitConfig givenConfig)
+    public override void Init(BaseUnitConfig givenConfig)
     {
         pointIndex = 0;
         enemyConfig = givenConfig as EnemyConfig;
@@ -103,11 +103,11 @@ public class Enemy : BaseUnit
 
     private void GetHitSFX(bool isCrit)
     {
-        SoundManager.Instance.PlayAudioClip(isCrit ? SoundEffectType.EnemyGetHitCrit : SoundEffectType.EnemyGetHit);
+        SoundManager.PlayAudioClip(isCrit ? SoundEffectType.EnemyGetHitCrit : SoundEffectType.EnemyGetHit);
         enemyVisualHandler.HitEffect.Play();
     }
-    public void AbilityCastSFX(CastingAbilitySO abilitySo) => SoundManager.Instance.PlayAudioClip(abilitySo.SoundEffectType);
-    private void DeathSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.EnemyDeath);
+    public void AbilityCastSFX(CastingAbilitySO abilitySo) => SoundManager.PlayAudioClip(abilitySo.SoundEffectType);
+    private void DeathSFX() => SoundManager.PlayAudioClip(SoundEffectType.EnemyDeath);
     //private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.EnemyAttack);
     
     #endregion

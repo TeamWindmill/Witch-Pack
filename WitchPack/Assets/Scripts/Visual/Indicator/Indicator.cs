@@ -96,7 +96,7 @@ public class Indicator : UIElement
 
     private void PositionIndicator()
     {
-        Vector3 targetScreenPoint = GameManager.Instance.CameraHandler.MainCamera.WorldToScreenPoint(target.transform.position);
+        Vector3 targetScreenPoint = GameManager.CameraHandler.MainCamera.WorldToScreenPoint(target.transform.position);
         targetScreenPoint *= resolutionDifference;
         float clampedX = Mathf.Clamp(targetScreenPoint.x, 0, referenceResolution.x);
         float clampedY = Mathf.Clamp(targetScreenPoint.y, 0, referenceResolution.y);

@@ -100,7 +100,7 @@ public class SelectionHandler3 : MonoBehaviour, ISelection
         if (!shadow.IsActive) return;
         SlowMotionManager.Instance.EndSlowMotionEffects();
         shadow.Hide();
-        var newDest = GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+        var newDest = GameManager.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
         _selectedShaman.Movement.SetDestination(newDest);
     }
 
