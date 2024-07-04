@@ -29,8 +29,8 @@ public class LevelHandler : MonoBehaviour
         Config = config;
         LevelSaveData = levelSaveData;
         ID = config.Number;
-        GameManager.Instance.CameraHandler.SetCameraLevelSettings(cameraLevelSettings);
-        GameManager.Instance.CameraHandler.ResetCamera();
+        GameManager.CameraHandler.SetCameraLevelSettings(cameraLevelSettings);
+        GameManager.CameraHandler.ResetCamera();
         navMeshSurface.BuildNavMeshAsync(); //bakes navmesh
         coreTemple.Init();
         foreach (var powerStructure in powerStructures)

@@ -13,7 +13,7 @@ public class ScreenCracksHandler : MonoSingleton<ScreenCracksHandler>
 
     private void Start()
     {
-        _canvas.worldCamera = GameManager.Instance.CameraHandler.MainCamera;
+        _canvas.worldCamera = GameManager.CameraHandler.MainCamera;
         _canvas.sortingLayerName = "Game UI";
         SetStartValue();
     }

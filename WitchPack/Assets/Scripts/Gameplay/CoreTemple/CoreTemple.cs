@@ -35,7 +35,7 @@ public class CoreTemple : BaseEntity, IDamagable
 
     private void OnGetHit(Damageable damageable, int damage)
     {
-        SoundManager.Instance.PlayAudioClip(SoundEffectType.CoreGetHit);
+        SoundManager.PlayAudioClip(SoundEffectType.CoreGetHit);
         //ScreenCracksHandler.Instance.StartCracksAnimation(damage);
         hpBar.SetBarValue(_damageable);
         
@@ -58,12 +58,12 @@ public class CoreTemple : BaseEntity, IDamagable
     private void OnCoreDeath()
     {
         BgMusicManager.Instance.StopMusic();
-        SoundManager.Instance.PlayAudioClip(SoundEffectType.CoreDestroyed);
+        SoundManager.PlayAudioClip(SoundEffectType.CoreDestroyed);
         destroyedCore.gameObject.SetActive(true);
         coreSpriteRenderer.enabled = false;
         glowParticleSystem.Play();
         GAME_TIME.Pause();
-        var camera = GameManager.Instance.CameraHandler;
+        var camera = GameManager.CameraHandler;
         camera.SetCameraPosition(transform.position,true);
         camera.SetCameraZoom(0);
         Invoke(nameof(DestroyCoreAnimation),destroyAnimationsDelay);

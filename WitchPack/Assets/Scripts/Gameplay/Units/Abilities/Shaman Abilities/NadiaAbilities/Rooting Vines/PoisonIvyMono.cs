@@ -26,7 +26,7 @@ public class PoisonIvyMono : RootingVinesMono
 
         enemy.Damageable.OnDeath += RemovePoisonFromEnemyOnDeath;
         enemy.EnemyVisualHandler.EnemyEffectHandler.PoisonIvyVisuals.PlayPoisonParticle(poisonIvy.Config.PoisonDuration);
-        SoundManager.Instance.PlayAudioClip(SoundEffectType.PoisonIvy);
+        SoundManager.PlayAudioClip(SoundEffectType.PoisonIvy);
     }
 
     private void RemovePoisonFromEnemyOnDeath(Damageable damageable, DamageDealer damageDealer)

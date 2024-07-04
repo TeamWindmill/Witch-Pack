@@ -100,7 +100,7 @@ public class ShamanUIHandler : ClickableUIElement
     private void GoToShaman(PointerEventData pointerData)
     {
         if(_shaman.IsDead) return;
-        GameManager.Instance.CameraHandler.SetCameraPosition(_shaman.transform.position);
+        GameManager.CameraHandler.SetCameraPosition(_shaman.transform.position);
     }
     private void ShowShamanInfo(PointerEventData pointerData)
     {

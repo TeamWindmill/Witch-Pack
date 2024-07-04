@@ -31,7 +31,7 @@ public class LevelManager : MonoSingleton<LevelManager>
 
     private void Start()
     {
-        var levelConfig = GameManager.Instance.CurrentLevelConfig;
+        var levelConfig = GameManager.CurrentLevelConfig;
         CurrentLevel = Instantiate(levelConfig.levelPrefab, enviromentHolder);
         CurrentLevel.Init(levelConfig,GameManager.SaveData.LevelSaves[GameManager.SaveData.CurrentNode.Index]);
         SpawnParty(levelConfig.SelectedShamans);
@@ -65,7 +65,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     {
         GAME_TIME.Pause();
         HeroSelectionUI.Instance.Hide();
-        GameManager.Instance.CameraHandler.ToggleCameraLock(true);
+        GameManager.CameraHandler.ToggleCameraLock(true);
         if (IsWon)
         {
             if (CurrentLevel.Config.EndDialog != null)
@@ -82,8 +82,8 @@ public class LevelManager : MonoSingleton<LevelManager>
     {
         if (IsWon)
         {
-            SoundManager.Instance.PlayAudioClip(SoundEffectType.Victory);
-            GameManager.Instance.ShamansManager.AddShamanToRoster(CurrentLevel.Config.shamansToAddAfterComplete);
+            SoundManager.PlayAudioClip(SoundEffectType.Victory);
+            GameManager.ShamansManager.AddShamanToRoster(CurrentLevel.Config.shamansToAddAfterComplete);
             GameManager.SaveData.LevelSaves[CurrentLevel.ID - 1].State = NodeState.Completed;
             GameManager.SaveData.LevelSaves[CurrentLevel.ID - 1].ChallengesFirstTimes[CurrentLevel.Config.SelectedChallenge.ChallengeType] = false;
             GameManager.SaveData.LastLevelCompletedIndex = CurrentLevel.ID - 1;
@@ -165,7 +165,7 @@ public class LevelManager : MonoSingleton<LevelManager>
             ShamanParty.Remove(shaman);
             if (ShamanParty.Count <= 0)
             {
-                GameManager.Instance.CameraHandler.SetCameraPosition(shaman.transform.position, true);
+                GameManager.CameraHandler.SetCameraPosition(shaman.transform.position, true);
                 TimerManager.AddTimer(2, false, EndLevel);
             }
         }

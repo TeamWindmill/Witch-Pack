@@ -12,7 +12,7 @@ public static class RectTransformHelper
         float maxX = Screen.width - minX;
         float maxY = Screen.height - minY;
 
-        Vector2 screenPos = GameManager.Instance.CameraHandler.MainCamera.WorldToScreenPoint(wordPos);
+        Vector2 screenPos = GameManager.CameraHandler.MainCamera.WorldToScreenPoint(wordPos);
 
         Vector2 clampScreenPoint =
             new Vector2(Mathf.Clamp(screenPos.x, minX, maxX), Mathf.Clamp(screenPos.y, minY, maxY));

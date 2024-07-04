@@ -25,10 +25,10 @@ public class ShamanUpgradePanel : UIElement
         _levelText.text = shamanSaveData.ShamanExperienceHandler.ShamanLevel.ToString();
         for (int i = 0; i < _abilityMetaUpgrades.Length; i++)
         {
-            _abilityMetaUpgrades[i].Init(this, _shamanMetaUpgradeConfig.AbilityPanelUpgrades[i]);
+            _abilityMetaUpgrades[i].Init( _shamanMetaUpgradeConfig.AbilityPanelUpgrades[i]);
         }
         
-        _statMetaUpgrades.Init(this, _shamanMetaUpgradeConfig.StatPanelUpgrades.StatUpgrades);
+        _statMetaUpgrades.Init(_shamanMetaUpgradeConfig.StatPanelUpgrades.StatUpgrades);
 
         Show();
     }

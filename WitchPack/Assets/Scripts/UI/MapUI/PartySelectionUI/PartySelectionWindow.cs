@@ -27,9 +27,9 @@ public class PartySelectionWindow : UIElement
     private const int DEFAULT_PARTY_SIZE = 4;
     public override void Show()
     {
-        _levelConfig = GameManager.Instance.CurrentLevelConfig;
+        _levelConfig = GameManager.CurrentLevelConfig;
         ActiveShamanParty = new();
-        _rosterPanel.Init(this, GameManager.Instance.ShamansManager.ShamanRoster);
+        _rosterPanel.Init(this, GameManager.ShamansManager.ShamanRoster);
         _packPanel.Init(this);
         _enemyPanel.Init(_levelConfig, _enemyPanelConfig);
         _rewardsPanel.Init(_levelConfig);
@@ -57,7 +57,7 @@ public class PartySelectionWindow : UIElement
         }
 
         RefreshActiveParty();
-        GameManager.Instance.CurrentLevelConfig.SelectedShamans = ActiveShamanParty;
+        GameManager.CurrentLevelConfig.SelectedShamans = ActiveShamanParty;
         
         base.Hide();
         

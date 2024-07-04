@@ -7,7 +7,7 @@ using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum SceneType
+public enum UnitySceneType
 {
     Production,
     Test
@@ -69,13 +69,13 @@ public class SceneEditor : OdinMenuEditorWindow
         return tree;
     }
 
-    public static string Path(SceneType path)
+    public static string Path(UnitySceneType path)
     {
         switch (path)
         {
-            case SceneType.Production:
+            case UnitySceneType.Production:
                 return PRODUCTION_PATH;
-            case SceneType.Test:
+            case UnitySceneType.Test:
                 return TEST_PATH;
         }
 
@@ -86,7 +86,7 @@ public class SceneEditor : OdinMenuEditorWindow
     public class NewSceneClass
     {
         [SerializeField] private string _name;
-        [SerializeField] private SceneType _path = SceneType.Test;
+        [SerializeField] private UnitySceneType _path = UnitySceneType.Test;
 
         [Sirenix.OdinInspector.Button]
         private void CreateNewScene()

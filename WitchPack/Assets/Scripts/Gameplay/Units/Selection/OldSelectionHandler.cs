@@ -142,13 +142,13 @@ public class OldSelectionHandler : MonoBehaviour,ISelection
 
         SlowMotionManager.Instance.EndSlowMotionEffects();
         shadow.Hide();
-        var newDest = GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+        var newDest = GameManager.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
         _selectedShaman.Movement.SetDestination(newDest);
         OnShamanDeselected?.Invoke(_selectedShaman);
     }
     private void QuickMove()
     {
-        var newDest = GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+        var newDest = GameManager.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
         _selectedShaman.Movement.SetDestination(newDest);
         //OnShamanMoveSelect?.Invoke(_selectedShaman);
     }

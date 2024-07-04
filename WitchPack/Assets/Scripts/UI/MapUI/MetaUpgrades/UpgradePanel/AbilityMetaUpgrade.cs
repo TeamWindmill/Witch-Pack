@@ -9,7 +9,7 @@ public class AbilityMetaUpgrade : UIElement
     [SerializeField] private Image _abilityIcon;
 
     [SerializeField] private AbilityMetaUpgradeIcon[] _abilityUpgradeIcons;
-    private ShamanUpgradePanel _shamanUpgradePanel;
+    [SerializeField] private ShamanUpgradePanel _shamanUpgradePanel;
     private AbilityPanelUpgrades _abilityPanelConfig;
 
     private void Start()
@@ -17,9 +17,8 @@ public class AbilityMetaUpgrade : UIElement
         _abilityUpgradeIcons.ForEach(i => i.OnUpgrade += _shamanUpgradePanel.AddUpgradeToShaman);
     }
 
-    public void Init(ShamanUpgradePanel shamanUpgradePanel,AbilityPanelUpgrades abilityPanelConfig)
+    public void Init(AbilityPanelUpgrades abilityPanelConfig)
     {
-        _shamanUpgradePanel = shamanUpgradePanel;
         _abilityPanelConfig = abilityPanelConfig;
         _abilityName.text = abilityPanelConfig.Ability.Name;
         _abilityIcon.sprite = abilityPanelConfig.Ability.DefaultIcon;
