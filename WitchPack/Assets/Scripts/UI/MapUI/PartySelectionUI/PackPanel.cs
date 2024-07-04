@@ -19,6 +19,7 @@ public class PackPanel : UIElement
             icon.OnIconLeftClick += _parent.UnassignShamanFromParty;
             icon.OnIconRightClick += OpenUpgradePanel;
         }
+        base.Show();
     }
 
     public override void Hide()
