@@ -127,6 +127,19 @@ public static class UIManager
         }
     }
 
+    public static bool MouseOverUIGroup(UIGroup uiGroup)
+    {
+        bool mouseOverUI = false;
+        if (_uiGroups.TryGetValue(uiGroup, out var uiElements))
+        {
+            foreach (var element in uiElements)
+            {
+                if (element.isMouseOver) mouseOverUI = true;
+            }
+        }
+
+        return mouseOverUI;
+    }
     #endregion
 
     private static void MouseOnUIEnter(UIElement element)

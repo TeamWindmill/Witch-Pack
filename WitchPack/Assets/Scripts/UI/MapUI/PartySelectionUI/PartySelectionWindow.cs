@@ -24,6 +24,12 @@ public class PartySelectionWindow : UIElement
         base.Show();
     }
 
+    public override void Refresh()
+    {
+        _rosterPanel.Init(this, GameManager.ShamansManager.ShamanRoster);
+        _packPanel.Init(this);
+    }
+
     public override void Hide()
     {
         _rosterPanel.Hide();

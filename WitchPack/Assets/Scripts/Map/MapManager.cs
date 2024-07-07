@@ -96,6 +96,7 @@ public class MapManager : MonoSingleton<MapManager>
     public void UnlockShamans(bool state)
     {
         GameManager.ShamansManager.AddShamanToRoster(_shamanConfigsForInstantUnlock);
+        UIManager.RefreshUIGroup(UIGroup.PartySelectionWindow);
     }
 
     public void ToggleTestingLevels(bool state)
