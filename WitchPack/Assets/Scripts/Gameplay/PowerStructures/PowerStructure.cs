@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +20,24 @@ public class PowerStructure : MonoBehaviour
     private StatType _statType;
     private Modifier _statModifier;
     private readonly Dictionary<int, float> _activeShadowRingIds = new();
+
+    private bool IsPercent = true;
+    // {
+    //     get
+    //     {
+    //         switch (_statModifier)
+    //         {
+    //             case Modifier.Addition:
+    //                 return true;
+    //             case Modifier.Multiplication:
+    //                 return true;
+    //         }
+    //
+    //         return false;
+    //     }
+    // }
+
+    
 
     public void Init()
     {
@@ -126,12 +145,12 @@ public class PowerStructure : MonoBehaviour
     }
     public void OnShamanHoverEnter(Shaman shaman, int ringId)
     {
-        StatEffectPopupManager.ShowPopupWindows(GetInstanceID(),shaman.transform, _statType.ToString(), CalculateStatValueForPowerStructureUI(ringId), true, GetRingColorAlpha(ringId));
+        StatEffectPopupManager.ShowPopupWindows(GetInstanceID(),shaman.transform, _statType.ToString(), CalculateStatValueForPowerStructureUI(ringId), IsPercent, GetRingColorAlpha(ringId));
     }
     public void ShowUI(Shadow shadow,int ringId)
     {
         HeroSelectionUI.Instance.StatBlockPanel.UpdateStatBlocks(_statType, CalculateStatValueForSelectionUI(shadow,shadow.Shaman));
-        StatEffectPopupManager.ShowPopupWindows(GetInstanceID(), shadow.transform, _statType.ToString(), CalculateStatValueForPowerStructureUIByShadow(), true, GetRingColorAlpha(ringId));
+        StatEffectPopupManager.ShowPopupWindows(GetInstanceID(), shadow.transform, _statType.ToString(), CalculateStatValueForPowerStructureUIByShadow(), IsPercent, GetRingColorAlpha(ringId));
     }
 
     public void HideUI()
@@ -140,7 +159,7 @@ public class PowerStructure : MonoBehaviour
         StatEffectPopupManager.HidePopupWindows(GetInstanceID());
     }
 
-    private int GetStatEffectValue(int ringId, UnitStats stats)
+    private float GetStatEffectValue(int ringId, UnitStats stats)
     {
         var value = stats.GetBaseStatValue(_statType);
         var modifier = _powerStructureConfig.statEffect.RingValues[ringId];
@@ -148,10 +167,10 @@ public class PowerStructure : MonoBehaviour
         switch (_statModifier)
         {
             case Modifier.Addition:
-                return Mathf.RoundToInt(modifier);
+                return modifier;
             case Modifier.Multiplication:
                 var modifiedValue = value * modifier;
-                return Mathf.RoundToInt(modifiedValue);
+                return modifiedValue;
         }
         return 0;
     }
@@ -194,7 +213,7 @@ public class PowerStructure : MonoBehaviour
     private int CalculateStatValueForSelectionUI(Shadow shadow, Shaman shaman)
     {
         var shamanStat = shaman.Stats.GetStatValue(_statType) - shaman.Stats.GetBaseStatValue(_statType);
-        var shadowStat = 0;
+        float shadowStat = 0;
         if (shadow.CurrentStatPSEffects.TryGetValue(_statType, out var value))
             shadowStat = value;
         
