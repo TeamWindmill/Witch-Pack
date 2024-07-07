@@ -171,4 +171,5 @@ public enum UIGroup
     PartySelectionWindow,
     ShamanUpgradePanel,
     LevelSelection,
+    UpgradeWindow,
 }

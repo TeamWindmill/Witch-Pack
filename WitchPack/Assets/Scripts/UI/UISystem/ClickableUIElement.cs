@@ -3,20 +3,28 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public abstract class ClickableUIElement : UIElement, IPointerClickHandler
+public abstract class ClickableUIElement : UIElement, IPointerClickHandler, IPointerDownHandler,IPointerUpHandler
 {
     //inherit from this class for clickable ui element
     public event Action<PointerEventData> OnClickEvent;
+    public event Action OnHoldClickEvent;
     public event Action OnDoubleClickEvent;
 
     [FoldoutGroup("UI Element")][SerializeField] private bool enableDoubleClick;
 
     [FoldoutGroup("UI Element")][SerializeField, ShowIf(nameof(enableDoubleClick))]
     private float doubleClickSpeed = 0.5f;
+    [FoldoutGroup("UI Element")][SerializeField] private bool enableHoldClick;
+
+    [FoldoutGroup("UI Element")][SerializeField, ShowIf(nameof(enableHoldClick))]
+    private float holdClickSpeed = 1.5f;
 
     private int _clickNum;
 
-    private float _doubleClickTimer;
+    protected float DoubleClickTimer;
+    protected float HoldClickTimer;
+    private bool _pointerDown;
+    private bool _holdClickHappened;
 
 
     public void OnPointerClick(PointerEventData eventData)
@@ -27,7 +35,7 @@ public abstract class ClickableUIElement : UIElement, IPointerClickHandler
                 OnClick(eventData);
                 return;
             case 1:
-                OnDoubleClick(eventData);
+                OnDoubleClick();
                 return;
         }
     }
@@ -35,15 +43,38 @@ public abstract class ClickableUIElement : UIElement, IPointerClickHandler
     protected override void Update()
     {
         base.Update();
+        CheckDoubleClick();
+        CheckHoldClick();
+    }
+
+    private void CheckHoldClick()
+    {
+        if (!enableHoldClick || _holdClickHappened)return;
+        if (_pointerDown)
+        {
+            HoldClickTimer += Time.deltaTime;
+            if (HoldClickTimer > holdClickSpeed)
+            {
+                OnHoldClick();
+            }
+        }
+        else
+        {
+            HoldClickTimer = 0;
+        }
+    }
+
+    private void CheckDoubleClick()
+    {
         if (_clickNum == 0 || !enableDoubleClick)
             return;
 
-        _doubleClickTimer -= Time.deltaTime;
+        DoubleClickTimer -= Time.deltaTime;
 
-        if (_doubleClickTimer <= 0)
+        if (DoubleClickTimer <= 0)
         {
             _clickNum = 0;
-            _doubleClickTimer = 0;
+            DoubleClickTimer = 0;
         }
     }
 
@@ -54,24 +85,53 @@ public abstract class ClickableUIElement : UIElement, IPointerClickHandler
         if (!enableDoubleClick) return;
         
         _clickNum++;
-        _doubleClickTimer = doubleClickSpeed;
+        DoubleClickTimer = doubleClickSpeed;
     }
 
-    protected virtual void OnDoubleClick(PointerEventData eventData)
+    protected virtual void OnDoubleClick()
     {
         OnDoubleClickEvent?.Invoke();
-        _doubleClickTimer = 0;
+        DoubleClickTimer = 0;
         _clickNum = 0;
+    }
+    protected virtual void OnHoldClick()
+    {
+        OnHoldClickEvent?.Invoke();
+        _holdClickHappened = true;
+        HoldClickTimer = 0;
     }
 
     protected virtual void OnDisable()
     {
         _clickNum = 0;
-        _doubleClickTimer = 0;
+        DoubleClickTimer = 0;
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        _pointerDown = true;
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        _pointerDown = false;
+        _holdClickHappened = false;
+    }
+
+    public override void OnPointerExit(PointerEventData eventData)
+    {
+        base.OnPointerExit(eventData);
+        _pointerDown = false;
+        _holdClickHappened = false;
     }
 }
 
 public abstract class ClickableUIElement<T> : ClickableUIElement
 {
-    public abstract void Init(T data);
+    public bool Initialized { get; protected set; }
+
+    public virtual void Init(T data)
+    {
+        Initialized = true;
+    }
 }

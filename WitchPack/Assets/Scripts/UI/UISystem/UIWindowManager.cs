@@ -18,6 +18,7 @@ public class UIWindowManager : UIElement
             children.Remove(this);
             ChildUIElements.AddRange(children);
         }
+        if(ChildUIElements.Count > 0) ChildUIElements.ForEach(child => child.SetParent(this));
         base.Awake();
     }
 

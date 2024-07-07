@@ -20,7 +20,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     [SerializeField] private Transform enviromentHolder;
     [SerializeField] private Transform shamanHolder;
     [SerializeField] private Shaman shamanPrefab;
-    [SerializeField] private PartyUIManager partyUIManager;
+    [SerializeField] private GamePartyUIPanel _gamePartyUIPanel;
     [SerializeField] private PoolManager poolManager;
     [SerializeField] private IndicatorManager indicatorManager;
     [SerializeField] private Canvas gameUi;
