@@ -37,7 +37,7 @@ public class GameManager : MonoSingleton<GameManager>
 
         if (SceneHandler == null)
             SceneHandler = _sceneHandler;
-
+        
         SaveData = LoadDataFromSave(); //need to load save from file
         _shamansManager.Init(SaveData);
         UIManager.Init();

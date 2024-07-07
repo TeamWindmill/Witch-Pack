@@ -117,6 +117,13 @@ public abstract class ClickableUIElement : UIElement, IPointerClickHandler, IPoi
         _pointerDown = false;
         _holdClickHappened = false;
     }
+
+    public override void OnPointerExit(PointerEventData eventData)
+    {
+        base.OnPointerExit(eventData);
+        _pointerDown = false;
+        _holdClickHappened = false;
+    }
 }
 
 public abstract class ClickableUIElement<T> : ClickableUIElement
