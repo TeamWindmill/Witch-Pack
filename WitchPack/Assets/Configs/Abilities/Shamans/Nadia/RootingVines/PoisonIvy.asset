@@ -22,12 +22,16 @@ MonoBehaviour:
   popupColor: {r: 0.365815, g: 0.19001423, b: 0.6603774, a: 1}
   castTime: 1.5
   cd: 10
-  range: 0
   givesEnergyPoints: 0
   energyPoints: 0
   statusEffects:
   - {fileID: 11400000, guid: 428d1202890fd074581af20f924554b1, type: 2}
   targetData:
+    Priority: 1
+    Modifier: 1
+    StatType: 0
+    AvoidCharmedTargets: 1
+  underAttackTargetData:
     Priority: 1
     Modifier: 1
     StatType: 0
