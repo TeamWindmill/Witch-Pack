@@ -16,6 +16,8 @@ public class MapManager : MonoSingleton<MapManager>
     [BoxGroup("Temp")] [SerializeField] private LevelNode[] _testingLevelNodes;
 
     public bool LevelSelectOpen;
+    private const int CHALLENGES_AMOUNT = 3;
+
 
     protected override void Awake()
     {
@@ -41,7 +43,7 @@ public class MapManager : MonoSingleton<MapManager>
             levelSaves = new LevelSaveData[_nodeObjects.Length];
             for (int i = 0; i < _nodeObjects.Length; i++)
             {
-                levelSaves[i] = new LevelSaveData(NodeState.Locked);
+                levelSaves[i] = new LevelSaveData(NodeState.Locked,CHALLENGES_AMOUNT);
                 _nodeObjects[i].Init(i,levelSaves[i]);
             }
 

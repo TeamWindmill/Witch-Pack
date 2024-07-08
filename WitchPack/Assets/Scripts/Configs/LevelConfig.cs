@@ -21,6 +21,14 @@ public class LevelConfig : ScriptableObject
 
     [NonSerialized]public List<ShamanSaveData> SelectedShamans;
     [NonSerialized]public LevelChallenge SelectedChallenge;
+    
+    public void SetIndexes()
+    {
+        for (int i = 0; i < LevelChallenges.Length; i++)
+        {
+            LevelChallenges[i].Index = i;
+        }
+    }
 }
 
 [Serializable]

@@ -12,6 +12,11 @@ public class LevelNode : MapNode
     [BoxGroup("Icon")][SerializeField] private Color _winNodeColor;
     [BoxGroup("Icon")][SerializeField] private Color _avilableNodeColor;
 
+    private void Awake()
+    {
+        _levelConfig.SetIndexes();
+    }
+
     public override void Complete()
     {
         base.Complete();
@@ -29,15 +34,15 @@ public class LevelNode : MapNode
 
 public class LevelSaveData
 {
-    public Dictionary<LevelChallengeType,bool>  ChallengesFirstTimes = new();
+    public List<bool> ChallengesFirstTimes = new();
     public NodeState State;
 
-    public LevelSaveData(NodeState state)
+    public LevelSaveData(NodeState state,int challengesAmount)
     {
         State = state;
-        for (int i = 0; i < Enum.GetValues(typeof(LevelChallengeType)).Length; i++)
+        for (int i = 0; i < challengesAmount; i++)
         {
-            ChallengesFirstTimes.Add((LevelChallengeType)i,true);
+            ChallengesFirstTimes.Add(true);
         }
     }
 }
