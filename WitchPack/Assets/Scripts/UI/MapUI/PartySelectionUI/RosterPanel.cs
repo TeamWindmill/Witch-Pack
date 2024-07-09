@@ -40,6 +40,22 @@ public class RosterPanel : UIElement
         base.Show();
     }
 
+    public override void Refresh()
+    {
+        foreach (var shamanSaveData in GameManager.SaveData.ShamanRoster)
+        {
+            var exists = false;
+            foreach (var rosterIcon in _rosterIcons)
+            {
+                if (rosterIcon.ShamanSaveData == shamanSaveData) exists = true;
+            }
+            if(exists) continue;
+            var icon = Instantiate(_rosterIconPrefab, _holder);
+            _rosterIcons.Add(icon);
+            icon.Init(shamanSaveData);
+        }
+    }
+
     public override void Hide()
     {
         foreach (var icon in _rosterIcons)

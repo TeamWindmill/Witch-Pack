@@ -35,19 +35,15 @@ public class PackPanel : UIElement
 
     public void SelectPackIcon(int index)
     {
-        foreach (var icon in _packIcons)
-        {
-            icon.ToggleAlpha(true);
-        }
-
+        ToggleIconsAlpha(true);
         _packIcons[index].ToggleAlpha(false);
     }
 
-    public void UnselectAllIcons()
+    public void ToggleIconsAlpha(bool state)
     {
         foreach (var icon in _packIcons)
         {
-            icon.ToggleAlpha(false);
+            icon.ToggleAlpha(state);
         }
     }
 

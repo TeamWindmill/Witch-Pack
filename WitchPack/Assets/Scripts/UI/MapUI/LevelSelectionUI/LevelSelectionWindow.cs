@@ -31,19 +31,19 @@ public class LevelSelectionWindow : UIElement
         _enemyPanel.Hide();
         _rewardsPanel.Hide();
         MapManager.Instance.Init();
-        UIManager.RefreshUIGroup(UIGroup.PartySelectionWindow);
+        //UIManager.RefreshUIGroup(UIGroup.PartySelectionWindow);
         base.Hide();
     }
 
     public void StartLevel()
     {
+        _partySelectionWindow.RefreshActiveParty();
         if (_partySelectionWindow.ActiveShamanParty.Count == 0)
         {
             _partySelectionWindow.FlashInRed();
             return;
         }
 
-        _partySelectionWindow.RefreshActiveParty();
         GameManager.CurrentLevelConfig.SelectedShamans = _partySelectionWindow.ActiveShamanParty;
 
         base.Hide();
@@ -56,15 +56,16 @@ public class LevelSelectionWindow : UIElement
         else GameManager.SceneHandler.LoadScene(SceneType.Game);
     }
 
-    protected override void Update()
-    {
-        base.Update();
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (!UIManager.MouseOverUI)
-            {
-                Hide();
-            }
-        }
-    }
+    // protected override void Update()
+    // {
+    //     base.Update();
+    //     if (Input.GetMouseButtonDown(0))
+    //     {
+    //         if(_partySelectionWindow.SelectedMode) return;
+    //         if (!UIManager.MouseOverUI)
+    //         {
+    //             Hide();
+    //         }
+    //     }
+    // }
 }

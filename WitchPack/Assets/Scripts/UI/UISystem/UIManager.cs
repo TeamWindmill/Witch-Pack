@@ -48,8 +48,6 @@ public static class UIManager
     {
         if (_uiGroupManagers[group] is not null) return;
         _uiGroupManagers[group] = element;
-        element.OnMouseEnter += MouseOnUIEnter;
-        element.OnMouseExit += MouseOnUIExit;
     }
 
     public static void RemoveUIElement(UIElement element, UIGroup group)
