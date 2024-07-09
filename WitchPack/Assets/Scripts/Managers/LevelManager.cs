@@ -36,7 +36,6 @@ public class LevelManager : MonoSingleton<LevelManager>
         CurrentLevel.Init(levelConfig,GameManager.SaveData.LevelSaves[GameManager.SaveData.CurrentNode.Index]);
         SpawnParty(levelConfig.SelectedShamans);
         CurrentLevel.TurnOffSpawnPoints();
-        BgMusicManager.Instance.PlayMusic(MusicClip.GameMusic);
         if (levelConfig.StartDialog != null)
         {
             DialogBox.Instance.SetDialogSequence(levelConfig.StartDialog, StartLevel);
@@ -48,6 +47,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     private void StartLevel()
     {
         CurrentLevel.StartLevel();
+        BgMusicManager.Instance.PlayMusic(MusicClip.GameMusic);
         UIManager.ShowUIGroup(UIGroup.TopCounterUI);
         UIManager.ShowUIGroup(UIGroup.PartyUI);
         GAME_TIME.StartGame();

@@ -6,23 +6,31 @@ using UnityEngine.UI;
 
 public class PackIcon : ClickableUIElement
 {
-    public event Action<ShamanSaveData> OnIconLeftClick;
-    public event Action<ShamanSaveData> OnIconRightClick;
+    public event Action<int> OnIconLeftClick;
 
     public ShamanSaveData ShamanSaveData { get; private set; }
+    public int Index { get; private set; }
     public bool Locked { get; private set; }
     public bool Assigned { get; private set; }
     [SerializeField] private Image _splashRenderer;
     [SerializeField] private Image _bgRenderer;
+    [SerializeField] private Image _alphaRenderer;
     [SerializeField] private Color _flashColor;
     [SerializeField] private Color _defaultColor;
     [SerializeField] private Sprite _lockIcon;
     [SerializeField] private float _flashDuration;
 
 
-    public void Init()
+    public void Init(int index)
     {
+        Index = index;
         UnassignShaman();
+        ToggleAlpha(false);
+    }
+
+    public void ToggleAlpha(bool state)
+    {
+        _alphaRenderer.gameObject.SetActive(state);
     }
 
     public void UnassignShaman()
@@ -62,18 +70,11 @@ public class PackIcon : ClickableUIElement
 
     protected override void OnClick(PointerEventData eventData)
     {
-        if (Assigned)
+        if(Locked) return;
+        if (eventData.button == PointerEventData.InputButton.Left)
         {
-            if (eventData.button == PointerEventData.InputButton.Left)
-            {
-                OnIconLeftClick?.Invoke(ShamanSaveData);
-            }
-            else if (eventData.button == PointerEventData.InputButton.Right)
-            {
-                OnIconRightClick?.Invoke(ShamanSaveData);
-            }
+            OnIconLeftClick?.Invoke(Index);
         }
-
         base.OnClick(eventData);
     }
 
