@@ -13,6 +13,7 @@ public class PowerStructureConfig : ScriptableObject
     public float SpriteAlphaFade;
     public Sprite PowerStructureSprite;
     public PowerStructureStatEffect statEffect;
+    public bool ShowPercent;
 
     private void OnValidate()
     {

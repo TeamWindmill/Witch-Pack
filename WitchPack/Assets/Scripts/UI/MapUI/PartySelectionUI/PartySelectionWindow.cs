@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PartySelectionWindow : UIElement
 {
@@ -9,43 +10,76 @@ public class PartySelectionWindow : UIElement
 
     [SerializeField] private RosterPanel _rosterPanel;
     [SerializeField] private PackPanel _packPanel;
-    
+    [SerializeField] private Image _backgroundAlpha;
+
     public List<ShamanSaveData> ActiveShamanParty { get; private set; }
     public int MaxShamanPartyCap { get; private set; } = DEFAULT_PARTY_SIZE;
 
     private const int DEFAULT_PARTY_SIZE = 4;
+    public int SelectedIconIndex { get; private set; }
+    public bool SelectedMode { get; private set; }
+
     public override void Show()
     {
         ActiveShamanParty = new();
-        _rosterPanel.Init(this, GameManager.ShamansManager.ShamanRoster);
         _packPanel.Init(this);
-        
+        _rosterPanel.Init(this,GameManager.SaveData.ShamanRoster);
+        _rosterPanel.Hide();
+        _backgroundAlpha.gameObject.SetActive(false);
         AutoAssignShamansFromRoster();
         base.Show();
     }
 
     public override void Refresh()
     {
-        _rosterPanel.Init(this, GameManager.ShamansManager.ShamanRoster);
-        _packPanel.Init(this);
+        _rosterPanel.Refresh();
     }
 
     public override void Hide()
     {
-        _rosterPanel.Hide();
-        _packPanel.Hide();
-        base.Hide();
-    }
-    
-    public void AssignShamanToParty(ShamanSaveData shaman)
-    {
-        if(ActiveShamanParty.Count >= MaxShamanPartyCap) return;
-        ActiveShamanParty.Add(shaman);
-        _packPanel.AddShamanToPack(shaman);
-        _rosterPanel.RemoveShamanFromRoster(shaman);
+        if (SelectedMode)
+        {
+            ExitSelectMode();
+        }
+        // _rosterPanel.Hide();
+        // _packPanel.Hide();
+        // base.Hide();
     }
 
-    public void UnassignShamanFromParty(ShamanSaveData shaman)
+    public void EnterSelectMode(int index)
+    {
+        SelectedMode = true;
+        SelectedIconIndex = index;
+        _backgroundAlpha.gameObject.SetActive(true);
+        _packPanel.SelectPackIcon(index);
+        _rosterPanel.Show();
+    }
+
+    public void ExitSelectMode()
+    {
+        SelectedMode = false;
+        _backgroundAlpha.gameObject.SetActive(false);
+        _packPanel.ToggleIconsAlpha(false);
+        _rosterPanel.Hide();
+    }
+
+
+    public void AssignShamanToSlot(ShamanSaveData shaman) => AssignShamanToSlot(shaman, SelectedIconIndex);
+    public void AssignShamanToSlot(ShamanSaveData shaman, int slotIndex)
+    {
+        //if(!SelectedMode) return;
+        if (_packPanel.PackIcons[slotIndex].Assigned)
+        {
+            RosterPanel.AddShamanBackToRoster(_packPanel.PackIcons[slotIndex].ShamanSaveData);
+            _packPanel.RemoveShamanFromPack(shaman);
+        }
+
+        _packPanel.AddShamanToPack(shaman, slotIndex);
+        RosterPanel.RemoveShamanFromRoster(shaman);
+        ActiveShamanParty.Add(shaman);
+    }
+
+    public void UnassignShamanFromPack(ShamanSaveData shaman)
     {
         ActiveShamanParty.Remove(shaman);
         _rosterPanel.AddShamanBackToRoster(shaman);
@@ -59,19 +93,16 @@ public class PartySelectionWindow : UIElement
         _packPanel.ReduceShamanSlots(MaxShamanPartyCap);
     }
 
-    private void AutoAssignShamansFromRoster()
+    public void AutoAssignShamansFromRoster()
     {
-        var assignedShamans = 0;
-        foreach (var packIcon in _packPanel.PackIcons)
+        foreach (var icon in _packPanel.PackIcons)
         {
-            if (packIcon.Assigned) assignedShamans++;
-        }
-        if(assignedShamans > 0) return;
-        foreach (var icon in _rosterPanel.RosterIcons)
-        {
-            if (icon.ShamanSaveData != null)
+            if (!icon.Assigned)
             {
-                AssignShamanToParty(icon.ShamanSaveData);
+                if (_rosterPanel.TryGetAvailableRosterIcon(out var rosterIcon))
+                {
+                    AssignShamanToSlot(rosterIcon.ShamanSaveData,icon.Index);
+                }
             }
         }
     }
@@ -93,4 +124,15 @@ public class PartySelectionWindow : UIElement
     {
         _packPanel.FlashInRed();
     }
+
+    // protected override void Update()
+    // {
+    //     if (Input.GetMouseButtonDown(0))
+    //     {
+    //         if (SelectedMode && !UIManager.MouseOverUI)
+    //         {
+    //             ExitSelectMode();
+    //         }
+    //     }
+    // }
 }

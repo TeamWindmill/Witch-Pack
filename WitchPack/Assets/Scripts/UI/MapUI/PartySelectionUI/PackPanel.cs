@@ -13,12 +13,13 @@ public class PackPanel : UIElement
     public void Init(PartySelectionWindow parent)
     {
         _parent = parent;
-        foreach (var icon in _packIcons)
+
+        for (int i = 0; i < _packIcons.Length; i++)
         {
-            icon.Init();
-            icon.OnIconLeftClick += _parent.UnassignShamanFromParty;
-            icon.OnIconRightClick += OpenUpgradePanel;
+            _packIcons[i].Init(i);
+            _packIcons[i].OnIconLeftClick += OnIconClick;
         }
+
         base.Show();
     }
 
@@ -26,21 +27,31 @@ public class PackPanel : UIElement
     {
         foreach (var icon in _packIcons)
         {
-            icon.OnIconLeftClick -= _parent.UnassignShamanFromParty;
-            icon.OnIconRightClick -= OpenUpgradePanel;
+            icon.OnIconLeftClick -= OnIconClick;
         }
+
         base.Hide();
     }
 
-    public void AddShamanToPack(ShamanSaveData shaman)
+    public void SelectPackIcon(int index)
+    {
+        ToggleIconsAlpha(true);
+        _packIcons[index].ToggleAlpha(false);
+    }
+
+    public void ToggleIconsAlpha(bool state)
     {
         foreach (var icon in _packIcons)
         {
-            if(icon.Assigned) continue;
-            icon.AssignShaman(shaman);
-            return;
+            icon.ToggleAlpha(state);
         }
     }
+
+    public void AddShamanToPack(ShamanSaveData shaman, int iconIndex)
+    {
+        _packIcons[iconIndex].AssignShaman(shaman);
+    }
+
     public void RemoveShamanFromPack(ShamanSaveData shaman)
     {
         foreach (var icon in _packIcons)
@@ -48,11 +59,11 @@ public class PackPanel : UIElement
             if (icon.ShamanSaveData == shaman)
             {
                 icon.UnassignShaman();
-                RefreshPackPanel();
                 return;
             }
         }
     }
+
     public void FlashInRed()
     {
         foreach (var icon in _packIcons)
@@ -60,37 +71,40 @@ public class PackPanel : UIElement
             icon.FlashInRed();
         }
     }
-    private void RefreshPackPanel()
-    {
-        foreach (var icon in _packIcons)
-        {
-            if(icon.Locked) continue;
-            icon.UnassignShaman();
-        }
 
-        for (int i = 0; i < _parent.ActiveShamanParty.Count; i++)
-        {
-            _packIcons[i].AssignShaman(_parent.ActiveShamanParty[i]);
-        }
-    }
-    private void OpenUpgradePanel(ShamanSaveData shamanSaveData)
-    {
-        _shamanUpgradePanel.Init(shamanSaveData);
-    }
+    // private void RefreshPackPanel()
+    // {
+    //     foreach (var icon in _packIcons)
+    //     {
+    //         if(icon.Locked) continue;
+    //         icon.UnassignShaman();
+    //     }
+    //
+    //     for (int i = 0; i < _parent.ActiveShamanParty.Count; i++)
+    //     {
+    //         _packIcons[i].AssignShaman(_parent.ActiveShamanParty[i]);
+    //     }
+    // }
     public void ReduceShamanSlots(int availableSlots)
     {
         for (int i = 0; i < _packIcons.Length; i++)
         {
             if (i >= availableSlots)
             {
-                if(_packIcons[i].ShamanSaveData != null) _parent.UnassignShamanFromParty(_packIcons[i].ShamanSaveData);
+                if (_packIcons[i].Assigned) _parent.UnassignShamanFromPack(_packIcons[i].ShamanSaveData);
                 _packIcons[i].ToggleLockIcon(true);
             }
             else
             {
-                if(_packIcons[i].ShamanSaveData == null)
+                if (!_packIcons[i].Assigned)
                     _packIcons[i].ToggleLockIcon(false);
             }
         }
+    }
+
+    private void OnIconClick(int index)
+    {
+        if (_packIcons[index].Assigned) _parent.UnassignShamanFromPack(_packIcons[index].ShamanSaveData);
+        _parent.EnterSelectMode(index);
     }
 }
