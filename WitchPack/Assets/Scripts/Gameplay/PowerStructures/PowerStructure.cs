@@ -8,7 +8,7 @@ public class PowerStructure : MonoBehaviour
     public ProximityRingsManager ProximityRingsManager => proximityRingsManager;
 
     [Header("Config File")] [SerializeField]
-    private PowerStructureConfig _powerStructureConfig;
+    private PowerStructureConfig _config;
 
     [Header("Serialized Fields")] [SerializeField]
     private ProximityRingsManager proximityRingsManager;
@@ -21,37 +21,21 @@ public class PowerStructure : MonoBehaviour
     private Modifier _statModifier;
     private readonly Dictionary<int, float> _activeShadowRingIds = new();
 
-    private bool IsPercent = true;
-    // {
-    //     get
-    //     {
-    //         switch (_statModifier)
-    //         {
-    //             case Modifier.Addition:
-    //                 return true;
-    //             case Modifier.Multiplication:
-    //                 return true;
-    //         }
-    //
-    //         return false;
-    //     }
-    // }
-
     
 
     public void Init()
     {
-        if (_powerStructureConfig.PowerStructureSprite is null)
+        if (_config.PowerStructureSprite is null)
         {
             Debug.LogError("Config Sprite is missing");
             return;
         }
 
-        proximityRingsManager.Init(_powerStructureConfig);
-        _powerStructureSpriteRenderer.sprite = _powerStructureConfig.PowerStructureSprite;
-        _powerStructureMask.sprite = _powerStructureConfig.PowerStructureSprite;
-        _statType = _powerStructureConfig.statEffect.StatType;
-        _statModifier = _powerStructureConfig.statEffect.Modifier;
+        proximityRingsManager.Init(_config);
+        _powerStructureSpriteRenderer.sprite = _config.PowerStructureSprite;
+        _powerStructureMask.sprite = _config.PowerStructureSprite;
+        _statType = _config.statEffect.StatType;
+        _statModifier = _config.statEffect.Modifier;
         foreach (var ring in proximityRingsManager.RingHandlers)
         {
             ring.OnShamanEnter += OnShamanRingEnter;
@@ -109,7 +93,7 @@ public class PowerStructure : MonoBehaviour
             proximityRingsManager.ToggleRingSprite(ringId,true);
         }
         
-        _activeShadowRingIds.Add(ringId,_powerStructureConfig.statEffect.RingValues[ringId]);
+        _activeShadowRingIds.Add(ringId,_config.statEffect.RingValues[ringId]);
 
         var statAdditionValue = GetStatEffectValue(ringId, shadow.Stats);
         shadow.SetPSStatValue(_statType,statAdditionValue);
@@ -145,12 +129,12 @@ public class PowerStructure : MonoBehaviour
     }
     public void OnShamanHoverEnter(Shaman shaman, int ringId)
     {
-        StatEffectPopupManager.ShowPopupWindows(GetInstanceID(),shaman.transform, _statType.ToString(), CalculateStatValueForPowerStructureUI(ringId), IsPercent, GetRingColorAlpha(ringId));
+        StatEffectPopupManager.ShowPopupWindows(GetInstanceID(),shaman.transform, _statType.ToString(), CalculateStatValueForPowerStructureUI(ringId), _config.ShowPercent, GetRingColorAlpha(ringId));
     }
     public void ShowUI(Shadow shadow,int ringId)
     {
         HeroSelectionUI.Instance.StatBlockPanel.UpdateStatBlocks(_statType, CalculateStatValueForSelectionUI(shadow,shadow.Shaman));
-        StatEffectPopupManager.ShowPopupWindows(GetInstanceID(), shadow.transform, _statType.ToString(), CalculateStatValueForPowerStructureUIByShadow(), IsPercent, GetRingColorAlpha(ringId));
+        StatEffectPopupManager.ShowPopupWindows(GetInstanceID(), shadow.transform, _statType.ToString(), CalculateStatValueForPowerStructureUIByShadow(), _config.ShowPercent, GetRingColorAlpha(ringId));
     }
 
     public void HideUI()
@@ -161,8 +145,8 @@ public class PowerStructure : MonoBehaviour
 
     private float GetStatEffectValue(int ringId, UnitStats stats)
     {
-        var value = stats.GetBaseStatValue(_statType);
-        var modifier = _powerStructureConfig.statEffect.RingValues[ringId];
+        var value = stats[_statType].Value;
+        var modifier = _config.statEffect.RingValues[ringId];
         
         switch (_statModifier)
         {
@@ -197,7 +181,7 @@ public class PowerStructure : MonoBehaviour
         float sumRingValues = 0;
         for (int i = proximityRingsManager.RingHandlers.Length - 1; i >= ringId; i--)
         {
-            sumRingValues += _powerStructureConfig.statEffect.RingValues[i];
+            sumRingValues += _config.statEffect.RingValues[i];
         }
         switch (_statModifier)
         {
@@ -222,8 +206,8 @@ public class PowerStructure : MonoBehaviour
 
     private Color GetRingColorAlpha(int ringId)
     {
-        Color color = _powerStructureConfig.PowerStructureTypeColor;
-        float alpha = _powerStructureConfig.DefaultSpriteAlpha - _powerStructureConfig.SpriteAlphaFade * ringId;
+        Color color = _config.PowerStructureTypeColor;
+        float alpha = _config.DefaultSpriteAlpha - _config.SpriteAlphaFade * ringId;
         color.a = alpha;
         return color;
     }
@@ -233,13 +217,13 @@ public class PowerStructure : MonoBehaviour
         _powerStructureSpriteRenderer ??= GetComponentInChildren<SpriteRenderer>();
         proximityRingsManager ??= GetComponentInChildren<ProximityRingsManager>();
 
-        if (_powerStructureConfig is null) return;
+        if (_config is null) return;
 
-        if (_powerStructureConfig.RingsRanges.Length != proximityRingsManager.RingHandlers.Length)
+        if (_config.RingsRanges.Length != proximityRingsManager.RingHandlers.Length)
         {
             Debug.LogError("the number of Rings in the SO is different than the actual rings in the prefab");
         }
 
-        _powerStructureSpriteRenderer.sprite = _powerStructureConfig.PowerStructureSprite;
+        _powerStructureSpriteRenderer.sprite = _config.PowerStructureSprite;
     }
 }

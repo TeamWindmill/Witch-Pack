@@ -25,41 +25,19 @@ public abstract class BaseStat<T> //float/int type basic stat
     {
         get
         {
-            if (_overrideValue.Item1) return _overrideValue.Item2;
+            if (_overrideValue.Item1) return _overrideValue.Item2; //override value
             
             var value = BaseValue;
-            foreach (var modifier in _modifiers)
+            foreach (var modifier in _modifiers) // add modifiers
             {
                 value += modifier;
             }
 
-            if (_multipliers.Sum() == 0) return value;
-
-            float multipliersSum = 1;
-            foreach (var multiplier in _multipliers)
-            {
-                multipliersSum += multiplier;
-            }
-
-            if (multipliersSum < 0)
-            {
-                Debug.LogError($"{StatType} Multipliers are smaller than 0");
-                return value;
-            }
-            
-            if (_dividers.Sum() == 0) return value * multipliersSum;
-
-            float dividerSum = 1;
-            foreach (var divider in _dividers)
-            {
-                dividerSum -= divider;
-            }
-
-            if (dividerSum < 0) dividerSum = 0;
-            
-            return value * multipliersSum * dividerSum;
+            return value.MultiplyValue(_multipliers).DivideValue(_dividers);
         }
     }
+
+   
 
     public void AddStatValue(Factor factor, float value)
     {
@@ -162,4 +140,44 @@ public enum Factor
     Divide,
     None,
     OverrideValue,
+}
+
+public static class StatCalculations
+{
+    public static float MultiplyValue(this float value,List<float> multipliers)
+    {
+        if (multipliers.Sum() == 0) return value;
+
+        float multipliersSum = 1;
+        foreach (var multiplier in multipliers)
+        {
+            multipliersSum += multiplier;
+        }
+
+        if (multipliersSum < 0)
+        {
+            Debug.LogError($"Multipliers are smaller than 0");
+            return value;
+        }
+
+        return value * multipliersSum;
+    }
+    public static float DivideValue(this float value,List<float> dividers)
+    {
+        if (dividers.Sum() == 0) return value;
+
+        float dividerSum = 1;
+        foreach (var divider in dividers)
+        {
+            dividerSum -= divider;
+        }
+
+        if (dividerSum < 0)
+        {
+            Debug.LogError($"dividers are smaller than 0");
+            return value;
+        }
+            
+        return value * dividerSum;
+    }
 }

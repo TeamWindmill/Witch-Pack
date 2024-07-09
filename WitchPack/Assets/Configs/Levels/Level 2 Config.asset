@@ -39,11 +39,14 @@ MonoBehaviour:
       _factor: 0
     _reduceShamanSlots: 2
     _expMultiplier: 1
-  - _challengeType: 0
+  - _challengeType: 2
     _displayName: -1 Shaman Slot
     _bonusesDescription:
     - 'EXP Modifier: +200%'
-    _statUpgrades: []
+    _statUpgrades:
+    - _statType: 4
+      _statValue: 0.5
+      _factor: 3
     _reduceShamanSlots: 3
     _expMultiplier: 2
   BeforeDialog: {fileID: 11400000, guid: d741f59513e7421479a0f0be52918642, type: 2}
