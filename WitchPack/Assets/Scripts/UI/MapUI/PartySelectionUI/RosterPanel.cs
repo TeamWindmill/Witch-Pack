@@ -13,21 +13,6 @@ public class RosterPanel : UIElement
 
     public void Init(PartySelectionWindow parent, List<ShamanSaveData> shamanSaveDatas)
     {
-        Hide();
-        _rosterIcons = new();
-        _parent = parent;
-        foreach (var shamanSaveData in shamanSaveDatas)
-        {
-            var icon = Instantiate(_rosterIconPrefab, _holder);
-            _rosterIcons.Add(icon);
-            icon.Init(shamanSaveData);
-            icon.OnIconClick += ToggleShaman;
-        }
-        base.Show();
-    }
-
-    public override void Hide()
-    {
         if (_rosterIcons.Count > 0)
         {
             foreach (var icon in _rosterIcons)
@@ -36,6 +21,46 @@ public class RosterPanel : UIElement
             }
             _rosterIcons.Clear();
         }
+        
+        _parent = parent;
+        foreach (var shamanSaveData in shamanSaveDatas)
+        {
+            var icon = Instantiate(_rosterIconPrefab, _holder);
+            _rosterIcons.Add(icon);
+            icon.Init(shamanSaveData);
+        }
+    }
+
+    public override void Show()
+    {
+        foreach (var icon in _rosterIcons)
+        {
+            icon.OnIconClick += ToggleShaman;
+        }
+        base.Show();
+    }
+
+    public override void Hide()
+    {
+        foreach (var icon in _rosterIcons)
+        {
+            icon.OnIconClick -= ToggleShaman;
+        }
+        base.Hide();
+    }
+
+    public bool TryGetAvailableRosterIcon(out RosterIcon rosterIcon)
+    {
+        foreach (var icon in _rosterIcons)
+        {
+            if (icon.Available)
+            {
+                rosterIcon = icon;
+                return true;
+            }
+        }
+        rosterIcon = null;
+        return false;
     }
 
     public void RemoveShamanFromRoster(ShamanSaveData shamanSaveData) 
@@ -63,7 +88,7 @@ public class RosterPanel : UIElement
 
     private void ToggleShaman(ShamanSaveData saveData, bool available)
     {
-        if (available) _parent.AssignShamanToParty(saveData);
-        else _parent.UnassignShamanFromParty(saveData);
+        if (available) _parent.AssignShamanToSlot(saveData);
+        else _parent.UnassignShamanFromPack(saveData);
     }
 }

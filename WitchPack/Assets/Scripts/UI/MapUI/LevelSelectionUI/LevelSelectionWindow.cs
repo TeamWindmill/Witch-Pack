@@ -18,7 +18,7 @@ public class LevelSelectionWindow : UIElement
     public override void Show()
     {
         _levelConfig = GameManager.CurrentLevelConfig;
-
+        _partySelectionWindow.AutoAssignShamansFromRoster();
         _enemyPanel.Init(_levelConfig, _enemyPanelConfig);
         _rewardsPanel.Init(_levelConfig);
         _challengesPanel.Init(_levelConfig, _partySelectionWindow);
@@ -47,9 +47,9 @@ public class LevelSelectionWindow : UIElement
         GameManager.CurrentLevelConfig.SelectedShamans = _partySelectionWindow.ActiveShamanParty;
 
         base.Hide();
-
-        if (_levelConfig.BeforeDialog != null)
+        if (GameManager.SaveData.LevelSaves[GameManager.SaveData.CurrentNode.Index].State != NodeState.Completed)
         {
+            if (_levelConfig.BeforeDialog == null) return;
             DialogBox.Instance.SetDialogSequence(_levelConfig.BeforeDialog, () => GameManager.SceneHandler.LoadScene(SceneType.Game));
             DialogBox.Instance.Show();
         }
