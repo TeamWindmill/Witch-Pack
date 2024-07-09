@@ -32,15 +32,18 @@ public class PartySelectionWindow : UIElement
 
     public override void Refresh()
     {
-        _packPanel.Init(this);
-        _rosterPanel.Init(this,GameManager.SaveData.ShamanRoster);
+        _rosterPanel.Refresh();
     }
 
     public override void Hide()
     {
-        _rosterPanel.Hide();
-        _packPanel.Hide();
-        base.Hide();
+        if (SelectedMode)
+        {
+            ExitSelectMode();
+        }
+        // _rosterPanel.Hide();
+        // _packPanel.Hide();
+        // base.Hide();
     }
 
     public void EnterSelectMode(int index)
@@ -56,7 +59,7 @@ public class PartySelectionWindow : UIElement
     {
         SelectedMode = false;
         _backgroundAlpha.gameObject.SetActive(false);
-        _packPanel.UnselectAllIcons();
+        _packPanel.ToggleIconsAlpha(false);
         _rosterPanel.Hide();
     }
 
@@ -92,13 +95,6 @@ public class PartySelectionWindow : UIElement
 
     public void AutoAssignShamansFromRoster()
     {
-        var assignedShamans = 0;
-        foreach (var packIcon in _packPanel.PackIcons)
-        {
-            if (packIcon.Assigned) assignedShamans++;
-        }
-        if(assignedShamans > 0) return;
-        
         foreach (var icon in _packPanel.PackIcons)
         {
             if (!icon.Assigned)
@@ -129,14 +125,14 @@ public class PartySelectionWindow : UIElement
         _packPanel.FlashInRed();
     }
 
-    protected override void Update()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (SelectedMode && !UIManager.MouseOverUI)
-            {
-                ExitSelectMode();
-            }
-        }
-    }
+    // protected override void Update()
+    // {
+    //     if (Input.GetMouseButtonDown(0))
+    //     {
+    //         if (SelectedMode && !UIManager.MouseOverUI)
+    //         {
+    //             ExitSelectMode();
+    //         }
+    //     }
+    // }
 }

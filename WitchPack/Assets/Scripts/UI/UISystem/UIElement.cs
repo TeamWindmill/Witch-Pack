@@ -3,12 +3,13 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     //inherit from this class if it is a ui element
     public event Action<UIElement> OnMouseEnter;
     public event Action<UIElement> OnMouseExit;
     public RectTransform RectTransform => rectTransform;
+    public bool CloseOnClickOutside => closeOnClickOutside;
     public bool isMouseOver { get; private set; }
     public UIWindowManager WindowManager { get; private set; }
 
@@ -25,7 +26,10 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     [FoldoutGroup("UI Element")] [SerializeField, ShowIf(nameof(assignUIGroup))]
     protected bool isUIGroupManager;
-
+    
+    [FoldoutGroup("UI Element")] [SerializeField, ShowIf(nameof(isUIGroupManager))]
+    protected bool closeOnClickOutside;
+    
     [FoldoutGroup("UI Element")] [SerializeField, ShowIf(nameof(assignUIGroup))]
     protected UIGroup uiGroup;
 

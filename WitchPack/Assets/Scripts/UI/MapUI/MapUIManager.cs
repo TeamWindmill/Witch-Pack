@@ -3,12 +3,14 @@ using Sirenix.Utilities;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MapMenuBar : UIElement
+public class MapUIManager : UIWindowManager
 {
 
     [SerializeField] private Button[] _buttons;
     [SerializeField] private UIElement _upgradeScreen;
     [SerializeField] private UIElement _loreBookScreen;
+    [SerializeField] private LevelSelectionWindow _levelSelectionWindow;
+    [SerializeField] private PartySelectionWindow _partySelectionWindow;
     protected override void Awake()
     {
         base.Awake();
@@ -41,5 +43,17 @@ public class MapMenuBar : UIElement
         if(clickSound) SoundManager.PlayAudioClip(SoundEffectType.MenuClick);
         _buttons.ForEach(b => b.interactable = true);
         _buttons[index].interactable = false;
+    }
+
+    protected override void Update()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (!UIManager.MouseOverUI)
+            {
+                if(_partySelectionWindow.SelectedMode) _partySelectionWindow.Hide();
+                else _levelSelectionWindow.Hide();
+            }
+        }
     }
 }
