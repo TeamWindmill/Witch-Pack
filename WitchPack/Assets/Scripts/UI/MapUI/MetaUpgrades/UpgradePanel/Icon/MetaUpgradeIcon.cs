@@ -57,13 +57,6 @@ public class MetaUpgradeIcon<T> : ClickableUIElement
 
     protected override void OnClick(PointerEventData eventData)
     {
-        Debug.Log($"{_upgradeConfig.Name} Clicked");
-        base.OnClick(eventData);
-    }
-
-    protected override void OnHoldClick()
-    {
-        base.OnHoldClick();
         switch (UpgradeState)
         {
             case UpgradeState.Locked:
@@ -78,6 +71,7 @@ public class MetaUpgradeIcon<T> : ClickableUIElement
             case UpgradeState.Upgraded:
                 break;
         }
+        base.OnClick(eventData);
     }
 
     public void ChangeState(UpgradeState upgradeState)
