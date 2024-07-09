@@ -5,6 +5,7 @@ using UnityEngine;
 [Serializable]
 public struct LevelChallenge
 {
+    public int Index { get; set; }
     [SerializeField] private LevelChallengeType _challengeType;
     [SerializeField] private string _displayName;
     [SerializeField] private string[] _bonusesDescription;
