@@ -45,7 +45,7 @@ public class ShamanUIHandler : ClickableUIElement
         Show();
     }
 
-    private void OnCurrentChangeHealth(int hp)
+    private void OnCurrentChangeHealth(int hp,int maxHp)
     {
         float hpRatio = _shaman.Damageable.CurrentHp / (float)_shaman.Damageable.MaxHp;
         _redInjuryImage.fillAmount = 1 - hpRatio;

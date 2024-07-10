@@ -58,9 +58,9 @@ public class HP_Bar : MonoBehaviour
         _maxValue = max;
     }
 
-    public void SetBarValue(int value)
+    public void SetBarValue(int value,int maxValue)
     {
-        fillSprite.localScale = new Vector3(value / _maxValue, _originalScale.y, _originalScale.z);
+        fillSprite.localScale = new Vector3((float)value / maxValue, _originalScale.y, _originalScale.z);
     }
 
     public void SetBar(int value, int maxValue)
