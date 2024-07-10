@@ -81,6 +81,7 @@ public class Shaman : BaseUnit
         AutoCaster.CastTimeStartVFX += ShamanVisualHandler.EffectHandler.PlayEffect;
         AutoCaster.CastTimeEndVFX += ShamanVisualHandler.EffectHandler.DisableEffect;
         AutoCaster.CastTimeStart += ShamanCastSFX;
+        Stats[StatType.BaseRange].OnStatChange += EnemyTargeter.SetRadius;
 
         #endregion
 
@@ -286,7 +287,7 @@ public class Shaman : BaseUnit
         foreach (var powerStructure in LevelManager.Instance.CurrentLevel.PowerStructures)
         {
             powerStructure.ProximityRingsManager.ToggleAllSprites(false);
-            powerStructure.HideUI();
+            powerStructure.HideUI(true);
         }
     }
 

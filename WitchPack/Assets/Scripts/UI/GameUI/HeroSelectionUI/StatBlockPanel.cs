@@ -37,7 +37,7 @@ public class StatBlockPanel : UIElement
             }
         }
     }
-    public void UpdateStatBlocks(StatType shamanStatType, float newValue)
+    public void UpdateBonusStatBlocks(StatType shamanStatType, float newValue)
     {
         foreach (var statBlock in _statBlocks)
         {
