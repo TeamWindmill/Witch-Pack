@@ -8,6 +8,7 @@ public class LevelConfig : ScriptableObject
 {
     [BoxGroup("Level")] public int Number;
     [BoxGroup("Level")] public string Name;
+    [BoxGroup("Level")] public bool TestingLevel;
     [BoxGroup("Level")] public LevelHandler levelPrefab;
     [BoxGroup("Level")] public ShamanConfig[] shamansToAddAfterComplete;
     [BoxGroup("Level")] public bool ShowTutorial;

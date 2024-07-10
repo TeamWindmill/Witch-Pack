@@ -25,14 +25,14 @@ MonoBehaviour:
   _abilityPanelUpgrades:
   - Ability: {fileID: 11400000, guid: c2510545251b0be44938eba499e478f4, type: 2}
     LeftStatUpgrades:
-    - _valueName: +5
+    - _valueName: +40%
       _name: projectile speed
       _skillPointsCost: 1
       _notWorking: 0
       _stats:
       - _statType: 2
-        _statValue: 5
-        _factor: 0
+        _statValue: 0.4
+        _factor: 2
       _damageBoosts: []
       _abilitiesBehaviors: 
       _statusEffectUpgrades: []
@@ -103,13 +103,13 @@ MonoBehaviour:
       - {fileID: 11400000, guid: 48800fa2149d0b942a7df83b48b69c31, type: 2}
       - {fileID: 11400000, guid: 3881dc7b74790b7448a3ca17179d3b55, type: 2}
       - {fileID: 11400000, guid: 81793bfa9ec8f584987c2c0dd6fd9f4d, type: 2}
-    - _valueName: -0.25s
-      _name: cast time
-      _skillPointsCost: 1
+    - _valueName: -2s
+      _name: cooldown
+      _skillPointsCost: 2
       _notWorking: 0
       _stats:
-      - _statType: 4
-        _statValue: 0.25
+      - _statType: 1
+        _statValue: 2
         _factor: 1
       _damageBoosts: []
       _abilitiesBehaviors: 
@@ -208,14 +208,14 @@ MonoBehaviour:
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 566adf5104243da46a387aacf86fe5ac, type: 2}
     RightStatUpgrades:
-    - _valueName: -0.25s
-      _name: cast time
-      _skillPointsCost: 1
+    - _valueName: +10
+      _name: damage
+      _skillPointsCost: 2
       _notWorking: 0
       _stats:
-      - _statType: 4
-        _statValue: 0.25
-        _factor: 1
+      - _statType: 0
+        _statValue: 10
+        _factor: 0
       _damageBoosts: []
       _abilitiesBehaviors: 
       _statusEffectUpgrades: []
