@@ -286,7 +286,7 @@ public class Shaman : BaseUnit
         foreach (var powerStructure in LevelManager.Instance.CurrentLevel.PowerStructures)
         {
             powerStructure.ProximityRingsManager.ToggleAllSprites(false);
-            powerStructure.HideUI();
+            powerStructure.HideUI(true);
         }
     }
 

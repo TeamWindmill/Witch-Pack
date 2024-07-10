@@ -50,7 +50,7 @@ public class PowerStructure : MonoBehaviour
     {
         proximityRingsManager.ToggleAllSprites(false);
         if(ReferenceEquals(shadow,null) || ReferenceEquals(shadow.Shaman,null)) return;
-        HideUI();
+        HideUI(true);
     }
 
     private void OnShamanRingEnter(int ringId, Shaman shaman)
@@ -115,7 +115,7 @@ public class PowerStructure : MonoBehaviour
             if (ringId == proximityRingsManager.RingHandlers.Length - 1)
             {
                 proximityRingsManager.ToggleRingSprite(ringId, false);
-                HideUI();
+                HideUI(false);
                 return;
             }
             proximityRingsManager.ToggleRingSprite(ringId + 1,true);
@@ -123,7 +123,8 @@ public class PowerStructure : MonoBehaviour
         }
         else
         {
-            HideUI();
+            UpdateUI(shadow);
+            HideUI(false);
         }
     }
     public void OnShamanHoverEnter(Shaman shaman, int ringId)
@@ -136,9 +137,14 @@ public class PowerStructure : MonoBehaviour
         StatEffectPopupManager.ShowPopupWindows(GetInstanceID(), shadow.transform, _statType.ToString(), CalculateStatValueForPowerStructureUIByShadow(), _config.ShowPercent, GetRingColorAlpha(ringId));
     }
 
-    public void HideUI()
+    public void UpdateUI(Shadow shadow)
     {
-        HeroSelectionUI.Instance.StatBlockPanel.HideStatBlocksBonus();
+        HeroSelectionUI.Instance.StatBlockPanel.UpdateBonusStatBlocks(_statType,CalculateStatValueForSelectionUI(shadow,shadow.Shaman));
+    }
+
+    public void HideUI(bool hideSelection)
+    {
+        if(hideSelection) HeroSelectionUI.Instance.StatBlockPanel.HideStatBlocksBonus();
         StatEffectPopupManager.HidePopupWindows(GetInstanceID());
     }
 
