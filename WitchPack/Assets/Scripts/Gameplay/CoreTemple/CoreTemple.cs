@@ -37,7 +37,7 @@ public class CoreTemple : BaseEntity, IDamagable
     {
         SoundManager.PlayAudioClip(SoundEffectType.CoreGetHit);
         //ScreenCracksHandler.Instance.StartCracksAnimation(damage);
-        hpBar.SetBarValue(_damageable);
+        hpBar.SetBar(_damageable);
         
         if (_damageable.CurrentHp <= _damageable.MaxHp * 0.33)
         {
@@ -71,7 +71,7 @@ public class CoreTemple : BaseEntity, IDamagable
 
     public void Heal(Damageable damageable,int amount)
     {
-        hpBar.SetBarValue(_damageable);
+        hpBar.SetBar(_damageable);
         //ScreenCracksHandler.Instance.SetStartValue();
     }
 

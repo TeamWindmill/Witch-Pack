@@ -14,7 +14,6 @@ public class StatBar : UIElement
     [SerializeField] private Image _statBarFill;
 
     private StatBarData _data;
-
     public void Init(StatBarData statBarData)
     {
         _data = statBarData;
@@ -24,11 +23,26 @@ public class StatBar : UIElement
         _statBarFill.fillAmount = (float)statBarData.Value / statBarData.MaxValue;
         Show();
     }
-     public void UpdateStatbar(int currentEnergy, int maxEnergy)
+    public void UpdateStatbar(int currentValue,int maxValue)
+    {
+        _data.Value = currentValue;
+        _data.MaxValue = maxValue;
+        _statBarValue.text = currentValue.ToString();
+        _statBarMaxValue.text = maxValue.ToString();
+        _statBarFill.fillAmount = (float)currentValue / maxValue;
+
+    }
+     public void UpdateStatbarValue(int currentValue)
      {
-         _statBarMaxValue.text = maxEnergy.ToString();
-         _statBarValue.text = currentEnergy.ToString();
-         _statBarFill.fillAmount = (float)currentEnergy / maxEnergy;
+         _data.Value = currentValue;
+         _statBarValue.text = currentValue.ToString();
+         _statBarFill.fillAmount = (float)currentValue / _data.MaxValue;
+     }
+     public void UpdateStatbarMaxValue(int maxValue)
+     {
+         _data.MaxValue = maxValue;
+         _statBarMaxValue.text = maxValue.ToString();
+         _statBarFill.fillAmount = (float)_data.Value / maxValue;
      }
 }
 
