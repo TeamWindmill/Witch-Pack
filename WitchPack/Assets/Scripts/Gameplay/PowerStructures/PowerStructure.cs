@@ -18,7 +18,7 @@ public class PowerStructure : MonoBehaviour
     [Space] [SerializeField] private bool _testing;
     
     private StatType _statType;
-    private Modifier _statModifier;
+    private Factor _statFactor;
     private readonly Dictionary<int, float> _activeShadowRingIds = new();
 
     
@@ -35,7 +35,7 @@ public class PowerStructure : MonoBehaviour
         _powerStructureSpriteRenderer.sprite = _config.PowerStructureSprite;
         _powerStructureMask.sprite = _config.PowerStructureSprite;
         _statType = _config.statEffect.StatType;
-        _statModifier = _config.statEffect.Modifier;
+        _statFactor = _config.statEffect.Factor;
         foreach (var ring in proximityRingsManager.RingHandlers)
         {
             ring.OnShamanEnter += OnShamanRingEnter;
@@ -57,17 +57,16 @@ public class PowerStructure : MonoBehaviour
     {
         //if (_testing) Debug.Log($"shaman entered ring {ringId}");
 
-        var statAdditionValue = GetStatEffectValue(ringId, shaman.Stats);
-        shaman.Stats.AddModifierToStat(_statType,statAdditionValue);
+        var statAdditionValue = _config.statEffect.RingValues[ringId];
+        shaman.Stats[_statType].AddStatValue(_statFactor,statAdditionValue);
         shaman.ActivePowerStructures[this] = ringId;
     }
     private void OnShamanRingExit(int ringId, Shaman shaman)
     {
         //if (_testing) Debug.Log($"shaman exited ring {ringId}");
         
-        var statAdditionValue = GetStatEffectValue(ringId, shaman.Stats);
-        shaman.Stats.AddModifierToStat(_statType,-statAdditionValue);
-
+        var statAdditionValue = _config.statEffect.RingValues[ringId];
+        shaman.Stats[_statType].RemoveStatValue(_statFactor,statAdditionValue);
         if (ringId < proximityRingsManager.RingHandlers.Length - 1) shaman.ActivePowerStructures[this] = ringId + 1;
         else shaman.ActivePowerStructures.Remove(this);
     }
@@ -95,7 +94,7 @@ public class PowerStructure : MonoBehaviour
         
         _activeShadowRingIds.Add(ringId,_config.statEffect.RingValues[ringId]);
 
-        var statAdditionValue = GetStatEffectValue(ringId, shadow.Stats);
+        var statAdditionValue = _config.statEffect.RingValues[ringId];
         shadow.SetPSStatValue(_statType,statAdditionValue);
         
         ShowUI(shadow,ringId);
@@ -107,7 +106,7 @@ public class PowerStructure : MonoBehaviour
 
         //if (_testing) Debug.Log($"Shadow Exit: {ringId}");
 
-        var statAdditionValue = GetStatEffectValue(ringId, shadow.Stats);
+        var statAdditionValue = _config.statEffect.RingValues[ringId];
         shadow.SetPSStatValue(_statType,-statAdditionValue);
         
         proximityRingsManager.ToggleAllSprites(false);
@@ -133,7 +132,7 @@ public class PowerStructure : MonoBehaviour
     }
     public void ShowUI(Shadow shadow,int ringId)
     {
-        HeroSelectionUI.Instance.StatBlockPanel.UpdateStatBlocks(_statType, CalculateStatValueForSelectionUI(shadow,shadow.Shaman));
+        HeroSelectionUI.Instance.StatBlockPanel.UpdateBonusStatBlocks(_statType, CalculateStatValueForSelectionUI(shadow,shadow.Shaman));
         StatEffectPopupManager.ShowPopupWindows(GetInstanceID(), shadow.transform, _statType.ToString(), CalculateStatValueForPowerStructureUIByShadow(), _config.ShowPercent, GetRingColorAlpha(ringId));
     }
 
@@ -143,65 +142,51 @@ public class PowerStructure : MonoBehaviour
         StatEffectPopupManager.HidePopupWindows(GetInstanceID());
     }
 
-    private float GetStatEffectValue(int ringId, UnitStats stats)
-    {
-        var value = stats[_statType].Value;
-        var modifier = _config.statEffect.RingValues[ringId];
-        
-        switch (_statModifier)
-        {
-            case Modifier.Addition:
-                return modifier;
-            case Modifier.Multiplication:
-                var modifiedValue = value * modifier;
-                return modifiedValue;
-        }
-        return 0;
-    }
-
-    private int CalculateStatValueForPowerStructureUIByShadow()
+    private float CalculateStatValueForPowerStructureUIByShadow()
     {
         float sumRingValues = 0;
         foreach (var ring in _activeShadowRingIds)
         {
             sumRingValues += ring.Value;
         }
-        switch (_statModifier)
+
+        switch (_statFactor)
         {
-            case Modifier.Addition:
-                return Mathf.RoundToInt(sumRingValues);
-            case Modifier.Multiplication:
+            case Factor.Add:
+                return sumRingValues;
+            case Factor.Multiply:
                 float statValue = sumRingValues * 100;
                 return Mathf.RoundToInt(statValue);
         }
         return 0;
     }
-    private int CalculateStatValueForPowerStructureUI(int ringId)
+    private float CalculateStatValueForPowerStructureUI(int ringId)
     {
         float sumRingValues = 0;
         for (int i = proximityRingsManager.RingHandlers.Length - 1; i >= ringId; i--)
         {
             sumRingValues += _config.statEffect.RingValues[i];
         }
-        switch (_statModifier)
+
+        switch (_statFactor)
         {
-            case Modifier.Addition:
-                return Mathf.RoundToInt(sumRingValues);
-            case Modifier.Multiplication:
+            case Factor.Add:
+                return sumRingValues;
+            case Factor.Multiply:
                 float statValue = sumRingValues * 100;
                 return Mathf.RoundToInt(statValue);
         }
         return 0;
     }
 
-    private int CalculateStatValueForSelectionUI(Shadow shadow, Shaman shaman)
+    private float CalculateStatValueForSelectionUI(Shadow shadow, Shaman shaman)
     {
         var shamanStat = shaman.Stats.GetStatValue(_statType) - shaman.Stats.GetBaseStatValue(_statType);
         float shadowStat = 0;
         if (shadow.CurrentStatPSEffects.TryGetValue(_statType, out var value))
             shadowStat = value;
         
-        return Mathf.RoundToInt(shadowStat - shamanStat);
+        return shadowStat - shamanStat;
     }
 
     private Color GetRingColorAlpha(int ringId)

@@ -26,12 +26,6 @@ public class PowerStructureConfig : ScriptableObject
 public struct PowerStructureStatEffect
 {
     public StatType StatType;
-    public Modifier Modifier;
+    [Tooltip("only add and multiply working on Power Structure")]public Factor Factor;
     public float[] RingValues;
-}
-
-public enum Modifier
-{
-    Addition,
-    Multiplication
 }
