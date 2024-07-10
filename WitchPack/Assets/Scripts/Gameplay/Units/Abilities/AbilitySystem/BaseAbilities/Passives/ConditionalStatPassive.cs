@@ -16,9 +16,9 @@ public class ConditionalStatPassive : StatPassive
     {
         if (statusEffect.StatusEffectVisual == _config.ConditionalStatusEffect.StatusEffectVisual)
         {
-            foreach (StatValue increase in _config.StatIncreases)
+            foreach (var statIncrease in PassiveAbilityStats)
             {
-                Owner.Stats.AddModifierToStat(increase.StatType, increase.Value);
+                Owner.Stats[statIncrease.StatType].AddModifier(statIncrease.Value);
             }
         }
     }
@@ -26,9 +26,9 @@ public class ConditionalStatPassive : StatPassive
     {
         if (statusEffect.StatusEffectVisual == _config.ConditionalStatusEffect.StatusEffectVisual)
         {
-            foreach (StatValue increase in _config.StatIncreases)
+            foreach (var statIncrease in PassiveAbilityStats)
             {
-                Owner.Stats.AddModifierToStat(increase.StatType, -increase.Value);
+                Owner.Stats[statIncrease.StatType].RemoveModifier(statIncrease.Value);
             }
         }
     }
