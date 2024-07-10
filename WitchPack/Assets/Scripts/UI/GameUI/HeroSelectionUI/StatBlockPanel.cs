@@ -28,7 +28,7 @@ public class StatBlockPanel : UIElement
             {
                 case StatBarType.Health:
                     statBar.Init(new StatBarData("Health", _shaman.Damageable.CurrentHp, _shaman.Damageable.MaxHp));
-                    _shaman.Damageable.OnHealthChange += statBar.UpdateStatbar;
+                    _shaman.Damageable.OnHealthChange += statBar.UpdateStatbarValue;
                     break;
                 case StatBarType.Energy:
                     statBar.Init(new StatBarData("Energy", _shaman.EnergyHandler.CurrentEnergy, _shaman.EnergyHandler.MaxEnergyToNextLevel));
@@ -65,7 +65,7 @@ public class StatBlockPanel : UIElement
             switch (statBar.StatBarType)
             {
                 case StatBarType.Health:
-                    _shaman.Damageable.OnHealthChange -= statBar.UpdateStatbar;
+                    _shaman.Damageable.OnHealthChange -= statBar.UpdateStatbarValue;
                     break;
                 case StatBarType.Energy:
                     _shaman.EnergyHandler.OnShamanGainEnergy -= statBar.UpdateStatbar;
