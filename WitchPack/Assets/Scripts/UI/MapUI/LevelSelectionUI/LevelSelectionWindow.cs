@@ -45,11 +45,15 @@ public class LevelSelectionWindow : UIElement
         }
 
         GameManager.CurrentLevelConfig.SelectedShamans = _partySelectionWindow.ActiveShamanParty;
-
         base.Hide();
-        if (GameManager.SaveData.LevelSaves[GameManager.SaveData.CurrentNode.Index].State != NodeState.Completed)
+        if (_levelConfig.TestingLevel)
         {
-            if (_levelConfig.BeforeDialog == null) return;
+            GameManager.SceneHandler.LoadScene(SceneType.Game);
+            return;
+        }
+
+        if (GameManager.SaveData.LevelSaves[GameManager.SaveData.CurrentNode.Index].State != NodeState.Completed && _levelConfig.BeforeDialog != null)
+        {
             DialogBox.Instance.SetDialogSequence(_levelConfig.BeforeDialog, () => GameManager.SceneHandler.LoadScene(SceneType.Game));
             DialogBox.Instance.Show();
         }
