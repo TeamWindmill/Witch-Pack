@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using VTabs.Libs;
 
 public class StatBlockUI : UIElement
 {
@@ -92,15 +93,15 @@ public class StatBlockUI : UIElement
         string bonusValueText;
         switch (bonusValue)
         {
-            case > 0:
-                bonusValueText = ColorLogHelper.SetColorToString($" (+{bonusValue})", _statBonusAdditionColor);;
+            case > 0.1f:
+                bonusValueText = ColorLogHelper.SetColorToString($" (+{bonusValue.ToString("F1")})", _statBonusAdditionColor);;
                 _statValue.text =  baseValueText + modifierText + bonusValueText;
                 break;
-            case < 0:
-                bonusValueText = ColorLogHelper.SetColorToString($" (-{-bonusValue})", _statBonusReductionColor);;
+            case < -0.1f:
+                bonusValueText = ColorLogHelper.SetColorToString($" (-{bonusValue.Abs().ToString("F1")})", _statBonusReductionColor);;
                 _statValue.text = baseValueText + modifierText + bonusValueText;
                 break;
-            case 0:
+            default:
                 _statValue.text = baseValueText + modifierText;
                 break;
         }
