@@ -1,4 +1,4 @@
-public class AffectedByUnitsStatPassive : PassiveAbility
+public class AffectedByUnitsStatPassive : StatPassive
 {
     private AffectedByUnitsStatPassiveSO _config;
     public AffectedByUnitsStatPassive(AffectedByUnitsStatPassiveSO config, BaseUnit owner) : base(config, owner)
@@ -48,7 +48,7 @@ public class AffectedByUnitsStatPassive : PassiveAbility
 
     private void ChangeStat(bool addition)
     {
-        foreach (var stat in _config.StatsIncrease)
+        foreach (var stat in PassiveAbilityStats)
         {
             if (addition) Owner.Stats.AddModifierToStat(stat.StatType, stat.Value);
             else

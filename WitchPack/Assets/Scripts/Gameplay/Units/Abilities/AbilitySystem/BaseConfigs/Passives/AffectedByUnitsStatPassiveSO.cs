@@ -2,11 +2,8 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "AffectedByUnitsStatPassive", menuName = "Ability/Passive/AffectedByUnitsStatPassive")]
-public class AffectedByUnitsStatPassiveSO : PassiveSO
+public class AffectedByUnitsStatPassiveSO : StatPassiveSO
 {
-    [Header("Affected By Units Stat Passive")] [SerializeField]
-    private StatValue[] _statsIncrease;
-
     [SerializeField] private bool _affectedByEnemies;
 
     [SerializeField] [ShowIf(nameof(_affectedByEnemies))]
@@ -22,8 +19,6 @@ public class AffectedByUnitsStatPassiveSO : PassiveSO
 
     [SerializeField] [ShowIf(nameof(_affectedByShamansWithStatusEffect))]
     private StatusEffectVisual _shamanStatusEffect;
-
-    public StatValue[] StatsIncrease => _statsIncrease;
     public bool AffectedByEnemies => _affectedByEnemies;
 
     public bool AffectedByEnemiesWithStatusEffect => _affectedByEnemiesWithStatusEffect;

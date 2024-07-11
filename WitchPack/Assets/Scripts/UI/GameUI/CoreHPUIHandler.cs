@@ -8,7 +8,7 @@
         _coreTemple.Damageable.OnHealthChange += UpdateUI;
     }
 
-    private void UpdateUI(int hp)
+    private void UpdateUI(int hp,int maxHp)
     {
         UpdateUIData(_coreTemple.Damageable.CurrentHp);
     }
