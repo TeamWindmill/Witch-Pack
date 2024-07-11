@@ -3,20 +3,26 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public abstract class ClickableUIElement : UIElement, IPointerClickHandler, IPointerDownHandler,IPointerUpHandler
+public abstract class ClickableUIElement : UIElement, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler
 {
     //inherit from this class for clickable ui element
     public event Action<PointerEventData> OnClickEvent;
     public event Action OnHoldClickEvent;
     public event Action OnDoubleClickEvent;
 
-    [FoldoutGroup("UI Element")][SerializeField] private bool enableDoubleClick;
+    [BoxGroup("UI Element/Clickable")] [SerializeField]
+    private bool enableSoundOnClick = true;
+    
+    [BoxGroup("UI Element/Clickable")] [SerializeField]
+    private bool enableDoubleClick;
 
-    [FoldoutGroup("UI Element")][SerializeField, ShowIf(nameof(enableDoubleClick))]
+    [BoxGroup("UI Element/Clickable")] [SerializeField, ShowIf(nameof(enableDoubleClick))]
     private float doubleClickSpeed = 0.5f;
-    [FoldoutGroup("UI Element")][SerializeField] private bool enableHoldClick;
 
-    [FoldoutGroup("UI Element")][SerializeField, ShowIf(nameof(enableHoldClick))]
+    [BoxGroup("UI Element/Clickable")] [SerializeField]
+    private bool enableHoldClick;
+
+    [BoxGroup("UI Element/Clickable")] [SerializeField, ShowIf(nameof(enableHoldClick))]
     private float holdClickSpeed = 1.5f;
 
     private int _clickNum;
@@ -49,7 +55,7 @@ public abstract class ClickableUIElement : UIElement, IPointerClickHandler, IPoi
 
     private void CheckHoldClick()
     {
-        if (!enableHoldClick || _holdClickHappened)return;
+        if (!enableHoldClick || _holdClickHappened) return;
         if (_pointerDown)
         {
             HoldClickTimer += Time.deltaTime;
@@ -81,9 +87,9 @@ public abstract class ClickableUIElement : UIElement, IPointerClickHandler, IPoi
     protected virtual void OnClick(PointerEventData eventData)
     {
         OnClickEvent?.Invoke(eventData);
-
+        if(enableSoundOnClick) SoundManager.PlayAudioClip(SoundEffectType.MenuClick);
         if (!enableDoubleClick) return;
-        
+
         _clickNum++;
         DoubleClickTimer = doubleClickSpeed;
     }
@@ -94,6 +100,7 @@ public abstract class ClickableUIElement : UIElement, IPointerClickHandler, IPoi
         DoubleClickTimer = 0;
         _clickNum = 0;
     }
+
     protected virtual void OnHoldClick()
     {
         OnHoldClickEvent?.Invoke();
@@ -101,10 +108,11 @@ public abstract class ClickableUIElement : UIElement, IPointerClickHandler, IPoi
         HoldClickTimer = 0;
     }
 
-    protected virtual void OnDisable()
+    protected override void OnDisable()
     {
         _clickNum = 0;
         DoubleClickTimer = 0;
+        base.OnDisable();
     }
 
     public void OnPointerDown(PointerEventData eventData)

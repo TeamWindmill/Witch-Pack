@@ -8,34 +8,29 @@ public class BaseUnit : BaseEntity , IDamagable
 
     public bool Initialized { get; protected set; }
     public bool IsDead { get; private set; }
-    public BaseUnitConfig UnitConfig => _unitConfig;
+    public AbilityHandler AbilityHandler { get; protected set; }
+    public BaseUnitConfig UnitConfig { get; private set; }
+    public Damageable Damageable { get; private set; }
+    public DamageDealer DamageDealer { get; private set; }
+    public Affector Affector { get; private set; }
+    public Effectable Effectable { get; private set; }
+    public UnitTargetHelper<Shaman> ShamanTargetHelper { get; private set; }
+    public UnitTargetHelper<Enemy> EnemyTargetHelper { get; private set; }
+    public List<ITimer> UnitTimers { get; private set; }
     public HP_Bar HpBar => hpBar;
-    public Damageable Damageable => damageable;
-    public DamageDealer DamageDealer => damageDealer;
-    public Affector Affector => affector;
-    public Effectable Effectable => effectable;
     public virtual Stats BaseStats => null;
     public UnitStats Stats => stats;
-    public AutoAttackCaster AutoAttackCaster => autoAttackCaster;
     public UnitAutoCaster AutoCaster => _autoCaster;
     public UnitMovement Movement => movement;
-    public List<AbilityCaster> CastingHandlers => castingHandlers;
     public Transform CastPos => _castPos;
     public EnemyTargeter EnemyTargeter => enemyTargeter;
     public ShamanTargeter ShamanTargeter => shamanTargeter;
-    public UnitTargetHelper<Shaman> ShamanTargetHelper => shamanTargetHelper;
-    public UnitTargetHelper<Enemy> EnemyTargetHelper => enemyTargetHelper;
-    public List<ITimer> UnitTimers => unitTimers;
 
     #endregion
 
     #region Serialized
     
     [SerializeField] private UnitType unitType;
-    [TabGroup("Combat")] private Damageable damageable;
-    [TabGroup("Combat")] private DamageDealer damageDealer;
-    [TabGroup("Combat")] private Affector affector;
-    [TabGroup("Combat")] private Effectable effectable;
     [SerializeField, TabGroup("Combat")] private UnitAutoCaster _autoCaster;
     [SerializeField, TabGroup("Combat")] private BoxCollider2D boxCollider;
     [SerializeField, TabGroup("Combat")] private GroundCollider groundCollider;
@@ -48,48 +43,34 @@ public class BaseUnit : BaseEntity , IDamagable
     [SerializeField, TabGroup("Targeter")] private ShamanTargeter shamanTargeter;
     
     #endregion
-
-    #region Private
-
-    protected List<AbilityCaster> castingHandlers = new();
-    private UnitTargetHelper<Shaman> shamanTargetHelper;
-    private UnitTargetHelper<Enemy> enemyTargetHelper;
-    private AutoAttackCaster autoAttackCaster;
-    private OffensiveAbilitySO _autoAttack;
-    private List<ITimer> unitTimers;
-    private BaseUnitConfig _unitConfig;
-
-    #endregion
     
     
     public virtual void Init(BaseUnitConfig givenConfig)
     {
-        _unitConfig = givenConfig;
-        _autoAttack = givenConfig.AutoAttack;
+        UnitConfig = givenConfig;
         stats = new UnitStats(BaseStats);
-        damageDealer = new DamageDealer(this, givenConfig.AutoAttack);
-        affector = new Affector(this);
-        effectable = new Effectable(this);
-        autoAttackCaster = new AutoAttackCaster(this, AbilityFactory.CreateAbility(givenConfig.AutoAttack,this) as OffensiveAbility);
-        damageable = new Damageable(this);
-        shamanTargetHelper = new UnitTargetHelper<Shaman>(ShamanTargeter, this);
-        enemyTargetHelper = new UnitTargetHelper<Enemy>(EnemyTargeter, this);
-        unitTimers = new List<ITimer>();
+        DamageDealer = new DamageDealer(this, givenConfig.AutoAttack);
+        Affector = new Affector(this);
+        Effectable = new Effectable(this);
+        Damageable = new Damageable(this);
+        ShamanTargetHelper = new UnitTargetHelper<Shaman>(ShamanTargeter, this);
+        EnemyTargetHelper = new UnitTargetHelper<Enemy>(EnemyTargeter, this);
+        UnitTimers = new List<ITimer>();
         Movement.SetUp(this);
         groundCollider.Init(this);
         
         ToggleCollider(true);
-        damageable.SetRegenerationTimer();
+        Damageable.SetRegenerationTimer();
         if (hasHPBar)
         {
             hpBar.gameObject.SetActive(true);
-            hpBar.Init(damageable.MaxHp, unitType);
-            damageable.OnHealthChange += hpBar.SetBarValue;
+            hpBar.Init(Damageable.MaxHp, unitType);
+            Damageable.OnHealthChange += hpBar.SetBarValue;
         }
 
-        damageable.OnTakeDamage += LevelManager.Instance.PopupsManager.SpawnDamagePopup;
-        damageable.OnHeal += LevelManager.Instance.PopupsManager.SpawnHealPopup;
-        effectable.OnAffected += LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
+        Damageable.OnTakeDamage += LevelManager.Instance.PopupsManager.SpawnDamagePopup;
+        Damageable.OnHeal += LevelManager.Instance.PopupsManager.SpawnHealPopup;
+        Effectable.OnAffected += LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
         Stats.OnStatChanged += EnemyTargeter.AddRadius;
         Stats.OnStatChanged += movement.OnSpeedChange;
 
@@ -97,16 +78,16 @@ public class BaseUnit : BaseEntity , IDamagable
     protected virtual void OnDisable() //unsubscribe to events
     {
         if (ReferenceEquals(LevelManager.Instance, null)) return;
-        if (ReferenceEquals(damageable, null)) return;
-        if (ReferenceEquals(effectable, null)) return;
-        damageable.OnTakeDamage -= LevelManager.Instance.PopupsManager.SpawnDamagePopup;
-        damageable.OnHeal -= LevelManager.Instance.PopupsManager.SpawnHealPopup;
-        effectable.OnAffected -= LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
-        if (hasHPBar) damageable.OnHealthChange -= hpBar.SetBarValue;
+        if (ReferenceEquals(Damageable, null)) return;
+        if (ReferenceEquals(Effectable, null)) return;
+        Damageable.OnTakeDamage -= LevelManager.Instance.PopupsManager.SpawnDamagePopup;
+        Damageable.OnHeal -= LevelManager.Instance.PopupsManager.SpawnHealPopup;
+        Effectable.OnAffected -= LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
+        if (hasHPBar) Damageable.OnHealthChange -= hpBar.SetBarValue;
         Stats.OnStatChanged -= EnemyTargeter.AddRadius;
         Stats.OnStatChanged -= movement.OnSpeedChange;
     }
-    public void AddStatUpgrades(StatValueUpgradeConfig[] statUpgrades)
+    public void AddStatUpgrades(StatUpgrade[] statUpgrades)
     {
         foreach (var statUpgrade in statUpgrades)
         {
@@ -124,7 +105,7 @@ public class BaseUnit : BaseEntity , IDamagable
         IsDead = true;
         Movement.ToggleMovement(false);
         ToggleCollider(false);
-        damageable.ToggleHitable(false);
+        Damageable.ToggleHitable(false);
         _autoCaster.DisableCaster();
     }
 

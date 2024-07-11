@@ -24,6 +24,7 @@ public class RosterIcon : ClickableUIElement
     protected override void OnClick(PointerEventData eventData)
     {
         OnIconClick?.Invoke(ShamanSaveData,Available);
+        base.OnClick(eventData);
     }
 
     public void ToggleAvailable(bool state)

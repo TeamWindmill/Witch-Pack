@@ -14,11 +14,11 @@
             switch (_config.EventToCount)
             {
                 case EventToCount.OnHit:
-                    eventCounter = new AttritionCounter(Owner, Owner.AutoAttackCaster.Ability, ref Owner.DamageDealer.OnHitTarget, _config.MaxStacks);
+                    eventCounter = new AttritionCounter(Owner, Owner.AbilityHandler.AutoAttackCaster.Ability, ref Owner.DamageDealer.OnHitTarget, _config.MaxStacks);
                     eventCounter.OnCountIncrement += IncreaseAADamage;
                     break;
                 case EventToCount.OnKill:
-                    eventCounter = new AttritionCounter(Owner, Owner.AutoAttackCaster.Ability, ref Owner.DamageDealer.OnKill, _config.MaxStacks);
+                    eventCounter = new AttritionCounter(Owner, Owner.AbilityHandler.AutoAttackCaster.Ability, ref Owner.DamageDealer.OnKill, _config.MaxStacks);
                     eventCounter.OnCountIncrement += IncreaseAADamage;
                     break;
             }

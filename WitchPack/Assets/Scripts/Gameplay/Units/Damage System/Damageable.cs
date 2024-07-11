@@ -41,6 +41,7 @@ public class Damageable
     {
         hitable = true;
         currentHp = MaxHp;
+        OnHealthChange?.Invoke(currentHp,MaxHp);
     }
 
     public void GetHit(DamageDealer dealer, CastingAbility ability)

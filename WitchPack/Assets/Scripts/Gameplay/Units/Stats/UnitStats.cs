@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Unity.Collections;
+using UnityEngine;
 
 [System.Serializable]
 public class UnitStats
@@ -13,7 +15,6 @@ public class UnitStats
     public Action OnHpRegenChange;
 
     public Dictionary<StatType, Stat> Stats = new();
-
     public UnitStats(Stats baseStats)
     {
         _baseStats = baseStats;
@@ -65,17 +66,5 @@ public class UnitStats
     public void AddMultiplierToStat(StatType statType, float decimalValue)
     {
         Stats[statType].AddMultiplier(decimalValue);
-    }
-}
-
-public struct HealData
-{
-    float healAmount;
-    AbilitySO abilitySoRef;
-
-    public HealData(float healAmount, AbilitySO abilitySoRef)
-    {
-        this.healAmount = healAmount;
-        this.abilitySoRef = abilitySoRef;
     }
 }

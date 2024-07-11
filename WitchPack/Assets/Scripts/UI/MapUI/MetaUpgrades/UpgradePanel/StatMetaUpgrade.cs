@@ -10,14 +10,14 @@ public class StatMetaUpgrade : UIElement
     
     [SerializeField] private StatMetaUpgradeIcon[] _statUpgradeIcons;
     [SerializeField]private ShamanUpgradePanel _shamanUpgradePanel;
-    private List<StatUpgradeConfig> _statUpgradeConfigs;
+    private List<StatMetaUpgradeConfig> _statUpgradeConfigs;
     
     private void Start()
     {
         _statUpgradeIcons.ForEach(i => i.OnUpgrade += _shamanUpgradePanel.AddUpgradeToShaman);
     }
 
-    public void Init(List<StatUpgradeConfig> statUpgradeConfigs)
+    public void Init(List<StatMetaUpgradeConfig> statUpgradeConfigs)
     {
         _statUpgradeConfigs = statUpgradeConfigs;
         _abilityName.text = _title;

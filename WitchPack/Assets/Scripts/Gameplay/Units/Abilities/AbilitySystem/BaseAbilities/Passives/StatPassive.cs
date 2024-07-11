@@ -25,11 +25,11 @@ public class StatPassive : PassiveAbility
         }
     }
 
-    public void AddPassiveStatUpgrade(StatUpgradeConfig statUpgradeConfig)
+    public void AddPassiveStatUpgrade(StatMetaUpgradeConfig statMetaUpgradeConfig)
     {
         foreach (var stat in PassiveAbilityStats)
         {
-            foreach (var statConfig in statUpgradeConfig.Stats)
+            foreach (var statConfig in statMetaUpgradeConfig.Stats)
             {
                 if (stat.StatType == statConfig.StatType)
                 {

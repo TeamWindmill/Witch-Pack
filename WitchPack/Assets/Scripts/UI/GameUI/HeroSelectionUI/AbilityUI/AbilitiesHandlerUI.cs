@@ -15,7 +15,7 @@ public class AbilitiesHandlerUI : MonoBehaviour
         abilityUpgradePanelUI.SetShaman(shaman);
         abilityUpgradePanelUI.OnAbilityUpgrade += OnAbilityUpgrade;
         shaman.EnergyHandler.OnShamanLevelUp += OnShamanLevelUp;
-        var rootAbilities = shaman.RootAbilities;
+        var rootAbilities = shaman.ShamanAbilityHandler.RootAbilities;
         foreach (var uiBlock in abilityUIButtons)
         {
             uiBlock.Hide();
@@ -25,8 +25,8 @@ public class AbilitiesHandlerUI : MonoBehaviour
         foreach (var rootAbility in rootAbilities)
         {
             var uiButton = GetAvailableButton();
-            var activeAbility = shaman.GetActiveAbilityFromRoot(rootAbility);
-            var caster = shaman.GetCasterFromAbility(activeAbility);
+            var activeAbility = shaman.ShamanAbilityHandler.GetActiveAbilityFromRoot(rootAbility);
+            var caster = shaman.ShamanAbilityHandler.GetCasterFromAbility(activeAbility);
             uiButton.Init(rootAbility, activeAbility, caster, CheckAbilityUpgradable(shaman,activeAbility));
             uiButton.OnAbilityClick += OpenUpgradePanel;
         }
@@ -83,11 +83,11 @@ public class AbilitiesHandlerUI : MonoBehaviour
         {
             uiButton.Hide();
         }
-        foreach (var rootAbility in _shaman.RootAbilities)
+        foreach (var rootAbility in _shaman.ShamanAbilityHandler.RootAbilities)
         {
             var uiButton = GetAvailableButton();
-            var activeAbility = _shaman.GetActiveAbilityFromRoot(rootAbility);
-            var caster = _shaman.GetCasterFromAbility(activeAbility);
+            var activeAbility = _shaman.ShamanAbilityHandler.GetActiveAbilityFromRoot(rootAbility);
+            var caster = _shaman.ShamanAbilityHandler.GetCasterFromAbility(activeAbility);
             uiButton.Init(rootAbility, activeAbility, caster, CheckAbilityUpgradable(_shaman,activeAbility));
             uiButton.OnAbilityClick += OpenUpgradePanel;
         }

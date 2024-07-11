@@ -43,16 +43,16 @@ public abstract class CastingAbility : Ability
         }
     }
 
-    public override void AddStatUpgrade(StatUpgradeConfig statUpgradeConfig)
+    public override void AddStatUpgrade(StatMetaUpgradeConfig statMetaUpgradeConfig)
     {
-        base.AddStatUpgrade(statUpgradeConfig);
+        base.AddStatUpgrade(statMetaUpgradeConfig);
         
         //adding status effect upgrades
-        if(statUpgradeConfig.StatusEffectUpgrades.Length <= 0) return;
+        if(statMetaUpgradeConfig.StatusEffectUpgrades.Length <= 0) return;
         
         foreach (var statusEffect in StatusEffects)
         {
-            foreach (var statusEffectUpgrade in statUpgradeConfig.StatusEffectUpgrades)
+            foreach (var statusEffectUpgrade in statMetaUpgradeConfig.StatusEffectUpgrades)
             {
                 if (statusEffect.StatTypeAffected == statusEffectUpgrade.StatType && statusEffect.Process == statusEffectUpgrade.Process)
                 {

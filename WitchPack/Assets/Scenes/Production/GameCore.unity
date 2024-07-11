@@ -321,7 +321,7 @@ MonoBehaviour:
   enviromentHolder: {fileID: 1979432458}
   shamanHolder: {fileID: 1334703279}
   shamanPrefab: {fileID: 6647370173802701621, guid: 9ee164562b2cc7141b0b3a5e39ddd1fd, type: 3}
-  partyUIManager: {fileID: 1453287780}
+  _gamePartyUIPanel: {fileID: 0}
   poolManager: {fileID: 990766649}
   indicatorManager: {fileID: 288888826}
   gameUi: {fileID: 743365505}
@@ -672,74 +672,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec0a756b48d871646be902ab3d23e177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &395123092
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 395123095}
-  - component: {fileID: 395123094}
-  - component: {fileID: 395123093}
-  m_Layer: 0
-  m_Name: EventSystem
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &395123093
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395123092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
-  m_CancelButton: Cancel
-  m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
---- !u!114 &395123094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395123092}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_FirstSelected: {fileID: 0}
-  m_sendNavigationEvents: 1
-  m_DragThreshold: 10
---- !u!4 &395123095
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395123092}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &417006523
 GameObject:
   m_ObjectHideFlags: 0
@@ -1722,17 +1654,6 @@ MonoBehaviour:
   pooledObjects: []
   PrefabToPool: {fileID: 8270022412761042295, guid: e06a16b7a66ade1479077f65160d9fbb, type: 3}
   NumToPool: 10
---- !u!114 &1453287780 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8579859180256909074, guid: ddf1b411ad23cd7488b92ee4c702ad3b, type: 3}
-  m_PrefabInstance: {fileID: 4438724201437685265}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85c1170258b193e4bad198ae7e331d97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1461322450
 GameObject:
   m_ObjectHideFlags: 0
@@ -3567,4 +3488,3 @@ SceneRoots:
   - {fileID: 837308236}
   - {fileID: 1461322451}
   - {fileID: 1014536824}
-  - {fileID: 395123095}

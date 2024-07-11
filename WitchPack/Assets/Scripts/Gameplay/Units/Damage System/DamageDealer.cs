@@ -26,7 +26,7 @@ public class DamageDealer
 
     public bool CritChance(Ability ability)
     {
-        if (ReferenceEquals(ability, owner.AutoAttackCaster.Ability) && UnityEngine.Random.Range(0, 100) <= owner.Stats[StatType.CritChance].Value)
+        if (ReferenceEquals(ability, owner.AbilityHandler.AutoAttackCaster.Ability) && UnityEngine.Random.Range(0, 100) <= owner.Stats[StatType.CritChance].Value)
         {
             return true;
         }
@@ -36,7 +36,7 @@ public class DamageDealer
 
     private void SubscribeStatDamage(Damageable target, DamageDealer dealer, DamageHandler dmg, Ability ability, bool crit)
     {
-        if (ReferenceEquals(ability, owner.AutoAttackCaster.Ability))
+        if (ReferenceEquals(ability, owner.AbilityHandler.AutoAttackCaster.Ability))
         {
             dmg.AddFlatMod(owner.Stats[StatType.BaseDamage].IntValue);
             if (crit)

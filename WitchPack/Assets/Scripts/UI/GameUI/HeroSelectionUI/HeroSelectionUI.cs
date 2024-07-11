@@ -8,8 +8,6 @@ using UnityEngine.UI;
 public class HeroSelectionUI : UIElement 
 {
     public static HeroSelectionUI Instance { get; private set; }
-    public event Action OnMouseEnter;
-    public event Action OnMouseExit;
     public StatBlockPanel StatBlockPanel => statBlockPanel;
     public AbilitiesHandlerUI AbilitiesHandlerUI => abilitiesHandlerUI;
     public bool IsActive { get; private set; }
@@ -68,14 +66,12 @@ public class HeroSelectionUI : UIElement
     public override void OnPointerEnter(PointerEventData eventData)
     {
         GameManager.CameraHandler.ToggleCameraLock(true);
-        OnMouseEnter?.Invoke();
         base.OnPointerEnter(eventData);
     }
 
     public override void OnPointerExit(PointerEventData eventData)
     {
         GameManager.CameraHandler.ToggleCameraLock(false);
-        OnMouseExit?.Invoke();
         base.OnPointerExit(eventData);
     }
 }

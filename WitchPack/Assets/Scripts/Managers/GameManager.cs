@@ -66,7 +66,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void OnMouseDown()
     {
-        Screen.lockCursor = true;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     public void Quit()
