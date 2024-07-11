@@ -43,10 +43,8 @@ public class Effectable
         {
             if (activeEffects[i].StatType == givenEffect.StatType && activeEffects[i].Process == givenEffect.Process)
             {
-                activeEffects[i] = givenEffect;
-                givenEffect.Reset();
-                givenEffect.Activate();
-                return givenEffect;
+                activeEffects[i].Reset();
+                return activeEffects[i];
             }
         }
 

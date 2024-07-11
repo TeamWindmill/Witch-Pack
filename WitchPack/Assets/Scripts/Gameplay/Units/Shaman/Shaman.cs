@@ -11,8 +11,7 @@ public class Shaman : BaseUnit
     public override Stats BaseStats => ShamanConfig.BaseStats;
     public ShamanConfig ShamanConfig { get; private set; }
     public ShamanSaveData SaveData { get; private set; }
-    public List<Ability> KnownAbilities { get; } = new();
-    public List<Ability> RootAbilities { get; } = new();
+    public ShamanAbilityHandler ShamanAbilityHandler { get; private set; }
     public bool MouseOverShaman => clicker.IsHover;
     public EnergyHandler EnergyHandler => energyHandler;
     public ShamanVisualHandler ShamanVisualHandler => shamanVisualHandler;
@@ -33,10 +32,6 @@ public class Shaman : BaseUnit
 
     #endregion
 
-    #region private
-
-    #endregion
-
     private void OnValidate()
     {
         shamanAnimator ??= GetComponentInChildren<ShamanAnimator>();
@@ -47,8 +42,12 @@ public class Shaman : BaseUnit
         SaveData = saveData;
         ShamanConfig = saveData.Config;
         base.Init(ShamanConfig);
-        IntializeAbilities();
-        AddMetaUpgrades(saveData);
+        
+        ShamanAbilityHandler = new ShamanAbilityHandler(this);
+        AbilityHandler = ShamanAbilityHandler;
+        ShamanAbilityHandler.IntializeAbilities();
+        ShamanAbilityHandler.AddMetaUpgrades(saveData);
+        
         Damageable.Init();
         energyHandler = new EnergyHandler(this);
         EnemyTargeter.SetRadius(Stats[StatType.BaseRange].Value);
@@ -75,7 +74,6 @@ public class Shaman : BaseUnit
         Damageable.OnHitGFX += OnHitSFX;
         Damageable.OnDeathGFX += DeathSFX;
         Damageable.OnDeathGFX += SetOffIndicator;
-        AutoAttackCaster.OnAttack += AttackSFX;
         Effectable.OnAffected += ShamanVisualHandler.EffectHandler.PlayEffect;
         Effectable.OnEffectRemoved += ShamanVisualHandler.EffectHandler.DisableEffect;
         AutoCaster.CastTimeStartVFX += ShamanVisualHandler.EffectHandler.PlayEffect;
@@ -87,182 +85,6 @@ public class Shaman : BaseUnit
 
         Initialized = true;
     }
-
-    #region MetaUpgrades
-
-    private void AddMetaUpgrades(ShamanSaveData saveData)
-    {
-        AddAbilityMetaUpgrades(saveData.AbilityUpgrades);
-        AddStatMetaUpgrades(saveData.StatUpgrades);
-    }
-
-    private void AddAbilityMetaUpgrades(List<AbilityUpgradeConfig> abilityUpgrades)
-    {
-        foreach (var abilityUpgrade in abilityUpgrades)
-        {
-            foreach (var abilitySO in abilityUpgrade.AbilitiesToUpgrade)
-            {
-                var ability = GetAbilityFromConfig(abilitySO);
-                ability.AddStatUpgrade(abilityUpgrade);
-                if (abilityUpgrade.AbilitiesBehaviors.Length > 0) ability.AddAbilityBehavior(abilityUpgrade);
-            }
-        }
-    }
-
-    private void AddStatMetaUpgrades(List<StatMetaUpgradeConfig> statUpgrades)
-    {
-        foreach (var statUpgrade in statUpgrades)
-        {
-            if (statUpgrade.AbilitiesBehaviors.Length > 0)
-            {
-                foreach (var abilitySO in statUpgrade.AbilitiesToUpgrade)
-                {
-                    var ability = GetAbilityFromConfig(abilitySO);
-                    ability.AddAbilityBehavior(statUpgrade);
-                }
-            }
-
-            if (statUpgrade.UpgradeAbility)
-            {
-                foreach (var abilitySO in statUpgrade.AbilitiesToUpgrade)
-                {
-                    var ability = GetAbilityFromConfig(abilitySO);
-                    ability.AddStatUpgrade(statUpgrade);
-                }
-            }
-            else if (statUpgrade.UpgradePassiveAbility)
-            {
-                foreach (var abilitySO in statUpgrade.AbilitiesToUpgrade)
-                {
-                    var ability = GetAbilityFromConfig(abilitySO);
-                    if (ability is not StatPassive statPassive) return;
-                    statPassive.AddPassiveStatUpgrade(statUpgrade);
-                }
-            }
-            else
-            {
-                foreach (var statConfig in statUpgrade.Stats)
-                {
-                    Stats.AddValueToStat(statConfig.StatType, statConfig.Factor, statConfig.StatValue);
-                }
-            }
-        }
-    }
-
-    #endregion
-
-    #region Abilities
-
-    private void IntializeAbilities()
-    {
-        foreach (var abilitySo in ShamanConfig.RootAbilities)
-        {
-            var ability = AbilityFactory.CreateAbility(abilitySo, this);
-            RootAbilities.Add(ability);
-            foreach (var upgrade in ability.GetUpgrades())
-            {
-                upgrade.ChangeUpgradeState(UpgradeState.Locked);
-            }
-
-            ability.ChangeUpgradeState(UpgradeState.Open);
-        }
-
-        foreach (var abilitySo in ShamanConfig.KnownAbilities)
-        {
-            foreach (var ability in Enumerable.Where(RootAbilities, rootAbility => rootAbility.BaseConfig == abilitySo))
-            {
-                ability.UpgradeAbility();
-                KnownAbilities.Add(ability);
-                if (ability is PassiveAbility passive)
-                {
-                    passive.SubscribePassive();
-                }
-                else if (ability is CastingAbility castingAbility)
-                {
-                    //abilitySo.OnSetCaster(this);
-                    castingHandlers.Add(new AbilityCaster(this, castingAbility));
-                }
-            }
-        }
-
-        AutoCaster.Init(this, true);
-    }
-
-    public void LearnAbility(Ability ability)
-    {
-        KnownAbilities.Add(ability);
-        if (ability is PassiveAbility passive)
-        {
-            passive.SubscribePassive();
-        }
-        else if (ability is CastingAbility castingAbility)
-        {
-            //ability.BaseConfig.OnSetCaster(this);
-            var caster = new AbilityCaster(this, castingAbility);
-            castingHandlers.Add(caster);
-            AutoCaster.ReplaceAbility(caster);
-        }
-    }
-
-    public void RemoveAbility(Ability ability)
-    {
-        if (ability is not PassiveAbility) //unsubscribe passives currently doesnt work
-        {
-            KnownAbilities.Remove(ability);
-            castingHandlers.Remove(GetCasterFromAbility(ability));
-        }
-    }
-
-    public void UpgradeAbility(Ability ability, Ability upgrade)
-    {
-        RemoveAbility(ability);
-        LearnAbility(upgrade);
-    }
-
-
-    public AbilityCaster GetCasterFromAbility(Ability givenAbility)
-    {
-        for (int i = 0; i < castingHandlers.Count; i++)
-        {
-            if (ReferenceEquals(castingHandlers[i].Ability, givenAbility))
-            {
-                return castingHandlers[i];
-            }
-        }
-
-        return null;
-    }
-
-    public Ability GetActiveAbilityFromRoot(Ability rootAbility)
-    {
-        if (KnownAbilities.Contains(rootAbility)) return rootAbility;
-
-        var upgrades = rootAbility.GetUpgrades();
-        foreach (var upgrade in upgrades)
-        {
-            if (KnownAbilities.Contains(upgrade)) return upgrade;
-        }
-
-        return null;
-    }
-
-
-    public Ability GetAbilityFromConfig(AbilitySO config)
-    {
-        foreach (var ability in RootAbilities)
-        {
-            if (ability.BaseConfig == config) return ability;
-
-            foreach (var upgrade in ability.GetUpgrades())
-            {
-                if (upgrade.BaseConfig == config) return upgrade;
-            }
-        }
-
-        return null;
-    }
-
-    #endregion
 
     #region Selection
 
@@ -334,7 +156,7 @@ public class Shaman : BaseUnit
         }
     }
 
-    private void AttackSFX() => SoundManager.PlayAudioClip(SoundEffectType.BasicAttack);
+    public void AttackSFX() => SoundManager.PlayAudioClip(SoundEffectType.BasicAttack);
 
     public void ShamanAbilityCastSFX(CastingAbilitySO abilitySo) =>
         SoundManager.PlayAudioClip(abilitySo.SoundEffectType);

@@ -1,6 +1,9 @@
+using System.Collections.Generic;
+
 public class AffectedByUnitsStatPassive : StatPassive
 {
-    private AffectedByUnitsStatPassiveSO _config;
+    protected AffectedByUnitsStatPassiveSO _config;
+    protected List<BaseUnit> AffectingUnits = new();
     public AffectedByUnitsStatPassive(AffectedByUnitsStatPassiveSO config, BaseUnit owner) : base(config, owner)
     {
         _config = config;
@@ -20,41 +23,66 @@ public class AffectedByUnitsStatPassive : StatPassive
         {
             if (enemy.Effectable.ContainsStatusEffect(_config.EnemyStatusEffect))
             {
-                ChangeStat(addition);
+                ChangeStat(enemy,addition);
             }
         }
         else
         {
-            ChangeStat(addition);
+            ChangeStat(enemy,addition);
         }
     }
 
 
-    private void ChangeStatByShaman(Shaman shaman, bool addition)
+    protected void ChangeStatByShaman(Shaman shaman, bool addition)
     {
         if (_config.AffectedByShamansWithStatusEffect)
         {
             if (shaman.Effectable.ContainsStatusEffect(_config.ShamanStatusEffect))
             {
-                ChangeStat(addition);
+                ChangeStat(shaman,addition);
             }
         }
         else
         {
-            ChangeStat(addition);
+            ChangeStat(shaman,addition);
         }
     }
 
-    private void ChangeStat(bool addition)
+    protected void ChangeStat(BaseUnit affectingUnit, bool addition)
     {
         foreach (var stat in PassiveAbilityStats)
         {
-            if (addition) Owner.Stats[stat.StatType].AddModifier(stat.Value);
+            if (addition)
+            {
+                AffectingUnits.Add(affectingUnit);
+                Owner.Stats[stat.StatType].AddModifier(stat.Value);
+            }
             else
             {
+                AffectingUnits.Remove(affectingUnit);
                 Owner.Stats[stat.StatType].RemoveModifier(stat.Value);
             }
         }
     }
 
+    protected void RefreshAffectingUnits()
+    {
+        BaseUnit[] affectingUnits = AffectingUnits.ToArray();
+        foreach (var unit in affectingUnits)
+        {
+            ChangeStat(unit,false);
+        }
+        
+        var shamanTargets = Owner.ShamanTargeter.AvailableTargets;
+        foreach (var shaman in shamanTargets)
+        {
+            ChangeStatByShaman(shaman,true);
+        }
+        
+        var enemyTargets = Owner.EnemyTargeter.AvailableTargets;
+        foreach (var enemy in enemyTargets)
+        {
+            ChangeStatByEnemy(enemy,true);
+        }
+    }
 }
