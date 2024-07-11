@@ -7,7 +7,7 @@ public class BaseUnit : BaseEntity , IDamagable
     #region Public
 
     public bool Initialized { get; protected set; }
-    public bool IsDead => damageable.CurrentHp <= 0;
+    public bool IsDead { get; private set; }
     public BaseUnitConfig UnitConfig => _unitConfig;
     public HP_Bar HpBar => hpBar;
     public Damageable Damageable => damageable;
@@ -121,6 +121,7 @@ public class BaseUnit : BaseEntity , IDamagable
 
     public void OnDeathAnimation()
     {
+        IsDead = true;
         Movement.ToggleMovement(false);
         ToggleCollider(false);
         damageable.ToggleHitable(false);

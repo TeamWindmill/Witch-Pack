@@ -22,14 +22,18 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c70b65cf65fce404aa5515456d2121df, type: 2}
   hasPopupColor: 0
   popupColor: {r: 0, g: 0, b: 0, a: 0}
-  castTime: 1
+  castTime: 0.5
   cd: 9
-  range: 6
   givesEnergyPoints: 0
   energyPoints: 0
   statusEffects: []
   targetData:
     Priority: 1
+    Modifier: 1
+    StatType: 0
+    AvoidCharmedTargets: 1
+  underAttackTargetData:
+    Priority: 0
     Modifier: 1
     StatType: 0
     AvoidCharmedTargets: 1
@@ -41,7 +45,7 @@ MonoBehaviour:
   damageBoosts: []
   multiShotType: 0
   offset: 45
-  speed: 8
+  speed: 10
   curveSpeed: 1100
   delay: 0.1
   projectilesAmount: 3

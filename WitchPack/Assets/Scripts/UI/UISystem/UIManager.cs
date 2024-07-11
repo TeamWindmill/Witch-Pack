@@ -48,8 +48,6 @@ public static class UIManager
     {
         if (_uiGroupManagers[group] is not null) return;
         _uiGroupManagers[group] = element;
-        element.OnMouseEnter += MouseOnUIEnter;
-        element.OnMouseExit += MouseOnUIExit;
     }
 
     public static void RemoveUIElement(UIElement element, UIGroup group)
@@ -127,6 +125,19 @@ public static class UIManager
         }
     }
 
+    public static bool MouseOverUIGroup(UIGroup uiGroup)
+    {
+        bool mouseOverUI = false;
+        if (_uiGroups.TryGetValue(uiGroup, out var uiElements))
+        {
+            foreach (var element in uiElements)
+            {
+                if (element.isMouseOver) mouseOverUI = true;
+            }
+        }
+
+        return mouseOverUI;
+    }
     #endregion
 
     private static void MouseOnUIEnter(UIElement element)
@@ -157,4 +168,6 @@ public enum UIGroup
     DevTools,
     PartySelectionWindow,
     ShamanUpgradePanel,
+    LevelSelection,
+    UpgradeWindow,
 }

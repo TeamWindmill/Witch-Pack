@@ -58,11 +58,16 @@ public class HP_Bar : MonoBehaviour
         _maxValue = max;
     }
 
-    public void SetBarValue(int value, int maxValue)
+    public void SetBarValue(int value)
+    {
+        fillSprite.localScale = new Vector3(value / _maxValue, _originalScale.y, _originalScale.z);
+    }
+
+    public void SetBar(int value, int maxValue)
     {
         fillSprite.localScale = new Vector3((float)value / maxValue, _originalScale.y, _originalScale.z);
     }
-    public void SetBarValue(Damageable damageable)
+    public void SetBar(Damageable damageable)
     {
         _maxValue = damageable.MaxHp;
         float ratio = damageable.CurrentHp / _maxValue;
@@ -89,7 +94,7 @@ public class HP_Bar : MonoBehaviour
         {
             currentValue = Mathf.Lerp(startValue, targetValue, t);
             t += Time.deltaTime / duration;
-            SetBarValue((int)currentValue,(int)_maxValue);
+            SetBar((int)currentValue,(int)_maxValue);
             yield return null;
         }
     }

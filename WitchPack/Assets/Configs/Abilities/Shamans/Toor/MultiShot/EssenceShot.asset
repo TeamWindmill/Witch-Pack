@@ -20,14 +20,18 @@ MonoBehaviour:
   _upgrades: []
   hasPopupColor: 0
   popupColor: {r: 0, g: 0, b: 0, a: 0}
-  castTime: 1
+  castTime: 0.5
   cd: 9
-  range: 6
   givesEnergyPoints: 0
   energyPoints: 0
   statusEffects: []
   targetData:
     Priority: 1
+    Modifier: 1
+    StatType: 0
+    AvoidCharmedTargets: 1
+  underAttackTargetData:
+    Priority: 0
     Modifier: 1
     StatType: 0
     AvoidCharmedTargets: 1
@@ -41,7 +45,7 @@ MonoBehaviour:
     damageBonusInPercent: 5
   multiShotType: 1
   offset: 45
-  speed: 8
+  speed: 10
   curveSpeed: 1100
   delay: 0.1
   projectilesAmount: 3

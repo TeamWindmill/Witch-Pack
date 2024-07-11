@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 
-public class PartyUIManager : UIElement
+public class GamePartyUIPanel : UIElement
 {
     [SerializeField] private RectTransform _heroContainer;
     [SerializeField] private ShamanUIHandler _shamanUIHanlder;

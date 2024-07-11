@@ -3,13 +3,15 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     //inherit from this class if it is a ui element
     public event Action<UIElement> OnMouseEnter;
     public event Action<UIElement> OnMouseExit;
     public RectTransform RectTransform => rectTransform;
+    public bool CloseOnClickOutside => closeOnClickOutside;
     public bool isMouseOver { get; private set; }
+    public UIWindowManager WindowManager { get; private set; }
 
     [SerializeField, HideInInspector] protected RectTransform rectTransform;
 
@@ -24,7 +26,10 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
 
     [FoldoutGroup("UI Element")] [SerializeField, ShowIf(nameof(assignUIGroup))]
     protected bool isUIGroupManager;
-
+    
+    [FoldoutGroup("UI Element")] [SerializeField, ShowIf(nameof(isUIGroupManager))]
+    protected bool closeOnClickOutside;
+    
     [FoldoutGroup("UI Element")] [SerializeField, ShowIf(nameof(assignUIGroup))]
     protected UIGroup uiGroup;
 
@@ -65,9 +70,9 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
         gameObject.SetActive(false);
     }
 
-    protected virtual void OnValidate()
+    public void SetParent(UIWindowManager windowManager)
     {
-        rectTransform ??= GetComponent<RectTransform>();
+        WindowManager = windowManager;
     }
 
     protected virtual void OnDestroy()
@@ -108,13 +113,27 @@ public abstract class UIElement : MonoBehaviour, IPointerEnterHandler, IPointerE
         isMouseOver = false;
         OnMouseExit?.Invoke(this);
     }
+    
+    protected virtual void OnValidate()
+    {
+        rectTransform ??= GetComponent<RectTransform>();
+    }
 }
 
 public abstract class UIElement<T> : UIElement
 {
-    public abstract void Init(T data);
+    public bool IsInitialized { get; protected set; }
+
+    public virtual void Init(T data)
+    {
+        IsInitialized = true;
+    }
 }
 public abstract class UIElement<T1,T2> : UIElement
 {
-    public abstract void Init(T1 data1,T2 data2);
+    public bool IsInitialized { get; protected set; }
+    public virtual void Init(T1 data1,T2 data2)
+    {
+        IsInitialized = true;
+    }
 }

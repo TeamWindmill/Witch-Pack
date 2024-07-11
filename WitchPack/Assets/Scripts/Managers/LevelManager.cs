@@ -20,7 +20,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     [SerializeField] private Transform enviromentHolder;
     [SerializeField] private Transform shamanHolder;
     [SerializeField] private Shaman shamanPrefab;
-    [SerializeField] private PartyUIManager partyUIManager;
+    [SerializeField] private GamePartyUIPanel _gamePartyUIPanel;
     [SerializeField] private PoolManager poolManager;
     [SerializeField] private IndicatorManager indicatorManager;
     [SerializeField] private Canvas gameUi;
@@ -36,7 +36,6 @@ public class LevelManager : MonoSingleton<LevelManager>
         CurrentLevel.Init(levelConfig,GameManager.SaveData.LevelSaves[GameManager.SaveData.CurrentNode.Index]);
         SpawnParty(levelConfig.SelectedShamans);
         CurrentLevel.TurnOffSpawnPoints();
-        BgMusicManager.Instance.PlayMusic(MusicClip.GameMusic);
         if (levelConfig.StartDialog != null)
         {
             DialogBox.Instance.SetDialogSequence(levelConfig.StartDialog, StartLevel);
@@ -48,6 +47,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     private void StartLevel()
     {
         CurrentLevel.StartLevel();
+        BgMusicManager.Instance.PlayMusic(MusicClip.GameMusic);
         UIManager.ShowUIGroup(UIGroup.TopCounterUI);
         UIManager.ShowUIGroup(UIGroup.PartyUI);
         GAME_TIME.StartGame();
@@ -80,18 +80,18 @@ public class LevelManager : MonoSingleton<LevelManager>
 
     private void FinishEndLevelSequence()
     {
+        GiveExpToParty();
         if (IsWon)
         {
             SoundManager.PlayAudioClip(SoundEffectType.Victory);
             GameManager.ShamansManager.AddShamanToRoster(CurrentLevel.Config.shamansToAddAfterComplete);
             GameManager.SaveData.LevelSaves[CurrentLevel.ID - 1].State = NodeState.Completed;
-            GameManager.SaveData.LevelSaves[CurrentLevel.ID - 1].ChallengesFirstTimes[CurrentLevel.Config.SelectedChallenge.ChallengeType] = false;
+            GameManager.SaveData.LevelSaves[CurrentLevel.ID - 1].ChallengesFirstTimes[CurrentLevel.Config.SelectedChallenge.Index] = false;
             GameManager.SaveData.LastLevelCompletedIndex = CurrentLevel.ID - 1;
         }
 
         BgMusicManager.Instance.StopMusic();
         UIManager.ShowUIGroup(UIGroup.EndGameUI);
-        GiveExpToParty();
         OnLevelEnd?.Invoke(CurrentLevel);
     }
 
@@ -99,7 +99,7 @@ public class LevelManager : MonoSingleton<LevelManager>
     {
         var levelData = new EndLevelStats(
             completed: IsWon,
-            firstTime: CurrentLevel.LevelSaveData.ChallengesFirstTimes[CurrentLevel.Config.SelectedChallenge.ChallengeType],
+            firstTime: CurrentLevel.LevelSaveData.ChallengesFirstTimes[CurrentLevel.Config.SelectedChallenge.Index],
             coreRemainingHp: CurrentLevel.CoreTemple.Damageable.CurrentHp /  CurrentLevel.CoreTemple.Damageable.MaxHp,
             wavesCompletedPercentage: (float)(CurrentLevel.WaveHandler.CurrentWave - 1) / CurrentLevel.WaveHandler.TotalWaves,
             expMultiplier: CurrentLevel.Config.SelectedChallenge.ExpMultiplier

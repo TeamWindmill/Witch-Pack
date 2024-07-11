@@ -20,23 +20,28 @@ MonoBehaviour:
   _upgrades: []
   hasPopupColor: 0
   popupColor: {r: 0, g: 0, b: 0, a: 0}
-  castTime: 1.5
-  cd: 10
+  castTime: 0.5
+  cd: 15
   givesEnergyPoints: 0
   energyPoints: 0
   statusEffects: []
   targetData:
     Priority: 0
-    Modifier: 0
+    Modifier: 1
     StatType: 0
-    AvoidCharmedTargets: 0
+    AvoidCharmedTargets: 1
+  underAttackTargetData:
+    Priority: 0
+    Modifier: 1
+    StatType: 0
+    AvoidCharmedTargets: 1
   _hasCastVisual: 1
   castVisualColor: 1
   _hasSFX: 0
   soundEffectType: 0
-  baseDamage: 50
+  baseDamage: 20
   damageBoosts: []
-  _angularSpeed: 400
+  _angularSpeed: 300
   _radius: 1.5
   _ellipseScale: 1.3
   _stoneAmount: 3

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87dd1c6c710641bca2efa8863d071f2e, type: 3}
   m_Name: EnemyRangedAutoAttack
   m_EditorClassIdentifier: 
-  name: 
+  _name: 
   discription: 
   defaultIcon: {fileID: 0}
   disabledIcon: {fileID: 0}
@@ -22,11 +22,15 @@ MonoBehaviour:
   popupColor: {r: 0, g: 0, b: 0, a: 0}
   castTime: 0.25
   cd: 0
-  range: 0
   givesEnergyPoints: 0
   energyPoints: 0
   statusEffects: []
   targetData:
+    Priority: 0
+    Modifier: 1
+    StatType: 0
+    AvoidCharmedTargets: 0
+  underAttackTargetData:
     Priority: 0
     Modifier: 1
     StatType: 0

@@ -71,7 +71,6 @@ public class MetaUpgradeIcon<T> : ClickableUIElement
             case UpgradeState.Upgraded:
                 break;
         }
-
         base.OnClick(eventData);
     }
 

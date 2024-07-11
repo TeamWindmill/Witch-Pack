@@ -31,23 +31,26 @@ MonoBehaviour:
     _reduceShamanSlots: 3
     _expMultiplier: 0
   - _challengeType: 1
-    _displayName: +30% Enemy Health
+    _displayName: +300% Enemy Health
     _bonusesDescription:
     - 'EXP Modifier: +100%'
     _statUpgrades:
     - _statType: 0
-      _statValue: 0.3
+      _statValue: 3
       _factor: 2
     _reduceShamanSlots: 3
     _expMultiplier: 1
-  - _challengeType: 1
-    _displayName: +50% Enemy Movement Speed
+  - _challengeType: 2
+    _displayName: -35 Shaman Base damage
     _bonusesDescription:
     - 'EXP Modifier: +150%'
     _statUpgrades:
-    - _statType: 4
-      _statValue: 0.5
-      _factor: 2
+    - _statType: 2
+      _statValue: 0
+      _factor: 1
+    - _statType: 0
+      _statValue: 100
+      _factor: 1
     _reduceShamanSlots: 3
     _expMultiplier: 1.5
   BeforeDialog: {fileID: 11400000, guid: 4b70374310c787f48a84bbaa24b0583c, type: 2}

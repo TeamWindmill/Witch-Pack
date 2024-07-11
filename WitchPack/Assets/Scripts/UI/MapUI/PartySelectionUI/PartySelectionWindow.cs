@@ -1,83 +1,85 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PartySelectionWindow : UIElement
 {
-    #region PanelPointers
     public RosterPanel RosterPanel => _rosterPanel;
     public PackPanel PackPanel => _packPanel;
-    public EnemyPanel EnemyPanel => _enemyPanel;
-    public RewardsPanel RewardsPanel => _rewardsPanel;
-    public ChallengesPanel ChallengesPanel => _challengesPanel;
 
-    #endregion
-
-    [SerializeField] private EnemyPanelConfig _enemyPanelConfig;
     [SerializeField] private RosterPanel _rosterPanel;
     [SerializeField] private PackPanel _packPanel;
-    [SerializeField] private EnemyPanel _enemyPanel;
-    [SerializeField] private RewardsPanel _rewardsPanel;
-    [SerializeField] private ChallengesPanel _challengesPanel;
-    [SerializeField] private TextMeshProUGUI _levelTitle;
+    [SerializeField] private Image _backgroundAlpha;
+
     public List<ShamanSaveData> ActiveShamanParty { get; private set; }
     public int MaxShamanPartyCap { get; private set; } = DEFAULT_PARTY_SIZE;
-    private LevelConfig _levelConfig;
 
     private const int DEFAULT_PARTY_SIZE = 4;
+    public int SelectedIconIndex { get; private set; }
+    public bool SelectedMode { get; private set; }
+
     public override void Show()
     {
-        _levelConfig = GameManager.CurrentLevelConfig;
         ActiveShamanParty = new();
-        _rosterPanel.Init(this, GameManager.ShamansManager.ShamanRoster);
         _packPanel.Init(this);
-        _enemyPanel.Init(_levelConfig, _enemyPanelConfig);
-        _rewardsPanel.Init(_levelConfig);
-        _challengesPanel.Init(_levelConfig,this);
-        _levelTitle.text = $"Level {_levelConfig.Number} - {_levelConfig.Name}";
+        _rosterPanel.Init(this,GameManager.SaveData.ShamanRoster);
+        _rosterPanel.Hide();
+        _backgroundAlpha.gameObject.SetActive(false);
         AutoAssignShamansFromRoster();
         base.Show();
     }
 
+    public override void Refresh()
+    {
+        _rosterPanel.Refresh();
+    }
+
     public override void Hide()
     {
+        if (SelectedMode)
+        {
+            ExitSelectMode();
+        }
+        // _rosterPanel.Hide();
+        // _packPanel.Hide();
+        // base.Hide();
+    }
+
+    public void EnterSelectMode(int index)
+    {
+        SelectedMode = true;
+        SelectedIconIndex = index;
+        _backgroundAlpha.gameObject.SetActive(true);
+        _packPanel.SelectPackIcon(index);
+        _rosterPanel.Show();
+    }
+
+    public void ExitSelectMode()
+    {
+        SelectedMode = false;
+        _backgroundAlpha.gameObject.SetActive(false);
+        _packPanel.ToggleIconsAlpha(false);
         _rosterPanel.Hide();
-        _enemyPanel.Hide();
-        _rewardsPanel.Hide();
-        MapManager.Instance.Init();
-        base.Hide();
     }
 
-    public void StartLevel()
+
+    public void AssignShamanToSlot(ShamanSaveData shaman) => AssignShamanToSlot(shaman, SelectedIconIndex);
+    public void AssignShamanToSlot(ShamanSaveData shaman, int slotIndex)
     {
-        if (ActiveShamanParty.Count == 0)
+        //if(!SelectedMode) return;
+        if (_packPanel.PackIcons[slotIndex].Assigned)
         {
-            _packPanel.FlashInRed();
-            return;
+            RosterPanel.AddShamanBackToRoster(_packPanel.PackIcons[slotIndex].ShamanSaveData);
+            _packPanel.RemoveShamanFromPack(shaman);
         }
 
-        RefreshActiveParty();
-        GameManager.CurrentLevelConfig.SelectedShamans = ActiveShamanParty;
-        
-        base.Hide();
-        
-        if (_levelConfig.BeforeDialog != null)
-        {
-            DialogBox.Instance.SetDialogSequence(_levelConfig.BeforeDialog, () => GameManager.SceneHandler.LoadScene(SceneType.Game));
-            DialogBox.Instance.Show();
-        }
-        else GameManager.SceneHandler.LoadScene(SceneType.Game);
-    }
-
-    public void AssignShamanToParty(ShamanSaveData shaman)
-    {
-        if(ActiveShamanParty.Count >= MaxShamanPartyCap) return;
+        _packPanel.AddShamanToPack(shaman, slotIndex);
+        RosterPanel.RemoveShamanFromRoster(shaman);
         ActiveShamanParty.Add(shaman);
-        _packPanel.AddShamanToPack(shaman);
-        _rosterPanel.RemoveShamanFromRoster(shaman);
     }
 
-    public void UnassignShamanFromParty(ShamanSaveData shaman)
+    public void UnassignShamanFromPack(ShamanSaveData shaman)
     {
         ActiveShamanParty.Remove(shaman);
         _rosterPanel.AddShamanBackToRoster(shaman);
@@ -91,24 +93,21 @@ public class PartySelectionWindow : UIElement
         _packPanel.ReduceShamanSlots(MaxShamanPartyCap);
     }
 
-    private void AutoAssignShamansFromRoster()
+    public void AutoAssignShamansFromRoster()
     {
-        var assignedShamans = 0;
-        foreach (var packIcon in _packPanel.PackIcons)
+        foreach (var icon in _packPanel.PackIcons)
         {
-            if (packIcon.Assigned) assignedShamans++;
-        }
-        if(assignedShamans > 0) return;
-        foreach (var icon in _rosterPanel.RosterIcons)
-        {
-            if (icon.ShamanSaveData != null)
+            if (!icon.Assigned)
             {
-                AssignShamanToParty(icon.ShamanSaveData);
+                if (_rosterPanel.TryGetAvailableRosterIcon(out var rosterIcon))
+                {
+                    AssignShamanToSlot(rosterIcon.ShamanSaveData,icon.Index);
+                }
             }
         }
     }
 
-    private void RefreshActiveParty()
+    public void RefreshActiveParty()
     {
         ActiveShamanParty = new List<ShamanSaveData>();
 
@@ -120,4 +119,20 @@ public class PartySelectionWindow : UIElement
             }
         }
     }
+
+    public void FlashInRed()
+    {
+        _packPanel.FlashInRed();
+    }
+
+    // protected override void Update()
+    // {
+    //     if (Input.GetMouseButtonDown(0))
+    //     {
+    //         if (SelectedMode && !UIManager.MouseOverUI)
+    //         {
+    //             ExitSelectMode();
+    //         }
+    //     }
+    // }
 }

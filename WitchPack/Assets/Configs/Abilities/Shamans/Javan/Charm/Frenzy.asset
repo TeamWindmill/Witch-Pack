@@ -20,9 +20,8 @@ MonoBehaviour:
   _upgrades: []
   hasPopupColor: 0
   popupColor: {r: 0, g: 0, b: 0, a: 0}
-  castTime: 2
+  castTime: 1
   cd: 20
-  range: 0
   givesEnergyPoints: 1
   energyPoints: 3
   statusEffects:
@@ -31,6 +30,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7046524f0cb98a54f91950ceed5da8cd, type: 2}
   - {fileID: 11400000, guid: d3137f45d16746e41bf355eef3d81bf9, type: 2}
   targetData:
+    Priority: 4
+    Modifier: 0
+    StatType: 0
+    AvoidCharmedTargets: 1
+  underAttackTargetData:
     Priority: 4
     Modifier: 0
     StatType: 0
