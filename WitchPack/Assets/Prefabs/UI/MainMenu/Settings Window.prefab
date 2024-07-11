@@ -144,6 +144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6667273095431184188}
   - component: {fileID: 7220279326512021811}
+  - component: {fileID: 2038838657502752412}
   - component: {fileID: 5133403678214635985}
   m_Layer: 5
   m_Name: Settings Window
@@ -167,7 +168,7 @@ RectTransform:
   - {fileID: 571030867435269095}
   - {fileID: 7923414344512735192}
   - {fileID: 2694267876084202613}
-  - {fileID: 4461863435893659270}
+  - {fileID: 4777815153374227386}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -183,6 +184,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5705080292173042664}
   m_CullTransparentMesh: 1
+--- !u!114 &2038838657502752412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5705080292173042664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ca5172f4a954494b7fca95a5ac6af46, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rectTransform: {fileID: 6667273095431184188}
+  showOnAwake: 0
+  hideOnAwake: 1
+  assignUIGroup: 1
+  isUIGroupManager: 1
+  closeOnClickOutside: 0
+  uiGroup: 14
+  showInfoWindow: 0
+  _windowInfo:
+    Name: 
+    Discription: 
+  _settingsCanvas: {fileID: 0}
 --- !u!114 &5133403678214635985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -507,13 +532,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2522367950963026555, guid: fb7893ba1b430f249a68f559a0fd8875, type: 3}
+      propertyPath: hideOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2522367950963026555, guid: fb7893ba1b430f249a68f559a0fd8875, type: 3}
+      propertyPath: _settingsWindow
+      value: 
+      objectReference: {fileID: 2038838657502752412}
+    - target: {fileID: 2522367950963026555, guid: fb7893ba1b430f249a68f559a0fd8875, type: 3}
       propertyPath: _audioSettingsPanel
       value: 
       objectReference: {fileID: 9107449733638957584}
     - target: {fileID: 2522367950963026555, guid: fb7893ba1b430f249a68f559a0fd8875, type: 3}
       propertyPath: _videoSettingsPanel
       value: 
-      objectReference: {fileID: 250535176570594240}
+      objectReference: {fileID: 8998078654069956348}
     - target: {fileID: 5435522430186120739, guid: fb7893ba1b430f249a68f559a0fd8875, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -732,7 +765,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f793035112d64d4e8804bd55f3c06c6, type: 3}
---- !u!114 &250535176570594240 stripped
+--- !u!224 &4777815153374227386 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 4170537171354549363, guid: 7f793035112d64d4e8804bd55f3c06c6, type: 3}
+  m_PrefabInstance: {fileID: 8912215626018133961}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8998078654069956348 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 536232062368237877, guid: 7f793035112d64d4e8804bd55f3c06c6, type: 3}
   m_PrefabInstance: {fileID: 8912215626018133961}
@@ -743,8 +781,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73006aaa9bbe4be785c2fea8a3ff28c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &4461863435893659270 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 4170537171354549363, guid: 7f793035112d64d4e8804bd55f3c06c6, type: 3}
-  m_PrefabInstance: {fileID: 8912215626018133961}
-  m_PrefabAsset: {fileID: 0}

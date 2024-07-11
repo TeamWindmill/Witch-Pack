@@ -109,7 +109,7 @@ public class Shaman : BaseUnit
         }
     }
 
-    private void AddStatMetaUpgrades(List<StatUpgradeConfig> statUpgrades)
+    private void AddStatMetaUpgrades(List<StatMetaUpgradeConfig> statUpgrades)
     {
         foreach (var statUpgrade in statUpgrades)
         {

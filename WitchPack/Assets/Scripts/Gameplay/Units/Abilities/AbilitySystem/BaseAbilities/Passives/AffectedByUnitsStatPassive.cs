@@ -8,7 +8,6 @@ public class AffectedByUnitsStatPassive : StatPassive
     
     public override void SubscribePassive()
     {
-        
         if (_config.AffectedByEnemies) Owner.EnemyTargeter.OnTargetAdded += enemy => ChangeStatByEnemy(enemy, true);
         if (_config.AffectedByEnemies) Owner.EnemyTargeter.OnTargetLost += enemy => ChangeStatByEnemy(enemy, false);
         if (_config.AffectedByShamans) Owner.ShamanTargeter.OnTargetAdded += shaman => ChangeStatByShaman(shaman, true);
@@ -50,11 +49,10 @@ public class AffectedByUnitsStatPassive : StatPassive
     {
         foreach (var stat in PassiveAbilityStats)
         {
-            if (addition) Owner.Stats.AddModifierToStat(stat.StatType, stat.Value);
+            if (addition) Owner.Stats[stat.StatType].AddModifier(stat.Value);
             else
             {
-                if(Owner.Stats.GetBaseStatValue(stat.StatType) >= Owner.Stats.GetStatValue(stat.StatType)) return;
-                Owner.Stats.AddModifierToStat(stat.StatType, -stat.Value);
+                Owner.Stats[stat.StatType].RemoveModifier(stat.Value);
             }
         }
     }

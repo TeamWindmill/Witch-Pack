@@ -106,7 +106,7 @@ public class BaseUnit : BaseEntity , IDamagable
         Stats.OnStatChanged -= EnemyTargeter.AddRadius;
         Stats.OnStatChanged -= movement.OnSpeedChange;
     }
-    public void AddStatUpgrades(StatValueUpgradeConfig[] statUpgrades)
+    public void AddStatUpgrades(StatUpgrade[] statUpgrades)
     {
         foreach (var statUpgrade in statUpgrades)
         {

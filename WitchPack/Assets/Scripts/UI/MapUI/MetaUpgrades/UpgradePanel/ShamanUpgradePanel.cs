@@ -56,10 +56,10 @@ public class ShamanUpgradePanel : UIElement
         UpgradeShaman(abilityUpgrade.SkillPointsCost);
 
     }
-    public void AddUpgradeToShaman(StatUpgradeConfig statUpgrade)
+    public void AddUpgradeToShaman(StatMetaUpgradeConfig statMetaUpgrade)
     {
-        ShamanSaveData.StatUpgrades.Add(statUpgrade);
-        UpgradeShaman(statUpgrade.SkillPointsCost);
+        ShamanSaveData.StatUpgrades.Add(statMetaUpgrade);
+        UpgradeShaman(statMetaUpgrade.SkillPointsCost);
     }
 
     private void UpgradeShaman(int skillPointCost)

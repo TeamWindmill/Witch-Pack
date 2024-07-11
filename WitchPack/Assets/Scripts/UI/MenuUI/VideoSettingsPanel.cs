@@ -11,9 +11,9 @@ public class VideoSettingsPanel : UIElement
     public override void Show()
     {
         int currentResolutionIndex = -1;
-        for (int i = 0; i < Screen.resolutions.Length; i++)
+        for (int i = Screen.resolutions.Length - 1; i >= 0; i--)
         {
-            _resolutionDropdown.options.Add(new TMP_Dropdown.OptionData($"{Screen.resolutions[i].width} x {Screen.resolutions[i].height}"));
+            _resolutionDropdown.options.Add(new TMP_Dropdown.OptionData($"{Screen.resolutions[i].width} x {Screen.resolutions[i].height}, {Screen.resolutions[i].refreshRateRatio}Hz"));
             if (Screen.resolutions[i].height == Screen.currentResolution.height &&
                 Screen.resolutions[i].width == Screen.currentResolution.width) currentResolutionIndex = i;
         }
