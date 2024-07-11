@@ -109,7 +109,7 @@ public class AbilityUpgradePanelUI : UIElement
         //if(_shaman is not null && _abilityUIButton is not null) AbilitiesHandlerUI.UpdateButton(_shaman,_abilityUIButton);
     }
 
-    private void Update()
+    protected override void Update()
     {
         if (!gameObject.activeSelf || isMouseOver) return;
         if (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0)) Hide();

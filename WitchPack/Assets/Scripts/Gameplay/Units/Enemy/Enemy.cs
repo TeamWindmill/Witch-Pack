@@ -22,7 +22,6 @@ public class Enemy : BaseUnit
     private EnemyMovement _enemyMovement;
     private EnemyConfig enemyConfig;
     private PathCreator _path;
-    private int pointIndex;
 
 
     private void OnValidate()
@@ -31,7 +30,6 @@ public class Enemy : BaseUnit
     }
     public override void Init(BaseUnitConfig givenConfig)
     {
-        pointIndex = 0;
         enemyConfig = givenConfig as EnemyConfig;
         base.Init(enemyConfig);
         Damageable.Init();

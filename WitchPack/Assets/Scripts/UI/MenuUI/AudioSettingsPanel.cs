@@ -25,6 +25,7 @@ public class AudioSettingsPanel : UIElement
 
     public void Back()
     {
+        SoundManager.PlayAudioClip(SoundEffectType.MenuClick);
         Hide();
         _settingsMenuPanel.Show();
     }

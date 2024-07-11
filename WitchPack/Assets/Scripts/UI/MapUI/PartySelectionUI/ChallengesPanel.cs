@@ -33,6 +33,7 @@ public class ChallengesPanel : UIElement<LevelConfig, PartySelectionWindow>
 
     public void SelectChallenge(int buttonIndex)
     {
+        SoundManager.PlayAudioClip(SoundEffectType.MenuClick);
         for (int i = 0; i < _challengeButtons.Length; i++)
         {
             _challengeButtons[i].interactable = true;
