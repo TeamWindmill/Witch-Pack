@@ -11,6 +11,8 @@ public readonly struct StatusEffectData
     public readonly StatusEffectVisual StatusEffectVisual;
     public readonly Factor Factor;
     public readonly bool ShowStatusEffectPopup;
+    public readonly StatUpgrade[] StatUpgrades;
+    public readonly bool MultipleStats;
     public StatusEffectData(StatusEffectConfig config)
     {
         Duration = new StatusEffectStat(StatusEffectStatType.Duration,config.Duration);
@@ -20,18 +22,21 @@ public readonly struct StatusEffectData
         StatusEffectVisual = config.StatusEffectVisual;
         ShowStatusEffectPopup = config.ShowStatusEffectPopup;
         Factor = config.Factor;
+        StatUpgrades = config.StatUpgrades;
+        MultipleStats = config.MultipleStats;
     }
 
-    public StatusEffectData(float duration, float statValue, StatusEffectProcess process, StatType statTypeAffected, StatusEffectVisual statusEffectVisual, Factor factor, bool showStatusEffectPopup)
-    {
-        Duration = new StatusEffectStat(StatusEffectStatType.Duration,duration);
-        StatValue = new StatusEffectStat(StatusEffectStatType.Value,statValue);
-        Process = process;
-        StatTypeAffected = statTypeAffected;
-        StatusEffectVisual = statusEffectVisual;
-        ShowStatusEffectPopup = showStatusEffectPopup;
-        Factor = factor;
-    }
+    // public StatusEffectData(float duration, float statValue, StatusEffectProcess process, StatType statTypeAffected, StatusEffectVisual statusEffectVisual, Factor factor, bool showStatusEffectPopup)
+    // {
+    //     Duration = new StatusEffectStat(StatusEffectStatType.Duration,duration);
+    //     StatValue = new StatusEffectStat(StatusEffectStatType.Value,statValue);
+    //     Process = process;
+    //     StatTypeAffected = statTypeAffected;
+    //     StatusEffectVisual = statusEffectVisual;
+    //     ShowStatusEffectPopup = showStatusEffectPopup;
+    //     Factor = factor;
+    //     
+    // }
 
     public void AddUpgrade(StatusEffectUpgradeConfig upgradeConfig)
     {

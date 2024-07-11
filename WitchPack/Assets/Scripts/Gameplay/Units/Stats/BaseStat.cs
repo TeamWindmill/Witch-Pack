@@ -1,13 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Collections;
 using UnityEngine;
 
 public abstract class BaseStat<T> //float/int type basic stat
 {
     public event Action<float> OnStatChange;
-    public T StatType;
-    public float BaseValue { get; }
+    [ReadOnly]public T StatType;
+    [ReadOnly]public readonly float BaseValue;
 
     private List<float> _modifiers = new();
     private List<float> _multipliers = new();

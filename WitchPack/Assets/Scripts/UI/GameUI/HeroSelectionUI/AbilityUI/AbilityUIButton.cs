@@ -75,7 +75,7 @@ public class AbilityUIButton : ClickableUIElement
         base.Hide();
     }
 
-    private void Update()
+    protected override void Update()
     {
         UpdateCooldownFillAmount();
     }

@@ -37,6 +37,7 @@ public class LevelSelectionWindow : UIElement
 
     public void StartLevel()
     {
+        SoundManager.PlayAudioClip(SoundEffectType.MenuClick);
         _partySelectionWindow.RefreshActiveParty();
         if (_partySelectionWindow.ActiveShamanParty.Count == 0)
         {

@@ -70,9 +70,9 @@ public abstract class Ability
             _abilitiesBehaviors.Add(behavior);
         }
     }
-    public virtual void AddAbilityBehavior(StatUpgradeConfig statUpgradeConfig)
+    public virtual void AddAbilityBehavior(StatMetaUpgradeConfig statMetaUpgradeConfig)
     {
-        foreach (var behavior in statUpgradeConfig.AbilitiesBehaviors)
+        foreach (var behavior in statMetaUpgradeConfig.AbilitiesBehaviors)
         {
             _abilitiesBehaviors.Add(behavior);
         }
@@ -109,11 +109,11 @@ public abstract class Ability
             }
         }
     }
-    public virtual void AddStatUpgrade(StatUpgradeConfig statUpgradeConfig)
+    public virtual void AddStatUpgrade(StatMetaUpgradeConfig statMetaUpgradeConfig)
     {
         foreach (var stat in abilityStats)
         {
-            foreach (var abilityStatConfig in statUpgradeConfig.AbilityStats)
+            foreach (var abilityStatConfig in statMetaUpgradeConfig.AbilityStats)
             {
                 if (stat.StatType == abilityStatConfig.StatType)
                 {

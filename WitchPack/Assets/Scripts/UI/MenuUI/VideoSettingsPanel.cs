@@ -10,11 +10,15 @@ public class VideoSettingsPanel : UIElement
 
     public override void Show()
     {
-        foreach (var resolution in Screen.resolutions)
+        int currentResolutionIndex = -1;
+        for (int i = Screen.resolutions.Length - 1; i >= 0; i--)
         {
-            _resolutionDropdown.options.Add(new TMP_Dropdown.OptionData($"{resolution.width} x {resolution.height}"));
+            _resolutionDropdown.options.Add(new TMP_Dropdown.OptionData($"{Screen.resolutions[i].width} x {Screen.resolutions[i].height}, {Screen.resolutions[i].refreshRateRatio}Hz"));
+            if (Screen.resolutions[i].height == Screen.currentResolution.height &&
+                Screen.resolutions[i].width == Screen.currentResolution.width) currentResolutionIndex = i;
         }
-        
+
+        _resolutionDropdown.value = currentResolutionIndex;
         base.Show();
         
     }
@@ -27,10 +31,12 @@ public class VideoSettingsPanel : UIElement
 
     public void ToggleFullscreen(bool state)
     {
+        SoundManager.PlayAudioClip(SoundEffectType.MenuClick);
         Screen.fullScreen = state;
     }
     public void Back()
     {
+        SoundManager.PlayAudioClip(SoundEffectType.MenuClick);
         Hide();
         _settingsMenuPanel.Show();
     }

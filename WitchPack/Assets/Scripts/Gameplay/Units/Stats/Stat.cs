@@ -1,4 +1,6 @@
 using System;
+using Unity.Collections;
+using UnityEngine;
 
 [Serializable]
 public class Stat : BaseStat<StatType>
