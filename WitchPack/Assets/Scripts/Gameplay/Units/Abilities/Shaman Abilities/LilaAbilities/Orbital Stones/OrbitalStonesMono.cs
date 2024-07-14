@@ -11,17 +11,17 @@ public class OrbitalStonesMono : MonoBehaviour
     public float AngularSpeed => _angularSpeed;
     public float Radius => _radius;
     public float EllipseScale => _ellipseScale;
-    public BaseUnit Owner{ get; private set; }
+    public BaseUnit Owner { get; private set; }
     public OrbitalStones Ability { get; private set; }
-    
+
     private List<FloatingStoneMono> _activeStones = new();
     private float _angularSpeed;
     private float _radius;
     private float _ellipseScale;
     private bool _isActive;
     private int _stoneAmount;
-    
-    
+
+
     public void Init(BaseUnit owner, OrbitalStones ability)
     {
         Owner = owner;
@@ -44,22 +44,20 @@ public class OrbitalStonesMono : MonoBehaviour
     {
         for (int i = 0; i < stoneAmount; i++)
         {
-            SpawnStone();
+            SpawnStone(i);
             yield return new WaitForSeconds(timeInterval);
         }
     }
-    
-    public void SpawnStone()
+
+    public void SpawnStone(int index)
     {
-        //if (_activeStones.Count < stoneAmount)
-        {
-            var stone = LevelManager.Instance.PoolManager.FloatingStonesPool.GetPooledObject();
-            stone.Init(this);
-            _activeStones.Add(stone);
-        }
+        var stone = LevelManager.Instance.PoolManager.FloatingStonesPool.GetPooledObject();
+        stone.Init(this,index);
+        _activeStones.Add(stone);
     }
 
     private int stoneCounter;
+
     public void OnStoneDisable()
     {
         stoneCounter++;

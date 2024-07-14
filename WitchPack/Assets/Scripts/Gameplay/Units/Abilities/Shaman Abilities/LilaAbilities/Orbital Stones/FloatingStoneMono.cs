@@ -16,9 +16,9 @@ public class FloatingStoneMono : MonoBehaviour
     private float _lerpTimer;
     private bool _isActive;
 
-    public void Init(OrbitalStonesMono orbitalStones)
+    public void Init(OrbitalStonesMono orbitalStones,int index)
     {
-        _spriteRenderer.sprite = _sprites[Random.Range(0,_sprites.Length)];
+        _spriteRenderer.sprite = _sprites[index];
         ResetCollider();
         _orbitalStones = orbitalStones;
         _currentAngle = 0;
@@ -31,14 +31,19 @@ public class FloatingStoneMono : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //rotation
+        //movement
         if(!_isActive) return;
         
         if (_currentAngle >= 360) _currentAngle = 0;
         _currentAngle += _orbitalStones.AngularSpeed * GAME_TIME.GameFixedDeltaTime;
-                                                      
         SetCirclePos();
         
+        //rotation
+        // var direction = (_orbitalStones.transform.position - transform.position).normalized;
+        // var lookRotation = Quaternion.FromToRotation(transform.forward,direction);
+        // transform.rotation = lookRotation;
+
+
     }
 
     private void SetCirclePos()
