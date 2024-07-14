@@ -12,50 +12,28 @@ public class FloatingStoneMono : MonoBehaviour
     
     
     private OrbitalStonesMono _orbitalStones;
-    [Unity.Collections.ReadOnly] public float _currentAngle;
     private float _lerpTimer;
     private bool _isActive;
 
-    public void Init(OrbitalStonesMono orbitalStones,int index)
+    public void Init(OrbitalStonesMono orbitalStones,int index, float timeToSpawn)
     {
+        gameObject.SetActive(false);
         _spriteRenderer.sprite = _sprites[index];
         ResetCollider();
         _orbitalStones = orbitalStones;
-        _currentAngle = 0;
-        SetCirclePos();
-        _isActive = true;
+        TimerManager.AddTimer(timeToSpawn, Activate, true);
+    }
+
+    public void Activate()
+    {
         gameObject.SetActive(true);
-
-        TimerManager.AddTimer(orbitalStones.Ability.GetAbilityStatValue(AbilityStatType.Duration), Disable,true);
-    }
-
-    private void FixedUpdate()
-    {
-        //movement
-        if(!_isActive) return;
-        
-        if (_currentAngle >= 360) _currentAngle = 0;
-        _currentAngle += _orbitalStones.AngularSpeed * GAME_TIME.GameFixedDeltaTime;
-        SetCirclePos();
-        
-        //rotation
-        // var direction = (_orbitalStones.transform.position - transform.position).normalized;
-        // var lookRotation = Quaternion.FromToRotation(transform.forward,direction);
-        // transform.rotation = lookRotation;
-
-
-    }
-
-    private void SetCirclePos()
-    {
-        var posX = MathF.Sin(_currentAngle * Mathf.Deg2Rad);             
-        var posY = MathF.Cos(_currentAngle * Mathf.Deg2Rad)/_orbitalStones.EllipseScale;
-        var offset = new Vector3(posX,posY ,0) * _orbitalStones.Radius;
-        transform.position = _orbitalStones.transform.position + offset;
+        _isActive = true;
+        TimerManager.AddTimer(_orbitalStones.Ability.GetAbilityStatValue(AbilityStatType.Duration), Disable,true);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if(!_isActive) return;
         Enemy target = other.GetComponent<Enemy>() ?? other.GetComponentInParent<Enemy>();
         if (!ReferenceEquals(target, null))
         {
