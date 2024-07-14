@@ -58,7 +58,7 @@ public class BaseUnit : BaseEntity , IDamagable
         UnitTimers = new List<ITimer>();
         Movement.SetUp(this);
         groundCollider.Init(this);
-        
+        IsDead = false;
         ToggleCollider(true);
         Damageable.SetRegenerationTimer();
         if (hasHPBar)
@@ -73,7 +73,7 @@ public class BaseUnit : BaseEntity , IDamagable
         Effectable.OnAffected += LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
         Stats.OnStatChanged += EnemyTargeter.AddRadius;
         Stats.OnStatChanged += movement.OnSpeedChange;
-
+        
     }
     protected virtual void OnDisable() //unsubscribe to events
     {

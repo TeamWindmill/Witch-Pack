@@ -63,6 +63,7 @@ public class UnitMovement : MonoBehaviour
     public void ToggleMovement(bool state)
     {
         agent.enabled = state;
+        ChangeSpeed();
     }
 
     private IEnumerator WaitTilReached()
