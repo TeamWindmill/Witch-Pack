@@ -5,7 +5,7 @@ public abstract class CastingAbility : Ability
     public CastingAbilitySO CastingConfig { get; }
     public List<StatusEffectData> StatusEffects { get; } = new();
 
-    public TargetData TargetData => Owner.Stats[StatType.ThreatLevel].Value > 0 ? CastingConfig.UnderAttackTargetData : CastingConfig.TargetData;
+    public TargetData TargetData => Owner.Stats[StatType.ThreatLevel].Value >= 1 ? CastingConfig.UnderAttackTargetData : CastingConfig.TargetData;
 
     protected CastingAbility(CastingAbilitySO config, BaseUnit owner) : base(config,owner)
     {

@@ -65,8 +65,8 @@ namespace Tools.Targeter
             if (availableTargets[i].IsDead) return true;
 
 
-            if (availableTargets[i].Effectable.ContainsStatusEffect(StatusEffectVisual.Charm))
-                return true;
+            //if (availableTargets[i].Effectable.ContainsStatusEffect(StatusEffectVisual.Charm))
+                //return true;
 
             
             return false;

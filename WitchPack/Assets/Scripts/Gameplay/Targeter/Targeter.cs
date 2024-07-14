@@ -11,15 +11,16 @@ public class Targeter<T> : MonoBehaviour where T : Component
 
     public bool HasTarget => availableTargets.Count > 0;
 
-    public List<T> AvailableTargets { get => availableTargets; }
-
-    public void AddRadius(StatType statType, float value)
+    public List<T> AvailableTargets
     {
-        if (statType == StatType.BaseRange)
-        {
-            transform.parent.localScale = new Vector3(value, value, value);
-        }
+        get => availableTargets;
     }
+
+    public void AddRadius(float value)
+    {
+        transform.parent.localScale = new Vector3(value, value, value);
+    }
+
     public void SetRadius(float value)
     {
         transform.parent.localScale = new Vector3(value, value, value);
@@ -68,6 +69,9 @@ public struct TargetData
 {
     public TargetPriority Priority;
     public TargetModifier Modifier;
-    [ShowIf(nameof(Priority), TargetPriority.Stat)]public StatType StatType;
+
+    [ShowIf(nameof(Priority), TargetPriority.Stat)]
+    public StatType StatType;
+
     public bool AvoidCharmedTargets;
 }

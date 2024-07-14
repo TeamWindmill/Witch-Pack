@@ -60,5 +60,6 @@ public enum StatusEffectVisual
     PermanentMaxHealthBonus,
     Frenzy,
     Weak,
-    RockMonolithTaunt,
+    RockMonolith,
+    Taunt,
 }
