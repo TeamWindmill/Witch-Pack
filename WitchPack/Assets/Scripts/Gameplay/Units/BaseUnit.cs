@@ -71,8 +71,8 @@ public class BaseUnit : BaseEntity , IDamagable
         Damageable.OnTakeDamage += LevelManager.Instance.PopupsManager.SpawnDamagePopup;
         Damageable.OnHeal += LevelManager.Instance.PopupsManager.SpawnHealPopup;
         Effectable.OnAffected += LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
-        Stats.OnStatChanged += EnemyTargeter.AddRadius;
-        Stats.OnStatChanged += movement.OnSpeedChange;
+        Stats[StatType.BaseRange].OnStatChange += EnemyTargeter.AddRadius;
+        Stats[StatType.MovementSpeed].OnStatChange += movement.OnSpeedChange;
         
     }
     protected virtual void OnDisable() //unsubscribe to events
@@ -84,8 +84,8 @@ public class BaseUnit : BaseEntity , IDamagable
         Damageable.OnHeal -= LevelManager.Instance.PopupsManager.SpawnHealPopup;
         Effectable.OnAffected -= LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
         if (hasHPBar) Damageable.OnHealthChange -= hpBar.SetBarValue;
-        Stats.OnStatChanged -= EnemyTargeter.AddRadius;
-        Stats.OnStatChanged -= movement.OnSpeedChange;
+        Stats[StatType.BaseRange].OnStatChange -= EnemyTargeter.AddRadius;
+        Stats[StatType.MovementSpeed].OnStatChange -= movement.OnSpeedChange;
     }
     public void AddStatUpgrades(StatUpgrade[] statUpgrades)
     {

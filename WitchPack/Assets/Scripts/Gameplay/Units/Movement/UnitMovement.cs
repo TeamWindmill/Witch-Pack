@@ -2,21 +2,22 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+
 public class UnitMovement : MonoBehaviour
 {
     public event Action OnDestinationSet;
     public event Action OnDestinationReached;
-    
+
     public float DefaultStoppingDistance { get; private set; }
-    
+
     private Vector3 currentDest;
     private Coroutine activeMovementRoutine;
     private BaseUnit owner;
     [SerializeField] private NavMeshAgent agent;
 
     public NavMeshAgent Agent => agent;
-    public bool IsMoving => agent.velocity.sqrMagnitude > 0; 
-    public bool IsActive => agent.enabled; 
+    public bool IsMoving => agent.velocity.sqrMagnitude > 0;
+    public bool IsActive => agent.enabled;
 
     public Vector3 CurrentDestination => currentDest;
 
@@ -27,7 +28,7 @@ public class UnitMovement : MonoBehaviour
         DefaultStoppingDistance = agent.stoppingDistance;
     }
 
-    
+
     public void SetUp(BaseUnit givenOwner)
     {
         owner = givenOwner;
@@ -43,7 +44,7 @@ public class UnitMovement : MonoBehaviour
 
     public void SetDestination(Vector3 worldPos)
     {
-        if(!agent.isOnNavMesh || !agent.enabled) return;
+        if (!agent.isOnNavMesh || !agent.enabled) return;
         currentDest = worldPos;
         OnDestinationSet?.Invoke();
         agent.destination = (Vector2)worldPos;
@@ -51,12 +52,13 @@ public class UnitMovement : MonoBehaviour
         {
             StopCoroutine(activeMovementRoutine);
         }
+
         activeMovementRoutine = StartCoroutine(WaitTilReached());
-        
     }
+
     public void ChangeSpeed()
     {
-        if(agent is null) return;
+        if (agent is null) return;
         agent.speed = owner.Stats[StatType.MovementSpeed].Value * GAME_TIME.TimeRate;
     }
 
@@ -86,11 +88,8 @@ public class UnitMovement : MonoBehaviour
     }
 
 
-    public void OnSpeedChange(StatType statType, float value)
+    public void OnSpeedChange(float value)
     {
-        if (statType == StatType.MovementSpeed)
-        {
-            ChangeSpeed();
-        }
+        ChangeSpeed();
     }
 }
