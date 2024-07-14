@@ -67,6 +67,12 @@ public class PauseMenuManager : MonoBehaviour
         _isOpen = false;
     }
 
+    public void OpenSettingsWindow()
+    {
+        SoundManager.PlayAudioClip(SoundEffectType.MenuClick);
+        UIManager.ShowUIGroup(UIGroup.SettingsWindow);
+    }
+
     public void ReturnToMap()
     {
         SoundManager.PlayAudioClip(SoundEffectType.MenuClick);

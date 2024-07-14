@@ -170,4 +170,5 @@ public enum UIGroup
     ShamanUpgradePanel,
     LevelSelection,
     UpgradeWindow,
+    SettingsWindow,
 }

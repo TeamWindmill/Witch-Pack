@@ -109,7 +109,7 @@ public class AbilityUpgradePanelUI : UIElement
         //if(_shaman is not null && _abilityUIButton is not null) AbilitiesHandlerUI.UpdateButton(_shaman,_abilityUIButton);
     }
 
-    private void Update()
+    protected override void Update()
     {
         if (!gameObject.activeSelf || isMouseOver) return;
         if (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(0)) Hide();
@@ -121,7 +121,7 @@ public class AbilityUpgradePanelUI : UIElement
         if (!ReferenceEquals(_abilityUIButton.ActiveAbility, null))
         {
             //Debug.Log($"upgraded {ability.name}");
-            _shaman.UpgradeAbility(_abilityUIButton.ActiveAbility, ability);
+            _shaman.ShamanAbilityHandler.UpgradeAbility(_abilityUIButton.ActiveAbility, ability);
             if (_abilityUIButton.ActiveAbility.Upgrades.Count > 0)
             {
                 foreach (var upgrade in _abilityUIButton.ActiveAbility.Upgrades)
@@ -133,11 +133,11 @@ public class AbilityUpgradePanelUI : UIElement
         }
         else
         {
-            _shaman.LearnAbility(ability);
+            _shaman.ShamanAbilityHandler.LearnAbility(ability);
         }
 
         _shaman.EnergyHandler.TryUseSkillPoint();
-        var caster = _shaman.GetCasterFromAbility(ability);
+        var caster = _shaman.ShamanAbilityHandler.GetCasterFromAbility(ability);
         OnAbilityUpgrade?.Invoke();
         _abilityUIButton.Init(rootAbility, ability, caster);
         Show();

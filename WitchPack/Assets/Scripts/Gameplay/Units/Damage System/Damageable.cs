@@ -16,8 +16,7 @@ public class Damageable
 
     Timer regenTimer;
 
-    public event Action<int> OnHealthChange;
-    public event Action<int,int> OnMaxHealthChange;
+    public event Action<int,int> OnHealthChange;
     public event Action<Damageable, DamageDealer, DamageHandler, Ability, bool> OnTakeDamage;
     public event Action<Damageable,int> OnTakeFlatDamage;
     public event Action<Damageable, int> OnHeal;
@@ -42,6 +41,7 @@ public class Damageable
     {
         hitable = true;
         currentHp = MaxHp;
+        OnHealthChange?.Invoke(currentHp,MaxHp);
     }
 
     public void GetHit(DamageDealer dealer, CastingAbility ability)
@@ -76,7 +76,7 @@ public class Damageable
         
         currentHp -= damage.GetDamage();
         OnTakeDamage?.Invoke(this, dealer, damage, ability, isCrit);
-        OnHealthChange?.Invoke(currentHp);
+        OnHealthChange?.Invoke(currentHp,MaxHp);
 
         if (currentHp <= 0)
         {
@@ -89,7 +89,7 @@ public class Damageable
         OnHitGFX?.Invoke(false);
         currentHp -= amount;
         OnTakeFlatDamage?.Invoke(this,amount);
-        OnHealthChange?.Invoke(currentHp);
+        OnHealthChange?.Invoke(currentHp,MaxHp);
         if (currentHp <= 0)
         {
             OnDeathGFX?.Invoke();
@@ -102,7 +102,7 @@ public class Damageable
         {
             currentHp = Mathf.Clamp(currentHp + healAmount, 0, MaxHp);
             OnHeal?.Invoke(this, healAmount);
-            OnHealthChange?.Invoke(currentHp);
+            OnHealthChange?.Invoke(currentHp,MaxHp);
         }        
     }
 
@@ -126,7 +126,7 @@ public class Damageable
     private void OnMaxHpChange(float newValue)
     {
         //currentHp = MaxHp;
-        OnMaxHealthChange?.Invoke(currentHp, MaxHp);
+        OnHealthChange?.Invoke(currentHp, MaxHp);
     }
 
     public IEnumerator TakeDamageOverTime(DamageDealer dealer, DamageHandler damage, OffensiveAbility ability, bool isCrit, float duration, float tickRate)

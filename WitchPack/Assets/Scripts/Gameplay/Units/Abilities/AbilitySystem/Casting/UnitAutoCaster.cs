@@ -25,12 +25,12 @@ public class UnitAutoCaster : MonoBehaviour
         ClearData();
         owner = givenOwner;
         _castTimer = 0;
-        foreach (var castingHandler in givenOwner.CastingHandlers)
+        foreach (var castingHandler in givenOwner.AbilityHandler.CastingHandlers)
         {
             _queuedAbilities.Enqueue(castingHandler);
         }
 
-        _queuedAbilities.Enqueue(givenOwner.AutoAttackCaster);
+        _queuedAbilities.Enqueue(givenOwner.AbilityHandler.AutoAttackCaster);
         if (enableOnStart) EnableCaster();
     }
 

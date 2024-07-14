@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MainMenuPanel : UIElement
 {
-    [SerializeField] private SettingsMenuPanel _settingsMenuPanel;
+    //[SerializeField] private SettingsMenuPanel _settingsMenuPanel;
 
     private void Start()
     {
@@ -17,8 +17,8 @@ public class MainMenuPanel : UIElement
     }
     public void SettingsMenu()
     {
-        Hide();
-        _settingsMenuPanel.Show();
+        SoundManager.PlayAudioClip(SoundEffectType.MenuClick);
+        UIManager.ShowUIGroup(UIGroup.SettingsWindow);
     }
     
     public void Quit()

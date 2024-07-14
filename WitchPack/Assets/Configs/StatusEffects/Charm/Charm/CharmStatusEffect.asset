@@ -10,12 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 106cdf59ccdc6a14f88cd2e0b8b3eba0, type: 3}
-  m_Name: CharmVisual
+  m_Name: CharmStatusEffect
   m_EditorClassIdentifier: 
-  amount: 0
   process: 0
   duration: 6
+  multipleStats: 1
+  amount: 0
   statTypeAffected: 0
+  factor: 0
+  statUpgrades:
+  - _statType: 2
+    _statValue: 1
+    _factor: 0
+  - _statType: 4
+    _statValue: 0.5
+    _factor: 2
+  - _statType: 3
+    _statValue: 10
+    _factor: 0
   _statusEffectVisual: 6
   _showStatusEffectPopup: 1
-  factor: 0

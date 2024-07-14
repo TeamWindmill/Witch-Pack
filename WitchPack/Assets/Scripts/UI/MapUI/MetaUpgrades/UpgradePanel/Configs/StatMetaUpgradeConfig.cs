@@ -3,11 +3,11 @@ using Sirenix.OdinInspector;
 using UnityEngine;
 
 [Serializable]
-public class StatUpgradeConfig : MetaUpgradeConfig
+public class StatMetaUpgradeConfig : MetaUpgradeConfig
 {
     [SerializeField] private bool _upgradeAbility;
     [SerializeField] private bool _upgradePassiveAbility;
-    [SerializeField,HideIf(nameof(_upgradeAbility))] private StatValueUpgradeConfig[] _stats;
+    [SerializeField,HideIf(nameof(_upgradeAbility))] private StatUpgrade[] _stats;
     
     [SerializeField,ShowIf(nameof(_showAbility))] private AbilityStatUpgradeConfig[] _abilityStats;
     [SerializeField,ShowIf(nameof(_showAbility))] private AbilityBehavior[] _abilitiesBehaviors;
@@ -15,7 +15,7 @@ public class StatUpgradeConfig : MetaUpgradeConfig
     [SerializeField,ShowIf(nameof(_showAbility))] private StatusEffectUpgradeConfig[] _statusEffectUpgrades;
     [SerializeField,ShowIf(nameof(_showAbility))] private AbilitySO[] _abilitiesToUpgrade;
     private bool _showAbility =>  _upgradePassiveAbility || _upgradeAbility;
-    public StatValueUpgradeConfig[] Stats => _stats;
+    public StatUpgrade[] Stats => _stats;
     public AbilityStatUpgradeConfig[] AbilityStats => _abilityStats;
     public bool UpgradeAbility => _upgradeAbility;
     public bool UpgradePassiveAbility => _upgradePassiveAbility;
@@ -26,7 +26,7 @@ public class StatUpgradeConfig : MetaUpgradeConfig
 }
 
 [Serializable]
-public struct StatValueUpgradeConfig
+public struct StatUpgrade
 {
     [SerializeField] private StatType _statType;
     [SerializeField] private float _statValue;

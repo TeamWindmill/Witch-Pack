@@ -58,14 +58,14 @@ public struct AbilityPanelUpgrades
 [Serializable]
 public struct StatPanelUpgrades
 {
-    public List<StatUpgradeConfig> LeftStatUpgrades;
-    public List<StatUpgradeConfig> RightStatUpgrades;
+    public List<StatMetaUpgradeConfig> LeftStatUpgrades;
+    public List<StatMetaUpgradeConfig> RightStatUpgrades;
 
-    public List<StatUpgradeConfig> StatUpgrades
+    public List<StatMetaUpgradeConfig> StatUpgrades
     {
         get
         {
-            List<StatUpgradeConfig> upgrades = new();
+            List<StatMetaUpgradeConfig> upgrades = new();
             upgrades.AddRange(LeftStatUpgrades);
             upgrades.AddRange(RightStatUpgrades);
             return upgrades;

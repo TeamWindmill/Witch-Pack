@@ -77,7 +77,7 @@ public class AbilityUpgradeUIButton : ClickableUIElement
 
     protected override void OnClick(PointerEventData eventData)
     {
-        base.OnClick(eventData);
+        //base.OnClick(eventData);
         switch (Ability.UpgradeState)
         {
             case UpgradeState.Locked:
