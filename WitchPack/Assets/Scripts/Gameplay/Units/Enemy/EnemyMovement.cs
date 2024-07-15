@@ -1,8 +1,9 @@
 using PathCreation;
+using Sirenix.OdinInspector;
 
 public class EnemyMovement
 {
-    public float DistanceRemaining => _path.path.length - _dstTravelled;
+    [ReadOnly]public float DistanceRemaining => _path.path.length - _dstTravelled;
     private float _dstTravelled;
     private readonly Enemy _enemy;
     private readonly UnitMovement _unitMovement;

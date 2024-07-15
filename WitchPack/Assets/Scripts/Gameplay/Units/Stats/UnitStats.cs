@@ -6,7 +6,6 @@ using UnityEngine;
 [System.Serializable]
 public class UnitStats
 {
-    public event Action<StatType, float> OnStatChanged;
 
     private Stats _baseStats;
 

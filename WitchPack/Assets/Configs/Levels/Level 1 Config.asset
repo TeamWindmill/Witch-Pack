@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Number: 1
   Name: Beit Keshet
+  TestingLevel: 0
   levelPrefab: {fileID: 6779597212755086301, guid: 634cdfad6f5e0f74281f25517f039b56, type: 3}
   shamansToAddAfterComplete:
   - {fileID: 11400000, guid: ec8221a6379e2f249b54e376bfd80695, type: 2}
@@ -40,14 +41,14 @@ MonoBehaviour:
       _factor: 2
     _reduceShamanSlots: 3
     _expMultiplier: 1
-  - _challengeType: 2
-    _displayName: -35 Shaman Base damage
+  - _challengeType: 1
+    _displayName: +100 enemy armor
     _bonusesDescription:
     - 'EXP Modifier: +150%'
     _statUpgrades:
-    - _statType: 2
-      _statValue: 0
-      _factor: 1
+    - _statType: 9
+      _statValue: 100
+      _factor: 0
     - _statType: 0
       _statValue: 100
       _factor: 1
