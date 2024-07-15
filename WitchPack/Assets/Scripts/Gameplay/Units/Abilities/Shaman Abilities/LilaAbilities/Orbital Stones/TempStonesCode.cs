@@ -133,11 +133,7 @@ using UnityEngine;
 //
 //     private Quaternion CalculateRotation(Vector3 stonePos)
 //     {
-//         // vector from this object towards the target location
-//         Vector3 vectorToTarget = transform.position - stonePos;
 //         
-//         // rotate that vector by 90 degrees around the Z axis
-//         return Quaternion.LookRotation(Vector3.forward,vectorToTarget);
 //     }
 //
 //     private Vector3 CalculatePosition(int i, int stoneAmount)
