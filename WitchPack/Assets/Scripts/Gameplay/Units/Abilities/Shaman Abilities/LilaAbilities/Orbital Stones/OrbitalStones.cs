@@ -16,13 +16,16 @@ public class OrbitalStones : OffensiveAbility
         var target = Owner.EnemyTargetHelper.GetTarget(TargetData);
         if (target != null)
         {
-            var ability = LevelManager.Instance.PoolManager.OrbitalStonesPool.GetPooledObject();
-            ability.transform.position = Owner.transform.position; //change orbit pos
-            ability.Init(Owner,this);
+            Cast();
             return true;
         }
      
         return false;
+    }
+    public override bool ManualCast()
+    {
+        Cast();
+        return true;
     }
 
     public override bool CheckCastAvailable()
@@ -33,5 +36,12 @@ public class OrbitalStones : OffensiveAbility
             return true;
         }
         return false;
+    }
+
+    private void Cast()
+    {
+        var ability = LevelManager.Instance.PoolManager.OrbitalStonesPool.GetPooledObject();
+        ability.transform.position = Owner.transform.position; //change orbit pos
+        ability.Init(Owner,this);
     }
 }

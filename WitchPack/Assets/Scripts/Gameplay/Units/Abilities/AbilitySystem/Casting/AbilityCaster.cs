@@ -40,6 +40,20 @@ public class AbilityCaster : ICaster
         
         return false;
     }
+
+    public bool ManualCastAbility()
+    {
+        if (ability.ManualCast())
+        {
+            LastCast = GAME_TIME.GameTime;
+            OnCast?.Invoke(this);
+            OnCastGFX?.Invoke(ability.CastingConfig);
+            return true;
+        }
+
+        return false;
+    }
+
     public bool CheckCastAvailable()
     {
         return ability.CheckCastAvailable();
