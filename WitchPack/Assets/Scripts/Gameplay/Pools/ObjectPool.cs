@@ -27,10 +27,10 @@ public class ObjectPool<T> : MonoBehaviour where T : MonoBehaviour
     public T GetPooledObject(Vector3 position, Quaternion rotation, Vector3 scale, Transform parent = null)
     {
         var item = GetPooledObject();
+        if(parent != null) item.transform.parent = parent;
         item.transform.localPosition = position;
         item.transform.rotation = rotation;
         item.transform.localScale = scale;
-        if(parent != null) item.transform.parent = parent;
         return item;
     }
 
@@ -56,6 +56,7 @@ public class ObjectPool<T> : MonoBehaviour where T : MonoBehaviour
         obj.transform.position = Vector3.one;
         obj.transform.rotation = Quaternion.identity;
         obj.transform.localScale = Vector3.one;
+        obj.gameObject.SetActive(false);
     }
 
     public bool CheckActiveIstance()

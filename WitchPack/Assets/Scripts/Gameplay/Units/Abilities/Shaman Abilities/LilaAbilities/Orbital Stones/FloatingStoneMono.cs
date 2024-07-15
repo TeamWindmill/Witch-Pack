@@ -17,11 +17,11 @@ public class FloatingStoneMono : MonoBehaviour
 
     public void Init(OrbitalStonesMono orbitalStones,int index, float timeToSpawn)
     {
-        gameObject.SetActive(false);
         _spriteRenderer.sprite = _sprites[index];
         ResetCollider();
         _orbitalStones = orbitalStones;
         TimerManager.AddTimer(timeToSpawn, Activate, true);
+        gameObject.SetActive(false);
     }
 
     public void Activate()
@@ -54,6 +54,7 @@ public class FloatingStoneMono : MonoBehaviour
         _isActive = false;
         gameObject.SetActive(false);
         _orbitalStones.OnStoneDisable();
+        LevelManager.Instance.PoolManager.FloatingStonesPool.ReturnPooledObject(this);
     }
 
     [Button]

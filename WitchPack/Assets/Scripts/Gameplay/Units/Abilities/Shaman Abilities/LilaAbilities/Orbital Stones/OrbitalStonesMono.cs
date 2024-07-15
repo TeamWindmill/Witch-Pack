@@ -36,6 +36,7 @@ public class OrbitalStonesMono : MonoBehaviour
         var angleDiff = 360 / _stoneAmount;
 
         var timeToSpawn = angleDiff / (Ability.GetAbilityStatValue(AbilityStatType.Speed));
+        gameObject.SetActive(true);
         SpawnStones(_stoneAmount, timeToSpawn);
     }
 
@@ -43,25 +44,39 @@ public class OrbitalStonesMono : MonoBehaviour
     {
         for (int i = 0; i < stoneAmount; i++)
         {
-            var stone = LevelManager.Instance.PoolManager.FloatingStonesPool.GetPooledObject(CalculatePosition(i, stoneAmount), Quaternion.identity,Vector3.one,_stonesHolder);
-            stone.Init(this, i, i * timeToSpawn);
+            var stonePos = CalculatePosition(i, stoneAmount);
+            var stone = LevelManager.Instance.PoolManager.FloatingStonesPool.GetPooledObject(stonePos, CalculateRotation(transform.position + stonePos), Vector3.one,_stonesHolder);
+            stone.gameObject.SetActive(true);
             _activeStones.Add(stone);
         }
-        gameObject.SetActive(true);
+        
+        _stonesHolder.Rotate(40,0,0);
+        
+
+        for (int i = 0; i < _activeStones.Count; i++)
+        {
+            _activeStones[i].Init(this,i,i*timeToSpawn);
+            //_activeStones[i].transform.LookAt(GameManager.CameraHandler.MainCamera.transform.position);
+        }
         _isActive = true;
+    }
+
+    private Quaternion CalculateRotation(Vector3 stonePos)
+    {
+        // vector from this object towards the target location
+        Vector3 vectorToTarget = transform.position - stonePos;
+        
+        // rotate that vector by 90 degrees around the Z axis
+        return Quaternion.LookRotation(Vector3.forward,vectorToTarget);
     }
 
     private Vector3 CalculatePosition(int i, int stoneAmount)
     {
-        float angle = (float)i * (2 * Mathf.PI / stoneAmount);
-        float posX = Mathf.Cos(angle) * _radius;
-        float posY = Mathf.Sin(angle) * _radius;
-        return new Vector3(posX, posY, 0);
-        // var angle = i * (360 / stoneAmount);
-        // var posX = MathF.Sin(angle * Mathf.Deg2Rad);
-        // var posY = MathF.Cos(angle * Mathf.Deg2Rad)/_ellipseScale;
-        // var offset = new Vector3(posX, posY, 0) * _radius;
-        // return offset;
+        float angle = i * (360 / stoneAmount);
+        float x = math.cos(angle * Mathf.Deg2Rad);
+        float y = math.sin(angle * Mathf.Deg2Rad);
+        if (_radius == 0) _radius = _debugRadius; //temp for testing
+        return new Vector3(x,y ,0) * _radius;
     }
 
     private int stoneCounter;
@@ -89,5 +104,18 @@ public class OrbitalStonesMono : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _debugRadius);
+    }
+
+    [SerializeField] private FloatingStoneMono[] debugStones;
+    [Button]
+    public void SetStones()
+    {
+        int i = 0;
+        foreach (var stone in debugStones)
+        {
+            stone.transform.localPosition = CalculatePosition(i,debugStones.Length);
+            stone.transform.rotation = CalculateRotation(stone.transform.position);
+            i++;
+        }
     }
 }
