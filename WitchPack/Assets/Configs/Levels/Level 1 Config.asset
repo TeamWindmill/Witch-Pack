@@ -41,17 +41,14 @@ MonoBehaviour:
       _factor: 2
     _reduceShamanSlots: 3
     _expMultiplier: 1
-  - _challengeType: 1
-    _displayName: +100 enemy armor
+  - _challengeType: 2
+    _displayName: -60% shaman range
     _bonusesDescription:
     - 'EXP Modifier: +150%'
     _statUpgrades:
-    - _statType: 9
-      _statValue: 100
-      _factor: 0
-    - _statType: 0
-      _statValue: 100
-      _factor: 1
+    - _statType: 3
+      _statValue: 0.6
+      _factor: 3
     _reduceShamanSlots: 3
     _expMultiplier: 1.5
   BeforeDialog: {fileID: 11400000, guid: 4b70374310c787f48a84bbaa24b0583c, type: 2}
