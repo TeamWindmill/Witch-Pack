@@ -185,6 +185,7 @@ MonoBehaviour:
   - {fileID: -1148152757, guid: 62312333d61b4e445bff7ce877d50ca1, type: 3}
   - {fileID: 1947329696, guid: 62312333d61b4e445bff7ce877d50ca1, type: 3}
   _spriteRenderer: {fileID: 4286220231187825763}
+  _currentAngle: 0
 --- !u!60 &3822468966147083600
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -324,11 +325,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1233952019982888777, guid: 59425a0defdd18a4bb667742aa2a1c55, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.342
       objectReference: {fileID: 0}
     - target: {fileID: 1233952019982888777, guid: 59425a0defdd18a4bb667742aa2a1c55, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.19
+      value: -0.218
       objectReference: {fileID: 0}
     - target: {fileID: 1233952019982888777, guid: 59425a0defdd18a4bb667742aa2a1c55, type: 3}
       propertyPath: m_LocalPosition.z
@@ -336,7 +337,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1233952019982888777, guid: 59425a0defdd18a4bb667742aa2a1c55, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071066
       objectReference: {fileID: 0}
     - target: {fileID: 1233952019982888777, guid: 59425a0defdd18a4bb667742aa2a1c55, type: 3}
       propertyPath: m_LocalRotation.x
@@ -348,7 +349,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1233952019982888777, guid: 59425a0defdd18a4bb667742aa2a1c55, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.707107
       objectReference: {fileID: 0}
     - target: {fileID: 1233952019982888777, guid: 59425a0defdd18a4bb667742aa2a1c55, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -360,11 +361,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1233952019982888777, guid: 59425a0defdd18a4bb667742aa2a1c55, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 1378905259032806429, guid: 59425a0defdd18a4bb667742aa2a1c55, type: 3}
       propertyPath: m_Name
       value: Stone trail
+      objectReference: {fileID: 0}
+    - target: {fileID: 3967672710650266033, guid: 59425a0defdd18a4bb667742aa2a1c55, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3967672710650266033, guid: 59425a0defdd18a4bb667742aa2a1c55, type: 3}
+      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].value
+      value: 0.60509557
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -424,9 +433,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1264582328624189041, guid: 4a3da652023a5544d88bc36ad0673966, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 1264582328624189041, guid: 4a3da652023a5544d88bc36ad0673966, type: 3}
+      propertyPath: InitialModule.startSize.minScalar
+      value: 0.07
+      objectReference: {fileID: 0}
     - target: {fileID: 4020596449083210549, guid: 4a3da652023a5544d88bc36ad0673966, type: 3}
       propertyPath: m_Name
       value: Sand Particles
+      objectReference: {fileID: 0}
+    - target: {fileID: 7717405220318563281, guid: 4a3da652023a5544d88bc36ad0673966, type: 3}
+      propertyPath: m_SortingOrder
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
