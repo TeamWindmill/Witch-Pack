@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class AbilityMetaUpgrade : UIElement
 {
     [SerializeField] private TextMeshProUGUI _abilityName;
-    [SerializeField] private Image _abilityIcon;
 
     [SerializeField] private AbilityMetaUpgradeIcon[] _abilityUpgradeIcons;
     [SerializeField] private ShamanUpgradePanel _shamanUpgradePanel;
@@ -21,7 +20,6 @@ public class AbilityMetaUpgrade : UIElement
     {
         _abilityPanelConfig = abilityPanelConfig;
         _abilityName.text = abilityPanelConfig.Ability.Name;
-        _abilityIcon.sprite = abilityPanelConfig.Ability.DefaultIcon;
         var availableSkillPoints = _shamanUpgradePanel.ShamanSaveData.ShamanExperienceHandler.AvailableSkillPoints;
         for (int i = 0; i < _abilityUpgradeIcons.Length; i++)
         {

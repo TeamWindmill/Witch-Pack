@@ -16,7 +16,7 @@ public class StatBlockUI : UIElement
     private float _bonusValue;
     public StatType StatTypeId => statTypeId;
     
-    public void Init(Stat stat, Color addColor, Color reduceColor)
+    public void Init(Stat stat, Color addColor = default, Color reduceColor = default)
     {
         _stat = stat;
         _baseValue = stat.Value;
@@ -28,6 +28,7 @@ public class StatBlockUI : UIElement
 
     public override void Hide()
     {
+        if(_stat is null) return;
         _stat.OnStatChange -= UpdateBaseStat;
     }
 
@@ -91,6 +92,11 @@ public class StatBlockUI : UIElement
         string modifierText = $"{modifier}";
         string baseValueText = $"{baseValue}";
         string bonusValueText;
+        if (bonusValue == 0)
+        {
+            _statValue.text = baseValueText + modifierText;
+            return;
+        }
         switch (bonusValue)
         {
             case > 0.1f:

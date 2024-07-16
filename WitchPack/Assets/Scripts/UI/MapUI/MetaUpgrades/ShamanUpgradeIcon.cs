@@ -4,13 +4,15 @@ using UnityEngine.UI;
 
 public class ShamanUpgradeIcon : ClickableUIElement<ShamanSaveData>
 {
+    public ShamanSaveData ShamanSaveData { get; private set; }
+    
     [SerializeField] private Image _splash;
-    //[Space] 
-    //[SerializeField] private Sprite _deadUnitIcon;
-    private ShamanSaveData _shamanSaveData;
+    [SerializeField] private Image _frame;
+    [SerializeField] private Sprite _defaultFrame;
+    [SerializeField] private Sprite _selectedFrame;
     public override void Init(ShamanSaveData shamanSaveData)
     {
-        _shamanSaveData = shamanSaveData;
+        ShamanSaveData = shamanSaveData;
         _splash.sprite = shamanSaveData.Config.UnitIcon;
         base.Init(shamanSaveData);
         Show();
@@ -26,8 +28,13 @@ public class ShamanUpgradeIcon : ClickableUIElement<ShamanSaveData>
     {
         if(!Initialized) return;
         var upgradeWindow = WindowManager as UpgradeWindow;
-        if(upgradeWindow != null) upgradeWindow.SelectShaman(_shamanSaveData);
+        if(upgradeWindow != null) upgradeWindow.SelectShaman(ShamanSaveData);
         base.OnClick(eventData);
         
+    }
+
+    public void SelectIcon(bool state)
+    {
+        _frame.sprite = state ? _selectedFrame : _defaultFrame;
     }
 }

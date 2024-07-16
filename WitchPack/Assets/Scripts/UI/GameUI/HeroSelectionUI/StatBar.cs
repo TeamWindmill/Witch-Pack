@@ -17,7 +17,7 @@ public class StatBar : UIElement
     public void Init(StatBarData statBarData)
     {
         _data = statBarData;
-        _statBarName.text = $"{statBarData.Name}:";
+        _statBarName.text = $"{statBarData.Name}";
         _statBarMaxValue.text = statBarData.MaxValue.ToString();
         _statBarValue.text = statBarData.Value.ToString();
         _statBarFill.fillAmount = (float)statBarData.Value / statBarData.MaxValue;
@@ -43,6 +43,10 @@ public class StatBar : UIElement
          _data.MaxValue = maxValue;
          _statBarMaxValue.text = maxValue.ToString();
          _statBarFill.fillAmount = (float)_data.Value / maxValue;
+     }
+     public void UpdateStatbarText(string Text)
+     {
+         _statBarName.text = Text;
      }
 }
 
