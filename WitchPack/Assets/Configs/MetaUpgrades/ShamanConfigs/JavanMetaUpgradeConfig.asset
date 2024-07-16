@@ -209,7 +209,191 @@ MonoBehaviour:
     LeftStatUpgrades:
     - _valueName: -3s
       _name: Cooldows
+      _skillPointsCost: 1
+      _notWorking: 0
+      _stats:
+      - _statType: 1
+        _statValue: 3
+        _factor: 1
+      _damageBoosts: []
+      _abilitiesBehaviors: 
+      _statusEffectUpgrades: []
+      _abilitiesToUpgrade:
+      - {fileID: 11400000, guid: d5c2cbf6b0250ba43be4408df31b9d5d, type: 2}
+      - {fileID: 11400000, guid: 09389887f58dcfc4088caa9f572e4fdb, type: 2}
+      - {fileID: 11400000, guid: cf82a5de5a0148a4c805eb3387bba94d, type: 2}
+    - _valueName: +25%
+      _name: Charmed movement speed
+      _skillPointsCost: 1
+      _notWorking: 0
+      _stats: []
+      _damageBoosts: []
+      _abilitiesBehaviors: 
+      _statusEffectUpgrades:
+      - Duration:
+          StatType: 0
+          StatValue: 0
+          Factor: 4
+        Value:
+          StatType: 1
+          StatValue: 0.25
+          Factor: 0
+        Process: 0
+        StatType: 4
+      _abilitiesToUpgrade:
+      - {fileID: 11400000, guid: d5c2cbf6b0250ba43be4408df31b9d5d, type: 2}
+      - {fileID: 11400000, guid: 09389887f58dcfc4088caa9f572e4fdb, type: 2}
+      - {fileID: 11400000, guid: cf82a5de5a0148a4c805eb3387bba94d, type: 2}
+    - _valueName: +25%
+      _name: Charmed attack speed
+      _skillPointsCost: 2
+      _notWorking: 0
+      _stats: []
+      _damageBoosts: []
+      _abilitiesBehaviors: 
+      _statusEffectUpgrades:
+      - Duration:
+          StatType: 0
+          StatValue: 0
+          Factor: 4
+        Value:
+          StatType: 1
+          StatValue: 0.25
+          Factor: 0
+        Process: 0
+        StatType: 2
+      _abilitiesToUpgrade:
+      - {fileID: 11400000, guid: d5c2cbf6b0250ba43be4408df31b9d5d, type: 2}
+      - {fileID: 11400000, guid: 09389887f58dcfc4088caa9f572e4fdb, type: 2}
+      - {fileID: 11400000, guid: cf82a5de5a0148a4c805eb3387bba94d, type: 2}
+    - _valueName: Charmer
+      _name: Charms enemies until they die
+      _skillPointsCost: 5
+      _notWorking: 0
+      _stats:
+      - _statType: 10
+        _statValue: 10000
+        _factor: 0
+      _damageBoosts: []
+      _abilitiesBehaviors: 
+      _statusEffectUpgrades:
+      - Duration:
+          StatType: 0
+          StatValue: 10000
+          Factor: 0
+        Value:
+          StatType: 1
+          StatValue: 0
+          Factor: 4
+        Process: 0
+        StatType: 4
+      - Duration:
+          StatType: 0
+          StatValue: 10000
+          Factor: 0
+        Value:
+          StatType: 1
+          StatValue: 0
+          Factor: 4
+        Process: 0
+        StatType: 2
+      - Duration:
+          StatType: 0
+          StatValue: 10000
+          Factor: 0
+        Value:
+          StatType: 1
+          StatValue: 0
+          Factor: 4
+        Process: 0
+        StatType: 3
+      _abilitiesToUpgrade:
+      - {fileID: 11400000, guid: 09389887f58dcfc4088caa9f572e4fdb, type: 2}
+    RightStatUpgrades:
+    - _valueName: +25%
+      _name: Charmed movement speed
+      _skillPointsCost: 1
+      _notWorking: 0
+      _stats: []
+      _damageBoosts: []
+      _abilitiesBehaviors: 
+      _statusEffectUpgrades:
+      - Duration:
+          StatType: 0
+          StatValue: 0
+          Factor: 4
+        Value:
+          StatType: 1
+          StatValue: 0.25
+          Factor: 0
+        Process: 0
+        StatType: 4
+      _abilitiesToUpgrade:
+      - {fileID: 11400000, guid: d5c2cbf6b0250ba43be4408df31b9d5d, type: 2}
+      - {fileID: 11400000, guid: 09389887f58dcfc4088caa9f572e4fdb, type: 2}
+      - {fileID: 11400000, guid: cf82a5de5a0148a4c805eb3387bba94d, type: 2}
+    - _valueName: +25%
+      _name: Charmed attack speed
+      _skillPointsCost: 2
+      _notWorking: 0
+      _stats: []
+      _damageBoosts: []
+      _abilitiesBehaviors: 
+      _statusEffectUpgrades:
+      - Duration:
+          StatType: 0
+          StatValue: 0
+          Factor: 4
+        Value:
+          StatType: 1
+          StatValue: 0.25
+          Factor: 0
+        Process: 0
+        StatType: 2
+      _abilitiesToUpgrade:
+      - {fileID: 11400000, guid: d5c2cbf6b0250ba43be4408df31b9d5d, type: 2}
+      - {fileID: 11400000, guid: 09389887f58dcfc4088caa9f572e4fdb, type: 2}
+      - {fileID: 11400000, guid: cf82a5de5a0148a4c805eb3387bba94d, type: 2}
+    - _valueName: -3s
+      _name: Cooldows
       _skillPointsCost: 3
+      _notWorking: 0
+      _stats:
+      - _statType: 1
+        _statValue: 3
+        _factor: 1
+      _damageBoosts: []
+      _abilitiesBehaviors: 
+      _statusEffectUpgrades: []
+      _abilitiesToUpgrade:
+      - {fileID: 11400000, guid: d5c2cbf6b0250ba43be4408df31b9d5d, type: 2}
+      - {fileID: 11400000, guid: 09389887f58dcfc4088caa9f572e4fdb, type: 2}
+      - {fileID: 11400000, guid: cf82a5de5a0148a4c805eb3387bba94d, type: 2}
+    - _valueName: X2
+      _name: Damage for frenzied enemies
+      _skillPointsCost: 3
+      _notWorking: 0
+      _stats: []
+      _damageBoosts: []
+      _abilitiesBehaviors: 
+      _statusEffectUpgrades:
+      - Duration:
+          StatType: 0
+          StatValue: 0
+          Factor: 4
+        Value:
+          StatType: 1
+          StatValue: 1
+          Factor: 2
+        Process: 0
+        StatType: 1
+      _abilitiesToUpgrade:
+      - {fileID: 11400000, guid: cf82a5de5a0148a4c805eb3387bba94d, type: 2}
+  - Ability: {fileID: 11400000, guid: d5c2cbf6b0250ba43be4408df31b9d5d, type: 2}
+    LeftStatUpgrades:
+    - _valueName: -3s
+      _name: Cooldows
+      _skillPointsCost: 1
       _notWorking: 0
       _stats:
       - _statType: 1
