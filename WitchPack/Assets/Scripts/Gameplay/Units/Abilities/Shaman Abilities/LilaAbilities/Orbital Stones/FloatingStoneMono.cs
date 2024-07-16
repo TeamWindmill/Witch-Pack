@@ -2,23 +2,21 @@ using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using Random = UnityEngine.Random;
-
 public class FloatingStoneMono : MonoBehaviour
 {
     [SerializeField] private PolygonCollider2D _polygonCollider;
     [SerializeField] private Sprite[] _sprites;
     [SerializeField] private SpriteRenderer _spriteRenderer;
-    
-    
+
+
     private OrbitalStonesMono _orbitalStones;
     [Unity.Collections.ReadOnly] public float _currentAngle;
     private float _lerpTimer;
     private bool _isActive;
 
-    public void Init(OrbitalStonesMono orbitalStones)
+    public void Init(OrbitalStonesMono orbitalStones,int index)
     {
-        _spriteRenderer.sprite = _sprites[Random.Range(0,_sprites.Length)];
+        _spriteRenderer.sprite = _sprites[index];
         ResetCollider();
         _orbitalStones = orbitalStones;
         _currentAngle = 0;
@@ -31,14 +29,21 @@ public class FloatingStoneMono : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //rotation
+        //movement
         if(!_isActive) return;
-        
+
         if (_currentAngle >= 360) _currentAngle = 0;
         _currentAngle += _orbitalStones.AngularSpeed * GAME_TIME.GameFixedDeltaTime;
-                                                      
         SetCirclePos();
-        
+
+        //rotation
+        // vector from this object towards the target location
+        Vector3 vectorToTarget = _orbitalStones.transform.position - transform.position;
+         
+        //rotate that vector by 90 degrees around the Z axis
+        transform.rotation = Quaternion.LookRotation(Vector3.forward,vectorToTarget);
+
+
     }
 
     private void SetCirclePos()
@@ -59,26 +64,22 @@ public class FloatingStoneMono : MonoBehaviour
             //Disable();
         }
     }
-
     private void DisableStatusEffects(Damageable arg1, DamageDealer damageDealer, DamageHandler arg3, Ability arg4, bool arg5)
     {
         damageDealer.Owner.Effectable.RemoveEffectsOfType(StatusEffectVisual.Weak);
         damageDealer.OnHitTarget -= DisableStatusEffects;
     }
-
     public void Disable()
     {
         _isActive = false;
         gameObject.SetActive(false);
         _orbitalStones.OnStoneDisable();
     }
-
     [Button]
     public void ResetCollider()
     {
         for (int i = 0; i < _polygonCollider.pathCount; i++) _polygonCollider.SetPath(i, new List<Vector2>());
         _polygonCollider.pathCount = _spriteRenderer.sprite.GetPhysicsShapeCount();
-
         List<Vector2> path = new List<Vector2>();
         for (int i = 0; i < _polygonCollider.pathCount; i++) {
             path.Clear();
@@ -86,7 +87,6 @@ public class FloatingStoneMono : MonoBehaviour
             _polygonCollider.SetPath(i, path.ToArray());
         }
     }
-
     private void OnValidate()
     {
         _polygonCollider ??= GetComponent<PolygonCollider2D>();

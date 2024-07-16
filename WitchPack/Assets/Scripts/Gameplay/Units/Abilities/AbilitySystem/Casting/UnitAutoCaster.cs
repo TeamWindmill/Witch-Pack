@@ -12,6 +12,7 @@ public class UnitAutoCaster : MonoBehaviour
     public event Action<CastingHandsEffectType> CastTimeEndVFX;
     public bool CanCast { get; private set; }
 
+    [SerializeField] private bool _manualCasting = false;
     [ShowInInspector] private Queue<ICaster> _queuedAbilities = new();
     [ShowInInspector] private Dictionary<ICaster, Timer<ICaster>> _cooldownAbilities = new();
     private float _castTimer;
@@ -36,7 +37,7 @@ public class UnitAutoCaster : MonoBehaviour
 
     private void Update()
     {
-        if (!CanCast) return;
+        if (!CanCast && !_manualCasting) return;
         if (_queuedAbilities.Count <= 0) return;
         var caster = _queuedAbilities.Peek();
         if (caster.CheckCastAvailable()) //if a target is available to cast on
@@ -150,5 +151,20 @@ public class UnitAutoCaster : MonoBehaviour
 
         _cooldownAbilities.Clear();
         _queuedAbilities.Clear();
+    }
+    
+    [Button]
+    public void ManuallyCastAbility()
+    {
+        var caster = _queuedAbilities.Dequeue();
+        if (caster.ManualCastAbility())
+        {
+            CastTimeEnd?.Invoke(caster.Ability);
+            if (caster.Ability.CastingConfig.HasCastVisual) CastTimeEndVFX?.Invoke(caster.Ability.CastingConfig.CastVisualColor);
+            _castTimer = 0;
+            _castTimerStarted = false;
+            _castTimerEnded = false;
+        }
+        _queuedAbilities.Enqueue(caster);
     }
 }
