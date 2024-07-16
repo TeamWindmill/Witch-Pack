@@ -29,4 +29,7 @@ public enum AbilityStatType
     MovementSpeedSlow,
     Armor,
     DotDamage,
+    HpRegen,
+    TickInterval,
+    FinalDamageModifier,
 }

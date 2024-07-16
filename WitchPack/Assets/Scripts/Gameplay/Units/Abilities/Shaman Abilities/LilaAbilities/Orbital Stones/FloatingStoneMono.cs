@@ -16,7 +16,8 @@ public class FloatingStoneMono : MonoBehaviour
 
     public void Init(OrbitalStonesMono orbitalStones,int index)
     {
-        _spriteRenderer.sprite = _sprites[index];
+        var spriteIndex = index >= _sprites.Length ? index - (_sprites.Length - 1) : index;
+        _spriteRenderer.sprite = _sprites[spriteIndex];
         ResetCollider();
         _orbitalStones = orbitalStones;
         _currentAngle = 0;
@@ -61,7 +62,6 @@ public class FloatingStoneMono : MonoBehaviour
         {
             target.Damageable.GetHit(_orbitalStones.Owner.DamageDealer,_orbitalStones.Ability);
             target.DamageDealer.OnHitTarget += DisableStatusEffects;
-            //Disable();
         }
     }
     private void DisableStatusEffects(Damageable arg1, DamageDealer damageDealer, DamageHandler arg3, Ability arg4, bool arg5)

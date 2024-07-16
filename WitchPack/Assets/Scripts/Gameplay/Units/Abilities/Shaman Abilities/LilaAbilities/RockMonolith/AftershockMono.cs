@@ -49,9 +49,8 @@ public class AftershockMono : MonoBehaviour
 
     private float CalculateDamage()
     {
-        return _ability.GetAbilityStatValue(AbilityStatType.Damage) + _ability.RockMonolithConfig.DamageIncreasePerHit * _ability.DamageIncrement;
-        //var damageReductionInPercent = _chainIndex * _aftershockAbility.AftershockConfig.DamageReductionPerBounceInPercent;
-        //float damageReduction = 1 - ((float)damageReductionInPercent / 100);
+        var damage = _ability.GetAbilityStatValue(AbilityStatType.Damage) + _ability.RockMonolithConfig.DamageIncreasePerHit * _ability.DamageIncrement;
+        return damage * _ability.GetAbilityStatValue(AbilityStatType.FinalDamageModifier);
     }
 
     private void OnEnemyDeath(Damageable damageable, DamageHandler damageHandler)

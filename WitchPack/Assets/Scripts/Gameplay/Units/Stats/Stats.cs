@@ -15,6 +15,7 @@ public class Stats
     public StatConfig CritChance = new StatConfig(StatType.CritChance);
     public StatConfig Armor = new StatConfig(StatType.Armor);
     public StatConfig HpRegen = new StatConfig(StatType.HpRegen);
+    public StatConfig HpRegenInterval = new StatConfig(StatType.HpRegenInterval);
     public StatConfig Threat = new StatConfig(StatType.Threat);
     [ReadOnly] public StatDecimalConfig AbilityCooldownReduction = new StatDecimalConfig(StatType.AbilityCooldownReduction,1);
     [ReadOnly] public StatDecimalConfig EnergyGain = new StatDecimalConfig(StatType.EnergyGainMultiplier,1);

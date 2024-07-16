@@ -13,6 +13,7 @@ public class ChaseTarget : IntervalState<EnemyAI>
     {
         parent.Enemy.Movement.ToggleMovement(true);
         parent.Enemy.AutoCaster.EnableCaster();
+        parent.Enemy.EnemyVisualHandler.EnemyEffectHandler.PlayEffect(StatusEffectVisual.Taunt);
         base.Enter(parent);
     }
 
@@ -82,6 +83,7 @@ public class ChaseTarget : IntervalState<EnemyAI>
     public override void Exit(EnemyAI parent)
     {
         parent.Enemy.AutoCaster.DisableCaster();
+        parent.Enemy.EnemyVisualHandler.EnemyEffectHandler.DisableEffect(StatusEffectVisual.Taunt);
         base.Exit(parent);
     }
 }
