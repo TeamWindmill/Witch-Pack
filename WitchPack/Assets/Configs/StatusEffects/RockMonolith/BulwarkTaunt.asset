@@ -10,12 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 106cdf59ccdc6a14f88cd2e0b8b3eba0, type: 3}
-  m_Name: MonolithMovementSlow
+  m_Name: BulwarkTaunt
   m_EditorClassIdentifier: 
-  amount: 3
   process: 0
   duration: 5
-  statTypeAffected: 4
-  _statusEffectVisual: 11
+  multipleStats: 1
+  amount: 30
+  statTypeAffected: 9
+  factor: 0
+  statUpgrades:
+  - _statType: 9
+    _statValue: 30
+    _factor: 0
+  - _statType: 4
+    _statValue: 3
+    _factor: 1
+  - _statType: 10
+    _statValue: 5
+    _factor: 0
+  _statusEffectVisual: 15
   _showStatusEffectPopup: 0
-  factor: 1

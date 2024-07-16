@@ -24,6 +24,16 @@ public class ObjectPool<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
+    public T GetPooledObject(Vector3 position, Quaternion rotation, Vector3 scale, Transform parent = null)
+    {
+        var item = GetPooledObject();
+        if(parent != null) item.transform.parent = parent;
+        item.transform.localPosition = position;
+        item.transform.rotation = rotation;
+        item.transform.localScale = scale;
+        return item;
+    }
+
     public T GetPooledObject()
     {
         foreach (var item in pooledObjects)
@@ -39,6 +49,14 @@ public class ObjectPool<T> : MonoBehaviour where T : MonoBehaviour
         pooledObjects.Add(newPooledObject);
         newPooledObject.gameObject.SetActive(false);
         return newPooledObject;
+    }
+    public void ReturnPooledObject(T obj)
+    {
+        obj.transform.parent = transform;
+        obj.transform.position = Vector3.one;
+        obj.transform.rotation = Quaternion.identity;
+        obj.transform.localScale = Vector3.one;
+        obj.gameObject.SetActive(false);
     }
 
     public bool CheckActiveIstance()

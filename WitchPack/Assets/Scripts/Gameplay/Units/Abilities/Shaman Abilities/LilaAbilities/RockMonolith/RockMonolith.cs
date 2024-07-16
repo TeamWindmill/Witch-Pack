@@ -22,7 +22,7 @@ public class RockMonolith : OffensiveAbility
         
         _shamanOwner.Effectable.AddEffects(StatusEffects,_shamanOwner.Affector);
         
-        _shamanOwner.ShamanVisualHandler.ShamanEffectHandler.PlayEffect(StatusEffectVisual.RockMonolith);
+        //_shamanOwner.ShamanVisualHandler.ShamanEffectHandler.PlayEffect(StatusEffectVisual.RockMonolith);
 
         TimerManager.AddTimer(GetAbilityStatValue(AbilityStatType.Duration), OnTauntEnd,true);
 
@@ -55,7 +55,7 @@ public class RockMonolith : OffensiveAbility
 
     protected virtual void OnTauntEnd()
     {
-        _shamanOwner.ShamanVisualHandler.ShamanEffectHandler.DisableEffect(StatusEffectVisual.RockMonolith);
+        //_shamanOwner.ShamanVisualHandler.ShamanEffectHandler.DisableEffect(StatusEffectVisual.RockMonolith);
         
         _activeAftershock = LevelManager.Instance.PoolManager.AftershockPool.GetPooledObject();
         _activeAftershock.transform.position = Owner.transform.position;
