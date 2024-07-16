@@ -15,11 +15,12 @@ public class PowerStructure : MonoBehaviour
 
     [SerializeField] private SpriteRenderer _powerStructureSpriteRenderer;
     [SerializeField] private SpriteMask _powerStructureMask;
-    [Space] [SerializeField] private bool _testing;
+    [SerializeField] private ParticleSystem _psEffect;
     
     private StatType _statType;
     private Factor _statFactor;
     private readonly Dictionary<int, float> _activeShadowRingIds = new();
+    private readonly List<Shaman> _activeShamansInRings = new();
 
     
 
@@ -43,7 +44,9 @@ public class PowerStructure : MonoBehaviour
             ring.OnShadowEnter += OnShadowRingEnter;
             ring.OnShadowExit += OnShadowRingExit;
         }
-
+        _psEffect.gameObject.SetActive(false);
+        var main = _psEffect.main;
+        main.startColor = _config.PowerStructureTypeColor;
         LevelManager.Instance.SelectionHandler.OnShadowDeselected += OnShadowDeselect;
     }
     private void OnShadowDeselect(Shadow shadow)
@@ -55,24 +58,33 @@ public class PowerStructure : MonoBehaviour
 
     private void OnShamanRingEnter(int ringId, Shaman shaman)
     {
-        //if (_testing) Debug.Log($"shaman entered ring {ringId}");
-
         var statAdditionValue = _config.statEffect.RingValues[ringId];
         shaman.Stats[_statType].AddStatValue(_statFactor,statAdditionValue);
         shaman.ActivePowerStructures[this] = ringId;
+        if(!_activeShamansInRings.Contains(shaman)) _activeShamansInRings.Add(shaman);
+        
+        //enable effects
+        //enable shaman effect
+        if(!_psEffect.gameObject.activeSelf) _psEffect.gameObject.SetActive(true);
     }
     private void OnShamanRingExit(int ringId, Shaman shaman)
     {
-        //if (_testing) Debug.Log($"shaman exited ring {ringId}");
-        
         var statAdditionValue = _config.statEffect.RingValues[ringId];
         shaman.Stats[_statType].RemoveStatValue(_statFactor,statAdditionValue);
         if (ringId < proximityRingsManager.RingHandlers.Length - 1) shaman.ActivePowerStructures[this] = ringId + 1;
-        else shaman.ActivePowerStructures.Remove(this);
+        else
+        {
+            shaman.ActivePowerStructures.Remove(this);
+            _activeShamansInRings.Remove(shaman);
+
+            //disable effects
+            //disable shaman effect
+            if(_activeShamansInRings.Count == 0) _psEffect.gameObject.SetActive(false);
+        }
     }
     private void OnShadowRingEnter(int ringId, Shadow shadow)
     {
-        //if (_testing) Debug.Log($"Shadow Enter: {ringId}");
+        //Debug.Log($"Shadow Enter: {ringId}");
         
         //switch between ring sprites
         if (_activeShadowRingIds.Count > 0)
@@ -104,7 +116,7 @@ public class PowerStructure : MonoBehaviour
     {
         _activeShadowRingIds.Remove(ringId);
 
-        //if (_testing) Debug.Log($"Shadow Exit: {ringId}");
+        //Debug.Log($"Shadow Exit: {ringId}");
 
         var statAdditionValue = _config.statEffect.RingValues[ringId];
         shadow.SetPSStatValue(_statType,-statAdditionValue);

@@ -32,6 +32,7 @@ public class PartySelectionWindow : UIElement
 
     public override void Refresh()
     {
+        _packPanel.Refresh();
         _rosterPanel.Refresh();
     }
 

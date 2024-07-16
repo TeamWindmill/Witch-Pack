@@ -23,6 +23,14 @@ public class PackPanel : UIElement
         base.Show();
     }
 
+    public override void Refresh()
+    {
+        foreach (var icon in _packIcons)
+        {
+            icon.Refresh();
+        }
+    }
+
     public override void Hide()
     {
         foreach (var icon in _packIcons)
