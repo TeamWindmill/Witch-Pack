@@ -14,6 +14,7 @@ public class UpgradeWindow : UIWindowManager
     {
         _shamanRoster = GameManager.SaveData.ShamanRoster;
         _upgradesPartyUIPanel.Init();
+        _shamanUpgradePanel.OnStatUpgrade += _shamanDetailsPanel.AddUpgradeToStats;
         base.Show();
         SelectShaman(_shamanRoster[0]);
     }
@@ -31,5 +32,11 @@ public class UpgradeWindow : UIWindowManager
     {
         _selectedShaman.ShamanExperienceHandler.ManualExpGain();
         Refresh();
+    }
+
+    public override void Hide()
+    {
+        _shamanUpgradePanel.OnStatUpgrade -= _shamanDetailsPanel.AddUpgradeToStats;
+        base.Hide();
     }
 }
