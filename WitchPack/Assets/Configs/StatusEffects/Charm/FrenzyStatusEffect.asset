@@ -10,12 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 106cdf59ccdc6a14f88cd2e0b8b3eba0, type: 3}
-  m_Name: CharmAttackSpeedEffect
+  m_Name: FrenzyStatusEffect
   m_EditorClassIdentifier: 
-  amount: 1
   process: 0
   duration: 6
-  statTypeAffected: 2
-  statusEffectType: 6
-  _showStatusEffectPopup: 0
-  valueType: 0
+  multipleStats: 1
+  amount: 20
+  statTypeAffected: 1
+  factor: 0
+  statUpgrades:
+  - _statType: 2
+    _statValue: 1
+    _factor: 0
+  - _statType: 4
+    _statValue: 0.5
+    _factor: 2
+  - _statType: 3
+    _statValue: 10
+    _factor: 0
+  - _statType: 1
+    _statValue: 20
+    _factor: 0
+  _statusEffectVisual: 13
+  _showStatusEffectPopup: 1

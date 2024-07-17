@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class UpgradeWindow : UIWindowManager
 {
-    [SerializeField] private TextMeshProUGUI _shamanNameText;
     [SerializeField] private ShamanUpgradePanel _shamanUpgradePanel;
+    [SerializeField] private ShamanDetailsPanel _shamanDetailsPanel;
     [SerializeField] private UpgradesPartyUIPanel _upgradesPartyUIPanel;
     [SerializeField] private List<ShamanSaveData> _shamanRoster;
 
@@ -14,15 +14,16 @@ public class UpgradeWindow : UIWindowManager
     {
         _shamanRoster = GameManager.SaveData.ShamanRoster;
         _upgradesPartyUIPanel.Init();
-        SelectShaman(_shamanRoster[0]);
         base.Show();
+        SelectShaman(_shamanRoster[0]);
     }
 
     public void SelectShaman(ShamanSaveData shamanSaveData)
     {
         _selectedShaman = shamanSaveData;
         _shamanUpgradePanel.Init(shamanSaveData);
-        _shamanNameText.text = shamanSaveData.Config.Name;
+        _upgradesPartyUIPanel.SelectShamanIcon(shamanSaveData);
+        _shamanDetailsPanel.Init(shamanSaveData);
         Refresh();
     }
 

@@ -26,6 +26,12 @@ public class PackIcon : ClickableUIElement
         Index = index;
         UnassignShaman();
         ToggleAlpha(false);
+        Locked = false;
+    }
+
+    public override void Refresh()
+    {
+        if (!Assigned) Init(Index);
     }
 
     public void ToggleAlpha(bool state)

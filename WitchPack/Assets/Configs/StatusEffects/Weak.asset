@@ -12,10 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 106cdf59ccdc6a14f88cd2e0b8b3eba0, type: 3}
   m_Name: Weak
   m_EditorClassIdentifier: 
-  amount: 0.5
   process: 2
   duration: 0
+  multipleStats: 1
+  amount: 0.5
   statTypeAffected: 1
+  factor: 3
+  statUpgrades:
+  - _statType: 1
+    _statValue: 0.5
+    _factor: 3
   _statusEffectVisual: 14
   _showStatusEffectPopup: 1
-  factor: 3

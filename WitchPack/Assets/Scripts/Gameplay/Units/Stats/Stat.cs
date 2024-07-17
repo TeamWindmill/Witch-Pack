@@ -30,6 +30,6 @@ public enum StatType
     ThreatLevel, //the amount of threat currently on this unit
     Threat, //the amount of threat added to this unit's targets
     EnergyGainMultiplier,
-    
+    HpRegenInterval,
 }
 

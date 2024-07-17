@@ -80,6 +80,9 @@ public class AbilityFactory
 
             case ReflectSO ability:
                 return new Reflect(ability, owner);
+            
+            case HealingLightSO ability:
+                return new HealingLight(ability, owner);
 
             
             //Enemy Abilities

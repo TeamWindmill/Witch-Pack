@@ -27,6 +27,7 @@ public class UnitStats
         Stats.Add(baseStats.CritChance.statType,new Stat(baseStats.CritChance.statType,baseStats.CritChance.value));
         Stats.Add(baseStats.Armor.statType,new Stat(baseStats.Armor.statType,baseStats.Armor.value));
         Stats.Add(baseStats.HpRegen.statType,new Stat(baseStats.HpRegen.statType,baseStats.HpRegen.value));
+        Stats.Add(baseStats.HpRegenInterval.statType,new Stat(baseStats.HpRegenInterval.statType,baseStats.HpRegenInterval.value));
         Stats.Add(baseStats.Threat.statType,new Stat(baseStats.Threat.statType,baseStats.Threat.value));
         Stats.Add(baseStats.AbilityCooldownReduction.statType,new Stat(baseStats.AbilityCooldownReduction.statType,baseStats.AbilityCooldownReduction.value));
         Stats.Add(baseStats.Visibility.statType,new Stat(baseStats.Visibility.statType,baseStats.Visibility.value));

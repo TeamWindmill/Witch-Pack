@@ -41,7 +41,7 @@ public class Effectable
     {
         for (int i = 0; i < activeEffects.Count; i++) //check if affected by a similar ss already
         {
-            if (activeEffects[i].StatType == givenEffect.StatType && activeEffects[i].Process == givenEffect.Process)
+            if (activeEffects[i].StatusEffectVisual == givenEffect.StatusEffectVisual && activeEffects[i].Process == givenEffect.Process)
             {
                 activeEffects[i].Reset();
                 return activeEffects[i];
@@ -51,7 +51,7 @@ public class Effectable
         activeEffects.Add(givenEffect);
         givenEffect.Activate();
         OnAffected?.Invoke(this, affector, givenEffect);
-        OnAffectedVFX?.Invoke(givenEffect.StatusEffectVisual); // maybe also added this to the if above? line 32
+        OnAffectedVFX?.Invoke(givenEffect.StatusEffectVisual);
         return givenEffect;
     }
 

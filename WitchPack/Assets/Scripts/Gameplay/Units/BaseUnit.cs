@@ -60,7 +60,7 @@ public class BaseUnit : BaseEntity , IDamagable
         groundCollider.Init(this);
         IsDead = false;
         ToggleCollider(true);
-        Damageable.SetRegenerationTimer();
+        Damageable.SetRegenerationTimer(stats[StatType.HpRegenInterval].Value);
         if (hasHPBar)
         {
             hpBar.gameObject.SetActive(true);
