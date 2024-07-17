@@ -1,9 +1,11 @@
+using System;
 using Sirenix.Utilities;
 using TMPro;
 using UnityEngine;
 
 public class ShamanUpgradePanel : UIElement
 {
+    public event Action<StatMetaUpgradeConfig> OnStatUpgrade;
     [SerializeField] private AbilityMetaUpgrade[] _abilityMetaUpgrades;
     [SerializeField] private StatMetaUpgrade _statMetaUpgrades;
 
@@ -27,7 +29,6 @@ public class ShamanUpgradePanel : UIElement
 
     public override void Refresh()
     {
-
         _abilityMetaUpgrades.ForEach(upgrade => upgrade.Refresh());
         _statMetaUpgrades.Refresh();
     }
@@ -48,11 +49,31 @@ public class ShamanUpgradePanel : UIElement
     {
         ShamanSaveData.StatUpgrades.Add(statMetaUpgrade);
         UpgradeShaman(statMetaUpgrade.SkillPointsCost);
+        OnStatUpgrade?.Invoke(statMetaUpgrade);
+    }
+    public static bool CheckIfUpgradeAvailable(ShamanSaveData shamanSaveData)
+    {
+        foreach (var abilityPanelUpgrade in shamanSaveData.Config.ShamanMetaUpgradeConfig.AbilityPanelUpgrades)
+        {
+            foreach (var abilityUpgrade in abilityPanelUpgrade.StatUpgrades)
+            {
+                if(shamanSaveData.AbilityUpgrades.Contains(abilityUpgrade)) continue;
+                if(abilityUpgrade.SkillPointsCost <= shamanSaveData.ShamanExperienceHandler.AvailableSkillPoints) return true;
+            }
+        }
+
+        foreach (var statUpgrade in shamanSaveData.Config.ShamanMetaUpgradeConfig.StatPanelUpgrades.StatUpgrades)
+        {
+            if(shamanSaveData.StatUpgrades.Contains(statUpgrade)) continue;
+            if(statUpgrade.SkillPointsCost <= shamanSaveData.ShamanExperienceHandler.AvailableSkillPoints) return true;
+        }
+
+        return false;
     }
 
     private void UpgradeShaman(int skillPointCost)
     {
         ShamanSaveData.ShamanExperienceHandler.UseSkillPoints(skillPointCost);
-        Refresh();
+        WindowManager.Refresh();
     }
 }

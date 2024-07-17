@@ -1,3 +1,4 @@
+using Sirenix.Utilities;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,7 @@ public class ShamanDetailsPanel : UIElement<ShamanSaveData>
     [SerializeField] private StatBar _expBar;
     [SerializeField] private StatBlockUI[] _statBlocks;
 
+    private UnitStats _shamanStats;
     private ShamanSaveData _shaman;
     public override void Init(ShamanSaveData data)
     {
@@ -22,15 +24,35 @@ public class ShamanDetailsPanel : UIElement<ShamanSaveData>
         _skillPointsText.text = "SP " + data.ShamanExperienceHandler.AvailableSkillPoints;
         _expBar.Init(new StatBarData($"LVL {data.ShamanExperienceHandler.ShamanLevel}", data.ShamanExperienceHandler.CurrentExp, data.ShamanExperienceHandler.MaxExpToNextLevel));
         data.ShamanExperienceHandler.OnShamanGainExp += _expBar.UpdateStatbar;
-        for (int i = 0; i < _statBlocks.Length; i++)
-        {
-            //_statBlocks[i].Init(data.Stats[i]);
-        }
+        StatInit(data);
         base.Init(data);
+    }
+
+    private void StatInit(ShamanSaveData data)
+    {
+        _shamanStats = new UnitStats(data.Config.BaseStats);
+        foreach (var statUpgrade in data.StatUpgrades)
+        {
+            foreach (var upgrade in statUpgrade.Stats)
+            {
+                _shamanStats.AddValueToStat(upgrade.StatType, upgrade.Factor, upgrade.StatValue);
+            }
+        }
+
+        foreach (var statBlock in _statBlocks)
+        {
+            statBlock.Init(_shamanStats.Stats[statBlock.StatTypeId]);
+        }
+    }
+
+    public void AddUpgradeToStats(StatMetaUpgradeConfig statMetaUpgradeConfig)
+    {
+        statMetaUpgradeConfig.Stats.ForEach(stat => _shamanStats.AddValueToStat(stat.StatType, stat.Factor, stat.StatValue));
     }
 
     public override void Refresh()
     {
+        if(!IsInitialized) return;
         _skillPointsText.text = _shaman.ShamanExperienceHandler.AvailableSkillPoints.ToString();
         _levelText.text = "LVL " + _shaman.ShamanExperienceHandler.ShamanLevel;
     }
