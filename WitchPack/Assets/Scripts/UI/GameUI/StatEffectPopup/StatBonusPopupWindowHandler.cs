@@ -1,21 +1,27 @@
+using System;
 using TMPro;
+using Tools.Helpers;
 using UnityEngine;
+using UnityEngine.UI;
 
 
-public class StatEffectPopupWindowHandler : MonoBehaviour
+public class StatBonusPopupWindowHandler : MonoBehaviour
 {
     public bool IsActive => _isActive;
     public int ActiveEntityId => _activeEntityId;
-    [SerializeField] private TextMeshPro _popupText;
-    [SerializeField] private SpriteRenderer _popupVisual;
+    [SerializeField] private TextMeshProUGUI _popupText;
+    [SerializeField] private Image _popupVisual;
     private string _statBonusText;
     private bool _isActive;
     private int _activeEntityId = -1;
 
+    private bool _psInfoWindow;
+    private PowerStructure _powerStructure;
+
     private void OnValidate()
     {
-        _popupText ??= GetComponentInChildren<TextMeshPro>();
-        _popupVisual ??= GetComponentInChildren<SpriteRenderer>();
+        _popupText ??= GetComponentInChildren<TextMeshProUGUI>();
+        _popupVisual ??= GetComponentInChildren<Image>();
     }
 
     public void Init()
@@ -36,6 +42,17 @@ public class StatEffectPopupWindowHandler : MonoBehaviour
         _popupVisual.color = color;
     }
 
+    public void ShowPSInfo(PowerStructure powerStructure)
+    {
+        _popupVisual.gameObject.SetActive(true);
+        _popupText.gameObject.SetActive(true);
+        _powerStructure = powerStructure;
+        _popupText.text = powerStructure.Config.statEffect.StatType.ToString().ToLowercaseNamingConvention();
+        _popupVisual.color = powerStructure.Config.PowerStructureTypeColor;
+        _isActive = true;
+        _psInfoWindow = true;
+    }
+
     public void UpdatePopupWindow(float value, bool isPercent, Color color)
     {
         _popupText.text = isPercent ? $"{_statBonusText} +{value}%" : $"{_statBonusText} +{value}";
@@ -54,5 +71,15 @@ public class StatEffectPopupWindowHandler : MonoBehaviour
         _popupVisual.gameObject.SetActive(false);
         _popupText.gameObject.SetActive(false);
         _isActive = false;
+        _psInfoWindow = false;
+    }
+
+    private void Update()
+    {
+        if (_isActive && _psInfoWindow)
+        {
+            var screenPos = GameManager.CameraHandler.MainCamera.WorldToScreenPoint(_powerStructure.InfoWindowPos.position);
+            transform.position = screenPos;
+        }
     }
 }
