@@ -6,6 +6,8 @@ using UnityEngine;
 public class PowerStructure : MonoBehaviour
 {
     public ProximityRingsManager ProximityRingsManager => proximityRingsManager;
+    public PowerStructureConfig Config => _config;
+    public Transform InfoWindowPos => _infoWindowPos;
 
     [Header("Config File")] [SerializeField]
     private PowerStructureConfig _config;
@@ -16,6 +18,7 @@ public class PowerStructure : MonoBehaviour
     [SerializeField] private SpriteRenderer _powerStructureSpriteRenderer;
     [SerializeField] private SpriteMask _powerStructureMask;
     [SerializeField] private ParticleSystem _psEffect;
+    [SerializeField] private Transform _infoWindowPos;
     
     private StatType _statType;
     private Factor _statFactor;
@@ -32,7 +35,7 @@ public class PowerStructure : MonoBehaviour
             return;
         }
 
-        proximityRingsManager.Init(_config);
+        proximityRingsManager.Init(this);
         _powerStructureSpriteRenderer.sprite = _config.PowerStructureSprite;
         _powerStructureMask.sprite = _config.PowerStructureSprite;
         _statType = _config.statEffect.StatType;
@@ -141,12 +144,12 @@ public class PowerStructure : MonoBehaviour
     }
     public void OnShamanHoverEnter(Shaman shaman, int ringId)
     {
-        StatEffectPopupManager.ShowPopupWindows(GetInstanceID(),shaman.transform, _statType.ToString(), CalculateStatValueForPowerStructureUI(ringId), _config.ShowPercent, GetRingColorAlpha(ringId));
+        StatBonusPopupManager.ShowPopupWindows(GetInstanceID(),shaman.transform, _statType.ToString(), CalculateStatValueForPowerStructureUI(ringId), _config.ShowPercent, GetRingColorAlpha(ringId));
     }
     public void ShowUI(Shadow shadow,int ringId)
     {
         HeroSelectionUI.Instance.StatBlockPanel.UpdateBonusStatBlocks(_statType, CalculateStatValueForSelectionUI(shadow,shadow.Shaman));
-        StatEffectPopupManager.ShowPopupWindows(GetInstanceID(), shadow.transform, _statType.ToString(), CalculateStatValueForPowerStructureUIByShadow(), _config.ShowPercent, GetRingColorAlpha(ringId));
+        StatBonusPopupManager.ShowPopupWindows(GetInstanceID(), shadow.transform, _statType.ToString(), CalculateStatValueForPowerStructureUIByShadow(), _config.ShowPercent, GetRingColorAlpha(ringId));
     }
 
     public void UpdateUI(Shadow shadow)
@@ -157,7 +160,7 @@ public class PowerStructure : MonoBehaviour
     public void HideUI(bool hideSelection)
     {
         if(hideSelection) HeroSelectionUI.Instance.StatBlockPanel.HideStatBlocksBonus();
-        StatEffectPopupManager.HidePopupWindows(GetInstanceID());
+        StatBonusPopupManager.HidePopupWindows(GetInstanceID());
     }
 
     private float CalculateStatValueForPowerStructureUIByShadow()

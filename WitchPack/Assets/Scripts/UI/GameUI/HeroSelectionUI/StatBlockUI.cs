@@ -30,6 +30,7 @@ public class StatBlockUI : UIElement
     {
         if(_stat is null) return;
         _stat.OnStatChange -= UpdateBaseStat;
+        _stat = null;
     }
 
     public void UpdateBonusStatUI(float newValue)
@@ -47,8 +48,7 @@ public class StatBlockUI : UIElement
 
     public void UpdateBaseStat(float newValue)
     {
-        if(ReferenceEquals(HeroSelectionUI.Instance,null)) return;
-        if(!HeroSelectionUI.Instance.IsActive) return;
+        if(ReferenceEquals(_stat,null)) return;
         _baseValue = newValue;
         SetStatText(_baseValue, 0);
     }
@@ -59,6 +59,9 @@ public class StatBlockUI : UIElement
         string modifier = "";
         switch (statTypeId)
         {
+            case StatType.MaxHp:
+                statName = "Health";
+                break;
             case StatType.BaseDamage:
                 statName = "Damage";
                 break;
@@ -81,9 +84,12 @@ public class StatBlockUI : UIElement
                 modifier = "%";
                 break;
             case StatType.HpRegen:
-                statName = "HP Regen";
+                statName = "Regeneration";
                 break;
             case StatType.Armor:
+                statName = "Armor";
+                break;
+            case StatType.AbilityCooldownReduction:
                 statName = "Armor";
                 break;
         }
