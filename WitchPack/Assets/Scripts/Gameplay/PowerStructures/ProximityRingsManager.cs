@@ -10,8 +10,6 @@ public class ProximityRingsManager : MonoBehaviour
     public ProximityRingHandler[] RingHandlers => _ringHandlers;
     [SerializeField] private ProximityRingHandler[] _ringHandlers;
     [SerializeField] private ClickHelper _clickHelper;
-    [SerializeField] private GameObject _infoWindow;
-    [SerializeField] private TextMeshPro _infoWindowText;
     private bool _lockSpriteToggle;
     private Color _defaultColor;
     private Color _powerStructureTypeColor;
@@ -19,11 +17,13 @@ public class ProximityRingsManager : MonoBehaviour
     private PowerStructureStatEffect _statEffect;
 
     private Dictionary<int, IDisposable> _activeStatusEffectOnShaman;
+    private PowerStructure _powerStructure;
 
 
-
-    public void Init(PowerStructureConfig powerStructureConfig)
+    public void Init(PowerStructure powerStructure)
     {
+        _powerStructure = powerStructure;
+        var powerStructureConfig = powerStructure.Config;
         float ringSpriteAlpha = powerStructureConfig.DefaultSpriteAlpha;
         for (int i = 0; i < _ringHandlers.Length; i++)
         {
@@ -92,16 +92,15 @@ public class ProximityRingsManager : MonoBehaviour
     {
         if (_shamanSelected) return;
         ToggleRingSprite(_ringHandlers.Length-1,true);
-        _infoWindowText.text = _statEffect.StatType.ToString().ToLowercaseNamingConvention();
-        _infoWindowText.color = _powerStructureTypeColor;
-        _infoWindow.SetActive(true);
+        StatBonusPopupManager.ShowPSInfoPopup(_powerStructure);
     }
 
     private void DeactivateRingSprites()
     {
         if (_shamanSelected) return;
         ToggleAllSprites(false);
-        _infoWindow.SetActive(false);
+        StatBonusPopupManager.HidePSInfoPopup();
+
     }
 
     public void ToggleRingSprite(int ringId, bool state)
