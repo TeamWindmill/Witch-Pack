@@ -16,7 +16,7 @@ public class SmokeBombMono : MonoBehaviour
     [SerializeField] private PlayableDirector cloudsIdle;
     [SerializeField] private PlayableDirector cloudsExit;
 
-    private Dictionary<Shaman,StatusEffect[]> _affectedShamans = new Dictionary<Shaman,StatusEffect[]>();
+    private Dictionary<Shaman,StatusEffect[]> _affectedShamans = new ();
     protected SmokeBomb _ability;
     protected BaseUnit _owner;
 
@@ -37,7 +37,7 @@ public class SmokeBombMono : MonoBehaviour
         cloudsEnter.gameObject.SetActive(true);
         cloudsEnter.stopped += CloudsIdleAnim;
         transform.localScale = new Vector3(ability.GetAbilityStatValue(AbilityStatType.Size), ability.GetAbilityStatValue(AbilityStatType.Size), 0);
-        Invoke(nameof(EndBomb),ability.GetAbilityStatValue(AbilityStatType.Duration));
+        TimerManager.AddTimer(ability.GetAbilityStatValue(AbilityStatType.Duration), EndBomb,true);
         _targeter.OnTargetAdded += OnTargetEntered;
         _targeter.OnTargetLost += OnTargetExited;
     }
