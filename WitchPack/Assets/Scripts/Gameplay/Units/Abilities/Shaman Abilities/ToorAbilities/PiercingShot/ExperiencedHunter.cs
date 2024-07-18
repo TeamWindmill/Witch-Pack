@@ -7,6 +7,7 @@ public class ExperiencedHunter : PiercingShot
         _config = config;
         abilityStats.Add(new AbilityStat(AbilityStatType.KillToIncreasePenetration,_config.NumberOfKillsRequiredToIncreasePierce));
         abilityStats.Add(new AbilityStat(AbilityStatType.ExtraPenetrationPerKill,config.ExtraPenPerKill));
+        if(owner is null) return;
         ExperiencedHunterCounter eventCounter = new ExperiencedHunterCounter(owner, this, ref owner.DamageDealer.OnKill);
         eventCounter.OnCountIncrement += IncreasePen;
     }

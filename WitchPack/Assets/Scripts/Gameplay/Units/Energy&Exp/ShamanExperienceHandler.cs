@@ -39,6 +39,10 @@ public class ShamanExperienceHandler
     {
         _usedSkillPoints += value;
     }
+    public void ResetSkillPoints()
+    {
+        _usedSkillPoints = 0;
+    }
 
     private void LevelUp(int excessExp)
     {

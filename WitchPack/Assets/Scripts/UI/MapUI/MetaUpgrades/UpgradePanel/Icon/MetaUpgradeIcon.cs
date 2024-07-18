@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class MetaUpgradeIcon<T> : ClickableUIElement
 {
     public event Action<T> OnUpgrade;
+    public event Action<int> OnSelect;
     public UpgradeState UpgradeState { get; private set; }
     public bool OpenAtStart => _openAtStart;
     public MetaUpgradeConfig UpgradeConfig => _upgradeConfig;
@@ -32,10 +33,12 @@ public class MetaUpgradeIcon<T> : ClickableUIElement
     private int _availableSkillPoints;
     protected T Upgrade;
     private MetaUpgradeConfig _upgradeConfig;
+    private int _abilityIndex;
 
 
-    public virtual void Init(MetaUpgradeConfig upgradeConfig, int availableSkillPoints)
+    public virtual void Init(int index, MetaUpgradeConfig upgradeConfig, int availableSkillPoints)
     {
+        _abilityIndex = index;
         UpgradeState = UpgradeState.Locked;
         _upgradeConfig = upgradeConfig;
         _availableSkillPoints = availableSkillPoints;
@@ -57,16 +60,17 @@ public class MetaUpgradeIcon<T> : ClickableUIElement
 
     protected override void OnClick(PointerEventData eventData)
     {
+        OnSelect?.Invoke(_abilityIndex);
         switch (UpgradeState)
         {
             case UpgradeState.Locked:
                 break;
             case UpgradeState.Open:
-                if (_availableSkillPoints >= _upgradeConfig.SkillPointsCost)
-                {
-                    ChangeState(UpgradeState.Upgraded);
-                    OnUpgrade?.Invoke(Upgrade);
-                }
+                // if (_availableSkillPoints >= _upgradeConfig.SkillPointsCost)
+                // {
+                //     ChangeState(UpgradeState.Upgraded);
+                //     OnUpgrade?.Invoke(Upgrade);
+                // }
                 break;
             case UpgradeState.Upgraded:
                 break;
