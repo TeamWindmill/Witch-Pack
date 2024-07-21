@@ -26,7 +26,7 @@ public enum StatType
     BonusStatusEffectDurationNotWorking, //fixed duration added for every effect applied by unit
     AbilityProjectileSpeedNotWorking, //if an ability is projectile quicken it by this amount
     AbilityProjectilePenetrationNotWorking, //the amount of times a projectile ability can hit targets before disabling
-    Visibility,
+    Invisibility,
     ThreatLevel, //the amount of threat currently on this unit
     Threat, //the amount of threat added to this unit's targets
     EnergyGainMultiplier,

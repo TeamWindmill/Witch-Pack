@@ -47,7 +47,7 @@ public class HealingWeeds : OffensiveAbility
         {
             foreach (var statusEffectUpgrade in abilityUpgradeConfig.StatusEffectUpgrades)
             {
-                if (statusEffect.StatTypeAffected == statusEffectUpgrade.StatType && statusEffect.Process == statusEffectUpgrade.Process)
+                if (statusEffect.StatusEffectVisual == statusEffectUpgrade.StatusEffectVisual && statusEffect.Process == statusEffectUpgrade.Process)
                 {
                     statusEffect.AddUpgrade(statusEffectUpgrade);
                 }

@@ -22,7 +22,7 @@ public class ChaseTarget : IntervalState<EnemyAI>
         var target = parent.Enemy.ShamanTargetHelper.CurrentTarget;
         if (target is null) return;
 
-        if (target.Stats[StatType.Visibility].IntValue == 1 || target.IsDead)
+        if (target.Stats[StatType.Invisibility].IntValue > 0 || target.IsDead)
         {
             parent.SetState(typeof(ReturnToPath));
         }
@@ -84,6 +84,7 @@ public class ChaseTarget : IntervalState<EnemyAI>
     {
         parent.Enemy.AutoCaster.DisableCaster();
         parent.Enemy.EnemyVisualHandler.EnemyEffectHandler.DisableEffect(StatusEffectVisual.Taunt);
+        parent.Enemy.ShamanTargetHelper.RemoveCurrentTarget();
         base.Exit(parent);
     }
 }
