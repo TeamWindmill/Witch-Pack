@@ -65,6 +65,7 @@ public class RockMonolith : OffensiveAbility
     
     protected void IncrementDamage(bool isCrit)
     {
+        SoundManager.PlayAudioClip(SoundEffectType.MonolithofRockShield);
         DamageIncrement++;
     }
 
