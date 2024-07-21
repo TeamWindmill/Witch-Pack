@@ -1,8 +1,9 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AbilitiesHandlerUI : MonoBehaviour
 {
+    public AbilityUpgradePanelUI AbilityUpgradePanelUI => abilityUpgradePanelUI;
+
     [SerializeField] private AbilityUIButton[] abilityUIButtons;
     [SerializeField] private AbilityUpgradePanelUI abilityUpgradePanelUI;
 
@@ -14,7 +15,7 @@ public class AbilitiesHandlerUI : MonoBehaviour
         abilityUpgradePanelUI.SetShaman(shaman);
         abilityUpgradePanelUI.OnAbilityUpgrade += OnAbilityUpgrade;
         shaman.EnergyHandler.OnShamanLevelUp += OnShamanLevelUp;
-        var rootAbilities = shaman.RootAbilities;
+        var rootAbilities = shaman.ShamanAbilityHandler.RootAbilities;
         foreach (var uiBlock in abilityUIButtons)
         {
             uiBlock.Hide();
@@ -24,8 +25,8 @@ public class AbilitiesHandlerUI : MonoBehaviour
         foreach (var rootAbility in rootAbilities)
         {
             var uiButton = GetAvailableButton();
-            var activeAbility = shaman.GetActiveAbilityFromRoot(rootAbility);
-            var caster = shaman.GetCasterFromAbility(activeAbility);
+            var activeAbility = shaman.ShamanAbilityHandler.GetActiveAbilityFromRoot(rootAbility);
+            var caster = shaman.ShamanAbilityHandler.GetCasterFromAbility(activeAbility);
             uiButton.Init(rootAbility, activeAbility, caster, CheckAbilityUpgradable(shaman,activeAbility));
             uiButton.OnAbilityClick += OpenUpgradePanel;
         }
@@ -36,8 +37,9 @@ public class AbilitiesHandlerUI : MonoBehaviour
 
     public void Hide()
     {
+        
         abilityUpgradePanelUI.OnAbilityUpgrade -= OnAbilityUpgrade;
-        _shaman.EnergyHandler.OnShamanLevelUp -= OnShamanLevelUp;
+        if(_shaman != null) _shaman.EnergyHandler.OnShamanLevelUp -= OnShamanLevelUp;
         abilityUpgradePanelUI.Hide();
         foreach (var uiBlock in abilityUIButtons)
         {
@@ -48,7 +50,7 @@ public class AbilitiesHandlerUI : MonoBehaviour
 
     private void OpenUpgradePanel(AbilityUIButton abilityButton)
     {
-        SoundManager.Instance.PlayAudioClip(SoundEffectType.OpenUpgradeTree);
+        SoundManager.PlayAudioClip(SoundEffectType.OpenUpgradeTree);
         abilityUpgradePanelUI.Init(abilityButton);
     }
 
@@ -81,22 +83,22 @@ public class AbilitiesHandlerUI : MonoBehaviour
         {
             uiButton.Hide();
         }
-        foreach (var rootAbility in _shaman.RootAbilities)
+        foreach (var rootAbility in _shaman.ShamanAbilityHandler.RootAbilities)
         {
             var uiButton = GetAvailableButton();
-            var activeAbility = _shaman.GetActiveAbilityFromRoot(rootAbility);
-            var caster = _shaman.GetCasterFromAbility(activeAbility);
+            var activeAbility = _shaman.ShamanAbilityHandler.GetActiveAbilityFromRoot(rootAbility);
+            var caster = _shaman.ShamanAbilityHandler.GetCasterFromAbility(activeAbility);
             uiButton.Init(rootAbility, activeAbility, caster, CheckAbilityUpgradable(_shaman,activeAbility));
             uiButton.OnAbilityClick += OpenUpgradePanel;
         }
     }
 
-    private static bool CheckAbilityUpgradable(Shaman shaman, BaseAbility ability)
+    private static bool CheckAbilityUpgradable(Shaman shaman, Ability ability)
     {
         if (!shaman.EnergyHandler.HasSkillPoints) return false;
         if (ability is not null)
         {
-            if (ability.Upgrades.Length == 0) return false;
+            if (ability.Upgrades.Count == 0) return false;
         }
         return true;
     }

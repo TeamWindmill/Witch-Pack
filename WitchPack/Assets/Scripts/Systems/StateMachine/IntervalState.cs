@@ -3,11 +3,13 @@ using UnityEngine;
 
 namespace Systems.StateMachine
 {
-    public abstract class IntervalState<T> : State<T> where T : MonoBehaviour
+    public abstract class IntervalState<T> : State<T> 
+        where T : MonoBehaviour
     {
         [SerializeField,BoxGroup("Interval State")] protected bool _usingGameTime;
-        [SerializeField,BoxGroup("Interval State"), Tooltip("seconds between execution method")] protected float _executionInterval;
-        [SerializeField,BoxGroup("Interval State"), Tooltip("seconds between state check method")] protected float _stateCheckInterval;
+        [SerializeField,BoxGroup("Interval State"), Tooltip("seconds between the logical execution of the state")] protected float _executionInterval;
+        [SerializeField,BoxGroup("Interval State"), Tooltip("seconds between checking whether to change state")] protected float _stateCheckInterval;
+        [ReadOnly,BoxGroup("Interval State")] protected string StateCheckDescription;
         protected float _executionTimer;
         protected float _stateCheckTimer;
 
@@ -18,7 +20,7 @@ namespace Systems.StateMachine
             base.Enter(parent);
         }
 
-        public override void UpdateState(T parent)
+        public sealed override void UpdateState(T parent)
         {
             if (_executionTimer >= _executionInterval)
             {
@@ -31,7 +33,7 @@ namespace Systems.StateMachine
             }
         }
         protected abstract void IntervalUpdate(T parent);
-        public override void ChangeState(T parent)
+        public /* sealed */ override void ChangeState(T parent)
         {
             if (_stateCheckTimer >= _stateCheckInterval)
             {

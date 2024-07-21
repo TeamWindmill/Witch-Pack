@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bdd6bd70c445f54b9fa3b047c004b0a, type: 3}
+  m_Name: RootingVines
+  m_EditorClassIdentifier: 
+  _name: Rooting Vines
+  discription: Root enemies
+  defaultIcon: {fileID: 1823221346, guid: 8a1c0a843806e364080d5a6ae48d09fb, type: 3}
+  disabledIcon: {fileID: -437523576, guid: 8a1c0a843806e364080d5a6ae48d09fb, type: 3}
+  upgradeIcon: {fileID: 1686146049, guid: 8a1c0a843806e364080d5a6ae48d09fb, type: 3}
+  _upgrades:
+  - {fileID: 11400000, guid: cf604a1d59ad27a42916c478ad04cb00, type: 2}
+  hasPopupColor: 0
+  popupColor: {r: 0, g: 0, b: 0, a: 0}
+  castTime: 1
+  cd: 10
+  givesEnergyPoints: 0
+  energyPoints: 0
+  statusEffects:
+  - {fileID: 11400000, guid: 742cb490a287e5d45b8812d4c42299c4, type: 2}
+  targetData:
+    Priority: 1
+    Modifier: 1
+    StatType: 0
+    AvoidCharmedTargets: 1
+  underAttackTargetData:
+    Priority: 1
+    Modifier: 1
+    StatType: 0
+    AvoidCharmedTargets: 1
+  _hasCastVisual: 1
+  castVisualColor: 6
+  _hasSFX: 1
+  soundEffectType: 14
+  baseDamage: 30
+  damageBoosts: []
+  lastingTime: 1
+  _aoeScale: 1

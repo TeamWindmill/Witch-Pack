@@ -1,4 +1,3 @@
-using System;
 using Tools.Lerp;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,6 +5,7 @@ using UnityEngine.UI;
 public class ScreenCracksVignette : MonoEffectTransitionLerp<CracksVignetteValues>
 {
     public float CurrentStartValue;
+    public float CurrentEndValue;
     [SerializeField] private Image _vignette;
 
     private void OnValidate()
@@ -13,7 +13,7 @@ public class ScreenCracksVignette : MonoEffectTransitionLerp<CracksVignetteValue
         _vignette ??= GetComponent<Image>();
     }
 
-    private void Start()
+    public void SetStartValue()
     {
         foreach (var effectValue in EffectValues)
         {
@@ -33,12 +33,12 @@ public class ScreenCracksVignette : MonoEffectTransitionLerp<CracksVignetteValue
 
     public override void StartTransitionEffect()
     {
-        LerpValuesHandler.Instance.SetValueByType(LerpValueConfig, EffectValues[0].ValueType, CurrentStartValue, EffectValues[0].EndValue, SetValue,OnTransitionEnd);
+        LerpValuesHandler.Instance.StartLerpByType(LerpValueConfig, EffectValues[0].ValueType, CurrentStartValue, CurrentEndValue, SetValue,OnTransitionEnd);
     }
 
     public override void EndTransitionEffect()
     {
-        LerpValuesHandler.Instance.SetValueByType(LerpValueConfig, EffectValues[0].ValueType, EffectValues[0].EndValue, CurrentStartValue, SetValue);
+        LerpValuesHandler.Instance.StartLerpByType(LerpValueConfig, EffectValues[0].ValueType, CurrentEndValue, CurrentStartValue, SetValue);
     }
 
     protected override void SetValue(CracksVignetteValues type, float value)

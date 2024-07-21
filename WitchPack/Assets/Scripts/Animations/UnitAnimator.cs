@@ -6,6 +6,7 @@ public abstract class UnitAnimator : MonoBehaviour
     public event Action OnDeathAnimationEnd;
     [SerializeField] protected Animator animator;
     protected BaseUnit unit;
+    private bool _initialized;
 
     private void OnValidate()
     {
@@ -21,9 +22,9 @@ public abstract class UnitAnimator : MonoBehaviour
         this.unit = unit;
         this.unit.Damageable.OnHitGFX += GetHitAnimation;
         this.unit.Damageable.OnDeathGFX += DeathAnimation;
-        this.unit.AutoAttackHandler.OnAttack += AttackAnimation;
+        this.unit.AbilityHandler.AutoAttackCaster.OnAttack += AttackAnimation;
         animator.SetBool(Death,false);
-        
+        _initialized = true;
     }
 
     protected abstract void MoveAnimation();
@@ -55,6 +56,7 @@ public abstract class UnitAnimator : MonoBehaviour
     }
     private void Update()
     {
+        if(!_initialized) return;
         MoveAnimation();
     }
     

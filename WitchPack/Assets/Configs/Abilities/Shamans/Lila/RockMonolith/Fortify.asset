@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d479978ffb74e24a59b2ccc0c99e21f, type: 3}
+  m_Name: Fortify
+  m_EditorClassIdentifier: 
+  _name: Fortify
+  discription: After the explosion gain 5 armor permanantly
+  defaultIcon: {fileID: 0}
+  disabledIcon: {fileID: 0}
+  upgradeIcon: {fileID: 0}
+  _upgrades: []
+  hasPopupColor: 1
+  popupColor: {r: 1, g: 0.27450982, b: 0, a: 1}
+  castTime: 0.75
+  cd: 20
+  givesEnergyPoints: 0
+  energyPoints: 0
+  statusEffects:
+  - {fileID: 11400000, guid: 74010fd6003d9114cb13ed7428fdfd30, type: 2}
+  targetData:
+    Priority: 0
+    Modifier: 1
+    StatType: 0
+    AvoidCharmedTargets: 1
+  underAttackTargetData:
+    Priority: 0
+    Modifier: 1
+    StatType: 0
+    AvoidCharmedTargets: 1
+  _hasCastVisual: 1
+  castVisualColor: 0
+  _hasSFX: 1
+  soundEffectType: 34
+  baseDamage: 30
+  damageBoosts: []
+  _duration: 5
+  _damageIncreasePerHit: 10
+  _tauntState: {fileID: 11400000, guid: 45837ee7c4ffb2b4fa7b05b3c6309d65, type: 2}
+  _minEnemiesForTaunt: 1
+  _permanentArmorOnExplosion: 5

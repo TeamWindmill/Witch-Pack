@@ -12,12 +12,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7df65687d50cec4a96e34b3e38bd6ec, type: 3}
   m_Name: Level 1 Config
   m_EditorClassIdentifier: 
-  Shamans:
-  - {fileID: 11400000, guid: 9cb4b45252770504fb9368ce2229801a, type: 2}
-  levelPrefab: {fileID: 6779597212755086301, guid: 9d5b5eac86bfaea42ab47abb1e626c93, type: 3}
-  CameraLevelSettings:
-    CameraBorders: {x: 40, y: 25}
-    CameraMaxZoom: 20
-    OverrideCameraStartPos: 1
-    CameraStartZoom: 12
-    CameraStartPos: {x: 0, y: 4, z: 0}
+  Number: 1
+  Name: Beit Keshet
+  TestingLevel: 0
+  levelPrefab: {fileID: 6779597212755086301, guid: 634cdfad6f5e0f74281f25517f039b56, type: 3}
+  shamansToAddAfterComplete:
+  - {fileID: 11400000, guid: ec8221a6379e2f249b54e376bfd80695, type: 2}
+  ShowTutorial: 1
+  ExpCalculatorConfig:
+    _firstTimeExp: 30
+    _completionExp: 25
+    _waveCompletedExp: 15
+    _coreRemainingHealthExp: 20
+  LevelChallenges:
+  - _challengeType: 0
+    _displayName: None
+    _bonusesDescription: []
+    _statUpgrades: []
+    _reduceShamanSlots: 3
+    _expMultiplier: 0
+  - _challengeType: 1
+    _displayName: +300% Enemy Health
+    _bonusesDescription:
+    - 'EXP Modifier: +100%'
+    _statUpgrades:
+    - _statType: 0
+      _statValue: 3
+      _factor: 2
+    _reduceShamanSlots: 3
+    _expMultiplier: 1
+  - _challengeType: 2
+    _displayName: -60% shaman range
+    _bonusesDescription:
+    - 'EXP Modifier: +150%'
+    _statUpgrades:
+    - _statType: 3
+      _statValue: 0.6
+      _factor: 3
+    _reduceShamanSlots: 3
+    _expMultiplier: 1.5
+  BeforeDialog: {fileID: 11400000, guid: 4b70374310c787f48a84bbaa24b0583c, type: 2}
+  StartDialog: {fileID: 0}
+  EndDialog: {fileID: 11400000, guid: 41cd40d1dd2256844832d34da8993e49, type: 2}
+  AfterDialog: {fileID: 0}

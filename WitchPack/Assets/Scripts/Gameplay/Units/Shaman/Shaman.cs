@@ -2,19 +2,23 @@ using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Enumerable = System.Linq.Enumerable;
 
 public class Shaman : BaseUnit
 {
     #region public
 
-    public override StatSheet BaseStats => shamanConfig.BaseStats;
-    public ShamanConfig ShamanConfig => shamanConfig;
-    public List<BaseAbility> KnownAbilities => knownAbilities;
+    public override Stats BaseStats => ShamanConfig.BaseStats;
+    public ShamanConfig ShamanConfig { get; private set; }
+    public ShamanSaveData SaveData { get; private set; }
+    public ShamanAbilityHandler ShamanAbilityHandler { get; private set; }
     public bool MouseOverShaman => clicker.IsHover;
-    public List<BaseAbility> RootAbilities => rootAbilities;
     public EnergyHandler EnergyHandler => energyHandler;
     public ShamanVisualHandler ShamanVisualHandler => shamanVisualHandler;
-    public bool IsSelected {get => _isSelected; set => _isSelected = value; }
+    public Dictionary<PowerStructure, int> ActivePowerStructures { get; } = new();
+
+    public ClickHelper Clicker => clicker;
+
     #endregion
 
     #region serialized
@@ -24,16 +28,8 @@ public class Shaman : BaseUnit
     [SerializeField] private ClickHelper clicker;
     [SerializeField] private Indicatable indicatable;
     [SerializeField] private ParticleSystem levelUpEffect;
-
-    #endregion
-
-    #region private
-
-    private ShamanConfig shamanConfig;
-    private List<BaseAbility> rootAbilities = new List<BaseAbility>();
-    private List<BaseAbility> knownAbilities = new List<BaseAbility>();
     [SerializeField] private EnergyHandler energyHandler;
-    private bool _isSelected;
+
     #endregion
 
     private void OnValidate()
@@ -41,18 +37,26 @@ public class Shaman : BaseUnit
         shamanAnimator ??= GetComponentInChildren<ShamanAnimator>();
     }
 
-    public override void Init(BaseUnitConfig baseUnitConfig)
+    public void Init(ShamanSaveData saveData)
     {
-        shamanConfig = baseUnitConfig as ShamanConfig;
-        base.Init(shamanConfig);
+        SaveData = saveData;
+        ShamanConfig = saveData.Config;
+        base.Init(ShamanConfig);
+        
+        ShamanAbilityHandler = new ShamanAbilityHandler(this);
+        AbilityHandler = ShamanAbilityHandler;
+        ShamanAbilityHandler.IntializeAbilities();
+        ShamanAbilityHandler.AddMetaUpgrades(saveData);
+        
+        Damageable.Init();
         energyHandler = new EnergyHandler(this);
-        EnemyTargeter.SetRadius(Stats.BonusRange);
-        IntializeAbilities();
+        EnemyTargeter.SetRadius(Stats[StatType.BaseRange].Value);
         shamanAnimator.Init(this);
-        indicatable.Init(shamanConfig.UnitIndicatorIcon, action: FocusCameraOnShaman, clickable: true, indicatorPointerSprite: IndicatorPointerSpriteType.Cyan);
+        indicatable.Init(ShamanConfig.UnitIndicatorIcon, action: FocusCameraOnShaman, clickable: true,
+            indicatorPointerSprite: IndicatorPointerSpriteType.Cyan);
         Indicator newIndicator = LevelManager.Instance.IndicatorManager.CreateIndicator(indicatable);
         newIndicator.gameObject.SetActive(false);
-        shamanVisualHandler.Init(this, baseUnitConfig);
+        shamanVisualHandler.Init(this, saveData.Config);
         AutoCaster.Init(this, true);
 
         #region Events
@@ -61,14 +65,7 @@ public class Shaman : BaseUnit
         shamanVisualHandler.OnSpriteFlip += shamanAnimator.FlipAnimations;
         Movement.OnDestinationSet += AutoCaster.DisableCaster;
         Movement.OnDestinationReached += AutoCaster.EnableCaster;
-        if (LevelManager.Instance.SelectionHandler.GetOnMouseDownShaman())
-        {
-            clicker.OnMouseDown += SetSelectedShaman;
-        }
-        else
-        { 
-            clicker.OnClick += SetSelectedShaman;
-        }
+        clicker.OnClick += SetSelectedShaman;
         clicker.OnEnterHover += ShamanHoveredEntered;
         clicker.OnExitHover += ShamanHoveredExit;
         DamageDealer.OnKill += energyHandler.OnEnemyKill;
@@ -77,124 +74,42 @@ public class Shaman : BaseUnit
         Damageable.OnHitGFX += OnHitSFX;
         Damageable.OnDeathGFX += DeathSFX;
         Damageable.OnDeathGFX += SetOffIndicator;
-        AutoAttackHandler.OnAttack += AttackSFX;
-        Effectable.OnAffectedVFX += ShamanVisualHandler.EffectHandler.PlayEffect;
-        Effectable.OnEffectRemovedVFX += ShamanVisualHandler.EffectHandler.DisableEffect;
+        Effectable.OnAffected += ShamanVisualHandler.EffectHandler.PlayEffect;
+        Effectable.OnEffectRemoved += ShamanVisualHandler.EffectHandler.DisableEffect;
         AutoCaster.CastTimeStartVFX += ShamanVisualHandler.EffectHandler.PlayEffect;
         AutoCaster.CastTimeEndVFX += ShamanVisualHandler.EffectHandler.DisableEffect;
         AutoCaster.CastTimeStart += ShamanCastSFX;
+        Stats[StatType.BaseRange].OnStatChange += EnemyTargeter.SetRadius;
 
         #endregion
 
-        BaseInit(baseUnitConfig);
+        Initialized = true;
     }
 
-    private void IntializeAbilities()
-    {
-        foreach (var rootAbility in shamanConfig.RootAbilities)
-        {
-            rootAbilities.Add(rootAbility);
-            foreach (var upgrade in rootAbility.GetUpgrades())
-            {
-                upgrade.ChangeUpgradeState(AbilityUpgradeState.Locked);
-            }
-
-            rootAbility.ChangeUpgradeState(AbilityUpgradeState.Open);
-        }
-
-        foreach (var ability in ShamanConfig.KnownAbilities)
-        {
-            ability.UpgradeAbility();
-            knownAbilities.Add(ability);
-            if (ability is not Passive)
-            {
-                ability.OnSetCaster(this);
-                castingHandlers.Add(new AbilityCaster(this, ability as CastingAbility));
-            }
-            else
-            {
-                (ability as Passive).SubscribePassive(this);
-            }
-        }
-
-        AutoCaster.Init(this, true);
-    }
-
-    public void LearnAbility(BaseAbility ability)
-    {
-        knownAbilities.Add(ability);
-        if (ability is not Passive passive)
-        {
-            ability.OnSetCaster(this);
-            castingHandlers.Add(new AbilityCaster(this, ability as CastingAbility));
-        }
-        else
-        {
-            passive.SubscribePassive(this);
-        }
-
-        AutoCaster.Init(this, true);
-    }
-
-    public void RemoveAbility(BaseAbility ability)
-    {
-        //if (ability is not Passive) //might cause a problem with some passives
-        {
-            knownAbilities.Remove(ability);
-            castingHandlers.Remove(GetCasterFromAbility(ability));
-        }
-    }
-
-    public void UpgradeAbility(BaseAbility ability, BaseAbility upgrade)
-    {
-        RemoveAbility(ability);
-        LearnAbility(upgrade);
-    }
-
-
-    public AbilityCaster GetCasterFromAbility(BaseAbility givenAbiltiy)
-    {
-        for (int i = 0; i < castingHandlers.Count; i++)
-        {
-            if (ReferenceEquals(castingHandlers[i].Ability, givenAbiltiy))
-            {
-                return castingHandlers[i];
-            }
-        }
-
-        //Debug.LogError("Attempted to retrive a non existing caster");
-        return null;
-    }
-
-    public BaseAbility GetActiveAbilityFromRoot(BaseAbility rootAbility)
-    {
-        if (KnownAbilities.Contains(rootAbility)) return rootAbility;
-
-        var upgrades = rootAbility.GetUpgrades();
-        foreach (var upgrade in upgrades)
-        {
-            if (KnownAbilities.Contains(upgrade)) return upgrade;
-        }
-
-        return null;
-    }
+    #region Selection
 
     public void SetSelectedShaman(PointerEventData.InputButton button)
     {
-        LevelManager.Instance.SelectionHandler.OnShamanClick(button,this);
+        LevelManager.Instance.SelectionHandler.OnShamanClick(button, this);
     }
-    public void ShamanHoveredEntered()
+
+    private void ShamanHoveredEntered()
     {
-        //if (!_isSelected)
+        shamanVisualHandler.ShowShamanRange();
+        foreach (var powerStructure in ActivePowerStructures)
         {
-            shamanVisualHandler.ShowShamanRange();
+            powerStructure.Key.ProximityRingsManager.ToggleRingSprite(powerStructure.Value, true);
+            powerStructure.Key.OnShamanHoverEnter(this, powerStructure.Value);
         }
     }
-    public void ShamanHoveredExit()
+
+    private void ShamanHoveredExit()
     {
-        //if (!_isSelected)
-        { 
-            shamanVisualHandler.HideShamanRange();
+        shamanVisualHandler.HideShamanRange();
+        foreach (var powerStructure in LevelManager.Instance.CurrentLevel.PowerStructures)
+        {
+            powerStructure.ProximityRingsManager.ToggleAllSprites(false);
+            powerStructure.HideUI(true);
         }
     }
 
@@ -203,32 +118,55 @@ public class Shaman : BaseUnit
         clicker.enabled = state;
     }
 
+    #endregion
 
     #region SFX
 
     private void OnLevelUpGFX(int obj)
     {
         levelUpEffect.Play();
-        SoundManager.Instance.PlayAudioClip(SoundEffectType.ShamanLevelUp);
+        SoundManager.PlayAudioClip(SoundEffectType.ShamanLevelUp);
     }
 
     private void OnHitSFX(bool isCrit)
     {
-        SoundManager.Instance.PlayAudioClip(shamanConfig.IsMale ? SoundEffectType.ShamanGetHitMale : SoundEffectType.ShamanGetHitFemale);
+        switch (ShamanConfig.Sex)
+        {
+            case Sex.Male:
+                SoundManager.PlayAudioClip(SoundEffectType.ShamanGetHitMale);
+                break;
+            case Sex.Female:
+                SoundManager.PlayAudioClip(SoundEffectType.ShamanGetHitFemale);
+                break;
+        }
+
         shamanVisualHandler.HitEffect.Play();
     }
 
-    private void DeathSFX() => SoundManager.Instance.PlayAudioClip(shamanConfig.IsMale ? SoundEffectType.ShamanDeathMale : SoundEffectType.ShamanDeathFemale);
-    private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.BasicAttack);
-    public void ShamanAbilityCastSFX(CastingAbility ability) => SoundManager.Instance.PlayAudioClip(ability.SoundEffectType);
-    public void ShamanCastSFX(CastingAbility ability) => SoundManager.Instance.PlayAudioClip(SoundEffectType.ShamanCast);
+    private void DeathSFX()
+    {
+        switch (ShamanConfig.Sex)
+        {
+            case Sex.Male:
+                SoundManager.PlayAudioClip(SoundEffectType.ShamanDeathMale);
+                break;
+            case Sex.Female:
+                SoundManager.PlayAudioClip(SoundEffectType.ShamanDeathFemale);
+                break;
+        }
+    }
+
+    public void AttackSFX() => SoundManager.PlayAudioClip(SoundEffectType.BasicAttack);
+
+    public void ShamanAbilityCastSFX(CastingAbilitySO abilitySo) =>
+        SoundManager.PlayAudioClip(abilitySo.SoundEffectType);
+
+    public void ShamanCastSFX(CastingAbility ability) =>
+        SoundManager.PlayAudioClip(SoundEffectType.ShamanCast);
 
     #endregion
 
-    protected override void OnDisable()
-    {
-        base.OnDisable();
-    }
+    #region Indicator
 
     private void SetOffIndicator()
     {
@@ -237,6 +175,8 @@ public class Shaman : BaseUnit
 
     private void FocusCameraOnShaman()
     {
-        GameManager.Instance.CameraHandler.SetCameraPosition(transform.position, false);
+        GameManager.CameraHandler.SetCameraPosition(transform.position, false);
     }
+
+    #endregion
 }

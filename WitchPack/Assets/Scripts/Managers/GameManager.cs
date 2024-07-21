@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class GameManager : MonoSingleton<GameManager>
 {
+    public static LevelConfig CurrentLevelConfig { get; private set; }
     public static ISceneHandler SceneHandler { get; private set; }
-    public LevelConfig CurrentLevelConfig { get; private set; }
+    public static ShamansManager ShamansManager => Instance._shamansManager;
 
+    public static GameSaveData SaveData;
+    public bool TutorialPlayed;
+
+    [SerializeField] private ShamansManager _shamansManager;
     [SerializeField] private SceneHandler _sceneHandler;
-    //[SerializeField] private PoolManager poolManager;
 
-    // [SerializeField] private BaseUnitConfig shamanConf;
-    // [SerializeField] private BaseUnitConfig enemyConf;
-    // [SerializeField] private Shaman testShaman;
-    // [SerializeField] private Enemy[] enemies;
+    private static CameraHandler _cameraHandler;
 
-    private CameraHandler _cameraHandler;
-
-    public CameraHandler CameraHandler
+    public static CameraHandler CameraHandler
     {
         get
         {
@@ -30,30 +29,23 @@ public class GameManager : MonoSingleton<GameManager>
 
             return _cameraHandler;
         }
-        private set => _cameraHandler = value;
     }
-
 
     protected override void Awake()
     {
         base.Awake();
 
-
         if (SceneHandler == null)
             SceneHandler = _sceneHandler;
-
-        CameraHandler = FindObjectOfType<CameraHandler>(); //May need to change 
+        
+        SaveData = LoadDataFromSave(); //need to load save from file
+        _shamansManager.Init(SaveData);
+        UIManager.Init();
     }
-
-    // public PoolManager PoolManager
-    // {
-    //     get => poolManager;
-    // }
 
     void Start()
     {
         SceneHandler.LoadScene(SceneType.MainMenu);
-        //InitUnits();
     }
 
     public void SetLevelConfig(LevelConfig levelConfig)
@@ -61,6 +53,10 @@ public class GameManager : MonoSingleton<GameManager>
         CurrentLevelConfig = levelConfig;
     }
 
+    private GameSaveData LoadDataFromSave() //this is temp need to connect to a save system
+    {
+        return new GameSaveData();
+    }
 
     private void OnValidate()
     {
@@ -70,22 +66,11 @@ public class GameManager : MonoSingleton<GameManager>
 
     private void OnMouseDown()
     {
-        //lock the cursor inside the screen
-        Screen.lockCursor = true;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     public void Quit()
     {
         Application.Quit();
     }
-
-    // private void InitUnits()
-    // {
-    //     foreach (var item in enemies)
-    //     {
-    //         item.Init(enemyConf);
-    //     }
-    //     testShaman.Init(shamanConf);
-    // }
-
 }

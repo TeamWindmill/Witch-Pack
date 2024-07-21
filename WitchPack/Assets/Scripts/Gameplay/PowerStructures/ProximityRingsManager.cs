@@ -10,8 +10,6 @@ public class ProximityRingsManager : MonoBehaviour
     public ProximityRingHandler[] RingHandlers => _ringHandlers;
     [SerializeField] private ProximityRingHandler[] _ringHandlers;
     [SerializeField] private ClickHelper _clickHelper;
-    [SerializeField] private GameObject _infoWindow;
-    [SerializeField] private TextMeshPro _infoWindowText;
     private bool _lockSpriteToggle;
     private Color _defaultColor;
     private Color _powerStructureTypeColor;
@@ -19,11 +17,13 @@ public class ProximityRingsManager : MonoBehaviour
     private PowerStructureStatEffect _statEffect;
 
     private Dictionary<int, IDisposable> _activeStatusEffectOnShaman;
+    private PowerStructure _powerStructure;
 
 
-
-    public void Init(PowerStructureConfig powerStructureConfig)
+    public void Init(PowerStructure powerStructure)
     {
+        _powerStructure = powerStructure;
+        var powerStructureConfig = powerStructure.Config;
         float ringSpriteAlpha = powerStructureConfig.DefaultSpriteAlpha;
         for (int i = 0; i < _ringHandlers.Length; i++)
         {
@@ -37,7 +37,7 @@ public class ProximityRingsManager : MonoBehaviour
         _statEffect = powerStructureConfig.statEffect;
         _clickHelper.OnEnterHover += ActivateRingSprites;
         _clickHelper.OnExitHover += DeactivateRingSprites;
-        LevelManager.Instance.SelectionHandler.OnShamanMoveSelect += OnShamanSelect;
+        LevelManager.Instance.SelectionHandler.OnShamanSelect += OnShamanSelect;
         LevelManager.Instance.SelectionHandler.OnShamanDeselected += OnShamanDeselect;
         ScaleCircles(powerStructureConfig.Range, powerStructureConfig.RingsRanges);
         ChangeAllRingsColors(_powerStructureTypeColor);
@@ -48,7 +48,7 @@ public class ProximityRingsManager : MonoBehaviour
         _clickHelper.OnEnterHover -= ActivateRingSprites;
         _clickHelper.OnExitHover -= DeactivateRingSprites;
         if (ReferenceEquals(LevelManager.Instance,null)) return;
-        LevelManager.Instance.SelectionHandler.OnShamanMoveSelect -= OnShamanSelect;
+        LevelManager.Instance.SelectionHandler.OnShamanSelect -= OnShamanSelect;
         LevelManager.Instance.SelectionHandler.OnShamanDeselected -= OnShamanDeselect;
     }
 
@@ -91,22 +91,21 @@ public class ProximityRingsManager : MonoBehaviour
     private void ActivateRingSprites()
     {
         if (_shamanSelected) return;
-        ToggleOuterRingSprite(true);
-        _infoWindowText.text = _statEffect.StatType.ToString().ToLowercaseNamingConvention();
-        _infoWindowText.color = _powerStructureTypeColor;
-        _infoWindow.SetActive(true);
+        ToggleRingSprite(_ringHandlers.Length-1,true);
+        StatBonusPopupManager.ShowPSInfoPopup(_powerStructure);
     }
 
     private void DeactivateRingSprites()
     {
         if (_shamanSelected) return;
         ToggleAllSprites(false);
-        _infoWindow.SetActive(false);
+        StatBonusPopupManager.HidePSInfoPopup();
+
     }
 
-    private void ToggleOuterRingSprite(bool state)
+    public void ToggleRingSprite(int ringId, bool state)
     {
-        _ringHandlers[^1].ToggleSprite(state);
+        _ringHandlers[ringId].ToggleSprite(state);
     }
 
     #endregion

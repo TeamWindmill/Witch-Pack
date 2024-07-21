@@ -10,14 +10,14 @@ public class DynamicSortingGroupLayerSetter : MonoBehaviour
     private void Start()
     {
         _sortingGroup ??= GetComponent<SortingGroup>();
-        _sortingGroup.sortingOrder = (int)(transform.position.y * -1);
+        _sortingGroup.sortingOrder = (int)(transform.position.y * -100);
     }
 
     private void Update()
     {
         if (_updateInRuntime)
         {
-            _sortingGroup.sortingOrder = (int)(transform.position.y * -1);
+            _sortingGroup.sortingOrder = (int)(transform.position.y * -100);
         }
 
     }

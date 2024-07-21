@@ -14,7 +14,8 @@
  */
 
 using UnityEngine;
-using DamageNumbersPro; //Include DamageNumbersPro Namespace     <-----     [REQUIRED]
+
+//Include DamageNumbersPro Namespace     <-----     [REQUIRED]
 
 namespace DamageNumbersPro.Demo
 {

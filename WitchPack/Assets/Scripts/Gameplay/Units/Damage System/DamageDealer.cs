@@ -4,14 +4,18 @@ public class DamageDealer
 {
     private BaseUnit owner;
 
-    public Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> OnHitTarget;
-    public Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> OnKill;
-    public Action<Damageable, DamageDealer, DamageHandler, CastingAbility, bool> OnAssist;
+    public Action<Damageable, DamageDealer, DamageHandler, Ability, bool> OnHitTarget;
+    public Action<Damageable, DamageDealer, DamageHandler, Ability, bool> OnKill;
+    public Action<Damageable, DamageDealer, DamageHandler, Ability, bool> OnAssist;
 
-    private OffensiveAbility autoAttack;
-    public BaseUnit Owner { get => owner; }
+    private OffensiveAbilitySO autoAttack;
 
-    public DamageDealer(BaseUnit owner, OffensiveAbility autoAttack)
+    public BaseUnit Owner
+    {
+        get => owner;
+    }
+
+    public DamageDealer(BaseUnit owner, OffensiveAbilitySO autoAttack)
     {
         this.owner = owner;
         this.autoAttack = autoAttack;
@@ -20,36 +24,34 @@ public class DamageDealer
     }
 
 
-    public bool CritChance(BaseAbility ability)
+    public bool CritChance(Ability ability)
     {
-        if (ReferenceEquals(ability, owner.AutoAttack) && UnityEngine.Random.Range(0, 100) <= owner.Stats.CritChance)
+        if (ReferenceEquals(ability, owner.AbilityHandler.AutoAttackCaster.Ability) && UnityEngine.Random.Range(0, 100) <= owner.Stats[StatType.CritChance].Value)
         {
             return true;
         }
+
         return false;
     }
 
-    private void SubscribeStatDamage(Damageable target, DamageDealer dealer, DamageHandler dmg, BaseAbility ability, bool crit)
+    private void SubscribeStatDamage(Damageable target, DamageDealer dealer, DamageHandler dmg, Ability ability, bool crit)
     {
-        if (ReferenceEquals(ability, owner.AutoAttack))
+        if (ReferenceEquals(ability, owner.AbilityHandler.AutoAttackCaster.Ability))
         {
-            dmg.AddFlatMod(owner.Stats.BaseDamage);
+            dmg.AddFlatMod(owner.Stats[StatType.BaseDamage].IntValue);
             if (crit)
             {
-                float critDamage = (Owner.Stats.CritDamage / 100f) + 1f;
-                dmg.AddMod(critDamage);//not sure what the math is supposed to be here - ask gd
+                float critDamage = (Owner.Stats[StatType.CritDamage].Value / 100f);
+                dmg.AddMultiplierMod(critDamage); 
             }
         }
-
     }
 
-    private void SubscribeDamageBoostsFromAbility(Damageable target, DamageDealer dealer, DamageHandler dmg, CastingAbility ability, bool crit)
+    private void SubscribeDamageBoostsFromAbility(Damageable target, DamageDealer dealer, DamageHandler dmg, Ability ability, bool crit)
     {
-        if (ability is not OffensiveAbility || ReferenceEquals((ability as OffensiveAbility).DamageBoosts, null))
-        {
-            return;
-        }
-        foreach (var item in (ability as OffensiveAbility).DamageBoosts)
+        if (ability is not OffensiveAbility offensiveAbility) return;
+
+        foreach (var item in offensiveAbility.DamageBoosts)
         {
             switch (item.Type)
             {
@@ -57,7 +59,7 @@ public class DamageDealer
                     dmg.AddFlatMod(GetModCurHp(item, target));
                     break;
                 case DamageBonusType.MissingHp:
-                    dmg.AddMod(GetModMissingHp(item, target));
+                    dmg.AddFlatMod(GetModMissingHp(item, target));
                     break;
             }
         }
@@ -65,23 +67,14 @@ public class DamageDealer
 
     private int GetModCurHp(DamageBoostData boostData, Damageable target)
     {
-        if((target.CurrentHp / target.MaxHp) >= (boostData.Threshold / 100))
-        {
-            float damageBasedOnCurrentHP = target.CurrentHp * (boostData.damageBonusInPercent / 100);
-            return (int)damageBasedOnCurrentHP;
-        }
-
-        return 0;
-        
+        float damageBasedOnCurrentHP = target.CurrentHp * (boostData.damageBonusInPercent / 100);
+        return (int)damageBasedOnCurrentHP;
     }
 
-    private float GetModMissingHp(DamageBoostData boostData, Damageable target)
+    private int GetModMissingHp(DamageBoostData boostData, Damageable target)
     {
-        if ((target.CurrentHp / target.MaxHp) >= (boostData.Threshold / 100))
-        {
-            return 1 + (boostData.damageBonusInPercent / 100);
-        }
-        return 1;
+        var missingHp = (target.MaxHp - target.CurrentHp);
+        float damageBasedOnMissingHp = missingHp * (boostData.damageBonusInPercent / 100);
+        return (int)damageBasedOnMissingHp;
     }
-
 }

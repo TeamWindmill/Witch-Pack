@@ -127,8 +127,12 @@ public class CameraHandler : MonoBehaviour
     {
         var inputDir = new Vector3(0, 0, 0); //resetting the input direction
         //WASD Detection
-        if (Input.GetKey(KeyCode.W)) {inputDir.y = +1f;}
+        if (Input.GetKey(KeyCode.W))
+        {
+            inputDir.y = +1f;
+        }
         else if (Input.GetKey(KeyCode.S)) inputDir.y = -1f;
+
         if (Input.GetKey(KeyCode.A)) inputDir.x = -1f;
         else if (Input.GetKey(KeyCode.D)) inputDir.x = +1f;
 #if !UNITY_EDITOR
@@ -152,7 +156,7 @@ public class CameraHandler : MonoBehaviour
         if (Input.GetMouseButtonDown(mouseButtonId))
         {
             _dragPanMoveActive = true;
-            _lastMousePosition = GameManager.Instance.CameraHandler._mainCamera.ScreenToViewportPoint(Input.mousePosition);
+            _lastMousePosition = GameManager.CameraHandler._mainCamera.ScreenToViewportPoint(Input.mousePosition);
         }
 
         if (Input.GetMouseButtonUp(mouseButtonId))
@@ -162,9 +166,9 @@ public class CameraHandler : MonoBehaviour
 
         if (!_dragPanMoveActive) return inputDir.normalized;
 
-        var mouseMovementDelta = _lastMousePosition - (Vector2)GameManager.Instance.CameraHandler._mainCamera.ScreenToViewportPoint(Input.mousePosition);
+        var mouseMovementDelta = _lastMousePosition - (Vector2)GameManager.CameraHandler._mainCamera.ScreenToViewportPoint(Input.mousePosition);
 
-        _lastMousePosition = GameManager.Instance.CameraHandler._mainCamera.ScreenToViewportPoint(Input.mousePosition);
+        _lastMousePosition = GameManager.CameraHandler._mainCamera.ScreenToViewportPoint(Input.mousePosition);
 
         _dragPanSpeed.x = _cameraSettings.CameraDragPanSpeed * _mainCamera.aspect;
         _dragPanSpeed.y = _cameraSettings.CameraDragPanSpeed;
@@ -181,7 +185,6 @@ public class CameraHandler : MonoBehaviour
         if (Input.mouseScrollDelta.y > 0) //zoom in
         {
             _targetOrthographicSize -= _cameraSettings.ZoomChangeValue;
-            
         }
 
         if (Input.mouseScrollDelta.y < 0) //zoom out
@@ -223,12 +226,16 @@ public class CameraHandler : MonoBehaviour
         var orthographicSize = _mainCamera.orthographicSize;
         var cameraHeight = orthographicSize * 2;
         var cameraWidth = _mainCamera.aspect * cameraHeight;
-
+        
+        var minClampX = -_cameraBorders.x / 2 + cameraWidth / 2;
+        var maxClampX = (_cameraBorders.x / 2 - cameraWidth / 2);
+        var minClampY = (-_cameraBorders.y / 2 + cameraHeight / 2);
+        var maxClampY = (_cameraBorders.y / 2 - cameraHeight / 2);
+        
         //clamping the camera to the borders of the map
-        cameraPosition.x = Mathf.Clamp(cameraPosition.x, (-_cameraBorders.x / 2 + cameraWidth / 2), (_cameraBorders.x / 2 - cameraWidth / 2));
-
-        cameraPosition.y = Mathf.Clamp(cameraPosition.y, (-_cameraBorders.y / 2 + cameraHeight / 2), (_cameraBorders.y / 2 - cameraHeight / 2));
-
+        cameraPosition.x = Mathf.Clamp(cameraPosition.x, minClampX, maxClampX);
+        cameraPosition.y = Mathf.Clamp(cameraPosition.y, minClampY, maxClampY);
+        
         return cameraPosition;
     }
 
@@ -317,8 +324,9 @@ public class CameraHandler : MonoBehaviour
         //move the camera to Event Position
         var newPos = new Vector3(eventPosition.x, eventPosition.y, -80);
         _cameraFollowObject.position = newPos;
-        ChangeDamping(_cameraSettings.EventTransitionDampingX,_cameraSettings.EventTransitionDampingY);
-        StartCoroutine(!lockCameraMove ? ChangeDampingUntilCameraFinishedFollowUp(_cameraSettings.EventTransitionDampingX, _cameraSettings.EventTransitionDampingY) 
+        ChangeDamping(_cameraSettings.EventTransitionDampingX, _cameraSettings.EventTransitionDampingY);
+        StartCoroutine(!lockCameraMove
+            ? ChangeDampingUntilCameraFinishedFollowUp(_cameraSettings.EventTransitionDampingX, _cameraSettings.EventTransitionDampingY)
             : LockCameraAfterFinishedFollowUp());
     }
 
@@ -344,14 +352,13 @@ public class CameraHandler : MonoBehaviour
         return cameraFinishedFollowUp;
     }
 
-    
 
     private void ChangeDamping(float xDamping, float yDamping)
     {
         _cinemachineTransposer.m_XDamping = xDamping;
         _cinemachineTransposer.m_YDamping = yDamping;
     }
-    
+
     private IEnumerator ChangeDampingUntilCameraFinishedFollowUp(float xDamping, float yDamping)
     {
         ChangeDamping(xDamping, yDamping);
@@ -359,11 +366,13 @@ public class CameraHandler : MonoBehaviour
         ChangeDamping(_cameraSettings.XDamping, _cameraSettings.XDamping);
         yield return null;
     }
+
     private IEnumerator LockCameraAfterFinishedFollowUp()
     {
         yield return new WaitUntil(() => CameraFinishedFollowUp() || _inputDir != Vector3.zero);
         ToggleCameraLock(true);
         yield return null;
     }
+
     #endregion
 }

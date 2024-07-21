@@ -38,15 +38,14 @@ public class ShamanUIHandler : ClickableUIElement
         _upgradeFrame.color = upgradeColor;
         shaman.EnergyHandler.OnShamanUpgrade += OnShamanUpgrade;
         shaman.EnergyHandler.OnShamanLevelUp += OnShamanLevelUp;
-        shaman.Damageable.OnGetHit += OnChangeHealth;
-        shaman.Damageable.OnHeal += OnChangeHealth;
+        shaman.Damageable.OnHealthChange += OnCurrentChangeHealth;
         shaman.Damageable.OnDeath += ShamanDeathUI;
         OnClickEvent += GoToShaman;
         OnClickEvent += ShowShamanInfo;
         Show();
     }
 
-    private void OnChangeHealth()
+    private void OnCurrentChangeHealth(int hp,int maxHp)
     {
         float hpRatio = _shaman.Damageable.CurrentHp / (float)_shaman.Damageable.MaxHp;
         _redInjuryImage.fillAmount = 1 - hpRatio;
@@ -54,27 +53,16 @@ public class ShamanUIHandler : ClickableUIElement
         _fill.color = Color.Lerp(Color.red, Color.green, hpRatio);
     }
 
-    private void OnChangeHealth(Damageable arg1, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4, bool arg5)
-    {
-        OnChangeHealth();
-    }
-
-    private void OnChangeHealth(Damageable arg1, float healAmount)
-    {
-        OnChangeHealth();
-    }
-
     public override void Hide()
     {
-        _shaman.Damageable.OnGetHit -= OnChangeHealth;
-        _shaman.Damageable.OnHeal -= OnChangeHealth;
+        _shaman.Damageable.OnHealthChange -= OnCurrentChangeHealth;
         _shaman.Damageable.OnDeath -= ShamanDeathUI;
         OnClickEvent -= GoToShaman;
         OnClickEvent -= ShowShamanInfo;
         base.Hide();
     }
 
-    private void ShamanDeathUI(Damageable arg1, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4)
+    private void ShamanDeathUI(Damageable arg1, DamageDealer arg2)
     {
         Color upgradeColor = _upgradeFrame.color;
         upgradeColor.a = 0;
@@ -85,6 +73,7 @@ public class ShamanUIHandler : ClickableUIElement
 
     private void OnShamanLevelUp(int obj)
     { 
+        if(_shaman.IsDead) return;
        Color upgradeColor = _upgradeFrame.color;
         upgradeColor.a = 100;
         _upgradeFrame.color = upgradeColor;
@@ -93,6 +82,7 @@ public class ShamanUIHandler : ClickableUIElement
 
     private void OnShamanUpgrade(bool hasSkillPoints)
     {
+        if(_shaman.IsDead) return;
         Color upgradeColor = _upgradeFrame.color;
         if (hasSkillPoints)
         {
@@ -110,10 +100,11 @@ public class ShamanUIHandler : ClickableUIElement
     private void GoToShaman(PointerEventData pointerData)
     {
         if(_shaman.IsDead) return;
-        GameManager.Instance.CameraHandler.SetCameraPosition(_shaman.transform.position);
+        GameManager.CameraHandler.SetCameraPosition(_shaman.transform.position);
     }
     private void ShowShamanInfo(PointerEventData pointerData)
     {
+        if(_shaman.IsDead) return;
         _shaman.SetSelectedShaman(pointerData.button);
     }
 }

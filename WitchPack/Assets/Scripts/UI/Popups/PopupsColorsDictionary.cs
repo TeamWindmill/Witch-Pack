@@ -1,6 +1,5 @@
 using Sirenix.OdinInspector;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,12 +20,12 @@ public class PopupsColorsDictionary : ScriptableObject
     public Color EnemyCritAutoAttackColor { get => enemyCritAutoAttackColor; }
     public Color HealColor { get => healColor; }
 
-    public StatusEffectTypeVisualData GetData(StatusEffectType givenType)
+    public StatusEffectTypeVisualData GetData(StatusEffectVisual givenVisual)
     {
         foreach (StatusEffectTypeVisualData data in statusEffectsVisuals)
         {
 
-            if (data.StatusEffectType == givenType)
+            if (data.StatusEffectVisual == givenVisual)
             {
                 return data;
             }
@@ -53,11 +52,11 @@ public class PopupsColorsDictionary : ScriptableObject
 [Serializable]
 public class StatusEffectTypeVisualData
 {
-    [SerializeField] private StatusEffectType statusEffectType;
+    [SerializeField] private StatusEffectVisual _statusEffectVisual;
     [SerializeField] private Color color;
     [SerializeField] private string name;
 
-    public StatusEffectType StatusEffectType { get => statusEffectType; }
+    public StatusEffectVisual StatusEffectVisual { get => _statusEffectVisual; }
     public Color Color { get => color; }
     public string Name { get => name; }
 }

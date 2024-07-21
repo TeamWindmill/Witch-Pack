@@ -1,64 +1,45 @@
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class DamageHandler
 {
-    private float baseAmount;
-    private List<float> mods = new List<float>();
-    private List<int> flatMods = new List<int>();
+    public Action<Damageable,DamageHandler> OnKill;
+    public bool HasPopupColor => hasPopupColor;
+    public Color PopupColor => popupColor;
 
+    private Stat _finalDamage;
     private bool hasPopupColor;
     private Color popupColor;
-
-    public bool HasPopupColor { get => hasPopupColor; }
-    public Color PopupColor { get => popupColor; }
+    private bool _armorReduction;
+    private float _armorReductionValue;
+    
 
     public DamageHandler(float baseAmount)
     {
-        this.baseAmount = baseAmount;
+        _finalDamage = new Stat(StatType.BaseDamage, baseAmount);
     }
 
 
-    public void AddMod(float mod)
+    public void AddMultiplierMod(float mod)
     {
-        mods.Add(mod);
+        _finalDamage.AddMultiplier(mod);
     }
 
 
     public void AddFlatMod(int flatMod)
     {
-        flatMods.Add(flatMod);
+        _finalDamage.AddModifier(flatMod);
     }
 
-    public int GetFinalDamage()
+    public int GetDamage()
     {
-        float amount = baseAmount;
-        foreach (var item in flatMods)
+        if (_armorReduction)
         {
-            if (item < 0)
-            {
-                Debug.LogError("ey");
-            }
-            amount += item;
+            float damageReductionModifier = 100f / (_armorReductionValue + 100f);
+            return (int)(_finalDamage.IntValue * damageReductionModifier);
         }
-        foreach (var item in mods)
-        {
-            if (item == 0)
-            {
-                amount = 0;
-                break;
-            }
-            else if (item > 1)
-            {
-                amount += (item * amount) - amount;//add damage
-            }
-            else
-            {
-                amount -= amount - (item * amount);//reduce damage
-            }
-        }
-       
-        return Mathf.RoundToInt(Mathf.Clamp(amount, 0, amount));
+        
+        return _finalDamage.IntValue;
     }
 
     public void SetPopupColor(Color color)
@@ -72,4 +53,9 @@ public class DamageHandler
         hasPopupColor = false;
     }
 
+    public void ApplyArmorReduction(int armorValue)
+    {
+        _armorReduction = true;
+        _armorReductionValue = armorValue;
+    }
 }

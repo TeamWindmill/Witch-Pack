@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -119,7 +118,7 @@ public class GAME_TIME : MonoBehaviour
     {
         SetTimeStep(_tempTimeData);
 
-        Debug.Log($"<color={ColorLogHelper.GREEN}>PLAY</color>");
+        //Debug.Log($"<color={ColorLogHelper.GREEN}>PLAY</color>");
         _tempTimeData = 0;
     }
 

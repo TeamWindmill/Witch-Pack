@@ -1,4 +1,5 @@
 ﻿using System;
+using DG.Tweening;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
@@ -35,6 +36,61 @@ public class PostProcessSlowMotionEffect : EffectTransitionLerp<PostProcessType>
                     colorAdjustments.saturation.value = value;
                 }
                 break;
+        }
+    }
+    public void StartTransition()
+    {
+        foreach (var postProcessEffect in EffectValues)
+        {
+            switch (postProcessEffect.ValueType)
+            {
+                case PostProcessType.Bloom:
+                    if (_postProcessVolume.profile.TryGet<Bloom>(out var bloom))
+                    {
+                        DOTween.To(() => bloom.intensity.value, x => bloom.intensity.value = x,postProcessEffect.EndValue , LerpValueConfig.TransitionTime);
+                    }
+                    break;
+                case PostProcessType.Vignette:
+                    if (_postProcessVolume.profile.TryGet<Vignette>(out var vignette))
+                    {
+                        DOTween.To(() => vignette.intensity.value, x => vignette.intensity.value = x,postProcessEffect.EndValue , LerpValueConfig.TransitionTime);
+                    }
+                    break;
+                case PostProcessType.ColorAdjustments:
+                    if (_postProcessVolume.profile.TryGet<ColorAdjustments>(out var colorAdjustments))
+                    {
+                        DOTween.To(() => colorAdjustments.saturation.value, x => colorAdjustments.saturation.value = x,postProcessEffect.EndValue , LerpValueConfig.TransitionTime);
+                    }
+                    break;
+            }
+        }
+    }
+
+    public void EndTransition()
+    {
+        foreach (var postProcessEffect in EffectValues)
+        {
+            switch (postProcessEffect.ValueType)
+            {
+                case PostProcessType.Bloom:
+                    if (_postProcessVolume.profile.TryGet<Bloom>(out var bloom))
+                    {
+                        DOTween.To(() => bloom.intensity.value, x => bloom.intensity.value = x,postProcessEffect.StartValue , LerpValueConfig.TransitionTime);
+                    }
+                    break;
+                case PostProcessType.Vignette:
+                    if (_postProcessVolume.profile.TryGet<Vignette>(out var vignette))
+                    {
+                        DOTween.To(() => vignette.intensity.value, x => vignette.intensity.value = x,postProcessEffect.StartValue , LerpValueConfig.TransitionTime);
+                    }
+                    break;
+                case PostProcessType.ColorAdjustments:
+                    if (_postProcessVolume.profile.TryGet<ColorAdjustments>(out var colorAdjustments))
+                    {
+                        DOTween.To(() => colorAdjustments.saturation.value, x => colorAdjustments.saturation.value = x,postProcessEffect.StartValue , LerpValueConfig.TransitionTime);
+                    }
+                    break;
+            }
         }
     }
 }

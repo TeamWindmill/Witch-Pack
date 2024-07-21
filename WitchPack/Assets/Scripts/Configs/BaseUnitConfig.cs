@@ -15,12 +15,22 @@ public class BaseUnitConfig : BaseConfig
     [BoxGroup("Unit")][HorizontalGroup("Unit/Split")][VerticalGroup("Unit/Split/Right")]
     private Sprite unitIndicatorIcon;
     
-    [SerializeField] 
+    [BoxGroup("Unit")][TextArea][HorizontalGroup("Unit/Split")][VerticalGroup("Unit/Split/Left")]
+    [SerializeField] private string _description;
+    
     [BoxGroup("Unit")][HorizontalGroup("Unit/Split")][VerticalGroup("Unit/Split/Left")]
-    private StatSheet baseStats;
+    [SerializeField] private OffensiveAbilitySO _autoAttack;
+    
+    [BoxGroup("Unit")][HorizontalGroup("Unit/Split")][VerticalGroup("Unit/Split/Left")]
+    [SerializeField] private Stats baseStats;
+    
+    
+
 
     public Sprite UnitSprite => unitSprite;
     public Sprite UnitIcon => unitIcon;
-    public StatSheet BaseStats { get => baseStats; }
+    public Stats BaseStats { get => baseStats; }
     public Sprite UnitIndicatorIcon { get => unitIndicatorIcon; }
+    public OffensiveAbilitySO AutoAttack => _autoAttack;
+    public string Description => _description;
 }

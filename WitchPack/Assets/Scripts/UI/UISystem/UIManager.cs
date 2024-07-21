@@ -3,30 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [DefaultExecutionOrder(-1)]
-public class UIManager : MonoSingleton<UIManager>
+public static class UIManager
 {
-    public bool MouseOverUI { get; private set; }
-    public InformationWindow InformationWindow => _informationWindow;
-    
-    [SerializeField] private InformationWindow _informationWindow;
-    
-    private Dictionary<UIGroup, List<UIElement>> _uiGroups;
-    private List<UIElement> _mouseOnUIElements = new List<UIElement>();
+    public static bool MouseOverUI { get; private set; }
 
-    protected override void Awake()
+    private static Dictionary<UIGroup, List<UIElement>> _uiGroups;
+    private static Dictionary<UIGroup, UIElement> _uiGroupManagers;
+    private static List<UIElement> _mouseOnUIElements = new List<UIElement>();
+
+    public static void Init()
     {
-        base.Awake();
-        
         _uiGroups = new Dictionary<UIGroup, List<UIElement>>();
+        _uiGroupManagers = new Dictionary<UIGroup, UIElement>();
 
         var uiGroupTypes = Enum.GetValues(typeof(UIGroup));
         for (int i = 0; i < uiGroupTypes.Length; i++)
         {
-            _uiGroups.Add((UIGroup)i,new List<UIElement>());
+            _uiGroups.Add((UIGroup)i, new List<UIElement>());
+        }
+
+        for (int i = 0; i < uiGroupTypes.Length; i++)
+        {
+            _uiGroupManagers.Add((UIGroup)i, null);
         }
     }
 
-    public void AddUIElement(UIElement element, UIGroup group)
+    #region Add&Remove UI Elements
+
+    public static void AddUIElement(UIElement element, UIGroup group)
     {
         if (_uiGroups.TryGetValue(group, out var uiElements))
         {
@@ -39,7 +43,14 @@ public class UIManager : MonoSingleton<UIManager>
             Debug.LogError("could not find UIGroup");
         }
     }
-    public void RemoveUIElement(UIElement element, UIGroup group)
+
+    public static void AddUIGroupManager(UIElement element, UIGroup group)
+    {
+        if (_uiGroupManagers[group] is not null) return;
+        _uiGroupManagers[group] = element;
+    }
+
+    public static void RemoveUIElement(UIElement element, UIGroup group)
     {
         if (_uiGroups.TryGetValue(group, out var uiElements))
         {
@@ -51,9 +62,29 @@ public class UIManager : MonoSingleton<UIManager>
         }
     }
 
-    public void ShowUIGroup(UIGroup uiGroup)
+    public static void RemoveUIGroupManager(UIElement element, UIGroup group)
     {
-        if (_uiGroups.TryGetValue(uiGroup,out var uiElements))
+        if(_uiGroupManagers[group] == element)
+            _uiGroupManagers[group] = null;
+    }
+
+    #endregion
+
+    #region UI Groups Functions
+
+    public static UIElement GetUIGroupManager(UIGroup uiGroup)
+    {
+        return _uiGroupManagers[uiGroup];
+    }
+
+    public static void ShowUIGroup(UIGroup uiGroup)
+    {
+        if (_uiGroupManagers.TryGetValue(uiGroup, out var uiManager))
+        {
+            uiManager?.Show();
+        }
+
+        if (_uiGroups.TryGetValue(uiGroup, out var uiElements))
         {
             foreach (var element in uiElements)
             {
@@ -61,9 +92,31 @@ public class UIManager : MonoSingleton<UIManager>
             }
         }
     }
-    public void HideUIGroup(UIGroup uiGroup)
+
+    public static void RefreshUIGroup(UIGroup uiGroup)
     {
-        if (_uiGroups.TryGetValue(uiGroup,out var uiElements))
+        if (_uiGroupManagers.TryGetValue(uiGroup, out var uiManager))
+        {
+            uiManager?.Refresh();
+        }
+
+        if (_uiGroups.TryGetValue(uiGroup, out var uiElements))
+        {
+            foreach (var element in uiElements)
+            {
+                element.Refresh();
+            }
+        }
+    }
+
+    public static void HideUIGroup(UIGroup uiGroup)
+    {
+        if (_uiGroupManagers.TryGetValue(uiGroup, out var uiManager))
+        {
+            uiManager?.Hide();
+        }
+
+        if (_uiGroups.TryGetValue(uiGroup, out var uiElements))
         {
             foreach (var element in uiElements)
             {
@@ -72,26 +125,31 @@ public class UIManager : MonoSingleton<UIManager>
         }
     }
 
-    public void UpdateUIGroup(UIGroup uiGroup)
+    public static bool MouseOverUIGroup(UIGroup uiGroup)
     {
-        if (_uiGroups.TryGetValue(uiGroup,out var uiElements))
+        bool mouseOverUI = false;
+        if (_uiGroups.TryGetValue(uiGroup, out var uiElements))
         {
             foreach (var element in uiElements)
             {
-                element.UpdateVisual();
+                if (element.isMouseOver) mouseOverUI = true;
             }
         }
-    }
 
-    private void MouseOnUIEnter(UIElement element)
+        return mouseOverUI;
+    }
+    #endregion
+
+    private static void MouseOnUIEnter(UIElement element)
     {
         MouseOverUI = true;
         _mouseOnUIElements.Add(element);
     }
-    private void MouseOnUIExit(UIElement element)
+
+    private static void MouseOnUIExit(UIElement element)
     {
         if (_mouseOnUIElements.Contains(element)) _mouseOnUIElements.Remove(element);
-        if(_mouseOnUIElements.Count == 0)
+        if (_mouseOnUIElements.Count == 0)
             MouseOverUI = false;
     }
 }
@@ -103,4 +161,14 @@ public enum UIGroup
     MenuUI,
     EndGameUI,
     SelectionUI,
+    TopCounterUI,
+    PartyUI,
+    Indicators,
+    InfoWindow,
+    DevTools,
+    PartySelectionWindow,
+    ShamanUpgradePanel,
+    LevelSelection,
+    UpgradeWindow,
+    SettingsWindow,
 }

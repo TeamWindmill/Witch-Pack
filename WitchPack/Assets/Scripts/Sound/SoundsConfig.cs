@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using Sirenix.OdinInspector;
 using Tools.Random;
 using UnityEngine;
@@ -98,5 +96,11 @@ public enum SoundEffectType
     HealingWeeds,
     BlessingOfSwiftness,
     OverHeal,
-    Frenzy
+    Frenzy,
+    MonolithofRockTaunt,
+    MonolithofRockShield,
+    MonolithofRockExplosion,
+    OrbitalStonesCreating,
+    OrbitalStonesDestruction,
+    ReflectDamage,
 }

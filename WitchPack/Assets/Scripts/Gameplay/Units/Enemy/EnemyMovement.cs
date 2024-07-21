@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using PathCreation;
-using Unity.VisualScripting.Antlr3.Runtime.Misc;
-using UnityEngine;
+using Sirenix.OdinInspector;
 
-public class EnemyMovement 
+public class EnemyMovement
 {
-
+    [ReadOnly]public float DistanceRemaining => _path.path.length - _dstTravelled;
     private float _dstTravelled;
     private readonly Enemy _enemy;
     private readonly UnitMovement _unitMovement;
@@ -21,7 +18,7 @@ public class EnemyMovement
     
     public void FollowPath()
     {
-        _dstTravelled += _enemy.Stats.MovementSpeed * GAME_TIME.GameDeltaTime;
+        _dstTravelled += _enemy.Stats[StatType.MovementSpeed].Value * GAME_TIME.GameDeltaTime;
         _enemy.transform.position = _path.path.GetPointAtDistance(_dstTravelled, EndOfPathInstruction.Stop);
     }
 

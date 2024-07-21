@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "WaveData", menuName = "Wave")]
+[CreateAssetMenu(fileName = "WaveData", menuName = "Level/Wave")]
 public class WaveData : ScriptableObject
 {
     [SerializeField] private float startDelayInterval;//the interval between the end a wave to the beginning of the next one 

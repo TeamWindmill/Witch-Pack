@@ -1,25 +1,28 @@
 using System;
 using System.Collections.Generic;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Systems.StateMachine
 {
-    public abstract class BaseStateMachine<T> : MonoBehaviour where T : MonoBehaviour
+    public abstract class BaseStateMachine<T> : MonoBehaviour 
+        where T : MonoBehaviour
     {
         public State<T> ActiveState => _activeState;
-        
+
+        public Dictionary<Type, State<T>> States => _states;
+
         protected State<T> _activeState;
         
-        private Dictionary<Type, State<T>> _stateByType = new ();
+        private Dictionary<Type, State<T>> _states = new ();
+        
         private bool _isActive;
         
         protected void BaseInit(List<State<T>> states)
         {
-            _stateByType = new ();
+            _states = new ();
             foreach (var state in states)
             {
-                _stateByType.Add(state.GetType(), state);
+                _states.Add(state.GetType(), state);
             }
 
             _activeState = states[0];
@@ -33,7 +36,7 @@ namespace Systems.StateMachine
                 _activeState.Exit(this as T);
             }
 
-            _activeState = _stateByType[newStateType];
+            _activeState = _states[newStateType];
             _activeState.Enter(this as T);
         }
 

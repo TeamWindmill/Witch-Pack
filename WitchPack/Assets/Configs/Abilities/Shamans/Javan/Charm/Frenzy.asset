@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81bc54a6909644928fc8b5cc15bd5412, type: 3}
+  m_Name: Frenzy
+  m_EditorClassIdentifier: 
+  _name: Frenzy
+  discription: Charmed enemies deal more damage
+  defaultIcon: {fileID: 1924337954, guid: 8f7f54d525985144598871936635c227, type: 3}
+  disabledIcon: {fileID: 1340161048, guid: 8f7f54d525985144598871936635c227, type: 3}
+  upgradeIcon: {fileID: -700287800, guid: 8f7f54d525985144598871936635c227, type: 3}
+  _upgrades: []
+  hasPopupColor: 0
+  popupColor: {r: 0, g: 0, b: 0, a: 0}
+  castTime: 1
+  cd: 20
+  givesEnergyPoints: 1
+  energyPoints: 3
+  statusEffects:
+  - {fileID: 11400000, guid: d3137f45d16746e41bf355eef3d81bf9, type: 2}
+  targetData:
+    Priority: 4
+    Modifier: 0
+    StatType: 0
+    AvoidCharmedTargets: 1
+  underAttackTargetData:
+    Priority: 4
+    Modifier: 0
+    StatType: 0
+    AvoidCharmedTargets: 1
+  _hasCastVisual: 1
+  castVisualColor: 3
+  _hasSFX: 1
+  soundEffectType: 33
+  _charmedState: {fileID: 11400000, guid: d598f106f9f50114c96da9cffaa8a569, type: 2}

@@ -20,47 +20,53 @@ public class ConfigWindowEditor : OdinMenuEditorWindow
         var tree = new OdinMenuTree();
         //_createNewConfigDatas = new CreateNewConfigDatas();
         //tree.Add("Create New Configs", _createNewConfigDatas);
-        tree.AddAllAssetsAtPath("Units/Enemies/Base","Assets/Configs/UnitConfigs/EnemyConfigs",typeof(EnemyConfig));
-        tree.AddAllAssetsAtPath("Units/Enemies/Stats","Assets/Configs/UnitConfigs/EnemyConfigs",typeof(StatSheet));
-        tree.AddAllAssetsAtPath("Units/Shamans/Base","Assets/Configs/UnitConfigs/ShamanConfigs",typeof(ShamanConfig));
-        tree.AddAllAssetsAtPath("Units/Shamans/Stats","Assets/Configs/UnitConfigs/ShamanConfigs",typeof(StatSheet));
-        tree.AddAllAssetsAtPath("Units/PowerStructures","Assets/Configs/UnitConfigs/StructuresConfig",typeof(PowerStructureConfig));
-        tree.AddAllAssetsAtPath("Units/Shamans","Assets/Configs/UnitConfigs/ShamanConfigs",typeof(EnergyLevels));
-        tree.AddAllAssetsAtPath("Abilities/AutoAttack","Assets/Configs/Abilities",typeof(BaseAbility));
-        tree.AddAllAssetsAtPath("Abilities/Toor/Multishot","Assets/Configs/Abilities/Toor/Multishot",typeof(BaseAbility));
-        tree.AddAllAssetsAtPath("Abilities/Toor/PiercingShot","Assets/Configs/Abilities/Toor/PiercingShot",typeof(BaseAbility));
-        tree.AddAllAssetsAtPath("Abilities/Toor/Passives","Assets/Configs/Abilities/Toor/Passives",typeof(BaseAbility));
-        tree.AddAllAssetsAtPath("Abilities/Nadia/RootingVines","Assets/Configs/Abilities/Nadia/RootingVines",typeof(BaseAbility));
-        tree.AddAllAssetsAtPath("Abilities/Nadia/Heal","Assets/Configs/Abilities/Nadia/Heal",typeof(BaseAbility));
-        tree.AddAllAssetsAtPath("Abilities/Nadia/Passives","Assets/Configs/Abilities/Nadia/Passives",typeof(BaseAbility));
-        tree.AddAllAssetsAtPath("Abilities/Javan/SmokeBomb","Assets/Configs/Abilities/Javan/SmokeBomb",typeof(BaseAbility));
-        tree.AddAllAssetsAtPath("Abilities/Javan/Charm","Assets/Configs/Abilities/Javan/Charm",typeof(BaseAbility));
-        tree.AddAllAssetsAtPath("Abilities/Javan/Passives","Assets/Configs/Abilities/Javan/Passives",typeof(BaseAbility));
-        tree.AddAllAssetsAtPath("Abilities/StatusEffects/Roots","Assets/Configs/Abilities/StatusEffects/Roots",typeof(StatusEffectConfig));
-        tree.AddAllAssetsAtPath("Abilities/StatusEffects/SmokeBomb","Assets/Configs/Abilities/StatusEffects/SmokeBomb",typeof(StatusEffectConfig));
-        tree.AddAllAssetsAtPath("Level/Levels","Assets/Configs/Levels",typeof(LevelConfig));
-        tree.AddAllAssetsAtPath("Level/Waves","Assets/Configs/Waves",typeof(WaveData));
+        tree.AddAllAssetsAtPath("Units/Enemies/Base",                      "Assets/Configs/EnemyConfigs",typeof(EnemyConfig));
+        tree.AddAllAssetsAtPath("Units/Enemies/Bosses",                    "Assets/Configs/EnemyConfigs/Bosses",typeof(EnemyConfig));
+        tree.AddAllAssetsAtPath("Units/Shamans/Base",                      "Assets/Configs/ShamanConfigs",typeof(ShamanConfig));
+        tree.AddAllAssetsAtPath("Units/Shamans/Energy",                    "Assets/Configs/ExpAndEnergy/Energy",typeof(EnergyConfig));
+        tree.AddAllAssetsAtPath("Units/Shamans/Exp",                       "Assets/Configs/ExpAndEnergy/Experience",typeof(ShamanExperienceConfig));
+        tree.AddAllAssetsAtPath("PowerStructures",                         "Assets/Configs/StructuresConfig",typeof(PowerStructureConfig));
+        tree.AddAllAssetsAtPath("Abilities/Shamans/AutoAttack",            "Assets/Configs/Abilities/Shamans",typeof(AbilitySO));
+        tree.AddAllAssetsAtPath("Abilities/Shamans/Toor/Multishot",        "Assets/Configs/Abilities/Shamans/Toor/Multishot",typeof(AbilitySO));
+        tree.AddAllAssetsAtPath("Abilities/Shamans/Toor/PiercingShot",     "Assets/Configs/Abilities/Shamans/Toor/PiercingShot",typeof(AbilitySO));
+        tree.AddAllAssetsAtPath("Abilities/Shamans/Toor/Passives",         "Assets/Configs/Abilities/Shamans/Toor/Passives",typeof(AbilitySO));
+        tree.AddAllAssetsAtPath("Abilities/Shamans/Nadia/RootingVines",    "Assets/Configs/Abilities/Shamans/Nadia/RootingVines",typeof(AbilitySO));
+        tree.AddAllAssetsAtPath("Abilities/Shamans/Nadia/Heal",            "Assets/Configs/Abilities/Shamans/Nadia/Heal",typeof(AbilitySO));
+        tree.AddAllAssetsAtPath("Abilities/Shamans/Nadia/Passives",        "Assets/Configs/Abilities/Shamans/Nadia/Passives",typeof(AbilitySO));
+        tree.AddAllAssetsAtPath("Abilities/Shamans/Javan/SmokeBomb",       "Assets/Configs/Abilities/Shamans/Javan/SmokeBomb",typeof(AbilitySO));
+        tree.AddAllAssetsAtPath("Abilities/Shamans/Javan/Charm",           "Assets/Configs/Abilities/Shamans/Javan/Charm",typeof(AbilitySO));
+        tree.AddAllAssetsAtPath("Abilities/Shamans/Javan/Passives",        "Assets/Configs/Abilities/Shamans/Javan/Passives",typeof(AbilitySO));
+        tree.AddAllAssetsAtPath("Abilities/Shamans/Lila/RockMonolith",     "Assets/Configs/Abilities/Shamans/Lila/RockMonolith",typeof(AbilitySO));
+        tree.AddAllAssetsAtPath("Abilities/Shamans/Lila/OrbitalStones",    "Assets/Configs/Abilities/Shamans/Lila/OrbitalStones", typeof(AbilitySO));
+        tree.AddAllAssetsAtPath("Abilities/Shamans/Lila/Passives",         "Assets/Configs/Abilities/Shamans/Lila/Passives", typeof(AbilitySO));
+        tree.AddAllAssetsAtPath("Abilities/Enemies",                       "Assets/Configs/Abilities/Enemies",typeof(AbilitySO));
+        tree.AddAllAssetsAtPath("Abilities/StatusEffects/Roots",           "Assets/Configs/Abilities/StatusEffects/Roots",typeof(StatusEffectConfig));
+        tree.AddAllAssetsAtPath("Abilities/StatusEffects/SmokeBomb",       "Assets/Configs/Abilities/StatusEffects/SmokeBomb",typeof(StatusEffectConfig));
+        tree.AddAllAssetsAtPath("MetaUpgrades",                            "Assets/Configs/MetaUpgrades/ShamanConfigs",typeof(ShamanMetaUpgradeConfig));
+        tree.AddAllAssetsAtPath("Level/Levels",                            "Assets/Configs/Levels",typeof(LevelConfig));
+        tree.AddAllAssetsAtPath("Level/Waves",                             "Assets/Configs/Waves",typeof(WaveData));
         return tree;
+
     }
 
-    protected override void OnBeginDrawEditors()
-    {
-        var selected = this.MenuTree.Selection;
-
-        SirenixEditorGUI.BeginHorizontalToolbar();
-        {
-            GUILayout.FlexibleSpace();
-
-            if (SirenixEditorGUI.ToolbarButton("Delete"))
-            {
-                var asset = selected.SelectedValue;
-                string path = AssetDatabase.GetAssetPath((Object)asset);
-                AssetDatabase.DeleteAsset(path);
-                AssetDatabase.SaveAssets();
-            }
-        }
-        SirenixEditorGUI.EndHorizontalToolbar();
-    }
+    // protected override void OnBeginDrawEditors()
+    // {
+    //     var selected = this.MenuTree.Selection;
+    //
+    //     SirenixEditorGUI.BeginHorizontalToolbar();
+    //     {
+    //         GUILayout.FlexibleSpace();
+    //
+    //         if (SirenixEditorGUI.ToolbarButton("Delete"))
+    //         {
+    //             var asset = selected.SelectedValue;
+    //             string path = AssetDatabase.GetAssetPath((Object)asset);
+    //             AssetDatabase.DeleteAsset(path);
+    //             AssetDatabase.SaveAssets();
+    //         }
+    //     }
+    //     SirenixEditorGUI.EndHorizontalToolbar();
+    // }
 
     protected override void OnDestroy()
     {

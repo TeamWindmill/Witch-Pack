@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,7 +5,7 @@ public class Shadow : MonoBehaviour
 {
     public UnitStats Stats => _stats;
     public Shaman Shaman => _shaman;
-    public Dictionary<StatType, int> CurrentStatPSEffects => currentStatPSEffects;
+    public Dictionary<StatType, float> CurrentStatPSEffects => currentStatPSEffects;
     public bool IsActive => _isActive;
 
     [SerializeField] private Transform rangeTransform;
@@ -17,16 +16,16 @@ public class Shadow : MonoBehaviour
     private Shaman _shaman;
     private bool _isActive;
 
-    private Dictionary<StatType, int> currentStatPSEffects;
+    private Dictionary<StatType, float> currentStatPSEffects;
 
 
     public void Show(Shaman shaman)
     {
-        currentStatPSEffects = new Dictionary<StatType, int>();
+        currentStatPSEffects = new Dictionary<StatType, float>();
         _stats = shaman.Stats;
         spriteRenderer.sprite = shaman.ShamanConfig.UnitSprite;
         _shaman = shaman;
-        rangeTransform.localScale = new Vector3(shaman.Stats.BonusRange * 2, shaman.Stats.BonusRange * 2, 0);
+        rangeTransform.localScale = new Vector3(shaman.Stats[StatType.BaseRange].Value, shaman.Stats[StatType.BaseRange].Value, 0);
         gameObject.SetActive(true);
         _isActive = true;
     }
@@ -37,7 +36,7 @@ public class Shadow : MonoBehaviour
         _isActive = false;
     }
 
-    public void SetPSStatValue(StatType statType, int value)
+    public void SetPSStatValue(StatType statType, float value)
     {
         if (currentStatPSEffects.ContainsKey(statType))
         {
@@ -53,7 +52,7 @@ public class Shadow : MonoBehaviour
     {
         if (_isActive)
         {
-            Vector3 newPos = GameManager.Instance.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+            Vector3 newPos = GameManager.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
             newPos.z = _shaman.transform.position.z;
             transform.position = newPos;
             lineRenderer.positionCount = 2; 

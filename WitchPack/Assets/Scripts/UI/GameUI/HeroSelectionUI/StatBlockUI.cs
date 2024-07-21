@@ -1,49 +1,16 @@
-using System;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 
-public class StatBlockUI : MonoBehaviour
+public class StatBlockUI : StatBlock<StatType>
 {
-    [SerializeField] private StatType statTypeId;
-    [SerializeField] private TextMeshProUGUI _statText;
-    [SerializeField] private TextMeshProUGUI _statValue;
-    
-    private Color _statBonusAdditionColor;
-    private Color _statBonusReductionColor;
-
-    private float _baseValue;
-    private float _bonusValue;
-    public StatType StatTypeId => statTypeId;
-    
-    public void Init(float currentValue, Color addColor, Color reduceColor)
+    protected override string GetStatName(ref float baseValue, string statName, ref string modifier)
     {
-        _baseValue = currentValue;
-        _statBonusAdditionColor = addColor;
-        _statBonusReductionColor = reduceColor;
-        SetStatText(_baseValue,0);
-    }
-    public void UpdateBonusStatUI(float newValue)
-    {
-        if(ReferenceEquals(HeroSelectionUI.Instance,null)) return;
-        if(!HeroSelectionUI.Instance.IsActive) return;
-        _bonusValue = newValue;
-        SetStatText(_baseValue,_bonusValue);
-    }
-
-    public void UpdateBaseStat(float newValue)
-    {
-        if(ReferenceEquals(HeroSelectionUI.Instance,null)) return;
-        if(!HeroSelectionUI.Instance.IsActive) return;
-        _baseValue = newValue;
-        SetStatText(_baseValue, _bonusValue);
-    }
-
-    private void SetStatText(float baseValue, float bonusValue)
-    {
-        string statName = "";
-        string modifier = "";
         switch (statTypeId)
         {
+            case StatType.MaxHp:
+                statName = "Health";
+                break;
             case StatType.BaseDamage:
                 statName = "Damage";
                 break;
@@ -65,25 +32,17 @@ public class StatBlockUI : MonoBehaviour
                 statName = "Crit Chance";
                 modifier = "%";
                 break;
-        }
-    
-        _statText.text = statName;
-        string modifierText = $"{modifier}";
-        string baseValueText = $"{baseValue}";
-        string bonusValueText;
-        switch (bonusValue)
-        {
-            case > 0:
-                bonusValueText = ColorLogHelper.SetColorToString($" (+{bonusValue})", _statBonusAdditionColor);;
-                _statValue.text =  baseValueText + modifierText + bonusValueText;
+            case StatType.HpRegen:
+                statName = "Regeneration";
                 break;
-            case < 0:
-                bonusValueText = ColorLogHelper.SetColorToString($" (-{-bonusValue})", _statBonusReductionColor);;
-                _statValue.text = baseValueText + modifierText + bonusValueText;
+            case StatType.Armor:
+                statName = "Armor";
                 break;
-            case 0:
-                _statValue.text = baseValueText + modifierText;
+            case StatType.AbilityCooldownReduction:
+                statName = "Cooldown Reduction";
                 break;
         }
+
+        return statName;
     }
 }

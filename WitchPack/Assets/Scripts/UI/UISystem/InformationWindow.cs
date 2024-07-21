@@ -1,16 +1,14 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class InformationWindow : MonoSingleton<InformationWindow>
+public class InformationWindow : UIElement
 {
+    public static InformationWindow Instance { get; private set; }
     public bool isActive { get; private set; }
     [SerializeField] private Transform _holder;
     [SerializeField] private TextMeshProUGUI _titleTMP;
     [SerializeField] private TextMeshProUGUI _discriptionTMP;
-    [SerializeField]private RectTransform _rectTransform;
     [Space] 
     [SerializeField] private Vector2 _windowSize;
     [SerializeField] private float _delayTime;
@@ -19,6 +17,16 @@ public class InformationWindow : MonoSingleton<InformationWindow>
     private bool _activeShowRequest;
     private UIElement _currentUIElement;
     private WindowInfo _currentWindowInfo;
+    protected override void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(Instance);
+        }
+        else Instance = this;
+        base.Awake();
+    }
+
     private void Start()
     {
         _holder.gameObject.SetActive(false);
@@ -32,7 +40,7 @@ public class InformationWindow : MonoSingleton<InformationWindow>
 
     private void Show(UIElement uiElement, WindowInfo windowInfo)
     {
-        _rectTransform.rect.Set(0,0,_windowSize.x,_windowSize.y);
+        rectTransform.rect.Set(0,0,_windowSize.x,_windowSize.y);
         
         _titleTMP.text = windowInfo.Name;
         _discriptionTMP.text = windowInfo.Discription;
@@ -46,19 +54,13 @@ public class InformationWindow : MonoSingleton<InformationWindow>
         isActive = true;
     }
 
-    public void Hide()
+    public override void Hide()
     {
         _activeShowRequest = false;
         isActive = false;
         _holder.gameObject.SetActive(false);
     }
-
-    private void OnValidate()
-    {
-        _rectTransform ??= GetComponent<RectTransform>();
-    }
-
-    private void Update()
+    protected override void Update()
     {
         if (_activeShowRequest)
         {

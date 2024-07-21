@@ -1,71 +1,78 @@
-using System;
 using UnityEngine;
 
-public class CoreTemple : MonoBehaviour
+public class CoreTemple : BaseEntity, IDamagable
 {
-    public Action OnCoreDestroyed;
-    public Action<int> OnGetHit;
-    
-    [SerializeField] private int maxHp;
+    public Damageable Damageable => _damageable;
+
+    [SerializeField] private Stats _statsConfig;
     [SerializeField] private GroundColliderTargeter enemyGroundCollider;
     [SerializeField] private HP_Bar hpBar;
     [SerializeField] private Animator animator;
     [SerializeField] private Transform destroyedCore;
     [SerializeField] private SpriteRenderer coreSpriteRenderer;
     [SerializeField] private ParticleSystem glowParticleSystem;
+    private UnitStats _stats;
     [SerializeField] private float destroyAnimationsDelay;
     
-    private int curHp;
-
-    public int MaxHp { get => maxHp; }
-    public int CurHp { get => curHp; }
+    private Effectable _effectable;
+    private Affector _affector;
+    private Damageable _damageable;
 
     public void Init()
     {
-        curHp = maxHp;
+        _stats = new UnitStats(_statsConfig);
+        _affector = new Affector(this);
+        _effectable = new Effectable(this);
+        _damageable = new Damageable(this); 
+        _damageable.Init();
         enemyGroundCollider.OnTargetAdded += OnEnemyEnter;
-        hpBar.Init(maxHp,UnitType.Temple);
-        ScreenCracksHandler.Instance.InitByCore(this);
-    }
-    private void OnEnemyEnter(GroundCollider collider)
-    {
-        collider.Unit.Damageable.TakeFlatDamage(collider.Unit.Damageable.CurrentHp);
-        TakeDamage((collider.Unit as Enemy).CoreDamage);
+        hpBar.Init(_damageable.MaxHp,UnitType.Temple);
+        //ScreenCracksHandler.Instance.InitByCore(this);
+        _damageable.OnDeathGFX += OnCoreDeath;
+        _damageable.OnTakeFlatDamage += OnGetHit;
+        _damageable.OnHeal += Heal;
     }
 
-    public void TakeDamage(int amount)
+    private void OnGetHit(Damageable damageable, int damage)
     {
-        curHp -= amount;
-        if(curHp <0)
-            curHp = 0;
-        OnGetHit?.Invoke(amount);
-        SoundManager.Instance.PlayAudioClip(SoundEffectType.CoreGetHit);
-        ScreenCracksHandler.Instance.StartCracksAnimation(amount);
-        hpBar.SetBarValue(curHp);
-        if (curHp <= 0)
+        SoundManager.PlayAudioClip(SoundEffectType.CoreGetHit);
+        //ScreenCracksHandler.Instance.StartCracksAnimation(damage);
+        hpBar.SetBar(_damageable);
+        
+        if (_damageable.CurrentHp <= _damageable.MaxHp * 0.33)
         {
-            OnCoreDestroyed?.Invoke();
-            BgMusicManager.Instance.StopMusic();
-            SoundManager.Instance.PlayAudioClip(SoundEffectType.CoreDestroyed);
-            destroyedCore.gameObject.SetActive(true);
-            coreSpriteRenderer.enabled = false;
-            glowParticleSystem.Play();
-            GAME_TIME.Pause();
-            var camera = GameManager.Instance.CameraHandler;
-            camera.SetCameraPosition(transform.position,true);
-            camera.SetCameraZoom(0);
-            Invoke(nameof(DestroyCoreAnimation),destroyAnimationsDelay);
-            
+            animator.SetBool("L_Crack",true);   
         }
-        else if (curHp <= maxHp * 0.33)
-        {
-         animator.SetBool("L_Crack",true);   
-        }
-        else if (curHp <= maxHp * 0.66)
+        else if (_damageable.CurrentHp  <= _damageable.MaxHp * 0.66)
         {
             animator.SetBool("R_Crack",true);
         }
-        
+    }
+
+    private void OnEnemyEnter(GroundCollider collider)
+    {
+        collider.Unit.Damageable.TakeFlatDamage(collider.Unit.Damageable.CurrentHp);
+        _damageable.TakeFlatDamage(((Enemy)collider.Unit).CoreDamage);
+    }
+
+    private void OnCoreDeath()
+    {
+        BgMusicManager.Instance.StopMusic();
+        SoundManager.PlayAudioClip(SoundEffectType.CoreDestroyed);
+        destroyedCore.gameObject.SetActive(true);
+        coreSpriteRenderer.enabled = false;
+        glowParticleSystem.Play();
+        GAME_TIME.Pause();
+        var camera = GameManager.CameraHandler;
+        camera.SetCameraPosition(transform.position,true);
+        camera.SetCameraZoom(0);
+        Invoke(nameof(DestroyCoreAnimation),destroyAnimationsDelay);
+    }
+
+    public void Heal(Damageable damageable,int amount)
+    {
+        hpBar.SetBar(_damageable);
+        //ScreenCracksHandler.Instance.SetStartValue();
     }
 
     private void DestroyCoreAnimation()
@@ -75,4 +82,13 @@ public class CoreTemple : MonoBehaviour
     }
 
     private void EndGameScreen() => LevelManager.Instance.EndLevel(false);
+    public UnitStats Stats => _stats;
+    public Effectable Effectable => _effectable;
+    public Affector Affector => _affector;
+    public void ClearUnitTimers()
+    {
+        
+    }
+
+    public BaseEntity GameObject => this;
 }

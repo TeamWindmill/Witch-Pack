@@ -1,6 +1,5 @@
 using PathCreation;
 using Sirenix.OdinInspector;
-using Systems.StateMachine;
 using UnityEngine;
 
 public class Enemy : BaseUnit
@@ -8,25 +7,17 @@ public class Enemy : BaseUnit
     [SerializeField, TabGroup("Visual")] private EnemyVisualHandler enemyVisualHandler;
     [SerializeField, TabGroup("Combat")] private EnemyAI enemyAI;
 
-    public EnemyConfig EnemyConfig { get => enemyConfig; }
-    public int CoreDamage => _coreDamage;
-    public int EnergyPoints => _energyPoints;
-    public override StatSheet BaseStats => enemyConfig.BaseStats;
-    public EnemyMovement EnemyMovement => _enemyMovement;
+    public override Stats BaseStats => EnemyConfig.BaseStats;
+    public EnemyConfig EnemyConfig { get; private set; }
+    public EnemyAbilityHandler EnemyAbilityHandler { get; private set; }
+    public int CoreDamage { get; private set; }
+    public int EnergyPoints { get; private set; }
+    public EnemyMovement EnemyMovement { get; private set; }
+    public PathCreator Path { get; private set; }
     public EnemyAI EnemyAI => enemyAI;
     public EnemyVisualHandler EnemyVisualHandler => enemyVisualHandler;
-    public PathCreator Path => _path;
 
     [SerializeField, TabGroup("Visual")] private EnemyAnimator enemyAnimator;
-    private int _coreDamage;
-    private int _energyPoints;
-    //testing 
-    public int Id => gameObject.GetHashCode();
-
-    private EnemyMovement _enemyMovement;
-    private EnemyConfig enemyConfig;
-    private PathCreator _path;
-    private int pointIndex;
 
 
     private void OnValidate()
@@ -35,62 +26,71 @@ public class Enemy : BaseUnit
     }
     public override void Init(BaseUnitConfig givenConfig)
     {
-        pointIndex = 0;
-        enemyConfig = givenConfig as EnemyConfig;
-        base.Init(enemyConfig);
-        _path = enemyConfig.Path;
-        _coreDamage = enemyConfig.CoreDamage;
-        _energyPoints = enemyConfig.EnergyPoints;
-        ShamanTargeter.SetRadius(Stats.BonusRange);
-        EnemyTargeter.SetRadius(Stats.BonusRange);
-        _enemyMovement = new EnemyMovement(this);
+        EnemyConfig = givenConfig as EnemyConfig;
+        base.Init(EnemyConfig);
+        Damageable.Init();
+        transform.localScale = new Vector3(EnemyConfig.Size,EnemyConfig.Size,EnemyConfig.Size);
+        Path = EnemyConfig.Path;
+        CoreDamage = EnemyConfig.CoreDamage;
+        EnergyPoints = EnemyConfig.EnergyPoints;
+        
+        EnemyAbilityHandler = new EnemyAbilityHandler(this);
+        AbilityHandler = EnemyAbilityHandler;
+        EnemyAbilityHandler.IntializeAbilities();
+        
+        ShamanTargeter.SetRadius(Stats[StatType.BaseRange].Value);
+        EnemyTargeter.SetRadius(Stats[StatType.BaseRange].Value);
+        EnemyMovement = new EnemyMovement(this);
         enemyAnimator.Init(this);
         enemyVisualHandler.Init(this, givenConfig);
         enemyAI.Init(this);
-        AutoCaster.Init(this,false);
         Movement.ToggleMovement(false);
         #region Events
         //remember to unsubscribe in OnDisable!!!
         enemyVisualHandler.OnSpriteFlip += enemyAnimator.FlipAnimations;
-        Effectable.OnAffectedVFX += enemyVisualHandler.EffectHandler.PlayEffect;
-        Effectable.OnEffectRemovedVFX += enemyVisualHandler.EffectHandler.DisableEffect;
+        Effectable.OnAffected += enemyVisualHandler.EffectHandler.PlayEffect;
+        Effectable.OnEffectRemoved += enemyVisualHandler.EffectHandler.DisableEffect;
         Damageable.OnHitGFX += GetHitSFX;
         Damageable.OnDeathGFX += DeathSFX;
-        AutoAttackHandler.OnAttack += AttackSFX;
+        //AutoAttackCaster.OnAttack += AttackSFX;
+        
 
         #endregion
-        
-        BaseInit(givenConfig);
+
+        Initialized = true;
     }
+
+    
     protected override void OnDisable() //enemy death
     {
         base.OnDisable();
         if(!Initialized) return;
         if (ReferenceEquals(LevelManager.Instance, null)) return;
-        enemyAI.OnDisable();
+        enemyAI.Disable();
+        Damageable.Disable();
         Damageable.OnHitGFX -= GetHitSFX;
         Damageable.OnDeathGFX -= DeathSFX;
-        if (AutoAttackHandler != null) AutoAttackHandler.OnAttack -= AttackSFX;
-        Effectable.OnAffectedVFX -= enemyVisualHandler.EffectHandler.PlayEffect;
-        Effectable.OnEffectRemovedVFX -= enemyVisualHandler.EffectHandler.DisableEffect;
+        //if (AutoAttackCaster != null) AutoAttackCaster.OnAttack -= AttackSFX;
+        Effectable.OnAffected -= enemyVisualHandler.EffectHandler.PlayEffect;
+        Effectable.OnEffectRemoved -= enemyVisualHandler.EffectHandler.DisableEffect;
         enemyVisualHandler.OnSpriteFlip -= enemyAnimator.FlipAnimations;
 
         Initialized = false;
     }
+    
+    
 
     #region SFX
 
     private void GetHitSFX(bool isCrit)
     {
-        SoundManager.Instance.PlayAudioClip(isCrit ? SoundEffectType.EnemyGetHitCrit : SoundEffectType.EnemyGetHit);
+        SoundManager.PlayAudioClip(isCrit ? SoundEffectType.EnemyGetHitCrit : SoundEffectType.EnemyGetHit);
         enemyVisualHandler.HitEffect.Play();
     }
-
-    private void DeathSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.EnemyDeath);
-    private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.EnemyAttack);
+    public void AbilityCastSFX(CastingAbilitySO abilitySo) => SoundManager.PlayAudioClip(abilitySo.SoundEffectType);
+    private void DeathSFX() => SoundManager.PlayAudioClip(SoundEffectType.EnemyDeath);
+    //private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.EnemyAttack);
     
     #endregion
-    
-
     
 }

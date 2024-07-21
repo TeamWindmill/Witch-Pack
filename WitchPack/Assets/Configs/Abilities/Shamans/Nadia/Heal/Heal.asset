@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3591a7a019640064aa28faca6f55398d, type: 3}
+  m_Name: Heal
+  m_EditorClassIdentifier: 
+  _name: Heal
+  discription: Heals a wounded shaman
+  defaultIcon: {fileID: -1916488337, guid: 8a1c0a843806e364080d5a6ae48d09fb, type: 3}
+  disabledIcon: {fileID: -1888129184, guid: 8a1c0a843806e364080d5a6ae48d09fb, type: 3}
+  upgradeIcon: {fileID: -991011604, guid: 8a1c0a843806e364080d5a6ae48d09fb, type: 3}
+  _upgrades:
+  - {fileID: 11400000, guid: a375fee6a9a1909459661c3f78f6da65, type: 2}
+  - {fileID: 11400000, guid: 7bffac782568f71458ae230b8f3ade8d, type: 2}
+  hasPopupColor: 0
+  popupColor: {r: 0, g: 0, b: 0, a: 0}
+  castTime: 1
+  cd: 17
+  givesEnergyPoints: 1
+  energyPoints: 2
+  statusEffects: []
+  targetData:
+    Priority: 5
+    Modifier: 1
+    StatType: 0
+    AvoidCharmedTargets: 0
+  underAttackTargetData:
+    Priority: 5
+    Modifier: 1
+    StatType: 0
+    AvoidCharmedTargets: 0
+  _hasCastVisual: 1
+  castVisualColor: 5
+  _hasSFX: 1
+  soundEffectType: 15
+  healAmount: 50

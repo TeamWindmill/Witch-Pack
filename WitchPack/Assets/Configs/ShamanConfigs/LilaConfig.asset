@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c10a5eb92baee9845afa9494bc01ff55, type: 3}
+  m_Name: LilaConfig
+  m_EditorClassIdentifier: 
+  Name: Lila
+  unitSprite: {fileID: 21300000, guid: 2d71c6e6763a9874dbe667fbbcdc06c2, type: 3}
+  unitIcon: {fileID: 0}
+  unitIndicatorIcon: {fileID: 0}
+  _autoAttack: {fileID: 11400000, guid: d8ade3c4f5a1e02449732df010cb8f20, type: 2}
+  baseStats:
+    MaxHp:
+      statType: 0
+      value: 750
+    _damage:
+      statType: 1
+      value: 30
+    AttackSpeed:
+      statType: 2
+      value: 2
+    _range:
+      statType: 3
+      value: 11
+    MovementSpeed:
+      statType: 4
+      value: 4
+    CritDamage:
+      statType: 5
+      value: 100
+    CritChance:
+      statType: 6
+      value: 15
+    Armor:
+      statType: 9
+      value: 55
+    HpRegen:
+      statType: 10
+      value: 2
+    HpRegenInterval:
+      statType: 18
+      value: 1
+    Threat:
+      statType: 16
+      value: 0
+    AbilityCooldownReduction:
+      statType: 8
+      value: 1
+    EnergyGain:
+      statType: 17
+      value: 1
+    Visibility:
+      statType: 14
+      value: 0
+    ThreatLevel:
+      statType: 15
+      value: 0
+  _sex: 1
+  rootAbilities:
+  - {fileID: 11400000, guid: 51fd23988058b484f90a795b662cbd00, type: 2}
+  - {fileID: 11400000, guid: 8ba34b19428668043b6b27ca489e4db7, type: 2}
+  - {fileID: 11400000, guid: 32a91ec7e63c9dd44b3229823583d8c0, type: 2}
+  knownAbilities:
+  - {fileID: 11400000, guid: 51fd23988058b484f90a795b662cbd00, type: 2}
+  _energyConfig: {fileID: 11400000, guid: eb6ef5f560020134594a0976e1d9ff76, type: 2}
+  _shamanExperienceConfig: {fileID: 11400000, guid: 8d903b7563646564ebdb43068d491691, type: 2}
+  _shamanMetaUpgradeConfig: {fileID: 11400000, guid: 09e81834d967a2647a5e28fee89eae00, type: 2}

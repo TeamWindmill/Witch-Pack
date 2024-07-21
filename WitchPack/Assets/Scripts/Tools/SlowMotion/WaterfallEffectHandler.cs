@@ -1,24 +1,26 @@
 using System;
+using DG.Tweening;
+using Tools.Lerp;
 using UnityEngine;
 
 [Serializable]
-public class WaterfallEffectHandler : EffectTransitionLerp<AnimatorSlowMotionEffectType>
+public class WaterfallEffectHandler 
 {
     private Animator _waterfallAnimator;
-    
+    [SerializeField] private LerpConfig<float> LerpConfig;
     public void Init(Animator waterfallAnimator)
     {
         _waterfallAnimator = waterfallAnimator;
     }
 
-    protected override void SetValue(AnimatorSlowMotionEffectType type, float value)
+    public void StartTransition()
     {
-        switch (type)
-        {
-            case AnimatorSlowMotionEffectType.speed:
-                _waterfallAnimator.speed = value;
-                break;
-        }
+        DOTween.To(() => _waterfallAnimator.speed, x => _waterfallAnimator.speed = x, LerpConfig.EndValue, LerpConfig.TransitionTime);
+    }
+
+    public void EndTransition()
+    {
+        DOTween.To(() => _waterfallAnimator.speed, x => _waterfallAnimator.speed = x, LerpConfig.StartValue, LerpConfig.TransitionTime);
     }
 }
 
