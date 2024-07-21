@@ -167,6 +167,12 @@ public class SoundManager : MonoSingleton<SoundManager>
             case SoundEffectType.InspiredSmokeBomb:
             case SoundEffectType.ExperiencedHunterLevelUp:
             case SoundEffectType.MultiShotRicochet:
+            case SoundEffectType.MonolithofRockExplosion:
+            case SoundEffectType.MonolithofRockShield:
+            case SoundEffectType.MonolithofRockTaunt:
+            case SoundEffectType.OrbitalStonesCreating:
+            case SoundEffectType.OrbitalStonesDestruction:
+            case SoundEffectType.ReflectDamage:
                 return SoundEffectCategory.Abilities;
             case SoundEffectType.CoreGetHit:
             case SoundEffectType.CoreDestroyed:
