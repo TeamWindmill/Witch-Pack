@@ -13,16 +13,16 @@ public class PiercingShot : OffensiveAbility
         abilityStats.Add(new AbilityStat(AbilityStatType.Duration,PiercingShotConfig.LifeTime));
     }
 
-    public override bool CastAbility()
+    public override bool CastAbility(out IDamagable target)
     {
-        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(TargetData);
+        target = Owner.EnemyTargetHelper.GetTarget(TargetData);
         if (!ReferenceEquals(target, null))
         {
             PiercingShotMono newPew = LevelManager.Instance.PoolManager.PiercingShotPool.GetPooledObject();
             var position = Owner.transform.position;
             newPew.transform.position = position;
             newPew.gameObject.SetActive(true);
-            var position1 = target.transform.position;
+            var position1 = target.GameObject.transform.position;
             Vector2 dir = (position1 - position) / (position1 - position).magnitude;
             newPew.Fire(Owner, this, dir.normalized, (int)GetAbilityStatValue(AbilityStatType.Penetration), true);
             return true;

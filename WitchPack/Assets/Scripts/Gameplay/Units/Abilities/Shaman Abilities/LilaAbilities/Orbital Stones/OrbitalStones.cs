@@ -11,9 +11,9 @@ public class OrbitalStones : OffensiveAbility
         
     }
 
-    public override bool CastAbility()
+    public override bool CastAbility(out IDamagable target)
     {
-        var target = Owner.EnemyTargetHelper.GetTarget(TargetData);
+        target = Owner.EnemyTargetHelper.GetTarget(TargetData);
         if (target != null)
         {
             Cast();

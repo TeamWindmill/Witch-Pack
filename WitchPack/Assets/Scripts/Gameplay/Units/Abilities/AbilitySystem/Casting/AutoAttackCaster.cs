@@ -15,9 +15,9 @@ public class AutoAttackCaster : ICaster
         this.ability = ability;
     }
 
-    public bool CastAbility()
+    public bool CastAbility(out IDamagable target)
     {
-        if (ability.CastAbility())
+        if (ability.CastAbility(out target))
         {
             OnAttack?.Invoke();
             return true;

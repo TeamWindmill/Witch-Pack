@@ -113,7 +113,7 @@ public class AbilityUIButton : ClickableUIElement
         }
         _cooldownSpriteRenderer.fillAmount = ratio;
     }
-    private void UpdateOnCast(AbilityCaster caster)
+    private void UpdateOnCast(AbilityCaster caster,IDamagable target)
     {
         _abilityLastCast = caster.LastCast;
     }

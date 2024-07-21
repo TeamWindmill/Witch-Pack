@@ -7,9 +7,9 @@ public class ShamanRangedAutoAttack : OffensiveAbility
         _config = config;
     }
 
-    public override bool CastAbility()
+    public override bool CastAbility(out IDamagable target)
     {
-        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(TargetData);
+        target = Owner.EnemyTargetHelper.GetTarget(TargetData);
         if (ReferenceEquals(target, null))
         {
             return false;

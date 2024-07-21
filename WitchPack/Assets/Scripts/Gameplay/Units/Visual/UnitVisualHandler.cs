@@ -26,8 +26,7 @@ public abstract class UnitVisualHandler : MonoBehaviour
         _baseUnit = unit;
         spriteRenderer.sprite = config.UnitSprite;
         effectHandler.Init(config);
-        _baseUnit.EnemyTargetHelper.OnTarget += FlipSpriteOnTarget;
-        _baseUnit.ShamanTargetHelper.OnTarget += FlipSpriteOnTarget;
+        _baseUnit.AutoCaster.OnCast += FlipSpriteOnTarget;
     }
     private void Update()
     {
@@ -41,9 +40,9 @@ public abstract class UnitVisualHandler : MonoBehaviour
         }
         
     }
-    protected virtual void FlipSpriteOnTarget(BaseUnit target)
+    protected virtual void FlipSpriteOnTarget(CastingAbility ability,IDamagable target)
     {
-        var distance = _baseUnit.transform.position - target.transform.position;
+        var distance = _baseUnit.transform.position - target.GameObject.transform.position;
         FlipX(distance.x < 0);
     }
 

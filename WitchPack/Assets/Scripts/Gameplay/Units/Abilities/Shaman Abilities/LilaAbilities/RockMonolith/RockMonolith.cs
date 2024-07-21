@@ -17,7 +17,7 @@ public class RockMonolith : OffensiveAbility
         //abilityStats.Add(new AbilityStat(AbilityStatType.Size,_config.TauntRadius));
     }
 
-    public override bool CastAbility()
+    public override bool CastAbility(out IDamagable target)
     {
         var targets = Owner.EnemyTargetHelper.GetAvailableTargets(TargetData);
         
@@ -29,15 +29,17 @@ public class RockMonolith : OffensiveAbility
 
         if (targets.Count >= RockMonolithConfig.MinEnemiesForTaunt)
         {
-            foreach (var target in targets)
+            foreach (var enemy in targets)
             {
-                target.ShamanTargetHelper.ApplyTaunt(_shamanOwner, GetAbilityStatValue(AbilityStatType.Duration));
-                target.EnemyAI.SetState(typeof(Taunt));
+                enemy.ShamanTargetHelper.ApplyTaunt(_shamanOwner, GetAbilityStatValue(AbilityStatType.Duration));
+                enemy.EnemyAI.SetState(typeof(Taunt));
             }
 
+            target = targets[0];
             return true;
         }
         
+        target = null;
         return false;
     }
 

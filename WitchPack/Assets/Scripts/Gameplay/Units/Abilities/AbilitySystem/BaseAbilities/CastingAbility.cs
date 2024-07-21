@@ -21,8 +21,12 @@ public abstract class CastingAbility : Ability
         }
     }
     
-    public abstract bool CastAbility();
-    public virtual bool ManualCast(){return false;}
+    public abstract bool CastAbility(out IDamagable target);
+
+    public virtual bool ManualCast()
+    {
+        return false;
+    }
     public abstract bool CheckCastAvailable();
 
     public override void AddStatUpgrade(AbilityUpgradeConfig abilityUpgradeConfig)

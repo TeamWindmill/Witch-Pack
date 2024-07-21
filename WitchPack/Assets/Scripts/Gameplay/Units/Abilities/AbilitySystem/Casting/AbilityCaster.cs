@@ -2,7 +2,7 @@ using System;
 
 public class AbilityCaster : ICaster
 {
-    public event Action<AbilityCaster> OnCast;
+    public event Action<AbilityCaster,IDamagable> OnCast;
     public event Action<CastingAbilitySO> OnCastGFX;
     public CastingAbility Ability => ability;
     public float LastCast { get; private set; }
@@ -28,12 +28,12 @@ public class AbilityCaster : ICaster
         }
     }
 
-    public bool CastAbility()
+    public bool CastAbility(out IDamagable target)
     {
-        if (ability.CastAbility())
+        if (ability.CastAbility(out target))
         {
             LastCast = GAME_TIME.GameTime;
-            OnCast?.Invoke(this);
+            OnCast?.Invoke(this,target);
             OnCastGFX?.Invoke(ability.CastingConfig);
             return true;
         }
@@ -46,7 +46,7 @@ public class AbilityCaster : ICaster
         if (ability.ManualCast())
         {
             LastCast = GAME_TIME.GameTime;
-            OnCast?.Invoke(this);
+            OnCast?.Invoke(this,null);
             OnCastGFX?.Invoke(ability.CastingConfig);
             return true;
         }

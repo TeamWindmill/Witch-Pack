@@ -7,9 +7,9 @@ public class Fireball : OffensiveAbility
         Config = config;
     }
 
-    public override bool CastAbility()
+    public override bool CastAbility(out IDamagable target)
     {
-        var target = Owner.ShamanTargetHelper.GetTarget(TargetData);
+        target = Owner.ShamanTargetHelper.GetTarget(TargetData);
         if (ReferenceEquals(target, null))
         {
             return false;

@@ -7,30 +7,32 @@ public class Heal : CastingAbility
         abilityStats.Add(new AbilityStat(AbilityStatType.Heal,config.HealAmount));
     }
 
-    public override bool CastAbility()
+    public override bool CastAbility(out IDamagable target)
     {
-        Shaman target = Owner.ShamanTargetHelper.GetTarget(TargetData); 
-        if (!ReferenceEquals(target, null)) // any shaman in range?
+        var shaman = Owner.ShamanTargetHelper.GetTarget(TargetData); 
+        if (!ReferenceEquals(shaman, null)) // any shaman in range?
         {
             // Check if caster has lower hp (ratio) than lowest hp target
             float maxHp = Owner.Stats[StatType.MaxHp].Value;
             float casterCurrentHpRatio = Owner.Damageable.CurrentHp / maxHp;
-            maxHp = target.Stats[StatType.MaxHp].Value;
-            float targetCurrentHpRatio = target.Damageable.CurrentHp / maxHp;
+            maxHp = shaman.Stats[StatType.MaxHp].Value;
+            float targetCurrentHpRatio = shaman.Damageable.CurrentHp / maxHp;
             if (casterCurrentHpRatio < targetCurrentHpRatio)
             {
-                target = Owner as Shaman;
+                shaman = Owner as Shaman;
             }
 
             if (!HasAbilityBehavior(AbilityBehavior.HealOnFullHealth))
             {
-                if(target.Damageable.CurrentHp == target.Damageable.MaxHp)
+                if(shaman.Damageable.CurrentHp == shaman.Damageable.MaxHp)
                 {
+                    target = null;
                     return false;
                 }
             }
 
-            HealTarget(target, Owner);
+            HealTarget(shaman, Owner);
+            target = shaman;
             return true;
         }
         else // no other injured shamans
@@ -38,14 +40,17 @@ public class Heal : CastingAbility
             if (HasAbilityBehavior(AbilityBehavior.HealOnFullHealth))
             {
                 HealTarget(Owner as Shaman, Owner);
+                target = Owner;
                 return true;
             }
             
             if(Owner.Damageable.CurrentHp < Owner.Stats[StatType.MaxHp].Value) // check if caster is injured
             {
                 HealTarget(Owner as Shaman, Owner);
+                target = Owner;
                 return true;
             } 
+            target = null;
             return false;
             
         }

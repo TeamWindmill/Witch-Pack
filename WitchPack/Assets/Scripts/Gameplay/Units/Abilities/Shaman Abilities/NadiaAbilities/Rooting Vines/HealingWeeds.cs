@@ -15,14 +15,14 @@ public class HealingWeeds : OffensiveAbility
         }
     }
 
-    public override bool CastAbility()
+    public override bool CastAbility(out IDamagable target)
     {
-        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(TargetData);
+        target = Owner.EnemyTargetHelper.GetTarget(TargetData);
         if (!ReferenceEquals(target, null))
         {
             HealingWeedsMono newHealingWeeds = LevelManager.Instance.PoolManager.HealingWeedsPool.GetPooledObject();
             newHealingWeeds.Init(Owner, this, GetAbilityStatValue(AbilityStatType.Duration),GetAbilityStatValue(AbilityStatType.Size));
-            newHealingWeeds.transform.position = target.transform.position;
+            newHealingWeeds.transform.position = target.GameObject.transform.position;
             newHealingWeeds.gameObject.SetActive(true);
             return true;
         }
