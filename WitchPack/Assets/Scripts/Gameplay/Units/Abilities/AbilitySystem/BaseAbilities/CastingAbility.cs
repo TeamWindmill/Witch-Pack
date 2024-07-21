@@ -21,8 +21,12 @@ public abstract class CastingAbility : Ability
         }
     }
     
-    public abstract bool CastAbility();
-    public virtual bool ManualCast(){return false;}
+    public abstract bool CastAbility(out IDamagable target);
+
+    public virtual bool ManualCast()
+    {
+        return false;
+    }
     public abstract bool CheckCastAvailable();
 
     public override void AddStatUpgrade(AbilityUpgradeConfig abilityUpgradeConfig)
@@ -36,7 +40,7 @@ public abstract class CastingAbility : Ability
         {
             foreach (var statusEffectUpgrade in abilityUpgradeConfig.StatusEffectUpgrades)
             {
-                if (statusEffect.StatTypeAffected == statusEffectUpgrade.StatType && statusEffect.Process == statusEffectUpgrade.Process)
+                if (statusEffect.StatusEffectVisual == statusEffectUpgrade.StatusEffectVisual && statusEffect.Process == statusEffectUpgrade.Process)
                 {
                     statusEffect.AddUpgrade(statusEffectUpgrade);
                 }
@@ -55,7 +59,7 @@ public abstract class CastingAbility : Ability
         {
             foreach (var statusEffectUpgrade in statMetaUpgradeConfig.StatusEffectUpgrades)
             {
-                if (statusEffect.StatTypeAffected == statusEffectUpgrade.StatType && statusEffect.Process == statusEffectUpgrade.Process)
+                if (statusEffect.StatusEffectVisual == statusEffectUpgrade.StatusEffectVisual && statusEffect.Process == statusEffectUpgrade.Process)
                 {
                     statusEffect.AddUpgrade(statusEffectUpgrade);
                 }

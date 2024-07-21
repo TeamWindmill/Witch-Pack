@@ -9,9 +9,8 @@ public class EnemyMeleeAutoAttack : OffensiveAbility
       _config = config as EnemyMeleeAutoAttackSO;
    }
    
-   public override bool CastAbility()
+   public override bool CastAbility(out IDamagable target)
    {
-      BaseUnit target;
       if(Owner.Effectable.ContainsStatusEffect(StatusEffectVisual.Charm) || Owner.Effectable.ContainsStatusEffect(StatusEffectVisual.Frenzy))
       {
          target = Owner.EnemyTargetHelper.GetTarget(TargetData);
@@ -21,7 +20,7 @@ public class EnemyMeleeAutoAttack : OffensiveAbility
          target = Owner.ShamanTargetHelper.GetTarget(TargetData);
       }
       if (ReferenceEquals(target, null)) return false;
-      if (Vector2.Distance(target.transform.position, Owner.transform.position) > Owner.Movement.DefaultStoppingDistance + _config.MeleeRange) return false;
+      if (Vector2.Distance(target.GameObject.transform.position, Owner.transform.position) > Owner.Movement.DefaultStoppingDistance + _config.MeleeRange) return false;
       target.Damageable.GetHit(Owner.DamageDealer,this);
       return true;
    }

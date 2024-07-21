@@ -8,16 +8,9 @@ public class StatusEffectConfig : ScriptableObject
         "Over Time means a stat will decrease every 1 second by a fixed amount until reaching the given amount 1 second before the duration ends")]
     private StatusEffectProcess process;
     [SerializeField, ShowIf(nameof(hasDuration))] private float duration;//every status effects only works for a duration
-
-    
-    [SerializeField] private bool multipleStats;
-    //Single Stat
-    [SerializeField,HideIf(nameof(multipleStats))] private float amount; 
-    [SerializeField,HideIf(nameof(multipleStats))] private StatType statTypeAffected;//all stats you wish to affect on the target
-    [SerializeField,HideIf(nameof(multipleStats))] private Factor factor;
     
     //Multiple Stats  
-    [SerializeField,ShowIf(nameof(multipleStats))] private StatUpgrade[] statUpgrades; 
+    [SerializeField] private StatUpgrade[] statUpgrades; 
     
     [SerializeField] private StatusEffectVisual _statusEffectVisual;
     [SerializeField] private bool _showStatusEffectPopup;
@@ -26,13 +19,9 @@ public class StatusEffectConfig : ScriptableObject
     private bool hasDuration => process != StatusEffectProcess.InstantWithoutDuration;
 
     public float Duration => duration;
-    public float Amount => amount;
     public StatusEffectProcess Process => process;
-    public StatType StatTypeAffected => statTypeAffected;
     public StatusEffectVisual StatusEffectVisual => _statusEffectVisual;
-    public Factor Factor => factor;
     public bool ShowStatusEffectPopup => _showStatusEffectPopup;
-    public bool MultipleStats => multipleStats;
     public StatUpgrade[] StatUpgrades => statUpgrades;
 }
 

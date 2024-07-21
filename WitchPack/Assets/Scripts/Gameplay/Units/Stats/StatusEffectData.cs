@@ -5,52 +5,50 @@ using Sirenix.OdinInspector;
 public readonly struct StatusEffectData
 {
     public readonly StatusEffectStat Duration;
-    public readonly StatusEffectStat StatValue;
+    public readonly List<Stat> Values;
     public readonly StatusEffectProcess Process;
-    public readonly StatType StatTypeAffected;
     public readonly StatusEffectVisual StatusEffectVisual;
-    public readonly Factor Factor;
     public readonly bool ShowStatusEffectPopup;
     public readonly StatUpgrade[] StatUpgrades;
-    public readonly bool MultipleStats;
+
     public StatusEffectData(StatusEffectConfig config)
     {
-        Duration = new StatusEffectStat(StatusEffectStatType.Duration,config.Duration);
-        StatValue = new StatusEffectStat(StatusEffectStatType.Value,config.Amount);
+        Values = new List<Stat>();
+        foreach (var statUpgrade in config.StatUpgrades)
+        {
+            Values.Add(new Stat(statUpgrade.StatType, statUpgrade.StatValue));
+        }
+        Duration = new StatusEffectStat(StatusEffectStatType.Duration, config.Duration);
+
         Process = config.Process;
-        StatTypeAffected = config.StatTypeAffected;
         StatusEffectVisual = config.StatusEffectVisual;
         ShowStatusEffectPopup = config.ShowStatusEffectPopup;
-        Factor = config.Factor;
         StatUpgrades = config.StatUpgrades;
-        MultipleStats = config.MultipleStats;
     }
-
-    // public StatusEffectData(float duration, float statValue, StatusEffectProcess process, StatType statTypeAffected, StatusEffectVisual statusEffectVisual, Factor factor, bool showStatusEffectPopup)
-    // {
-    //     Duration = new StatusEffectStat(StatusEffectStatType.Duration,duration);
-    //     StatValue = new StatusEffectStat(StatusEffectStatType.Value,statValue);
-    //     Process = process;
-    //     StatTypeAffected = statTypeAffected;
-    //     StatusEffectVisual = statusEffectVisual;
-    //     ShowStatusEffectPopup = showStatusEffectPopup;
-    //     Factor = factor;
-    //     
-    // }
 
     public void AddUpgrade(StatusEffectUpgradeConfig upgradeConfig)
     {
         Duration.AddUpgrade(upgradeConfig.Duration);
-        StatValue.AddUpgrade(upgradeConfig.Value);
+        foreach (var configValue in upgradeConfig.StatUpgrades)
+        {
+            foreach (var stat in Values)
+            {
+                if (stat.StatType == configValue.StatType)
+                {
+                    stat.AddStatValue(configValue.Factor, configValue.StatValue);
+                }
+            }
+        }
     }
 }
 
 [Serializable]
 public class StatusEffectUpgradeConfig
 {
-    public StatusEffectStatUpgradeConfig Duration = new (StatusEffectStatType.Duration);
-    public StatusEffectStatUpgradeConfig Value = new (StatusEffectStatType.Value);
+    public StatusEffectStatUpgradeConfig Duration = new(StatusEffectStatType.Duration);
+    public StatUpgrade[] StatUpgrades;
     public StatusEffectProcess Process;
+    public StatusEffectVisual StatusEffectVisual;
     public StatType StatType;
 }
 
@@ -62,7 +60,7 @@ public class StatusEffectStat : BaseStat<StatusEffectStatType>
 
     public void AddUpgrade(StatusEffectStatUpgradeConfig statUpgradeConfig)
     {
-        AddStatValue(statUpgradeConfig.Factor,statUpgradeConfig.StatValue);
+        AddStatValue(statUpgradeConfig.Factor, statUpgradeConfig.StatValue);
     }
 }
 
@@ -79,5 +77,4 @@ public struct StatusEffectStatUpgradeConfig
 public enum StatusEffectStatType
 {
     Duration,
-    Value,
 }

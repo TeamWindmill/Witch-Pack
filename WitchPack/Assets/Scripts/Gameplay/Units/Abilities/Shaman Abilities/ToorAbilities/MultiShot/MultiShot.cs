@@ -12,7 +12,7 @@ public class MultiShot : OffensiveAbility
         abilityStats.Add(new AbilityStat(AbilityStatType.ProjectilesAmount,config.ProjectilesAmount));
     }
 
-    public override bool CastAbility()
+    public override bool CastAbility(out IDamagable target)
     {
         var projectilesAmount = (int)GetAbilityStatValue(AbilityStatType.ProjectilesAmount);
 
@@ -70,9 +70,12 @@ public class MultiShot : OffensiveAbility
                     } 
                 }
             }
+
+            target = _targets[0];
             return true;
         }
 
+        target = null;
         return false;
     }
 

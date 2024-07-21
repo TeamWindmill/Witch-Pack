@@ -6,6 +6,7 @@ public class UpgradeWindow : UIWindowManager
 {
     [SerializeField] private ShamanUpgradePanel _shamanUpgradePanel;
     [SerializeField] private ShamanDetailsPanel _shamanDetailsPanel;
+    [SerializeField] private AbilityDetailsPanel _abilityDetailsPanel;
     [SerializeField] private UpgradesPartyUIPanel _upgradesPartyUIPanel;
     [SerializeField] private List<ShamanSaveData> _shamanRoster;
 
@@ -17,6 +18,7 @@ public class UpgradeWindow : UIWindowManager
         _shamanUpgradePanel.OnStatUpgrade += _shamanDetailsPanel.AddUpgradeToStats;
         base.Show();
         SelectShaman(_shamanRoster[0]);
+        SelectAbility(_selectedShaman.Config.RootAbilities[0]);
     }
 
     public void SelectShaman(ShamanSaveData shamanSaveData)
@@ -28,9 +30,23 @@ public class UpgradeWindow : UIWindowManager
         Refresh();
     }
 
+    public void SelectAbility(AbilitySO abilitySo)
+    {
+        _abilityDetailsPanel.Init(_selectedShaman,abilitySo);
+        Refresh();
+    }
+
     public void GainExp()
     {
         _selectedShaman.ShamanExperienceHandler.ManualExpGain();
+        Refresh();
+    }
+
+    public void ResetSkillPoints()
+    {
+        _selectedShaman.ShamanExperienceHandler.ResetSkillPoints();
+        _selectedShaman.AbilityUpgrades = new();
+        _selectedShaman.StatUpgrades = new();
         Refresh();
     }
 

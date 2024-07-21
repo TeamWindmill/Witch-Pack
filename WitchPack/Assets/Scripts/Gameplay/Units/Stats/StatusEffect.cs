@@ -6,50 +6,29 @@ public class StatusEffect
 {
     public event Action<Effectable, StatusEffect> Started;
     public event Action<Effectable, StatusEffect> Ended;
+    public Effectable Host => host;
+    public float Counter => timeCounter;
+    public float Duration => duration;
+    public StatusEffectProcess Process => process;
+    public StatusEffectVisual StatusEffectVisual => _statusEffectVisual;
+    public bool ShowStatusEffectPopup => _showStatusEffectPopup;
 
     //inherit with buffs or debuffs. -> inherit again to create specific effects
     private Effectable host; //the unit this ss is on
     private StatusEffectProcess process;
     private float duration; //ss lifetime
-
-    private bool multipleStats;
-
-    //single stat TODO need to remove this after all status effect configs are replaced
-    //private float statValue;//the amount to change each stat by (might be flat or %)
-    //private StatType _statType;//the stats to affect
-    //private Factor factor;
-
-    //multiple stats
-    private StatUpgrade[] statUpgrades;
-
+    private StatUpgrade[] statUpgrades; //multiple stats
     private StatusEffectVisual _statusEffectVisual;
     private bool _showStatusEffectPopup;
-
     private float timeCounter; //how long until the duration is over
-    public Effectable Host => host;
-    public float Counter => timeCounter;
-
-    public float Duration => duration;
-
-    //public StatType StatType => _statType;
-    public StatusEffectProcess Process => process;
-
-    public StatusEffectVisual StatusEffectVisual => _statusEffectVisual;
-
-    //public Factor Factor => factor;
-    public bool ShowStatusEffectPopup => _showStatusEffectPopup;
 
     public StatusEffect(Effectable host, StatusEffectConfig config)
     {
         this.host = host;
         duration = config.Duration;
-        //statValue = config.Amount;
-        //_statType = config.StatTypeAffected;
         process = config.Process;
         _statusEffectVisual = config.StatusEffectVisual;
         _showStatusEffectPopup = config.ShowStatusEffectPopup;
-        //factor = config.Factor;
-        multipleStats = config.MultipleStats;
         statUpgrades = config.StatUpgrades;
     }
 
@@ -57,13 +36,9 @@ public class StatusEffect
     {
         this.host = host;
         duration = data.Duration.Value;
-        //statValue = data.StatValue.Value;
-        //_statType = data.StatTypeAffected;
         process = data.Process;
         _statusEffectVisual = data.StatusEffectVisual;
         _showStatusEffectPopup = data.ShowStatusEffectPopup;
-        //factor = data.Factor;
-        multipleStats = data.MultipleStats;
         statUpgrades = data.StatUpgrades;
     }
 

@@ -15,14 +15,14 @@ public class HealingWeeds : OffensiveAbility
         }
     }
 
-    public override bool CastAbility()
+    public override bool CastAbility(out IDamagable target)
     {
-        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(TargetData);
+        target = Owner.EnemyTargetHelper.GetTarget(TargetData);
         if (!ReferenceEquals(target, null))
         {
             HealingWeedsMono newHealingWeeds = LevelManager.Instance.PoolManager.HealingWeedsPool.GetPooledObject();
             newHealingWeeds.Init(Owner, this, GetAbilityStatValue(AbilityStatType.Duration),GetAbilityStatValue(AbilityStatType.Size));
-            newHealingWeeds.transform.position = target.transform.position;
+            newHealingWeeds.transform.position = target.GameObject.transform.position;
             newHealingWeeds.gameObject.SetActive(true);
             return true;
         }
@@ -47,7 +47,7 @@ public class HealingWeeds : OffensiveAbility
         {
             foreach (var statusEffectUpgrade in abilityUpgradeConfig.StatusEffectUpgrades)
             {
-                if (statusEffect.StatTypeAffected == statusEffectUpgrade.StatType && statusEffect.Process == statusEffectUpgrade.Process)
+                if (statusEffect.StatusEffectVisual == statusEffectUpgrade.StatusEffectVisual && statusEffect.Process == statusEffectUpgrade.Process)
                 {
                     statusEffect.AddUpgrade(statusEffectUpgrade);
                 }

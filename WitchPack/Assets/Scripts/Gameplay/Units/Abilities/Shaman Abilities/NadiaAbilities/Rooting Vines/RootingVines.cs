@@ -8,14 +8,14 @@ public class RootingVines : OffensiveAbility
         abilityStats.Add(new AbilityStat(AbilityStatType.Size,config.AoeScale));
     }
 
-    public override bool CastAbility()
+    public override bool CastAbility(out IDamagable target)
     {
-        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(TargetData);    
+        target = Owner.EnemyTargetHelper.GetTarget(TargetData);    
         if (!ReferenceEquals(target, null))
         {
             RootingVinesMono newVines = LevelManager.Instance.PoolManager.RootingVinesPool.GetPooledObject();
             newVines.Init(Owner, this, GetAbilityStatValue(AbilityStatType.Duration) ,GetAbilityStatValue(AbilityStatType.Size));
-            newVines.transform.position = target.transform.position;
+            newVines.transform.position = target.GameObject.transform.position;
             newVines.gameObject.SetActive(true);
             return true;
         }

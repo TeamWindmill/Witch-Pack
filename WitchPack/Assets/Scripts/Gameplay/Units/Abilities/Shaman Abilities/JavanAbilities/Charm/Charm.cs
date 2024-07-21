@@ -6,27 +6,32 @@ public class Charm : CastingAbility
         _config = config;
     }
 
-    public override bool CastAbility()
+    public override bool CastAbility(out IDamagable target)
     {
-        Enemy target = Owner.EnemyTargetHelper.GetTarget(TargetData);
+        var enemyTarget = Owner.EnemyTargetHelper.GetTarget(TargetData);
 
-        if (ReferenceEquals(target, null)) return false;
+        if (ReferenceEquals(enemyTarget, null))
+        {
+            target = null;
+            return false;
+        }
 
-        _config.CharmedState.StartCharm(target);
+        _config.CharmedState.StartCharm(enemyTarget);
 
         foreach (var statusEffect in StatusEffects)
         {
-            if (!target.Effectable.ContainsStatusEffect(statusEffect.StatusEffectVisual))
+            if (!enemyTarget.Effectable.ContainsStatusEffect(statusEffect.StatusEffectVisual))
             {
-                var effect = target.Effectable.AddEffect(statusEffect, Owner.Affector);
+                var effect = enemyTarget.Effectable.AddEffect(statusEffect, Owner.Affector);
                 effect.Ended += _config.CharmedState.EndCharm;
             }
             else
             {
-                target.Effectable.AddEffect(statusEffect, Owner.Affector);
+                enemyTarget.Effectable.AddEffect(statusEffect, Owner.Affector);
             }
         }
 
+        target = enemyTarget;
         return true;
     }
 

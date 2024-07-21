@@ -47,6 +47,7 @@ public class OrbitalStonesMono : MonoBehaviour
         var stone = LevelManager.Instance.PoolManager.FloatingStonesPool.GetPooledObject();
         stone.Init(this,index);
         _activeStones.Add(stone);
+        SoundManager.PlayAudioClip(SoundEffectType.OrbitalStonesCreating);
     }
 
     private int stoneCounter;
@@ -60,6 +61,7 @@ public class OrbitalStonesMono : MonoBehaviour
             gameObject.SetActive(false);
             _isActive = false;
             stoneCounter = 0;
+            SoundManager.PlayAudioClip(SoundEffectType.OrbitalStonesDestruction);
         }
     }
     private void Update()

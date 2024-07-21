@@ -15,10 +15,10 @@ public class EnemyVisualHandler : UnitVisualHandler
         _enemy = unit as Enemy;
     }
 
-    protected override void FlipSpriteOnTarget(BaseUnit target)
+    protected override void FlipSpriteOnTarget(CastingAbility ability,IDamagable target)
     {
         if (_enemy.EnemyAI.ActiveState is FollowPath) return;
-        base.FlipSpriteOnTarget(target);
+        base.FlipSpriteOnTarget(ability,target);
     }
 
     protected override void OnUnitDeath()

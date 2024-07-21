@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Level 9 Config
   m_EditorClassIdentifier: 
   Number: 10
-  Name: ???
+  Name: Around we go
+  TestingLevel: 1
   levelPrefab: {fileID: 6779597212755086301, guid: 8b72493b7bdabee42bad5ed7eace5aef, type: 3}
   shamansToAddAfterComplete: []
   ShowTutorial: 0
@@ -27,20 +28,28 @@ MonoBehaviour:
     _displayName: None
     _bonusesDescription: []
     _statUpgrades: []
-    _reduceShamanSlots: 0
+    _reduceShamanSlots: 2
     _expMultiplier: 0
-  - _challengeType: 0
-    _displayName: 
-    _bonusesDescription: []
-    _statUpgrades: []
-    _reduceShamanSlots: 0
-    _expMultiplier: 0
-  - _challengeType: 0
-    _displayName: 
-    _bonusesDescription: []
-    _statUpgrades: []
-    _reduceShamanSlots: 0
-    _expMultiplier: 0
+  - _challengeType: 1
+    _displayName: +20 enemy regeneration
+    _bonusesDescription:
+    - 'EXP Modifier: +100%'
+    _statUpgrades:
+    - _statType: 10
+      _statValue: 20
+      _factor: 0
+    _reduceShamanSlots: 2
+    _expMultiplier: 1
+  - _challengeType: 1
+    _displayName: + 50 enemy armor
+    _bonusesDescription:
+    - 'EXP Modifier: +100%'
+    _statUpgrades:
+    - _statType: 9
+      _statValue: 50
+      _factor: 0
+    _reduceShamanSlots: 2
+    _expMultiplier: 1
   BeforeDialog: {fileID: 0}
   StartDialog: {fileID: 0}
   EndDialog: {fileID: 0}
