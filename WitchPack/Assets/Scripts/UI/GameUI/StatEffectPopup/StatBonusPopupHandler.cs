@@ -2,14 +2,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class StatEffectPopupHandler : MonoBehaviour
+public class StatBonusPopupHandler : MonoBehaviour
 {
-    [SerializeField] private StatEffectPopupWindowHandler[] _popupWindowHandlers;
+    [SerializeField] private StatBonusPopupWindowHandler[] _popupWindowHandlers;
     [SerializeField] private float StatEffectPopupWindowsDistance;
     [SerializeField] private Vector3 offsetfollowPos;
 
     private Transform _followPosition;
-    private List<StatEffectPopupWindowHandler> _activeWindowHandlers = new();
+    private List<StatBonusPopupWindowHandler> _activeWindowHandlers = new();
     private bool _isActive;
     private void Awake()
     {
@@ -23,7 +23,8 @@ public class StatEffectPopupHandler : MonoBehaviour
     {
         if (_isActive)
         {
-            transform.position = _followPosition.position + offsetfollowPos;
+            var screenPos = GameManager.CameraHandler.MainCamera.WorldToScreenPoint(_followPosition.position + offsetfollowPos);
+            transform.position = screenPos;
         }
     }
 
