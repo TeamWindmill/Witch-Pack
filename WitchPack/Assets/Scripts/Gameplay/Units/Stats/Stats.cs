@@ -19,8 +19,8 @@ public class Stats
     public StatConfig Threat = new StatConfig(StatType.Threat);
     [ReadOnly] public StatDecimalConfig AbilityCooldownReduction = new StatDecimalConfig(StatType.AbilityCooldownReduction,1);
     [ReadOnly] public StatDecimalConfig EnergyGain = new StatDecimalConfig(StatType.EnergyGainMultiplier,1);
-    [ReadOnly] public StatConfig Visibility = new StatConfig(StatType.Visibility,0);
     [ReadOnly] public StatConfig ThreatLevel = new StatConfig(StatType.ThreatLevel,0);
+    [ReadOnly] public StatConfig Invisibility = new StatConfig(StatType.Invisibility,0);
 
 }
 
@@ -54,6 +54,23 @@ public class StatDecimalConfig
     }
 
     public StatDecimalConfig(StatType statType, float value)
+    {
+        this.statType = statType;
+        this.value = value;
+    }
+}
+[Serializable]
+public class StatBooleanConfig
+{
+    [ReadOnly] public BooleanStatType statType;
+    public bool value;
+
+    public StatBooleanConfig(BooleanStatType givenStatType)
+    {
+        statType = givenStatType;
+    }
+
+    public StatBooleanConfig(BooleanStatType statType, bool value)
     {
         this.statType = statType;
         this.value = value;

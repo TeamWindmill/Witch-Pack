@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Damageable
 {
-    private List<DamageDealer> _damageDealers = new List<DamageDealer>();
+    private List<DamageDealer> _damageDealers = new();
     private IDamagable owner;
     private int currentHp;
     public int MaxHp => owner.Stats[StatType.MaxHp].IntValue;

@@ -96,5 +96,11 @@ public enum SoundEffectType
     HealingWeeds,
     BlessingOfSwiftness,
     OverHeal,
-    Frenzy
+    Frenzy,
+    MonolithofRockTaunt,
+    MonolithofRockShield,
+    MonolithofRockExplosion,
+    OrbitalStonesCreating,
+    OrbitalStonesDestruction,
+    ReflectDamage,
 }

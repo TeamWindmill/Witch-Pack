@@ -2,7 +2,7 @@ public interface ICaster
 {
     public CastingAbility Ability { get; }
     public float LastCast { get;}
-    public bool CastAbility();
+    public bool CastAbility(out IDamagable target);
     public bool ManualCastAbility();
     public float GetCooldown();
     public float GetCastTime();

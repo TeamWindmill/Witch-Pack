@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class UnitAutoCaster : MonoBehaviour
 {
+    public event Action<CastingAbility,IDamagable> OnCast;
     public event Action<CastingAbility> CastTimeStart;
     public event Action<CastingHandsEffectType> CastTimeStartVFX;
     public event Action<CastingAbility> CastTimeEnd;
@@ -51,8 +52,9 @@ public class UnitAutoCaster : MonoBehaviour
             }
             if (_castTimer > caster.GetCastTime())
             {
-                if (caster.CastAbility())
+                if (caster.CastAbility(out var target))
                 {
+                    OnCast?.Invoke(caster.Ability,target);
                     CastTimeEnd?.Invoke(caster.Ability);
                     if (caster.Ability.CastingConfig.HasCastVisual) CastTimeEndVFX?.Invoke(caster.Ability.CastingConfig.CastVisualColor);
                     _cooldownAbilities.Add(caster, TimerManager.AddTimer(caster.GetCooldown(), caster, ReturnAbilityFromCooldown, true));

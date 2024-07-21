@@ -7,9 +7,8 @@ public class EnemyRangedAutoAttack : OffensiveAbility
         Config = config;
     }
     
-    public override bool CastAbility()
+    public override bool CastAbility(out IDamagable target)
     {
-        IDamagable target;
         if ((Owner as Enemy)?.EnemyAI.ActiveState.GetType() == typeof(AttackCoreState))
         {
             target = LevelManager.Instance.CurrentLevel.CoreTemple;

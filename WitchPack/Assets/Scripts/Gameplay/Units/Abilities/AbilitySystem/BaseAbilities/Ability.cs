@@ -36,6 +36,15 @@ public abstract class Ability
             abilityUpgrade.ChangeUpgradeState(UpgradeState.Open);
         }
     }
+
+    public AbilityStat GetAbilityStat(AbilityStatType statType)
+    {
+        foreach (var abilityStat in abilityStats)
+        {
+            if(abilityStat.StatType == statType) return abilityStat;
+        }
+        return null;
+    }
     
     public List<Ability> GetUpgrades()
     {

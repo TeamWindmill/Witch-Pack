@@ -10,14 +10,14 @@ public class PoisonIvy : OffensiveAbility
         abilityStats.Add(new AbilityStat(AbilityStatType.DotDamage,config.PoisonDamage));
     }
 
-    public override bool CastAbility()
+    public override bool CastAbility(out IDamagable target)
     {
-        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(TargetData);
+        target = Owner.EnemyTargetHelper.GetTarget(TargetData);
         if (!ReferenceEquals(target, null))
         {
             PoisonIvyMono newIvyPoison = LevelManager.Instance.PoolManager.PoisonIvyPool.GetPooledObject();
             newIvyPoison.Init(Owner, this, GetAbilityStatValue(AbilityStatType.Duration),GetAbilityStatValue(AbilityStatType.Size));
-            newIvyPoison.transform.position = target.transform.position;
+            newIvyPoison.transform.position = target.GameObject.transform.position;
             newIvyPoison.gameObject.SetActive(true);
             return true;
         }

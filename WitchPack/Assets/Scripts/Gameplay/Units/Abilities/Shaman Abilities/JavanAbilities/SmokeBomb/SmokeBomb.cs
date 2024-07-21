@@ -8,9 +8,9 @@ public class SmokeBomb : OffensiveAbility
         abilityStats.Add(new AbilityStat(AbilityStatType.Size,config.Size));
     }
 
-    public override bool CastAbility()
+    public override bool CastAbility(out IDamagable target)
     {
-        BaseUnit target = Owner.ShamanTargetHelper.GetTarget(TargetData);
+        target = Owner.ShamanTargetHelper.GetTarget(TargetData);
 
         if (!ReferenceEquals(target, null))
         {
@@ -38,10 +38,10 @@ public class SmokeBomb : OffensiveAbility
         return false;
     }
     
-    protected virtual bool Cast(BaseUnit caster, BaseUnit target)
+    protected virtual bool Cast(BaseUnit caster, IDamagable target)
     {
         SmokeBombMono smokeBombMono = LevelManager.Instance.PoolManager.SmokeBombPool.GetPooledObject();
-        smokeBombMono.transform.position = target.transform.position;
+        smokeBombMono.transform.position = target.GameObject.transform.position;
         smokeBombMono.gameObject.SetActive(true);
         smokeBombMono.SpawnBomb(this, caster);
         return true;

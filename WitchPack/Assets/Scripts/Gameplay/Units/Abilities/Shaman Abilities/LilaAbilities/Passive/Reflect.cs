@@ -18,5 +18,6 @@
             var damageValue = GetAbilityStatValue(AbilityStatType.Damage) * damageHandler.GetDamage();
             var damage = new DamageHandler(damageValue);
             damageDealer.Owner.Damageable.TakeDamage(Owner.DamageDealer,damage,this,false);
+            SoundManager.PlayAudioClip(SoundEffectType.ReflectDamage);
         }
     }

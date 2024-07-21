@@ -29,7 +29,7 @@ public class Courage : AffectedByUnitsStatPassive
     }
 
 
-    private void OnCharmCast(AbilityCaster abilityCaster)
+    private void OnCharmCast(AbilityCaster abilityCaster, IDamagable target)
     {
         RefreshAffectingUnits();
         TimerManager.AddTimer(abilityCaster.Ability.StatusEffects[0].Duration.Value,RefreshAffectingUnits,true);

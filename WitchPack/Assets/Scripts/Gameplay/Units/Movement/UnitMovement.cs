@@ -61,7 +61,6 @@ public class UnitMovement : MonoBehaviour
         if (agent is null) return;
         agent.speed = owner.Stats[StatType.MovementSpeed].Value * GAME_TIME.TimeRate;
     }
-
     public void ToggleMovement(bool state)
     {
         agent.enabled = state;

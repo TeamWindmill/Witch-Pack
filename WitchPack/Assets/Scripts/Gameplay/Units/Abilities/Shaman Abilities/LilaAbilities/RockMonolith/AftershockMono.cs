@@ -23,7 +23,7 @@ public class AftershockMono : MonoBehaviour
         _chainReaction = chainReaction;
         SetRange(owner.Stats[StatType.BaseRange].Value);
         TimerManager.AddTimer(0.1f,Activate); //gives time for the targeter to add all the targets
-
+        SoundManager.PlayAudioClip(SoundEffectType.MonolithofRockExplosion);
     }
 
     private void SetRange(float range)

@@ -2,6 +2,7 @@ using System;
 using Sirenix.Utilities;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class ShamanUpgradePanel : UIElement
 {
@@ -19,7 +20,7 @@ public class ShamanUpgradePanel : UIElement
         _shamanMetaUpgradeConfig = shamanSaveData.Config.ShamanMetaUpgradeConfig;
         for (int i = 0; i < _abilityMetaUpgrades.Length; i++)
         {
-            _abilityMetaUpgrades[i].Init( _shamanMetaUpgradeConfig.AbilityPanelUpgrades[i]);
+            _abilityMetaUpgrades[i].Init(i, _shamanMetaUpgradeConfig.AbilityPanelUpgrades[i]);
         }
         
         _statMetaUpgrades.Init(_shamanMetaUpgradeConfig.StatPanelUpgrades.StatUpgrades);
@@ -37,6 +38,23 @@ public class ShamanUpgradePanel : UIElement
     {
         ShamanSaveData = null;
         base.Hide();
+    }
+
+    public void SelectAbility(int abilityPanelIndex)
+    {
+        //deselect all
+        _abilityMetaUpgrades.ForEach(upgrade => upgrade.SelectAbility(false));
+        _statMetaUpgrades.SelectAbility(false);
+        
+        //select
+        if (abilityPanelIndex < 2)
+        {
+            _abilityMetaUpgrades[abilityPanelIndex].SelectAbility(true);
+            (WindowManager as UpgradeWindow)?.SelectAbility(_abilityMetaUpgrades[abilityPanelIndex].AbilityPanelConfig.Ability);
+        }
+        else if (abilityPanelIndex == 2) _statMetaUpgrades.SelectAbility(true);
+        
+        
     }
 
     public void AddUpgradeToShaman(AbilityUpgradeConfig abilityUpgrade)

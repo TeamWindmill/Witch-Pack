@@ -90,7 +90,7 @@ public class EnergyHandler
         }
         GainEnergy((int)(enemy.EnergyPoints * _config.AssistPercent)); //might change it to a different percent later on
     }
-    public void OnShamanCast(AbilityCaster caster)
+    public void OnShamanCast(AbilityCaster caster,IDamagable target)
     {
         GainEnergy(caster.Ability.GetAbilityStatIntValue(AbilityStatType.EnergyPointsOnCast));
     }

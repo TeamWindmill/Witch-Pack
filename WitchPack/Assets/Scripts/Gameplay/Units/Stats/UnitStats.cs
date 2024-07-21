@@ -30,16 +30,13 @@ public class UnitStats
         Stats.Add(baseStats.HpRegenInterval.statType,new Stat(baseStats.HpRegenInterval.statType,baseStats.HpRegenInterval.value));
         Stats.Add(baseStats.Threat.statType,new Stat(baseStats.Threat.statType,baseStats.Threat.value));
         Stats.Add(baseStats.AbilityCooldownReduction.statType,new Stat(baseStats.AbilityCooldownReduction.statType,baseStats.AbilityCooldownReduction.value));
-        Stats.Add(baseStats.Visibility.statType,new Stat(baseStats.Visibility.statType,baseStats.Visibility.value));
         Stats.Add(baseStats.ThreatLevel.statType,new Stat(baseStats.ThreatLevel.statType,baseStats.ThreatLevel.value));
         Stats.Add(baseStats.EnergyGain.statType,new Stat(baseStats.EnergyGain.statType,baseStats.EnergyGain.value));
+        Stats.Add(baseStats.Invisibility.statType,new Stat(baseStats.EnergyGain.statType,baseStats.EnergyGain.value));
     }
 
-    public Stat this[StatType statType]
-    {
-        get => Stats[statType];
-    }
-    
+    public Stat this[StatType statType] => Stats[statType];
+
     public float GetStatValue(StatType statTypeId)
     {
         return Stats[statTypeId].Value;
