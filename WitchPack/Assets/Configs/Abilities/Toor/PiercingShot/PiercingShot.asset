@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 865524e509d6e0d47935469acb17fbd8, type: 3}
   m_Name: PiercingShot
   m_EditorClassIdentifier: 
-  icon: {fileID: -1125000930, guid: bc5335bd6010ad24b9dcf7a94d8d3f31, type: 3}
   name: Piercing Shot
   discription: Fires a magical arrow that pierces through enemies
+  defaultIcon: {fileID: 133850563, guid: fe2ba7a02892579449d6cee52c2de5dc, type: 3}
+  disabledIcon: {fileID: 1439253773, guid: fe2ba7a02892579449d6cee52c2de5dc, type: 3}
+  upgradeIcon: {fileID: 1296465491, guid: fe2ba7a02892579449d6cee52c2de5dc, type: 3}
   _upgrades:
   - {fileID: 11400000, guid: 3881dc7b74790b7448a3ca17179d3b55, type: 2}
   hasPopupColor: 0
@@ -27,7 +29,7 @@ MonoBehaviour:
   statusEffects: []
   targetData:
     Priority: 0
-    Modifier: 0
+    Modifier: 1
     StatType: 0
   _hasCastVisual: 1
   castVisualColor: 0

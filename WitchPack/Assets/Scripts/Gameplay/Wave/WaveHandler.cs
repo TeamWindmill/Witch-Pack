@@ -10,7 +10,7 @@ public class WaveHandler : MonoBehaviour
     public event Action<int> OnWaveStart;
     public event Action<int> OnWaveEnd;
 
-
+    [SerializeField] private Sprite enemyIndicatorIcon;
 
     [SerializeField] private EnemySpawnPoint[] spawnPoints;
     [SerializeField] private WaveData waveData; //wave data is supposed to be given to a room from the inspector in the editor and not in runtime
@@ -22,10 +22,11 @@ public class WaveHandler : MonoBehaviour
     public int CurrentWave => _currentWave;
     public int TotalWaves => spawnData.Count;
 
-
+    private List<Indicator> activeWaveIndicators;
     public void Init()
     {
         spawnData = new List<EnemySpawnData>();
+        activeWaveIndicators = new List<Indicator>();
         foreach (EnemySpawnData item in waveData.waves)
         {
             EnemySpawnData newWave = new EnemySpawnData();
@@ -50,8 +51,10 @@ public class WaveHandler : MonoBehaviour
         //yield return StartCoroutine(IntervalDelay(waveData.StartDelayInterval));
         int nextWave = 0;
         //create start indicator 
-        SetIndicator(nextWave);
-        yield return new WaitUntil(() => skipFlag);
+        SetIndicator(nextWave, waveData.StartDelayInterval);
+        //yield return new WaitUntil(() => skipFlag); // using skipFlag
+        yield return StartCoroutine(WaveDelay(waveData.StartDelayInterval)); 
+
         for (int i = 0; i < spawnData.Count; i++)
         {
             skipFlag = false;
@@ -203,7 +206,8 @@ public class WaveHandler : MonoBehaviour
             }
             lanesThatHaveAnIndicator.Add(group.SpawnerIndex);
             EnemySpawnPoint spawnPoint = GetSpawnPointFromIndex(group.SpawnerIndex);
-            spawnPoint.SetIndicator(group.Enemy.UnitIcon, time, SkipWaveCD);
+            Indicator newIndicator = spawnPoint.SetIndicator(enemyIndicatorIcon, time, SkipWaveCD);
+            activeWaveIndicators.Add(newIndicator);
         }
         
     }
@@ -211,6 +215,13 @@ public class WaveHandler : MonoBehaviour
     private void SkipWaveCD()
     {
         skipFlag = true;
+
+        int numberOfIterations = activeWaveIndicators.Count;
+        for (int i = numberOfIterations - 1; i >=0; i--)
+        {
+            activeWaveIndicators[i].gameObject.SetActive(false);
+            activeWaveIndicators.Remove(activeWaveIndicators[i]);
+        }
     }
 
 }

@@ -26,11 +26,11 @@ public class StatBlockPanel : MonoBehaviour
         }
     }
 
-    private void OnBaseStatChange(StatType statType, float delta)
+    private void OnBaseStatChange(StatType statType, float value)
     {
         foreach (var statBlock in _statBlocks)
         {
-            if(statBlock.StatTypeId == statType) statBlock.UpdateBaseStat(delta);
+            if(statBlock.StatTypeId == statType) statBlock.UpdateBaseStat(value);
         }
     }
 
@@ -40,7 +40,7 @@ public class StatBlockPanel : MonoBehaviour
         {
             if (statBlock.StatTypeId == shamanStatType)
             {
-                statBlock.UpdateUI(newValue);
+                statBlock.UpdateBonusStatUI(newValue);
             }
         }
     }

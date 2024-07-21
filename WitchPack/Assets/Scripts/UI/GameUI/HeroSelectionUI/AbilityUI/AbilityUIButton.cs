@@ -30,16 +30,27 @@ public class AbilityUIButton : ClickableUIElement
     public void Init(BaseAbility rootAbility,BaseAbility activeAbility = null, AbilityCaster caster = null, bool hasSkillPoints = false)
     {
         _rootAbility = rootAbility;
-        _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
         if (ReferenceEquals(activeAbility,null))
         {
-            _abilitySpriteRenderer.sprite = rootAbility.Icon;
-            SetCooldownData(1);
+            _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
+            _abilitySpriteRenderer.sprite = hasSkillPoints ? rootAbility.UpgradeIcon : rootAbility.DisabledIcon;
+            _activeAbility = null;
+            SetCooldownData(0);
         }
         else
         {
             _activeAbility = activeAbility;
-            _abilitySpriteRenderer.sprite = activeAbility.Icon;
+            if (_activeAbility.Upgrades.Length > 0)
+            {
+                _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
+                _abilitySpriteRenderer.sprite = hasSkillPoints ? activeAbility.UpgradeIcon : activeAbility.DefaultIcon;
+            }
+            else
+            {
+                _frameSpriteRenderer.sprite = defaultFrameSprite;
+                _abilitySpriteRenderer.sprite = activeAbility.DefaultIcon;
+            }
+            
             if (caster is not null)
             {
                 _caster = caster;
@@ -49,26 +60,6 @@ public class AbilityUIButton : ClickableUIElement
             else SetCooldownData(0);
         }
         Show();
-    }
-
-    public void UpdateVisual(bool hasSkillPoints)
-    {
-        _frameSpriteRenderer.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
-        if (ReferenceEquals(_activeAbility,null))
-        {
-            _abilitySpriteRenderer.sprite = _rootAbility.Icon;
-            SetCooldownData(1);
-        }
-        else
-        {
-            _abilitySpriteRenderer.sprite = _activeAbility.Icon;
-            if (_caster is not null)
-            {
-                SetCooldownData(castHandler: _caster);
-            }
-            else SetCooldownData(0);
-        }
-        base.UpdateVisual();
     }
 
     public override void Hide()

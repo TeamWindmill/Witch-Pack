@@ -110,7 +110,7 @@ public struct EffectVisual<T> where T : Enum
 public enum CastingHandsEffectType
 {
     Orange,
-    Yellow,
+    YellowWhite,
     Blue,
     Red,
     Turquoise,

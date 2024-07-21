@@ -18,7 +18,7 @@ public class AbilityCaster : ICaster
             _shaman = shaman;
             _ability = ability;
             
-            if(ability.HasSfx) OnCastGFX += _shaman.ShamanCastGfx;
+            if(ability.HasSfx) OnCastGFX += _shaman.ShamanAbilityCastSFX;
             if (ability.GivesEnergyPoints)
             {
                 OnCast += _shaman.EnergyHandler.OnShamanCast;

@@ -12,22 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bc54a6909644928fc8b5cc15bd5412, type: 3}
   m_Name: Charmer
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: 7af17d76993ff0e48a8f20c282ad59a8, type: 3}
   name: Charmer
   discription: Longer duration
+  defaultIcon: {fileID: -1896970988, guid: 8f7f54d525985144598871936635c227, type: 3}
+  disabledIcon: {fileID: -604404283, guid: 8f7f54d525985144598871936635c227, type: 3}
+  upgradeIcon: {fileID: 1940723417, guid: 8f7f54d525985144598871936635c227, type: 3}
   _upgrades: []
   hasPopupColor: 0
   popupColor: {r: 0, g: 0, b: 0, a: 0}
   castTime: 2
-  cd: 15
+  cd: 20
   range: 0
   givesEnergyPoints: 1
   energyPoints: 3
   statusEffects:
   - {fileID: 11400000, guid: 016c261613ef25042ac6d5bea3aaf894, type: 2}
+  - {fileID: 11400000, guid: ad4f41d2f54e22540a9f0b6867b316bd, type: 2}
+  - {fileID: 11400000, guid: 0721b680386060c4591e9c729663fbd7, type: 2}
+  - {fileID: 11400000, guid: be2303440a9c90b47bf4c693c93ee46e, type: 2}
   targetData:
-    Priority: 0
-    Modifier: 1
+    Priority: 4
+    Modifier: 0
     StatType: 0
   _hasCastVisual: 1
   castVisualColor: 3

@@ -27,15 +27,13 @@ public class UnitMovement : MonoBehaviour
         DefaultStoppingDistance = agent.stoppingDistance;
     }
 
+    
     public void SetUp(BaseUnit givenOwner)
     {
         owner = givenOwner;
         ToggleMovement(true);
-    }
-
-    private void Update()
-    {
-        agent.speed = owner.Stats.MovementSpeed * GAME_TIME.GetCurrentTimeRate;
+        ChangeSpeed();
+        GAME_TIME.OnTimeRateChange += ChangeSpeed;
     }
 
     public void SetDestination(Vector3 worldPos)
@@ -51,7 +49,10 @@ public class UnitMovement : MonoBehaviour
         activeMovementRoutine = StartCoroutine(WaitTilReached());
         
     }
-
+    private void ChangeSpeed()
+    {
+        agent.speed = owner.Stats.MovementSpeed * GAME_TIME.TimeRate;
+    }
 
     public void ToggleMovement(bool state)
     {

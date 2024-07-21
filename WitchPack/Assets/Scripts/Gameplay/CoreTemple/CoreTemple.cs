@@ -25,6 +25,7 @@ public class CoreTemple : MonoBehaviour
         curHp = maxHp;
         enemyGroundCollider.OnTargetAdded += OnEnemyEnter;
         hpBar.Init(maxHp,UnitType.Temple);
+        ScreenCracksHandler.Instance.InitByCore(this);
     }
     private void OnEnemyEnter(GroundCollider collider)
     {
@@ -39,6 +40,7 @@ public class CoreTemple : MonoBehaviour
             curHp = 0;
         OnGetHit?.Invoke(amount);
         SoundManager.Instance.PlayAudioClip(SoundEffectType.CoreGetHit);
+        ScreenCracksHandler.Instance.StartCracksAnimation(amount);
         hpBar.SetBarValue(curHp);
         if (curHp <= 0)
         {
@@ -61,7 +63,7 @@ public class CoreTemple : MonoBehaviour
         }
         else if (curHp <= maxHp * 0.66)
         {
-            animator.SetBool("R_Crack",true);   
+            animator.SetBool("R_Crack",true);
         }
         
     }

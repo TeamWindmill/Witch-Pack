@@ -3,7 +3,7 @@ using Sirenix.OdinInspector;
 using Tools.Helpers;
 using UnityEngine;
 
-public class BaseUnit : MonoBehaviour, IInitialize<BaseUnitConfig>
+public class BaseUnit : InitializedMono<BaseUnitConfig>
 {
     #region Serialized
     
@@ -57,8 +57,6 @@ public class BaseUnit : MonoBehaviour, IInitialize<BaseUnitConfig>
     public UnitTargetHelper<Enemy> EnemyTargetHelper => enemyTargetHelper;
 
     public List<ITimer> UnitTimers { get => unitTimers; }
-    public bool Initialized { get; protected set; }
-
     #endregion
 
     public virtual void Init(BaseUnitConfig givenConfig)
@@ -72,7 +70,6 @@ public class BaseUnit : MonoBehaviour, IInitialize<BaseUnitConfig>
         shamanTargetHelper = new UnitTargetHelper<Shaman>(ShamanTargeter, this);
         enemyTargetHelper = new UnitTargetHelper<Enemy>(EnemyTargeter, this);
         unitTimers = new List<ITimer>();
-        AutoCaster.Init(this);
         Movement.SetUp(this);
         groundCollider.Init(this);
         
@@ -89,10 +86,11 @@ public class BaseUnit : MonoBehaviour, IInitialize<BaseUnitConfig>
         damageable.OnDamageCalc += LevelManager.Instance.PopupsManager.SpawnDamagePopup;
         damageable.OnHeal += LevelManager.Instance.PopupsManager.SpawnHealPopup;
         effectable.OnAffected += LevelManager.Instance.PopupsManager.SpawnStatusEffectPopup;
+        Stats.OnStatChanged += EnemyTargeter.AddRadius;
 
     }
 
-
+    protected void BaseInit(BaseUnitConfig givenConfig) => base.Init(givenConfig);
 
     protected virtual void OnDisable() //unsubscribe to events
     {
@@ -107,8 +105,7 @@ public class BaseUnit : MonoBehaviour, IInitialize<BaseUnitConfig>
             damageable.OnDamageCalc -= hpBar.SetBarValue;
             damageable.OnHeal -= hpBar.SetBarBasedOnOwner;
         }
-
-        
+        Stats.OnStatChanged -= EnemyTargeter.AddRadius;
     }
 
     public void ToggleCollider(bool state)

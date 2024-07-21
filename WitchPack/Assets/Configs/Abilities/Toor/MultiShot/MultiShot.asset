@@ -12,16 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a9833310f9a9446ab1e1eaace27b68, type: 3}
   m_Name: MultiShot
   m_EditorClassIdentifier: 
-  icon: {fileID: 1426186388, guid: ac38ec6e642d8824f820dcb972a41935, type: 3}
   name: Multishot
   discription: Shoots 3 homing projectiles at nearby targets
+  defaultIcon: {fileID: -4154678, guid: fe2ba7a02892579449d6cee52c2de5dc, type: 3}
+  disabledIcon: {fileID: -487525438, guid: fe2ba7a02892579449d6cee52c2de5dc, type: 3}
+  upgradeIcon: {fileID: 1618369681, guid: fe2ba7a02892579449d6cee52c2de5dc, type: 3}
   _upgrades:
-  - {fileID: 11400000, guid: cb2514b65dfc122468ae5be845669186, type: 2}
   - {fileID: 11400000, guid: b9cac84295f56404687865c71ac88587, type: 2}
+  - {fileID: 11400000, guid: c70b65cf65fce404aa5515456d2121df, type: 2}
   hasPopupColor: 0
   popupColor: {r: 0, g: 0, b: 0, a: 0}
   castTime: 1
-  cd: 6
+  cd: 9
   range: 6
   givesEnergyPoints: 0
   energyPoints: 0
@@ -36,12 +38,8 @@ MonoBehaviour:
   soundEffectType: 13
   baseDamage: 50
   damageBoosts: []
-  numberOfShots: 3
-  offset: {x: 1.5, y: 1.5, z: 0}
-  ricochetTimes: 0
-  ricochetRange: 0
-  ricochetSpeed: 0
-  ricochetTargeting:
-    Priority: 0
-    Modifier: 0
-    StatType: 0
+  multiShotType: 0
+  offset: 45
+  speed: 8
+  curveSpeed: 1100
+  delay: 0.1

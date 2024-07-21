@@ -24,14 +24,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8673541562462914812}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6685733751393774564}
-  - {fileID: 827369902851227232}
   - {fileID: 1370925006092159271}
+  - {fileID: 827369902851227232}
   - {fileID: 8542096355999272821}
   - {fileID: 829421935285749917}
   - {fileID: 7704672150110796758}
@@ -45,6 +45,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8564889265615551640}
     m_Modifications:
+    - target: {fileID: 2353255503819256298, guid: 99440a541789dab4dae0bdd39be9d7be, type: 3}
+      propertyPath: m_VersionIndex
+      value: 2070
+      objectReference: {fileID: 0}
+    - target: {fileID: 3731369094032738031, guid: 99440a541789dab4dae0bdd39be9d7be, type: 3}
+      propertyPath: m_VersionIndex
+      value: 3182
+      objectReference: {fileID: 0}
+    - target: {fileID: 6410229645077369010, guid: 99440a541789dab4dae0bdd39be9d7be, type: 3}
+      propertyPath: m_VersionIndex
+      value: 3733
+      objectReference: {fileID: 0}
     - target: {fileID: 6423102162199170598, guid: 99440a541789dab4dae0bdd39be9d7be, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -87,7 +99,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9076571982171806903, guid: 99440a541789dab4dae0bdd39be9d7be, type: 3}
       propertyPath: m_Name
-      value: Piercing_Arrow_Increased_Pierce_every_x_enemies Holder
+      value: Piercing_Arrow_ExperiencedHunter_Holder
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -107,13 +119,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8564889265615551640}
     m_Modifications:
+    - target: {fileID: 490720596084174858, guid: d8574d285c118034ca62dc98d27998ff, type: 3}
+      propertyPath: m_VersionIndex
+      value: 2073
+      objectReference: {fileID: 0}
     - target: {fileID: 4876856490606952934, guid: d8574d285c118034ca62dc98d27998ff, type: 3}
       propertyPath: m_Name
       value: Basic_Piercing_Arrow Holder
       objectReference: {fileID: 0}
+    - target: {fileID: 5302833825143157528, guid: d8574d285c118034ca62dc98d27998ff, type: 3}
+      propertyPath: m_VersionIndex
+      value: 3182
+      objectReference: {fileID: 0}
     - target: {fileID: 7394060605884897915, guid: d8574d285c118034ca62dc98d27998ff, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7394060605884897915, guid: d8574d285c118034ca62dc98d27998ff, type: 3}
       propertyPath: m_LocalPosition.y
@@ -171,7 +191,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3367114170603858993, guid: 283cafbc2de8b164db4dd5fac125e37a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.786
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3367114170603858993, guid: 283cafbc2de8b164db4dd5fac125e37a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -211,7 +231,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7041222197635326676, guid: 283cafbc2de8b164db4dd5fac125e37a, type: 3}
       propertyPath: m_Name
-      value: Piercing_Arrow_Multishot_increased_damage_Holder
+      value: Multishot_increased_damage_Holder
+      objectReference: {fileID: 0}
+    - target: {fileID: 7041222197635326676, guid: 283cafbc2de8b164db4dd5fac125e37a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -231,9 +255,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8564889265615551640}
     m_Modifications:
+    - target: {fileID: 3590456632009355775, guid: cdff29d4567ec1f4a9ebb42c6863c521, type: 3}
+      propertyPath: m_VersionIndex
+      value: 3816
+      objectReference: {fileID: 0}
     - target: {fileID: 5267646732538101166, guid: cdff29d4567ec1f4a9ebb42c6863c521, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5267646732538101166, guid: cdff29d4567ec1f4a9ebb42c6863c521, type: 3}
       propertyPath: m_LocalPosition.y
@@ -273,7 +301,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5515650038947230926, guid: cdff29d4567ec1f4a9ebb42c6863c521, type: 3}
       propertyPath: m_Name
-      value: Piercing_Arrow_Increased_Pierce Holder
+      value: Piercing_Arrow_Marksman Holder
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266546661677185589, guid: cdff29d4567ec1f4a9ebb42c6863c521, type: 3}
+      propertyPath: m_VersionIndex
+      value: 3182
+      objectReference: {fileID: 0}
+    - target: {fileID: 7689522039366945480, guid: cdff29d4567ec1f4a9ebb42c6863c521, type: 3}
+      propertyPath: m_VersionIndex
+      value: 2070
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -295,11 +331,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 887575641204814040, guid: f0c5b762c97427d4baf6beb632f3e1f9, type: 3}
       propertyPath: m_Name
-      value: Piercing_Arrow Increased Damage Holder
+      value: Piercing_Arrow_QuickShot_Holder
+      objectReference: {fileID: 0}
+    - target: {fileID: 2121816996619522305, guid: f0c5b762c97427d4baf6beb632f3e1f9, type: 3}
+      propertyPath: m_VersionIndex
+      value: 2070
+      objectReference: {fileID: 0}
+    - target: {fileID: 6115814854717539420, guid: f0c5b762c97427d4baf6beb632f3e1f9, type: 3}
+      propertyPath: m_VersionIndex
+      value: 3182
+      objectReference: {fileID: 0}
+    - target: {fileID: 6653874795844245057, guid: f0c5b762c97427d4baf6beb632f3e1f9, type: 3}
+      propertyPath: m_VersionIndex
+      value: 3733
       objectReference: {fileID: 0}
     - target: {fileID: 8804369081618998144, guid: f0c5b762c97427d4baf6beb632f3e1f9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.47
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8804369081618998144, guid: f0c5b762c97427d4baf6beb632f3e1f9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -357,11 +405,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7133298230148661040, guid: 6ad37c30fa07ceb48ba422183c3ef6f4, type: 3}
       propertyPath: m_Name
-      value: Piercing_Arrow_Multishot_Holder
+      value: Multishot_Holder
       objectReference: {fileID: 0}
     - target: {fileID: 8247718535362102174, guid: 6ad37c30fa07ceb48ba422183c3ef6f4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.78
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8247718535362102174, guid: 6ad37c30fa07ceb48ba422183c3ef6f4, type: 3}
       propertyPath: m_LocalPosition.y

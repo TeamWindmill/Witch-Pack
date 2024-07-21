@@ -5,31 +5,43 @@ using UnityEngine;
 
 public abstract class BaseAbility : ScriptableObject
 {
-    [HideLabel, PreviewField(55,ObjectFieldAlignment.Left)]
-    [BoxGroup("General Settings")]
-    [HorizontalGroup("General Settings/Split",width:70)]
-    [SerializeField] private Sprite icon;
-    
-    [BoxGroup("General Settings")]
-    [LabelWidth(50)]
-    [VerticalGroup("General Settings/Split/Right")]
-    [HorizontalGroup("General Settings/Split")]
+    [BoxGroup("General Settings/left/Details",centerLabel: true)]
+    [LabelWidth(50)][VerticalGroup("General Settings/left")]
+    [HorizontalGroup("General Settings")]
     [SerializeField] private string name;
     
-    [BoxGroup("General Settings")]
-    [TextArea(4, 14)]
-    [HorizontalGroup("General Settings/Split")]
-    [VerticalGroup("General Settings/Split/Right")]
+    [BoxGroup("General Settings/left/Details",centerLabel: true)]
+    [TextArea(4, 14)][VerticalGroup("General Settings/left")]
+    [HorizontalGroup("General Settings")]
     [SerializeField] private string discription;
-
-    [BoxGroup("Skill Tree")][SerializeField] private BaseAbility[] _upgrades;
+    
+    [PreviewField(63)]
+    [BoxGroup("General Settings/Icons",centerLabel: true)]
+    [HorizontalGroup("General Settings")]
+    [SerializeField] private Sprite defaultIcon;
+    
+    [PreviewField(63)]
+    [BoxGroup("General Settings/Icons",centerLabel: true)]
+    [HorizontalGroup("General Settings")]
+    [SerializeField] private Sprite disabledIcon;
+    
+    [PreviewField(63)]
+    [BoxGroup("General Settings/Icons",centerLabel: true)]
+    [HorizontalGroup("General Settings")]
+    [SerializeField] private Sprite upgradeIcon;
+    
+    [HorizontalGroup("General Settings")][VerticalGroup("General Settings/left")]
+    [BoxGroup("General Settings/left/Skill Tree")][SerializeField] private BaseAbility[] _upgrades;
+    
     [BoxGroup("Damage Popup Numbers")][SerializeField] private bool hasPopupColor;
     [BoxGroup("Damage Popup Numbers")][SerializeField, ShowIf(nameof(hasPopupColor))] private Color popupColor;
 
     private AbilityUpgradeState _abilityUpgradeState;
     public bool HasPopupColor { get => hasPopupColor; }
     public Color PopupColor { get => popupColor; }
-    public Sprite Icon => icon;
+    public Sprite DefaultIcon => defaultIcon;
+    public Sprite DisabledIcon => disabledIcon;
+    public Sprite UpgradeIcon => upgradeIcon;
     public string Name => name;
     public string Discription => discription;
     public BaseAbility[] Upgrades => _upgrades;

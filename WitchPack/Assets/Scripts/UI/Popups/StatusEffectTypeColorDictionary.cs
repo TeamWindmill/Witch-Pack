@@ -37,14 +37,14 @@ public class StatusEffectTypeColorDictionary : ScriptableObject
 }
 
 
-[Serializable]
-public class StatusEffectTypeVisualData
-{
-    [SerializeField] private StatusEffectType statusEffectType;
-    [SerializeField] private Color color;
-    [SerializeField] private string name;
+//[Serializable]
+//public class StatusEffectTypeVisualData
+//{
+//    [SerializeField] private StatusEffectType statusEffectType;
+//    [SerializeField] private Color color;
+//    [SerializeField] private string name;
 
-    public StatusEffectType StatusEffectType { get => statusEffectType; }
-    public Color Color { get => color; }
-    public string Name { get => name; }
-}
+//    public StatusEffectType StatusEffectType { get => statusEffectType; }
+//    public Color Color { get => color; }
+//    public string Name { get => name; }
+//}

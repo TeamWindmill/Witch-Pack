@@ -6,8 +6,10 @@ public class EnemyVisualHandler : UnitVisualHandler
     private Enemy _enemy;
 
     [SerializeField] private PoisonIvyVisuals poisonIvyVisuals;
+    [SerializeField] private ParticleSystem _hitEffect;
 
     public PoisonIvyVisuals PoisonIvyVisuals { get => poisonIvyVisuals; }
+    public ParticleSystem HitEffect => _hitEffect;
 
     public override void Init(BaseUnit unit, BaseUnitConfig config)
     {
@@ -27,5 +29,6 @@ public class EnemyVisualHandler : UnitVisualHandler
         color.a = 1;
         spriteRenderer.color = color;
         animator.gameObject.transform.localScale = Vector3.one;
+        _enemy.gameObject.SetActive(false);
     }
 }

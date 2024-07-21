@@ -9,7 +9,7 @@ public class AbilityUpgradeUIButton : ClickableUIElement
     public BaseAbility Ability => _ability;
 
     [SerializeField] private Image bg;
-    [SerializeField] private Image lockedBg;
+    //[SerializeField] private Image lockedBg;
     [SerializeField] private Image frame;
     [SerializeField] private Image abilitySprite;
     [Space] 
@@ -22,7 +22,6 @@ public class AbilityUpgradeUIButton : ClickableUIElement
 
     public void Init(BaseAbility ability, bool hasSkillPoints)
     {
-        abilitySprite.sprite = ability.Icon;
         _ability = ability;
         _hasSkillPoints = hasSkillPoints;
         _windowInfo.Name = ability.Name;
@@ -35,24 +34,24 @@ public class AbilityUpgradeUIButton : ClickableUIElement
         switch (_ability.AbilityUpgradeState)
         {
             case AbilityUpgradeState.Locked:
-                lockedBg.gameObject.SetActive(true);
                 frame.sprite = defaultFrameSprite;
+                abilitySprite.sprite = _ability.DisabledIcon;
                 break;
             case AbilityUpgradeState.Open:
                 if (!_hasSkillPoints)
                 {
-                    lockedBg.gameObject.SetActive(true);
                     frame.sprite = defaultFrameSprite;
+                    abilitySprite.sprite = _ability.DisabledIcon;
                 }
                 else
                 {
-                    lockedBg.gameObject.SetActive(false);
                     frame.sprite = upgradeReadyFrameSprite;
+                    abilitySprite.sprite = _ability.UpgradeIcon;
                 }
                 break;
             case AbilityUpgradeState.Upgraded:
-                lockedBg.gameObject.SetActive(false);
                 frame.sprite = defaultFrameSprite;
+                abilitySprite.sprite = _ability.DefaultIcon;
                 break;
         }
 

@@ -4,7 +4,7 @@ using NavMeshPlus.Components;
 
 public class LevelHandler : MonoBehaviour
 {
-    public ParticleSystem[] WindEffectsParticleSystem => windEffectsParticleSystem;
+    public EnviromentHandler EnviromentHandler => _EnviromentHandler;
     public Transform[] ShamanSpawnPoints => shamanSpawnPoints;
     public CoreTemple CoreTemple => coreTemple;
     public CustomPath[] Paths => paths;
@@ -14,7 +14,7 @@ public class LevelHandler : MonoBehaviour
     [SerializeField] private CustomPath[] paths;
     [SerializeField] private CoreTemple coreTemple;
     [SerializeField] private PowerStructure[] powerStructures;
-    [SerializeField] private ParticleSystem[] windEffectsParticleSystem;
+    [SerializeField] private EnviromentHandler _EnviromentHandler;
     [SerializeField] private NavMeshSurface navMeshSurface;
     [SerializeField] private WaveHandler waveHandler;
     [SerializeField] private CameraLevelSettings cameraLevelSettings;

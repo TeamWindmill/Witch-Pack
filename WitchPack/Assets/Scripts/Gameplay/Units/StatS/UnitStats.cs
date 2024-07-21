@@ -5,11 +5,11 @@ using UnityEngine;
 public class UnitStats
 {
 
-    public Action<StatType, float> OnStatChanged;
+    public event Action<StatType, float> OnStatChanged;
 
     private StatSheet _baseStats;
 
-    private StatSheet ownerBaseStats => _baseStats;
+    public StatSheet OwnerBaseStats => _baseStats;
 
     public Action OnHpRegenChange;
 
@@ -38,19 +38,19 @@ public class UnitStats
     [SerializeField] private int visibility;
     [SerializeField] private int threatLevel;
 
-    public int MaxHp { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.MaxHp.value + maxHp), 0, (ownerBaseStats.MaxHp.value + maxHp))); } }
-    public int BaseDamage { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.BaseDamage.value + baseDamage), 0, (ownerBaseStats.BaseDamage.value + baseDamage))); } }
-    public float AttackSpeed { get { return Mathf.Clamp((ownerBaseStats.AttackSpeed.value + attackSpeed), 0, 2f); } }
-    public float BonusRange { get { return Mathf.Clamp((ownerBaseStats.BaseRange.value + baseRange), 0, (ownerBaseStats.BaseRange.value + baseRange)); } }
-    public float MovementSpeed { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.MovementSpeed.value + movementSpeed), 0, (ownerBaseStats.MovementSpeed.value + movementSpeed))); } }
-    public int CritDamage { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.CritDamage.value + critDamage), 0, (ownerBaseStats.CritDamage.value + critDamage))); } }
-    public int CritChance { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.CritChance.value + critChance), 0, (ownerBaseStats.CritChance.value + critChance))); } }
-    public int Armor { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.Armor.value + armor), 0, (ownerBaseStats.Armor.value + armor))); } }
+    public int MaxHp { get { return Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.MaxHp.value + maxHp), 0, (OwnerBaseStats.MaxHp.value + maxHp))); } }
+    public int BaseDamage { get { return Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.BaseDamage.value + baseDamage), 0, (OwnerBaseStats.BaseDamage.value + baseDamage))); } }
+    public float AttackSpeed { get { return Mathf.Clamp((OwnerBaseStats.AttackSpeed.value + attackSpeed), 0, 2f); } }
+    public float BonusRange { get { return Mathf.Clamp((OwnerBaseStats.BaseRange.value + baseRange), 0, (OwnerBaseStats.BaseRange.value + baseRange)); } }
+    public float MovementSpeed { get { return Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.MovementSpeed.value + movementSpeed), 0, (OwnerBaseStats.MovementSpeed.value + movementSpeed))); } }
+    public int CritDamage { get { return Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.CritDamage.value + critDamage), 0, (OwnerBaseStats.CritDamage.value + critDamage))); } }
+    public int CritChance { get { return Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.CritChance.value + critChance), 0, (OwnerBaseStats.CritChance.value + critChance))); } }
+    public int Armor { get { return Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.Armor.value + armor), 0, (OwnerBaseStats.Armor.value + armor))); } }
     public int HpRegen 
     { 
         get 
         {
-            return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.HpRegen.value + hpRegen), 0, (ownerBaseStats.HpRegen.value + hpRegen))); 
+            return Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.HpRegen.value + hpRegen), 0, (OwnerBaseStats.HpRegen.value + hpRegen))); 
         }
         private set
         {
@@ -58,11 +58,11 @@ public class UnitStats
             OnHpRegenChange?.Invoke();
         }
     }
-    public int BonusStatusEffectDuration { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.BonusStatusEffectDuration.value + bonusStatusEffectDuration), 0, (ownerBaseStats.BonusStatusEffectDuration.value + bonusStatusEffectDuration))); } }
-    public int AbilityProjectileSpeed { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.AbilityProjectileSpeed.value + abilityProjectileSpeed), 0, (ownerBaseStats.AbilityProjectileSpeed.value + abilityProjectileSpeed))); } }
-    public int AbilityProjectilePenetration { get { return Mathf.RoundToInt(Mathf.Clamp((ownerBaseStats.AbilityProjectilePenetration.value + abilityProjectilePenetration), 0, (ownerBaseStats.AbilityProjectilePenetration.value + abilityProjectilePenetration))); } }
-    public int Visibility { get { return Mathf.Clamp((ownerBaseStats.Visibility.value + visibility), 0, 1); } }
-    public int ThreatLevel { get { return Mathf.Clamp((ownerBaseStats.ThreatLevel.value + threatLevel), 0, ownerBaseStats.ThreatLevel.value + threatLevel); } }
+    public int BonusStatusEffectDuration { get { return Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.BonusStatusEffectDuration.value + bonusStatusEffectDuration), 0, (OwnerBaseStats.BonusStatusEffectDuration.value + bonusStatusEffectDuration))); } }
+    public int AbilityProjectileSpeed { get { return Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.AbilityProjectileSpeed.value + abilityProjectileSpeed), 0, (OwnerBaseStats.AbilityProjectileSpeed.value + abilityProjectileSpeed))); } }
+    public int AbilityProjectilePenetration { get { return Mathf.RoundToInt(Mathf.Clamp((OwnerBaseStats.AbilityProjectilePenetration.value + abilityProjectilePenetration), 0, (OwnerBaseStats.AbilityProjectilePenetration.value + abilityProjectilePenetration))); } }
+    public int Visibility { get { return Mathf.Clamp((OwnerBaseStats.Visibility.value + visibility), 0, 1); } }
+    public int ThreatLevel { get { return Mathf.Clamp((OwnerBaseStats.ThreatLevel.value + threatLevel), 0, OwnerBaseStats.ThreatLevel.value + threatLevel); } }
 
     public float GetStatValue(StatType statTypeId)
     {
@@ -105,33 +105,33 @@ public class UnitStats
         switch (statTypeId)
         {
             case StatType.MaxHp:
-                return ownerBaseStats.MaxHp.value;
+                return OwnerBaseStats.MaxHp.value;
             case StatType.BaseDamage:
-                return ownerBaseStats.BaseDamage.value;
+                return OwnerBaseStats.BaseDamage.value;
             case StatType.AttackSpeed:
-                return ownerBaseStats.AttackSpeed.value;
+                return OwnerBaseStats.AttackSpeed.value;
             case StatType.BaseRange:
-                return ownerBaseStats.BaseRange.value;
+                return OwnerBaseStats.BaseRange.value;
             case StatType.MovementSpeed:
-                return ownerBaseStats.MovementSpeed.value;
+                return OwnerBaseStats.MovementSpeed.value;
             case StatType.CritDamage:
-                return ownerBaseStats.CritDamage.value;
+                return OwnerBaseStats.CritDamage.value;
             case StatType.CritChance:
-                return ownerBaseStats.CritChance.value;
+                return OwnerBaseStats.CritChance.value;
             case StatType.Armor:
-                return ownerBaseStats.Armor.value;
+                return OwnerBaseStats.Armor.value;
             case StatType.HpRegen:
-                return ownerBaseStats.HpRegen.value;
+                return OwnerBaseStats.HpRegen.value;
             case StatType.BonusStatusEffectDuration:
-                return ownerBaseStats.BonusStatusEffectDuration.value;
+                return OwnerBaseStats.BonusStatusEffectDuration.value;
             case StatType.AbilityProjectileSpeed:
-                return ownerBaseStats.AbilityProjectileSpeed.value;
+                return OwnerBaseStats.AbilityProjectileSpeed.value;
             case StatType.AbilityProjectilePenetration:
-                return ownerBaseStats.AbilityProjectilePenetration.value;
+                return OwnerBaseStats.AbilityProjectilePenetration.value;
             case StatType.Visibility:
-                return ownerBaseStats.Visibility.value;
+                return OwnerBaseStats.Visibility.value;
             case StatType.ThreatLevel:
-                return ownerBaseStats.ThreatLevel.value;
+                return OwnerBaseStats.ThreatLevel.value;
             default:
                 return 0;
         }
@@ -142,43 +142,55 @@ public class UnitStats
         {
             case StatType.MaxHp:
                 maxHp += wholeValue;
+                OnStatChanged?.Invoke(statType, MaxHp);
                 break;
             case StatType.BaseDamage:
                 baseDamage += wholeValue;
+                OnStatChanged?.Invoke(statType, BaseDamage);
                 break;
             case StatType.AttackSpeed:
                 attackSpeed += wholeValue;
+                OnStatChanged?.Invoke(statType, AttackSpeed);
                 break;
             case StatType.MovementSpeed:
                 movementSpeed += wholeValue;
+                OnStatChanged?.Invoke(statType, MovementSpeed);
                 break;
             case StatType.CritDamage:
                 critDamage += wholeValue;
+                OnStatChanged?.Invoke(statType, CritDamage);
                 break;
             case StatType.CritChance:
                 critChance += wholeValue;
+                OnStatChanged?.Invoke(statType, CritChance);
                 break;
             case StatType.Armor:
                 armor += wholeValue;
+                OnStatChanged?.Invoke(statType, Armor);
                 break;
             case StatType.HpRegen:
                 HpRegen += wholeValue;
+                OnStatChanged?.Invoke(statType, HpRegen);
                 break;
             case StatType.BonusStatusEffectDuration:
                 bonusStatusEffectDuration += wholeValue;
+                OnStatChanged?.Invoke(statType, BonusStatusEffectDuration);
                 break;
             case StatType.AbilityProjectilePenetration:
                 abilityProjectilePenetration += wholeValue;
+                OnStatChanged?.Invoke(statType, AbilityProjectilePenetration);
                 break;
             case StatType.Visibility:
                 visibility += wholeValue;
+                OnStatChanged?.Invoke(statType, Visibility);
                 break;
             case StatType.ThreatLevel:
                 threatLevel += wholeValue;
+                OnStatChanged?.Invoke(statType, ThreatLevel);
                 break;
         }
 
-        OnStatChanged?.Invoke(statType, wholeValue);
+        
     }
 
     public void AddValueToStat(StatType statType, float decimalValue) //can be used to reduce or increase
@@ -187,18 +199,20 @@ public class UnitStats
         {
             case StatType.AttackSpeed:
                 attackSpeed += decimalValue;
+                OnStatChanged?.Invoke(statType, AttackSpeed);
                 break;
             case StatType.MovementSpeed:
                 movementSpeed += decimalValue;
+                OnStatChanged?.Invoke(statType, MovementSpeed);
                 break;
             case StatType.BaseRange:
                 baseRange += decimalValue;
+                OnStatChanged?.Invoke(statType, BonusRange);
                 break;
             default:
                 AddValueToStat(statType, Mathf.RoundToInt(decimalValue));
                 return;
         }
-        OnStatChanged?.Invoke(statType, decimalValue);
     }
 }
 

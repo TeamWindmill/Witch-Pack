@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
@@ -7,12 +8,13 @@ public class ShamanUIHandler : ClickableUIElement
     [SerializeField] private Image _fill;
     [SerializeField] private Slider _healthBar;
     [SerializeField] private Image _splash;
-    [SerializeField] private Image _frame;
+    [SerializeField] private Image _upgradeFrame;
+    [SerializeField] private Image _upgradeArrow;
     [SerializeField, Range(0, 1)] private float spriteDeathAlpha;
     [Space] 
-    [SerializeField] private Sprite upgradeReadyFrameSprite;
-    [SerializeField] private Sprite defaultFrameSprite;
-    
+    [SerializeField] private Image _redInjuryImage;
+    [SerializeField] private Sprite _deadUnitIcon;
+
     private Shaman _shaman;
 
 
@@ -21,47 +23,97 @@ public class ShamanUIHandler : ClickableUIElement
         _shaman = shaman;
         _splash.sprite = _shaman.ShamanConfig.UnitIcon;
         _healthBar.value = 1;
-        _frame.sprite = shaman.EnergyHandler.HasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
+        Color upgradeColor = _upgradeFrame.color;
+        _redInjuryImage.fillAmount = 0;
+        if (shaman.EnergyHandler.HasSkillPoints)
+        {
+            upgradeColor.a = 100;
+            _upgradeArrow.gameObject.SetActive(true);
+        }
+        else
+        {
+            upgradeColor.a = 0;
+            _upgradeArrow.gameObject.SetActive(false);
+        }
+        _upgradeFrame.color = upgradeColor;
         shaman.EnergyHandler.OnShamanUpgrade += OnShamanUpgrade;
         shaman.EnergyHandler.OnShamanLevelUp += OnShamanLevelUp;
-        shaman.Damageable.OnGetHit += OnHealthChange;
+        shaman.Damageable.OnGetHit += OnChangeHealth;
+        shaman.Damageable.OnHeal += OnChangeHealth;
         shaman.Damageable.OnDeath += ShamanDeathUI;
         OnClickEvent += GoToShaman;
+        OnClickEvent += ShowShamanInfo;
         Show();
     }
 
-    private void OnHealthChange(Damageable arg1, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4, bool arg5)
+    private void OnChangeHealth()
     {
-        float hpRatio = _shaman.Damageable.CurrentHp / _shaman.Damageable.MaxHp;
+        float hpRatio = _shaman.Damageable.CurrentHp / (float)_shaman.Damageable.MaxHp;
+        _redInjuryImage.fillAmount = 1 - hpRatio;
         _healthBar.value = hpRatio;
         _fill.color = Color.Lerp(Color.red, Color.green, hpRatio);
     }
 
+    private void OnChangeHealth(Damageable arg1, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4, bool arg5)
+    {
+        OnChangeHealth();
+    }
+
+    private void OnChangeHealth(Damageable arg1, float healAmount)
+    {
+        OnChangeHealth();
+    }
+
     public override void Hide()
     {
-        _shaman.Damageable.OnGetHit -= OnHealthChange;
+        _shaman.Damageable.OnGetHit -= OnChangeHealth;
+        _shaman.Damageable.OnHeal -= OnChangeHealth;
         _shaman.Damageable.OnDeath -= ShamanDeathUI;
         OnClickEvent -= GoToShaman;
+        OnClickEvent -= ShowShamanInfo;
         base.Hide();
     }
 
     private void ShamanDeathUI(Damageable arg1, DamageDealer arg2, DamageHandler arg3, BaseAbility arg4)
     {
-        _frame.sprite = defaultFrameSprite;
-        var lowAlphaColor = _splash.color;
-        lowAlphaColor.a = spriteDeathAlpha;
-        _splash.color = lowAlphaColor;
+        Color upgradeColor = _upgradeFrame.color;
+        upgradeColor.a = 0;
+        _upgradeFrame.color = upgradeColor;
+        _splash.sprite = _deadUnitIcon;
+        _redInjuryImage.fillAmount = 0;
     }
 
-    private void OnShamanLevelUp(int obj) => _frame.sprite = upgradeReadyFrameSprite;
-    
-    private void OnShamanUpgrade(bool hasSkillPoints) => 
-        _frame.sprite = hasSkillPoints ? upgradeReadyFrameSprite : defaultFrameSprite;
+    private void OnShamanLevelUp(int obj)
+    { 
+       Color upgradeColor = _upgradeFrame.color;
+        upgradeColor.a = 100;
+        _upgradeFrame.color = upgradeColor;
+        _upgradeArrow.gameObject.SetActive(true);
+    }
 
-    private void GoToShaman()
+    private void OnShamanUpgrade(bool hasSkillPoints)
+    {
+        Color upgradeColor = _upgradeFrame.color;
+        if (hasSkillPoints)
+        {
+            upgradeColor.a = 100;
+            _upgradeArrow.gameObject.SetActive(true);
+        }
+        else
+        {
+            upgradeColor.a = 0;
+            _upgradeArrow.gameObject.SetActive(false);
+        }
+        _upgradeFrame.color = upgradeColor;
+    }
+
+    private void GoToShaman(PointerEventData pointerData)
     {
         if(_shaman.IsDead) return;
         GameManager.Instance.CameraHandler.SetCameraPosition(_shaman.transform.position);
     }
-        
+    private void ShowShamanInfo(PointerEventData pointerData)
+    {
+        _shaman.SetSelectedShaman(pointerData.button);
+    }
 }

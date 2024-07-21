@@ -22,17 +22,19 @@ public class StatBlockUI : MonoBehaviour
         _statBonusReductionColor = reduceColor;
         SetStatText(_baseValue,0);
     }
-    public void UpdateUI(float newValue)
+    public void UpdateBonusStatUI(float newValue)
     {
+        if(ReferenceEquals(HeroSelectionUI.Instance,null)) return;
         if(!HeroSelectionUI.Instance.IsActive) return;
         _bonusValue = newValue;
         SetStatText(_baseValue,_bonusValue);
     }
 
-    public void UpdateBaseStat(float delta)
+    public void UpdateBaseStat(float newValue)
     {
+        if(ReferenceEquals(HeroSelectionUI.Instance,null)) return;
         if(!HeroSelectionUI.Instance.IsActive) return;
-        _baseValue += delta;
+        _baseValue = newValue;
         SetStatText(_baseValue, _bonusValue);
     }
 

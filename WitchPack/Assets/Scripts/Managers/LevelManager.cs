@@ -5,48 +5,28 @@ using Random = UnityEngine.Random;
 
 public class LevelManager : MonoSingleton<LevelManager>
 {
-    public ScoreHandler ScoreHandler => _scoreHandler;
     public LevelHandler CurrentLevel { get; private set; }
     public List<Shaman> ShamanParty { get; private set; }
-    public List<Enemy> CharmedEnemies { get; set; } = new();
+    public List<Enemy> CharmedEnemies { get;} = new();
     public bool IsWon { get; private set; }
-
+    public ScoreHandler ScoreHandler => _scoreHandler;
+    public ISelection SelectionHandler => _selectionManager.ActiveSelectionHandler;
+    public IndicatorManager IndicatorManager => indicatorManager;
+    public Canvas GameUi => gameUi;
+    public PoolManager PoolManager => poolManager;
+    public PopupsManager PopupsManager => popupsManager;
 
     [SerializeField] private Transform enviromentHolder;
     [SerializeField] private Transform shamanHolder;
     [SerializeField] private Shaman shamanPrefab;
     [SerializeField] private PartyUIManager partyUIManager;
     [SerializeField] private PoolManager poolManager;
-    [SerializeField] private SelectionManager selectionManager;
     [SerializeField] private IndicatorManager indicatorManager;
     [SerializeField] private Canvas gameUi;
-    private ScoreHandler _scoreHandler = new ScoreHandler();
     [SerializeField] private PopupsManager popupsManager;
-
-    public SelectionManager SelectionManager
-    {
-        get => selectionManager;
-    }
-
-    public IndicatorManager IndicatorManager
-    {
-        get => indicatorManager;
-    }
-
-    public Canvas GameUi
-    {
-        get => gameUi;
-    }
-
-    public PoolManager PoolManager
-    {
-        get => poolManager;
-    }
-
-    public PopupsManager PopupsManager
-    {
-        get => popupsManager;
-    }
+    [SerializeField] private SelectionManager _selectionManager;
+    
+    private readonly ScoreHandler _scoreHandler = new ScoreHandler();
 
     private void Start()
     {
@@ -57,11 +37,15 @@ public class LevelManager : MonoSingleton<LevelManager>
         CurrentLevel.TurnOffSpawnPoints();
         BgMusicManager.Instance.PlayMusic(MusicClip.GameMusic);
         UIManager.Instance.ShowUIGroup(UIGroup.GameUI);
+        GAME_TIME.StartGame();
     }
 
     public void EndLevel(bool win)
     {
         IsWon = win;
+        GAME_TIME.Pause();
+        BgMusicManager.Instance.StopMusic();
+        if(win) SoundManager.Instance.PlayAudioClip(SoundEffectType.Victory);
         UIManager.Instance.ShowUIGroup(UIGroup.EndGameUI);
     }
 
@@ -105,7 +89,11 @@ public class LevelManager : MonoSingleton<LevelManager>
         {
             shaman.DamageDealer.OnKill -= OnEnemyKill;
             ShamanParty.Remove(shaman);
-            if (ShamanParty.Count <= 0) EndLevel(false);
+            if (ShamanParty.Count <= 0)
+            {
+                GameManager.Instance.CameraHandler.SetCameraPosition(shaman.transform.position,true);
+                TimerManager.Instance.AddTimer(2, false, EndLevel);
+            }
         }
     }
 }

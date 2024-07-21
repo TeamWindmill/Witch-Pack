@@ -7,8 +7,8 @@ public class Shadow : MonoBehaviour
     public UnitStats Stats => _stats;
     public Shaman Shaman => _shaman;
     public Dictionary<StatType, int> CurrentStatPSEffects => currentStatPSEffects;
+    public bool IsActive => _isActive;
 
-    
     [SerializeField] private Transform rangeTransform;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private LineRenderer lineRenderer;

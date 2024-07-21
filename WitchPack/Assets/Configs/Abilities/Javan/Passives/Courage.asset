@@ -13,23 +13,16 @@ MonoBehaviour:
   m_Name: Courage
   m_EditorClassIdentifier: 
   name: Courage
-  discription: Small increase to damage  for each nearby Shaman and Charmed enemy.
-  icon: {fileID: -70214969, guid: 2a862c0ebda887f42a111fbbce4d7fc0, type: 3}
-  castTime: 0
-  cd: 0
-  givesEnergyPoints: 0
-  energyPoints: 0
-  _hasSFX: 0
-  soundEffectType: 0
-  statusEffects: []
+  discription: Increase to damage for each nearby ally
+  defaultIcon: {fileID: -2135932801, guid: 8f7f54d525985144598871936635c227, type: 3}
+  disabledIcon: {fileID: 618595115, guid: 8f7f54d525985144598871936635c227, type: 3}
+  upgradeIcon: {fileID: 1999584602, guid: 8f7f54d525985144598871936635c227, type: 3}
   _upgrades: []
-  targetData:
-    Priority: 0
-    Modifier: 0
-    StatType: 0
+  hasPopupColor: 0
+  popupColor: {r: 0, g: 0, b: 0, a: 0}
   _statsIncrease:
   - StatType: 1
-    Value: 5
+    Value: 8
   _affectedByEnemies: 1
   _affectedByEnemiesWithStatusEffect: 1
   _enemyStatusEffect: 6

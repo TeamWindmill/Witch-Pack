@@ -12,24 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81bc54a6909644928fc8b5cc15bd5412, type: 3}
   m_Name: Charm
   m_EditorClassIdentifier: 
-  icon: {fileID: -752824034, guid: 2a7c4b265cb330049b7a4441903b7bef, type: 3}
   name: Charm
   discription: Charmed enemies attack other enemies
+  defaultIcon: {fileID: 124796874, guid: 8f7f54d525985144598871936635c227, type: 3}
+  disabledIcon: {fileID: -462152871, guid: 8f7f54d525985144598871936635c227, type: 3}
+  upgradeIcon: {fileID: -523617875, guid: 8f7f54d525985144598871936635c227, type: 3}
   _upgrades:
   - {fileID: 11400000, guid: 09389887f58dcfc4088caa9f572e4fdb, type: 2}
   - {fileID: 11400000, guid: cf82a5de5a0148a4c805eb3387bba94d, type: 2}
   hasPopupColor: 0
   popupColor: {r: 0, g: 0, b: 0, a: 0}
   castTime: 2
-  cd: 15
+  cd: 20
   range: 0
   givesEnergyPoints: 1
   energyPoints: 3
   statusEffects:
   - {fileID: 11400000, guid: 39092aed8284fc846810b096363ef12f, type: 2}
+  - {fileID: 11400000, guid: f269799af54eb884f84d5abe9fde8c1a, type: 2}
+  - {fileID: 11400000, guid: 7046524f0cb98a54f91950ceed5da8cd, type: 2}
+  - {fileID: 11400000, guid: a49883dad1324974eb34e3091ccd569c, type: 2}
   targetData:
-    Priority: 0
-    Modifier: 1
+    Priority: 4
+    Modifier: 0
     StatType: 0
   _hasCastVisual: 1
   castVisualColor: 3
