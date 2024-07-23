@@ -7,6 +7,7 @@ public class EnemyAnimator : UnitAnimator
     {
         base.Init(unit);
         _enemy = unit as Enemy;
+        animator.Play("Idle");
     }
 
     protected override void MoveAnimation()
