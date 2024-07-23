@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class MetaUpgradeIcon<T> : ClickableUIElement
 {
     public event Action<T> OnUpgrade;
-    public event Action<int> OnSelect;
+    public Action<int,AbilitySO> OnSelect;
     public UpgradeState UpgradeState { get; private set; }
     public bool OpenAtStart => _openAtStart;
     public MetaUpgradeConfig UpgradeConfig => _upgradeConfig;
@@ -33,12 +33,12 @@ public class MetaUpgradeIcon<T> : ClickableUIElement
     private int _availableSkillPoints;
     protected T Upgrade;
     private MetaUpgradeConfig _upgradeConfig;
-    private int _abilityIndex;
+    protected int _panelIndex;
 
 
     public virtual void Init(int index, MetaUpgradeConfig upgradeConfig, int availableSkillPoints)
     {
-        _abilityIndex = index;
+        _panelIndex = index;
         UpgradeState = UpgradeState.Locked;
         _upgradeConfig = upgradeConfig;
         _availableSkillPoints = availableSkillPoints;
@@ -58,25 +58,24 @@ public class MetaUpgradeIcon<T> : ClickableUIElement
         Show();
     }
 
-    protected override void OnClick(PointerEventData eventData)
-    {
-        OnSelect?.Invoke(_abilityIndex);
-        switch (UpgradeState)
-        {
-            case UpgradeState.Locked:
-                break;
-            case UpgradeState.Open:
-                // if (_availableSkillPoints >= _upgradeConfig.SkillPointsCost)
-                // {
-                //     ChangeState(UpgradeState.Upgraded);
-                //     OnUpgrade?.Invoke(Upgrade);
-                // }
-                break;
-            case UpgradeState.Upgraded:
-                break;
-        }
-        base.OnClick(eventData);
-    }
+    // protected override void OnClick(PointerEventData eventData)
+    // {
+    //     switch (UpgradeState)
+    //     {
+    //         case UpgradeState.Locked:
+    //             break;
+    //         case UpgradeState.Open:
+    //             // if (_availableSkillPoints >= _upgradeConfig.SkillPointsCost)
+    //             // {
+    //             //     ChangeState(UpgradeState.Upgraded);
+    //             //     OnUpgrade?.Invoke(Upgrade);
+    //             // }
+    //             break;
+    //         case UpgradeState.Upgraded:
+    //             break;
+    //     }
+    //     base.OnClick(eventData);
+    // }
 
     public void ChangeState(UpgradeState upgradeState)
     {
