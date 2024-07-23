@@ -8,6 +8,10 @@ using UnityEngine.Rendering;
 
 public class CameraHandler : MonoBehaviour
 {
+    #region Public
+    public bool DragPanMoveActive => _dragPanMoveActive;
+
+    #endregion
     #region Consts
 
     private const float ORTHOGRAPHIC_DETECT_RANGE = 0.2f;

@@ -33,7 +33,7 @@ public class UnitMovement : MonoBehaviour
     {
         owner = givenOwner;
         ToggleMovement(true);
-        ChangeSpeed();
+        ChangeSpeed(GAME_TIME.TimeRate);
         GAME_TIME.OnTimeRateChange += ChangeSpeed;
     }
 
@@ -56,15 +56,15 @@ public class UnitMovement : MonoBehaviour
         activeMovementRoutine = StartCoroutine(WaitTilReached());
     }
 
-    public void ChangeSpeed()
+    public void ChangeSpeed(float newTime)
     {
         if (agent is null) return;
-        agent.speed = owner.Stats[StatType.MovementSpeed].Value * GAME_TIME.TimeRate;
+        agent.speed = owner.Stats[StatType.MovementSpeed].Value * newTime;
     }
     public void ToggleMovement(bool state)
     {
         agent.enabled = state;
-        ChangeSpeed();
+        ChangeSpeed(GAME_TIME.TimeRate);
     }
 
     private IEnumerator WaitTilReached()
@@ -89,6 +89,6 @@ public class UnitMovement : MonoBehaviour
 
     public void OnSpeedChange(float value)
     {
-        ChangeSpeed();
+        ChangeSpeed(value);
     }
 }

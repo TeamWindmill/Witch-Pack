@@ -74,11 +74,11 @@ public class PiercingShotMono : MonoBehaviour
         }
     }
 
-    private void ChangeVelocity()
+    private void ChangeVelocity(float newTime)
     {
         if (!gameObject.activeSelf) return;
         
-        _rb.velocity = _speed * GAME_TIME.TimeRate * _dir;
+        _rb.velocity = _speed * newTime * _dir;
     }
 
     private void Rotate(Vector2 dir)
