@@ -1,19 +1,18 @@
+using System.Collections.Generic;
 using Sirenix.OdinInspector;
-using Sirenix.Utilities;
 using UnityEngine;
 
 public class MapManager : MonoSingleton<MapManager>
 {
-    public MapNode[] NodeObjects => _nodeObjects;
+    public List<MapNode> NodeObjects => _nodeObjects;
     public PartyTokenHandler PartyTokenHandler => _partyTokenHandler;
 
-    [SerializeField] private MapNode[] _nodeObjects;
+    [SerializeField] private List<MapNode> _nodeObjects;
     [SerializeField] private PartyTokenHandler _partyTokenHandler;
 
     [BoxGroup("Camera")] [SerializeField] private CameraLevelSettings _cameraLevelSettings;
 
     [BoxGroup("Temp")] [SerializeField] private ShamanConfig[] _shamanConfigsForInstantUnlock;
-    [BoxGroup("Temp")] [SerializeField] private LevelNode[] _testingLevelNodes;
 
     public bool LevelSelectOpen;
     private const int CHALLENGES_AMOUNT = 3;
@@ -40,8 +39,8 @@ public class MapManager : MonoSingleton<MapManager>
         var levelSaves = GameManager.SaveData.LevelSaves;
         if (levelSaves == null)
         {
-            levelSaves = new LevelSaveData[_nodeObjects.Length];
-            for (int i = 0; i < _nodeObjects.Length; i++)
+            levelSaves = new LevelSaveData[_nodeObjects.Count];
+            for (int i = 0; i < _nodeObjects.Count; i++)
             {
                 levelSaves[i] = new LevelSaveData(NodeState.Locked,CHALLENGES_AMOUNT);
                 _nodeObjects[i].Init(i,levelSaves[i]);
@@ -51,7 +50,7 @@ public class MapManager : MonoSingleton<MapManager>
         }
         else
         {
-            for (int i = 0; i < _nodeObjects.Length; i++)
+            for (int i = 0; i < _nodeObjects.Count; i++)
             {
                 _nodeObjects[i].Init(i,levelSaves[i]);
             }
@@ -101,14 +100,6 @@ public class MapManager : MonoSingleton<MapManager>
         UIManager.RefreshUIGroup(UIGroup.PartySelectionWindow);
     }
 
-    public void ToggleTestingLevels(bool state)
-    {
-        foreach (var node in _testingLevelNodes)
-        {
-            node.gameObject.SetActive(state);
-        }
-    }
-
     private void AnimateToken(MapNode mapNode)
     {
         if(LevelSelectOpen) return;
@@ -123,5 +114,14 @@ public class MapManager : MonoSingleton<MapManager>
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(Vector3.zero, _cameraLevelSettings.CameraBorders);
+    }
+
+    private void OnValidate()
+    {
+        var nodes = FindObjectsOfType<MapNode>();
+        foreach (var node in nodes)
+        {
+            if(!_nodeObjects.Contains(node)) _nodeObjects.Add(node);
+        }
     }
 }

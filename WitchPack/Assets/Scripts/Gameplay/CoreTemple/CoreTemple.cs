@@ -64,8 +64,8 @@ public class CoreTemple : BaseEntity, IDamagable
         glowParticleSystem.Play();
         GAME_TIME.Pause();
         var camera = GameManager.CameraHandler;
-        camera.SetCameraPosition(transform.position,true);
         camera.SetCameraZoom(0);
+        camera.SetCameraPosition(transform.position,true);
         Invoke(nameof(DestroyCoreAnimation),destroyAnimationsDelay);
     }
 

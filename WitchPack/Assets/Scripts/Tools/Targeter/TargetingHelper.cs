@@ -33,25 +33,25 @@ namespace Tools.Targeter
             switch (givenData.Priority)
             {
                 case TargetPriority.Stat:
-                    target = GetTargetByStat(availableTargets, givenData, targetsToAvoid);
+                    target = GetTargetByStat(availableTargets, givenData);
                     break;
                 case TargetPriority.Distance:
-                    target = GetTargetByDistance(availableTargets, givenData, originPos, targetsToAvoid);
+                    target = GetTargetByDistance(availableTargets, givenData, originPos);
                     break;
                 case TargetPriority.Random:
                     target = availableTargets[UnityEngine.Random.Range(0, targets.Count)];
                     break;
                 case TargetPriority.DistnaceToCore:
-                    target = GetTargetByDistanceToCore(availableTargets, givenData, targetsToAvoid);
+                    target = GetTargetByDistanceToCore(availableTargets, givenData);
                     break;
                 case TargetPriority.Threatened:
-                    target = GetTargetByThreat(availableTargets, givenData, targetsToAvoid);
+                    target = GetTargetByThreat(availableTargets, givenData);
                     break;
                 case TargetPriority.CurrentHP:
-                    target = GetTargetByHP(availableTargets, givenData, targetsToAvoid);
+                    target = GetTargetByHP(availableTargets, givenData);
                     break;
                 case TargetPriority.CurrentHPPrecentage:
-                    target = GetTargetByHPPrecentage(availableTargets, givenData, targetsToAvoid);
+                    target = GetTargetByHPPrecentage(availableTargets, givenData);
                     break;
                 default:
                     return availableTargets[0];
@@ -60,9 +60,9 @@ namespace Tools.Targeter
             return target;
         }
 
-        private static bool TargetGeneralChecks(List<T> availableTargets, TargetData targetData, int i)
+        private static bool TargetGeneralChecks(T target, TargetData targetData)
         {
-            if (availableTargets[i].IsDead) return true;
+            if (target.IsDead) return true;
 
 
             //if (availableTargets[i].Effectable.ContainsStatusEffect(StatusEffectVisual.Charm))
@@ -72,14 +72,14 @@ namespace Tools.Targeter
             return false;
         }
 
-        public static T GetTargetByThreat(List<T> availableTargets, TargetData targetData, List<T> targetsToAvoid)
+        public static T GetTargetByThreat(List<T> availableTargets, TargetData targetData)
         {
             T cur = availableTargets.Count > 0 ? availableTargets[availableTargets.Count / 2] : null;
 
             //checking for target from available targets
             for (int i = 0; i < availableTargets.Count; i++)
             {
-                if (TargetGeneralChecks(availableTargets, targetData, i)) continue;
+                if (TargetGeneralChecks(availableTargets[i], targetData)) continue;
                 
                 if (availableTargets[i].Stats[StatType.ThreatLevel].Value <= 0) continue;
 
@@ -103,14 +103,14 @@ namespace Tools.Targeter
         }
 
 
-        public static T GetTargetByHP(List<T> availableTargets, TargetData targetData, List<T> targetsToAvoid = null)
+        public static T GetTargetByHP(List<T> availableTargets, TargetData targetData)
         {
             T cur = availableTargets.Count > 0 ? availableTargets[availableTargets.Count / 2] : null;
 
             //checking for target from available targets
             for (int i = 0; i < availableTargets.Count; i++)
             {
-                if (TargetGeneralChecks(availableTargets, targetData, i)) continue;
+                if (TargetGeneralChecks(availableTargets[i], targetData)) continue;
 
                 if (!ReferenceEquals(cur, null))
                 {
@@ -134,14 +134,14 @@ namespace Tools.Targeter
             return cur;
         }
 
-        public static T GetTargetByHPPrecentage(List<T> availableTargets, TargetData targetData, List<T> targetsToAvoid = null)
+        public static T GetTargetByHPPrecentage(List<T> availableTargets, TargetData targetData)
         {
             T cur = availableTargets.Count > 0 ? availableTargets[availableTargets.Count / 2] : null;
 
             //checking for target from available targets
             for (int i = 0; i < availableTargets.Count; i++)
             {
-                if (TargetGeneralChecks(availableTargets, targetData, i)) continue;
+                if (TargetGeneralChecks(availableTargets[i], targetData)) continue;
 
                 if (!ReferenceEquals(cur, null))
                 {
@@ -165,14 +165,14 @@ namespace Tools.Targeter
             return cur;
         }
 
-        public static T GetTargetByStat(List<T> availableTargets, TargetData targetData, List<T> targetsToAvoid = null)
+        public static T GetTargetByStat(List<T> availableTargets, TargetData targetData)
         {
             T cur = availableTargets.Count > 0 ? availableTargets[availableTargets.Count / 2] : null;
 
             //checking for target from available targets
             for (int i = 0; i < availableTargets.Count; i++)
             {
-                if (TargetGeneralChecks(availableTargets, targetData, i)) continue;
+                if (TargetGeneralChecks(availableTargets[i], targetData)) continue;
 
                 if (!ReferenceEquals(cur, null))
                 {
@@ -196,14 +196,14 @@ namespace Tools.Targeter
             return cur;
         }
 
-        public static T GetTargetByDistance(List<T> availableTargets, TargetData targetData, Transform originPos, List<T> targetsToAvoid = null)
+        public static T GetTargetByDistance(List<T> availableTargets, TargetData targetData, Transform originPos)
         {
             T cur = availableTargets.Count > 0 ? availableTargets[availableTargets.Count / 2] : null;
 
             //checking for target from available targets
             for (int i = 0; i < availableTargets.Count; i++)
             {
-                if (TargetGeneralChecks(availableTargets, targetData, i)) continue;
+                if (TargetGeneralChecks(availableTargets[i], targetData)) continue;
 
                 if (!ReferenceEquals(cur, null))
                 {
@@ -227,14 +227,14 @@ namespace Tools.Targeter
             return cur;
         }
 
-        public static T GetTargetByDistanceToCore(List<T> availableTargets, TargetData targetData, List<T> targetsToAvoid = null)
+        public static T GetTargetByDistanceToCore(List<T> availableTargets, TargetData targetData)
         {
             T cur = availableTargets.Count > 0 ? availableTargets[availableTargets.Count / 2] : null;
 
             //checking for target from available targets
             for (int i = 0; i < availableTargets.Count; i++)
             {
-                if (TargetGeneralChecks(availableTargets, targetData, i)) continue;
+                if (TargetGeneralChecks(availableTargets[i], targetData)) continue;
 
                 if (!ReferenceEquals(cur, null))
                 {

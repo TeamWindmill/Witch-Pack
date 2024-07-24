@@ -42,19 +42,43 @@ public class ShamanUpgradePanel : UIElement
 
     public void SelectAbility(int abilityPanelIndex)
     {
+        SelectAbility(abilityPanelIndex, null);
+    }
+
+    public void SelectAbility(int abilityPanelIndex ,AbilitySO ability = null)
+    {
         //deselect all
         _abilityMetaUpgrades.ForEach(upgrade => upgrade.SelectAbility(false));
         _statMetaUpgrades.SelectAbility(false);
         
         //select
-        if (abilityPanelIndex < 2)
+        if (ability == null)
         {
-            _abilityMetaUpgrades[abilityPanelIndex].SelectAbility(true);
-            (WindowManager as UpgradeWindow)?.SelectAbility(_abilityMetaUpgrades[abilityPanelIndex].AbilityPanelConfig.Ability);
+            switch (abilityPanelIndex)
+            {
+                case < 2:
+                    _abilityMetaUpgrades[abilityPanelIndex].SelectAbility(true);
+                    (WindowManager as UpgradeWindow)?.SelectAbility(_abilityMetaUpgrades[abilityPanelIndex].AbilityPanelConfig.Ability);
+                    break;
+                case 2:
+                    _statMetaUpgrades.SelectAbility(true);
+                    (WindowManager as UpgradeWindow)?.SelectAbility(ShamanSaveData.Config.RootAbilities[2]);
+                    break;
+            }
         }
-        else if (abilityPanelIndex == 2) _statMetaUpgrades.SelectAbility(true);
-        
-        
+        else
+        {
+            switch (abilityPanelIndex)
+            {
+                case < 2:
+                    _abilityMetaUpgrades[abilityPanelIndex].SelectAbility(true);
+                    break;
+                case 2:
+                    _statMetaUpgrades.SelectAbility(true);
+                    break;
+            }
+            (WindowManager as UpgradeWindow)?.SelectAbility(ability);
+        }
     }
 
     public void AddUpgradeToShaman(AbilityUpgradeConfig abilityUpgrade)
