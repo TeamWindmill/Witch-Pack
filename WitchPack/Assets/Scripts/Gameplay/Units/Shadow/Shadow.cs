@@ -18,10 +18,9 @@ public class Shadow : MonoBehaviour
 
     private Dictionary<StatType, float> currentStatPSEffects;
 
-
     public void Show(Shaman shaman)
     {
-        currentStatPSEffects = new Dictionary<StatType, float>();
+        currentStatPSEffects = new();
         _stats = shaman.Stats;
         spriteRenderer.sprite = shaman.ShamanConfig.UnitSprite;
         _shaman = shaman;
@@ -46,6 +45,12 @@ public class Shadow : MonoBehaviour
         {
             currentStatPSEffects.Add(statType,value);
         }
+        
+        if (statType == StatType.BaseRange)
+        {
+            var range = _shaman.Stats[StatType.BaseRange].Value + currentStatPSEffects[StatType.BaseRange];
+            ChangeRange(range);
+        }
     }
 
     private void Update()
@@ -58,6 +63,11 @@ public class Shadow : MonoBehaviour
             lineRenderer.positionCount = 2; 
             lineRenderer.SetPositions(new Vector3[] { _shaman.transform.position, transform.position });
         }
+    }
+
+    private void ChangeRange(float range)
+    {
+        rangeTransform.localScale = new Vector3(range, range, 0);
     }
 
     

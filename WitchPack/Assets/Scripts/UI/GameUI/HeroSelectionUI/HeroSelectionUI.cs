@@ -65,13 +65,15 @@ public class HeroSelectionUI : UIElement
 
     public override void OnPointerEnter(PointerEventData eventData)
     {
-        GameManager.CameraHandler.ToggleCameraLock(true);
         base.OnPointerEnter(eventData);
+        if(GameManager.CameraHandler.DragPanMoveActive) return;
+        GameManager.CameraHandler.ToggleCameraLock(true);
     }
 
     public override void OnPointerExit(PointerEventData eventData)
     {
-        GameManager.CameraHandler.ToggleCameraLock(false);
         base.OnPointerExit(eventData);
+        if(GameManager.CameraHandler.DragPanMoveActive) return;
+        GameManager.CameraHandler.ToggleCameraLock(false);
     }
 }
