@@ -42,7 +42,7 @@ public class MultiShot : OffensiveAbility
                 shotMono.transform.position = Owner.CastPos.position;
                 shotMono.gameObject.SetActive(true);
                 
-                if (projectilesAmount % 2 == 0)
+                if (projectilesAmount % 2 == 0) //instantiation for even amount
                 {
                     if (i <= 1) offset /= 2;
                     if (i % 2 != 0)
@@ -54,7 +54,7 @@ public class MultiShot : OffensiveAbility
                         shotMono.Init(MultishotConfig.MultiShotType,Owner, _targets[i], this, dirAngle - offset * (i/2+1));
                     }
                 }
-                else
+                else //instantiation for odd amount
                 {
                     if (i == 0)
                     {

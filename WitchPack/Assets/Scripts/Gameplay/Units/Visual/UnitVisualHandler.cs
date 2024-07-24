@@ -42,6 +42,7 @@ public abstract class UnitVisualHandler : MonoBehaviour
     }
     protected virtual void FlipSpriteOnTarget(CastingAbility ability,IDamagable target)
     {
+        if(target == null) return;
         var distance = _baseUnit.transform.position - target.GameObject.transform.position;
         FlipX(distance.x < 0);
     }

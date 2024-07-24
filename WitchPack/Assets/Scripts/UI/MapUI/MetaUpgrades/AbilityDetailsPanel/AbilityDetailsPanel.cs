@@ -11,6 +11,7 @@ public class AbilityDetailsPanel : UIElement<ShamanSaveData,AbilitySO>
     [SerializeField] private TMP_Dropdown TargetingOptionsDropdown;
     [SerializeField] private TMP_Dropdown TargetModifierDropdown;
     [SerializeField] private AbilityStatBlockUI[] abilityStatBlocks;
+    [SerializeField] private AbilitySkillTreeDetails abilitySkillTree;
 
     private AbilitySO _abilityConfig;
     private ShamanSaveData _shamanSaveData;
@@ -29,7 +30,7 @@ public class AbilityDetailsPanel : UIElement<ShamanSaveData,AbilitySO>
         _abilityConfig = abilitySO;
         descriptionText.text = abilitySO.Discription;
         abilityNameText.text = abilitySO.Name;
-
+        abilitySkillTree.Init(abilitySO);
         
         AbilityStatInit(abilitySO);
         base.Init(shamanSaveData,abilitySO);

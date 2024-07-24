@@ -31,7 +31,7 @@ public class LevelSelectionWindow : UIElement
         _enemyPanel.Hide();
         _rewardsPanel.Hide();
         MapManager.Instance.Init();
-        //UIManager.RefreshUIGroup(UIGroup.PartySelectionWindow);
+        UIManager.RefreshUIGroup(UIGroup.PartySelectionWindow);
         base.Hide();
     }
 

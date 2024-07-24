@@ -1,3 +1,4 @@
+using System;
 using PathCreation;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -19,9 +20,11 @@ public class Enemy : BaseUnit
 
     [SerializeField, TabGroup("Visual")] private EnemyAnimator enemyAnimator;
 
+    [ReadOnly,SerializeField]private Vector3 _defaultVisualsPos;
 
     private void OnValidate()
     {
+        _defaultVisualsPos = enemyAnimator.transform.localPosition;
         enemyAnimator ??= GetComponentInChildren<EnemyAnimator>();
     }
     public override void Init(BaseUnitConfig givenConfig)
@@ -29,7 +32,8 @@ public class Enemy : BaseUnit
         EnemyConfig = givenConfig as EnemyConfig;
         base.Init(EnemyConfig);
         Damageable.Init();
-        transform.localScale = new Vector3(EnemyConfig.Size,EnemyConfig.Size,EnemyConfig.Size);
+        enemyAnimator.transform.localPosition = _defaultVisualsPos;
+        //transform.localScale = new Vector3(EnemyConfig.Size,EnemyConfig.Size,EnemyConfig.Size);
         Path = EnemyConfig.Path;
         CoreDamage = EnemyConfig.CoreDamage;
         EnergyPoints = EnemyConfig.EnergyPoints;

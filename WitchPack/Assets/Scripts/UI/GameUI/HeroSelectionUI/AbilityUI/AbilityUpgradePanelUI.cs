@@ -6,7 +6,7 @@ using UnityEngine;
 public class AbilityUpgradePanelUI : UIElement
 {
     public event Action OnAbilityUpgrade;
-    [SerializeField] private TextMeshProUGUI titleTMP;
+    [SerializeField] private TextMeshProUGUI title;
     [SerializeField] private AbilityUpgradeUIButton baseAbilityUpgradeUIButton;
     [SerializeField] private Transform upgrades3Holder;
     [SerializeField] private Transform upgrades3BG;
@@ -31,7 +31,7 @@ public class AbilityUpgradePanelUI : UIElement
         _abilityUIButton = abilityUIButton;
         rootAbility = abilityUIButton.RootAbility;
         _abilityUpgrades = rootAbility.GetUpgrades();
-        titleTMP.text = abilityUIButton.RootAbility.BaseConfig is PassiveSO ? "Passive" : rootAbility.BaseConfig.Name;
+        title.text = abilityUIButton.RootAbility.BaseConfig is PassiveSO ? "Passive" : rootAbility.BaseConfig.Name;
         baseAbilityUpgradeUIButton.OnAbilityClick += UpgradeShamanAbility;
         if (_abilityUpgrades.Count == 3)
         {
@@ -60,7 +60,7 @@ public class AbilityUpgradePanelUI : UIElement
         baseAbilityUpgradeUIButton.Init(rootAbility,shamanHasSkillPoints);
         if (_abilityUpgrades.Count == 3)
         {
-            titleTMP.rectTransform.anchoredPosition = new Vector2(0,-30);
+            title.rectTransform.anchoredPosition = new Vector2(0,-30);
             upgrades3BG.gameObject.SetActive(true);
             upgrades3Holder.gameObject.SetActive(true);
             for (int i = 0; i < abilityUpgrades3UI.Length; i++)
@@ -70,7 +70,7 @@ public class AbilityUpgradePanelUI : UIElement
         }
         else if (_abilityUpgrades.Count == 2)
         {
-            titleTMP.rectTransform.anchoredPosition = new Vector2(0,-120);
+            title.rectTransform.anchoredPosition = new Vector2(0,-120);
             upgrades2BG.gameObject.SetActive(true);
             upgrades2Holder.gameObject.SetActive(true);
             for (int i = 0; i < abilityUpgrades2UI.Length; i++)
