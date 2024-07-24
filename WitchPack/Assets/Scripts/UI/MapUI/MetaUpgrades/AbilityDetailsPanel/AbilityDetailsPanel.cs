@@ -30,7 +30,7 @@ public class AbilityDetailsPanel : UIElement<ShamanSaveData,AbilitySO>
         _abilityConfig = abilitySO;
         descriptionText.text = abilitySO.Discription;
         abilityNameText.text = abilitySO.Name;
-        abilitySkillTree.Init(abilitySO);
+        abilitySkillTree.Init(abilitySO.RootAbility,abilitySO);
         
         AbilityStatInit(abilitySO);
         base.Init(shamanSaveData,abilitySO);

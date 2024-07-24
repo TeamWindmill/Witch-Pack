@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -30,11 +31,13 @@ public abstract class AbilitySO : ScriptableObject
     [SerializeField] private Sprite upgradeIcon;
     
     [HorizontalGroup("General Settings")][VerticalGroup("General Settings/left")]
+    [BoxGroup("General Settings/left/Skill Tree")][SerializeField] private bool _isRootAbility;
     [BoxGroup("General Settings/left/Skill Tree")][SerializeField] private AbilitySO[] _upgrades;
     
     [BoxGroup("Popup Numbers")][SerializeField] private bool hasPopupColor;
     [BoxGroup("Popup Numbers")][SerializeField, ShowIf(nameof(hasPopupColor))] private Color popupColor;
 
+    public AbilitySO RootAbility { get; set; }
     public bool HasPopupColor { get => hasPopupColor; }
     public Color PopupColor { get => popupColor; }
     public Sprite DefaultIcon => defaultIcon;
@@ -44,7 +47,20 @@ public abstract class AbilitySO : ScriptableObject
     public string Discription => discription;
     public AbilitySO[] Upgrades => _upgrades;
 
-    
+    private void OnEnable()
+    {
+        if(!_isRootAbility) return;
+        RootAbility = this;
+        foreach (var upgrade in Upgrades)
+        {
+            upgrade.RootAbility = this;
+            foreach (var secondUpgrade in upgrade.Upgrades)
+            {
+                secondUpgrade.RootAbility = this;
+            }
+        }
+    }
+
     public List<AbilitySO> GetUpgrades()
     {
         var upgrades = new List<AbilitySO>();
@@ -59,5 +75,4 @@ public abstract class AbilitySO : ScriptableObject
 
         return upgrades;
     }
-
 }

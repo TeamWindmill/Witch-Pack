@@ -124,7 +124,7 @@ public abstract class UIElement<T> : UIElement
 {
     public bool IsInitialized { get; protected set; }
 
-    public virtual void Init(T data)
+    public virtual void Init(T rootAbility)
     {
         IsInitialized = true;
     }

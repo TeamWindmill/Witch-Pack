@@ -20,6 +20,7 @@ public class AbilityMetaUpgrade : UIElement
     private void Start()
     {
         _abilityUpgradeIcons.ForEach(icon => icon.OnSelect += _shamanUpgradePanel.SelectAbility);
+        _abilityUpgradeIcons.ForEach(icon => icon.OnUpgrade += _shamanUpgradePanel.AddUpgradeToShaman);
     }
 
     public void Init(int index, AbilityPanelUpgrades abilityPanelConfig)
