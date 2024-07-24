@@ -23,13 +23,11 @@ public class AbilitySkillTreeDetails : UIElement<AbilitySO>
         _abilityUpgrades = data.GetUpgrades();
         if (_abilityUpgrades.Count == 3)
         {
-            title.rectTransform.anchoredPosition = new Vector2(0,-30);
             upgrades3BG.gameObject.SetActive(true);
             upgrades3Holder.gameObject.SetActive(true);
         }
         else if (_abilityUpgrades.Count == 2)
         {
-            title.rectTransform.anchoredPosition = new Vector2(0,-120);
             upgrades2BG.gameObject.SetActive(true);
             upgrades2Holder.gameObject.SetActive(true);
         }
