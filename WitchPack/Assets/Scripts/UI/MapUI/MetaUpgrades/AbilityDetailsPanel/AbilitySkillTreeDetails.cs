@@ -1,38 +1,88 @@
 using System.Collections;
 using System.Collections.Generic;
+using Sirenix.Utilities;
 using TMPro;
 using UnityEngine;
 
-public class AbilitySkillTreeDetails : UIElement<AbilitySO>
+public class AbilitySkillTreeDetails : UIElement<AbilitySO, AbilitySO>
 {
     [SerializeField] private TextMeshProUGUI title;
-    [SerializeField] private AbilityUpgradeUIButton baseAbilityUpgradeUIButton;
+    [SerializeField] private AbilitySkillTreeIconDetails baseAbilityUpgradeUIButton;
     [SerializeField] private Transform upgrades3Holder;
     [SerializeField] private Transform upgrades3BG;
-    [SerializeField] private AbilityUpgradeUIButton[] abilityUpgrades3UI;
+    [SerializeField] private AbilitySkillTreeIconDetails[] abilityUpgrades3UI;
     [SerializeField] private Transform upgrades2Holder;
     [SerializeField] private Transform upgrades2BG;
-    [SerializeField] private AbilityUpgradeUIButton[] abilityUpgrades2UI;
-    
+    [SerializeField] private AbilitySkillTreeIconDetails[] abilityUpgrades2UI;
+
     private List<AbilitySO> _abilityUpgrades;
 
-    public override void Init(AbilitySO data)
+    public override void Init(AbilitySO rootAbility, AbilitySO selectedAbility)
     {
         Hide();
-        title.text = data.Name;
-        _abilityUpgrades = data.GetUpgrades();
+        title.text = selectedAbility.Name;
+        _abilityUpgrades = rootAbility.GetUpgrades();
+        IconsInit(rootAbility);
+        HighlightIcon(rootAbility, selectedAbility);
+        base.Init(rootAbility, selectedAbility);
+        Show();
+    }
+
+    private void HighlightIcon(AbilitySO rootAbility, AbilitySO selectedAbility)
+    {
+        if (selectedAbility == null) return;
+        
+        //disable all
+        baseAbilityUpgradeUIButton.HighlightIcon(false);
+        if (_abilityUpgrades.Count == 3) abilityUpgrades3UI.ForEach(ability => ability.HighlightIcon(false));
+        else if (_abilityUpgrades.Count == 2) abilityUpgrades2UI.ForEach(ability => ability.HighlightIcon(false));
+        
+        //enable selected
+        if (rootAbility == selectedAbility)
+        {
+            baseAbilityUpgradeUIButton.HighlightIcon(true);
+            return;
+        }
+
+        for (var i = 0; i < _abilityUpgrades.Count; i++)
+        {
+            var ability = _abilityUpgrades[i];
+            if (ability == selectedAbility)
+            {
+                switch (_abilityUpgrades.Count)
+                {
+                    case 3:
+                        abilityUpgrades3UI[i].HighlightIcon(true);
+                        break;
+                    case 2:
+                        abilityUpgrades2UI[i].HighlightIcon(true);
+                        break;
+                }
+            }
+        }
+    }
+
+    private void IconsInit(AbilitySO rootAbility)
+    {
+        baseAbilityUpgradeUIButton.Init(rootAbility);
         if (_abilityUpgrades.Count == 3)
         {
             upgrades3BG.gameObject.SetActive(true);
             upgrades3Holder.gameObject.SetActive(true);
+            for (int i = 0; i < _abilityUpgrades.Count; i++)
+            {
+                abilityUpgrades3UI[i].Init(_abilityUpgrades[i]);
+            }
         }
         else if (_abilityUpgrades.Count == 2)
         {
             upgrades2BG.gameObject.SetActive(true);
             upgrades2Holder.gameObject.SetActive(true);
+            for (int i = 0; i < _abilityUpgrades.Count; i++)
+            {
+                abilityUpgrades2UI[i].Init(_abilityUpgrades[i]);
+            }
         }
-        base.Init(data);
-        Show();
     }
 
     public override void Hide()

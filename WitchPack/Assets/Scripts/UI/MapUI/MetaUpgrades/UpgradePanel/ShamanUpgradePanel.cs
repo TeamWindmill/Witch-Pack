@@ -45,14 +45,14 @@ public class ShamanUpgradePanel : UIElement
         SelectAbility(abilityPanelIndex, null);
     }
 
-    public void SelectAbility(int abilityPanelIndex ,AbilitySO ability = null)
+    public void SelectAbility(int abilityPanelIndex ,AbilitySO ability)
     {
         //deselect all
         _abilityMetaUpgrades.ForEach(upgrade => upgrade.SelectAbility(false));
         _statMetaUpgrades.SelectAbility(false);
         
         //select
-        if (ability == null)
+        if (!ability)
         {
             switch (abilityPanelIndex)
             {
