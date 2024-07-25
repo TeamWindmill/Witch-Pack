@@ -15,17 +15,17 @@ public class ShamanDetailsPanel : UIElement<ShamanSaveData>
 
     private UnitStats _shamanStats;
     private ShamanSaveData _shaman;
-    public override void Init(ShamanSaveData data)
+    public override void Init(ShamanSaveData rootAbility)
     {
-        _shaman = data;
-        _nameText.text = data.Config.Name;
-        _shamanSplash.sprite = data.Config.UnitSprite;
-        _descriptionText.text = data.Config.Description;
-        _skillPointsText.text = "SP " + data.ShamanExperienceHandler.AvailableSkillPoints;
-        _expBar.Init(new StatBarData($"LVL {data.ShamanExperienceHandler.ShamanLevel}", data.ShamanExperienceHandler.CurrentExp, data.ShamanExperienceHandler.MaxExpToNextLevel));
-        data.ShamanExperienceHandler.OnShamanGainExp += _expBar.UpdateStatbar;
-        StatInit(data);
-        base.Init(data);
+        _shaman = rootAbility;
+        _nameText.text = rootAbility.Config.Name;
+        _shamanSplash.sprite = rootAbility.Config.UnitSprite;
+        _descriptionText.text = rootAbility.Config.Description;
+        _skillPointsText.text = "SP " + rootAbility.ShamanExperienceHandler.AvailableSkillPoints;
+        _expBar.Init(new StatBarData($"LVL {rootAbility.ShamanExperienceHandler.ShamanLevel}", rootAbility.ShamanExperienceHandler.CurrentExp, rootAbility.ShamanExperienceHandler.MaxExpToNextLevel));
+        rootAbility.ShamanExperienceHandler.OnShamanGainExp += _expBar.UpdateStatbar;
+        StatInit(rootAbility);
+        base.Init(rootAbility);
     }
 
     private void StatInit(ShamanSaveData data)

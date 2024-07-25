@@ -9,12 +9,12 @@ public class StatMetaUpgradeConfig : MetaUpgradeConfig
     [SerializeField] private bool _upgradePassiveAbility;
     [SerializeField,HideIf(nameof(_upgradeAbility))] private StatUpgrade[] _stats;
     
-    [SerializeField,ShowIf(nameof(_showAbility))] private AbilityStatUpgradeConfig[] _abilityStats;
-    [SerializeField,ShowIf(nameof(_showAbility))] private AbilityBehavior[] _abilitiesBehaviors;
-    [SerializeField,ShowIf(nameof(_showAbility))] private DamageBoostData[] _damageBoosts;
-    [SerializeField,ShowIf(nameof(_showAbility))] private StatusEffectUpgradeConfig[] _statusEffectUpgrades;
-    [SerializeField,ShowIf(nameof(_showAbility))] private AbilitySO[] _abilitiesToUpgrade;
-    private bool _showAbility =>  _upgradePassiveAbility || _upgradeAbility;
+    [SerializeField,ShowIf(nameof(ShowAbility))] private AbilityStatUpgradeConfig[] _abilityStats;
+    [SerializeField,ShowIf(nameof(ShowAbility))] private AbilityBehavior[] _abilitiesBehaviors;
+    [SerializeField,ShowIf(nameof(ShowAbility))] private DamageBoostData[] _damageBoosts;
+    [SerializeField,ShowIf(nameof(ShowAbility))] private StatusEffectUpgradeConfig[] _statusEffectUpgrades;
+    [SerializeField,ShowIf(nameof(ShowAbility))] private AbilitySO[] _abilitiesToUpgrade;
+    public bool ShowAbility =>  _upgradePassiveAbility || _upgradeAbility;
     public StatUpgrade[] Stats => _stats;
     public AbilityStatUpgradeConfig[] AbilityStats => _abilityStats;
     public bool UpgradeAbility => _upgradeAbility;

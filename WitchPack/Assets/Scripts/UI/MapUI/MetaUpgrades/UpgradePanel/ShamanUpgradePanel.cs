@@ -24,7 +24,7 @@ public class ShamanUpgradePanel : UIElement
         }
         
         _statMetaUpgrades.Init(_shamanMetaUpgradeConfig.StatPanelUpgrades.StatUpgrades);
-
+        //SelectAbility(0,shamanSaveData.Config.RootAbilities[0]);
         Show();
     }
 
@@ -42,19 +42,43 @@ public class ShamanUpgradePanel : UIElement
 
     public void SelectAbility(int abilityPanelIndex)
     {
+        (WindowManager as UpgradeWindow).SelectAbility(abilityPanelIndex, ShamanSaveData.Config.RootAbilities[abilityPanelIndex]);
+    }
+
+    public void SelectAbility(int abilityPanelIndex ,AbilitySO ability)
+    {
         //deselect all
         _abilityMetaUpgrades.ForEach(upgrade => upgrade.SelectAbility(false));
         _statMetaUpgrades.SelectAbility(false);
         
         //select
-        if (abilityPanelIndex < 2)
+        if (!ability)
         {
-            _abilityMetaUpgrades[abilityPanelIndex].SelectAbility(true);
-            (WindowManager as UpgradeWindow)?.SelectAbility(_abilityMetaUpgrades[abilityPanelIndex].AbilityPanelConfig.Ability);
+            switch (abilityPanelIndex)
+            {
+                case < 2:
+                    _abilityMetaUpgrades[abilityPanelIndex].SelectAbility(true);
+                    //(WindowManager as UpgradeWindow)?.SelectAbility(_abilityMetaUpgrades[abilityPanelIndex].AbilityPanelConfig.Ability);
+                    break;
+                case 2:
+                    _statMetaUpgrades.SelectAbility(true);
+                    //(WindowManager as UpgradeWindow)?.SelectAbility(ShamanSaveData.Config.RootAbilities[2]);
+                    break;
+            }
         }
-        else if (abilityPanelIndex == 2) _statMetaUpgrades.SelectAbility(true);
-        
-        
+        else
+        {
+            switch (abilityPanelIndex)
+            {
+                case < 2:
+                    _abilityMetaUpgrades[abilityPanelIndex].SelectAbility(true);
+                    break;
+                case 2:
+                    _statMetaUpgrades.SelectAbility(true);
+                    break;
+            }
+            //(WindowManager as UpgradeWindow)?.SelectAbility(ability);
+        }
     }
 
     public void AddUpgradeToShaman(AbilityUpgradeConfig abilityUpgrade)

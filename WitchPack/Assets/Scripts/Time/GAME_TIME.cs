@@ -8,7 +8,7 @@ using UnityEngine;
 /// </summary>
 public class GAME_TIME : MonoBehaviour
 {
-    public static event Action OnTimeRateChange;
+    public static event Action<float> OnTimeRateChange;
     private static float _gameTime;
     private static float _timeRate = 1f;
     private static float _startGameTime;
@@ -108,7 +108,7 @@ public class GAME_TIME : MonoBehaviour
 
         //Debug.Log($"Set time to {timeRate}");
 
-        OnTimeRateChange?.Invoke();
+        OnTimeRateChange?.Invoke(_timeRate);
     }
 
     /// <summary>

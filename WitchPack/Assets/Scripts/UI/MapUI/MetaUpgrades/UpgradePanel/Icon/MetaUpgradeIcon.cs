@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class MetaUpgradeIcon<T> : ClickableUIElement
 {
     public event Action<T> OnUpgrade;
-    public event Action<int> OnSelect;
+    public Action<int,AbilitySO,AbilitySO[]> OnSelect;
     public UpgradeState UpgradeState { get; private set; }
     public bool OpenAtStart => _openAtStart;
     public MetaUpgradeConfig UpgradeConfig => _upgradeConfig;
@@ -20,29 +20,32 @@ public class MetaUpgradeIcon<T> : ClickableUIElement
     [SerializeField] private Image _lineImage;
     [SerializeField] private Image _frameImage;
     [SerializeField] private Image _alphaImage;
+    [SerializeField] private Image _lockedAlphaImage;
     [SerializeField] private bool _openAtStart;
-
-    [Space] [BoxGroup("Sprites")] [SerializeField]
-    private Sprite upgradeReadyFrameSprite;
-
+    [SerializeField] private float _holdClickVisualsStartDelay = 0.1f;
+    [Space] 
+    [BoxGroup("Sprites")] [SerializeField] private Sprite upgradeReadyFrameSprite;
     [BoxGroup("Sprites")] [SerializeField] private Sprite defaultFrameSprite;
+    [BoxGroup("Sprites")] [SerializeField] private Sprite selectedFrameSprite;
     [BoxGroup("Sprites")] [SerializeField] private Sprite defaultLineSprite;
     [BoxGroup("Sprites")] [SerializeField] private Sprite upgradedLineSprite;
     
 
     private int _availableSkillPoints;
-    protected T Upgrade;
+    public T Upgrade { get; protected set; }
     private MetaUpgradeConfig _upgradeConfig;
-    private int _abilityIndex;
+    protected int _panelIndex;
+    protected bool CanPurchaseUpgrade => _availableSkillPoints >= _upgradeConfig.SkillPointsCost;
 
 
     public virtual void Init(int index, MetaUpgradeConfig upgradeConfig, int availableSkillPoints)
     {
-        _abilityIndex = index;
+        _panelIndex = index;
         UpgradeState = UpgradeState.Locked;
         _upgradeConfig = upgradeConfig;
         _availableSkillPoints = availableSkillPoints;
         _cost.text = upgradeConfig.SkillPointsCost.ToString();
+        ToggleAlpha(false);
         if (!upgradeConfig.NotWorking)
         {
             _name.text = upgradeConfig.Name;
@@ -58,24 +61,20 @@ public class MetaUpgradeIcon<T> : ClickableUIElement
         Show();
     }
 
-    protected override void OnClick(PointerEventData eventData)
+    public void SelectIcon(bool state)
     {
-        OnSelect?.Invoke(_abilityIndex);
-        switch (UpgradeState)
+        _frameImage.sprite = state ? selectedFrameSprite : defaultFrameSprite;
+    }
+
+    protected override void OnHoldClick()
+    {
+        base.OnHoldClick();
+        if (CanPurchaseUpgrade && UpgradeState == UpgradeState.Open)
         {
-            case UpgradeState.Locked:
-                break;
-            case UpgradeState.Open:
-                // if (_availableSkillPoints >= _upgradeConfig.SkillPointsCost)
-                // {
-                //     ChangeState(UpgradeState.Upgraded);
-                //     OnUpgrade?.Invoke(Upgrade);
-                // }
-                break;
-            case UpgradeState.Upgraded:
-                break;
+            OnUpgrade?.Invoke(Upgrade);
+            ToggleAlpha(false);
+            //ChangeState(UpgradeState.Upgraded);
         }
-        base.OnClick(eventData);
     }
 
     public void ChangeState(UpgradeState upgradeState)
@@ -84,32 +83,64 @@ public class MetaUpgradeIcon<T> : ClickableUIElement
         switch (upgradeState)
         {
             case UpgradeState.Locked:
-                _alphaImage.gameObject.SetActive(true);
+                _lockedAlphaImage.gameObject.SetActive(true);
                 _lineImage.sprite = defaultLineSprite;
                 _frameImage.sprite = defaultFrameSprite;
                 break;
             case UpgradeState.Open:
-                if (_availableSkillPoints >= _upgradeConfig.SkillPointsCost)
+                if (CanPurchaseUpgrade)
                 {
                     if(_upgradeConfig.NotWorking) return;
-                    _alphaImage.gameObject.SetActive(false);
+                    _lockedAlphaImage.gameObject.SetActive(false);
                     _lineImage.sprite = defaultLineSprite;
                     _frameImage.sprite = upgradeReadyFrameSprite;
                 }
                 else
                 {
-                    _alphaImage.gameObject.SetActive(true);
+                    _lockedAlphaImage.gameObject.SetActive(true);
                     _lineImage.sprite = defaultLineSprite;
-                    _frameImage.sprite = defaultLineSprite;
+                    _frameImage.sprite = defaultFrameSprite;
                 }
 
                 break;
             case UpgradeState.Upgraded:
-                _alphaImage.gameObject.SetActive(false);
+                _lockedAlphaImage.gameObject.SetActive(false);
                 _lineImage.sprite = upgradedLineSprite;
                 _frameImage.sprite = defaultFrameSprite;
                 if (childNode != null) childNode.ChangeState(UpgradeState.Open);
                 break;
         }
+    }
+
+    public override void OnPointerDown(PointerEventData eventData)
+    {
+        base.OnPointerDown(eventData);
+        if(UpgradeState != UpgradeState.Open) return;
+        ToggleAlpha(true);
+    }
+
+    public override void OnPointerUp(PointerEventData eventData)
+    {
+        base.OnPointerUp(eventData);
+        if(UpgradeState != UpgradeState.Open) return;
+        ToggleAlpha(false);
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        if(UpgradeState != UpgradeState.Open) return;
+        if(HoldClickTimer < _holdClickVisualsStartDelay) return;
+        if (CanPurchaseUpgrade && PointerDown)
+        {
+            var ratio = Mathf.InverseLerp(_holdClickVisualsStartDelay,holdClickSpeed, HoldClickTimer);
+            _alphaImage.fillAmount = ratio;
+        }
+    }
+
+    private void ToggleAlpha(bool state)
+    {
+        _alphaImage.fillAmount = 0;
+        _alphaImage.gameObject.SetActive(state);
     }
 }

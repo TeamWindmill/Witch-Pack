@@ -40,6 +40,7 @@ public class SmokeBombMono : MonoBehaviour
         TimerManager.AddTimer(ability.GetAbilityStatValue(AbilityStatType.Duration), EndBomb,true);
         _targeter.OnTargetAdded += OnTargetEntered;
         _targeter.OnTargetLost += OnTargetExited;
+        GAME_TIME.OnTimeRateChange += SetTime;
     }
     protected virtual void OnTargetEntered(GroundCollider collider)
     {
@@ -80,7 +81,6 @@ public class SmokeBombMono : MonoBehaviour
         cloudsExit.gameObject.SetActive(true);
         rangeExit.gameObject.SetActive(true);
         OnAbilityEnd?.Invoke();
-        rangeExit.stopped += OnEnd;
     }
 
     protected virtual void OnEnd(PlayableDirector director)
@@ -91,5 +91,28 @@ public class SmokeBombMono : MonoBehaviour
         director.stopped -= OnEnd;
         _targeter.OnTargetAdded -= OnTargetEntered;
         _targeter.OnTargetLost -= OnTargetExited;
+        rangeExit.stopped += OnEnd;
+        GAME_TIME.OnTimeRateChange -= SetTime;
+    }
+
+    private void SetTime(float newTime)
+    {
+        if (newTime == 0)
+        {
+            rangeEnter.Pause();
+            rangeExit.Pause();
+            cloudsEnter.Pause();
+            cloudsIdle.Pause();
+            cloudsExit.Pause();
+        }
+        else
+        {
+            rangeEnter.Resume();
+            rangeExit.Resume();
+            cloudsEnter.Resume();
+            cloudsIdle.Resume();
+            cloudsExit.Resume();
+        }
+        
     }
 }
