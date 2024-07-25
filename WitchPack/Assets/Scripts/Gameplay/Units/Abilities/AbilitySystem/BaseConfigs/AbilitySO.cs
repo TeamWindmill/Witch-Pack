@@ -33,6 +33,7 @@ public abstract class AbilitySO : ScriptableObject
     [HorizontalGroup("General Settings")][VerticalGroup("General Settings/left")]
     [BoxGroup("General Settings/left/Skill Tree")][SerializeField] private bool _isRootAbility;
     [BoxGroup("General Settings/left/Skill Tree")][SerializeField] private AbilitySO[] _upgrades;
+    [BoxGroup("General Settings/left/Skill Tree")][SerializeField] private AbilityStatType[] _statTypesForUIDisplay;
     
     [BoxGroup("Popup Numbers")][SerializeField] private bool hasPopupColor;
     [BoxGroup("Popup Numbers")][SerializeField, ShowIf(nameof(hasPopupColor))] private Color popupColor;
@@ -46,6 +47,7 @@ public abstract class AbilitySO : ScriptableObject
     public string Name => _name;
     public string Discription => discription;
     public AbilitySO[] Upgrades => _upgrades;
+    public AbilityStatType[] StatTypesForUIDisplay => _statTypesForUIDisplay;
 
     private void OnEnable()
     {

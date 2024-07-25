@@ -19,7 +19,7 @@ public class StatMetaUpgrade : UIElement
 
     private void Start()
     {
-        _statUpgradeIcons.ForEach(icon => icon.OnSelect += _shamanUpgradePanel.SelectAbility);
+        _statUpgradeIcons.ForEach(icon => icon.OnSelect += (WindowManager as UpgradeWindow).SelectAbility);
         _statUpgradeIcons.ForEach(icon => icon.OnUpgrade += _shamanUpgradePanel.AddUpgradeToShaman);
     }
     public void Init(List<StatMetaUpgradeConfig> statUpgradeConfigs)

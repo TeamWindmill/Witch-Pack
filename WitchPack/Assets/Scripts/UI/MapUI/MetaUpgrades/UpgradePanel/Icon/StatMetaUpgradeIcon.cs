@@ -10,10 +10,11 @@ public class StatMetaUpgradeIcon : MetaUpgradeIcon<StatMetaUpgradeConfig>
 
     protected override void OnClick(PointerEventData eventData)
     {
-        if (Upgrade.ShowAbility) OnSelect?.Invoke(_panelIndex,Upgrade.AbilitiesToUpgrade[0]);
+        
+        if (Upgrade.ShowAbility) OnSelect?.Invoke(_panelIndex,Upgrade.AbilitiesToUpgrade[0],Upgrade.AbilitiesToUpgrade);
         else
         {
-            OnSelect?.Invoke(_panelIndex,(WindowManager as UpgradeWindow).SelectedShaman.Config.RootAbilities[2]);
+            OnSelect?.Invoke(_panelIndex,(WindowManager as UpgradeWindow).SelectedShaman.Config.RootAbilities[2],null);
         }
         SelectIcon(true);
         base.OnClick(eventData);
