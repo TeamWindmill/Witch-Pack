@@ -64,9 +64,10 @@ public class AbilityMetaUpgrade : UIElement
     }
 
 
-    public void SelectAbility(bool state)
+    public void SelectAbility(bool state, AbilitySO ability = null)
     { 
        _abilityFrame.sprite = state ? _selectedFrame : _defaultFrame;
+       _abilityUpgradeIcons.ForEach(icon =>icon.SelectIcon(false));
     }
 
 }

@@ -17,10 +17,10 @@ public class AbilitySkillTreeDetails : UIElement<AbilitySO, AbilitySO>
 
     private List<AbilitySO> _abilityUpgrades;
 
-    public override void Init(AbilitySO rootAbility, AbilitySO selectedAbility = null)
+    public override void Init(AbilitySO rootAbility, AbilitySO selectedAbility)
     {
         Hide();
-        title.text = rootAbility.Name;
+        title.text = selectedAbility.Name;
         _abilityUpgrades = rootAbility.GetUpgrades();
         IconsInit(rootAbility);
         HighlightIcon(rootAbility, selectedAbility);

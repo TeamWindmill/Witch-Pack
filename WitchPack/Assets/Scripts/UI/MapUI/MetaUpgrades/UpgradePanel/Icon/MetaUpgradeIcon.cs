@@ -20,19 +20,19 @@ public class MetaUpgradeIcon<T> : ClickableUIElement
     [SerializeField] private Image _lineImage;
     [SerializeField] private Image _frameImage;
     [SerializeField] private Image _alphaImage;
+    [SerializeField] private Image _lockedAlphaImage;
     [SerializeField] private bool _openAtStart;
     [SerializeField] private float _holdClickVisualsStartDelay = 0.1f;
     [Space] 
-    [BoxGroup("Sprites")] [SerializeField]
-    private Sprite upgradeReadyFrameSprite;
-
+    [BoxGroup("Sprites")] [SerializeField] private Sprite upgradeReadyFrameSprite;
     [BoxGroup("Sprites")] [SerializeField] private Sprite defaultFrameSprite;
+    [BoxGroup("Sprites")] [SerializeField] private Sprite selectedFrameSprite;
     [BoxGroup("Sprites")] [SerializeField] private Sprite defaultLineSprite;
     [BoxGroup("Sprites")] [SerializeField] private Sprite upgradedLineSprite;
     
 
     private int _availableSkillPoints;
-    protected T Upgrade;
+    public T Upgrade { get; protected set; }
     private MetaUpgradeConfig _upgradeConfig;
     protected int _panelIndex;
     protected bool CanPurchaseUpgrade => _availableSkillPoints >= _upgradeConfig.SkillPointsCost;
@@ -61,6 +61,11 @@ public class MetaUpgradeIcon<T> : ClickableUIElement
         Show();
     }
 
+    public void SelectIcon(bool state)
+    {
+        _frameImage.sprite = state ? selectedFrameSprite : defaultFrameSprite;
+    }
+
     protected override void OnHoldClick()
     {
         base.OnHoldClick();
@@ -78,7 +83,7 @@ public class MetaUpgradeIcon<T> : ClickableUIElement
         switch (upgradeState)
         {
             case UpgradeState.Locked:
-                //_alphaImage.gameObject.SetActive(true);
+                _lockedAlphaImage.gameObject.SetActive(true);
                 _lineImage.sprite = defaultLineSprite;
                 _frameImage.sprite = defaultFrameSprite;
                 break;
@@ -86,20 +91,20 @@ public class MetaUpgradeIcon<T> : ClickableUIElement
                 if (CanPurchaseUpgrade)
                 {
                     if(_upgradeConfig.NotWorking) return;
-                    //_alphaImage.gameObject.SetActive(false);
+                    _lockedAlphaImage.gameObject.SetActive(false);
                     _lineImage.sprite = defaultLineSprite;
                     _frameImage.sprite = upgradeReadyFrameSprite;
                 }
                 else
                 {
-                    //_alphaImage.gameObject.SetActive(true);
+                    _lockedAlphaImage.gameObject.SetActive(true);
                     _lineImage.sprite = defaultLineSprite;
-                    _frameImage.sprite = defaultLineSprite;
+                    _frameImage.sprite = defaultFrameSprite;
                 }
 
                 break;
             case UpgradeState.Upgraded:
-                //_alphaImage.gameObject.SetActive(false);
+                _lockedAlphaImage.gameObject.SetActive(false);
                 _lineImage.sprite = upgradedLineSprite;
                 _frameImage.sprite = defaultFrameSprite;
                 if (childNode != null) childNode.ChangeState(UpgradeState.Open);

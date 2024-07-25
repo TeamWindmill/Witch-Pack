@@ -15,7 +15,7 @@ public class StatMetaUpgradeIcon : MetaUpgradeIcon<StatMetaUpgradeConfig>
         {
             OnSelect?.Invoke(_panelIndex,(WindowManager as UpgradeWindow).SelectedShaman.Config.RootAbilities[2]);
         }
-        
+        SelectIcon(true);
         base.OnClick(eventData);
     }
 }
