@@ -4,7 +4,7 @@ using Sirenix.Utilities;
 using TMPro;
 using UnityEngine;
 
-public class AbilitySkillTreeDetails : UIElement<AbilitySO, AbilitySO>
+public class AbilitySkillTreeDetails : UIElement<AbilitySO>
 {
     [SerializeField] private TextMeshProUGUI title;
     [SerializeField] private AbilitySkillTreeIconDetails baseAbilityUpgradeUIButton;
@@ -15,53 +15,52 @@ public class AbilitySkillTreeDetails : UIElement<AbilitySO, AbilitySO>
     [SerializeField] private Transform upgrades2BG;
     [SerializeField] private AbilitySkillTreeIconDetails[] abilityUpgrades2UI;
 
+    private AbilitySO _rootAbility;
     private List<AbilitySO> _abilityUpgrades;
 
-    public override void Init(AbilitySO rootAbility, AbilitySO selectedAbility)
+    public override void Init(AbilitySO selectedAbility)
     {
         Hide();
+        _rootAbility = selectedAbility.RootAbility;
+        _abilityUpgrades = selectedAbility.RootAbility.GetUpgrades();
         title.text = selectedAbility.Name;
-        _abilityUpgrades = rootAbility.GetUpgrades();
-        IconsInit(rootAbility);
-        HighlightIcon(rootAbility, selectedAbility);
-        base.Init(rootAbility, selectedAbility);
+        IconsInit(_rootAbility);
+        base.Init(selectedAbility);
         Show();
     }
 
-    private void HighlightIcon(AbilitySO rootAbility, AbilitySO selectedAbility)
+    public void HighlightIcons(AbilitySO[] abilitiesToHighlight)
     {
-        if (selectedAbility == null) return;
-        
-        //disable all
-        baseAbilityUpgradeUIButton.HighlightIcon(false);
-        if (_abilityUpgrades.Count == 3) abilityUpgrades3UI.ForEach(ability => ability.HighlightIcon(false));
-        else if (_abilityUpgrades.Count == 2) abilityUpgrades2UI.ForEach(ability => ability.HighlightIcon(false));
-        
+        if (abilitiesToHighlight == null) return;
         //enable selected
-        if (rootAbility == selectedAbility)
+        foreach (var ability in abilitiesToHighlight)
         {
-            baseAbilityUpgradeUIButton.HighlightIcon(true);
-            return;
-        }
-
-        for (var i = 0; i < _abilityUpgrades.Count; i++)
-        {
-            var ability = _abilityUpgrades[i];
-            if (ability == selectedAbility)
+            if(ability == _rootAbility) baseAbilityUpgradeUIButton.HighlightIcon(true); //highlight root ability
+            
+            for (var i = 0; i < _abilityUpgrades.Count; i++) //highlight upgrades
             {
-                switch (_abilityUpgrades.Count)
+                if (_abilityUpgrades[i] == ability)
                 {
-                    case 3:
-                        abilityUpgrades3UI[i].HighlightIcon(true);
-                        break;
-                    case 2:
-                        abilityUpgrades2UI[i].HighlightIcon(true);
-                        break;
+                    switch (_abilityUpgrades.Count)
+                    {
+                        case 3:
+                            abilityUpgrades3UI[i].HighlightIcon(true);
+                            break;
+                        case 2:
+                            abilityUpgrades2UI[i].HighlightIcon(true);
+                            break;
+                    }
                 }
             }
         }
     }
 
+    public void DisableHighlightOnAllIcons()
+    {
+        baseAbilityUpgradeUIButton.HighlightIcon(false);
+        if (_abilityUpgrades.Count == 3) abilityUpgrades3UI.ForEach(ability => ability.HighlightIcon(false));
+        else if (_abilityUpgrades.Count == 2) abilityUpgrades2UI.ForEach(ability => ability.HighlightIcon(false));
+    }
     private void IconsInit(AbilitySO rootAbility)
     {
         baseAbilityUpgradeUIButton.Init(rootAbility);

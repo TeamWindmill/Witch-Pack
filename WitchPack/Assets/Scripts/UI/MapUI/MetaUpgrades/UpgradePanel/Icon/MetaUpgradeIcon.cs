@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class MetaUpgradeIcon<T> : ClickableUIElement
 {
     public event Action<T> OnUpgrade;
-    public Action<int,AbilitySO> OnSelect;
+    public Action<int,AbilitySO,AbilitySO[]> OnSelect;
     public UpgradeState UpgradeState { get; private set; }
     public bool OpenAtStart => _openAtStart;
     public MetaUpgradeConfig UpgradeConfig => _upgradeConfig;

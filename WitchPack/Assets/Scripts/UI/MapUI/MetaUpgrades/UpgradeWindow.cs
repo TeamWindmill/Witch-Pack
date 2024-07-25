@@ -18,21 +18,22 @@ public class UpgradeWindow : UIWindowManager
         _shamanUpgradePanel.OnStatUpgrade += _shamanDetailsPanel.AddUpgradeToStats;
         base.Show();
         SelectShaman(_shamanRoster[0]);
-        SelectAbility(SelectedShaman.Config.RootAbilities[0]);
+        SelectAbility(0,SelectedShaman.Config.RootAbilities[0]);
     }
 
     public void SelectShaman(ShamanSaveData shamanSaveData)
     {
         SelectedShaman = shamanSaveData;
-        _shamanUpgradePanel.Init(shamanSaveData);
         _upgradesPartyUIPanel.SelectShamanIcon(shamanSaveData);
+        _shamanUpgradePanel.Init(shamanSaveData);
         _shamanDetailsPanel.Init(shamanSaveData);
         Refresh();
     }
 
-    public void SelectAbility(AbilitySO abilitySo)
+    public void SelectAbility(int abilityPanelIndex,AbilitySO abilitySo, AbilitySO[] affectedAbilities = null)
     {
-        _abilityDetailsPanel.Init(SelectedShaman,abilitySo);
+        _abilityDetailsPanel.Init(SelectedShaman,abilitySo,affectedAbilities);
+        _shamanUpgradePanel.SelectAbility(abilityPanelIndex,abilitySo);
         Refresh();
     }
 

@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AbilityDetailsPanel : UIElement<ShamanSaveData,AbilitySO>
+public class AbilityDetailsPanel : UIElement<ShamanSaveData,AbilitySO,AbilitySO[]>
 {
     [SerializeField] private TextMeshProUGUI abilityNameText;
     [SerializeField] private TextMeshProUGUI descriptionText;
@@ -16,31 +16,22 @@ public class AbilityDetailsPanel : UIElement<ShamanSaveData,AbilitySO>
     private AbilitySO _abilityConfig;
     private ShamanSaveData _shamanSaveData;
 
-    private void Start()
-    {
-        TargetingOptionsDropdown.options.Clear();
-        TargetModifierDropdown.options.Clear();
-        Enum.GetNames(typeof(TargetPriority)).ToList().ForEach(x => TargetingOptionsDropdown.options.Add(new TMP_Dropdown.OptionData(x)));
-        Enum.GetNames(typeof(TargetModifier)).ToList().ForEach(x => TargetModifierDropdown.options.Add(new TMP_Dropdown.OptionData(x)));
-    }
-
-    public override void Init(ShamanSaveData shamanSaveData, AbilitySO abilitySO)
+    public override void Init(ShamanSaveData shamanSaveData, AbilitySO abilitySO,AbilitySO[] affectedAbilities = null)
     {
         _shamanSaveData = shamanSaveData;
         _abilityConfig = abilitySO;
         descriptionText.text = abilitySO.Discription;
         abilityNameText.text = abilitySO.Name;
-        abilitySkillTree.Init(abilitySO.RootAbility,abilitySO);
-        
+        abilitySkillTree.Init(abilitySO);
+        abilitySkillTree.DisableHighlightOnAllIcons();
+        if(affectedAbilities != null) abilitySkillTree.HighlightIcons(affectedAbilities);
         AbilityStatInit(abilitySO);
-        base.Init(shamanSaveData,abilitySO);
+        base.Init(shamanSaveData,abilitySO,affectedAbilities);
     }
-
-    
 
     public void ChangeTargeting(TargetData targetData)
     {
-        
+        //needs game design to determine the target data presets
     }
     private void AbilityStatInit(AbilitySO abilitySO)
     {
@@ -52,9 +43,19 @@ public class AbilityDetailsPanel : UIElement<ShamanSaveData,AbilitySO>
                 ability.AddStatUpgrade(abilityUpgradeConfig);
             }
         }
-        foreach (var abilityStatBlock in abilityStatBlocks)
+
+        for (int i = 0; i < abilityStatBlocks.Length; i++)
         {
-            abilityStatBlock.Init(ability.GetAbilityStat(abilityStatBlock.StatTypeId));
+            if(i >= abilitySO.StatTypesForUIDisplay.Length) break;
+            
+            abilityStatBlocks[i].SetStatType(abilitySO.StatTypesForUIDisplay[i]);
+            var stat = ability.GetAbilityStat(abilityStatBlocks[i].StatTypeId);
+            if (stat != null) abilityStatBlocks[i].Init(stat);
+            else
+            {
+                Debug.LogError($"Stat Type - {abilityStatBlocks[i].StatTypeId} was not found in ability - {abilitySO.Name}");
+                abilityStatBlocks[i].Hide();
+            }
         }
     }
 }
