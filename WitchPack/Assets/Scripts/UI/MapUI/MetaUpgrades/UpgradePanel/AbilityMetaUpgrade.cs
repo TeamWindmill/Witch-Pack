@@ -20,6 +20,7 @@ public class AbilityMetaUpgrade : UIElement
     private void Start()
     {
         _abilityUpgradeIcons.ForEach(icon => icon.OnSelect += _shamanUpgradePanel.SelectAbility);
+        _abilityUpgradeIcons.ForEach(icon => icon.OnUpgrade += _shamanUpgradePanel.AddUpgradeToShaman);
     }
 
     public void Init(int index, AbilityPanelUpgrades abilityPanelConfig)
@@ -63,9 +64,10 @@ public class AbilityMetaUpgrade : UIElement
     }
 
 
-    public void SelectAbility(bool state)
+    public void SelectAbility(bool state, AbilitySO ability = null)
     { 
        _abilityFrame.sprite = state ? _selectedFrame : _defaultFrame;
+       _abilityUpgradeIcons.ForEach(icon =>icon.SelectIcon(false));
     }
 
 }

@@ -13,9 +13,9 @@ public class StatMetaUpgradeIcon : MetaUpgradeIcon<StatMetaUpgradeConfig>
         if (Upgrade.ShowAbility) OnSelect?.Invoke(_panelIndex,Upgrade.AbilitiesToUpgrade[0]);
         else
         {
-            //highlight stat maybe?
+            OnSelect?.Invoke(_panelIndex,(WindowManager as UpgradeWindow).SelectedShaman.Config.RootAbilities[2]);
         }
-        
+        SelectIcon(true);
         base.OnClick(eventData);
     }
 }
