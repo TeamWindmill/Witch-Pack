@@ -28,8 +28,14 @@ public abstract class StatBlock<T> : UIElement where T : Enum
         SetStatText(_baseValue,0);
     }
 
+    public void SetStatType(T statType)
+    {
+        statTypeId = statType;
+    }
+
     public override void Hide()
     {
+        base.Hide();
         if(_stat is null) return;
         _stat.OnStatChange -= UpdateBaseStat;
         _stat = null;
