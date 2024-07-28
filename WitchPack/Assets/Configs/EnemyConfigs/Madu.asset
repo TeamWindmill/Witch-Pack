@@ -21,7 +21,7 @@ MonoBehaviour:
   baseStats:
     MaxHp:
       statType: 0
-      value: 200
+      value: 1550
     _damage:
       statType: 1
       value: 30
@@ -33,7 +33,7 @@ MonoBehaviour:
       value: 6
     MovementSpeed:
       statType: 4
-      value: 1
+      value: 0.85
     CritDamage:
       statType: 5
       value: 10
@@ -42,13 +42,13 @@ MonoBehaviour:
       value: 5
     Armor:
       statType: 9
-      value: 0
+      value: 5
     HpRegen:
       statType: 10
-      value: 0
+      value: 100
     HpRegenInterval:
       statType: 18
-      value: 1
+      value: 10
     Threat:
       statType: 16
       value: 2
@@ -58,15 +58,14 @@ MonoBehaviour:
     EnergyGain:
       statType: 17
       value: 0
-    Visibility:
-      statType: 14
-      value: 0
     ThreatLevel:
       statType: 15
       value: 0
+    Invisibility:
+      statType: 14
+      value: 0
   Path: {fileID: 0}
-  coreDamage: 1
+  coreDamage: 3
   energyPoints: 5
   _abilities: []
   _enemyAIConfig: {fileID: 11400000, guid: 572e5f0c871b3ed4a92ad12da71271f2, type: 2}
-  _size: 1
