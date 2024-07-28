@@ -1,3 +1,4 @@
+using System;
 using Sirenix.Utilities;
 using TMPro;
 using UnityEngine;
@@ -12,20 +13,23 @@ public class ShamanDetailsPanel : UIElement<ShamanSaveData>
     [SerializeField] private TextMeshProUGUI _levelText;
     [SerializeField] private StatBar _expBar;
     [SerializeField] private StatBlockUI[] _statBlocks;
+    [SerializeField] private Color reductionColor;
+    [SerializeField] private Color additionColor;
 
     private UnitStats _shamanStats;
     private ShamanSaveData _shaman;
-    public override void Init(ShamanSaveData data)
+
+    public override void Init(ShamanSaveData rootAbility)
     {
-        _shaman = data;
-        _nameText.text = data.Config.Name;
-        _shamanSplash.sprite = data.Config.UnitSprite;
-        _descriptionText.text = data.Config.Description;
-        _skillPointsText.text = "SP " + data.ShamanExperienceHandler.AvailableSkillPoints;
-        _expBar.Init(new StatBarData($"LVL {data.ShamanExperienceHandler.ShamanLevel}", data.ShamanExperienceHandler.CurrentExp, data.ShamanExperienceHandler.MaxExpToNextLevel));
-        data.ShamanExperienceHandler.OnShamanGainExp += _expBar.UpdateStatbar;
-        StatInit(data);
-        base.Init(data);
+        _shaman = rootAbility;
+        _nameText.text = rootAbility.Config.Name;
+        _shamanSplash.sprite = rootAbility.Config.UnitSprite;
+        _descriptionText.text = rootAbility.Config.Description;
+        _skillPointsText.text = "SP " + rootAbility.ShamanExperienceHandler.AvailableSkillPoints;
+        _expBar.Init(new StatBarData($"LVL {rootAbility.ShamanExperienceHandler.ShamanLevel}", rootAbility.ShamanExperienceHandler.CurrentExp, rootAbility.ShamanExperienceHandler.MaxExpToNextLevel));
+        rootAbility.ShamanExperienceHandler.OnShamanGainExp += _expBar.UpdateStatbar;
+        StatInit(rootAbility);
+        base.Init(rootAbility);
     }
 
     private void StatInit(ShamanSaveData data)
@@ -41,7 +45,34 @@ public class ShamanDetailsPanel : UIElement<ShamanSaveData>
 
         foreach (var statBlock in _statBlocks)
         {
-            statBlock.Init(_shamanStats.Stats[statBlock.StatTypeId]);
+            statBlock.Init(_shamanStats.Stats[statBlock.StatTypeId],additionColor,reductionColor);
+        }
+    }
+
+    public void ShowStatBonus(StatType statType,Factor factor, float value)
+    {
+        _statBlocks.ForEach(statBlock => statBlock.HideBonusStatUI());
+        float bonusValue = 0;
+        float baseValue = _shaman.Config.BaseStats[statType];
+        foreach (var statBlock in _statBlocks)
+        {
+            if (statBlock.StatTypeId == statType)
+            {
+                switch (factor)
+                {
+                    case Factor.Add:
+                        bonusValue = value;
+                        break;
+                    case Factor.Subtract:
+                        bonusValue = -value;
+                        break;
+                    case Factor.Multiply:
+                        bonusValue = baseValue * value - baseValue;
+                        break;
+                }
+                statBlock.UpdateBonusStatUI(bonusValue);
+                return;
+            }
         }
     }
 

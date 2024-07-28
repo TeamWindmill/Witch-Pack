@@ -24,7 +24,7 @@ public class ShamanUpgradePanel : UIElement
         }
         
         _statMetaUpgrades.Init(_shamanMetaUpgradeConfig.StatPanelUpgrades.StatUpgrades);
-
+        //SelectAbility(0,shamanSaveData.Config.RootAbilities[0]);
         Show();
     }
 
@@ -42,27 +42,27 @@ public class ShamanUpgradePanel : UIElement
 
     public void SelectAbility(int abilityPanelIndex)
     {
-        SelectAbility(abilityPanelIndex, null);
+        (WindowManager as UpgradeWindow).SelectAbility(abilityPanelIndex, ShamanSaveData.Config.RootAbilities[abilityPanelIndex]);
     }
 
-    public void SelectAbility(int abilityPanelIndex ,AbilitySO ability = null)
+    public void SelectAbility(int abilityPanelIndex ,AbilitySO ability)
     {
         //deselect all
         _abilityMetaUpgrades.ForEach(upgrade => upgrade.SelectAbility(false));
         _statMetaUpgrades.SelectAbility(false);
         
         //select
-        if (ability == null)
+        if (!ability)
         {
             switch (abilityPanelIndex)
             {
                 case < 2:
                     _abilityMetaUpgrades[abilityPanelIndex].SelectAbility(true);
-                    (WindowManager as UpgradeWindow)?.SelectAbility(_abilityMetaUpgrades[abilityPanelIndex].AbilityPanelConfig.Ability);
+                    //(WindowManager as UpgradeWindow)?.SelectAbility(_abilityMetaUpgrades[abilityPanelIndex].AbilityPanelConfig.Ability);
                     break;
                 case 2:
                     _statMetaUpgrades.SelectAbility(true);
-                    (WindowManager as UpgradeWindow)?.SelectAbility(ShamanSaveData.Config.RootAbilities[2]);
+                    //(WindowManager as UpgradeWindow)?.SelectAbility(ShamanSaveData.Config.RootAbilities[2]);
                     break;
             }
         }
@@ -77,7 +77,7 @@ public class ShamanUpgradePanel : UIElement
                     _statMetaUpgrades.SelectAbility(true);
                     break;
             }
-            (WindowManager as UpgradeWindow)?.SelectAbility(ability);
+            //(WindowManager as UpgradeWindow)?.SelectAbility(ability);
         }
     }
 

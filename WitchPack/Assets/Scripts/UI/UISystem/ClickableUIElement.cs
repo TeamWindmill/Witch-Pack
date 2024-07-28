@@ -23,13 +23,15 @@ public abstract class ClickableUIElement : UIElement, IPointerClickHandler, IPoi
     private bool enableHoldClick;
 
     [BoxGroup("UI Element/Clickable")] [SerializeField, ShowIf(nameof(enableHoldClick))]
-    private float holdClickSpeed = 1.5f;
+    protected float holdClickSpeed = 1.5f;
+    
+    
 
     private int _clickNum;
 
     protected float DoubleClickTimer;
     protected float HoldClickTimer;
-    private bool _pointerDown;
+    protected bool PointerDown;
     private bool _holdClickHappened;
 
 
@@ -48,15 +50,13 @@ public abstract class ClickableUIElement : UIElement, IPointerClickHandler, IPoi
 
     protected override void Update()
     {
-        base.Update();
         CheckDoubleClick();
         CheckHoldClick();
     }
-
     private void CheckHoldClick()
     {
         if (!enableHoldClick || _holdClickHappened) return;
-        if (_pointerDown)
+        if (PointerDown)
         {
             HoldClickTimer += Time.deltaTime;
             if (HoldClickTimer > holdClickSpeed)
@@ -103,6 +103,7 @@ public abstract class ClickableUIElement : UIElement, IPointerClickHandler, IPoi
 
     protected virtual void OnHoldClick()
     {
+        Debug.Log("hold click");
         OnHoldClickEvent?.Invoke();
         _holdClickHappened = true;
         HoldClickTimer = 0;
@@ -115,21 +116,21 @@ public abstract class ClickableUIElement : UIElement, IPointerClickHandler, IPoi
         base.OnDisable();
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    public virtual void OnPointerDown(PointerEventData eventData)
     {
-        _pointerDown = true;
+        PointerDown = true;
     }
 
-    public void OnPointerUp(PointerEventData eventData)
+    public virtual void OnPointerUp(PointerEventData eventData)
     {
-        _pointerDown = false;
+        PointerDown = false;
         _holdClickHappened = false;
     }
 
     public override void OnPointerExit(PointerEventData eventData)
     {
         base.OnPointerExit(eventData);
-        _pointerDown = false;
+        PointerDown = false;
         _holdClickHappened = false;
     }
 }
@@ -139,6 +140,25 @@ public abstract class ClickableUIElement<T> : ClickableUIElement
     public bool Initialized { get; protected set; }
 
     public virtual void Init(T data)
+    {
+        Initialized = true;
+    }
+}
+public abstract class ClickableUIElement<T1,T2> : ClickableUIElement
+{
+    public bool Initialized { get; protected set; }
+
+    public virtual void Init(T1 data1, T2 data2)
+    {
+        Initialized = true;
+    }
+}
+
+public abstract class ClickableUIElement<T1,T2,T3> : ClickableUIElement
+{
+    public bool Initialized { get; protected set; }
+
+    public virtual void Init(T1 data1, T2 data2, T3 data3)
     {
         Initialized = true;
     }

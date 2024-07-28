@@ -1,10 +1,11 @@
 using System;
 using System.Linq;
+using Sirenix.Utilities;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AbilityDetailsPanel : UIElement<ShamanSaveData,AbilitySO>
+public class AbilityDetailsPanel : UIElement<ShamanSaveData,AbilitySO,AbilitySO[]>
 {
     [SerializeField] private TextMeshProUGUI abilityNameText;
     [SerializeField] private TextMeshProUGUI descriptionText;
@@ -12,49 +13,91 @@ public class AbilityDetailsPanel : UIElement<ShamanSaveData,AbilitySO>
     [SerializeField] private TMP_Dropdown TargetModifierDropdown;
     [SerializeField] private AbilityStatBlockUI[] abilityStatBlocks;
     [SerializeField] private AbilitySkillTreeDetails abilitySkillTree;
-
+    [SerializeField] private Color reductionColor;
+    [SerializeField] private Color additionColor;
+    
     private AbilitySO _abilityConfig;
     private ShamanSaveData _shamanSaveData;
+    private Ability _ability;
 
-    private void Start()
-    {
-        TargetingOptionsDropdown.options.Clear();
-        TargetModifierDropdown.options.Clear();
-        Enum.GetNames(typeof(TargetPriority)).ToList().ForEach(x => TargetingOptionsDropdown.options.Add(new TMP_Dropdown.OptionData(x)));
-        Enum.GetNames(typeof(TargetModifier)).ToList().ForEach(x => TargetModifierDropdown.options.Add(new TMP_Dropdown.OptionData(x)));
-    }
-
-    public override void Init(ShamanSaveData shamanSaveData, AbilitySO abilitySO)
+    public override void Init(ShamanSaveData shamanSaveData, AbilitySO abilitySO,AbilitySO[] affectedAbilities = null)
     {
         _shamanSaveData = shamanSaveData;
         _abilityConfig = abilitySO;
-        descriptionText.text = abilitySO.Discription;
-        abilityNameText.text = abilitySO.Name;
-        abilitySkillTree.Init(abilitySO);
-        
-        AbilityStatInit(abilitySO);
-        base.Init(shamanSaveData,abilitySO);
+        DisplayAbility(abilitySO);
+        abilitySkillTree.Init(this,abilitySO);
+        abilitySkillTree.DisableHighlightOnAllIcons();
+        if(affectedAbilities != null) abilitySkillTree.HighlightIcons(affectedAbilities);
+        base.Init(shamanSaveData,abilitySO,affectedAbilities);
     }
 
-    
+    public void DisplayAbility(AbilitySO abilitySO)
+    {
+        descriptionText.text = abilitySO.Discription;
+        abilityNameText.text = abilitySO.Name;
+        AbilityStatInit(abilitySO);
+    }
+    public void ShowStatBonus(AbilityStatType statType,Factor factor, float value)
+    {
+        abilityStatBlocks.ForEach(block => block.HideBonusStatUI());
+        float bonusValue = 0;
+        float baseValue = _ability.GetAbilityStatValue(statType);
+        foreach (var statBlock in abilityStatBlocks)
+        {
+            if (statBlock.StatTypeId == statType)
+            {
+                switch (factor)
+                {
+                    case Factor.Add:
+                        bonusValue = value;
+                        break;
+                    case Factor.Subtract:
+                        bonusValue = -value;
+                        break;
+                    case Factor.Multiply:
+                        bonusValue = baseValue * value - baseValue;
+                        break;
+                }
+                statBlock.UpdateBonusStatUI(bonusValue);
+                return;
+            }
+        }
+    }
 
     public void ChangeTargeting(TargetData targetData)
     {
-        
+        //needs game design to determine the target data presets
     }
     private void AbilityStatInit(AbilitySO abilitySO)
     {
-        var ability = AbilityFactory.CreateAbility(abilitySO,null);
+        _ability = AbilityFactory.CreateAbility(abilitySO,null);
         foreach (var abilityUpgradeConfig in _shamanSaveData.AbilityUpgrades)
         {
             if (abilityUpgradeConfig.AbilitiesToUpgrade.Contains(abilitySO))
             {
-                ability.AddStatUpgrade(abilityUpgradeConfig);
+                _ability.AddStatUpgrade(abilityUpgradeConfig);
             }
         }
+
+        //disable all
         foreach (var abilityStatBlock in abilityStatBlocks)
         {
-            abilityStatBlock.Init(ability.GetAbilityStat(abilityStatBlock.StatTypeId));
+            abilityStatBlock.Hide();
+        }
+        
+        //enable all
+        for (int i = 0; i < abilityStatBlocks.Length; i++)
+        {
+            if(i >= abilitySO.StatTypesForUIDisplay.Length) break;
+            
+            abilityStatBlocks[i].SetStatType(abilitySO.StatTypesForUIDisplay[i]);
+            var stat = _ability.GetAbilityStat(abilityStatBlocks[i].StatTypeId);
+            if (stat != null) abilityStatBlocks[i].Init(stat,additionColor,reductionColor);
+            else
+            {
+                Debug.LogError($"Stat Type - {abilityStatBlocks[i].StatTypeId} was not found in ability - {abilitySO.Name}");
+                abilityStatBlocks[i].Hide();
+            }
         }
     }
 }

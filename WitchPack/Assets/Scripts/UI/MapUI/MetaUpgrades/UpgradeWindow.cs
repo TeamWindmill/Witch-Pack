@@ -10,7 +10,7 @@ public class UpgradeWindow : UIWindowManager
     [SerializeField] private UpgradesPartyUIPanel _upgradesPartyUIPanel;
     [SerializeField] private List<ShamanSaveData> _shamanRoster;
 
-    private ShamanSaveData _selectedShaman;
+    public ShamanSaveData SelectedShaman { get; private set; }
     public override void Show()
     {
         _shamanRoster = GameManager.SaveData.ShamanRoster;
@@ -18,35 +18,60 @@ public class UpgradeWindow : UIWindowManager
         _shamanUpgradePanel.OnStatUpgrade += _shamanDetailsPanel.AddUpgradeToStats;
         base.Show();
         SelectShaman(_shamanRoster[0]);
-        SelectAbility(_selectedShaman.Config.RootAbilities[0]);
     }
 
     public void SelectShaman(ShamanSaveData shamanSaveData)
     {
-        _selectedShaman = shamanSaveData;
-        _shamanUpgradePanel.Init(shamanSaveData);
+        SelectedShaman = shamanSaveData;
         _upgradesPartyUIPanel.SelectShamanIcon(shamanSaveData);
+        _shamanUpgradePanel.Init(shamanSaveData);
         _shamanDetailsPanel.Init(shamanSaveData);
+        SelectAbility(0,SelectedShaman.Config.RootAbilities[0]);
         Refresh();
     }
 
-    public void SelectAbility(AbilitySO abilitySo)
+    #region Select Ability
+
+    public void SelectAbility(int abilityPanelIndex,AbilitySO abilitySo)
     {
-        _abilityDetailsPanel.Init(_selectedShaman,abilitySo);
+        _abilityDetailsPanel.Init(SelectedShaman,abilitySo,null);
+        _shamanUpgradePanel.SelectAbility(abilityPanelIndex,abilitySo);
+        Refresh();
+    }
+    public void SelectAbility(int abilityPanelIndex,AbilitySO abilitySo, AbilityUpgradeConfig upgradeConfig)
+    {
+        _abilityDetailsPanel.Init(SelectedShaman,abilitySo,upgradeConfig?.AbilitiesToUpgrade);
+        _shamanUpgradePanel.SelectAbility(abilityPanelIndex,abilitySo);
+        foreach (var statUpgrade in upgradeConfig.Stats)
+        {
+            _abilityDetailsPanel.ShowStatBonus(statUpgrade.StatType,statUpgrade.Factor,statUpgrade.StatValue);
+        }
         Refresh();
     }
 
+    public void SelectAbility(int abilityPanelIndex, AbilitySO abilitySo, StatMetaUpgradeConfig upgradeConfig)
+    {
+        foreach (var statUpgrade in upgradeConfig.Stats)
+        {
+            _shamanDetailsPanel.ShowStatBonus(statUpgrade.StatType,statUpgrade.Factor,statUpgrade.StatValue);
+        }
+        _abilityDetailsPanel.Init(SelectedShaman,abilitySo,upgradeConfig?.AbilitiesToUpgrade);
+        _shamanUpgradePanel.SelectAbility(abilityPanelIndex,abilitySo);
+        Refresh();
+    }
+
+    #endregion
     public void GainExp()
     {
-        _selectedShaman.ShamanExperienceHandler.ManualExpGain();
+        SelectedShaman.ShamanExperienceHandler.ManualExpGain();
         Refresh();
     }
 
     public void ResetSkillPoints()
     {
-        _selectedShaman.ShamanExperienceHandler.ResetSkillPoints();
-        _selectedShaman.AbilityUpgrades = new();
-        _selectedShaman.StatUpgrades = new();
+        SelectedShaman.ShamanExperienceHandler.ResetSkillPoints();
+        SelectedShaman.AbilityUpgrades = new();
+        SelectedShaman.StatUpgrades = new();
         Refresh();
     }
 

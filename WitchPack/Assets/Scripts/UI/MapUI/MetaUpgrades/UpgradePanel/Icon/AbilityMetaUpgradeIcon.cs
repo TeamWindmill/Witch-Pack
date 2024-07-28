@@ -11,7 +11,8 @@ public class AbilityMetaUpgradeIcon : MetaUpgradeIcon<AbilityUpgradeConfig>
 
     protected override void OnClick(PointerEventData eventData)
     {
-        OnSelect?.Invoke(_panelIndex,Upgrade.AbilitiesToUpgrade[0]);
+        OnSelect?.Invoke(_panelIndex,Upgrade.AbilitiesToUpgrade[0],Upgrade);
+        SelectIcon(true);
         base.OnClick(eventData);
     }
 }
