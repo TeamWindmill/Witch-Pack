@@ -20,13 +20,18 @@ public class AbilityDetailsPanel : UIElement<ShamanSaveData,AbilitySO,AbilitySO[
     {
         _shamanSaveData = shamanSaveData;
         _abilityConfig = abilitySO;
-        descriptionText.text = abilitySO.Discription;
-        abilityNameText.text = abilitySO.Name;
-        abilitySkillTree.Init(abilitySO);
+        DisplayAbility(abilitySO);
+        abilitySkillTree.Init(this,abilitySO);
         abilitySkillTree.DisableHighlightOnAllIcons();
         if(affectedAbilities != null) abilitySkillTree.HighlightIcons(affectedAbilities);
-        AbilityStatInit(abilitySO);
         base.Init(shamanSaveData,abilitySO,affectedAbilities);
+    }
+
+    public void DisplayAbility(AbilitySO abilitySO)
+    {
+        descriptionText.text = abilitySO.Discription;
+        abilityNameText.text = abilitySO.Name;
+        AbilityStatInit(abilitySO);
     }
 
     public void ChangeTargeting(TargetData targetData)

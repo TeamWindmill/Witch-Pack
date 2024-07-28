@@ -45,6 +45,18 @@ public class ShamanDetailsPanel : UIElement<ShamanSaveData>
         }
     }
 
+    public void ShowStatBonus(StatType statType, float bonusValue)
+    {
+        foreach (var statBlock in _statBlocks)
+        {
+            if (statBlock.StatTypeId == statType)
+            {
+                statBlock.UpdateBonusStatUI(bonusValue);
+                return;
+            }
+        }
+    }
+
     public void AddUpgradeToStats(StatMetaUpgradeConfig statMetaUpgradeConfig)
     {
         statMetaUpgradeConfig.Stats.ForEach(stat => _shamanStats.AddValueToStat(stat.StatType, stat.Factor, stat.StatValue));

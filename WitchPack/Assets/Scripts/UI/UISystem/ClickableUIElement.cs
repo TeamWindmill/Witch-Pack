@@ -144,3 +144,22 @@ public abstract class ClickableUIElement<T> : ClickableUIElement
         Initialized = true;
     }
 }
+public abstract class ClickableUIElement<T1,T2> : ClickableUIElement
+{
+    public bool Initialized { get; protected set; }
+
+    public virtual void Init(T1 data1, T2 data2)
+    {
+        Initialized = true;
+    }
+}
+
+public abstract class ClickableUIElement<T1,T2,T3> : ClickableUIElement
+{
+    public bool Initialized { get; protected set; }
+
+    public virtual void Init(T1 data1, T2 data2, T3 data3)
+    {
+        Initialized = true;
+    }
+}
