@@ -11,8 +11,6 @@ public class PiercingShot : OffensiveAbility
         abilityStats.Add(new AbilityStat(AbilityStatType.Penetration,PiercingShotConfig.Penetration));
         abilityStats.Add(new AbilityStat(AbilityStatType.Speed,PiercingShotConfig.Speed));
         abilityStats.Add(new AbilityStat(AbilityStatType.Duration,PiercingShotConfig.LifeTime));
-        abilityStats.Add(new AbilityStat(AbilityStatType.KillToIncreasePenetration,0));
-        abilityStats.Add(new AbilityStat(AbilityStatType.ExtraPenetrationPerKill,0));
     }
 
     public override bool CastAbility(out IDamagable target)

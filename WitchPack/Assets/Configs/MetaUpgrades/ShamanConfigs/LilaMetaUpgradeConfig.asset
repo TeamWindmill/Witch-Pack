@@ -37,9 +37,11 @@ MonoBehaviour:
           StatType: 0
           StatValue: 0
           Factor: 4
-        StatUpgrades: []
+        Value:
+          StatType: 1
+          StatValue: 0.5
+          Factor: 2
         Process: 0
-        StatusEffectVisual: 0
         StatType: 9
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 51fd23988058b484f90a795b662cbd00, type: 2}
@@ -58,9 +60,11 @@ MonoBehaviour:
           StatType: 0
           StatValue: 0
           Factor: 4
-        StatUpgrades: []
+        Value:
+          StatType: 1
+          StatValue: 3
+          Factor: 0
         Process: 0
-        StatusEffectVisual: 0
         StatType: 4
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 51fd23988058b484f90a795b662cbd00, type: 2}
@@ -82,25 +86,31 @@ MonoBehaviour:
           StatType: 0
           StatValue: 0.25
           Factor: 2
-        StatUpgrades: []
+        Value:
+          StatType: 1
+          StatValue: 0
+          Factor: 4
         Process: 0
-        StatusEffectVisual: 0
         StatType: 9
       - Duration:
           StatType: 0
           StatValue: 0.25
           Factor: 2
-        StatUpgrades: []
+        Value:
+          StatType: 1
+          StatValue: 0
+          Factor: 4
         Process: 0
-        StatusEffectVisual: 0
         StatType: 4
       - Duration:
           StatType: 0
           StatValue: 0.25
           Factor: 2
-        StatUpgrades: []
+        Value:
+          StatType: 1
+          StatValue: 0
+          Factor: 4
         Process: 0
-        StatusEffectVisual: 0
         StatType: 10
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 51fd23988058b484f90a795b662cbd00, type: 2}
@@ -136,25 +146,31 @@ MonoBehaviour:
           StatType: 0
           StatValue: 0.25
           Factor: 2
-        StatUpgrades: []
+        Value:
+          StatType: 1
+          StatValue: 0
+          Factor: 4
         Process: 0
-        StatusEffectVisual: 0
         StatType: 9
       - Duration:
           StatType: 0
           StatValue: 0.25
           Factor: 2
-        StatUpgrades: []
+        Value:
+          StatType: 1
+          StatValue: 0
+          Factor: 4
         Process: 0
-        StatusEffectVisual: 0
         StatType: 4
       - Duration:
           StatType: 0
           StatValue: 0.25
           Factor: 2
-        StatUpgrades: []
+        Value:
+          StatType: 1
+          StatValue: 0
+          Factor: 4
         Process: 0
-        StatusEffectVisual: 0
         StatType: 10
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: 51fd23988058b484f90a795b662cbd00, type: 2}
@@ -217,8 +233,8 @@ MonoBehaviour:
       _abilitiesBehaviors: 
       _statusEffectUpgrades: []
       _abilitiesToUpgrade:
-      - {fileID: 11400000, guid: 8ba34b19428668043b6b27ca489e4db7, type: 2}
       - {fileID: 11400000, guid: bab550b8fcccdf14d89cc2187b230117, type: 2}
+      - {fileID: 11400000, guid: 8ba34b19428668043b6b27ca489e4db7, type: 2}
       - {fileID: 11400000, guid: b6c2f44114effbe43bf02ac8830adf93, type: 2}
     - _valueName: +25%
       _name: Damage
@@ -232,8 +248,8 @@ MonoBehaviour:
       _abilitiesBehaviors: 
       _statusEffectUpgrades: []
       _abilitiesToUpgrade:
-      - {fileID: 11400000, guid: 8ba34b19428668043b6b27ca489e4db7, type: 2}
       - {fileID: 11400000, guid: bab550b8fcccdf14d89cc2187b230117, type: 2}
+      - {fileID: 11400000, guid: 8ba34b19428668043b6b27ca489e4db7, type: 2}
       - {fileID: 11400000, guid: b6c2f44114effbe43bf02ac8830adf93, type: 2}
     - _valueName: +1
       _name: Stone
@@ -247,8 +263,8 @@ MonoBehaviour:
       _abilitiesBehaviors: 
       _statusEffectUpgrades: []
       _abilitiesToUpgrade:
-      - {fileID: 11400000, guid: 8ba34b19428668043b6b27ca489e4db7, type: 2}
       - {fileID: 11400000, guid: bab550b8fcccdf14d89cc2187b230117, type: 2}
+      - {fileID: 11400000, guid: 8ba34b19428668043b6b27ca489e4db7, type: 2}
       - {fileID: 11400000, guid: b6c2f44114effbe43bf02ac8830adf93, type: 2}
     - _valueName: +50%
       _name: Damage to weakend enemies
@@ -259,8 +275,8 @@ MonoBehaviour:
       _abilitiesBehaviors: 
       _statusEffectUpgrades: []
       _abilitiesToUpgrade:
-      - {fileID: 11400000, guid: 8ba34b19428668043b6b27ca489e4db7, type: 2}
       - {fileID: 11400000, guid: bab550b8fcccdf14d89cc2187b230117, type: 2}
+      - {fileID: 11400000, guid: 8ba34b19428668043b6b27ca489e4db7, type: 2}
       - {fileID: 11400000, guid: b6c2f44114effbe43bf02ac8830adf93, type: 2}
     RightStatUpgrades:
     - _valueName: -25%
@@ -275,8 +291,8 @@ MonoBehaviour:
       _abilitiesBehaviors: 
       _statusEffectUpgrades: []
       _abilitiesToUpgrade:
-      - {fileID: 11400000, guid: 8ba34b19428668043b6b27ca489e4db7, type: 2}
       - {fileID: 11400000, guid: bab550b8fcccdf14d89cc2187b230117, type: 2}
+      - {fileID: 11400000, guid: 8ba34b19428668043b6b27ca489e4db7, type: 2}
       - {fileID: 11400000, guid: b6c2f44114effbe43bf02ac8830adf93, type: 2}
     - _valueName: +25%
       _name: Duration
@@ -293,13 +309,15 @@ MonoBehaviour:
           StatType: 0
           StatValue: 0.25
           Factor: 2
-        StatUpgrades: []
+        Value:
+          StatType: 1
+          StatValue: 0
+          Factor: 4
         Process: 0
-        StatusEffectVisual: 0
         StatType: 1
       _abilitiesToUpgrade:
-      - {fileID: 11400000, guid: 8ba34b19428668043b6b27ca489e4db7, type: 2}
       - {fileID: 11400000, guid: bab550b8fcccdf14d89cc2187b230117, type: 2}
+      - {fileID: 11400000, guid: 8ba34b19428668043b6b27ca489e4db7, type: 2}
       - {fileID: 11400000, guid: b6c2f44114effbe43bf02ac8830adf93, type: 2}
     - _valueName: -25%
       _name: Cooldown
@@ -313,8 +331,8 @@ MonoBehaviour:
       _abilitiesBehaviors: 
       _statusEffectUpgrades: []
       _abilitiesToUpgrade:
-      - {fileID: 11400000, guid: 8ba34b19428668043b6b27ca489e4db7, type: 2}
       - {fileID: 11400000, guid: bab550b8fcccdf14d89cc2187b230117, type: 2}
+      - {fileID: 11400000, guid: 8ba34b19428668043b6b27ca489e4db7, type: 2}
       - {fileID: 11400000, guid: b6c2f44114effbe43bf02ac8830adf93, type: 2}
     - _valueName: +25%
       _name: Orbital tornado speed
@@ -432,7 +450,7 @@ MonoBehaviour:
       _damageBoosts: []
       _statusEffectUpgrades: []
       _abilitiesToUpgrade:
-      - {fileID: 11400000, guid: 32a91ec7e63c9dd44b3229823583d8c0, type: 2}
+      - {fileID: 11400000, guid: 5b0c09102924ffc4baf89edb6e17ab60, type: 2}
     - _valueName: +100%
       _name: Healing from all sources
       _skillPointsCost: 5

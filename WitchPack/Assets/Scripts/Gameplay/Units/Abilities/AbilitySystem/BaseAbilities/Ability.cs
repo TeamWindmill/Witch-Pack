@@ -7,8 +7,8 @@ public abstract class Ability
     public UpgradeState UpgradeState { get; private set; }
     public List<Ability> Upgrades { get; } = new();
     protected BaseUnit Owner { get; }
-
-    protected List<AbilityStat> abilityStats = new();
+    
+    protected List<AbilityStat> abilityStats = new();    
     protected List<AbilityBehavior> _abilitiesBehaviors = new();
 
     protected Ability(AbilitySO baseConfig, BaseUnit owner)
@@ -18,10 +18,10 @@ public abstract class Ability
 
         foreach (var upgrade in BaseConfig.Upgrades)
         {
-            Upgrades.Add(AbilityFactory.CreateAbility(upgrade, Owner));
+            Upgrades.Add(AbilityFactory.CreateAbility(upgrade,Owner));
         }
     }
-
+    
     public void ChangeUpgradeState(UpgradeState state)
     {
         UpgradeState = state;
@@ -41,12 +41,11 @@ public abstract class Ability
     {
         foreach (var abilityStat in abilityStats)
         {
-            if (abilityStat.StatType == statType) return abilityStat;
+            if(abilityStat.StatType == statType) return abilityStat;
         }
-
         return null;
     }
-
+    
     public List<Ability> GetUpgrades()
     {
         var upgrades = new List<Ability>();
@@ -71,7 +70,7 @@ public abstract class Ability
 
         return false;
     }
-
+    
 
     public virtual void AddAbilityBehavior(AbilityUpgradeConfig abilityUpgradeConfig)
     {
@@ -80,7 +79,6 @@ public abstract class Ability
             _abilitiesBehaviors.Add(behavior);
         }
     }
-
     public virtual void AddAbilityBehavior(StatMetaUpgradeConfig statMetaUpgradeConfig)
     {
         foreach (var behavior in statMetaUpgradeConfig.AbilitiesBehaviors)
@@ -88,7 +86,6 @@ public abstract class Ability
             _abilitiesBehaviors.Add(behavior);
         }
     }
-
     public float GetAbilityStatValue(AbilityStatType abilityStatType)
     {
         foreach (var abilityStat in abilityStats)
@@ -98,7 +95,6 @@ public abstract class Ability
 
         throw new Exception("ability stat not found in ability");
     }
-
     public int GetAbilityStatIntValue(AbilityStatType abilityStatType)
     {
         foreach (var abilityStat in abilityStats)
@@ -111,28 +107,29 @@ public abstract class Ability
 
     public virtual void AddStatUpgrade(AbilityUpgradeConfig abilityUpgradeConfig)
     {
-        foreach (var statConfig in abilityUpgradeConfig.Stats)
-        {
-            AddAbilityStatUpgrade(statConfig.StatType, statConfig.Factor, statConfig.StatValue);
-        }
-    }
-
-    public virtual void AddStatUpgrade(StatMetaUpgradeConfig statMetaUpgradeConfig)
-    {
-        foreach (var abilityStatConfig in statMetaUpgradeConfig.AbilityStats)
-        {
-            AddAbilityStatUpgrade(abilityStatConfig.StatType, abilityStatConfig.Factor, abilityStatConfig.StatValue);
-        }
-    }
-
-    public void AddAbilityStatUpgrade(AbilityStatType statType, Factor factor, float value)
-    {
         foreach (var stat in abilityStats)
         {
-            if (stat.StatType == statType)
+            foreach (var statConfig in abilityUpgradeConfig.Stats)
             {
-                stat.AddStatValue(factor, value);
+                if (stat.StatType == statConfig.StatType)
+                {
+                    stat.AddStatValue(statConfig.Factor,statConfig.StatValue);
+                }
             }
         }
     }
+    public virtual void AddStatUpgrade(StatMetaUpgradeConfig statMetaUpgradeConfig)
+    {
+        foreach (var stat in abilityStats)
+        {
+            foreach (var abilityStatConfig in statMetaUpgradeConfig.AbilityStats)
+            {
+                if (stat.StatType == abilityStatConfig.StatType)
+                {
+                    stat.AddStatValue(abilityStatConfig.Factor,abilityStatConfig.StatValue);
+                }
+            }
+        }
+    }
+
 }

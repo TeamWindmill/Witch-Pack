@@ -56,22 +56,26 @@ MonoBehaviour:
           StatType: 0
           StatValue: 1
           Factor: 0
-        StatUpgrades: []
+        Value:
+          StatType: 1
+          StatValue: 0
+          Factor: 4
         Process: 0
-        StatusEffectVisual: 0
         StatType: 4
       - Duration:
           StatType: 0
           StatValue: 1
           Factor: 0
-        StatUpgrades: []
+        Value:
+          StatType: 1
+          StatValue: 0
+          Factor: 4
         Process: 0
-        StatusEffectVisual: 0
         StatType: 10
       _abilitiesToUpgrade:
-      - {fileID: 11400000, guid: 41d7622c58c8bce4d95b4535b20370b8, type: 2}
       - {fileID: 11400000, guid: d190281f00062eb48ab27020e3d083f8, type: 2}
       - {fileID: 11400000, guid: 38ce83318f3509e48849324c620c3205, type: 2}
+      - {fileID: 11400000, guid: 41d7622c58c8bce4d95b4535b20370b8, type: 2}
       - {fileID: 11400000, guid: cf604a1d59ad27a42916c478ad04cb00, type: 2}
     - _valueName: -1s
       _name: Reduced cooldown
@@ -85,9 +89,9 @@ MonoBehaviour:
       _abilitiesBehaviors: 
       _statusEffectUpgrades: []
       _abilitiesToUpgrade:
-      - {fileID: 11400000, guid: 41d7622c58c8bce4d95b4535b20370b8, type: 2}
       - {fileID: 11400000, guid: d190281f00062eb48ab27020e3d083f8, type: 2}
       - {fileID: 11400000, guid: 38ce83318f3509e48849324c620c3205, type: 2}
+      - {fileID: 11400000, guid: 41d7622c58c8bce4d95b4535b20370b8, type: 2}
       - {fileID: 11400000, guid: cf604a1d59ad27a42916c478ad04cb00, type: 2}
     - _valueName: X2
       _name: Poison damage
@@ -150,22 +154,26 @@ MonoBehaviour:
           StatType: 0
           StatValue: 1
           Factor: 0
-        StatUpgrades: []
+        Value:
+          StatType: 1
+          StatValue: 0
+          Factor: 4
         Process: 0
-        StatusEffectVisual: 0
         StatType: 4
       - Duration:
           StatType: 0
           StatValue: 1
           Factor: 0
-        StatUpgrades: []
+        Value:
+          StatType: 1
+          StatValue: 0
+          Factor: 4
         Process: 0
-        StatusEffectVisual: 0
         StatType: 10
       _abilitiesToUpgrade:
-      - {fileID: 11400000, guid: 41d7622c58c8bce4d95b4535b20370b8, type: 2}
       - {fileID: 11400000, guid: d190281f00062eb48ab27020e3d083f8, type: 2}
       - {fileID: 11400000, guid: 38ce83318f3509e48849324c620c3205, type: 2}
+      - {fileID: 11400000, guid: 41d7622c58c8bce4d95b4535b20370b8, type: 2}
       - {fileID: 11400000, guid: cf604a1d59ad27a42916c478ad04cb00, type: 2}
     - _valueName: X2
       _name: Movement speed & regeneration
@@ -179,17 +187,21 @@ MonoBehaviour:
           StatType: 0
           StatValue: 0
           Factor: 4
-        StatUpgrades: []
+        Value:
+          StatType: 1
+          StatValue: 1
+          Factor: 2
         Process: 0
-        StatusEffectVisual: 0
         StatType: 4
       - Duration:
           StatType: 0
           StatValue: 0
           Factor: 4
-        StatUpgrades: []
+        Value:
+          StatType: 1
+          StatValue: 1
+          Factor: 2
         Process: 0
-        StatusEffectVisual: 0
         StatType: 10
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: d190281f00062eb48ab27020e3d083f8, type: 2}
@@ -222,8 +234,8 @@ MonoBehaviour:
       _abilitiesBehaviors: 
       _statusEffectUpgrades: []
       _abilitiesToUpgrade:
-      - {fileID: 11400000, guid: df884db4984f9c347b0621e1056cf9e2, type: 2}
       - {fileID: 11400000, guid: 7bffac782568f71458ae230b8f3ade8d, type: 2}
+      - {fileID: 11400000, guid: df884db4984f9c347b0621e1056cf9e2, type: 2}
       - {fileID: 11400000, guid: a375fee6a9a1909459661c3f78f6da65, type: 2}
     - _valueName: -2
       _name: Cooldown
@@ -263,8 +275,8 @@ MonoBehaviour:
       _abilitiesBehaviors: 
       _statusEffectUpgrades: []
       _abilitiesToUpgrade:
-      - {fileID: 11400000, guid: df884db4984f9c347b0621e1056cf9e2, type: 2}
       - {fileID: 11400000, guid: 7bffac782568f71458ae230b8f3ade8d, type: 2}
+      - {fileID: 11400000, guid: df884db4984f9c347b0621e1056cf9e2, type: 2}
       - {fileID: 11400000, guid: a375fee6a9a1909459661c3f78f6da65, type: 2}
     - _valueName: +2
       _name: Energy gained
@@ -290,8 +302,8 @@ MonoBehaviour:
       _abilitiesBehaviors: 01000000
       _statusEffectUpgrades: []
       _abilitiesToUpgrade:
-      - {fileID: 11400000, guid: df884db4984f9c347b0621e1056cf9e2, type: 2}
       - {fileID: 11400000, guid: a375fee6a9a1909459661c3f78f6da65, type: 2}
+      - {fileID: 11400000, guid: df884db4984f9c347b0621e1056cf9e2, type: 2}
       - {fileID: 11400000, guid: 7bffac782568f71458ae230b8f3ade8d, type: 2}
     - _valueName: +0.5
       _name: Blessing of swifftness Attack speed
@@ -305,9 +317,11 @@ MonoBehaviour:
           StatType: 0
           StatValue: 0
           Factor: 4
-        StatUpgrades: []
+        Value:
+          StatType: 1
+          StatValue: 0.5
+          Factor: 0
         Process: 0
-        StatusEffectVisual: 0
         StatType: 2
       _abilitiesToUpgrade:
       - {fileID: 11400000, guid: a375fee6a9a1909459661c3f78f6da65, type: 2}

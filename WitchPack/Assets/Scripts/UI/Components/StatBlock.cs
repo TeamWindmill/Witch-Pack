@@ -26,17 +26,10 @@ public abstract class StatBlock<T> : UIElement where T : Enum
         _statBonusAdditionColor = addColor;
         _statBonusReductionColor = reduceColor;
         SetStatText(_baseValue,0);
-        Show();
-    }
-
-    public void SetStatType(T statType)
-    {
-        statTypeId = statType;
     }
 
     public override void Hide()
     {
-        base.Hide();
         if(_stat is null) return;
         _stat.OnStatChange -= UpdateBaseStat;
         _stat = null;
@@ -44,7 +37,8 @@ public abstract class StatBlock<T> : UIElement where T : Enum
 
     public void UpdateBonusStatUI(float newValue)
     {
-        if(_stat is null) return;
+        if(ReferenceEquals(HeroSelectionUI.Instance,null)) return;
+        if(!HeroSelectionUI.Instance.IsActive) return;
         _bonusValue = newValue;
         SetStatText(_baseValue,_bonusValue);
     }
@@ -65,7 +59,6 @@ public abstract class StatBlock<T> : UIElement where T : Enum
     {
         string statName = "";
         string modifier = "";
-        string format = bonusValue % 1 == 0 ? "N0" : "N1";
         statName = GetStatName(ref baseValue, statName, ref modifier);
     
         _statText.text = statName;
@@ -80,11 +73,11 @@ public abstract class StatBlock<T> : UIElement where T : Enum
         switch (bonusValue)
         {
             case > 0.1f:
-                bonusValueText = ColorLogHelper.SetColorToString($" (+{bonusValue.ToString(format)})", _statBonusAdditionColor);;
+                bonusValueText = ColorLogHelper.SetColorToString($" (+{bonusValue.ToString("F1")})", _statBonusAdditionColor);;
                 _statValue.text =  baseValueText + modifierText + bonusValueText;
                 break;
             case < -0.1f:
-                bonusValueText = ColorLogHelper.SetColorToString($" (-{math.abs(bonusValue).ToString(format)})", _statBonusReductionColor);;
+                bonusValueText = ColorLogHelper.SetColorToString($" (-{math.abs(bonusValue).ToString("F1")})", _statBonusReductionColor);;
                 _statValue.text = baseValueText + modifierText + bonusValueText;
                 break;
             default:

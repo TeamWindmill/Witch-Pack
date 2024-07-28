@@ -124,7 +124,7 @@ public abstract class UIElement<T> : UIElement
 {
     public bool IsInitialized { get; protected set; }
 
-    public virtual void Init(T rootAbility)
+    public virtual void Init(T data)
     {
         IsInitialized = true;
     }
@@ -133,14 +133,6 @@ public abstract class UIElement<T1,T2> : UIElement
 {
     public bool IsInitialized { get; protected set; }
     public virtual void Init(T1 data1,T2 data2)
-    {
-        IsInitialized = true;
-    }
-}
-public abstract class UIElement<T1,T2,T3> : UIElement
-{
-    public bool IsInitialized { get; protected set; }
-    public virtual void Init(T1 data1,T2 data2,T3 data3)
     {
         IsInitialized = true;
     }

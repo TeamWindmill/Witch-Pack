@@ -19,8 +19,7 @@ public class StatMetaUpgrade : UIElement
 
     private void Start()
     {
-        _statUpgradeIcons.ForEach(icon => icon.OnSelect += (WindowManager as UpgradeWindow).SelectAbility);
-        _statUpgradeIcons.ForEach(icon => icon.OnUpgrade += _shamanUpgradePanel.AddUpgradeToShaman);
+        _statUpgradeIcons.ForEach(icon => icon.OnSelect += _shamanUpgradePanel.SelectAbility);
     }
     public void Init(List<StatMetaUpgradeConfig> statUpgradeConfigs)
     {
@@ -67,6 +66,5 @@ public class StatMetaUpgrade : UIElement
     public void SelectAbility(bool state)
     {
         _abilityFrame.sprite = state ? _selectedFrame : _defaultFrame;
-        _statUpgradeIcons.ForEach(icon =>icon.SelectIcon(false));
     }
 }
