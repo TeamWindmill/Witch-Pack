@@ -26,6 +26,7 @@ public abstract class StatBlock<T> : UIElement where T : Enum
         _statBonusAdditionColor = addColor;
         _statBonusReductionColor = reduceColor;
         SetStatText(_baseValue,0);
+        Show();
     }
 
     public void SetStatType(T statType)
@@ -43,8 +44,7 @@ public abstract class StatBlock<T> : UIElement where T : Enum
 
     public void UpdateBonusStatUI(float newValue)
     {
-        if(ReferenceEquals(HeroSelectionUI.Instance,null)) return;
-        if(!HeroSelectionUI.Instance.IsActive) return;
+        if(_stat is null) return;
         _bonusValue = newValue;
         SetStatText(_baseValue,_bonusValue);
     }
@@ -65,6 +65,7 @@ public abstract class StatBlock<T> : UIElement where T : Enum
     {
         string statName = "";
         string modifier = "";
+        string format = bonusValue % 1 == 0 ? "N0" : "N1";
         statName = GetStatName(ref baseValue, statName, ref modifier);
     
         _statText.text = statName;
@@ -79,11 +80,11 @@ public abstract class StatBlock<T> : UIElement where T : Enum
         switch (bonusValue)
         {
             case > 0.1f:
-                bonusValueText = ColorLogHelper.SetColorToString($" (+{bonusValue.ToString("F1")})", _statBonusAdditionColor);;
+                bonusValueText = ColorLogHelper.SetColorToString($" (+{bonusValue.ToString(format)})", _statBonusAdditionColor);;
                 _statValue.text =  baseValueText + modifierText + bonusValueText;
                 break;
             case < -0.1f:
-                bonusValueText = ColorLogHelper.SetColorToString($" (-{math.abs(bonusValue).ToString("F1")})", _statBonusReductionColor);;
+                bonusValueText = ColorLogHelper.SetColorToString($" (-{math.abs(bonusValue).ToString(format)})", _statBonusReductionColor);;
                 _statValue.text = baseValueText + modifierText + bonusValueText;
                 break;
             default:
