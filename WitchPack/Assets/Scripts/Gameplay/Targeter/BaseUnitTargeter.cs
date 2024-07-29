@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class GroundColliderTargeter : Targeter<GroundCollider>
+public class BaseUnitTargeter<T> : Targeter<T> where T : BaseUnit
 {
     protected override void OnTriggerEnter2D(Collider2D collision)
     {
-        GroundCollider possibleTarget = collision.GetComponent<GroundCollider>();
+        T possibleTarget = collision.GetComponent<T>();
         if (!ReferenceEquals(possibleTarget, null) && !availableTargets.Contains(possibleTarget))
         {
-            if(possibleTarget.Unit.IsDead) return;
+            if(possibleTarget.IsDead) return;
             availableTargets.Add(possibleTarget);
             OnTargetAdded?.Invoke(possibleTarget);
         }

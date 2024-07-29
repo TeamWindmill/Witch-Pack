@@ -1,4 +1,4 @@
-public class ShamanTargeter : Targeter<Shaman>
+public class ShamanTargeter : BaseUnitTargeter<Shaman>
 {
    
 
