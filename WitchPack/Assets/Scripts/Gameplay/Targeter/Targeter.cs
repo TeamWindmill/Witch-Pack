@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Targeter<T> : MonoBehaviour where T : Component
 {
-    [SerializeField] private List<T> availableTargets = new List<T>();
-    public event Action<T> OnTargetAdded;
-    public event Action<T> OnTargetLost;
+    [SerializeField] protected List<T> availableTargets = new List<T>();
+    public Action<T> OnTargetAdded;
+    public Action<T> OnTargetLost;
 
     public bool HasTarget => availableTargets.Count > 0;
 
@@ -26,7 +26,7 @@ public class Targeter<T> : MonoBehaviour where T : Component
         transform.parent.localScale = new Vector3(value, value, value);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         T possibleTarget = collision.GetComponent<T>();
         if (!ReferenceEquals(possibleTarget, null) && !availableTargets.Contains(possibleTarget))
@@ -36,7 +36,7 @@ public class Targeter<T> : MonoBehaviour where T : Component
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
+    protected virtual void OnTriggerExit2D(Collider2D collision)
     {
         T possibleTarget = collision.GetComponent<T>();
         if (!ReferenceEquals(possibleTarget, null))
