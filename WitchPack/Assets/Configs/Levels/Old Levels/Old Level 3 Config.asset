@@ -13,9 +13,43 @@ MonoBehaviour:
   m_Name: Old Level 3 Config
   m_EditorClassIdentifier: 
   Number: 3
-  Name: Been Chiling
-  Shamans:
-  - {fileID: 11400000, guid: 9cb4b45252770504fb9368ce2229801a, type: 2}
-  - {fileID: 11400000, guid: ec8221a6379e2f249b54e376bfd80695, type: 2}
-  - {fileID: 11400000, guid: 64081db4c3ccc064287c4d85bb33b92d, type: 2}
-  levelPrefab: {fileID: 6779597212755086301, guid: 0e4363ee6fe010a49aeb894cfce63990, type: 3}
+  Name: ???
+  levelPrefab: {fileID: 6779597212755086301, guid: f889ce80dc0b9114fa2369ea2b81bc11, type: 3}
+  shamansToAddAfterComplete: []
+  ShowTutorial: 0
+  ExpCalculatorConfig:
+    _firstTimeExp: 100
+    _completionExp: 50
+    _waveCompletedExp: 30
+    _coreRemainingHealthExp: 20
+  LevelChallenges:
+  - _challengeType: 0
+    _displayName: None
+    _bonusesDescription: []
+    _statUpgrades: []
+    _reduceShamanSlots: 2
+    _expMultiplier: 0
+  - _challengeType: 2
+    _displayName: -90% shaman base damage
+    _bonusesDescription:
+    - 'EXP Modifier: +200%'
+    _statUpgrades:
+    - _statType: 1
+      _statValue: 0.9
+      _factor: 3
+    _reduceShamanSlots: 2
+    _expMultiplier: 2
+  - _challengeType: 1
+    _displayName: +200% enemy health
+    _bonusesDescription:
+    - 'EXP Modifier: +200%'
+    _statUpgrades:
+    - _statType: 0
+      _statValue: 2
+      _factor: 2
+    _reduceShamanSlots: 1
+    _expMultiplier: 2
+  BeforeDialog: {fileID: 0}
+  StartDialog: {fileID: 0}
+  EndDialog: {fileID: 0}
+  AfterDialog: {fileID: 0}
