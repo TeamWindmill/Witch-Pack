@@ -13,9 +13,8 @@ public class ObjectPool<T> : MonoBehaviour where T : MonoBehaviour
     {
         pooledObjects.Clear();
     }
-    public void Awake()
+    public virtual void Awake()
     {
-        
         for (int i = 0; i < NumToPool; i++)
         {
             T newPooledObject = Instantiate(PrefabToPool, transform);
@@ -24,17 +23,7 @@ public class ObjectPool<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
-    public T GetPooledObject(Vector3 position, Quaternion rotation, Vector3 scale, Transform parent = null)
-    {
-        var item = GetPooledObject();
-        if(parent != null) item.transform.parent = parent;
-        item.transform.localPosition = position;
-        item.transform.rotation = rotation;
-        item.transform.localScale = scale;
-        return item;
-    }
-
-    public T GetPooledObject()
+    public virtual T GetPooledObject()
     {
         foreach (var item in pooledObjects)
         {
@@ -50,7 +39,7 @@ public class ObjectPool<T> : MonoBehaviour where T : MonoBehaviour
         newPooledObject.gameObject.SetActive(false);
         return newPooledObject;
     }
-    public void ReturnPooledObject(T obj)
+    public virtual void ReturnPooledObject(T obj)
     {
         obj.transform.parent = transform;
         obj.transform.position = Vector3.one;
