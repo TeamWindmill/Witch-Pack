@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using External_Assets.PathCreator.Core.Runtime.Objects;
 using UnityEngine;
 
-namespace PathCreation.Utility {
+namespace External_Assets.PathCreator.Core.Runtime.Utility {
 
     /// Collection of functions related to cubic bezier curves
     /// (a curve with a start and end 'anchor' point, and two 'control' points to define the shape of the curve between the anchors)

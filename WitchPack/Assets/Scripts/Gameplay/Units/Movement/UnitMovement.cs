@@ -1,94 +1,99 @@
 using System;
 using System.Collections;
+using Gameplay.Units.Stats;
+using GameTime;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class UnitMovement : MonoBehaviour
+namespace Gameplay.Units.Movement
 {
-    public event Action OnDestinationSet;
-    public event Action OnDestinationReached;
-
-    public float DefaultStoppingDistance { get; private set; }
-
-    private Vector3 currentDest;
-    private Coroutine activeMovementRoutine;
-    private BaseUnit owner;
-    [SerializeField] private NavMeshAgent agent;
-
-    public NavMeshAgent Agent => agent;
-    public bool IsMoving => agent.velocity.sqrMagnitude > 0;
-    public bool IsActive => agent.enabled;
-
-    public Vector3 CurrentDestination => currentDest;
-
-    private void Awake()
+    public class UnitMovement : MonoBehaviour
     {
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
-        DefaultStoppingDistance = agent.stoppingDistance;
-    }
+        public event Action OnDestinationSet;
+        public event Action OnDestinationReached;
 
+        public float DefaultStoppingDistance { get; private set; }
 
-    public void SetUp(BaseUnit givenOwner)
-    {
-        owner = givenOwner;
-        ToggleMovement(true);
-        ChangeSpeed(GAME_TIME.TimeRate);
-        GAME_TIME.OnTimeRateChange += ChangeSpeed;
-    }
+        private Vector3 currentDest;
+        private Coroutine activeMovementRoutine;
+        private BaseUnit owner;
+        [SerializeField] private NavMeshAgent agent;
 
-    private void OnDisable()
-    {
-        GAME_TIME.OnTimeRateChange -= ChangeSpeed;
-    }
+        public NavMeshAgent Agent => agent;
+        public bool IsMoving => agent.velocity.sqrMagnitude > 0;
+        public bool IsActive => agent.enabled;
 
-    public void SetDestination(Vector3 worldPos)
-    {
-        if (!agent.isOnNavMesh || !agent.enabled) return;
-        currentDest = worldPos;
-        OnDestinationSet?.Invoke();
-        agent.destination = (Vector2)worldPos;
-        if (!ReferenceEquals(activeMovementRoutine, null))
+        public Vector3 CurrentDestination => currentDest;
+
+        private void Awake()
         {
-            StopCoroutine(activeMovementRoutine);
+            agent.updateRotation = false;
+            agent.updateUpAxis = false;
+            DefaultStoppingDistance = agent.stoppingDistance;
         }
 
-        activeMovementRoutine = StartCoroutine(WaitTilReached());
-    }
 
-    public void ChangeSpeed(float newTime)
-    {
-        if (agent is null) return;
-        agent.speed = owner.Stats[StatType.MovementSpeed].Value * newTime;
-    }
-    public void ToggleMovement(bool state)
-    {
-        agent.enabled = state;
-        ChangeSpeed(GAME_TIME.TimeRate);
-    }
+        public void SetUp(BaseUnit givenOwner)
+        {
+            owner = givenOwner;
+            ToggleMovement(true);
+            ChangeSpeed(GAME_TIME.TimeRate);
+            GAME_TIME.OnTimeRateChange += ChangeSpeed;
+        }
 
-    private IEnumerator WaitTilReached()
-    {
-        yield return new WaitUntil(CheckVelocity);
-        yield return new WaitUntil(CheckRemainingDistance);
-        OnDestinationReached?.Invoke();
-    }
+        private void OnDisable()
+        {
+            GAME_TIME.OnTimeRateChange -= ChangeSpeed;
+        }
 
-    private bool CheckRemainingDistance()
-    {
-        if (!agent.enabled) return true;
-        return agent.remainingDistance <= agent.stoppingDistance;
-    }
+        public void SetDestination(Vector3 worldPos)
+        {
+            if (!agent.isOnNavMesh || !agent.enabled) return;
+            currentDest = worldPos;
+            OnDestinationSet?.Invoke();
+            agent.destination = (Vector2)worldPos;
+            if (!ReferenceEquals(activeMovementRoutine, null))
+            {
+                StopCoroutine(activeMovementRoutine);
+            }
 
-    private bool CheckVelocity()
-    {
-        if (!agent.enabled) return true;
-        return agent.velocity != Vector3.zero;
-    }
+            activeMovementRoutine = StartCoroutine(WaitTilReached());
+        }
+
+        public void ChangeSpeed(float newTime)
+        {
+            if (agent is null) return;
+            agent.speed = owner.Stats[StatType.MovementSpeed].Value * newTime;
+        }
+        public void ToggleMovement(bool state)
+        {
+            agent.enabled = state;
+            ChangeSpeed(GAME_TIME.TimeRate);
+        }
+
+        private IEnumerator WaitTilReached()
+        {
+            yield return new WaitUntil(CheckVelocity);
+            yield return new WaitUntil(CheckRemainingDistance);
+            OnDestinationReached?.Invoke();
+        }
+
+        private bool CheckRemainingDistance()
+        {
+            if (!agent.enabled) return true;
+            return agent.remainingDistance <= agent.stoppingDistance;
+        }
+
+        private bool CheckVelocity()
+        {
+            if (!agent.enabled) return true;
+            return agent.velocity != Vector3.zero;
+        }
 
 
-    public void OnSpeedChange(float value)
-    {
-        ChangeSpeed(value);
+        public void OnSpeedChange(float value)
+        {
+            ChangeSpeed(value);
+        }
     }
 }

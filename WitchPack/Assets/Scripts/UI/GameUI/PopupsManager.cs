@@ -1,143 +1,154 @@
 using System.Collections;
+using External_Assets.DamageNumbersPro.Scripts.Internal;
+using Gameplay.Units.Abilities.AbilitySystem.BaseAbilities;
+using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs;
+using Gameplay.Units.Damage_System;
+using Gameplay.Units.Enemy;
+using Gameplay.Units.Shaman;
+using Gameplay.Units.Stats;
+using GameTime;
+using UI.Popups;
 using UnityEngine;
-using DamageNumbersPro;
 
-public class PopupsManager : MonoBehaviour
+namespace UI.GameUI
 {
-    [SerializeField] private DamageNumber textPopupPrefab;
-    [SerializeField] private DamageNumber levelUpPopupPrefab;
-    [SerializeField] private DamageNumber damagePopupPrefab;
-    [SerializeField] private DamageNumber critDamagePopupPrefab;
-    [SerializeField] private DamageNumber enemyDamagePopupPrefab;
-    [SerializeField] private DamageNumber healPopupPrefab;
-    private float _xOffset;
-    [SerializeField] private float _yOffset;
-    [SerializeField] private float _sinSpeed;
-    [Range(1, 100), SerializeField] private float _offsetMultiplier;
-    [SerializeField] private float _levelUpSpawnDelay;
-    private float _offsetDivider = 10;
-    private Vector3 _offsetVector;
-
-
-    [SerializeField] private PopupsColorsDictionary _dictionary;
-
-    private Color _popupColor;
-
-    string _popupText;
-    float _popupNumber;
-
-    public DamageNumber PopupPrefab { get => textPopupPrefab; }
-
-    private void Update()
+    public class PopupsManager : MonoBehaviour
     {
-        _xOffset = Mathf.Sin(_sinSpeed * GAME_TIME.GameTime) * (_offsetMultiplier / _offsetDivider);
-    }
+        [SerializeField] private DamageNumber textPopupPrefab;
+        [SerializeField] private DamageNumber levelUpPopupPrefab;
+        [SerializeField] private DamageNumber damagePopupPrefab;
+        [SerializeField] private DamageNumber critDamagePopupPrefab;
+        [SerializeField] private DamageNumber enemyDamagePopupPrefab;
+        [SerializeField] private DamageNumber healPopupPrefab;
+        private float _xOffset;
+        [SerializeField] private float _yOffset;
+        [SerializeField] private float _sinSpeed;
+        [Range(1, 100), SerializeField] private float _offsetMultiplier;
+        [SerializeField] private float _levelUpSpawnDelay;
+        private float _offsetDivider = 10;
+        private Vector3 _offsetVector;
 
-    public void SpawnDamagePopup(Damageable damageable, DamageDealer damageDealer, DamageHandler damage, Ability ability, bool isCrit)
-    {
-        _offsetVector = new Vector3(_xOffset, _yOffset);
 
-        _popupColor = DetermineDamagePopupColor(damageDealer, damage, ability.BaseConfig, isCrit);
+        [SerializeField] private PopupsColorsDictionary _dictionary;
 
-         _popupNumber = damage.GetDamage();
-        if(damageDealer.Owner is Enemy)
+        private Color _popupColor;
+
+        string _popupText;
+        float _popupNumber;
+
+        public DamageNumber PopupPrefab { get => textPopupPrefab; }
+
+        private void Update()
         {
-            enemyDamagePopupPrefab.Spawn(damageable.Owner.GameObject.transform.position + _offsetVector, _popupNumber, _popupColor);
-        }
-        else if(isCrit)
-        {
-            critDamagePopupPrefab.Spawn(damageable.Owner.GameObject.transform.position + _offsetVector, _popupNumber, _popupColor);
-        }
-        else
-        {
-            damagePopupPrefab.Spawn(damageable.Owner.GameObject.transform.position + _offsetVector, _popupNumber, _popupColor);
-        }
-    }
-
-    public void SpawnStatusEffectPopup(Effectable effectable, Affector affector, StatusEffect statusEffect)
-    {
-        if(statusEffect.StatusEffectVisual == StatusEffectVisual.None) return;
-        if(!statusEffect.ShowStatusEffectPopup) return;
-
-        _offsetVector = new Vector3(0, _yOffset);
-
-        StatusEffectTypeVisualData data = _dictionary.GetData(statusEffect.StatusEffectVisual);
-        _popupColor = data.Color;
-
-        _popupText = "";
-        _popupText = data.Name;
-
-        PopupPrefab.Spawn(effectable.Owner.GameObject.transform.position + _offsetVector, _popupText, _popupColor);
-    }
-
-    public void SpawnGeneralPopup(string text, Color color, Vector3 position, bool xOffset = false, bool yOffset = false)
-    {
-        _offsetVector = new Vector3(0, 0);
-        if(xOffset)
-        {
-            _offsetVector.x += _xOffset;
-        }
-        if(yOffset)
-        {
-            _offsetVector.y += _yOffset;
+            _xOffset = Mathf.Sin(_sinSpeed * GAME_TIME.GameTime) * (_offsetMultiplier / _offsetDivider);
         }
 
-        PopupPrefab.Spawn(position + _offsetVector, text, color);
-    }
-
-    public void SpawnHealPopup(Damageable damageable, int healAmount)
-    {
-        _offsetVector = new Vector3(0, _yOffset);
-
-        healPopupPrefab.Spawn(damageable.Owner.GameObject.transform.position + _offsetVector, healAmount, _dictionary.HealColor);
-    }
-
-    public void SpawnLevelUpTextPopup(Shaman shaman)
-    {
-        StartCoroutine(LevelUpSpawnDelay(shaman));
-    }
-
-    private IEnumerator LevelUpSpawnDelay(Shaman shaman)
-    {
-        yield return new WaitForSeconds(_levelUpSpawnDelay);
-        _offsetVector = new Vector3(0, _yOffset, 0);
-        levelUpPopupPrefab.Spawn(shaman.transform.position + _offsetVector);
-    }
-
-    private Color DetermineDamagePopupColor(DamageDealer damageDealer, DamageHandler damage, AbilitySO abilitySo, bool isCrit)
-    {
-        // First Priority - Specific Damage Color
-        if (damage.HasPopupColor)
+        public void SpawnDamagePopup(Damageable damageable, DamageDealer damageDealer, DamageHandler damage, Ability ability, bool isCrit)
         {
-            return damage.PopupColor;
-        }
-        // Second Priority - Specific Ability Color
-        if (abilitySo.HasPopupColor)
-        {
-            return abilitySo.PopupColor;
-        }
+            _offsetVector = new Vector3(_xOffset, _yOffset);
 
-        // Third Priority - Crit Color
-        if (isCrit)
-        {
-            if (damageDealer.Owner is Enemy enemy && !enemy.Effectable.ContainsStatusEffect(StatusEffectVisual.Charm))
+            _popupColor = DetermineDamagePopupColor(damageDealer, damage, ability.BaseConfig, isCrit);
+
+            _popupNumber = damage.GetDamage();
+            if(damageDealer.Owner is Enemy)
             {
-                return _dictionary.EnemyCritAutoAttackColor;
+                enemyDamagePopupPrefab.Spawn(damageable.Owner.GameObject.transform.position + _offsetVector, _popupNumber, _popupColor);
+            }
+            else if(isCrit)
+            {
+                critDamagePopupPrefab.Spawn(damageable.Owner.GameObject.transform.position + _offsetVector, _popupNumber, _popupColor);
             }
             else
             {
-                return _dictionary.ShamanCritColor;
+                damagePopupPrefab.Spawn(damageable.Owner.GameObject.transform.position + _offsetVector, _popupNumber, _popupColor);
             }
         }
 
-        // Fourth Priority - Default Colors
-        else if (damageDealer.Owner is Enemy enemy && !enemy.Effectable.ContainsStatusEffect(StatusEffectVisual.Charm))
+        public void SpawnStatusEffectPopup(Effectable effectable, Affector affector, StatusEffect statusEffect)
         {
-            return _dictionary.EnemyAutoAttackColor;
+            if(statusEffect.StatusEffectVisual == StatusEffectVisual.None) return;
+            if(!statusEffect.ShowStatusEffectPopup) return;
+
+            _offsetVector = new Vector3(0, _yOffset);
+
+            StatusEffectTypeVisualData data = _dictionary.GetData(statusEffect.StatusEffectVisual);
+            _popupColor = data.Color;
+
+            _popupText = "";
+            _popupText = data.Name;
+
+            PopupPrefab.Spawn(effectable.Owner.GameObject.transform.position + _offsetVector, _popupText, _popupColor);
         }
-        else
+
+        public void SpawnGeneralPopup(string text, Color color, Vector3 position, bool xOffset = false, bool yOffset = false)
         {
-            return _dictionary.DefaultColor;
+            _offsetVector = new Vector3(0, 0);
+            if(xOffset)
+            {
+                _offsetVector.x += _xOffset;
+            }
+            if(yOffset)
+            {
+                _offsetVector.y += _yOffset;
+            }
+
+            PopupPrefab.Spawn(position + _offsetVector, text, color);
+        }
+
+        public void SpawnHealPopup(Damageable damageable, int healAmount)
+        {
+            _offsetVector = new Vector3(0, _yOffset);
+
+            healPopupPrefab.Spawn(damageable.Owner.GameObject.transform.position + _offsetVector, healAmount, _dictionary.HealColor);
+        }
+
+        public void SpawnLevelUpTextPopup(Shaman shaman)
+        {
+            StartCoroutine(LevelUpSpawnDelay(shaman));
+        }
+
+        private IEnumerator LevelUpSpawnDelay(Shaman shaman)
+        {
+            yield return new WaitForSeconds(_levelUpSpawnDelay);
+            _offsetVector = new Vector3(0, _yOffset, 0);
+            levelUpPopupPrefab.Spawn(shaman.transform.position + _offsetVector);
+        }
+
+        private Color DetermineDamagePopupColor(DamageDealer damageDealer, DamageHandler damage, AbilitySO abilitySo, bool isCrit)
+        {
+            // First Priority - Specific Damage Color
+            if (damage.HasPopupColor)
+            {
+                return damage.PopupColor;
+            }
+            // Second Priority - Specific Ability Color
+            if (abilitySo.HasPopupColor)
+            {
+                return abilitySo.PopupColor;
+            }
+
+            // Third Priority - Crit Color
+            if (isCrit)
+            {
+                if (damageDealer.Owner is Enemy enemy && !enemy.Effectable.ContainsStatusEffect(StatusEffectVisual.Charm))
+                {
+                    return _dictionary.EnemyCritAutoAttackColor;
+                }
+                else
+                {
+                    return _dictionary.ShamanCritColor;
+                }
+            }
+
+            // Fourth Priority - Default Colors
+            else if (damageDealer.Owner is Enemy enemy && !enemy.Effectable.ContainsStatusEffect(StatusEffectVisual.Charm))
+            {
+                return _dictionary.EnemyAutoAttackColor;
+            }
+            else
+            {
+                return _dictionary.DefaultColor;
+            }
         }
     }
 }

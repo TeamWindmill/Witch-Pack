@@ -1,10 +1,10 @@
 #if UNITY_EDITOR
-using UnityEngine;
 using UnityEditor;
-using static VInspector.Libs.VUtils;
+using UnityEngine;
+using static External_Assets.vTools.vInspector.VUtils;
 
 
-namespace VInspector
+namespace External_Assets.vTools.vInspector
 {
     class VIMenuItems
     {

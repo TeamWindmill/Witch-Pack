@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace NavMeshPlus.Extensions
+namespace External_Assets.NavMeshPlus_master.NavMeshComponents.Scripts
 {
     public interface INavMeshExtensionsProvider
     {

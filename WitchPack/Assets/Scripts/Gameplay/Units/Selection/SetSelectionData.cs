@@ -1,14 +1,17 @@
 using UnityEngine;
 
-public class SetSelectionData : MonoBehaviour
+namespace Gameplay.Units.Selection
 {
-    private void Start()
+    public class SetSelectionData : MonoBehaviour
     {
-        SelectionData.Instance.SetSelectionLayout(SelectionLayout.RTSLayout);
-    }
-    public void SetSelectionDataLayout(int dataType)
-    {
-        SelectionData.Instance.SetSelectionLayout((SelectionLayout)dataType);
+        private void Start()
+        {
+            SelectionData.Instance.SetSelectionLayout(SelectionLayout.RTSLayout);
+        }
+        public void SetSelectionDataLayout(int dataType)
+        {
+            SelectionData.Instance.SetSelectionLayout((SelectionLayout)dataType);
 
+        }
     }
 }

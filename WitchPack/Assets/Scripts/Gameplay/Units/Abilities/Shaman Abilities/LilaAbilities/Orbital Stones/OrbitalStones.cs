@@ -1,47 +1,56 @@
-public class OrbitalStones : OffensiveAbility
-{
-    public OrbitalStonesSO Config { get;}
-    public OrbitalStones(OffensiveAbilitySO config, BaseUnit owner) : base(config, owner)
-    {
-        Config = config as OrbitalStonesSO;
-        abilityStats.Add(new AbilityStat(AbilityStatType.Duration,Config.Duration));
-        abilityStats.Add(new AbilityStat(AbilityStatType.ProjectilesAmount,Config.StoneAmount));
-        abilityStats.Add(new AbilityStat(AbilityStatType.Size,Config.Radius));
-        abilityStats.Add(new AbilityStat(AbilityStatType.Speed,Config.AngularSpeed));
-        
-    }
+using Gameplay.Units.Abilities.AbilitySystem.AbilityStats;
+using Gameplay.Units.Abilities.AbilitySystem.BaseAbilities;
+using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs;
+using Gameplay.Units.Damage_System;
+using Managers;
 
-    public override bool CastAbility(out IDamagable target)
+namespace Gameplay.Units.Abilities.Shaman_Abilities.LilaAbilities.Orbital_Stones
+{
+    public class OrbitalStones : OffensiveAbility
     {
-        target = Owner.EnemyTargetHelper.GetTarget(TargetData);
-        if (target != null)
+        public OrbitalStonesSO Config { get;}
+        public OrbitalStones(OffensiveAbilitySO config, BaseUnit owner) : base(config, owner)
+        {
+            Config = config as OrbitalStonesSO;
+            abilityStats.Add(new AbilityStat(AbilityStatType.Duration,Config.Duration));
+            abilityStats.Add(new AbilityStat(AbilityStatType.ProjectilesAmount,Config.StoneAmount));
+            abilityStats.Add(new AbilityStat(AbilityStatType.Size,Config.Radius));
+            abilityStats.Add(new AbilityStat(AbilityStatType.Speed,Config.AngularSpeed));
+        
+        }
+
+        public override bool CastAbility(out IDamagable target)
+        {
+            target = Owner.EnemyTargetHelper.GetTarget(TargetData);
+            if (target != null)
+            {
+                Cast();
+                return true;
+            }
+     
+            return false;
+        }
+        public override bool ManualCast()
         {
             Cast();
             return true;
         }
-     
-        return false;
-    }
-    public override bool ManualCast()
-    {
-        Cast();
-        return true;
-    }
 
-    public override bool CheckCastAvailable()
-    {
-        var target = Owner.EnemyTargetHelper.GetTarget(TargetData);
-        if (target != null)
+        public override bool CheckCastAvailable()
         {
-            return true;
+            var target = Owner.EnemyTargetHelper.GetTarget(TargetData);
+            if (target != null)
+            {
+                return true;
+            }
+            return false;
         }
-        return false;
-    }
 
-    private void Cast()
-    {
-        var ability = PoolManager.GetPooledObject<OrbitalStonesMono>();
-        ability.transform.position = Owner.transform.position; //change orbit pos
-        ability.Init(Owner,this);
+        private void Cast()
+        {
+            var ability = PoolManager.GetPooledObject<OrbitalStonesMono>();
+            ability.transform.position = Owner.transform.position; //change orbit pos
+            ability.Init(Owner,this);
+        }
     }
 }

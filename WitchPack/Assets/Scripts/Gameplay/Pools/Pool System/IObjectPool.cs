@@ -1,14 +1,17 @@
 using UnityEngine;
 
-public interface IObjectPool
+namespace Gameplay.Pools.Pool_System
 {
-    IPoolable GetPooledObject();
-    void ReturnPooledObject(IPoolable obj);
-    public bool CheckActiveInstance();
-    IPoolable Poolable { get; }
-}
+    public interface IObjectPool
+    {
+        IPoolable GetPooledObject();
+        void ReturnPooledObject(IPoolable obj);
+        public bool CheckActiveInstance();
+        IPoolable Poolable { get; }
+    }
 
-public interface IPoolable
-{
-    GameObject PoolableGameObject { get; }
+    public interface IPoolable
+    {
+        GameObject PoolableGameObject { get; }
+    }
 }

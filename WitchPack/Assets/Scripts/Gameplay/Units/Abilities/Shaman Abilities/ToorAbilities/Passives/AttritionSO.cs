@@ -1,19 +1,23 @@
+using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs.Passives;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Attrition", menuName = "Ability/Toor/Attrition")]
-public class AttritionSO : PassiveSO
+namespace Gameplay.Units.Abilities.Shaman_Abilities.ToorAbilities.Passives
 {
-    [SerializeField] private EventToCount eventToCount;
-    [SerializeField] private int maxStacks;
-    [SerializeField, Range(1, 100)] private float damageIncreasePerShot;
+    [CreateAssetMenu(fileName = "Attrition", menuName = "Ability/Toor/Attrition")]
+    public class AttritionSO : PassiveSO
+    {
+        [SerializeField] private EventToCount eventToCount;
+        [SerializeField] private int maxStacks;
+        [SerializeField, Range(1, 100)] private float damageIncreasePerShot;
 
-    public EventToCount EventToCount => eventToCount;
-    public int MaxStacks => maxStacks;
-    public float DamageIncreasePerShot => damageIncreasePerShot;
-}
+        public EventToCount EventToCount => eventToCount;
+        public int MaxStacks => maxStacks;
+        public float DamageIncreasePerShot => damageIncreasePerShot;
+    }
 
-public enum EventToCount
-{
-    OnHit,
-    OnKill
+    public enum EventToCount
+    {
+        OnHit,
+        OnKill
+    }
 }

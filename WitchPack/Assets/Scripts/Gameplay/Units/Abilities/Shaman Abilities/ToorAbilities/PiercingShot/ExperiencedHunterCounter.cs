@@ -1,23 +1,29 @@
 using System;
+using Gameplay.Units.Abilities.AbilitySystem.AbilityStats;
+using Gameplay.Units.Abilities.AbilitySystem.BaseAbilities;
+using Gameplay.Units.Damage_System;
 
-public class ExperiencedHunterCounter : AbilityEventCounter
+namespace Gameplay.Units.Abilities.Shaman_Abilities.ToorAbilities.PiercingShot
 {
-    private Ability _ability;
-    public ExperiencedHunterCounter(BaseUnit givenOwner, Ability ability, ref Action<Damageable, DamageDealer, DamageHandler, Ability, bool> eventToSub) : base(givenOwner, ability, ref eventToSub)
+    public class ExperiencedHunterCounter : AbilityEventCounter
     {
-        _ability = ability;
-    }
-
-    protected override void EventFunc(Damageable target, DamageDealer dealer, DamageHandler dmg, Ability ability, bool isCrit)
-    {
-        if (ReferenceEquals(ability, AbilityToCount))
+        private Ability _ability;
+        public ExperiencedHunterCounter(BaseUnit givenOwner, Ability ability, ref Action<Damageable, DamageDealer, DamageHandler, Ability, bool> eventToSub) : base(givenOwner, ability, ref eventToSub)
         {
-            currentCount++;
+            _ability = ability;
+        }
 
-            if(currentCount >= _ability.GetAbilityStatValue(AbilityStatType.KillToIncreasePenetration))
+        protected override void EventFunc(Damageable target, DamageDealer dealer, DamageHandler dmg, Ability ability, bool isCrit)
+        {
+            if (ReferenceEquals(ability, AbilityToCount))
             {
-                currentCount = 0;
-                OnCountIncrement?.Invoke(this, target, dealer, dmg, ability);
+                currentCount++;
+
+                if(currentCount >= _ability.GetAbilityStatValue(AbilityStatType.KillToIncreasePenetration))
+                {
+                    currentCount = 0;
+                    OnCountIncrement?.Invoke(this, target, dealer, dmg, ability);
+                }
             }
         }
     }

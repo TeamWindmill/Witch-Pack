@@ -1,36 +1,41 @@
 using System.Collections.Generic;
+using Configs;
+using UI.UISystem;
 using UnityEngine;
 
-public class RewardsPanel : UIElement
+namespace UI.MapUI.PartySelectionUI
 {
-    [SerializeField] private LevelRewardUI _levelRewardUIPrefab;
-    [SerializeField] private Transform _holder;
-
-    private readonly List<LevelRewardUI> _activeLevelRewards = new();
-
-    public void Init(LevelConfig levelConfig)
+    public class RewardsPanel : UIElement
     {
-        Hide();
-        if (levelConfig.shamansToAddAfterComplete != null)
+        [SerializeField] private LevelRewardUI _levelRewardUIPrefab;
+        [SerializeField] private Transform _holder;
+
+        private readonly List<LevelRewardUI> _activeLevelRewards = new();
+
+        public void Init(LevelConfig levelConfig)
         {
-            foreach (var shamanReward in levelConfig.shamansToAddAfterComplete)
+            Hide();
+            if (levelConfig.shamansToAddAfterComplete != null)
             {
-                var shamanRewardUI = Instantiate(_levelRewardUIPrefab, _holder);
-                shamanRewardUI.Init(shamanReward.UnitIcon,shamanReward.Name);
-                _activeLevelRewards.Add(shamanRewardUI);
+                foreach (var shamanReward in levelConfig.shamansToAddAfterComplete)
+                {
+                    var shamanRewardUI = Instantiate(_levelRewardUIPrefab, _holder);
+                    shamanRewardUI.Init(shamanReward.UnitIcon,shamanReward.Name);
+                    _activeLevelRewards.Add(shamanRewardUI);
+                }
             }
         }
-    }
 
-    public override void Hide()
-    {
-        if(_activeLevelRewards.Count <= 0) return;
-        
-        foreach (var activeLevelRewards in _activeLevelRewards)
+        public override void Hide()
         {
-            Destroy(activeLevelRewards.gameObject); 
-        }
+            if(_activeLevelRewards.Count <= 0) return;
         
-        _activeLevelRewards.Clear();
+            foreach (var activeLevelRewards in _activeLevelRewards)
+            {
+                Destroy(activeLevelRewards.gameObject); 
+            }
+        
+            _activeLevelRewards.Clear();
+        }
     }
 }

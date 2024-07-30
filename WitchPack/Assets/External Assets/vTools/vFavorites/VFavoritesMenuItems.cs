@@ -1,10 +1,10 @@
 #if UNITY_EDITOR
-using UnityEngine;
 using UnityEditor;
-using static VFavorites.Libs.VUtils;
+using UnityEngine;
+using static External_Assets.vTools.vFavorites.VUtils;
 
 
-namespace VFavorites
+namespace External_Assets.vTools.vFavorites
 {
     class VFavoritesMenuItems
     {

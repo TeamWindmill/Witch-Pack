@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static VHierarchy.Libs.VUtils;
+using static External_Assets.vTools.vHierarchy.VUtils;
 
 
-namespace VHierarchy
+namespace External_Assets.vTools.vHierarchy
 {
     public class VHierarchyData : ScriptableObject
     {

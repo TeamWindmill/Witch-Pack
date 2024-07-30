@@ -3,7 +3,7 @@ using UnityEditor.AI;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace NavMeshPlus.Editors.Components
+namespace External_Assets.NavMeshPlus_master.NavMeshComponents.Editor
 {
     public static class NavMeshComponentsGUIUtility
     {

@@ -1,23 +1,28 @@
+using Managers;
 using TMPro;
+using UI.UISystem;
 using UnityEngine;
 
-public class ItemsGainedPanel : UIElement
+namespace UI.GameUI.EndScreen
 {
-    [SerializeField] private TextMeshProUGUI _titleText;
-    [SerializeField] private ShamanIconUI _shamanIconPrefab;
-    [SerializeField] private Transform _shamanIconsHolder;
-    public void ShowWinPanel()
+    public class ItemsGainedPanel : UIElement
     {
-        _titleText.text = "Shamans added to your party:";
-        foreach (var shaman in LevelManager.Instance.CurrentLevel.Config.shamansToAddAfterComplete)
+        [SerializeField] private TextMeshProUGUI _titleText;
+        [SerializeField] private ShamanIconUI _shamanIconPrefab;
+        [SerializeField] private Transform _shamanIconsHolder;
+        public void ShowWinPanel()
         {
-            var shamanIcon = Instantiate(_shamanIconPrefab, _shamanIconsHolder);
-            shamanIcon.Init(shaman);
+            _titleText.text = "Shamans added to your party:";
+            foreach (var shaman in LevelManager.Instance.CurrentLevel.Config.shamansToAddAfterComplete)
+            {
+                var shamanIcon = Instantiate(_shamanIconPrefab, _shamanIconsHolder);
+                shamanIcon.Init(shaman);
+            }
         }
-    }
 
-    public void ShowLosePanel()
-    {
-        _titleText.text = "You Gained Nothing...";
+        public void ShowLosePanel()
+        {
+            _titleText.text = "You Gained Nothing...";
+        }
     }
 }

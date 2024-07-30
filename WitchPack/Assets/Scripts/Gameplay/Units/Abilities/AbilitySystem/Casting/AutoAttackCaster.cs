@@ -1,49 +1,56 @@
 using System;
+using Gameplay.Units.Abilities.AbilitySystem.AbilityStats;
+using Gameplay.Units.Abilities.AbilitySystem.BaseAbilities;
+using Gameplay.Units.Damage_System;
+using Gameplay.Units.Stats;
 
-public class AutoAttackCaster : ICaster
+namespace Gameplay.Units.Abilities.AbilitySystem.Casting
 {
-    public event Action OnAttack;
-    public CastingAbility Ability => ability;
-    public float LastCast { get; set; }
-
-    private readonly BaseUnit _unit;
-    private readonly CastingAbility ability;
-
-    public AutoAttackCaster(BaseUnit owner, CastingAbility ability)
+    public class AutoAttackCaster : ICaster
     {
-        _unit = owner;
-        this.ability = ability;
-    }
+        public event Action OnAttack;
+        public CastingAbility Ability => ability;
+        public float LastCast { get; set; }
 
-    public bool CastAbility(out IDamagable target)
-    {
-        if (ability.CastAbility(out target))
+        private readonly BaseUnit _unit;
+        private readonly CastingAbility ability;
+
+        public AutoAttackCaster(BaseUnit owner, CastingAbility ability)
         {
-            OnAttack?.Invoke();
-            return true;
+            _unit = owner;
+            this.ability = ability;
         }
-        else
+
+        public bool CastAbility(out IDamagable target)
+        {
+            if (ability.CastAbility(out target))
+            {
+                OnAttack?.Invoke();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool ManualCastAbility()
         {
             return false;
         }
-    }
 
-    public bool ManualCastAbility()
-    {
-        return false;
-    }
-
-    public float GetCooldown() => 1 / _unit.Stats[StatType.AttackSpeed].Value;
-    public float GetCastTime() => ability.GetAbilityStatValue(AbilityStatType.CastTime);
+        public float GetCooldown() => 1 / _unit.Stats[StatType.AttackSpeed].Value;
+        public float GetCastTime() => ability.GetAbilityStatValue(AbilityStatType.CastTime);
     
 
-    public bool CheckCastAvailable()
-    {
-        return ability.CheckCastAvailable();
-    }
+        public bool CheckCastAvailable()
+        {
+            return ability.CheckCastAvailable();
+        }
 
-    public bool ContainsUpgrade(ICaster caster)
-    {
-        return false;
+        public bool ContainsUpgrade(ICaster caster)
+        {
+            return false;
+        }
     }
 }

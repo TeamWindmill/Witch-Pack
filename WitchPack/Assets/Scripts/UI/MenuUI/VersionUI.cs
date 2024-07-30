@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace Tzipory.Tools
+namespace UI.MenuUI
 {
     public class VersionUI : MonoBehaviour
     {

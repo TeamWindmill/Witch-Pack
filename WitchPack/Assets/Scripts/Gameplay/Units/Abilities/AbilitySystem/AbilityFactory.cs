@@ -1,109 +1,136 @@
 using System;
+using Gameplay.Units.Abilities.AbilitySystem.BaseAbilities;
+using Gameplay.Units.Abilities.AbilitySystem.BaseAbilities.Passives;
+using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs;
+using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs.Passives;
+using Gameplay.Units.Abilities.Auto_Attack;
+using Gameplay.Units.Abilities.Auto_Attack.Configs;
+using Gameplay.Units.Abilities.Enemy_Abilities.Blaster;
+using Gameplay.Units.Abilities.Shaman_Abilities.JavanAbilities.Charm;
+using Gameplay.Units.Abilities.Shaman_Abilities.JavanAbilities.Passives;
+using Gameplay.Units.Abilities.Shaman_Abilities.JavanAbilities.SmokeBomb;
+using Gameplay.Units.Abilities.Shaman_Abilities.JavanAbilities.SmokeBomb.Configs;
+using Gameplay.Units.Abilities.Shaman_Abilities.LilaAbilities.Orbital_Stones;
+using Gameplay.Units.Abilities.Shaman_Abilities.LilaAbilities.Passive;
+using Gameplay.Units.Abilities.Shaman_Abilities.LilaAbilities.RockMonolith;
+using Gameplay.Units.Abilities.Shaman_Abilities.LilaAbilities.RockMonolith.Configs;
+using Gameplay.Units.Abilities.Shaman_Abilities.NadiaAbilities.Heal;
+using Gameplay.Units.Abilities.Shaman_Abilities.NadiaAbilities.Heal.Configs;
+using Gameplay.Units.Abilities.Shaman_Abilities.NadiaAbilities.Rooting_Vines;
+using Gameplay.Units.Abilities.Shaman_Abilities.NadiaAbilities.Rooting_Vines.Configs;
+using Gameplay.Units.Abilities.Shaman_Abilities.ToorAbilities.MultiShot;
+using Gameplay.Units.Abilities.Shaman_Abilities.ToorAbilities.MultiShot.Configs;
+using Gameplay.Units.Abilities.Shaman_Abilities.ToorAbilities.Passives;
+using Gameplay.Units.Abilities.Shaman_Abilities.ToorAbilities.PiercingShot;
+using Gameplay.Units.Abilities.Shaman_Abilities.ToorAbilities.PiercingShot.Configs;
 
-public class AbilityFactory
+namespace Gameplay.Units.Abilities.AbilitySystem
 {
-    public static Ability CreateAbility(AbilitySO config, BaseUnit owner)
+    public class AbilityFactory
     {
-        switch (config)
+        public static Ability CreateAbility(AbilitySO config, BaseUnit owner)
         {
-            //Auto Attack
-            case EnemyRangedAutoAttackSO ability:
-                return new EnemyRangedAutoAttack(ability, owner);
+            switch (config)
+            {
+                //Auto Attack
+                case EnemyRangedAutoAttackSO ability:
+                    return new EnemyRangedAutoAttack(ability, owner);
 
-            case EnemyMeleeAutoAttackSO ability:
-                return new EnemyMeleeAutoAttack(ability, owner);
+                case EnemyMeleeAutoAttackSO ability:
+                    return new EnemyMeleeAutoAttack(ability, owner);
 
-            case ShamanRangedAutoAttackSO ability:
-                return new ShamanRangedAutoAttack(ability, owner);
-
-            
-            //Toor Abilities
-            case ExperiencedHunterSO ability:
-                return new ExperiencedHunter(ability, owner);
-
-            case PiercingShotSO ability:
-                return new PiercingShot(ability, owner);
-
-            case RicochetSO ability:
-                return new Ricochet(ability, owner);
-
-            case MultiShotSO ability:
-                return new MultiShot(ability, owner);
+                case ShamanRangedAutoAttackSO ability:
+                    return new ShamanRangedAutoAttack(ability, owner);
 
             
-            //Nadia Abilities
-            case HealingWeedsSO ability:
-                return new HealingWeeds(ability, owner);
+                //Toor Abilities
+                case ExperiencedHunterSO ability:
+                    return new ExperiencedHunter(ability, owner);
 
-            case PoisonIvySO ability:
-                return new PoisonIvy(ability, owner);
+                case PiercingShotSO ability:
+                    return new PiercingShot(ability, owner);
 
-            case RootingVinesSO ability:
-                return new RootingVines(ability, owner);
+                case RicochetSO ability:
+                    return new Ricochet(ability, owner);
 
-            case BlessingOfSwiftnessSO ability:
-                return new BlessingOfSwiftness(ability, owner);
-
-            case OverhealSO ability:
-                return new Overheal(ability, owner);
-
-            case HealSO ability:
-                return new Heal(ability, owner);
+                case MultiShotSO ability:
+                    return new MultiShot(ability, owner);
 
             
-            //Javan Abilities
-            case HighImpactSO ability:
-                return new HighImpactSmokeBomb(ability, owner);
+                //Nadia Abilities
+                case HealingWeedsSO ability:
+                    return new HealingWeeds(ability, owner);
 
-            case SmokeBombSO ability:
-                return new SmokeBomb(ability, owner);
+                case PoisonIvySO ability:
+                    return new PoisonIvy(ability, owner);
 
-            case CharmSO ability:
-                return new Charm(ability, owner);
+                case RootingVinesSO ability:
+                    return new RootingVines(ability, owner);
 
-            case CourageSO ability:
-                return new Courage(ability, owner);
+                case BlessingOfSwiftnessSO ability:
+                    return new BlessingOfSwiftness(ability, owner);
 
+                case OverhealSO ability:
+                    return new Overheal(ability, owner);
 
-            //Lila Abilities
-            case AftershockSO ability:
-                return new Aftershock(ability, owner);
-
-            case FortifySO ability:
-                return new Fortify(ability, owner);
-
-            case RockMonolithSO ability:
-                return new RockMonolith(ability, owner);
-
-            case OrbitalStonesSO ability:
-                return new OrbitalStones(ability, owner);
-
-            case ReflectSO ability:
-                return new Reflect(ability, owner);
-            
-            case HealingLightSO ability:
-                return new HealingLight(ability, owner);
+                case HealSO ability:
+                    return new Heal(ability, owner);
 
             
-            //Enemy Abilities
-            case FireballSO ability:
-                return new Fireball(ability, owner);
+                //Javan Abilities
+                case HighImpactSO ability:
+                    return new HighImpactSmokeBomb(ability, owner);
+
+                case SmokeBombSO ability:
+                    return new SmokeBomb(ability, owner);
+
+                case CharmSO ability:
+                    return new Charm(ability, owner);
+
+                case CourageSO ability:
+                    return new Courage(ability, owner);
+
+
+                //Lila Abilities
+                case AftershockSO ability:
+                    return new Aftershock(ability, owner);
+
+                case FortifySO ability:
+                    return new Fortify(ability, owner);
+
+                case RockMonolithSO ability:
+                    return new RockMonolith(ability, owner);
+
+                case OrbitalStonesSO ability:
+                    return new OrbitalStones(ability, owner);
+
+                case ReflectSO ability:
+                    return new Reflect(ability, owner);
+            
+                case HealingLightSO ability:
+                    return new HealingLight(ability, owner);
 
             
-            //Passives
-            case ConditionalStatPassiveSO ability:
-                return new ConditionalStatPassive(ability, owner);
+                //Enemy Abilities
+                case FireballSO ability:
+                    return new Fireball(ability, owner);
 
-            case AffectedByUnitsStatPassiveSO ability:
-                return new AffectedByUnitsStatPassive(ability, owner);
+            
+                //Passives
+                case ConditionalStatPassiveSO ability:
+                    return new ConditionalStatPassive(ability, owner);
 
-            case AttritionSO ability:
-                return new Attrition(ability, owner);
+                case AffectedByUnitsStatPassiveSO ability:
+                    return new AffectedByUnitsStatPassive(ability, owner);
 
-            case StatPassiveSO ability:
-                return new StatPassive(ability, owner);
+                case AttritionSO ability:
+                    return new Attrition(ability, owner);
+
+                case StatPassiveSO ability:
+                    return new StatPassive(ability, owner);
+            }
+
+            throw new Exception($"{owner.UnitConfig.Name}'s Ability config not found in the ability factory");
         }
-
-        throw new Exception($"{owner.UnitConfig.Name}'s Ability config not found in the ability factory");
     }
 }

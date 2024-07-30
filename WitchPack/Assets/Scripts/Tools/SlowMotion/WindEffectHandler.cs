@@ -3,32 +3,34 @@ using DG.Tweening;
 using Tools.Lerp;
 using UnityEngine;
 
-
-[Serializable]
-public class WindEffectHandler 
+namespace Tools.SlowMotion
 {
-    private ParticleSystem[] _windParticles;
-    [SerializeField] private LerpConfig<float> LerpConfig;
-    public void Init(ParticleSystem[] windParticles)
+    [Serializable]
+    public class WindEffectHandler 
     {
-        _windParticles = windParticles;
-    }
-    public void StartTransition()
-    {
-        
-        foreach (var particle in _windParticles)
+        private ParticleSystem[] _windParticles;
+        [SerializeField] private LerpConfig<float> LerpConfig;
+        public void Init(ParticleSystem[] windParticles)
         {
-            var main = particle.main;
-            DOTween.To(() => main.simulationSpeed, x => main.simulationSpeed = x, LerpConfig.EndValue, LerpConfig.TransitionTime);
+            _windParticles = windParticles;
         }
-    }
-
-    public void EndTransition()
-    {
-        foreach (var particle in _windParticles)
+        public void StartTransition()
         {
-            var main = particle.main;
-            DOTween.To(() => main.simulationSpeed, x => main.simulationSpeed = x, LerpConfig.StartValue, LerpConfig.TransitionTime);
+        
+            foreach (var particle in _windParticles)
+            {
+                var main = particle.main;
+                DOTween.To(() => main.simulationSpeed, x => main.simulationSpeed = x, LerpConfig.EndValue, LerpConfig.TransitionTime);
+            }
+        }
+
+        public void EndTransition()
+        {
+            foreach (var particle in _windParticles)
+            {
+                var main = particle.main;
+                DOTween.To(() => main.simulationSpeed, x => main.simulationSpeed = x, LerpConfig.StartValue, LerpConfig.TransitionTime);
+            }
         }
     }
 }

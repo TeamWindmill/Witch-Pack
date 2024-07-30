@@ -1,15 +1,20 @@
-public abstract class PassiveAbility : Ability
+using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs;
+
+namespace Gameplay.Units.Abilities.AbilitySystem.BaseAbilities.Passives
 {
-    public PassiveAbility(AbilitySO baseConfig, BaseUnit owner) : base(baseConfig, owner)
+    public abstract class PassiveAbility : Ability
     {
-    }
+        public PassiveAbility(AbilitySO baseConfig, BaseUnit owner) : base(baseConfig, owner)
+        {
+        }
 
-    public virtual void SubscribePassive()
-    {
-    }
+        public virtual void SubscribePassive()
+        {
+        }
 
 
-    public virtual void UnsubscribePassive()
-    {
+        public virtual void UnsubscribePassive()
+        {
+        }
     }
 }

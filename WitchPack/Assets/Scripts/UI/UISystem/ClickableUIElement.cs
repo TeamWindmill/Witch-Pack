@@ -1,165 +1,169 @@
 using System;
 using Sirenix.OdinInspector;
+using Sound;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public abstract class ClickableUIElement : UIElement, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler
+namespace UI.UISystem
 {
-    //inherit from this class for clickable ui element
-    public event Action<PointerEventData> OnClickEvent;
-    public event Action OnHoldClickEvent;
-    public event Action OnDoubleClickEvent;
-
-    [BoxGroup("UI Element/Clickable")] [SerializeField]
-    private bool enableSoundOnClick = true;
-    
-    [BoxGroup("UI Element/Clickable")] [SerializeField]
-    private bool enableDoubleClick;
-
-    [BoxGroup("UI Element/Clickable")] [SerializeField, ShowIf(nameof(enableDoubleClick))]
-    private float doubleClickSpeed = 0.5f;
-
-    [BoxGroup("UI Element/Clickable")] [SerializeField]
-    private bool enableHoldClick;
-
-    [BoxGroup("UI Element/Clickable")] [SerializeField, ShowIf(nameof(enableHoldClick))]
-    protected float holdClickSpeed = 1.5f;
-    
-    
-
-    private int _clickNum;
-
-    protected float DoubleClickTimer;
-    protected float HoldClickTimer;
-    protected bool PointerDown;
-    private bool _holdClickHappened;
-
-
-    public void OnPointerClick(PointerEventData eventData)
+    public abstract class ClickableUIElement : UIElement, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler
     {
-        switch (_clickNum)
+        //inherit from this class for clickable ui element
+        public event Action<PointerEventData> OnClickEvent;
+        public event Action OnHoldClickEvent;
+        public event Action OnDoubleClickEvent;
+
+        [BoxGroup("UI Element/Clickable")] [SerializeField]
+        private bool enableSoundOnClick = true;
+    
+        [BoxGroup("UI Element/Clickable")] [SerializeField]
+        private bool enableDoubleClick;
+
+        [BoxGroup("UI Element/Clickable")] [SerializeField, ShowIf(nameof(enableDoubleClick))]
+        private float doubleClickSpeed = 0.5f;
+
+        [BoxGroup("UI Element/Clickable")] [SerializeField]
+        private bool enableHoldClick;
+
+        [BoxGroup("UI Element/Clickable")] [SerializeField, ShowIf(nameof(enableHoldClick))]
+        protected float holdClickSpeed = 1.5f;
+    
+    
+
+        private int _clickNum;
+
+        protected float DoubleClickTimer;
+        protected float HoldClickTimer;
+        protected bool PointerDown;
+        private bool _holdClickHappened;
+
+
+        public void OnPointerClick(PointerEventData eventData)
         {
-            case 0:
-                OnClick(eventData);
-                return;
-            case 1:
-                OnDoubleClick();
-                return;
-        }
-    }
-
-    protected override void Update()
-    {
-        CheckDoubleClick();
-        CheckHoldClick();
-    }
-    private void CheckHoldClick()
-    {
-        if (!enableHoldClick || _holdClickHappened) return;
-        if (PointerDown)
-        {
-            HoldClickTimer += Time.deltaTime;
-            if (HoldClickTimer > holdClickSpeed)
+            switch (_clickNum)
             {
-                OnHoldClick();
+                case 0:
+                    OnClick(eventData);
+                    return;
+                case 1:
+                    OnDoubleClick();
+                    return;
             }
         }
-        else
+
+        protected override void Update()
         {
+            CheckDoubleClick();
+            CheckHoldClick();
+        }
+        private void CheckHoldClick()
+        {
+            if (!enableHoldClick || _holdClickHappened) return;
+            if (PointerDown)
+            {
+                HoldClickTimer += UnityEngine.Time.deltaTime;
+                if (HoldClickTimer > holdClickSpeed)
+                {
+                    OnHoldClick();
+                }
+            }
+            else
+            {
+                HoldClickTimer = 0;
+            }
+        }
+
+        private void CheckDoubleClick()
+        {
+            if (_clickNum == 0 || !enableDoubleClick)
+                return;
+
+            DoubleClickTimer -= UnityEngine.Time.deltaTime;
+
+            if (DoubleClickTimer <= 0)
+            {
+                _clickNum = 0;
+                DoubleClickTimer = 0;
+            }
+        }
+
+        protected virtual void OnClick(PointerEventData eventData)
+        {
+            OnClickEvent?.Invoke(eventData);
+            if(enableSoundOnClick) SoundManager.PlayAudioClip(SoundEffectType.MenuClick);
+            if (!enableDoubleClick) return;
+
+            _clickNum++;
+            DoubleClickTimer = doubleClickSpeed;
+        }
+
+        protected virtual void OnDoubleClick()
+        {
+            OnDoubleClickEvent?.Invoke();
+            DoubleClickTimer = 0;
+            _clickNum = 0;
+        }
+
+        protected virtual void OnHoldClick()
+        {
+            Debug.Log("hold click");
+            OnHoldClickEvent?.Invoke();
+            _holdClickHappened = true;
             HoldClickTimer = 0;
         }
-    }
 
-    private void CheckDoubleClick()
-    {
-        if (_clickNum == 0 || !enableDoubleClick)
-            return;
-
-        DoubleClickTimer -= Time.deltaTime;
-
-        if (DoubleClickTimer <= 0)
+        protected override void OnDisable()
         {
             _clickNum = 0;
             DoubleClickTimer = 0;
+            base.OnDisable();
+        }
+
+        public virtual void OnPointerDown(PointerEventData eventData)
+        {
+            PointerDown = true;
+        }
+
+        public virtual void OnPointerUp(PointerEventData eventData)
+        {
+            PointerDown = false;
+            _holdClickHappened = false;
+        }
+
+        public override void OnPointerExit(PointerEventData eventData)
+        {
+            base.OnPointerExit(eventData);
+            PointerDown = false;
+            _holdClickHappened = false;
         }
     }
 
-    protected virtual void OnClick(PointerEventData eventData)
+    public abstract class ClickableUIElement<T> : ClickableUIElement
     {
-        OnClickEvent?.Invoke(eventData);
-        if(enableSoundOnClick) SoundManager.PlayAudioClip(SoundEffectType.MenuClick);
-        if (!enableDoubleClick) return;
+        public bool Initialized { get; protected set; }
 
-        _clickNum++;
-        DoubleClickTimer = doubleClickSpeed;
+        public virtual void Init(T data)
+        {
+            Initialized = true;
+        }
+    }
+    public abstract class ClickableUIElement<T1,T2> : ClickableUIElement
+    {
+        public bool Initialized { get; protected set; }
+
+        public virtual void Init(T1 data1, T2 data2)
+        {
+            Initialized = true;
+        }
     }
 
-    protected virtual void OnDoubleClick()
+    public abstract class ClickableUIElement<T1,T2,T3> : ClickableUIElement
     {
-        OnDoubleClickEvent?.Invoke();
-        DoubleClickTimer = 0;
-        _clickNum = 0;
-    }
+        public bool Initialized { get; protected set; }
 
-    protected virtual void OnHoldClick()
-    {
-        Debug.Log("hold click");
-        OnHoldClickEvent?.Invoke();
-        _holdClickHappened = true;
-        HoldClickTimer = 0;
-    }
-
-    protected override void OnDisable()
-    {
-        _clickNum = 0;
-        DoubleClickTimer = 0;
-        base.OnDisable();
-    }
-
-    public virtual void OnPointerDown(PointerEventData eventData)
-    {
-        PointerDown = true;
-    }
-
-    public virtual void OnPointerUp(PointerEventData eventData)
-    {
-        PointerDown = false;
-        _holdClickHappened = false;
-    }
-
-    public override void OnPointerExit(PointerEventData eventData)
-    {
-        base.OnPointerExit(eventData);
-        PointerDown = false;
-        _holdClickHappened = false;
-    }
-}
-
-public abstract class ClickableUIElement<T> : ClickableUIElement
-{
-    public bool Initialized { get; protected set; }
-
-    public virtual void Init(T data)
-    {
-        Initialized = true;
-    }
-}
-public abstract class ClickableUIElement<T1,T2> : ClickableUIElement
-{
-    public bool Initialized { get; protected set; }
-
-    public virtual void Init(T1 data1, T2 data2)
-    {
-        Initialized = true;
-    }
-}
-
-public abstract class ClickableUIElement<T1,T2,T3> : ClickableUIElement
-{
-    public bool Initialized { get; protected set; }
-
-    public virtual void Init(T1 data1, T2 data2, T3 data3)
-    {
-        Initialized = true;
+        public virtual void Init(T1 data1, T2 data2, T3 data3)
+        {
+            Initialized = true;
+        }
     }
 }

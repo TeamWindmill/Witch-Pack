@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DamageNumbersPro.Internal
+namespace External_Assets.DamageNumbersPro.Scripts.Internal
 {
     public class DNPUpdater : MonoBehaviour
     {

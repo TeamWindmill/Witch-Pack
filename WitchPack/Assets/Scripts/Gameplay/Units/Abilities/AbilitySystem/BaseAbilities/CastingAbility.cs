@@ -1,67 +1,76 @@
 using System.Collections.Generic;
+using Gameplay.Targeter;
+using Gameplay.Units.Abilities.AbilitySystem.AbilityStats;
+using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs;
+using Gameplay.Units.Damage_System;
+using Gameplay.Units.Stats;
+using UI.MapUI.MetaUpgrades.UpgradePanel.Configs;
 
-public abstract class CastingAbility : Ability
+namespace Gameplay.Units.Abilities.AbilitySystem.BaseAbilities
 {
-    public CastingAbilitySO CastingConfig { get; }
-    public List<StatusEffectData> StatusEffects { get; } = new();
-
-    public TargetData TargetData => Owner.Stats[StatType.ThreatLevel].Value >= 1 ? CastingConfig.UnderAttackTargetData : CastingConfig.TargetData;
-
-    protected CastingAbility(CastingAbilitySO config, BaseUnit owner) : base(config,owner)
+    public abstract class CastingAbility : Ability
     {
-        CastingConfig = config;
-        abilityStats.Add(new AbilityStat(AbilityStatType.Cooldown,config.Cd));
-        abilityStats.Add(new AbilityStat(AbilityStatType.CastTime,config.CastTime));
-        if(config.GivesEnergyPoints)
-            abilityStats.Add(new AbilityStat(AbilityStatType.EnergyPointsOnCast,config.EnergyPoints));
+        public CastingAbilitySO CastingConfig { get; }
+        public List<StatusEffectData> StatusEffects { get; } = new();
 
-        foreach (var statusEffect in config.StatusEffects)
+        public TargetData TargetData => Owner.Stats[StatType.ThreatLevel].Value >= 1 ? CastingConfig.UnderAttackTargetData : CastingConfig.TargetData;
+
+        protected CastingAbility(CastingAbilitySO config, BaseUnit owner) : base(config,owner)
         {
-            StatusEffects.Add(new StatusEffectData(statusEffect));
-        }
-    }
-    
-    public abstract bool CastAbility(out IDamagable target);
+            CastingConfig = config;
+            abilityStats.Add(new AbilityStat(AbilityStatType.Cooldown,config.Cd));
+            abilityStats.Add(new AbilityStat(AbilityStatType.CastTime,config.CastTime));
+            if(config.GivesEnergyPoints)
+                abilityStats.Add(new AbilityStat(AbilityStatType.EnergyPointsOnCast,config.EnergyPoints));
 
-    public virtual bool ManualCast()
-    {
-        return false;
-    }
-    public abstract bool CheckCastAvailable();
-
-    public override void AddStatUpgrade(AbilityUpgradeConfig abilityUpgradeConfig)
-    {
-        base.AddStatUpgrade(abilityUpgradeConfig);
-        
-        //adding status effect upgrades
-        if(abilityUpgradeConfig.StatusEffectUpgrades.Length <= 0) return;
-        
-        foreach (var statusEffect in StatusEffects)
-        {
-            foreach (var statusEffectUpgrade in abilityUpgradeConfig.StatusEffectUpgrades)
+            foreach (var statusEffect in config.StatusEffects)
             {
-                if (statusEffect.StatusEffectVisual == statusEffectUpgrade.StatusEffectVisual && statusEffect.Process == statusEffectUpgrade.Process)
+                StatusEffects.Add(new StatusEffectData(statusEffect));
+            }
+        }
+    
+        public abstract bool CastAbility(out IDamagable target);
+
+        public virtual bool ManualCast()
+        {
+            return false;
+        }
+        public abstract bool CheckCastAvailable();
+
+        public override void AddStatUpgrade(AbilityUpgradeConfig abilityUpgradeConfig)
+        {
+            base.AddStatUpgrade(abilityUpgradeConfig);
+        
+            //adding status effect upgrades
+            if(abilityUpgradeConfig.StatusEffectUpgrades.Length <= 0) return;
+        
+            foreach (var statusEffect in StatusEffects)
+            {
+                foreach (var statusEffectUpgrade in abilityUpgradeConfig.StatusEffectUpgrades)
                 {
-                    statusEffect.AddUpgrade(statusEffectUpgrade);
+                    if (statusEffect.StatusEffectVisual == statusEffectUpgrade.StatusEffectVisual && statusEffect.Process == statusEffectUpgrade.Process)
+                    {
+                        statusEffect.AddUpgrade(statusEffectUpgrade);
+                    }
                 }
             }
         }
-    }
 
-    public override void AddStatUpgrade(StatMetaUpgradeConfig statMetaUpgradeConfig)
-    {
-        base.AddStatUpgrade(statMetaUpgradeConfig);
-        
-        //adding status effect upgrades
-        if(statMetaUpgradeConfig.StatusEffectUpgrades.Length <= 0) return;
-        
-        foreach (var statusEffect in StatusEffects)
+        public override void AddStatUpgrade(StatMetaUpgradeConfig statMetaUpgradeConfig)
         {
-            foreach (var statusEffectUpgrade in statMetaUpgradeConfig.StatusEffectUpgrades)
+            base.AddStatUpgrade(statMetaUpgradeConfig);
+        
+            //adding status effect upgrades
+            if(statMetaUpgradeConfig.StatusEffectUpgrades.Length <= 0) return;
+        
+            foreach (var statusEffect in StatusEffects)
             {
-                if (statusEffect.StatusEffectVisual == statusEffectUpgrade.StatusEffectVisual && statusEffect.Process == statusEffectUpgrade.Process)
+                foreach (var statusEffectUpgrade in statMetaUpgradeConfig.StatusEffectUpgrades)
                 {
-                    statusEffect.AddUpgrade(statusEffectUpgrade);
+                    if (statusEffect.StatusEffectVisual == statusEffectUpgrade.StatusEffectVisual && statusEffect.Process == statusEffectUpgrade.Process)
+                    {
+                        statusEffect.AddUpgrade(statusEffectUpgrade);
+                    }
                 }
             }
         }

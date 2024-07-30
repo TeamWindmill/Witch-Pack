@@ -1,17 +1,16 @@
 #if UNITY_EDITOR
-using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
-using System.Reflection;
 using System.Linq;
+using System.Reflection;
 using System.Text.RegularExpressions;
-using static VInspector.Libs.VUtils;
-using static VInspector.Libs.VGUI;
+using UnityEditor;
+using UnityEngine;
+using static External_Assets.vTools.vInspector.VGUI;
 
 
 
-namespace VInspector
+namespace External_Assets.vTools.vInspector
 {
 #if !DISABLED
     [CustomPropertyDrawer(typeof(Object), true)]

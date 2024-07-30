@@ -1,14 +1,14 @@
 #if UNITY_EDITOR
-using UnityEngine;
 using UnityEditor;
-using static VHierarchy.Libs.VUtils;
-using static VHierarchy.Libs.VGUI;
-using static VHierarchy.VHierarchyData;
+using UnityEngine;
+using static External_Assets.vTools.vHierarchy.VUtils;
+using static External_Assets.vTools.vHierarchy.VGUI;
+using static External_Assets.vTools.vHierarchy.VHierarchyData;
 
 
-namespace VHierarchy
+namespace External_Assets.vTools.vHierarchy
 {
-    public class VHierarchyIconEditor : CustomPopupWindow
+    public class VHierarchyIconEditor : VGUI.CustomPopupWindow
     {
         void OnGUI()
         {

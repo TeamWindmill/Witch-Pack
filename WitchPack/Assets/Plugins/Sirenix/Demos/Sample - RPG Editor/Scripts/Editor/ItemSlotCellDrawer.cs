@@ -1,12 +1,15 @@
-#if UNITY_EDITOR
-namespace Sirenix.OdinInspector.Demos.RPGEditor
-{
-    using UnityEngine;
-    using Sirenix.OdinInspector.Editor.Drawers;
-    using Sirenix.Utilities.Editor;
-    using Sirenix.Utilities;
-    using UnityEditor;
+using Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Items;
+using Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Misc;
+using Sirenix.OdinInspector;
+using Sirenix.OdinInspector.Editor.Drawers;
+using Sirenix.Utilities;
+using Sirenix.Utilities.Editor;
+using UnityEditor;
+using UnityEngine;
 
+#if UNITY_EDITOR
+namespace Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Editor
+{
     // 
     // In Character.cs we have a two dimention array of ItemSlots which is our inventory.
     // And instead of using the the TableMatrix attribute to customize it there, we in this case 

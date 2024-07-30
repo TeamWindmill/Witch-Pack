@@ -1,16 +1,18 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-
-public abstract class OffensiveAbilitySO : CastingAbilitySO
+namespace Gameplay.Units.Abilities.AbilitySystem.BaseConfigs
 {
-    [BoxGroup("Offensive Ability")] [SerializeField]
-    private int baseDamage;
+    public abstract class OffensiveAbilitySO : CastingAbilitySO
+    {
+        [BoxGroup("Offensive Ability")] [SerializeField]
+        private int baseDamage;
 
-    [BoxGroup("Offensive Ability")] [SerializeField]
-    private DamageBoostData[] damageBoosts;
+        [BoxGroup("Offensive Ability")] [SerializeField]
+        private DamageBoostData[] damageBoosts;
 
-    public DamageBoostData[] DamageBoosts => damageBoosts;
+        public DamageBoostData[] DamageBoosts => damageBoosts;
 
-    public int BaseDamage => baseDamage;
+        public int BaseDamage => baseDamage;
+    }
 }

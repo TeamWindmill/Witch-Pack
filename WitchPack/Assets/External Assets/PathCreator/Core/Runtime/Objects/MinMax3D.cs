@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace PathCreation {
+namespace External_Assets.PathCreator.Core.Runtime.Objects {
     public class MinMax3D {
 
         public Vector3 Min { get; private set; }

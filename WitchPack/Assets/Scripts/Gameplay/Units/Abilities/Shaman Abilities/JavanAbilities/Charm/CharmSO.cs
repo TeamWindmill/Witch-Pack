@@ -1,8 +1,13 @@
+using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs;
+using Gameplay.Units.Enemy.EnemyAIBehavior.GroundEnemies.States;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Charm", menuName = "Ability/Javan/Charm")]
-public class CharmSO : CastingAbilitySO
+namespace Gameplay.Units.Abilities.Shaman_Abilities.JavanAbilities.Charm
 {
-    [SerializeField] private Charmed _charmedState;
-    public Charmed CharmedState => _charmedState;
+    [CreateAssetMenu(fileName = "Charm", menuName = "Ability/Javan/Charm")]
+    public class CharmSO : CastingAbilitySO
+    {
+        [SerializeField] private Charmed _charmedState;
+        public Charmed CharmedState => _charmedState;
+    }
 }

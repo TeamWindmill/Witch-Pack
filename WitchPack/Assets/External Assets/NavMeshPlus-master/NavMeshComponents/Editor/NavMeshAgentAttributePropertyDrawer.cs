@@ -1,12 +1,11 @@
+using External_Assets.NavMeshPlus_master.NavMeshComponents.Scripts;
 using UnityEditor;
 using UnityEngine;
-using NavMeshPlus.Extensions;
-using NavMeshPlus.Editors.Components;
 
 //***********************************************************************************
 // Contributed by author jl-randazzo github.com/jl-randazzo
 //***********************************************************************************
-namespace NavMeshPlus.Editors.Extensions
+namespace External_Assets.NavMeshPlus_master.NavMeshComponents.Editor
 {
     [CustomPropertyDrawer(typeof(NavMeshAgentAttribute))]
     public class NavMeshAgentAttributePropertyDrawer : PropertyDrawer

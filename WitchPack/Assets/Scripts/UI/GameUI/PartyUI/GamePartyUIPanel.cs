@@ -1,19 +1,23 @@
-﻿using UnityEngine;
+﻿using Managers;
+using UI.UISystem;
+using UnityEngine;
 
-
-public class GamePartyUIPanel : UIElement
+namespace UI.GameUI.PartyUI
 {
-    [SerializeField] private RectTransform _heroContainer;
-    [SerializeField] private ShamanUIHandler _shamanUIHanlder;
-
-    public override void Show()
+    public class GamePartyUIPanel : UIElement
     {
-        base.Show();
-        var party = LevelManager.Instance.ShamanParty;
-        foreach (var shaman in party)
+        [SerializeField] private RectTransform _heroContainer;
+        [SerializeField] private ShamanUIHandler _shamanUIHanlder;
+
+        public override void Show()
         {
-            var shamanUI = Instantiate(_shamanUIHanlder, _heroContainer);
-            shamanUI.Init(shaman);
+            base.Show();
+            var party = LevelManager.Instance.ShamanParty;
+            foreach (var shaman in party)
+            {
+                var shamanUI = Instantiate(_shamanUIHanlder, _heroContainer);
+                shamanUI.Init(shaman);
+            }
         }
     }
 }

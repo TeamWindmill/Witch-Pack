@@ -1,23 +1,27 @@
+using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ability", menuName = "Ability/Toor/PiercingShot/PiercingShot")]
-
-public class PiercingShotSO : OffensiveAbilitySO
+namespace Gameplay.Units.Abilities.Shaman_Abilities.ToorAbilities.PiercingShot.Configs
 {
-    [SerializeField] private PiercingShotType type;
-    [SerializeField] private int penetration;
-    [SerializeField] private int speed;
-    [SerializeField] private int lifeTime;
-    public int Penetration => penetration;
-    public int Speed => speed;
-    public int LifeTime => lifeTime;
-    public PiercingShotType Type => type;
-}
+    [CreateAssetMenu(fileName = "ability", menuName = "Ability/Toor/PiercingShot/PiercingShot")]
 
-public enum PiercingShotType
-{
-    PiercingShot,
-    QuickShot,
-    Marksman,
-    ExperiencedHunter
+    public class PiercingShotSO : OffensiveAbilitySO
+    {
+        [SerializeField] private PiercingShotType type;
+        [SerializeField] private int penetration;
+        [SerializeField] private int speed;
+        [SerializeField] private int lifeTime;
+        public int Penetration => penetration;
+        public int Speed => speed;
+        public int LifeTime => lifeTime;
+        public PiercingShotType Type => type;
+    }
+
+    public enum PiercingShotType
+    {
+        PiercingShot,
+        QuickShot,
+        Marksman,
+        ExperiencedHunter
+    }
 }

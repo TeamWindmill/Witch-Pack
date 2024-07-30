@@ -1,13 +1,18 @@
-﻿using TMPro;
+﻿using Managers;
+using TMPro;
+using UI.UISystem;
 using UnityEngine;
 
-public class EndScreenEnemiesKilledUIHandler : UIElement
+namespace UI.GameUI.EndScreen
 {
-    [SerializeField] private TMP_Text _countText;
-
-    public override void Show()
+    public class EndScreenEnemiesKilledUIHandler : UIElement
     {
-        base.Show();
-        _countText.text = LevelManager.Instance.ScoreHandler.Kills.ToString();
+        [SerializeField] private TMP_Text _countText;
+
+        public override void Show()
+        {
+            base.Show();
+            _countText.text = LevelManager.Instance.ScoreHandler.Kills.ToString();
+        }
     }
 }

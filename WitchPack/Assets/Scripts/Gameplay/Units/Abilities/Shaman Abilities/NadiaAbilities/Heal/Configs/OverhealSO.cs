@@ -1,9 +1,12 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ability", menuName = "Ability/Nadia/Heal/Overheal")]
-public class OverhealSO : HealSO
+namespace Gameplay.Units.Abilities.Shaman_Abilities.NadiaAbilities.Heal.Configs
 {
-    [SerializeField] private int permanentMaxHealthBonus;
-    public int PermanentMaxHealthBonus => permanentMaxHealthBonus;
+    [CreateAssetMenu(fileName = "ability", menuName = "Ability/Nadia/Heal/Overheal")]
+    public class OverhealSO : HealSO
+    {
+        [SerializeField] private int permanentMaxHealthBonus;
+        public int PermanentMaxHealthBonus => permanentMaxHealthBonus;
 
+    }
 }

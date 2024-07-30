@@ -1,10 +1,10 @@
-﻿using UnityEngine;
-using UnityEditor;
+﻿using UnityEditor;
+using UnityEngine;
 
-namespace PathCreation.Examples
+namespace External_Assets.PathCreator.Examples.Scripts.Editor
 {
     [CustomEditor(typeof(PathSceneTool), true)]
-    public class PathSceneToolEditor : Editor
+    public class PathSceneToolEditor : UnityEditor.Editor
     {
         protected PathSceneTool pathTool;
         bool isSubscribed;
@@ -92,13 +92,13 @@ namespace PathCreation.Examples
             // Try find a path creator in the scene, if one is not already assigned
             if (pathTool.pathCreator == null)
             {
-                if (pathTool.GetComponent<PathCreator>() != null)
+                if (pathTool.GetComponent<Core.Runtime.Objects.PathCreator>() != null)
                 {
-                    pathTool.pathCreator = pathTool.GetComponent<PathCreator>();
+                    pathTool.pathCreator = pathTool.GetComponent<Core.Runtime.Objects.PathCreator>();
                 }
-                else if (FindObjectOfType<PathCreator>())
+                else if (FindObjectOfType<Core.Runtime.Objects.PathCreator>())
                 {
-                    pathTool.pathCreator = FindObjectOfType<PathCreator>();
+                    pathTool.pathCreator = FindObjectOfType<Core.Runtime.Objects.PathCreator>();
                 }
             }
             return pathTool.pathCreator != null;

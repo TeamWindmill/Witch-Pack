@@ -1,8 +1,10 @@
-#if UNITY_EDITOR
-namespace Sirenix.OdinInspector.Demos.RPGEditor
-{
-    using System;
+using System;
+using Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Items;
+using Sirenix.OdinInspector;
 
+#if UNITY_EDITOR
+namespace Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Character
+{
     [Serializable]
     public class CharacterEquipment
     {

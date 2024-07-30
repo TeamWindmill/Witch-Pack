@@ -1,73 +1,81 @@
 using System.Collections;
 using System.Collections.Generic;
+using Gameplay.Pools.Pool_System;
+using Gameplay.Units.Abilities.AbilitySystem.AbilityStats;
+using Managers;
+using Sound;
 using UnityEngine;
-public class OrbitalStonesMono : MonoBehaviour,IPoolable
+
+namespace Gameplay.Units.Abilities.Shaman_Abilities.LilaAbilities.Orbital_Stones
 {
-    public float AngularSpeed => _angularSpeed;
-    public float Radius => _radius;
-    public float EllipseScale => _ellipseScale;
-    public BaseUnit Owner { get; private set; }
-    public OrbitalStones Ability { get; private set; }
-
-    private List<FloatingStoneMono> _activeStones = new();
-    private float _angularSpeed;
-    private float _radius;
-    private float _ellipseScale;
-    private bool _isActive;
-    private int _stoneAmount;
-    public void Init(BaseUnit owner, OrbitalStones ability)
+    public class OrbitalStonesMono : MonoBehaviour,IPoolable
     {
-        Owner = owner;
-        Ability = ability;
-        _ellipseScale = ability.Config.EllipseScale;
-        _angularSpeed = ability.GetAbilityStatValue(AbilityStatType.Speed);
-        _radius = ability.GetAbilityStatValue(AbilityStatType.Size);
-        gameObject.SetActive(true);
+        public float AngularSpeed => _angularSpeed;
+        public float Radius => _radius;
+        public float EllipseScale => _ellipseScale;
+        public BaseUnit Owner { get; private set; }
+        public OrbitalStones Ability { get; private set; }
 
-        _stoneAmount = Ability.GetAbilityStatIntValue(AbilityStatType.ProjectilesAmount);
-        var angleDiff = 360 / _stoneAmount;
-
-        var timeToSpawn = angleDiff / (Ability.GetAbilityStatValue(AbilityStatType.Speed));
-        StartCoroutine(SpawnStones(_stoneAmount, timeToSpawn));
-
-        _isActive = true;
-    }
-
-    public IEnumerator SpawnStones(int stoneAmount, float timeInterval)
-    {
-        for (int i = 0; i < stoneAmount; i++)
+        private List<FloatingStoneMono> _activeStones = new();
+        private float _angularSpeed;
+        private float _radius;
+        private float _ellipseScale;
+        private bool _isActive;
+        private int _stoneAmount;
+        public void Init(BaseUnit owner, OrbitalStones ability)
         {
-            SpawnStone(i);
-            yield return new WaitForSeconds(timeInterval);
+            Owner = owner;
+            Ability = ability;
+            _ellipseScale = ability.Config.EllipseScale;
+            _angularSpeed = ability.GetAbilityStatValue(AbilityStatType.Speed);
+            _radius = ability.GetAbilityStatValue(AbilityStatType.Size);
+            gameObject.SetActive(true);
+
+            _stoneAmount = Ability.GetAbilityStatIntValue(AbilityStatType.ProjectilesAmount);
+            var angleDiff = 360 / _stoneAmount;
+
+            var timeToSpawn = angleDiff / (Ability.GetAbilityStatValue(AbilityStatType.Speed));
+            StartCoroutine(SpawnStones(_stoneAmount, timeToSpawn));
+
+            _isActive = true;
         }
-    }
 
-    public void SpawnStone(int index)
-    {
-        var stone = PoolManager.GetPooledObject<FloatingStoneMono>();
-        stone.Init(this,index);
-        _activeStones.Add(stone);
-        SoundManager.PlayAudioClip(SoundEffectType.OrbitalStonesCreating);
-    }
+        public IEnumerator SpawnStones(int stoneAmount, float timeInterval)
+        {
+            for (int i = 0; i < stoneAmount; i++)
+            {
+                SpawnStone(i);
+                yield return new WaitForSeconds(timeInterval);
+            }
+        }
 
-    private int stoneCounter;
+        public void SpawnStone(int index)
+        {
+            var stone = PoolManager.GetPooledObject<FloatingStoneMono>();
+            stone.Init(this,index);
+            _activeStones.Add(stone);
+            SoundManager.PlayAudioClip(SoundEffectType.OrbitalStonesCreating);
+        }
+
+        private int stoneCounter;
   
-    public void OnStoneDisable()
-    {
-        stoneCounter++;
-        if (stoneCounter == _stoneAmount)
+        public void OnStoneDisable()
         {
-            _activeStones.Clear();
-            gameObject.SetActive(false);
-            _isActive = false;
-            stoneCounter = 0;
-            SoundManager.PlayAudioClip(SoundEffectType.OrbitalStonesDestruction);
+            stoneCounter++;
+            if (stoneCounter == _stoneAmount)
+            {
+                _activeStones.Clear();
+                gameObject.SetActive(false);
+                _isActive = false;
+                stoneCounter = 0;
+                SoundManager.PlayAudioClip(SoundEffectType.OrbitalStonesDestruction);
+            }
         }
+        private void Update()
+        {
+            if (!_isActive) return;
+            transform.position = Owner.transform.position;
+        }
+        public GameObject PoolableGameObject => gameObject;
     }
-    private void Update()
-    {
-        if (!_isActive) return;
-        transform.position = Owner.transform.position;
-    }
-    public GameObject PoolableGameObject => gameObject;
 }

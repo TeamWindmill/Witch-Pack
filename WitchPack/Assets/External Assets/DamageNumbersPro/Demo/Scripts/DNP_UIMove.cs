@@ -1,20 +1,23 @@
 ﻿using UnityEngine;
 
-public class DNP_UIMove : MonoBehaviour
+namespace External_Assets.DamageNumbersPro.Demo.Scripts
 {
-    public Vector2 fromPosition;
-    public Vector2 toPosition;
-    public float frequency = 4f;
-
-    RectTransform rectTransform;
-
-    void Start()
+    public class DNP_UIMove : MonoBehaviour
     {
-        rectTransform = GetComponent<RectTransform>();
-    }
+        public Vector2 fromPosition;
+        public Vector2 toPosition;
+        public float frequency = 4f;
 
-    void FixedUpdate()
-    {
-        rectTransform.anchoredPosition = Vector2.Lerp(fromPosition, toPosition, Mathf.Sin(Time.time * frequency) * 0.5f + 0.5f);
+        RectTransform rectTransform;
+
+        void Start()
+        {
+            rectTransform = GetComponent<RectTransform>();
+        }
+
+        void FixedUpdate()
+        {
+            rectTransform.anchoredPosition = Vector2.Lerp(fromPosition, toPosition, Mathf.Sin(Time.time * frequency) * 0.5f + 0.5f);
+        }
     }
 }

@@ -1,15 +1,19 @@
+using Gameplay.Units;
 using UnityEngine;
 
-public class BaseUnitTargeter<T> : Targeter<T> where T : BaseUnit
+namespace Gameplay.Targeter
 {
-    protected override void OnTriggerEnter2D(Collider2D collision)
+    public class BaseUnitTargeter<T> : Targeter<T> where T : BaseUnit
     {
-        T possibleTarget = collision.GetComponent<T>();
-        if (!ReferenceEquals(possibleTarget, null) && !availableTargets.Contains(possibleTarget))
+        protected override void OnTriggerEnter2D(Collider2D collision)
         {
-            if(possibleTarget.IsDead) return;
-            availableTargets.Add(possibleTarget);
-            OnTargetAdded?.Invoke(possibleTarget);
+            T possibleTarget = collision.GetComponent<T>();
+            if (!ReferenceEquals(possibleTarget, null) && !availableTargets.Contains(possibleTarget))
+            {
+                if(possibleTarget.IsDead) return;
+                availableTargets.Add(possibleTarget);
+                OnTargetAdded?.Invoke(possibleTarget);
+            }
         }
     }
 }

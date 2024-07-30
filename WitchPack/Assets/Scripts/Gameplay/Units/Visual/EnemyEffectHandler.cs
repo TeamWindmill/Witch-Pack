@@ -1,28 +1,33 @@
-using System;
+using Gameplay.Units.Abilities.Shaman_Abilities.NadiaAbilities.Visuals;
+using Gameplay.Units.Damage_System;
+using Gameplay.Units.Stats;
 using UnityEngine;
 
-public class EnemyEffectHandler : UnitEffectHandler
+namespace Gameplay.Units.Visual
 {
-    
-    public PoisonIvyVisuals PoisonIvyVisuals => poisonIvyVisuals;
-
-    [SerializeField] private RootingVinesVisuals[] rootingVinesVisuals;
-    [SerializeField] private PoisonIvyVisuals poisonIvyVisuals;
-    public override void PlayEffect(Effectable effectable, Affector affector, StatusEffect statusEffect)
+    public class EnemyEffectHandler : UnitEffectHandler
     {
-        switch (statusEffect.StatusEffectVisual)
+    
+        public PoisonIvyVisuals PoisonIvyVisuals => poisonIvyVisuals;
+
+        [SerializeField] private RootingVinesVisuals[] rootingVinesVisuals;
+        [SerializeField] private PoisonIvyVisuals poisonIvyVisuals;
+        public override void PlayEffect(Effectable effectable, Affector affector, StatusEffect statusEffect)
         {
-            case StatusEffectVisual.Root:
-            case StatusEffectVisual.HealingRoot:
-            case StatusEffectVisual.LongerRoot:
-            case StatusEffectVisual.PoisonRoot:
-                foreach (var visual in rootingVinesVisuals)
-                {
-                    visual.Init(statusEffect.Duration);
-                }
-                break;
-        }
-        base.PlayEffect(effectable, affector, statusEffect);
+            switch (statusEffect.StatusEffectVisual)
+            {
+                case StatusEffectVisual.Root:
+                case StatusEffectVisual.HealingRoot:
+                case StatusEffectVisual.LongerRoot:
+                case StatusEffectVisual.PoisonRoot:
+                    foreach (var visual in rootingVinesVisuals)
+                    {
+                        visual.Init(statusEffect.Duration);
+                    }
+                    break;
+            }
+            base.PlayEffect(effectable, affector, statusEffect);
         
+        }
     }
 }

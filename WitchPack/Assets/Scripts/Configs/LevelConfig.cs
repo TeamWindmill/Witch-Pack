@@ -1,43 +1,50 @@
 using System;
 using System.Collections.Generic;
+using Dialog;
+using Gameplay.Level;
+using Gameplay.Units.Energy_Exp.Exp;
+using Gameplay.Units.Shaman;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "LevelConfig", menuName = "Configs/LevelConfig", order = 0)]
-public class LevelConfig : ScriptableObject
+namespace Configs
 {
-    [BoxGroup("Level")] public int Number;
-    [BoxGroup("Level")] public string Name;
-    [BoxGroup("Level")] public bool TestingLevel;
-    [BoxGroup("Level")] public LevelHandler levelPrefab;
-    [BoxGroup("Level")] public ShamanConfig[] shamansToAddAfterComplete;
-    [BoxGroup("Level")] public bool ShowTutorial;
-    [BoxGroup("Level")] public ExpCalculatorConfig  ExpCalculatorConfig;
-    [BoxGroup("Level")] public LevelChallenge[]  LevelChallenges;
-    [BoxGroup("Dialog")] public DialogSequence BeforeDialog;
-    [BoxGroup("Dialog")] public DialogSequence StartDialog;
-    [BoxGroup("Dialog")] public DialogSequence EndDialog;
-    [BoxGroup("Dialog")] public DialogSequence AfterDialog;
+    [CreateAssetMenu(fileName = "LevelConfig", menuName = "Configs/LevelConfig", order = 0)]
+    public class LevelConfig : ScriptableObject
+    {
+        [BoxGroup("Level")] public int Number;
+        [BoxGroup("Level")] public string Name;
+        [BoxGroup("Level")] public bool TestingLevel;
+        [BoxGroup("Level")] public LevelHandler levelPrefab;
+        [BoxGroup("Level")] public ShamanConfig[] shamansToAddAfterComplete;
+        [BoxGroup("Level")] public bool ShowTutorial;
+        [BoxGroup("Level")] public ExpCalculatorConfig  ExpCalculatorConfig;
+        [BoxGroup("Level")] public LevelChallenge[]  LevelChallenges;
+        [BoxGroup("Dialog")] public DialogSequence BeforeDialog;
+        [BoxGroup("Dialog")] public DialogSequence StartDialog;
+        [BoxGroup("Dialog")] public DialogSequence EndDialog;
+        [BoxGroup("Dialog")] public DialogSequence AfterDialog;
     
 
-    [NonSerialized]public List<ShamanSaveData> SelectedShamans;
-    [NonSerialized]public LevelChallenge SelectedChallenge;
+        [NonSerialized]public List<ShamanSaveData> SelectedShamans;
+        [NonSerialized]public LevelChallenge SelectedChallenge;
     
-    public void SetIndexes()
-    {
-        for (int i = 0; i < LevelChallenges.Length; i++)
+        public void SetIndexes()
         {
-            LevelChallenges[i].Index = i;
+            for (int i = 0; i < LevelChallenges.Length; i++)
+            {
+                LevelChallenges[i].Index = i;
+            }
         }
     }
-}
 
-[Serializable]
-public struct CameraLevelSettings
-{
-    public Vector2 CameraBorders;
-    public int CameraMaxZoom;
-    public bool OverrideCameraStartPos;
-    [ShowIf(nameof(OverrideCameraStartPos))]public int CameraStartZoom;
-    [ShowIf(nameof(OverrideCameraStartPos))]public Vector3 CameraStartPos;
+    [Serializable]
+    public struct CameraLevelSettings
+    {
+        public Vector2 CameraBorders;
+        public int CameraMaxZoom;
+        public bool OverrideCameraStartPos;
+        [ShowIf(nameof(OverrideCameraStartPos))]public int CameraStartZoom;
+        [ShowIf(nameof(OverrideCameraStartPos))]public Vector3 CameraStartPos;
+    }
 }

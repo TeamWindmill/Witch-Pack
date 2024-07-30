@@ -1,12 +1,11 @@
-﻿using UnityEditor;
-using NavMeshPlus.Extensions;
-using NavMeshPlus.Components;
+﻿using External_Assets.NavMeshPlus_master.NavMeshComponents.Scripts;
+using UnityEditor;
 
-namespace NavMeshPlus.Editors.Extensions
+namespace External_Assets.NavMeshPlus_master.NavMeshComponents.Editor
 {
     [CanEditMultipleObjects]
     [CustomEditor(typeof(RootSources2d))]
-    internal class RootSources2dEditor: Editor
+    internal class RootSources2dEditor: UnityEditor.Editor
     {
         SerializedProperty _rootSources;
         void OnEnable()

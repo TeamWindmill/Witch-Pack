@@ -1,16 +1,15 @@
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using UnityEngine;
 #if UNITY_EDITOR
-using System.Linq;
-using System.Collections.Generic;
-using System.Reflection;
 using Type = System.Type;
-using static VInspector.Libs.VUtils;
 
 #endif
 
 
 
-namespace VInspector
+namespace External_Assets.vTools.vInspector
 {
     public class VInspectorData : ScriptableObject
     {

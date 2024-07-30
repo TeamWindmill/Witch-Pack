@@ -1,8 +1,12 @@
+using Gameplay.Units.Stats;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ConditionalStatPassive", menuName = "Ability/Passive/ConditionalStat")]
-public class ConditionalStatPassiveSO : StatPassiveSO
+namespace Gameplay.Units.Abilities.AbilitySystem.BaseConfigs.Passives
 {
-    [SerializeField] private StatusEffectConfig _conditionalStatusEffect;
-    public StatusEffectConfig ConditionalStatusEffect => _conditionalStatusEffect;
+    [CreateAssetMenu(fileName = "ConditionalStatPassive", menuName = "Ability/Passive/ConditionalStat")]
+    public class ConditionalStatPassiveSO : StatPassiveSO
+    {
+        [SerializeField] private StatusEffectConfig _conditionalStatusEffect;
+        public StatusEffectConfig ConditionalStatusEffect => _conditionalStatusEffect;
+    }
 }

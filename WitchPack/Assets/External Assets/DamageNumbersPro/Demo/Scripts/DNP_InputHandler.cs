@@ -171,7 +171,7 @@ namespace DamageNumbersPro.Demo
     }
 }
 #else
-namespace DamageNumbersPro.Demo
+namespace External_Assets.DamageNumbersPro.Demo.Scripts
 {
     public static class DNP_InputHandler
     {

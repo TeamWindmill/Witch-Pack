@@ -1,45 +1,50 @@
+using Gameplay.Units.Stats;
 using Systems.StateMachine;
+using GameTime;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "StateMachine/States/AttackState", fileName = "AttackState")]
-public class AttackState : State<EnemyAI>
+namespace Gameplay.Units.Enemy.EnemyAIBehavior.BlasterBoss.States
 {
-    [SerializeField] private float _attackStateDuration;
-    private float _timer;
-
-    public override void Enter(EnemyAI parent)
+    [CreateAssetMenu(menuName = "StateMachine/States/AttackState", fileName = "AttackState")]
+    public class AttackState : State<EnemyAI>
     {
-        parent.Enemy.AutoCaster.EnableCaster();
-        _timer = _attackStateDuration;
-        base.Enter(parent);
-    }
+        [SerializeField] private float _attackStateDuration;
+        private float _timer;
 
-    public override void UpdateState(EnemyAI parent)
-    {
-        _timer -= GAME_TIME.GameDeltaTime;
-
-        if (_timer <= 0) parent.SetState(typeof(FollowPathBoss));
-    }
-
-    public override void ChangeState(EnemyAI parent)
-    {
-        var target = parent.Enemy.ShamanTargetHelper.CurrentTarget;
-        if (target is null)
+        public override void Enter(EnemyAI parent)
         {
-            parent.SetState(typeof(FollowPathBoss));
-            return;
+            parent.Enemy.AutoCaster.EnableCaster();
+            _timer = _attackStateDuration;
+            base.Enter(parent);
         }
 
-        if (target.Stats[StatType.Invisibility].IntValue > 0 || target.IsDead)
+        public override void UpdateState(EnemyAI parent)
         {
-            parent.SetState(typeof(FollowPathBoss));
-        }
-    }
+            _timer -= GAME_TIME.GameDeltaTime;
 
-    public override void Exit(EnemyAI parent)
-    {
-        parent.Enemy.AutoCaster.DisableCaster();
-        parent.Enemy.ShamanTargetHelper.RemoveCurrentTarget();
-        base.Exit(parent);
+            if (_timer <= 0) parent.SetState(typeof(FollowPathBoss));
+        }
+
+        public override void ChangeState(EnemyAI parent)
+        {
+            var target = parent.Enemy.ShamanTargetHelper.CurrentTarget;
+            if (target is null)
+            {
+                parent.SetState(typeof(FollowPathBoss));
+                return;
+            }
+
+            if (target.Stats[StatType.Invisibility].IntValue > 0 || target.IsDead)
+            {
+                parent.SetState(typeof(FollowPathBoss));
+            }
+        }
+
+        public override void Exit(EnemyAI parent)
+        {
+            parent.Enemy.AutoCaster.DisableCaster();
+            parent.Enemy.ShamanTargetHelper.RemoveCurrentTarget();
+            base.Exit(parent);
+        }
     }
 }

@@ -1,19 +1,25 @@
+using Gameplay.Pools.Pool_System;
+using Gameplay.Units.Abilities.AbilitiesMono.General_Abilities;
+using Gameplay.Units.Damage_System;
 using UnityEngine;
 
-public class AutoAttackMono : ProjectileMono,IPoolable
+namespace Gameplay.Units.Abilities.Auto_Attack
 {
-    protected override void OnTargetHit(IDamagable target)
+    public class AutoAttackMono : ProjectileMono,IPoolable
     {
-        switch (target)
+        protected override void OnTargetHit(IDamagable target)
         {
-            case CoreTemple:
-                if (Ability is EnemyRangedAutoAttack enemyAutoAttack)
-                    target.Damageable.TakeFlatDamage(enemyAutoAttack.Config.CoreDamage);
-                break;
-            case BaseUnit:
-                target.Damageable.GetHit(_owner.DamageDealer, Ability);
-                break;
+            switch (target)
+            {
+                case CoreTemple.CoreTemple:
+                    if (Ability is EnemyRangedAutoAttack enemyAutoAttack)
+                        target.Damageable.TakeFlatDamage(enemyAutoAttack.Config.CoreDamage);
+                    break;
+                case BaseUnit:
+                    target.Damageable.GetHit(_owner.DamageDealer, Ability);
+                    break;
+            }
         }
+        public GameObject PoolableGameObject => gameObject;
     }
-    public GameObject PoolableGameObject => gameObject;
 }

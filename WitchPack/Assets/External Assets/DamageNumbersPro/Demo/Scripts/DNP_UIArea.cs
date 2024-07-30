@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace DamageNumbersPro.Demo
+namespace External_Assets.DamageNumbersPro.Demo.Scripts
 {
     public class DNP_UIArea : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {

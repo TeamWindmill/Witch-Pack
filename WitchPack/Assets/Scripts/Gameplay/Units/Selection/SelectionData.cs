@@ -1,11 +1,16 @@
-public class SelectionData : MonoSingleton<SelectionData>
+using Tools.Helpers;
+
+namespace Gameplay.Units.Selection
 {
-    private SelectionLayout _selectionLayout;
+    public class SelectionData : MonoSingleton<SelectionData>
+    {
+        private SelectionLayout _selectionLayout;
 
-    public SelectionLayout SelectionLayout => _selectionLayout;
+        public SelectionLayout SelectionLayout => _selectionLayout;
 
-    public void SetSelectionLayout(SelectionLayout layout)
-    { 
-        _selectionLayout = layout;
+        public void SetSelectionLayout(SelectionLayout layout)
+        { 
+            _selectionLayout = layout;
+        }
     }
 }

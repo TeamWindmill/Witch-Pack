@@ -1,27 +1,31 @@
 using System;
+using Gameplay.Units.Stats;
 using UnityEngine;
 
-public class PSBonusUIHandler : MonoBehaviour
+namespace UI.GameUI.HeroSelectionUI
 {
-    [SerializeField] private PSBonusUI[] _bonusBlocks;
-
-    public void Show(UnitStats stats)
+    public class PSBonusUIHandler : MonoBehaviour
     {
-        foreach (var bonusBlock in _bonusBlocks)
+        [SerializeField] private PSBonusUI[] _bonusBlocks;
+
+        public void Show(UnitStats stats)
         {
-            var currentValue = stats.GetStatValue(bonusBlock.StatBonusType);
-            var baseValue = stats.GetBaseStatValue(bonusBlock.StatBonusType);
-            var bonusValue = MathF.Round((currentValue / baseValue - 1) * 100);
-            if (bonusValue <= 0) continue;
-            bonusBlock.Show(bonusValue);
+            foreach (var bonusBlock in _bonusBlocks)
+            {
+                var currentValue = stats.GetStatValue(bonusBlock.StatBonusType);
+                var baseValue = stats.GetBaseStatValue(bonusBlock.StatBonusType);
+                var bonusValue = MathF.Round((currentValue / baseValue - 1) * 100);
+                if (bonusValue <= 0) continue;
+                bonusBlock.Show(bonusValue);
+            }
         }
-    }
 
-    public void Hide()
-    {
-        foreach (var bonusBlock in _bonusBlocks)
+        public void Hide()
         {
-            bonusBlock.Hide();
+            foreach (var bonusBlock in _bonusBlocks)
+            {
+                bonusBlock.Hide();
+            }
         }
     }
 }

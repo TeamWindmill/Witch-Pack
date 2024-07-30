@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using External_Assets.DamageNumbersPro.Scripts.Internal;
+using UnityEngine;
 
-namespace DamageNumbersPro
+namespace External_Assets.DamageNumbersPro.Scripts
 {
     [DisallowMultipleComponent]
     public class DamageNumberMesh : DamageNumber

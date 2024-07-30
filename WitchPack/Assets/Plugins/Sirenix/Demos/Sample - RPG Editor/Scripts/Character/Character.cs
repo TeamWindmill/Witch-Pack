@@ -1,8 +1,10 @@
-#if UNITY_EDITOR
-namespace Sirenix.OdinInspector.Demos.RPGEditor
-{
-    using UnityEngine;
+using Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Misc;
+using Sirenix.OdinInspector;
+using UnityEngine;
 
+#if UNITY_EDITOR
+namespace Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Character
+{
     //
     // Instead of adding [CreateAssetMenu] attribute, we've created a Scriptable Object Creator using Odin Selectors.
     // Characters can then be easily created in the RPG Editor window, which also helps ensure that they get located in the right folder.

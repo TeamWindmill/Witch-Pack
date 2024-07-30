@@ -1,9 +1,12 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Ability/Lila/RockMonolith/Fortify",fileName = "Fortify")]
-public class FortifySO : RockMonolithSO
+namespace Gameplay.Units.Abilities.Shaman_Abilities.LilaAbilities.RockMonolith.Configs
 {
-    [BoxGroup("Fortify"),SerializeField] private int _permanentArmorOnExplosion;
-    public int PermanentArmorOnExplosion => _permanentArmorOnExplosion;
+    [CreateAssetMenu(menuName = "Ability/Lila/RockMonolith/Fortify",fileName = "Fortify")]
+    public class FortifySO : RockMonolithSO
+    {
+        [BoxGroup("Fortify"),SerializeField] private int _permanentArmorOnExplosion;
+        public int PermanentArmorOnExplosion => _permanentArmorOnExplosion;
+    }
 }

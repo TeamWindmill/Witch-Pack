@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class PowerStructureInfoWindow : MonoBehaviour
+namespace Gameplay.PowerStructures
 {
+    public class PowerStructureInfoWindow : MonoBehaviour
+    {
     
+    }
 }

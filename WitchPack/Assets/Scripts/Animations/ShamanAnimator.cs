@@ -1,29 +1,34 @@
 
-public class ShamanAnimator : UnitAnimator
+using Gameplay.Units;
+
+namespace Animations
 {
-    private bool _movementChange;
-
-    public override void Init(BaseUnit unit)
+    public class ShamanAnimator : UnitAnimator
     {
-        base.Init(unit);
-    }
+        private bool _movementChange;
 
-    protected override void MoveAnimation()
-    {
-        if (unit.Movement.IsMoving != _movementChange)
+        public override void Init(BaseUnit unit)
         {
-            _movementChange = unit.Movement.IsMoving; 
-            animator.SetBool("Walking", _movementChange);
+            base.Init(unit);
         }
-    }
 
-    protected override void DeathAnimation()
-    {
-        base.DeathAnimation();
-    }
+        protected override void MoveAnimation()
+        {
+            if (unit.Movement.IsMoving != _movementChange)
+            {
+                _movementChange = unit.Movement.IsMoving; 
+                animator.SetBool("Walking", _movementChange);
+            }
+        }
 
-    public override void DeathAnimationEnded()
-    {
-        base.DeathAnimationEnded();
+        protected override void DeathAnimation()
+        {
+            base.DeathAnimation();
+        }
+
+        public override void DeathAnimationEnded()
+        {
+            base.DeathAnimationEnded();
+        }
     }
 }

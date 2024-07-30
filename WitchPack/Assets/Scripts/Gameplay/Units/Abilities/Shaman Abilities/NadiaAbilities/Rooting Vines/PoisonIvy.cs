@@ -1,36 +1,45 @@
-public class PoisonIvy : OffensiveAbility
+using Gameplay.Units.Abilities.AbilitySystem.AbilityStats;
+using Gameplay.Units.Abilities.AbilitySystem.BaseAbilities;
+using Gameplay.Units.Abilities.Shaman_Abilities.NadiaAbilities.Rooting_Vines.Configs;
+using Gameplay.Units.Damage_System;
+using Managers;
+
+namespace Gameplay.Units.Abilities.Shaman_Abilities.NadiaAbilities.Rooting_Vines
 {
-    public readonly PoisonIvySO Config;
-    public PoisonIvy(PoisonIvySO config, BaseUnit owner) : base(config, owner)
+    public class PoisonIvy : OffensiveAbility
     {
-        Config = config;
-        abilityStats.Add(new AbilityStat(AbilityStatType.Damage,config.PoisonDamage));
-        abilityStats.Add(new AbilityStat(AbilityStatType.Duration,config.LastingTime));
-        abilityStats.Add(new AbilityStat(AbilityStatType.Size,config.AoeScale));
-        abilityStats.Add(new AbilityStat(AbilityStatType.DotDamage,config.PoisonDamage));
-    }
-
-    public override bool CastAbility(out IDamagable target)
-    {
-        target = Owner.EnemyTargetHelper.GetTarget(TargetData);
-        if (!ReferenceEquals(target, null))
+        public readonly PoisonIvySO Config;
+        public PoisonIvy(PoisonIvySO config, BaseUnit owner) : base(config, owner)
         {
-            PoisonIvyMono newIvyPoison = PoolManager.GetPooledObject<PoisonIvyMono>();
-            newIvyPoison.Init(Owner, this, GetAbilityStatValue(AbilityStatType.Duration),GetAbilityStatValue(AbilityStatType.Size));
-            newIvyPoison.transform.position = target.GameObject.transform.position;
-            newIvyPoison.gameObject.SetActive(true);
-            return true;
-        }
-        else
-        {
-            return false;
+            Config = config;
+            abilityStats.Add(new AbilityStat(AbilityStatType.Damage,config.PoisonDamage));
+            abilityStats.Add(new AbilityStat(AbilityStatType.Duration,config.LastingTime));
+            abilityStats.Add(new AbilityStat(AbilityStatType.Size,config.AoeScale));
+            abilityStats.Add(new AbilityStat(AbilityStatType.DotDamage,config.PoisonDamage));
         }
 
-    }
+        public override bool CastAbility(out IDamagable target)
+        {
+            target = Owner.EnemyTargetHelper.GetTarget(TargetData);
+            if (!ReferenceEquals(target, null))
+            {
+                PoisonIvyMono newIvyPoison = PoolManager.GetPooledObject<PoisonIvyMono>();
+                newIvyPoison.Init(Owner, this, GetAbilityStatValue(AbilityStatType.Duration),GetAbilityStatValue(AbilityStatType.Size));
+                newIvyPoison.transform.position = target.GameObject.transform.position;
+                newIvyPoison.gameObject.SetActive(true);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
 
-    public override bool CheckCastAvailable()
-    {
-        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(TargetData);
-        return !ReferenceEquals(target, null);
+        }
+
+        public override bool CheckCastAvailable()
+        {
+            BaseUnit target = Owner.EnemyTargetHelper.GetTarget(TargetData);
+            return !ReferenceEquals(target, null);
+        }
     }
 }

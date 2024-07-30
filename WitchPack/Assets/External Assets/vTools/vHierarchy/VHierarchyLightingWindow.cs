@@ -1,15 +1,15 @@
 #if UNITY_EDITOR
-using UnityEngine;
-using UnityEditor;
 using System.Linq;
+using UnityEditor;
 using UnityEditor.SceneManagement;
-using static VHierarchy.Libs.VUtils;
-using static VHierarchy.Libs.VGUI;
+using UnityEngine;
+using static External_Assets.vTools.vHierarchy.VUtils;
+using static External_Assets.vTools.vHierarchy.VGUI;
 
 
-namespace VHierarchy
+namespace External_Assets.vTools.vHierarchy
 {
-    public class VHierarchyLightingWindow : CustomPopupWindow
+    public class VHierarchyLightingWindow : VGUI.CustomPopupWindow
     {
         void OnGUI()
         {

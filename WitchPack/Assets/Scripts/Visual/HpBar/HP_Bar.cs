@@ -1,110 +1,115 @@
 using System.Collections;
+using Gameplay.Units;
+using Gameplay.Units.Damage_System;
 using UnityEngine;
 
-public class HP_Bar : MonoBehaviour
+namespace Visual.HpBar
 {
-    [SerializeField] BaseUnit owner;
-    [SerializeField] Transform fillSprite;
-    [SerializeField] SpriteRenderer fillSpriteRenderer;
-    [SerializeField] float drainDuration;
-    [Header("Colors")] [SerializeField] Color defaultBarColor;
-    [SerializeField] Color heroHealthColor;
-    [SerializeField] Color enemyHealthColor;
-    [SerializeField] Color coreHealthColor;
-
-
-    Vector3 _originalScale;
-    float _maxValue;
-
-    Coroutine _runningSmoothBar;
-
-    private void OnValidate()
+    public class HP_Bar : MonoBehaviour
     {
-        fillSpriteRenderer ??= fillSprite.GetComponentInChildren<SpriteRenderer>();
-    }
+        [SerializeField] BaseUnit owner;
+        [SerializeField] Transform fillSprite;
+        [SerializeField] SpriteRenderer fillSpriteRenderer;
+        [SerializeField] float drainDuration;
+        [Header("Colors")] [SerializeField] Color defaultBarColor;
+        [SerializeField] Color heroHealthColor;
+        [SerializeField] Color enemyHealthColor;
+        [SerializeField] Color coreHealthColor;
 
-    public void Init(float max, UnitType entityType)
-    {
-        _originalScale = fillSprite.localScale;
-        fillSprite.localScale = new Vector3(1f, _originalScale.y, _originalScale.z);
 
-        switch (entityType)
+        Vector3 _originalScale;
+        float _maxValue;
+
+        Coroutine _runningSmoothBar;
+
+        private void OnValidate()
         {
-            case UnitType.Shaman:
-                fillSpriteRenderer.color = heroHealthColor;
-                break;
-            case UnitType.Enemy:
-                fillSpriteRenderer.color = enemyHealthColor;
-                break;
-            case UnitType.Temple:
-                fillSpriteRenderer.color = coreHealthColor;
-                break;
-            default:
-                fillSpriteRenderer.color = defaultBarColor;
-                break;
+            fillSpriteRenderer ??= fillSprite.GetComponentInChildren<SpriteRenderer>();
         }
 
-        _maxValue = max;
-    }
-
-    public void Init(float max)
-    {
-        _originalScale = fillSprite.localScale;
-        fillSprite.localScale = new Vector3(1f, _originalScale.y, _originalScale.z);
-
-        fillSpriteRenderer = fillSprite.GetComponentInChildren<SpriteRenderer>();
-        fillSpriteRenderer.color = defaultBarColor;
-
-        _maxValue = max;
-    }
-
-    public void SetBarValue(int value,int maxValue)
-    {
-        fillSprite.localScale = new Vector3((float)value / maxValue, _originalScale.y, _originalScale.z);
-    }
-
-    public void SetBar(int value, int maxValue)
-    {
-        fillSprite.localScale = new Vector3((float)value / maxValue, _originalScale.y, _originalScale.z);
-    }
-    public void SetBar(Damageable damageable)
-    {
-        _maxValue = damageable.MaxHp;
-        float ratio = damageable.CurrentHp / _maxValue;
-        if (ratio < 0) ratio = 0;
-        fillSprite.localScale = new Vector3(ratio, _originalScale.y, _originalScale.z);
-    }
-
-    public void SetBarValueSmoothly(float value)
-    {
-        if (_runningSmoothBar != null)
+        public void Init(float max, UnitType entityType)
         {
-            StopCoroutine(_runningSmoothBar);
+            _originalScale = fillSprite.localScale;
+            fillSprite.localScale = new Vector3(1f, _originalScale.y, _originalScale.z);
+
+            switch (entityType)
+            {
+                case UnitType.Shaman:
+                    fillSpriteRenderer.color = heroHealthColor;
+                    break;
+                case UnitType.Enemy:
+                    fillSpriteRenderer.color = enemyHealthColor;
+                    break;
+                case UnitType.Temple:
+                    fillSpriteRenderer.color = coreHealthColor;
+                    break;
+                default:
+                    fillSpriteRenderer.color = defaultBarColor;
+                    break;
+            }
+
+            _maxValue = max;
         }
 
-        _runningSmoothBar = StartCoroutine(SmoothBar(drainDuration, value / _maxValue));
-    }
-
-    IEnumerator SmoothBar(float duration, float targetValue)
-    {
-        float t = 0f;
-        float startValue = fillSprite.localScale.x;
-        float currentValue = fillSprite.localScale.x;
-        while (t <= duration)
+        public void Init(float max)
         {
-            currentValue = Mathf.Lerp(startValue, targetValue, t);
-            t += Time.deltaTime / duration;
-            SetBar((int)currentValue,(int)_maxValue);
-            yield return null;
+            _originalScale = fillSprite.localScale;
+            fillSprite.localScale = new Vector3(1f, _originalScale.y, _originalScale.z);
+
+            fillSpriteRenderer = fillSprite.GetComponentInChildren<SpriteRenderer>();
+            fillSpriteRenderer.color = defaultBarColor;
+
+            _maxValue = max;
         }
-    }
+
+        public void SetBarValue(int value,int maxValue)
+        {
+            fillSprite.localScale = new Vector3((float)value / maxValue, _originalScale.y, _originalScale.z);
+        }
+
+        public void SetBar(int value, int maxValue)
+        {
+            fillSprite.localScale = new Vector3((float)value / maxValue, _originalScale.y, _originalScale.z);
+        }
+        public void SetBar(Damageable damageable)
+        {
+            _maxValue = damageable.MaxHp;
+            float ratio = damageable.CurrentHp / _maxValue;
+            if (ratio < 0) ratio = 0;
+            fillSprite.localScale = new Vector3(ratio, _originalScale.y, _originalScale.z);
+        }
+
+        public void SetBarValueSmoothly(float value)
+        {
+            if (_runningSmoothBar != null)
+            {
+                StopCoroutine(_runningSmoothBar);
+            }
+
+            _runningSmoothBar = StartCoroutine(SmoothBar(drainDuration, value / _maxValue));
+        }
+
+        IEnumerator SmoothBar(float duration, float targetValue)
+        {
+            float t = 0f;
+            float startValue = fillSprite.localScale.x;
+            float currentValue = fillSprite.localScale.x;
+            while (t <= duration)
+            {
+                currentValue = Mathf.Lerp(startValue, targetValue, t);
+                t += UnityEngine.Time.deltaTime / duration;
+                SetBar((int)currentValue,(int)_maxValue);
+                yield return null;
+            }
+        }
 
     
-}
+    }
 
-public enum UnitType
-{
-    Shaman,
-    Enemy,
-    Temple
+    public enum UnitType
+    {
+        Shaman,
+        Enemy,
+        Temple
+    }
 }

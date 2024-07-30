@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace DamageNumbersPro
+namespace External_Assets.DamageNumbersPro.Scripts.Settings
 {
     [System.Serializable]
     public struct DestructionSettings

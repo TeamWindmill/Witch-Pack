@@ -1,10 +1,10 @@
 #if UNITY_EDITOR
-using UnityEngine;
 using UnityEditor;
-using static VHierarchy.Libs.VUtils;
+using UnityEngine;
+using static External_Assets.vTools.vHierarchy.VUtils;
 
 
-namespace VHierarchy
+namespace External_Assets.vTools.vHierarchy
 {
     class VHierarchyMenuItems
     {

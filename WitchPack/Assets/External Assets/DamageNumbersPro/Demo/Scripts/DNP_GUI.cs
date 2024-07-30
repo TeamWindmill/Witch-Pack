@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using External_Assets.DamageNumbersPro.Scripts.Internal;
+using UnityEngine;
 
-namespace DamageNumbersPro.Demo
+namespace External_Assets.DamageNumbersPro.Demo.Scripts
 {
     public class DNP_GUI : MonoBehaviour
     {

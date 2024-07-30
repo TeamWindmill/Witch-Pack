@@ -1,22 +1,26 @@
+using UI.MapUI.MetaUpgrades.UpgradePanel.Configs;
 using UnityEngine.EventSystems;
 
-public class StatMetaUpgradeIcon : MetaUpgradeIcon<StatMetaUpgradeConfig>
+namespace UI.MapUI.MetaUpgrades.UpgradePanel.Icon
 {
-    public override void Init(int index, MetaUpgradeConfig upgradeConfig, int availableSkillPoints)
+    public class StatMetaUpgradeIcon : MetaUpgradeIcon<StatMetaUpgradeConfig>
     {
-        Upgrade = upgradeConfig as StatMetaUpgradeConfig;
-        base.Init(index,upgradeConfig, availableSkillPoints);
-    }
-
-    protected override void OnClick(PointerEventData eventData)
-    {
-        
-        if (Upgrade.ShowAbility) OnSelect?.Invoke(_panelIndex,Upgrade.AbilitiesToUpgrade[0],Upgrade);
-        else
+        public override void Init(int index, MetaUpgradeConfig upgradeConfig, int availableSkillPoints)
         {
-            OnSelect?.Invoke(_panelIndex,(WindowManager as UpgradeWindow).SelectedShaman.Config.RootAbilities[2],Upgrade);
+            Upgrade = upgradeConfig as StatMetaUpgradeConfig;
+            base.Init(index,upgradeConfig, availableSkillPoints);
         }
-        SelectIcon(true);
-        base.OnClick(eventData);
+
+        protected override void OnClick(PointerEventData eventData)
+        {
+        
+            if (Upgrade.ShowAbility) OnSelect?.Invoke(_panelIndex,Upgrade.AbilitiesToUpgrade[0],Upgrade);
+            else
+            {
+                OnSelect?.Invoke(_panelIndex,(WindowManager as UpgradeWindow).SelectedShaman.Config.RootAbilities[2],Upgrade);
+            }
+            SelectIcon(true);
+            base.OnClick(eventData);
+        }
     }
 }

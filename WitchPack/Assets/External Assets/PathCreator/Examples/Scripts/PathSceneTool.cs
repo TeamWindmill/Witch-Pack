@@ -1,12 +1,13 @@
-﻿using UnityEngine;
+﻿using External_Assets.PathCreator.Core.Runtime.Objects;
+using UnityEngine;
 
-namespace PathCreation.Examples
+namespace External_Assets.PathCreator.Examples.Scripts
 {
     [ExecuteInEditMode]
     public abstract class PathSceneTool : MonoBehaviour
     {
         public event System.Action onDestroyed;
-        public PathCreator pathCreator;
+        public Core.Runtime.Objects.PathCreator pathCreator;
         public bool autoUpdate = true;
 
         protected VertexPath path {

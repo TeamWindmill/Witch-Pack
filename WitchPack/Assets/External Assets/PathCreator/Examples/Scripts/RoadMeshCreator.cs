@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using External_Assets.PathCreator.Core.Runtime.Objects;
+using UnityEngine;
 
-namespace PathCreation.Examples {
+namespace External_Assets.PathCreator.Examples.Scripts {
     public class RoadMeshCreator : PathSceneTool {
         [Header ("Road settings")]
         public float roadWidth = .4f;

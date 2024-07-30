@@ -13,11 +13,13 @@
  * - Ekincan
  */
 
+using External_Assets.DamageNumbersPro.Demo.Scripts;
+using External_Assets.DamageNumbersPro.Scripts.Internal;
 using UnityEngine;
 
 //Include DamageNumbersPro Namespace     <-----     [REQUIRED]
 
-namespace DamageNumbersPro.Demo
+namespace External_Assets.DamageNumbersPro.Demo_C_
 {
     public class DNP_ExampleGUI : MonoBehaviour
     {

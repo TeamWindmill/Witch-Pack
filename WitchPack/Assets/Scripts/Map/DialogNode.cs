@@ -1,30 +1,36 @@
+using Configs;
+using Dialog;
+using Managers;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DialogNode : MapNode
+namespace Map
 {
-    [BoxGroup("Dialog")][SerializeField] private DialogSequence _dialogConfig;
-    [BoxGroup("Dialog")] public ShamanConfig[] shamansToAddAfterComplete;
-
-    protected override void OnNodeClick(PointerEventData.InputButton button)
+    public class DialogNode : MapNode
     {
-        base.OnNodeClick(button);
-        DialogBox.Instance.SetDialogSequence(_dialogConfig,FinishDialog);
-        DialogBox.Instance.Show();
-    }
+        [BoxGroup("Dialog")][SerializeField] private DialogSequence _dialogConfig;
+        [BoxGroup("Dialog")] public ShamanConfig[] shamansToAddAfterComplete;
 
-    public override void Complete()
-    {
-        base.Complete();
-        GameManager.ShamansManager.AddShamanToRoster(shamansToAddAfterComplete);
-        //GameManager.SaveData.MapNodes[Index].Complete();
-        GameManager.SaveData.LastLevelCompletedIndex = Index;
-    }
+        protected override void OnNodeClick(PointerEventData.InputButton button)
+        {
+            base.OnNodeClick(button);
+            DialogBox.Instance.SetDialogSequence(_dialogConfig,FinishDialog);
+            DialogBox.Instance.Show();
+        }
 
-    private void FinishDialog()
-    {
-        Complete();
-        MapManager.Instance.Init();
+        public override void Complete()
+        {
+            base.Complete();
+            GameManager.ShamansManager.AddShamanToRoster(shamansToAddAfterComplete);
+            //GameManager.SaveData.MapNodes[Index].Complete();
+            GameManager.SaveData.LastLevelCompletedIndex = Index;
+        }
+
+        private void FinishDialog()
+        {
+            Complete();
+            MapManager.Instance.Init();
+        }
     }
 }

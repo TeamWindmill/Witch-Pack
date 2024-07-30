@@ -1,32 +1,38 @@
 using System;
+using Gameplay.Units.Abilities.AbilitySystem.BaseAbilities;
+using Gameplay.Units.Abilities.Shaman_Abilities.ToorAbilities.PiercingShot;
+using Gameplay.Units.Damage_System;
 
-public class AttritionCounter : AbilityEventCounter
+namespace Gameplay.Units.Abilities.Shaman_Abilities.ToorAbilities.Passives
 {
-    private BaseUnit lastTarget;
-    private int maxStacks;
-
-    public AttritionCounter(BaseUnit givenOwner, Ability ability, ref Action<Damageable, DamageDealer, DamageHandler, Ability, bool> eventToSub, int maxStacks) : base(givenOwner, ability, ref eventToSub )
+    public class AttritionCounter : AbilityEventCounter
     {
-        this.maxStacks = maxStacks;
-    }
+        private BaseUnit lastTarget;
+        private int maxStacks;
 
-    protected override void EventFunc(Damageable target, DamageDealer dealer, DamageHandler dmg, Ability ability, bool isCrit)
-    {
-        if (ReferenceEquals(ability, AbilityToCount))
+        public AttritionCounter(BaseUnit givenOwner, Ability ability, ref Action<Damageable, DamageDealer, DamageHandler, Ability, bool> eventToSub, int maxStacks) : base(givenOwner, ability, ref eventToSub )
         {
-            if (ReferenceEquals(lastTarget, target.Owner)) // attacking the same target
+            this.maxStacks = maxStacks;
+        }
+
+        protected override void EventFunc(Damageable target, DamageDealer dealer, DamageHandler dmg, Ability ability, bool isCrit)
+        {
+            if (ReferenceEquals(ability, AbilityToCount))
             {
-                if(currentCount < maxStacks)
+                if (ReferenceEquals(lastTarget, target.Owner)) // attacking the same target
                 {
-                    currentCount++;
+                    if(currentCount < maxStacks)
+                    {
+                        currentCount++;
+                    }
+                    OnCountIncrement?.Invoke(this, target, dealer, dmg, ability);
                 }
-                OnCountIncrement?.Invoke(this, target, dealer, dmg, ability);
-            }
-            else // switching target
-            {
-                currentCount = 0;
-                OnCountReset?.Invoke(this, target, dealer, dmg, ability);
-                lastTarget = target.Owner as BaseUnit;
+                else // switching target
+                {
+                    currentCount = 0;
+                    OnCountReset?.Invoke(this, target, dealer, dmg, ability);
+                    lastTarget = target.Owner as BaseUnit;
+                }
             }
         }
     }

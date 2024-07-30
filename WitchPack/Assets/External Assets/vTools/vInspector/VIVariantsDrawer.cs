@@ -1,10 +1,9 @@
 #if UNITY_EDITOR
-using UnityEngine;
-using UnityEditor;
 using System.Linq;
+using UnityEditor;
+using UnityEngine;
 
-
-namespace VInspector
+namespace External_Assets.vTools.vInspector
 {
     [CustomPropertyDrawer(typeof(VariantsAttribute))]
     public class VIVariantsDrawer : PropertyDrawer

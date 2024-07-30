@@ -1,30 +1,34 @@
 using System.Collections.Generic;
+using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs;
+using Gameplay.Units.Energy_Exp.Energy;
+using Gameplay.Units.Energy_Exp.Exp;
+using UI.MapUI.MetaUpgrades.UpgradePanel.Configs;
 using UnityEngine;
 
-
-[CreateAssetMenu(fileName = "ShamanConfig", menuName = "ShamanConfig")]
-public class ShamanConfig : BaseUnitConfig
+namespace Configs
 {
-    [SerializeField] private Sex _sex;
-    [SerializeField] private List<AbilitySO> rootAbilities = new();
-    [SerializeField] private List<AbilitySO> knownAbilities = new();
-    [SerializeField] private EnergyConfig _energyConfig;
-    [SerializeField] private ShamanExperienceConfig _shamanExperienceConfig;
-    [SerializeField] private ShamanMetaUpgradeConfig _shamanMetaUpgradeConfig;
+    [CreateAssetMenu(fileName = "ShamanConfig", menuName = "ShamanConfig")]
+    public class ShamanConfig : BaseUnitConfig
+    {
+        [SerializeField] private Sex _sex;
+        [SerializeField] private List<AbilitySO> rootAbilities = new();
+        [SerializeField] private List<AbilitySO> knownAbilities = new();
+        [SerializeField] private EnergyConfig _energyConfig;
+        [SerializeField] private ShamanExperienceConfig _shamanExperienceConfig;
+        [SerializeField] private ShamanMetaUpgradeConfig _shamanMetaUpgradeConfig;
 
 
-    public ShamanMetaUpgradeConfig ShamanMetaUpgradeConfig => _shamanMetaUpgradeConfig;
-    public List<AbilitySO> KnownAbilities { get => knownAbilities; }
-    public List<AbilitySO> RootAbilities { get => rootAbilities; }
-    public EnergyConfig EnergyConfig => _energyConfig;
-    public ShamanExperienceConfig ShamanExperienceConfig => _shamanExperienceConfig;
-    public Sex Sex => _sex;
+        public ShamanMetaUpgradeConfig ShamanMetaUpgradeConfig => _shamanMetaUpgradeConfig;
+        public List<AbilitySO> KnownAbilities { get => knownAbilities; }
+        public List<AbilitySO> RootAbilities { get => rootAbilities; }
+        public EnergyConfig EnergyConfig => _energyConfig;
+        public ShamanExperienceConfig ShamanExperienceConfig => _shamanExperienceConfig;
+        public Sex Sex => _sex;
+    }
+
+    public enum Sex
+    {
+        Male,
+        Female
+    }
 }
-
-public enum Sex
-{
-    Male,
-    Female
-}
-
-

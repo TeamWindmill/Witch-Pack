@@ -1,12 +1,13 @@
-﻿using UnityEngine;
+﻿using External_Assets.PathCreator.Core.Runtime.Objects;
+using UnityEngine;
 
-namespace PathCreation.Examples
+namespace External_Assets.PathCreator.Examples.Scripts
 {
     // Moves along a path at constant speed.
     // Depending on the end of path instruction, will either loop, reverse, or stop at the end of the path.
     public class PathFollower : MonoBehaviour
     {
-        public PathCreator pathCreator;
+        public Core.Runtime.Objects.PathCreator pathCreator;
         public EndOfPathInstruction endOfPathInstruction;
         public float speed = 5;
         float distanceTravelled;
@@ -23,7 +24,7 @@ namespace PathCreation.Examples
         {
             if (pathCreator != null)
             {
-                distanceTravelled += speed * Time.deltaTime;
+                distanceTravelled += speed * UnityEngine.Time.deltaTime;
                 transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
                 transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
             }

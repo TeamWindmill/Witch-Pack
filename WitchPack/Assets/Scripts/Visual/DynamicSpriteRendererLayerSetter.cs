@@ -1,21 +1,24 @@
 using UnityEngine;
 
-[RequireComponent(typeof(SpriteRenderer))]
-public class DynamicSpriteRendererLayerSetter : MonoBehaviour
+namespace Visual
 {
-    [SerializeField] private bool _updateInRuntime;
-    private SpriteRenderer _spriteRenderer;
-    void Start()
+    [RequireComponent(typeof(SpriteRenderer))]
+    public class DynamicSpriteRendererLayerSetter : MonoBehaviour
     {
-        _spriteRenderer ??= GetComponent<SpriteRenderer>();
-        _spriteRenderer.sortingOrder = (int)(transform.position.y * -100);
-    }
-    private void Update()
-    {
-        if (_updateInRuntime)
+        [SerializeField] private bool _updateInRuntime;
+        private SpriteRenderer _spriteRenderer;
+        void Start()
         {
+            _spriteRenderer ??= GetComponent<SpriteRenderer>();
             _spriteRenderer.sortingOrder = (int)(transform.position.y * -100);
         }
+        private void Update()
+        {
+            if (_updateInRuntime)
+            {
+                _spriteRenderer.sortingOrder = (int)(transform.position.y * -100);
+            }
 
+        }
     }
 }

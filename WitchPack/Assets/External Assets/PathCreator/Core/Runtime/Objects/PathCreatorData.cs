@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace PathCreation {
+namespace External_Assets.PathCreator.Core.Runtime.Objects {
     /// Stores state data for the path creator editor
 
     [System.Serializable]

@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
+using External_Assets.DamageNumbersPro.Scripts.Internal;
 using TMPro;
+using UnityEngine;
 
-namespace DamageNumbersPro.Demo
+namespace External_Assets.DamageNumbersPro.Demo.Scripts
 {
     public class DNP_PrefabSettings : MonoBehaviour
     {

@@ -1,23 +1,32 @@
-public class HealingLight : StatPassive
+using Gameplay.Units.Abilities.AbilitySystem.AbilityStats;
+using Gameplay.Units.Abilities.AbilitySystem.BaseAbilities.Passives;
+using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs.Passives;
+using Gameplay.Units.Stats;
+using Tools.Time;
+
+namespace Gameplay.Units.Abilities.Shaman_Abilities.LilaAbilities.Passive
 {
-    private HealingLightSO _config;
-    private float _currentValue;
-
-    public HealingLight(StatPassiveSO config, BaseUnit owner) : base(config, owner)
+    public class HealingLight : StatPassive
     {
-        _config = config as HealingLightSO;
-        abilityStats.Add(new AbilityStat(AbilityStatType.HpRegen, _config.HealPercentage));
-        abilityStats.Add(new AbilityStat(AbilityStatType.TickInterval, _config.HealInterval));
-    }
+        private HealingLightSO _config;
+        private float _currentValue;
 
-    public override void SubscribePassive()
-    {
-        TimerManager.AddTimer(GetAbilityStatValue(AbilityStatType.TickInterval), RegenHp, true, dontDestroyTimer: true);
-    }
+        public HealingLight(StatPassiveSO config, BaseUnit owner) : base(config, owner)
+        {
+            _config = config as HealingLightSO;
+            abilityStats.Add(new AbilityStat(AbilityStatType.HpRegen, _config.HealPercentage));
+            abilityStats.Add(new AbilityStat(AbilityStatType.TickInterval, _config.HealInterval));
+        }
 
-    private void RegenHp()
-    {
-        _currentValue = Owner.Stats[StatType.MaxHp].Value * (GetAbilityStatValue(AbilityStatType.HpRegen) / 100);
-        Owner.Damageable.Heal((int)_currentValue);
+        public override void SubscribePassive()
+        {
+            TimerManager.AddTimer(GetAbilityStatValue(AbilityStatType.TickInterval), RegenHp, true, dontDestroyTimer: true);
+        }
+
+        private void RegenHp()
+        {
+            _currentValue = Owner.Stats[StatType.MaxHp].Value * (GetAbilityStatValue(AbilityStatType.HpRegen) / 100);
+            Owner.Damageable.Heal((int)_currentValue);
+        }
     }
 }

@@ -1,5 +1,5 @@
 #if UNITY_EDITOR
-namespace Sirenix.OdinInspector.Demos.RPGEditor
+namespace Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Character
 {
     public enum CharacterAlignment
     {

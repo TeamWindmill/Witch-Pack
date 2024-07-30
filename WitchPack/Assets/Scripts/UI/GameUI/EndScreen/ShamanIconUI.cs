@@ -1,15 +1,20 @@
+using Configs;
 using TMPro;
+using UI.UISystem;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShamanIconUI : UIElement
+namespace UI.GameUI.EndScreen
 {
-    [SerializeField] private TextMeshProUGUI _name;
-    [SerializeField] private Image _splash;
-
-    public void Init(ShamanConfig shaman)
+    public class ShamanIconUI : UIElement
     {
-        _name.text = shaman.Name;
-        _splash.sprite = shaman.UnitIcon;
+        [SerializeField] private TextMeshProUGUI _name;
+        [SerializeField] private Image _splash;
+
+        public void Init(ShamanConfig shaman)
+        {
+            _name.text = shaman.Name;
+            _splash.sprite = shaman.UnitIcon;
+        }
     }
 }

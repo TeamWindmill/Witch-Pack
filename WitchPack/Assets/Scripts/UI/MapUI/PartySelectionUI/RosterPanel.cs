@@ -1,110 +1,116 @@
 using System.Collections.Generic;
+using Gameplay.Units.Shaman;
+using Managers;
+using UI.UISystem;
 using UnityEngine;
 
-public class RosterPanel : UIElement
+namespace UI.MapUI.PartySelectionUI
 {
-    public List<RosterIcon> RosterIcons => _rosterIcons;
-
-    [SerializeField] private RosterIcon _rosterIconPrefab;
-    [SerializeField] private Transform _holder;
-
-    private List<RosterIcon> _rosterIcons = new();
-    private PartySelectionWindow _parent;
-
-    public void Init(PartySelectionWindow parent, List<ShamanSaveData> shamanSaveDatas)
+    public class RosterPanel : UIElement
     {
-        if (_rosterIcons.Count > 0)
+        public List<RosterIcon> RosterIcons => _rosterIcons;
+
+        [SerializeField] private RosterIcon _rosterIconPrefab;
+        [SerializeField] private Transform _holder;
+
+        private List<RosterIcon> _rosterIcons = new();
+        private PartySelectionWindow _parent;
+
+        public void Init(PartySelectionWindow parent, List<ShamanSaveData> shamanSaveDatas)
+        {
+            if (_rosterIcons.Count > 0)
+            {
+                foreach (var icon in _rosterIcons)
+                {
+                    Destroy(icon.gameObject);
+                }
+                _rosterIcons.Clear();
+            }
+        
+            _parent = parent;
+            foreach (var shamanSaveData in shamanSaveDatas)
+            {
+                var icon = Instantiate(_rosterIconPrefab, _holder);
+                _rosterIcons.Add(icon);
+                icon.Init(shamanSaveData);
+            }
+        }
+
+        public override void Show()
         {
             foreach (var icon in _rosterIcons)
             {
-                Destroy(icon.gameObject);
+                icon.OnIconClick += ToggleShaman;
             }
-            _rosterIcons.Clear();
+            base.Show();
         }
-        
-        _parent = parent;
-        foreach (var shamanSaveData in shamanSaveDatas)
-        {
-            var icon = Instantiate(_rosterIconPrefab, _holder);
-            _rosterIcons.Add(icon);
-            icon.Init(shamanSaveData);
-        }
-    }
 
-    public override void Show()
-    {
-        foreach (var icon in _rosterIcons)
+        public override void Refresh()
         {
-            icon.OnIconClick += ToggleShaman;
-        }
-        base.Show();
-    }
-
-    public override void Refresh()
-    {
-        foreach (var shamanSaveData in GameManager.SaveData.ShamanRoster)
-        {
-            var exists = false;
-            foreach (var rosterIcon in _rosterIcons)
+            foreach (var shamanSaveData in GameManager.SaveData.ShamanRoster)
             {
-                if (rosterIcon.ShamanSaveData == shamanSaveData) exists = true;
+                var exists = false;
+                foreach (var rosterIcon in _rosterIcons)
+                {
+                    if (rosterIcon.ShamanSaveData == shamanSaveData) exists = true;
+                }
+                if(exists) continue;
+                var icon = Instantiate(_rosterIconPrefab, _holder);
+                _rosterIcons.Add(icon);
+                icon.Init(shamanSaveData);
             }
-            if(exists) continue;
-            var icon = Instantiate(_rosterIconPrefab, _holder);
-            _rosterIcons.Add(icon);
-            icon.Init(shamanSaveData);
         }
-    }
 
-    public override void Hide()
-    {
-        foreach (var icon in _rosterIcons)
+        public override void Hide()
         {
-            icon.OnIconClick -= ToggleShaman;
-        }
-        base.Hide();
-    }
-
-    public bool TryGetAvailableRosterIcon(out RosterIcon rosterIcon)
-    {
-        foreach (var icon in _rosterIcons)
-        {
-            if (icon.Available)
+            foreach (var icon in _rosterIcons)
             {
-                rosterIcon = icon;
-                return true;
+                icon.OnIconClick -= ToggleShaman;
             }
+            base.Hide();
         }
-        rosterIcon = null;
-        return false;
-    }
 
-    public void RemoveShamanFromRoster(ShamanSaveData shamanSaveData) 
-    {
-        foreach (var icon in _rosterIcons)
+        public bool TryGetAvailableRosterIcon(out RosterIcon rosterIcon)
         {
-            if (icon.ShamanSaveData == shamanSaveData)
+            foreach (var icon in _rosterIcons)
             {
-                icon.ToggleAvailable(false);
-                return;
+                if (icon.Available)
+                {
+                    rosterIcon = icon;
+                    return true;
+                }
             }
+            rosterIcon = null;
+            return false;
         }
-    }
-    public void AddShamanBackToRoster(ShamanSaveData shamanSaveData) 
-    {
-        foreach (var icon in _rosterIcons)
-        {
-            if (icon.ShamanSaveData == shamanSaveData)
-            {
-                icon.ToggleAvailable(true);
-                return;
-            }
-        }
-    }
 
-    private void ToggleShaman(ShamanSaveData saveData, bool available)
-    {
-        if (available) _parent.AssignShamanToSlot(saveData);
-        else _parent.UnassignShamanFromPack(saveData);
+        public void RemoveShamanFromRoster(ShamanSaveData shamanSaveData) 
+        {
+            foreach (var icon in _rosterIcons)
+            {
+                if (icon.ShamanSaveData == shamanSaveData)
+                {
+                    icon.ToggleAvailable(false);
+                    return;
+                }
+            }
+        }
+        public void AddShamanBackToRoster(ShamanSaveData shamanSaveData) 
+        {
+            foreach (var icon in _rosterIcons)
+            {
+                if (icon.ShamanSaveData == shamanSaveData)
+                {
+                    icon.ToggleAvailable(true);
+                    return;
+                }
+            }
+        }
+
+        private void ToggleShaman(ShamanSaveData saveData, bool available)
+        {
+            if (available) _parent.AssignShamanToSlot(saveData);
+            else _parent.UnassignShamanFromPack(saveData);
+        }
     }
 }

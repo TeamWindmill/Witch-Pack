@@ -1,12 +1,13 @@
-#if UNITY_EDITOR
-namespace Sirenix.OdinInspector.Demos.RPGEditor
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using UnityEditor;
-    using UnityEngine;
-    using UnityEngine.Serialization;
+using System.Collections.Generic;
+using System.Linq;
+using Sirenix.OdinInspector;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.Serialization;
 
+#if UNITY_EDITOR
+namespace Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Editor
+{
     //
     // This class is used by the RPGEditorWindow to render an overview of all characters using the TableList attribute.
     // All characters are Unity objects though, so they are rendered in the inspector as single Unity object field,
@@ -22,27 +23,27 @@ namespace Sirenix.OdinInspector.Demos.RPGEditor
         [TableList(IsReadOnly = true, AlwaysExpanded = true), ShowInInspector]
         private readonly List<CharacterWrapper> allCharacters;
 
-        public Character this[int index]
+        public Character.Character this[int index]
         {
             get { return this.allCharacters[index].Character; }
         }
 
-        public CharacterTable(IEnumerable<Character> characters)
+        public CharacterTable(IEnumerable<Character.Character> characters)
         {
             this.allCharacters = characters.Select(x => new CharacterWrapper(x)).ToList();
         }
 
         private class CharacterWrapper
         {
-            private Character character; // Character is a ScriptableObject and would render a unity object
+            private Character.Character character; // Character is a ScriptableObject and would render a unity object
                                          // field if drawn in the inspector, which is not what we want.
 
-            public Character Character
+            public Character.Character Character
             {
                 get { return this.character; }
             }
 
-            public CharacterWrapper(Character character)
+            public CharacterWrapper(Character.Character character)
             {
                 this.character = character;
             }

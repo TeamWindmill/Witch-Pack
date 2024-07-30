@@ -1,12 +1,12 @@
-#if UNITY_EDITOR
-namespace Sirenix.OdinInspector.Demos
-{
-    using Sirenix.OdinInspector;
-    using Sirenix.OdinInspector.Editor;
-    using Sirenix.Utilities;
-    using Sirenix.Utilities.Editor;
-    using UnityEngine;
+using Sirenix.OdinInspector;
+using Sirenix.OdinInspector.Editor;
+using Sirenix.Utilities;
+using Sirenix.Utilities.Editor;
+using UnityEngine;
 
+#if UNITY_EDITOR
+namespace Plugins.Sirenix.Demos.Editor_Windows.Scripts.Editor
+{
     public class SomeClass2
     {
         [HideLabel, Title("Title", horizontalLine: false, bold: false)]

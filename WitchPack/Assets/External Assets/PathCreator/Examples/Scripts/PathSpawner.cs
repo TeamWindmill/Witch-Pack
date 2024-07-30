@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-namespace PathCreation.Examples {
+namespace External_Assets.PathCreator.Examples.Scripts {
 
     public class PathSpawner : MonoBehaviour {
 
-        public PathCreator pathPrefab;
+        public Core.Runtime.Objects.PathCreator pathPrefab;
         public PathFollower followerPrefab;
         public Transform[] spawnPoints;
 

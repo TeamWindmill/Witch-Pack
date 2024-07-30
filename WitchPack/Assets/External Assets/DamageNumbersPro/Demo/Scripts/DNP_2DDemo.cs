@@ -1,10 +1,10 @@
-﻿using UnityEngine;
-
+﻿using External_Assets.DamageNumbersPro.Scripts.Internal;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM && DNP_NewInputSystem
 using UnityEngine.InputSystem;
 #endif
 
-namespace DamageNumbersPro.Demo
+namespace External_Assets.DamageNumbersPro.Demo.Scripts
 {
     public class DNP_2DDemo : MonoBehaviour
     {

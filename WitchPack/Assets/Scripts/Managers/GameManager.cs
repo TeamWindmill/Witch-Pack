@@ -1,76 +1,84 @@
 using System;
+using Configs;
+using Gameplay.CameraSystem;
+using Systems.SaveSystem;
+using Tools.Helpers;
+using Tools.Scene;
+using UI.UISystem;
 using UnityEngine;
 
-
-public class GameManager : MonoSingleton<GameManager>
+namespace Managers
 {
-    public static LevelConfig CurrentLevelConfig { get; private set; }
-    public static ISceneHandler SceneHandler { get; private set; }
-    public static ShamansManager ShamansManager => Instance._shamansManager;
-
-    public static GameSaveData SaveData;
-    public bool TutorialPlayed;
-
-    [SerializeField] private ShamansManager _shamansManager;
-    [SerializeField] private SceneHandler _sceneHandler;
-
-    private static CameraHandler _cameraHandler;
-
-    public static CameraHandler CameraHandler
+    public class GameManager : MonoSingleton<GameManager>
     {
-        get
+        public static LevelConfig CurrentLevelConfig { get; private set; }
+        public static ISceneHandler SceneHandler { get; private set; }
+        public static ShamansManager ShamansManager => Instance._shamansManager;
+
+        public static GameSaveData SaveData;
+        public bool TutorialPlayed;
+
+        [SerializeField] private ShamansManager _shamansManager;
+        [SerializeField] private SceneHandler _sceneHandler;
+
+        private static CameraHandler _cameraHandler;
+
+        public static CameraHandler CameraHandler
         {
-            if (_cameraHandler != null) return _cameraHandler;
+            get
+            {
+                if (_cameraHandler != null) return _cameraHandler;
 
-            if (Camera.main != null)
-                _cameraHandler = FindObjectOfType<CameraHandler>();
-            else
-                throw new Exception("Can not find a valid camera");
+                if (Camera.main != null)
+                    _cameraHandler = FindObjectOfType<CameraHandler>();
+                else
+                    throw new Exception("Can not find a valid camera");
 
-            return _cameraHandler;
+                return _cameraHandler;
+            }
         }
-    }
 
-    protected override void Awake()
-    {
-        base.Awake();
+        protected override void Awake()
+        {
+            base.Awake();
 
-        if (SceneHandler == null)
-            SceneHandler = _sceneHandler;
+            if (SceneHandler == null)
+                SceneHandler = _sceneHandler;
         
-        SaveData = LoadDataFromSave(); //need to load save from file
-        _shamansManager.Init(SaveData);
-        UIManager.Init();
-    }
+            SaveData = LoadDataFromSave(); //need to load save from file
+            _shamansManager.Init(SaveData);
+            UIManager.Init();
+        }
 
-    void Start()
-    {
-        SceneHandler.LoadScene(SceneType.MainMenu);
-    }
+        void Start()
+        {
+            SceneHandler.LoadScene(SceneType.MainMenu);
+        }
 
-    public void SetLevelConfig(LevelConfig levelConfig)
-    {
-        CurrentLevelConfig = levelConfig;
-    }
+        public void SetLevelConfig(LevelConfig levelConfig)
+        {
+            CurrentLevelConfig = levelConfig;
+        }
 
-    private GameSaveData LoadDataFromSave() //this is temp need to connect to a save system
-    {
-        return new GameSaveData();
-    }
+        private GameSaveData LoadDataFromSave() //this is temp need to connect to a save system
+        {
+            return new GameSaveData();
+        }
 
-    private void OnValidate()
-    {
-        if (_sceneHandler == null)
-            _sceneHandler = FindObjectOfType<SceneHandler>();
-    }
+        private void OnValidate()
+        {
+            if (_sceneHandler == null)
+                _sceneHandler = FindObjectOfType<SceneHandler>();
+        }
 
-    private void OnMouseDown()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-    }
+        private void OnMouseDown()
+        {
+            Cursor.lockState = CursorLockMode.Confined;
+        }
 
-    public void Quit()
-    {
-        Application.Quit();
+        public void Quit()
+        {
+            Application.Quit();
+        }
     }
 }

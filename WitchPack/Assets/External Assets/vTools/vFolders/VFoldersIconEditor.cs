@@ -1,14 +1,14 @@
 #if UNITY_EDITOR
-using UnityEngine;
-using UnityEditor;
 using System.Linq;
-using static VFolders.VFoldersData;
-using static VFolders.Libs.VUtils;
-using static VFolders.Libs.VGUI;
+using UnityEditor;
+using UnityEngine;
+using static External_Assets.vTools.vFolders.VFoldersData;
+using static External_Assets.vTools.vFolders.VUtils;
+using static External_Assets.vTools.vFolders.VGUI;
 
-namespace VFolders
+namespace External_Assets.vTools.vFolders
 {
-    public class VFoldersIconEditor : CustomPopupWindow
+    public class VFoldersIconEditor : VGUI.CustomPopupWindow
     {
         void OnGUI()
         {

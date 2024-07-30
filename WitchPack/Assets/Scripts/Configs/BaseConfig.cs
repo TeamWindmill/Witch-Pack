@@ -1,9 +1,12 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public abstract class BaseConfig : ScriptableObject
+namespace Configs
 {
-    [BoxGroup("Unit")][HorizontalGroup("Unit/Split")]
-    [VerticalGroup("Unit/Split/Left")]
-    public string Name;
+    public abstract class BaseConfig : ScriptableObject
+    {
+        [BoxGroup("Unit")][HorizontalGroup("Unit/Split")]
+        [VerticalGroup("Unit/Split/Left")]
+        public string Name;
+    }
 }

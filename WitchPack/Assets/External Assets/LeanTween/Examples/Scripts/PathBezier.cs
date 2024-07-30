@@ -1,6 +1,7 @@
+using External_Assets.LeanTween.Framework;
 using UnityEngine;
 
-namespace DentedPixel.LTExamples{
+namespace External_Assets.LeanTween.Examples.Scripts{
 
 public class PathBezier : MonoBehaviour {
 
@@ -18,7 +19,7 @@ public class PathBezier : MonoBehaviour {
 		avatar1 = GameObject.Find("Avatar1");
 
 		// Tween automatically
-		LTDescr descr = LeanTween.move(avatar1, cr.pts, 6.5f).setOrientToPath(true).setRepeat(-1);
+		LTDescr descr = Framework.LeanTween.move(avatar1, cr.pts, 6.5f).setOrientToPath(true).setRepeat(-1);
 		Debug.Log("length of path 1:"+cr.length);
 		Debug.Log("length of path 2:"+descr.optional.path.length);
 	}
@@ -28,7 +29,7 @@ public class PathBezier : MonoBehaviour {
 		// Or Update Manually
 		//cr.place2d( sprite1.transform, iter );
 
-		iter += Time.deltaTime*0.07f;
+		iter += UnityEngine.Time.deltaTime*0.07f;
 		if(iter>1.0f)
 			iter = 0.0f;
 	}

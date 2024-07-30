@@ -1,105 +1,111 @@
+using Gameplay.Units.Abilities.AbilitySystem.BaseAbilities;
+using Gameplay.Units.Shaman;
+using Sound;
 using UnityEngine;
 
-public class AbilitiesHandlerUI : MonoBehaviour
+namespace UI.GameUI.HeroSelectionUI.AbilityUI
 {
-    public AbilityUpgradePanelUI AbilityUpgradePanelUI => abilityUpgradePanelUI;
-
-    [SerializeField] private AbilityUIButton[] abilityUIButtons;
-    [SerializeField] private AbilityUpgradePanelUI abilityUpgradePanelUI;
-
-    private Shaman _shaman;
-
-    public void Show(Shaman shaman)
+    public class AbilitiesHandlerUI : MonoBehaviour
     {
-        _shaman = shaman;
-        abilityUpgradePanelUI.SetShaman(shaman);
-        abilityUpgradePanelUI.OnAbilityUpgrade += OnAbilityUpgrade;
-        shaman.EnergyHandler.OnShamanLevelUp += OnShamanLevelUp;
-        var rootAbilities = shaman.ShamanAbilityHandler.RootAbilities;
-        foreach (var uiBlock in abilityUIButtons)
+        public AbilityUpgradePanelUI AbilityUpgradePanelUI => abilityUpgradePanelUI;
+
+        [SerializeField] private AbilityUIButton[] abilityUIButtons;
+        [SerializeField] private AbilityUpgradePanelUI abilityUpgradePanelUI;
+
+        private Shaman _shaman;
+
+        public void Show(Shaman shaman)
         {
-            uiBlock.Hide();
+            _shaman = shaman;
+            abilityUpgradePanelUI.SetShaman(shaman);
+            abilityUpgradePanelUI.OnAbilityUpgrade += OnAbilityUpgrade;
+            shaman.EnergyHandler.OnShamanLevelUp += OnShamanLevelUp;
+            var rootAbilities = shaman.ShamanAbilityHandler.RootAbilities;
+            foreach (var uiBlock in abilityUIButtons)
+            {
+                uiBlock.Hide();
+            }
+
+            if (rootAbilities.Count <= 0) return;
+            foreach (var rootAbility in rootAbilities)
+            {
+                var uiButton = GetAvailableButton();
+                var activeAbility = shaman.ShamanAbilityHandler.GetActiveAbilityFromRoot(rootAbility);
+                var caster = shaman.ShamanAbilityHandler.GetCasterFromAbility(activeAbility);
+                uiButton.Init(rootAbility, activeAbility, caster, CheckAbilityUpgradable(shaman,activeAbility));
+                uiButton.OnAbilityClick += OpenUpgradePanel;
+            }
+
+            abilityUpgradePanelUI.Hide();
         }
 
-        if (rootAbilities.Count <= 0) return;
-        foreach (var rootAbility in rootAbilities)
+
+        public void Hide()
         {
-            var uiButton = GetAvailableButton();
-            var activeAbility = shaman.ShamanAbilityHandler.GetActiveAbilityFromRoot(rootAbility);
-            var caster = shaman.ShamanAbilityHandler.GetCasterFromAbility(activeAbility);
-            uiButton.Init(rootAbility, activeAbility, caster, CheckAbilityUpgradable(shaman,activeAbility));
-            uiButton.OnAbilityClick += OpenUpgradePanel;
-        }
-
-        abilityUpgradePanelUI.Hide();
-    }
-
-
-    public void Hide()
-    {
         
-        abilityUpgradePanelUI.OnAbilityUpgrade -= OnAbilityUpgrade;
-        if(_shaman != null) _shaman.EnergyHandler.OnShamanLevelUp -= OnShamanLevelUp;
-        abilityUpgradePanelUI.Hide();
-        foreach (var uiBlock in abilityUIButtons)
-        {
-            if (!uiBlock.gameObject.activeSelf) return;
-            uiBlock.Hide();
-        }
-    }
-
-    private void OpenUpgradePanel(AbilityUIButton abilityButton)
-    {
-        SoundManager.PlayAudioClip(SoundEffectType.OpenUpgradeTree);
-        abilityUpgradePanelUI.Init(abilityButton);
-    }
-
-    private AbilityUIButton GetAvailableButton()
-    {
-        foreach (var uiButton in abilityUIButtons)
-        {
-            if (uiButton.gameObject.activeSelf) continue;
-            return uiButton;
+            abilityUpgradePanelUI.OnAbilityUpgrade -= OnAbilityUpgrade;
+            if(_shaman != null) _shaman.EnergyHandler.OnShamanLevelUp -= OnShamanLevelUp;
+            abilityUpgradePanelUI.Hide();
+            foreach (var uiBlock in abilityUIButtons)
+            {
+                if (!uiBlock.gameObject.activeSelf) return;
+                uiBlock.Hide();
+            }
         }
 
-        return null;
-    }
+        private void OpenUpgradePanel(AbilityUIButton abilityButton)
+        {
+            SoundManager.PlayAudioClip(SoundEffectType.OpenUpgradeTree);
+            abilityUpgradePanelUI.Init(abilityButton);
+        }
 
-    private void OnShamanLevelUp(int obj)
-    {
-        if (abilityUpgradePanelUI.gameObject.activeSelf)
+        private AbilityUIButton GetAvailableButton()
         {
-            abilityUpgradePanelUI.Show();
-        }
-        else
-        {
-            Show(_shaman);
-        }
-    }
+            foreach (var uiButton in abilityUIButtons)
+            {
+                if (uiButton.gameObject.activeSelf) continue;
+                return uiButton;
+            }
 
-    private void OnAbilityUpgrade()
-    {
-        foreach (var uiButton in abilityUIButtons)
-        {
-            uiButton.Hide();
+            return null;
         }
-        foreach (var rootAbility in _shaman.ShamanAbilityHandler.RootAbilities)
-        {
-            var uiButton = GetAvailableButton();
-            var activeAbility = _shaman.ShamanAbilityHandler.GetActiveAbilityFromRoot(rootAbility);
-            var caster = _shaman.ShamanAbilityHandler.GetCasterFromAbility(activeAbility);
-            uiButton.Init(rootAbility, activeAbility, caster, CheckAbilityUpgradable(_shaman,activeAbility));
-            uiButton.OnAbilityClick += OpenUpgradePanel;
-        }
-    }
 
-    private static bool CheckAbilityUpgradable(Shaman shaman, Ability ability)
-    {
-        if (!shaman.EnergyHandler.HasSkillPoints) return false;
-        if (ability is not null)
+        private void OnShamanLevelUp(int obj)
         {
-            if (ability.Upgrades.Count == 0) return false;
+            if (abilityUpgradePanelUI.gameObject.activeSelf)
+            {
+                abilityUpgradePanelUI.Show();
+            }
+            else
+            {
+                Show(_shaman);
+            }
         }
-        return true;
+
+        private void OnAbilityUpgrade()
+        {
+            foreach (var uiButton in abilityUIButtons)
+            {
+                uiButton.Hide();
+            }
+            foreach (var rootAbility in _shaman.ShamanAbilityHandler.RootAbilities)
+            {
+                var uiButton = GetAvailableButton();
+                var activeAbility = _shaman.ShamanAbilityHandler.GetActiveAbilityFromRoot(rootAbility);
+                var caster = _shaman.ShamanAbilityHandler.GetCasterFromAbility(activeAbility);
+                uiButton.Init(rootAbility, activeAbility, caster, CheckAbilityUpgradable(_shaman,activeAbility));
+                uiButton.OnAbilityClick += OpenUpgradePanel;
+            }
+        }
+
+        private static bool CheckAbilityUpgradable(Shaman shaman, Ability ability)
+        {
+            if (!shaman.EnergyHandler.HasSkillPoints) return false;
+            if (ability is not null)
+            {
+                if (ability.Upgrades.Count == 0) return false;
+            }
+            return true;
+        }
     }
 }

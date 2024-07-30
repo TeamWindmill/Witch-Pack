@@ -1,22 +1,27 @@
 using System.Collections.Generic;
-using PathCreation;
+using External_Assets.PathCreator.Core.Runtime.Objects;
+using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs;
+using Gameplay.Units.Enemy.EnemyAIBehavior;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "EnemyConfig", menuName = "Enemy/EnemyConfig")]
-
-public class EnemyConfig : BaseUnitConfig
+namespace Configs
 {
-    [HideInInspector] public PathCreator Path;
-    [BoxGroup("Enemy")][SerializeField] private int coreDamage;
-    [BoxGroup("Enemy")][SerializeField] private int energyPoints;
-    [BoxGroup("Enemy")][SerializeField] private List<AbilitySO> _abilities;
-    [BoxGroup("Enemy")][SerializeField] private EnemyAIConfig _enemyAIConfig;
-    //[BoxGroup("Enemy")] [SerializeField] private float _size;
+    [CreateAssetMenu(fileName = "EnemyConfig", menuName = "Enemy/EnemyConfig")]
 
-    //public float Size => _size;
-    public EnemyAIConfig EnemyAIConfig => _enemyAIConfig;
-    public int CoreDamage => coreDamage;
-    public int EnergyPoints => energyPoints;
-    public List<AbilitySO> Abilities => _abilities;
+    public class EnemyConfig : BaseUnitConfig
+    {
+        [HideInInspector] public PathCreator Path;
+        [BoxGroup("Enemy")][SerializeField] private int coreDamage;
+        [BoxGroup("Enemy")][SerializeField] private int energyPoints;
+        [BoxGroup("Enemy")][SerializeField] private List<AbilitySO> _abilities;
+        [BoxGroup("Enemy")][SerializeField] private EnemyAIConfig _enemyAIConfig;
+        //[BoxGroup("Enemy")] [SerializeField] private float _size;
+
+        //public float Size => _size;
+        public EnemyAIConfig EnemyAIConfig => _enemyAIConfig;
+        public int CoreDamage => coreDamage;
+        public int EnergyPoints => energyPoints;
+        public List<AbilitySO> Abilities => _abilities;
+    }
 }

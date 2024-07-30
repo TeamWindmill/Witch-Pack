@@ -1,53 +1,57 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Gameplay.Pools.Pool_System;
+using Gameplay.Targeter;
 using UnityEngine;
 
-public class EnergyParticle : MonoBehaviour
+namespace Gameplay.Units.Energy_Exp.Energy
 {
-    [SerializeField] private ParticleSystem particleSystem;
-    [SerializeField] private ShamanTargeter particleCollider;
-    [SerializeField] private float magnetSpeed;
-    [SerializeField] private int energyValue;
-    private bool _shamanInRadius;
-    private Shaman _shamanTarget;
-
-    private void Awake()
+    public class EnergyParticle : MonoBehaviour, IPoolable
     {
-        particleCollider.OnTargetAdded += PopEnergyParticle;
-    }
+        [SerializeField] private ParticleSystem particleSystem;
+        [SerializeField] private ShamanTargeter particleCollider;
+        [SerializeField] private float magnetSpeed;
+        [SerializeField] private int energyValue;
+        private bool _shamanInRadius;
+        private Shaman.Shaman _shamanTarget;
 
-    private void PopEnergyParticle(Shaman shaman)
-    {
-        Debug.Log(energyValue +" energy gained");
-        gameObject.SetActive(false);
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if(_shamanInRadius) return;
-        if (other.TryGetComponent<Shaman>(out var shaman))
+        private void Awake()
         {
-            _shamanInRadius = true;
-            _shamanTarget = shaman;
+            particleCollider.OnTargetAdded += PopEnergyParticle;
         }
-    }
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (other.TryGetComponent<Shaman>(out var shaman))
+        private void PopEnergyParticle(Shaman.Shaman shaman)
         {
-            if (shaman != _shamanTarget) return;
-            _shamanInRadius = false;
-            _shamanTarget = null;
+            Debug.Log(energyValue +" energy gained");
+            gameObject.SetActive(false);
         }
-    }
 
-    private void Update()
-    {
-        if (_shamanInRadius)
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            transform.position = Vector3.MoveTowards(transform.position, _shamanTarget.transform.position, magnetSpeed * Time.deltaTime);
+            if(_shamanInRadius) return;
+            if (other.TryGetComponent<Shaman.Shaman>(out var shaman))
+            {
+                _shamanInRadius = true;
+                _shamanTarget = shaman;
+            }
         }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            if (other.TryGetComponent<Shaman.Shaman>(out var shaman))
+            {
+                if (shaman != _shamanTarget) return;
+                _shamanInRadius = false;
+                _shamanTarget = null;
+            }
+        }
+
+        private void Update()
+        {
+            if (_shamanInRadius)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, _shamanTarget.transform.position, magnetSpeed * UnityEngine.Time.deltaTime);
+            }
+        }
+
+        public GameObject PoolableGameObject => gameObject;
     }
 }

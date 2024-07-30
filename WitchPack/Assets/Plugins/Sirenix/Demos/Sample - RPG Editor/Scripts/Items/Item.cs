@@ -1,9 +1,11 @@
-#if UNITY_EDITOR
-namespace Sirenix.OdinInspector.Demos.RPGEditor
-{
-    using System.Linq;
-    using UnityEngine;
+using System.Linq;
+using Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Misc;
+using Sirenix.OdinInspector;
+using UnityEngine;
 
+#if UNITY_EDITOR
+namespace Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Items
+{
     // 
     // This is the base-class for all items. It contains a lot of layout using various layout group attributes. 
     // We've also defines a few relevant groups in constant variables, which derived classes can utilize.

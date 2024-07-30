@@ -1,10 +1,10 @@
 #if UNITY_EDITOR
-using UnityEngine;
 using UnityEditor;
-using static VTabs.Libs.VUtils;
+using UnityEngine;
+using static External_Assets.vTools.vTabs.VUtils;
 
 
-namespace VTabs
+namespace External_Assets.vTools.vTabs
 {
     public static class VTabsMenuItems
     {

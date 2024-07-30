@@ -1,9 +1,10 @@
-#if UNITY_EDITOR
-namespace Sirenix.OdinInspector.Demos.RPGEditor
-{
-    using Sirenix.Utilities;
-    using System.Linq;
+using System.Linq;
+using Sirenix.OdinInspector;
+using Sirenix.Utilities;
 
+#if UNITY_EDITOR
+namespace Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Character
+{
 #if UNITY_EDITOR
     using UnityEditor;
 #endif

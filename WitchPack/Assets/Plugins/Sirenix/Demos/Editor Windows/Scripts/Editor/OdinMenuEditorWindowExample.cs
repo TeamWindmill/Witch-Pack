@@ -1,14 +1,15 @@
-#if UNITY_EDITOR
-namespace Sirenix.OdinInspector.Demos
-{
-    using Sirenix.OdinInspector.Editor;
-    using System.Linq;
-    using UnityEngine;
-    using Sirenix.Utilities.Editor;
-    using Sirenix.Serialization;
-    using UnityEditor;
-    using Sirenix.Utilities;
+using System.Linq;
+using Sirenix.OdinInspector;
+using Sirenix.OdinInspector.Editor;
+using Sirenix.Serialization;
+using Sirenix.Utilities;
+using Sirenix.Utilities.Editor;
+using UnityEditor;
+using UnityEngine;
 
+#if UNITY_EDITOR
+namespace Plugins.Sirenix.Demos.Editor_Windows.Scripts.Editor
+{
     // 
     // Be sure to check out OdinMenuStyleExample.cs as well. It shows you various ways to customize the look and behaviour of OdinMenuTrees.
     // 

@@ -1,112 +1,114 @@
-using UnityEngine;
-using UnityEditor;
-using UnityEngine.UIElements;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
+using UnityEditor;
 using UnityEditor.SceneManagement;
+using UnityEngine;
+using UnityEngine.UIElements;
 
-[InitializeOnLoad]
-public class PlayButtonEditor : EditorWindow
+namespace Tools.Editor
 {
-    private const string PRODUCTION_PATH = "Assets/Scenes/Production";
-    private const string PERSISTENT_SCENE_NAME = "PersistentScene";
-
-    static PlayButtonEditor()
+    [InitializeOnLoad]
+    public class PlayButtonEditor : EditorWindow
     {
-        ToolbarExtender.LeftToolbarGUI.Add(OnToolbarGUI);
-    }
+        private const string PRODUCTION_PATH = "Assets/Scenes/Production";
+        private const string PERSISTENT_SCENE_NAME = "PersistentScene";
 
-    static void OnToolbarGUI()
-    {
-        GUILayout.FlexibleSpace();
-
-        if (GUILayout.Button(new GUIContent("Play From Start")))
+        static PlayButtonEditor()
         {
-            if (EditorApplication.isPlaying)
+            ToolbarExtender.LeftToolbarGUI.Add(OnToolbarGUI);
+        }
+
+        static void OnToolbarGUI()
+        {
+            GUILayout.FlexibleSpace();
+
+            if (GUILayout.Button(new GUIContent("Play From Start")))
             {
-                EditorApplication.ExitPlaymode();
-            }
-            else
-            {
-                EditorSceneManager.SaveOpenScenes();
-                EditorSceneManager.OpenScene(AssetDatabase.GUIDToAssetPath(
-                    AssetDatabase.FindAssets(PERSISTENT_SCENE_NAME, new[] { PRODUCTION_PATH })[0]));
-                EditorApplication.EnterPlaymode();
+                if (EditorApplication.isPlaying)
+                {
+                    EditorApplication.ExitPlaymode();
+                }
+                else
+                {
+                    EditorSceneManager.SaveOpenScenes();
+                    EditorSceneManager.OpenScene(AssetDatabase.GUIDToAssetPath(
+                        AssetDatabase.FindAssets(PERSISTENT_SCENE_NAME, new[] { PRODUCTION_PATH })[0]));
+                    EditorApplication.EnterPlaymode();
+                }
             }
         }
-    }
 
-    public static class ToolbarCallback
-    {
-        static Type m_toolbarType = typeof(Editor).Assembly.GetType("UnityEditor.Toolbar");
-        static Type m_guiViewType = typeof(Editor).Assembly.GetType("UnityEditor.GUIView");
+        public static class ToolbarCallback
+        {
+            static Type m_toolbarType = typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.Toolbar");
+            static Type m_guiViewType = typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.GUIView");
 #if UNITY_2020_1_OR_NEWER
-        static Type m_iWindowBackendType = typeof(Editor).Assembly.GetType("UnityEditor.IWindowBackend");
+            static Type m_iWindowBackendType = typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.IWindowBackend");
 
-        static PropertyInfo m_windowBackend = m_guiViewType.GetProperty("windowBackend",
-            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            static PropertyInfo m_windowBackend = m_guiViewType.GetProperty("windowBackend",
+                BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
-        static PropertyInfo m_viewVisualTree = m_iWindowBackendType.GetProperty("visualTree",
-            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            static PropertyInfo m_viewVisualTree = m_iWindowBackendType.GetProperty("visualTree",
+                BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 #else
 			static PropertyInfo m_viewVisualTree = m_guiViewType.GetProperty("visualTree",
 				BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 #endif
-        static FieldInfo m_imguiContainerOnGui = typeof(IMGUIContainer).GetField("m_OnGUIHandler",
-            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+            static FieldInfo m_imguiContainerOnGui = typeof(IMGUIContainer).GetField("m_OnGUIHandler",
+                BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
-        static ScriptableObject m_currentToolbar;
+            static ScriptableObject m_currentToolbar;
 
-        /// <summary>
-        /// Callback for toolbar OnGUI method.
-        /// </summary>
-        public static Action OnToolbarGUI;
+            /// <summary>
+            /// Callback for toolbar OnGUI method.
+            /// </summary>
+            public static Action OnToolbarGUI;
 
-        public static Action OnToolbarGUILeft;
-        public static Action OnToolbarGUIRight;
+            public static Action OnToolbarGUILeft;
+            public static Action OnToolbarGUIRight;
 
-        static ToolbarCallback()
-        {
-            EditorApplication.update -= OnUpdate;
-            EditorApplication.update += OnUpdate;
-        }
-
-        static void OnUpdate()
-        {
-            // Relying on the fact that toolbar is ScriptableObject and gets deleted when layout changes
-            if (m_currentToolbar == null)
+            static ToolbarCallback()
             {
-                // Find toolbar
-                var toolbars = Resources.FindObjectsOfTypeAll(m_toolbarType);
-                m_currentToolbar = toolbars.Length > 0 ? (ScriptableObject)toolbars[0] : null;
-                if (m_currentToolbar != null)
+                EditorApplication.update -= OnUpdate;
+                EditorApplication.update += OnUpdate;
+            }
+
+            static void OnUpdate()
+            {
+                // Relying on the fact that toolbar is ScriptableObject and gets deleted when layout changes
+                if (m_currentToolbar == null)
                 {
-#if UNITY_2021_1_OR_NEWER
-                    var root = m_currentToolbar.GetType()
-                        .GetField("m_Root", BindingFlags.NonPublic | BindingFlags.Instance);
-                    var rawRoot = root.GetValue(m_currentToolbar);
-                    var mRoot = rawRoot as VisualElement;
-                    RegisterCallback("ToolbarZoneLeftAlign", OnToolbarGUILeft);
-                    RegisterCallback("ToolbarZoneRightAlign", OnToolbarGUIRight);
-
-                    void RegisterCallback(string root, Action cb)
+                    // Find toolbar
+                    var toolbars = Resources.FindObjectsOfTypeAll(m_toolbarType);
+                    m_currentToolbar = toolbars.Length > 0 ? (ScriptableObject)toolbars[0] : null;
+                    if (m_currentToolbar != null)
                     {
-                        var toolbarZone = mRoot.Q(root);
+#if UNITY_2021_1_OR_NEWER
+                        var root = m_currentToolbar.GetType()
+                            .GetField("m_Root", BindingFlags.NonPublic | BindingFlags.Instance);
+                        var rawRoot = root.GetValue(m_currentToolbar);
+                        var mRoot = rawRoot as VisualElement;
+                        RegisterCallback("ToolbarZoneLeftAlign", OnToolbarGUILeft);
+                        RegisterCallback("ToolbarZoneRightAlign", OnToolbarGUIRight);
 
-                        var parent = new VisualElement()
+                        void RegisterCallback(string root, Action cb)
                         {
-                            style =
+                            var toolbarZone = mRoot.Q(root);
+
+                            var parent = new VisualElement()
                             {
-                                flexGrow = 1,
-                                flexDirection = FlexDirection.Row,
-                            }
-                        };
-                        var container = new IMGUIContainer();
-                        container.onGUIHandler += () => { cb?.Invoke(); };
-                        parent.Add(container);
-                        toolbarZone.Add(parent);
-                    }
+                                style =
+                                {
+                                    flexGrow = 1,
+                                    flexDirection = FlexDirection.Row,
+                                }
+                            };
+                            var container = new IMGUIContainer();
+                            container.onGUIHandler += () => { cb?.Invoke(); };
+                            parent.Add(container);
+                            toolbarZone.Add(parent);
+                        }
 #else
 #if UNITY_2020_1_OR_NEWER
 					var windowBackend = m_windowBackend.GetValue(m_currentToolbar);
@@ -128,42 +130,42 @@ public class PlayButtonEditor : EditorWindow
 						m_imguiContainerOnGui.SetValue(container, handler);
 
 #endif
+                    }
                 }
             }
-        }
 
-        static void OnGUI()
-        {
-            var handler = OnToolbarGUI;
-            if (handler != null) handler();
+            static void OnGUI()
+            {
+                var handler = OnToolbarGUI;
+                if (handler != null) handler();
+            }
         }
     }
-}
 
-[InitializeOnLoad]
-public static class ToolbarExtender
-{
-    static int m_toolCount;
-    static GUIStyle m_commandStyle = null;
-
-    public static readonly List<Action> LeftToolbarGUI = new List<Action>();
-    public static readonly List<Action> RightToolbarGUI = new List<Action>();
-
-    static ToolbarExtender()
+    [InitializeOnLoad]
+    public static class ToolbarExtender
     {
-        Type toolbarType = typeof(Editor).Assembly.GetType("UnityEditor.Toolbar");
+        static int m_toolCount;
+        static GUIStyle m_commandStyle = null;
+
+        public static readonly List<Action> LeftToolbarGUI = new List<Action>();
+        public static readonly List<Action> RightToolbarGUI = new List<Action>();
+
+        static ToolbarExtender()
+        {
+            Type toolbarType = typeof(UnityEditor.Editor).Assembly.GetType("UnityEditor.Toolbar");
 
 #if UNITY_2019_1_OR_NEWER
-        string fieldName = "k_ToolCount";
+            string fieldName = "k_ToolCount";
 #else
 			string fieldName = "s_ShownToolIcons";
 #endif
 
-        FieldInfo toolIcons = toolbarType.GetField(fieldName,
-            BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
+            FieldInfo toolIcons = toolbarType.GetField(fieldName,
+                BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static);
 
 #if UNITY_2019_3_OR_NEWER
-        m_toolCount = toolIcons != null ? ((int)toolIcons.GetValue(null)) : 8;
+            m_toolCount = toolIcons != null ? ((int)toolIcons.GetValue(null)) : 8;
 #elif UNITY_2019_1_OR_NEWER
 			m_toolCount = toolIcons != null ? ((int) toolIcons.GetValue(null)) : 7;
 #elif UNITY_2018_1_OR_NEWER
@@ -172,82 +174,82 @@ public static class ToolbarExtender
 			m_toolCount = toolIcons != null ? ((Array) toolIcons.GetValue(null)).Length : 5;
 #endif
 
-        PlayButtonEditor.ToolbarCallback.OnToolbarGUI = OnGUI;
-        PlayButtonEditor.ToolbarCallback.OnToolbarGUILeft = GUILeft;
-        PlayButtonEditor.ToolbarCallback.OnToolbarGUIRight = GUIRight;
-    }
+            PlayButtonEditor.ToolbarCallback.OnToolbarGUI = OnGUI;
+            PlayButtonEditor.ToolbarCallback.OnToolbarGUILeft = GUILeft;
+            PlayButtonEditor.ToolbarCallback.OnToolbarGUIRight = GUIRight;
+        }
 
 #if UNITY_2019_3_OR_NEWER
-    public const float space = 8;
+        public const float space = 8;
 #else
 		public const float space = 10;
 #endif
-    public const float largeSpace = 20;
-    public const float buttonWidth = 32;
-    public const float dropdownWidth = 80;
+        public const float largeSpace = 20;
+        public const float buttonWidth = 32;
+        public const float dropdownWidth = 80;
 #if UNITY_2019_1_OR_NEWER
-    public const float playPauseStopWidth = 140;
+        public const float playPauseStopWidth = 140;
 #else
 		public const float playPauseStopWidth = 100;
 #endif
 
-    static void OnGUI()
-    {
-        // Create two containers, left and right
-        // Screen is whole toolbar
-
-        if (m_commandStyle == null)
+        static void OnGUI()
         {
-            m_commandStyle = new GUIStyle("CommandLeft");
-        }
+            // Create two containers, left and right
+            // Screen is whole toolbar
 
-        var screenWidth = EditorGUIUtility.currentViewWidth;
+            if (m_commandStyle == null)
+            {
+                m_commandStyle = new GUIStyle("CommandLeft");
+            }
 
-        // Following calculations match code reflected from Toolbar.OldOnGUI()
-        float playButtonsPosition = Mathf.RoundToInt((screenWidth - playPauseStopWidth) / 2);
+            var screenWidth = EditorGUIUtility.currentViewWidth;
 
-        Rect leftRect = new Rect(0, 0, screenWidth, Screen.height);
-        leftRect.xMin += space; // Spacing left
-        leftRect.xMin += buttonWidth * m_toolCount; // Tool buttons
+            // Following calculations match code reflected from Toolbar.OldOnGUI()
+            float playButtonsPosition = Mathf.RoundToInt((screenWidth - playPauseStopWidth) / 2);
+
+            Rect leftRect = new Rect(0, 0, screenWidth, Screen.height);
+            leftRect.xMin += space; // Spacing left
+            leftRect.xMin += buttonWidth * m_toolCount; // Tool buttons
 #if UNITY_2019_3_OR_NEWER
-        leftRect.xMin += space; // Spacing between tools and pivot
+            leftRect.xMin += space; // Spacing between tools and pivot
 #else
 			leftRect.xMin += largeSpace; // Spacing between tools and pivot
 #endif
-        leftRect.xMin += 64 * 2; // Pivot buttons
-        leftRect.xMax = playButtonsPosition;
+            leftRect.xMin += 64 * 2; // Pivot buttons
+            leftRect.xMax = playButtonsPosition;
 
-        Rect rightRect = new Rect(0, 0, screenWidth, Screen.height);
-        rightRect.xMin = playButtonsPosition;
-        rightRect.xMin += m_commandStyle.fixedWidth * 3; // Play buttons
-        rightRect.xMax = screenWidth;
-        rightRect.xMax -= space; // Spacing right
-        rightRect.xMax -= dropdownWidth; // Layout
-        rightRect.xMax -= space; // Spacing between layout and layers
-        rightRect.xMax -= dropdownWidth; // Layers
+            Rect rightRect = new Rect(0, 0, screenWidth, Screen.height);
+            rightRect.xMin = playButtonsPosition;
+            rightRect.xMin += m_commandStyle.fixedWidth * 3; // Play buttons
+            rightRect.xMax = screenWidth;
+            rightRect.xMax -= space; // Spacing right
+            rightRect.xMax -= dropdownWidth; // Layout
+            rightRect.xMax -= space; // Spacing between layout and layers
+            rightRect.xMax -= dropdownWidth; // Layers
 #if UNITY_2019_3_OR_NEWER
-        rightRect.xMax -= space; // Spacing between layers and account
+            rightRect.xMax -= space; // Spacing between layers and account
 #else
 			rightRect.xMax -= largeSpace; // Spacing between layers and account
 #endif
-        rightRect.xMax -= dropdownWidth; // Account
-        rightRect.xMax -= space; // Spacing between account and cloud
-        rightRect.xMax -= buttonWidth; // Cloud
-        rightRect.xMax -= space; // Spacing between cloud and collab
-        rightRect.xMax -= 78; // Colab
+            rightRect.xMax -= dropdownWidth; // Account
+            rightRect.xMax -= space; // Spacing between account and cloud
+            rightRect.xMax -= buttonWidth; // Cloud
+            rightRect.xMax -= space; // Spacing between cloud and collab
+            rightRect.xMax -= 78; // Colab
 
-        // Add spacing around existing controls
-        leftRect.xMin += space;
-        leftRect.xMax -= space;
-        rightRect.xMin += space;
-        rightRect.xMax -= space;
+            // Add spacing around existing controls
+            leftRect.xMin += space;
+            leftRect.xMax -= space;
+            rightRect.xMin += space;
+            rightRect.xMax -= space;
 
-        // Add top and bottom margins
+            // Add top and bottom margins
 #if UNITY_2019_3_OR_NEWER
-        leftRect.y = 4;
-        leftRect.height = 22;
-        rightRect.y = 4;
-        rightRect.height = 22;
+            leftRect.y = 4;
+            leftRect.height = 22;
+            rightRect.y = 4;
+            rightRect.height = 22;
 #else
 			leftRect.y = 5;
 			leftRect.height = 24;
@@ -255,9 +257,35 @@ public static class ToolbarExtender
 			rightRect.height = 24;
 #endif
 
-        if (leftRect.width > 0)
+            if (leftRect.width > 0)
+            {
+                GUILayout.BeginArea(leftRect);
+                GUILayout.BeginHorizontal();
+                foreach (var handler in LeftToolbarGUI)
+                {
+                    handler();
+                }
+
+                GUILayout.EndHorizontal();
+                GUILayout.EndArea();
+            }
+
+            if (rightRect.width > 0)
+            {
+                GUILayout.BeginArea(rightRect);
+                GUILayout.BeginHorizontal();
+                foreach (var handler in RightToolbarGUI)
+                {
+                    handler();
+                }
+
+                GUILayout.EndHorizontal();
+                GUILayout.EndArea();
+            }
+        }
+
+        public static void GUILeft()
         {
-            GUILayout.BeginArea(leftRect);
             GUILayout.BeginHorizontal();
             foreach (var handler in LeftToolbarGUI)
             {
@@ -265,12 +293,10 @@ public static class ToolbarExtender
             }
 
             GUILayout.EndHorizontal();
-            GUILayout.EndArea();
         }
 
-        if (rightRect.width > 0)
+        public static void GUIRight()
         {
-            GUILayout.BeginArea(rightRect);
             GUILayout.BeginHorizontal();
             foreach (var handler in RightToolbarGUI)
             {
@@ -278,29 +304,6 @@ public static class ToolbarExtender
             }
 
             GUILayout.EndHorizontal();
-            GUILayout.EndArea();
         }
-    }
-
-    public static void GUILeft()
-    {
-        GUILayout.BeginHorizontal();
-        foreach (var handler in LeftToolbarGUI)
-        {
-            handler();
-        }
-
-        GUILayout.EndHorizontal();
-    }
-
-    public static void GUIRight()
-    {
-        GUILayout.BeginHorizontal();
-        foreach (var handler in RightToolbarGUI)
-        {
-            handler();
-        }
-
-        GUILayout.EndHorizontal();
     }
 }

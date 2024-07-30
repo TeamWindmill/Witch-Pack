@@ -1,15 +1,18 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "DialogSequence",menuName = "Dialog/DialogSequence")]
-public class DialogSequence : ScriptableObject
+namespace Dialog
 {
-    [SerializeField] private string _title;
-    [SerializeField] private DialogBoxConfig[] _sequence;
-
-    public DialogBoxConfig[] Sequence => _sequence;
-
-    public DialogBoxConfig this[int index]
+    [CreateAssetMenu(fileName = "DialogSequence",menuName = "Dialog/DialogSequence")]
+    public class DialogSequence : ScriptableObject
     {
-        get => _sequence[index];
+        [SerializeField] private string _title;
+        [SerializeField] private DialogBoxConfig[] _sequence;
+
+        public DialogBoxConfig[] Sequence => _sequence;
+
+        public DialogBoxConfig this[int index]
+        {
+            get => _sequence[index];
+        }
     }
 }

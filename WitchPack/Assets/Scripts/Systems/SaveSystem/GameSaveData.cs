@@ -1,19 +1,24 @@
 using System.Collections.Generic;
+using Gameplay.Units.Shaman;
+using Map;
 
-public class GameSaveData
+namespace Systems.SaveSystem
 {
-    public List<ShamanSaveData> ShamanRoster;
-    public MapNode[] MapNodes; 
-    public LevelSaveData[] LevelSaves; 
-    public MapNode CurrentNode; 
-    public int LastLevelCompletedIndex; 
-
-    public GameSaveData()
+    public class GameSaveData
     {
+        public List<ShamanSaveData> ShamanRoster;
+        public MapNode[] MapNodes; 
+        public LevelSaveData[] LevelSaves; 
+        public MapNode CurrentNode; 
+        public int LastLevelCompletedIndex; 
+
+        public GameSaveData()
+        {
+        }
+
+        public GameSaveData(List<ShamanSaveData> shamanRoster)
+        {
+            ShamanRoster = shamanRoster;
+        } 
     }
-
-    public GameSaveData(List<ShamanSaveData> shamanRoster)
-    {
-        ShamanRoster = shamanRoster;
-    } 
 }

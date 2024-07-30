@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace PathCreation {
+namespace External_Assets.PathCreator.Core.Runtime.Objects {
     public class PathCreator : MonoBehaviour {
 
         /// This class stores data for the path editor, and provides accessors to get the current vertex and bezier path.

@@ -1,14 +1,14 @@
-#if UNITY_EDITOR
-namespace Sirenix.OdinInspector.Demos
-{
-    using UnityEditor;
-    using UnityEngine;
-    using System.Collections.Generic;
-    using Sirenix.OdinInspector.Editor;
-    using Sirenix.Utilities.Editor;
-    using Sirenix.OdinInspector;
-    using Sirenix.Utilities;
+using System.Collections.Generic;
+using Sirenix.OdinInspector;
+using Sirenix.OdinInspector.Editor;
+using Sirenix.Utilities;
+using Sirenix.Utilities.Editor;
+using UnityEditor;
+using UnityEngine;
 
+#if UNITY_EDITOR
+namespace Plugins.Sirenix.Demos.Editor_Windows.Scripts.Editor
+{
     public class OverrideGetTargetsExampleWindow : OdinEditorWindow
     {
         [MenuItem("Tools/Odin/Demos/Odin Editor Window Demos/Draw Any Target")]

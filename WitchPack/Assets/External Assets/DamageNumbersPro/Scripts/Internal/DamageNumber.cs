@@ -1,16 +1,15 @@
 ﻿using System.Collections.Generic;
+using External_Assets.DamageNumbersPro.Scripts.Settings;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.Serialization;
 using UnityEngine.SceneManagement;
-using TMPro;
-using DamageNumbersPro.Internal;
-
+using UnityEngine.Serialization;
 #if ENABLE_INPUT_SYSTEM && DNP_NewInputSystem
 using UnityEngine.InputSystem;
 #endif
 
-namespace DamageNumbersPro
+namespace External_Assets.DamageNumbersPro.Scripts.Internal
 {
     public abstract class DamageNumber : MonoBehaviour
     {

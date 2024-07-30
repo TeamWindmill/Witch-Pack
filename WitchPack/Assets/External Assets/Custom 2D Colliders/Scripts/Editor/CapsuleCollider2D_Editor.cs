@@ -25,49 +25,52 @@ You can contact me by email at guyquad27@gmail.com or on Reddit at https://www.r
 */
 
 
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
-[CustomEditor (typeof(CapsuleCollider))]
-public class CapsuleCollider_Editor : Editor {
+namespace External_Assets.Custom_2D_Colliders.Scripts.Editor
+{
+    [CustomEditor (typeof(CapsuleCollider))]
+    public class CapsuleCollider_Editor : UnityEditor.Editor {
 
-    CapsuleCollider capCol;
-    EdgeCollider2D edgeCollider;
-    Vector2 off;
-    bool advanced;
+        CapsuleCollider capCol;
+        EdgeCollider2D edgeCollider;
+        Vector2 off;
+        bool advanced;
 
-    void OnEnable()
-    {
-        capCol = (CapsuleCollider)target;
-
-        edgeCollider = capCol.GetComponent<EdgeCollider2D>();
-        if (edgeCollider == null) {
-            capCol.gameObject.AddComponent<EdgeCollider2D>();
-            edgeCollider = capCol.GetComponent<EdgeCollider2D>();
-        }
-
-        edgeCollider.points = capCol.getPoints(edgeCollider.offset);
-    }
-
-    public override void OnInspectorGUI()
-    {
-        GUI.changed = false;
-        DrawDefaultInspector();
-
-        capCol.radius = Mathf.Clamp(capCol.radius, 0.5f, capCol.height / 2);
-        capCol.radius = EditorGUILayout.Slider("Radius", capCol.radius, 0.25f, capCol.height / 2f);
-
-        GUILayout.Space(8);
-        capCol.bullet = EditorGUILayout.Toggle("Bullet", capCol.bullet);
-        if(capCol.bullet) capCol.flip = EditorGUILayout.Toggle("Flip", capCol.flip);
-
-
-        if (GUI.changed || !off.Equals(edgeCollider.offset))
+        void OnEnable()
         {
+            capCol = (CapsuleCollider)target;
+
+            edgeCollider = capCol.GetComponent<EdgeCollider2D>();
+            if (edgeCollider == null) {
+                capCol.gameObject.AddComponent<EdgeCollider2D>();
+                edgeCollider = capCol.GetComponent<EdgeCollider2D>();
+            }
+
             edgeCollider.points = capCol.getPoints(edgeCollider.offset);
         }
 
-        off = edgeCollider.offset;
-    }
+        public override void OnInspectorGUI()
+        {
+            GUI.changed = false;
+            DrawDefaultInspector();
+
+            capCol.radius = Mathf.Clamp(capCol.radius, 0.5f, capCol.height / 2);
+            capCol.radius = EditorGUILayout.Slider("Radius", capCol.radius, 0.25f, capCol.height / 2f);
+
+            GUILayout.Space(8);
+            capCol.bullet = EditorGUILayout.Toggle("Bullet", capCol.bullet);
+            if(capCol.bullet) capCol.flip = EditorGUILayout.Toggle("Flip", capCol.flip);
+
+
+            if (GUI.changed || !off.Equals(edgeCollider.offset))
+            {
+                edgeCollider.points = capCol.getPoints(edgeCollider.offset);
+            }
+
+            off = edgeCollider.offset;
+        }
     
+    }
 }

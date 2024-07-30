@@ -1,62 +1,66 @@
-using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
+using Gameplay.Units.Stats;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PopupsColorsDictionary", menuName = "PopupsColorsDictionary")]
-public class PopupsColorsDictionary : ScriptableObject
+namespace UI.Popups
 {
-    [SerializeField, TabGroup("Numbers")] private Color defaultColor;
-    [SerializeField, TabGroup("Numbers")] private Color shamanCritColor;
-    [SerializeField, TabGroup("Numbers")] private Color enemyAutoAttackColor;
-    [SerializeField, TabGroup("Numbers")] private Color enemyCritAutoAttackColor;
-    [SerializeField, TabGroup("Numbers")] private Color healColor;
-
-    [SerializeField, TabGroup("Status Effects")] private List<StatusEffectTypeVisualData> statusEffectsVisuals;
-
-    public Color DefaultColor { get => defaultColor; }
-    public Color ShamanCritColor { get => shamanCritColor; }
-    public Color EnemyAutoAttackColor { get => enemyAutoAttackColor; }
-    public Color EnemyCritAutoAttackColor { get => enemyCritAutoAttackColor; }
-    public Color HealColor { get => healColor; }
-
-    public StatusEffectTypeVisualData GetData(StatusEffectVisual givenVisual)
+    [CreateAssetMenu(fileName = "PopupsColorsDictionary", menuName = "PopupsColorsDictionary")]
+    public class PopupsColorsDictionary : ScriptableObject
     {
-        foreach (StatusEffectTypeVisualData data in statusEffectsVisuals)
-        {
+        [SerializeField, TabGroup("Numbers")] private Color defaultColor;
+        [SerializeField, TabGroup("Numbers")] private Color shamanCritColor;
+        [SerializeField, TabGroup("Numbers")] private Color enemyAutoAttackColor;
+        [SerializeField, TabGroup("Numbers")] private Color enemyCritAutoAttackColor;
+        [SerializeField, TabGroup("Numbers")] private Color healColor;
 
-            if (data.StatusEffectVisual == givenVisual)
+        [SerializeField, TabGroup("Status Effects")] private List<StatusEffectTypeVisualData> statusEffectsVisuals;
+
+        public Color DefaultColor { get => defaultColor; }
+        public Color ShamanCritColor { get => shamanCritColor; }
+        public Color EnemyAutoAttackColor { get => enemyAutoAttackColor; }
+        public Color EnemyCritAutoAttackColor { get => enemyCritAutoAttackColor; }
+        public Color HealColor { get => healColor; }
+
+        public StatusEffectTypeVisualData GetData(StatusEffectVisual givenVisual)
+        {
+            foreach (StatusEffectTypeVisualData data in statusEffectsVisuals)
             {
-                return data;
+
+                if (data.StatusEffectVisual == givenVisual)
+                {
+                    return data;
+                }
             }
+
+            throw new Exception("Status Effect Type Not Found");
         }
 
-        throw new Exception("Status Effect Type Not Found");
-    }
-
-    public StatusEffectTypeVisualData GetData(Color givenColor)
-    {
-        foreach (StatusEffectTypeVisualData data in statusEffectsVisuals)
+        public StatusEffectTypeVisualData GetData(Color givenColor)
         {
-            if (data.Color == givenColor)
+            foreach (StatusEffectTypeVisualData data in statusEffectsVisuals)
             {
-                return data;
+                if (data.Color == givenColor)
+                {
+                    return data;
+                }
             }
+
+            throw new Exception("Color Not Found");
         }
-
-        throw new Exception("Color Not Found");
     }
-}
 
 
-[Serializable]
-public class StatusEffectTypeVisualData
-{
-    [SerializeField] private StatusEffectVisual _statusEffectVisual;
-    [SerializeField] private Color color;
-    [SerializeField] private string name;
+    [Serializable]
+    public class StatusEffectTypeVisualData
+    {
+        [SerializeField] private StatusEffectVisual _statusEffectVisual;
+        [SerializeField] private Color color;
+        [SerializeField] private string name;
 
-    public StatusEffectVisual StatusEffectVisual { get => _statusEffectVisual; }
-    public Color Color { get => color; }
-    public string Name { get => name; }
+        public StatusEffectVisual StatusEffectVisual { get => _statusEffectVisual; }
+        public Color Color { get => color; }
+        public string Name { get => name; }
+    }
 }

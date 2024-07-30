@@ -1,13 +1,17 @@
+using Gameplay.Units;
 using UnityEngine;
 
-public class GroundCollider : MonoBehaviour
+namespace Gameplay.Targeter
 {
-    private BaseUnit _unit;
-
-    public BaseUnit Unit => _unit;
-
-    public void Init(BaseUnit unit)
+    public class GroundCollider : MonoBehaviour
     {
-        _unit = unit;
+        private BaseUnit _unit;
+
+        public BaseUnit Unit => _unit;
+
+        public void Init(BaseUnit unit)
+        {
+            _unit = unit;
+        }
     }
 }

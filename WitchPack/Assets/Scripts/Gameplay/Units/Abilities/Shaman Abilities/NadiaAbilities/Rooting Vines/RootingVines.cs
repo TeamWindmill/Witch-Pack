@@ -1,33 +1,42 @@
-public class RootingVines : OffensiveAbility
+using Gameplay.Units.Abilities.AbilitySystem.AbilityStats;
+using Gameplay.Units.Abilities.AbilitySystem.BaseAbilities;
+using Gameplay.Units.Abilities.Shaman_Abilities.NadiaAbilities.Rooting_Vines.Configs;
+using Gameplay.Units.Damage_System;
+using Managers;
+
+namespace Gameplay.Units.Abilities.Shaman_Abilities.NadiaAbilities.Rooting_Vines
 {
-    public readonly RootingVinesSO Config;
-    public RootingVines(RootingVinesSO config, BaseUnit owner) : base(config, owner)
+    public class RootingVines : OffensiveAbility
     {
-        Config = config;
-        abilityStats.Add(new AbilityStat(AbilityStatType.Duration,config.LastingTime));
-        abilityStats.Add(new AbilityStat(AbilityStatType.Size,config.AoeScale));
-    }
-
-    public override bool CastAbility(out IDamagable target)
-    {
-        target = Owner.EnemyTargetHelper.GetTarget(TargetData);    
-        if (!ReferenceEquals(target, null))
+        public readonly RootingVinesSO Config;
+        public RootingVines(RootingVinesSO config, BaseUnit owner) : base(config, owner)
         {
-            RootingVinesMono newVines = PoolManager.GetPooledObject<RootingVinesMono>();
-            newVines.Init(Owner, this, GetAbilityStatValue(AbilityStatType.Duration) ,GetAbilityStatValue(AbilityStatType.Size));
-            newVines.transform.position = target.GameObject.transform.position;
-            newVines.gameObject.SetActive(true);
-            return true;
+            Config = config;
+            abilityStats.Add(new AbilityStat(AbilityStatType.Duration,config.LastingTime));
+            abilityStats.Add(new AbilityStat(AbilityStatType.Size,config.AoeScale));
         }
-        else
-        {
-            return false;
-        }
-    }
 
-    public override bool CheckCastAvailable()
-    {
-        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(TargetData);
-        return !ReferenceEquals(target, null);
+        public override bool CastAbility(out IDamagable target)
+        {
+            target = Owner.EnemyTargetHelper.GetTarget(TargetData);    
+            if (!ReferenceEquals(target, null))
+            {
+                RootingVinesMono newVines = PoolManager.GetPooledObject<RootingVinesMono>();
+                newVines.Init(Owner, this, GetAbilityStatValue(AbilityStatType.Duration) ,GetAbilityStatValue(AbilityStatType.Size));
+                newVines.transform.position = target.GameObject.transform.position;
+                newVines.gameObject.SetActive(true);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public override bool CheckCastAvailable()
+        {
+            BaseUnit target = Owner.EnemyTargetHelper.GetTarget(TargetData);
+            return !ReferenceEquals(target, null);
+        }
     }
 }

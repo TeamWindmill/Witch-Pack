@@ -1,80 +1,83 @@
-using System;
 using System.Collections.Generic;
+using Gameplay.Units.Abilities.AbilitySystem.AbilityStats;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public abstract class AbilitySO : ScriptableObject
+namespace Gameplay.Units.Abilities.AbilitySystem.BaseConfigs
 {
-    [BoxGroup("General Settings/left/Details",centerLabel: true)]
-    [LabelWidth(50)][VerticalGroup("General Settings/left")]
-    [HorizontalGroup("General Settings")]
-    [SerializeField] private string _name;
-    
-    [BoxGroup("General Settings/left/Details",centerLabel: true)]
-    [TextArea(4, 14)][VerticalGroup("General Settings/left")]
-    [HorizontalGroup("General Settings")]
-    [SerializeField] private string discription;
-    
-    [PreviewField(63)]
-    [BoxGroup("General Settings/Icons",centerLabel: true)]
-    [HorizontalGroup("General Settings")]
-    [SerializeField] private Sprite defaultIcon;
-    
-    [PreviewField(63)]
-    [BoxGroup("General Settings/Icons",centerLabel: true)]
-    [HorizontalGroup("General Settings")]
-    [SerializeField] private Sprite disabledIcon;
-    
-    [PreviewField(63)]
-    [BoxGroup("General Settings/Icons",centerLabel: true)]
-    [HorizontalGroup("General Settings")]
-    [SerializeField] private Sprite upgradeIcon;
-    
-    [HorizontalGroup("General Settings")][VerticalGroup("General Settings/left")]
-    [BoxGroup("General Settings/left/Skill Tree")][SerializeField] private bool _isRootAbility;
-    [BoxGroup("General Settings/left/Skill Tree")][SerializeField] private AbilitySO[] _upgrades;
-    [BoxGroup("General Settings/left/Skill Tree")][SerializeField] private AbilityStatType[] _statTypesForUIDisplay;
-    
-    [BoxGroup("Popup Numbers")][SerializeField] private bool hasPopupColor;
-    [BoxGroup("Popup Numbers")][SerializeField, ShowIf(nameof(hasPopupColor))] private Color popupColor;
-
-    public AbilitySO RootAbility { get; set; }
-    public bool HasPopupColor { get => hasPopupColor; }
-    public Color PopupColor { get => popupColor; }
-    public Sprite DefaultIcon => defaultIcon;
-    public Sprite DisabledIcon => disabledIcon;
-    public Sprite UpgradeIcon => upgradeIcon;
-    public string Name => _name;
-    public string Discription => discription;
-    public AbilitySO[] Upgrades => _upgrades;
-    public AbilityStatType[] StatTypesForUIDisplay => _statTypesForUIDisplay;
-
-    private void OnEnable()
+    public abstract class AbilitySO : ScriptableObject
     {
-        if(!_isRootAbility) return;
-        RootAbility = this;
-        foreach (var upgrade in Upgrades)
-        {
-            upgrade.RootAbility = this;
-            foreach (var secondUpgrade in upgrade.Upgrades)
-            {
-                secondUpgrade.RootAbility = this;
-            }
-        }
-    }
+        [BoxGroup("General Settings/left/Details",centerLabel: true)]
+        [LabelWidth(50)][VerticalGroup("General Settings/left")]
+        [HorizontalGroup("General Settings")]
+        [SerializeField] private string _name;
+    
+        [BoxGroup("General Settings/left/Details",centerLabel: true)]
+        [TextArea(4, 14)][VerticalGroup("General Settings/left")]
+        [HorizontalGroup("General Settings")]
+        [SerializeField] private string discription;
+    
+        [PreviewField(63)]
+        [BoxGroup("General Settings/Icons",centerLabel: true)]
+        [HorizontalGroup("General Settings")]
+        [SerializeField] private Sprite defaultIcon;
+    
+        [PreviewField(63)]
+        [BoxGroup("General Settings/Icons",centerLabel: true)]
+        [HorizontalGroup("General Settings")]
+        [SerializeField] private Sprite disabledIcon;
+    
+        [PreviewField(63)]
+        [BoxGroup("General Settings/Icons",centerLabel: true)]
+        [HorizontalGroup("General Settings")]
+        [SerializeField] private Sprite upgradeIcon;
+    
+        [HorizontalGroup("General Settings")][VerticalGroup("General Settings/left")]
+        [BoxGroup("General Settings/left/Skill Tree")][SerializeField] private bool _isRootAbility;
+        [BoxGroup("General Settings/left/Skill Tree")][SerializeField] private AbilitySO[] _upgrades;
+        [BoxGroup("General Settings/left/Skill Tree")][SerializeField] private AbilityStatType[] _statTypesForUIDisplay;
+    
+        [BoxGroup("Popup Numbers")][SerializeField] private bool hasPopupColor;
+        [BoxGroup("Popup Numbers")][SerializeField, ShowIf(nameof(hasPopupColor))] private Color popupColor;
 
-    public List<AbilitySO> GetUpgrades()
-    {
-        var upgrades = new List<AbilitySO>();
-        foreach (var upgrade in Upgrades)
+        public AbilitySO RootAbility { get; set; }
+        public bool HasPopupColor { get => hasPopupColor; }
+        public Color PopupColor { get => popupColor; }
+        public Sprite DefaultIcon => defaultIcon;
+        public Sprite DisabledIcon => disabledIcon;
+        public Sprite UpgradeIcon => upgradeIcon;
+        public string Name => _name;
+        public string Discription => discription;
+        public AbilitySO[] Upgrades => _upgrades;
+        public AbilityStatType[] StatTypesForUIDisplay => _statTypesForUIDisplay;
+
+        private void OnEnable()
         {
-            upgrades.Add(upgrade);
-            foreach (var secondUpgrade in upgrade.Upgrades)
+            if(!_isRootAbility) return;
+            RootAbility = this;
+            foreach (var upgrade in Upgrades)
             {
-                upgrades.Add(secondUpgrade);
+                upgrade.RootAbility = this;
+                foreach (var secondUpgrade in upgrade.Upgrades)
+                {
+                    secondUpgrade.RootAbility = this;
+                }
             }
         }
 
-        return upgrades;
+        public List<AbilitySO> GetUpgrades()
+        {
+            var upgrades = new List<AbilitySO>();
+            foreach (var upgrade in Upgrades)
+            {
+                upgrades.Add(upgrade);
+                foreach (var secondUpgrade in upgrade.Upgrades)
+                {
+                    upgrades.Add(secondUpgrade);
+                }
+            }
+
+            return upgrades;
+        }
     }
 }

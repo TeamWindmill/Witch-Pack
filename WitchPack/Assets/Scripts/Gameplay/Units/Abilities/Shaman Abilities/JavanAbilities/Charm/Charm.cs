@@ -1,43 +1,50 @@
-public class Charm : CastingAbility
+using Gameplay.Units.Abilities.AbilitySystem.BaseAbilities;
+using Gameplay.Units.Damage_System;
+using Gameplay.Units.Enemy.EnemyAIBehavior.GroundEnemies.States;
+
+namespace Gameplay.Units.Abilities.Shaman_Abilities.JavanAbilities.Charm
 {
-    private CharmSO _config;
-    public Charm(CharmSO config, BaseUnit owner) : base(config, owner)
+    public class Charm : CastingAbility
     {
-        _config = config;
-    }
-
-    public override bool CastAbility(out IDamagable target)
-    {
-        var enemyTarget = Owner.EnemyTargetHelper.GetTarget(TargetData);
-
-        if (ReferenceEquals(enemyTarget, null))
+        private CharmSO _config;
+        public Charm(CharmSO config, BaseUnit owner) : base(config, owner)
         {
-            target = null;
-            return false;
+            _config = config;
         }
 
-        _config.CharmedState.StartCharm(enemyTarget);
-
-        foreach (var statusEffect in StatusEffects)
+        public override bool CastAbility(out IDamagable target)
         {
-            if (!enemyTarget.Effectable.ContainsStatusEffect(statusEffect.StatusEffectVisual))
+            var enemyTarget = Owner.EnemyTargetHelper.GetTarget(TargetData);
+
+            if (ReferenceEquals(enemyTarget, null))
             {
-                var effect = enemyTarget.Effectable.AddEffect(statusEffect, Owner.Affector);
-                effect.Ended += _config.CharmedState.EndCharm;
+                target = null;
+                return false;
             }
-            else
+
+            _config.CharmedState.StartCharm(enemyTarget);
+
+            foreach (var statusEffect in StatusEffects)
             {
-                enemyTarget.Effectable.AddEffect(statusEffect, Owner.Affector);
+                if (!enemyTarget.Effectable.ContainsStatusEffect(statusEffect.StatusEffectVisual))
+                {
+                    var effect = enemyTarget.Effectable.AddEffect(statusEffect, Owner.Affector);
+                    effect.Ended += _config.CharmedState.EndCharm;
+                }
+                else
+                {
+                    enemyTarget.Effectable.AddEffect(statusEffect, Owner.Affector);
+                }
             }
+
+            target = enemyTarget;
+            return true;
         }
 
-        target = enemyTarget;
-        return true;
-    }
-
-    public override bool CheckCastAvailable()
-    {
-        var target = Owner.EnemyTargetHelper.GetTarget(TargetData);
-        return !ReferenceEquals(target, null) && target.EnemyAI.States.ContainsKey(typeof(Charmed));
+        public override bool CheckCastAvailable()
+        {
+            var target = Owner.EnemyTargetHelper.GetTarget(TargetData);
+            return !ReferenceEquals(target, null) && target.EnemyAI.States.ContainsKey(typeof(Charmed));
+        }
     }
 }

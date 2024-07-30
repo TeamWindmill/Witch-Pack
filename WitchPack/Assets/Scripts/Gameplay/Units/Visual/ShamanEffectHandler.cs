@@ -1,16 +1,19 @@
+using Configs;
 using UnityEngine;
 
-
-public class ShamanEffectHandler : UnitEffectHandler
+namespace Gameplay.Units.Visual
 {
-    [SerializeField] protected Transform _castHands;
-
-    private readonly Vector3 _femaleCastHandsPos = new(0.067f, 0.298f, 0);
-    private readonly Vector3 _maleCastHandsPos = new(0, 0.3f, 0);
-
-    public override void Init(BaseUnitConfig config)
+    public class ShamanEffectHandler : UnitEffectHandler
     {
-        base.Init(config);
-        _castHands.localPosition = (config as ShamanConfig)?.Sex == Sex.Male ? _maleCastHandsPos : _femaleCastHandsPos;
+        [SerializeField] protected Transform _castHands;
+
+        private readonly Vector3 _femaleCastHandsPos = new(0.067f, 0.298f, 0);
+        private readonly Vector3 _maleCastHandsPos = new(0, 0.3f, 0);
+
+        public override void Init(BaseUnitConfig config)
+        {
+            base.Init(config);
+            _castHands.localPosition = (config as ShamanConfig)?.Sex == Sex.Male ? _maleCastHandsPos : _femaleCastHandsPos;
+        }
     }
 }

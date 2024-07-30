@@ -1,9 +1,11 @@
-#if UNITY_EDITOR
-namespace Sirenix.OdinInspector.Demos.RPGEditor
-{
-    using System;
-    using UnityEngine;
+using System;
+using Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Misc;
+using Sirenix.OdinInspector;
+using UnityEngine;
 
+#if UNITY_EDITOR
+namespace Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Character
+{
     // 
     // CharacterStats is simply a StatList, that expose the relevant stats for a character.
     // Also note that the StatList might look like a dictionary, in how it's used, 

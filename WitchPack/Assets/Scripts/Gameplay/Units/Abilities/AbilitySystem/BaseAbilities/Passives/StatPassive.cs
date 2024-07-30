@@ -1,40 +1,46 @@
 using System.Collections.Generic;
+using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs.Passives;
+using Gameplay.Units.Stats;
+using UI.MapUI.MetaUpgrades.UpgradePanel.Configs;
 
-public class StatPassive : PassiveAbility
+namespace Gameplay.Units.Abilities.AbilitySystem.BaseAbilities.Passives
 {
-    private StatPassiveSO _config;
+    public class StatPassive : PassiveAbility
+    {
+        private StatPassiveSO _config;
     
-    protected List<Stat> PassiveAbilityStats = new();
+        protected List<Stat> PassiveAbilityStats = new();
 
 
-    public StatPassive(StatPassiveSO config, BaseUnit owner) : base(config, owner)
-    {
-        _config = config;
-        foreach (var statIncrease in _config.StatIncreases)
+        public StatPassive(StatPassiveSO config, BaseUnit owner) : base(config, owner)
         {
-            PassiveAbilityStats.Add(new Stat(statIncrease.StatType,statIncrease.Value));
-        }
-        
-    }
-
-    public override void SubscribePassive()
-    {
-        foreach (var increase in PassiveAbilityStats)
-        {
-            Owner.Stats.AddModifierToStat(increase.StatType, increase.Value);
-        }
-    }
-
-    public void AddPassiveStatUpgrade(StatMetaUpgradeConfig statMetaUpgradeConfig)
-    {
-        foreach (var stat in PassiveAbilityStats)
-        {
-            foreach (var statConfig in statMetaUpgradeConfig.Stats)
+            _config = config;
+            foreach (var statIncrease in _config.StatIncreases)
             {
-                if (stat.StatType == statConfig.StatType)
+                PassiveAbilityStats.Add(new Stat(statIncrease.StatType,statIncrease.Value));
+            }
+        
+        }
+
+        public override void SubscribePassive()
+        {
+            foreach (var increase in PassiveAbilityStats)
+            {
+                Owner.Stats.AddModifierToStat(increase.StatType, increase.Value);
+            }
+        }
+
+        public void AddPassiveStatUpgrade(StatMetaUpgradeConfig statMetaUpgradeConfig)
+        {
+            foreach (var stat in PassiveAbilityStats)
+            {
+                foreach (var statConfig in statMetaUpgradeConfig.Stats)
                 {
-                    stat.AddStatValue(statConfig.Factor,statConfig.StatValue);
-                    return;
+                    if (stat.StatType == statConfig.StatType)
+                    {
+                        stat.AddStatValue(statConfig.Factor,statConfig.StatValue);
+                        return;
+                    }
                 }
             }
         }

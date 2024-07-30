@@ -1,16 +1,16 @@
 ﻿#if UNITY_EDITOR
 
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
+using External_Assets.DamageNumbersPro.Scripts.Settings;
 using TMPro;
+using UnityEditor;
+using UnityEngine;
 using UnityEngine.Rendering;
-using DamageNumbersPro.Internal;
 
-namespace DamageNumbersPro
+namespace External_Assets.DamageNumbersPro.Scripts.Internal.Editor
 {
     [CustomEditor(typeof(DamageNumber), true), CanEditMultipleObjects]
-    public class DamageNumberEditor : Editor
+    public class DamageNumberEditor : UnityEditor.Editor
     {
         public static string version = "4.28";
 

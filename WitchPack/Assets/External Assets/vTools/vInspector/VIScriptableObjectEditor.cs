@@ -2,17 +2,17 @@
 
 #if UNITY_EDITOR
 using System.Linq;
-using UnityEngine;
 using System.Reflection;
 using UnityEditor;
-using Tab = VInspector.VInspectorData.Tab;
-using static VInspector.VInspectorData;
-using static VInspector.Libs.VUtils;
-using static VInspector.Libs.VGUI;
+using UnityEngine;
+using Tab = External_Assets.vTools.vInspector.VInspectorData.Tab;
+using static External_Assets.vTools.vInspector.VInspectorData;
+using static External_Assets.vTools.vInspector.VUtils;
+using static External_Assets.vTools.vInspector.VGUI;
 
 
 
-namespace VInspector
+namespace External_Assets.vTools.vInspector
 {
 #if !DISABLED
     [CanEditMultipleObjects]

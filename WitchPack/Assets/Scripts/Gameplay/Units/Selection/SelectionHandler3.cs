@@ -1,124 +1,130 @@
 using System;
+using Managers;
+using Tools.SlowMotion;
+using UI.GameUI.HeroSelectionUI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class SelectionHandler3 : MonoBehaviour, ISelection
+namespace Gameplay.Units.Selection
 {
-    public event Action<Shaman> OnShamanSelect;
-    public event Action<Shaman> OnShamanDeselected;
-    public event Action<Shadow> OnShadowSelect;
-    public event Action<Shadow> OnShadowDeselected;
-    public SelectionType SelectMode => _selectMode;
-    public Shaman SelectedShaman => _selectedShaman;
-    public Shadow Shadow => shadow;
-
-    [SerializeField] private Shadow shadow;
-    private const int LEFT_CLICK = 0;
-    private const int RIGHT_CLICK = 1;
-    private const int MIDDLE_CLICK = 2;
-    private bool _mouseOverSelectionUI => HeroSelectionUI.Instance.isMouseOver;
-    private Shaman _selectedShaman;
-    private SelectionType _selectMode;
-    [SerializeField] private float _maxHoldTime;
-    private float _currentHoldTime;
-    private bool _inSelectMode;
-
-    private void Start()
+    public class SelectionHandler3 : MonoBehaviour, ISelection
     {
-        shadow.Hide();
-        _selectedShaman = LevelManager.Instance.ShamanParty[0];
-        HeroSelectionUI.Instance.Show(_selectedShaman);
-    }
-    public void OnShamanClick(PointerEventData.InputButton button, Shaman shaman)
-    {
-        if (button == PointerEventData.InputButton.Right)
-        {
-            _selectedShaman = shaman;
-            _selectMode = SelectionType.Info;
-            HeroSelectionUI.Instance.Show(shaman);
-        }
-        if (button == PointerEventData.InputButton.Left)
-        {
-            _selectedShaman = shaman;
-            _selectMode = SelectionType.Movement;
-            HeroSelectionUI.Instance.Show(shaman);
-        }
-    }
+        public event Action<Shaman.Shaman> OnShamanSelect;
+        public event Action<Shaman.Shaman> OnShamanDeselected;
+        public event Action<Shadow.Shadow> OnShadowSelect;
+        public event Action<Shadow.Shadow> OnShadowDeselected;
+        public SelectionType SelectMode => _selectMode;
+        public Shaman.Shaman SelectedShaman => _selectedShaman;
+        public Shadow.Shadow Shadow => shadow;
 
-    private void Update()
-    {
-        if (ReferenceEquals(_selectedShaman, null)) return;
+        [SerializeField] private Shadow.Shadow shadow;
+        private const int LEFT_CLICK = 0;
+        private const int RIGHT_CLICK = 1;
+        private const int MIDDLE_CLICK = 2;
+        private bool _mouseOverSelectionUI => HeroSelectionUI.Instance.isMouseOver;
+        private Shaman.Shaman _selectedShaman;
+        private SelectionType _selectMode;
+        [SerializeField] private float _maxHoldTime;
+        private float _currentHoldTime;
+        private bool _inSelectMode;
 
-        if (SelectMode == SelectionType.Movement)
+        private void Start()
         {
-            if (Input.GetMouseButton(LEFT_CLICK))
-            {
-                if (_currentHoldTime > _maxHoldTime && !_inSelectMode)
-                {
-                    _inSelectMode = true;
-                    SelectMove();
-                }
-                else
-                {
-                    _currentHoldTime += Time.deltaTime;
-                }
-            }
-            if (Input.GetMouseButtonUp(LEFT_CLICK))
-            {
-                _currentHoldTime = 0;
-                _inSelectMode = false;
-                if (_mouseOverSelectionUI) return;
-                ReleaseMove();
-            }
-            if (Input.GetMouseButtonDown(RIGHT_CLICK))
-            {
-                CancelMove();
-            }
+            shadow.Hide();
+            _selectedShaman = LevelManager.Instance.ShamanParty[0];
+            HeroSelectionUI.Instance.Show(_selectedShaman);
         }
-        if (SelectMode == SelectionType.Info)
+        public void OnShamanClick(PointerEventData.InputButton button, Shaman.Shaman shaman)
         {
-            if (Input.GetMouseButtonDown(LEFT_CLICK))
+            if (button == PointerEventData.InputButton.Right)
             {
+                _selectedShaman = shaman;
+                _selectMode = SelectionType.Info;
+                HeroSelectionUI.Instance.Show(shaman);
+            }
+            if (button == PointerEventData.InputButton.Left)
+            {
+                _selectedShaman = shaman;
                 _selectMode = SelectionType.Movement;
-            }
-            if (!_mouseOverSelectionUI)
-            {
-                if (Input.GetMouseButtonDown(LEFT_CLICK)) CloseUIPanelAndDeselectShaman();
+                HeroSelectionUI.Instance.Show(shaman);
             }
         }
 
-    }
-    private void SelectMove()
-    {
-        SlowMotionManager.Instance.StartSlowMotionEffects();
-        shadow.Show(_selectedShaman);
-        OnShamanSelect?.Invoke(_selectedShaman);
-    }
-    private void ReleaseMove()
-    {
-        _selectMode = SelectionType.Info;
-        if (!shadow.IsActive) return;
-        SlowMotionManager.Instance.EndSlowMotionEffects();
-        shadow.Hide();
-        var newDest = GameManager.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
-        _selectedShaman.Movement.SetDestination(newDest);
-    }
+        private void Update()
+        {
+            if (ReferenceEquals(_selectedShaman, null)) return;
 
-    private void CancelMove()
-    {
-        SlowMotionManager.Instance.EndSlowMotionEffects();
-        shadow.Hide();
-    }
+            if (SelectMode == SelectionType.Movement)
+            {
+                if (Input.GetMouseButton(LEFT_CLICK))
+                {
+                    if (_currentHoldTime > _maxHoldTime && !_inSelectMode)
+                    {
+                        _inSelectMode = true;
+                        SelectMove();
+                    }
+                    else
+                    {
+                        _currentHoldTime += UnityEngine.Time.deltaTime;
+                    }
+                }
+                if (Input.GetMouseButtonUp(LEFT_CLICK))
+                {
+                    _currentHoldTime = 0;
+                    _inSelectMode = false;
+                    if (_mouseOverSelectionUI) return;
+                    ReleaseMove();
+                }
+                if (Input.GetMouseButtonDown(RIGHT_CLICK))
+                {
+                    CancelMove();
+                }
+            }
+            if (SelectMode == SelectionType.Info)
+            {
+                if (Input.GetMouseButtonDown(LEFT_CLICK))
+                {
+                    _selectMode = SelectionType.Movement;
+                }
+                if (!_mouseOverSelectionUI)
+                {
+                    if (Input.GetMouseButtonDown(LEFT_CLICK)) CloseUIPanelAndDeselectShaman();
+                }
+            }
 
-    private void CloseUIPanelAndDeselectShaman()
-    {
-        HeroSelectionUI.Instance.Hide();
-        OnShamanDeselected?.Invoke(_selectedShaman);
-        _selectedShaman = null;
-    }
+        }
+        private void SelectMove()
+        {
+            SlowMotionManager.Instance.StartSlowMotionEffects();
+            shadow.Show(_selectedShaman);
+            OnShamanSelect?.Invoke(_selectedShaman);
+        }
+        private void ReleaseMove()
+        {
+            _selectMode = SelectionType.Info;
+            if (!shadow.IsActive) return;
+            SlowMotionManager.Instance.EndSlowMotionEffects();
+            shadow.Hide();
+            var newDest = GameManager.CameraHandler.MainCamera.ScreenToWorldPoint(Input.mousePosition);
+            _selectedShaman.Movement.SetDestination(newDest);
+        }
 
-    public bool GetOnMouseDownShaman()
-    {
-        return true;
+        private void CancelMove()
+        {
+            SlowMotionManager.Instance.EndSlowMotionEffects();
+            shadow.Hide();
+        }
+
+        private void CloseUIPanelAndDeselectShaman()
+        {
+            HeroSelectionUI.Instance.Hide();
+            OnShamanDeselected?.Invoke(_selectedShaman);
+            _selectedShaman = null;
+        }
+
+        public bool GetOnMouseDownShaman()
+        {
+            return true;
+        }
     }
 }

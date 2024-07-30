@@ -2,62 +2,65 @@ using Tools.Lerp;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScreenCracksVignette : MonoEffectTransitionLerp<CracksVignetteValues>
+namespace UI.GameUI.ScreenCracksUI
 {
-    public float CurrentStartValue;
-    public float CurrentEndValue;
-    [SerializeField] private Image _vignette;
-
-    private void OnValidate()
+    public class ScreenCracksVignette : MonoEffectTransitionLerp<CracksVignetteValues>
     {
-        _vignette ??= GetComponent<Image>();
-    }
+        public float CurrentStartValue;
+        public float CurrentEndValue;
+        [SerializeField] private Image _vignette;
 
-    public void SetStartValue()
-    {
-        foreach (var effectValue in EffectValues)
+        private void OnValidate()
         {
-            _vignette.material.SetFloat("_Scale",effectValue.StartValue);
+            _vignette ??= GetComponent<Image>();
         }
 
-        CurrentStartValue = EffectValues[0].StartValue;
-    }
-
-    private void OnDisable()
-    {
-        foreach (var effectValue in EffectValues)
+        public void SetStartValue()
         {
-            _vignette.material.SetFloat("_Scale",effectValue.StartValue);
+            foreach (var effectValue in EffectValues)
+            {
+                _vignette.material.SetFloat("_Scale",effectValue.StartValue);
+            }
+
+            CurrentStartValue = EffectValues[0].StartValue;
+        }
+
+        private void OnDisable()
+        {
+            foreach (var effectValue in EffectValues)
+            {
+                _vignette.material.SetFloat("_Scale",effectValue.StartValue);
+            }
+        }
+
+        public override void StartTransitionEffect()
+        {
+            LerpValuesHandler.Instance.StartLerpByType(LerpValueConfig, EffectValues[0].ValueType, CurrentStartValue, CurrentEndValue, SetValue,OnTransitionEnd);
+        }
+
+        public override void EndTransitionEffect()
+        {
+            LerpValuesHandler.Instance.StartLerpByType(LerpValueConfig, EffectValues[0].ValueType, CurrentEndValue, CurrentStartValue, SetValue);
+        }
+
+        protected override void SetValue(CracksVignetteValues type, float value)
+        {
+            switch (type)
+            {
+                case CracksVignetteValues.Scale:
+                    _vignette.material.SetFloat("_Scale",value);
+                    break;
+            }
+        }
+
+        protected override void OnTransitionEnd(float newValue)
+        {
+            EndTransitionEffect();
         }
     }
 
-    public override void StartTransitionEffect()
+    public enum CracksVignetteValues
     {
-        LerpValuesHandler.Instance.StartLerpByType(LerpValueConfig, EffectValues[0].ValueType, CurrentStartValue, CurrentEndValue, SetValue,OnTransitionEnd);
+        Scale,
     }
-
-    public override void EndTransitionEffect()
-    {
-        LerpValuesHandler.Instance.StartLerpByType(LerpValueConfig, EffectValues[0].ValueType, CurrentEndValue, CurrentStartValue, SetValue);
-    }
-
-    protected override void SetValue(CracksVignetteValues type, float value)
-    {
-        switch (type)
-        {
-            case CracksVignetteValues.Scale:
-                _vignette.material.SetFloat("_Scale",value);
-                break;
-        }
-    }
-
-    protected override void OnTransitionEnd(float newValue)
-    {
-        EndTransitionEffect();
-    }
-}
-
-public enum CracksVignetteValues
-{
-    Scale,
 }

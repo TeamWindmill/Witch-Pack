@@ -1,11 +1,9 @@
 #if UNITY_EDITOR
+
 using System.Collections.Generic;
 using UnityEngine;
 
-using VInspector;
-
-
-namespace VInspectorExamples
+namespace External_Assets.vTools.vInspector.Examples
 {
     [ExecuteInEditMode]
     public class Fractal : MonoBehaviour

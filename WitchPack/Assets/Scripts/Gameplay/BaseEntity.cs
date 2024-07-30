@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class BaseEntity : MonoBehaviour
+namespace Gameplay
 {
+    public class BaseEntity : MonoBehaviour
+    {
 
+    }
 }

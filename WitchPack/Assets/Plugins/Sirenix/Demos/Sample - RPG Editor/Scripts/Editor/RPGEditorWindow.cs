@@ -1,13 +1,15 @@
-#if UNITY_EDITOR
-namespace Sirenix.OdinInspector.Demos.RPGEditor
-{
-    using Sirenix.OdinInspector.Editor;
-    using Sirenix.Utilities;
-    using Sirenix.Utilities.Editor;
-    using UnityEditor;
-    using UnityEngine;
-    using System.Linq;
+using System.Linq;
+using Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Character;
+using Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Items;
+using Sirenix.OdinInspector.Editor;
+using Sirenix.Utilities;
+using Sirenix.Utilities.Editor;
+using UnityEditor;
+using UnityEngine;
 
+#if UNITY_EDITOR
+namespace Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Editor
+{
     // 
     // This is the main RPG editor that which exposes everything included in this sample project.
     // 
@@ -42,7 +44,7 @@ namespace Sirenix.OdinInspector.Demos.RPGEditor
             tree.Add("Characters", new CharacterTable(CharacterOverview.Instance.AllCharacters));
 
             // Adds all characters.
-            tree.AddAllAssetsAtPath("Characters", "Assets/Plugins/Sirenix", typeof(Character), true, true);
+            tree.AddAllAssetsAtPath("Characters", "Assets/Plugins/Sirenix", typeof(Character.Character), true, true);
 
             // Add all scriptable object items.
             tree.AddAllAssetsAtPath("", "Assets/Plugins/Sirenix/Demos/SAMPLE - RPG Editor/Items", typeof(Item), true)
@@ -52,7 +54,7 @@ namespace Sirenix.OdinInspector.Demos.RPGEditor
             tree.EnumerateTree().Where(x => x.Value as Item).ForEach(AddDragHandles);
 
             // Add icons to characters and items.
-            tree.EnumerateTree().AddIcons<Character>(x => x.Icon);
+            tree.EnumerateTree().AddIcons<Character.Character>(x => x.Icon);
             tree.EnumerateTree().AddIcons<Item>(x => x.Icon);
 
             return tree;
@@ -87,7 +89,7 @@ namespace Sirenix.OdinInspector.Demos.RPGEditor
 
                 if (SirenixEditorGUI.ToolbarButton(new GUIContent("Create Character")))
                 {
-                    ScriptableObjectCreator.ShowDialog<Character>("Assets/Plugins/Sirenix/Demos/Sample - RPG Editor/Character", obj =>
+                    ScriptableObjectCreator.ShowDialog<Character.Character>("Assets/Plugins/Sirenix/Demos/Sample - RPG Editor/Character", obj =>
                     {
                         obj.Name = obj.name;
                         base.TrySelectMenuItemWithObject(obj); // Selects the newly created item in the editor

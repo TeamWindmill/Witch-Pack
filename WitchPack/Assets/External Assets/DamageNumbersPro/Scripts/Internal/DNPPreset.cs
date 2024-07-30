@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using External_Assets.DamageNumbersPro.Scripts.Settings;
 using TMPro;
+using UnityEngine;
 
-namespace DamageNumbersPro.Internal
+namespace External_Assets.DamageNumbersPro.Scripts.Internal
 {
     [CreateAssetMenu(fileName = "Preset", menuName = "TextMeshPro/Preset for DNP", order = -1)]
     public class DNPPreset : ScriptableObject

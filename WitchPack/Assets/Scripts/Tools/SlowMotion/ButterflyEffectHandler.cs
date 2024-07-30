@@ -3,45 +3,48 @@ using DG.Tweening;
 using Tools.Lerp;
 using UnityEngine;
 
-[Serializable]
-public class ButterflyEffectHandler
+namespace Tools.SlowMotion
 {
-    private ParticleSystem[] _butterfliesParticles;
-    [SerializeField] private LerpConfig<float> LerpConfig;
-
-    public void Init(ParticleSystem[] windParticles)
+    [Serializable]
+    public class ButterflyEffectHandler
     {
-        _butterfliesParticles = windParticles;
-    }
+        private ParticleSystem[] _butterfliesParticles;
+        [SerializeField] private LerpConfig<float> LerpConfig;
 
-    public void StartTransition()
-    {
-        foreach (var particle in _butterfliesParticles)
+        public void Init(ParticleSystem[] windParticles)
         {
-            var main = particle.main;
-            DOTween.To(() => main.simulationSpeed, x => main.simulationSpeed = x, LerpConfig.EndValue, LerpConfig.TransitionTime);
+            _butterfliesParticles = windParticles;
         }
+
+        public void StartTransition()
+        {
+            foreach (var particle in _butterfliesParticles)
+            {
+                var main = particle.main;
+                DOTween.To(() => main.simulationSpeed, x => main.simulationSpeed = x, LerpConfig.EndValue, LerpConfig.TransitionTime);
+            }
         
-    }
-
-    public void EndTransition()
-    {
-        foreach (var particle in _butterfliesParticles)
-        {
-            var main = particle.main;
-            DOTween.To(() => main.simulationSpeed, x => main.simulationSpeed = x, LerpConfig.StartValue, LerpConfig.TransitionTime);
         }
-    }
 
-    public float CurrentValue
-    {
-        get => CurrentValue;
-        set
+        public void EndTransition()
         {
-            //SetValue(value);
-            CurrentValue = value;
+            foreach (var particle in _butterfliesParticles)
+            {
+                var main = particle.main;
+                DOTween.To(() => main.simulationSpeed, x => main.simulationSpeed = x, LerpConfig.StartValue, LerpConfig.TransitionTime);
+            }
         }
-    }
+
+        public float CurrentValue
+        {
+            get => CurrentValue;
+            set
+            {
+                //SetValue(value);
+                CurrentValue = value;
+            }
+        }
 
     
+    }
 }

@@ -1,9 +1,9 @@
 #if UNITY_EDITOR
 using UnityEngine;
-using static VFolders.Libs.VUtils;
+using static External_Assets.vTools.vFolders.VUtils;
 
 
-namespace VFolders
+namespace External_Assets.vTools.vFolders
 {
     public class VFoldersData : ScriptableObject
     {

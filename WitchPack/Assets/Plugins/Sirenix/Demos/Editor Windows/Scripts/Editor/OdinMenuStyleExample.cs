@@ -1,13 +1,13 @@
-#if UNITY_EDITOR
-namespace Sirenix.OdinInspector.Demos
-{
-    using Sirenix.OdinInspector.Editor;
-    using UnityEngine;
-    using UnityEditor;
-    using System.Linq;
-    using Sirenix.Utilities;
-    using Sirenix.Utilities.Editor;
+using System.Linq;
+using Sirenix.OdinInspector.Editor;
+using Sirenix.Utilities;
+using Sirenix.Utilities.Editor;
+using UnityEditor;
+using UnityEngine;
 
+#if UNITY_EDITOR
+namespace Plugins.Sirenix.Demos.Editor_Windows.Scripts.Editor
+{
     public class OdinMenuStyleExample : OdinMenuEditorWindow
     {
         [MenuItem("Tools/Odin/Demos/Odin Editor Window Demos/Odin Menu Style Example")]

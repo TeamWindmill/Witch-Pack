@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace DamageNumbersPro
+namespace External_Assets.DamageNumbersPro.Scripts.Settings
 {
     [System.Serializable]
     public struct DigitSettings

@@ -1,97 +1,103 @@
+using Sound;
+using GameTime;
 using TMPro;
+using Tools.Scene;
+using UI.UISystem;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-public class PauseMenuManager : MonoBehaviour
+namespace Managers
 {
-    [SerializeField] private Canvas _canvas;
-    [SerializeField] private Transform mapButton;
-    [SerializeField] private TextMeshProUGUI pauseTitleText;
-
-    private bool _isOpen;
-    private bool _isSkippedFrame;
-
-    private void Awake()
+    public class PauseMenuManager : MonoBehaviour
     {
-        _canvas.gameObject.SetActive(false);
-        _isOpen = false;
-        _isSkippedFrame = false;
-    }
+        [SerializeField] private Canvas _canvas;
+        [SerializeField] private Transform mapButton;
+        [SerializeField] private TextMeshProUGUI pauseTitleText;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape) && !SceneHandler.IsLoading && !_isOpen)
+        private bool _isOpen;
+        private bool _isSkippedFrame;
+
+        private void Awake()
         {
-            var scene = SceneManager.GetActiveScene();
-            if (scene.buildIndex == (int)SceneType.Game)
-            {
-                pauseTitleText.text = "game paused";
-                mapButton.gameObject.SetActive(true);
-                OpenPauseMenu();
-            }
-            else if (scene.buildIndex == (int)SceneType.Map)
-            {
-                pauseTitleText.text = "witch pack";
-                mapButton.gameObject.SetActive(false);
-                OpenPauseMenu();
-            }
+            _canvas.gameObject.SetActive(false);
+            _isOpen = false;
+            _isSkippedFrame = false;
         }
 
-        if (!_isOpen)
-            return;
-
-        if (!_isSkippedFrame)
+        private void Update()
         {
-            _isSkippedFrame = true;
-            return;
+            if (Input.GetKeyDown(KeyCode.Escape) && !SceneHandler.IsLoading && !_isOpen)
+            {
+                var scene = SceneManager.GetActiveScene();
+                if (scene.buildIndex == (int)SceneType.Game)
+                {
+                    pauseTitleText.text = "game paused";
+                    mapButton.gameObject.SetActive(true);
+                    OpenPauseMenu();
+                }
+                else if (scene.buildIndex == (int)SceneType.Map)
+                {
+                    pauseTitleText.text = "witch pack";
+                    mapButton.gameObject.SetActive(false);
+                    OpenPauseMenu();
+                }
+            }
+
+            if (!_isOpen)
+                return;
+
+            if (!_isSkippedFrame)
+            {
+                _isSkippedFrame = true;
+                return;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Escape) && _isSkippedFrame && _isOpen)
+                Resume();
         }
 
-        if (Input.GetKeyDown(KeyCode.Escape) && _isSkippedFrame && _isOpen)
-            Resume();
-    }
+        private void OpenPauseMenu()
+        {
+            _isOpen = true;
+            _isSkippedFrame = false;
+            _canvas.gameObject.SetActive(true);
+            GAME_TIME.Pause();
+        }
 
-    private void OpenPauseMenu()
-    {
-        _isOpen = true;
-        _isSkippedFrame = false;
-        _canvas.gameObject.SetActive(true);
-        GAME_TIME.Pause();
-    }
+        public void Resume()
+        {
+            SoundManager.PlayAudioClip(SoundEffectType.MenuClick);
+            _canvas.gameObject.SetActive(false);
+            GAME_TIME.Play();
+            _isOpen = false;
+        }
 
-    public void Resume()
-    {
-        SoundManager.PlayAudioClip(SoundEffectType.MenuClick);
-        _canvas.gameObject.SetActive(false);
-        GAME_TIME.Play();
-        _isOpen = false;
-    }
+        public void OpenSettingsWindow()
+        {
+            SoundManager.PlayAudioClip(SoundEffectType.MenuClick);
+            UIManager.ShowUIGroup(UIGroup.SettingsWindow);
+        }
 
-    public void OpenSettingsWindow()
-    {
-        SoundManager.PlayAudioClip(SoundEffectType.MenuClick);
-        UIManager.ShowUIGroup(UIGroup.SettingsWindow);
-    }
+        public void ReturnToMap()
+        {
+            SoundManager.PlayAudioClip(SoundEffectType.MenuClick);
+            BgMusicManager.Instance.PlayMusic(MusicClip.MenuMusic);
+            _canvas.gameObject.SetActive(false);
+            GameManager.SceneHandler.LoadScene(SceneType.Map);
+        }
+        public void ReturnToMainMenu()
+        { 
+            SoundManager.PlayAudioClip(SoundEffectType.MenuClick);
+            BgMusicManager.Instance.PlayMusic(MusicClip.MenuMusic);
+            _canvas.gameObject.SetActive(false);
+            GameManager.SceneHandler.LoadScene(SceneType.MainMenu);
+        }
 
-    public void ReturnToMap()
-    {
-        SoundManager.PlayAudioClip(SoundEffectType.MenuClick);
-        BgMusicManager.Instance.PlayMusic(MusicClip.MenuMusic);
-        _canvas.gameObject.SetActive(false);
-        GameManager.SceneHandler.LoadScene(SceneType.Map);
-    }
-    public void ReturnToMainMenu()
-    { 
-        SoundManager.PlayAudioClip(SoundEffectType.MenuClick);
-        BgMusicManager.Instance.PlayMusic(MusicClip.MenuMusic);
-        _canvas.gameObject.SetActive(false);
-        GameManager.SceneHandler.LoadScene(SceneType.MainMenu);
-    }
-
-    public void Quit()
-    {
-        BgMusicManager.Instance.StopMusic();
-        SoundManager.PlayAudioClip(SoundEffectType.MenuClick);
-        GameManager.Instance.Quit();
+        public void Quit()
+        {
+            BgMusicManager.Instance.StopMusic();
+            SoundManager.PlayAudioClip(SoundEffectType.MenuClick);
+            GameManager.Instance.Quit();
+        }
     }
 }

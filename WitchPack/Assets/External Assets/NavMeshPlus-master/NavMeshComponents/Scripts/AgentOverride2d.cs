@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-namespace NavMeshPlus.Extensions
+namespace External_Assets.NavMeshPlus_master.NavMeshComponents.Scripts
 {
     public interface IAgentOverride
     {

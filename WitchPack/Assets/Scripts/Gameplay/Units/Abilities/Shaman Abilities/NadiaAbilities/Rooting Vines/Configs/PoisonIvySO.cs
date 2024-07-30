@@ -1,20 +1,24 @@
+using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ability", menuName = "Ability/Nadia/RootingVines/PoisonIvy")]
-
-public class PoisonIvySO : OffensiveAbilitySO
+namespace Gameplay.Units.Abilities.Shaman_Abilities.NadiaAbilities.Rooting_Vines.Configs
 {
-    [SerializeField] private float aoeScale = 1;
-    [SerializeField] private float lastingTime;
-    [SerializeField] private float poisonDuration;
-    [SerializeField] private float poisonTickRate;
-    [SerializeField] private int poisonDamage;
-    [SerializeField] private Color poisonPopupColor;
+    [CreateAssetMenu(fileName = "ability", menuName = "Ability/Nadia/RootingVines/PoisonIvy")]
 
-    public float PoisonDuration { get => poisonDuration; }
-    public float PoisonTickRate { get => poisonTickRate; }
-    public int PoisonDamage { get => poisonDamage; }
-    public Color PoisonPopupColor { get => poisonPopupColor; }
-    public float AoeScale => aoeScale;
-    public float LastingTime => lastingTime;
+    public class PoisonIvySO : OffensiveAbilitySO
+    {
+        [SerializeField] private float aoeScale = 1;
+        [SerializeField] private float lastingTime;
+        [SerializeField] private float poisonDuration;
+        [SerializeField] private float poisonTickRate;
+        [SerializeField] private int poisonDamage;
+        [SerializeField] private Color poisonPopupColor;
+
+        public float PoisonDuration { get => poisonDuration; }
+        public float PoisonTickRate { get => poisonTickRate; }
+        public int PoisonDamage { get => poisonDamage; }
+        public Color PoisonPopupColor { get => poisonPopupColor; }
+        public float AoeScale => aoeScale;
+        public float LastingTime => lastingTime;
+    }
 }

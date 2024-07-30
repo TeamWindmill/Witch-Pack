@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
+using External_Assets.PathCreator.Core.Runtime.Objects;
+using External_Assets.PathCreator.Core.Runtime.Utility;
 using UnityEditor;
-using PathCreation;
-using PathCreation.Utility;
+using UnityEngine;
 
-namespace PathCreationEditor
+namespace External_Assets.PathCreator.Core.Editor.Helper
 {
     public class ScreenSpacePolyLine
     {

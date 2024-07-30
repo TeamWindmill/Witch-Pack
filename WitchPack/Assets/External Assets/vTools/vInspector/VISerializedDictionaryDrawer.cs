@@ -1,14 +1,14 @@
 #if UNITY_EDITOR
-using UnityEngine;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEditorInternal;
-using static VInspector.Libs.VUtils;
-using static VInspector.Libs.VGUI;
+using UnityEngine;
+using static External_Assets.vTools.vInspector.VUtils;
+using static External_Assets.vTools.vInspector.VGUI;
 
 
 
-namespace VInspector
+namespace External_Assets.vTools.vInspector
 {
     [CustomPropertyDrawer(typeof(SerializedDictionary<,>), true)]
     public class VISerializedDictionaryDrawer : PropertyDrawer

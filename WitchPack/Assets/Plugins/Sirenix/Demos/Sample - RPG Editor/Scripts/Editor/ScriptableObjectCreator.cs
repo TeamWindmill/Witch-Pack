@@ -1,15 +1,15 @@
-#if UNITY_EDITOR
-namespace Sirenix.OdinInspector.Demos.RPGEditor
-{
-    using Sirenix.OdinInspector.Editor;
-    using Sirenix.Utilities;
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using UnityEditor;
-    using UnityEngine;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using Sirenix.OdinInspector.Editor;
+using Sirenix.Utilities;
+using UnityEditor;
+using UnityEngine;
 
+#if UNITY_EDITOR
+namespace Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Editor
+{
     // 
     // With our custom RPG Editor window, this ScriptableObjectCreator is a replacement for the [CreateAssetMenu] attribute Unity provides.
     // 

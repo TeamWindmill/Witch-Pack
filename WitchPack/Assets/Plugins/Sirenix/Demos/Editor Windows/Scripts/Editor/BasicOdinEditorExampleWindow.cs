@@ -1,12 +1,12 @@
-#if UNITY_EDITOR
-namespace Sirenix.OdinInspector.Demos
-{
-    using UnityEditor;
-    using Sirenix.OdinInspector.Editor;
-    using Sirenix.OdinInspector;
-    using Sirenix.Utilities.Editor;
-    using Sirenix.Utilities;
+using Sirenix.OdinInspector;
+using Sirenix.OdinInspector.Editor;
+using Sirenix.Utilities;
+using Sirenix.Utilities.Editor;
+using UnityEditor;
 
+#if UNITY_EDITOR
+namespace Plugins.Sirenix.Demos.Editor_Windows.Scripts.Editor
+{
     public class BasicOdinEditorExampleWindow : OdinEditorWindow
     {
         [MenuItem("Tools/Odin/Demos/Odin Editor Window Demos/Basic Odin Editor Window")]

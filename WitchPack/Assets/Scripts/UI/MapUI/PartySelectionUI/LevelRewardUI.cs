@@ -1,15 +1,19 @@
 using TMPro;
+using UI.UISystem;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelRewardUI : UIElement
+namespace UI.MapUI.PartySelectionUI
 {
-    [SerializeField] private Image _icon;
-    [SerializeField] private TextMeshProUGUI _text;
-
-    public void Init(Sprite icon, string text)
+    public class LevelRewardUI : UIElement
     {
-        _icon.sprite = icon;
-        _text.text = text;
+        [SerializeField] private Image _icon;
+        [SerializeField] private TextMeshProUGUI _text;
+
+        public void Init(Sprite icon, string text)
+        {
+            _icon.sprite = icon;
+            _text.text = text;
+        }
     }
 }

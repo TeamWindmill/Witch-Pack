@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using External_Assets.PathCreator.Core.Runtime.Objects;
 using UnityEngine;
 
-namespace PathCreation.Utility
+namespace External_Assets.PathCreator.Core.Runtime.Utility
 {
     public static class VertexPathUtility
     {

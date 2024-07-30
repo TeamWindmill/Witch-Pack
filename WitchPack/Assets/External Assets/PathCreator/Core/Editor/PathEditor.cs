@@ -1,15 +1,16 @@
 ﻿using System.Collections.Generic;
-using PathCreation;
-using PathCreation.Utility;
+using External_Assets.PathCreator.Core.Editor.Helper;
+using External_Assets.PathCreator.Core.Runtime.Objects;
+using External_Assets.PathCreator.Core.Runtime.Utility;
 using UnityEditor;
 using UnityEditor.IMGUI.Controls;
 using UnityEngine;
 
-namespace PathCreationEditor {
+namespace External_Assets.PathCreator.Core.Editor {
     /// Editor class for the creation of Bezier and Vertex paths
 
-    [CustomEditor (typeof (PathCreator))]
-    public class PathEditor : Editor {
+    [CustomEditor (typeof (Runtime.Objects.PathCreator))]
+    public class PathEditor : UnityEditor.Editor {
 
         #region Fields
 
@@ -31,8 +32,8 @@ namespace PathCreationEditor {
         GUIStyle boldFoldoutStyle;
 
         // References:
-        PathCreator creator;
-        Editor globalDisplaySettingsEditor;
+        Runtime.Objects.PathCreator creator;
+        UnityEditor.Editor globalDisplaySettingsEditor;
         ScreenSpacePolyLine screenSpaceLine;
         ScreenSpacePolyLine.MouseInfo pathMouseInfo;
         GlobalDisplaySettings globalDisplaySettings;
@@ -601,7 +602,7 @@ namespace PathCreationEditor {
         }
 
         void OnEnable () {
-            creator = (PathCreator) target;
+            creator = (Runtime.Objects.PathCreator) target;
             bool in2DEditorMode = EditorSettings.defaultBehaviorMode == EditorBehaviorMode.Mode2D;
             creator.InitializeEditorData (in2DEditorMode);
 

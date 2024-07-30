@@ -1,74 +1,79 @@
 using System;
 using System.Collections.Generic;
+using Configs;
+using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ShamanMetaUpgradeConfig",fileName = "ShamanMetaUpgradeConfig")]
-public class ShamanMetaUpgradeConfig : SerializedScriptableObject
+namespace UI.MapUI.MetaUpgrades.UpgradePanel.Configs
 {
-    [SerializeField] private ShamanConfig _shamanConfig;
-    [SerializeField] private List<AbilityPanelUpgrades> _abilityPanelUpgrades;
-    [SerializeField] private StatPanelUpgrades _statPanelUpgrades;
-
-    public List<AbilityPanelUpgrades> AbilityPanelUpgrades => _abilityPanelUpgrades;
-    public StatPanelUpgrades StatPanelUpgrades => _statPanelUpgrades;
-
-    private void OnValidate()
+    [CreateAssetMenu(menuName = "ShamanMetaUpgradeConfig",fileName = "ShamanMetaUpgradeConfig")]
+    public class ShamanMetaUpgradeConfig : SerializedScriptableObject
     {
-        if (_shamanConfig != null)
+        [SerializeField] private ShamanConfig _shamanConfig;
+        [SerializeField] private List<AbilityPanelUpgrades> _abilityPanelUpgrades;
+        [SerializeField] private StatPanelUpgrades _statPanelUpgrades;
+
+        public List<AbilityPanelUpgrades> AbilityPanelUpgrades => _abilityPanelUpgrades;
+        public StatPanelUpgrades StatPanelUpgrades => _statPanelUpgrades;
+
+        private void OnValidate()
         {
-            if(_abilityPanelUpgrades.Count > 0) return;
-            foreach (var rootAbility in _shamanConfig.RootAbilities)
+            if (_shamanConfig != null)
             {
-                _abilityPanelUpgrades.Add(new AbilityPanelUpgrades(rootAbility));
+                if(_abilityPanelUpgrades.Count > 0) return;
+                foreach (var rootAbility in _shamanConfig.RootAbilities)
+                {
+                    _abilityPanelUpgrades.Add(new AbilityPanelUpgrades(rootAbility));
+                }
             }
         }
+
+
     }
 
-
-}
-
-[Serializable]
-public struct AbilityPanelUpgrades
-{
-    public AbilitySO Ability;
-    [BoxGroup("Left")] public List<AbilityUpgradeConfig> LeftStatUpgrades;
-    [BoxGroup("Right")] public List<AbilityUpgradeConfig> RightStatUpgrades ;
-
-    public List<AbilityUpgradeConfig> StatUpgrades
+    [Serializable]
+    public struct AbilityPanelUpgrades
     {
-        get
+        public AbilitySO Ability;
+        [BoxGroup("Left")] public List<AbilityUpgradeConfig> LeftStatUpgrades;
+        [BoxGroup("Right")] public List<AbilityUpgradeConfig> RightStatUpgrades ;
+
+        public List<AbilityUpgradeConfig> StatUpgrades
         {
-            List<AbilityUpgradeConfig> upgrades = new();
-            upgrades.AddRange(LeftStatUpgrades);
-            upgrades.AddRange(RightStatUpgrades);
-            return upgrades;
+            get
+            {
+                List<AbilityUpgradeConfig> upgrades = new();
+                upgrades.AddRange(LeftStatUpgrades);
+                upgrades.AddRange(RightStatUpgrades);
+                return upgrades;
+            }
+        }
+
+
+        public AbilityPanelUpgrades(AbilitySO ability)
+        {
+            Ability = ability;
+            LeftStatUpgrades = new();
+            RightStatUpgrades = new();
         }
     }
 
-
-    public AbilityPanelUpgrades(AbilitySO ability)
+    [Serializable]
+    public struct StatPanelUpgrades
     {
-        Ability = ability;
-        LeftStatUpgrades = new();
-        RightStatUpgrades = new();
-    }
-}
+        public List<StatMetaUpgradeConfig> LeftStatUpgrades;
+        public List<StatMetaUpgradeConfig> RightStatUpgrades;
 
-[Serializable]
-public struct StatPanelUpgrades
-{
-    public List<StatMetaUpgradeConfig> LeftStatUpgrades;
-    public List<StatMetaUpgradeConfig> RightStatUpgrades;
-
-    public List<StatMetaUpgradeConfig> StatUpgrades
-    {
-        get
+        public List<StatMetaUpgradeConfig> StatUpgrades
         {
-            List<StatMetaUpgradeConfig> upgrades = new();
-            upgrades.AddRange(LeftStatUpgrades);
-            upgrades.AddRange(RightStatUpgrades);
-            return upgrades;
+            get
+            {
+                List<StatMetaUpgradeConfig> upgrades = new();
+                upgrades.AddRange(LeftStatUpgrades);
+                upgrades.AddRange(RightStatUpgrades);
+                return upgrades;
+            }
         }
     }
 }

@@ -1,14 +1,18 @@
+using Configs;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnemyIcon : MonoBehaviour
+namespace UI.MapUI.PartySelectionUI
 {
-    [SerializeField] private Image _splash;
-    [SerializeField] private TextMeshProUGUI _amountText;
-    public void Init(EnemyConfig enemy, string amountText)
+    public class EnemyIcon : MonoBehaviour
     {
-        _splash.sprite = enemy.UnitIcon;
-        _amountText.text = amountText;
+        [SerializeField] private Image _splash;
+        [SerializeField] private TextMeshProUGUI _amountText;
+        public void Init(EnemyConfig enemy, string amountText)
+        {
+            _splash.sprite = enemy.UnitIcon;
+            _amountText.text = amountText;
+        }
     }
 }

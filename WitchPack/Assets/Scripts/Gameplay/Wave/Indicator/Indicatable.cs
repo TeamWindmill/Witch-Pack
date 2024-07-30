@@ -1,90 +1,95 @@
 using System;
+using Managers;
 using UnityEngine;
+using Visual.Indicator;
 
-public class Indicatable : MonoBehaviour
+namespace Gameplay.Wave.Indicator
 {
-    [SerializeField] private bool toggleOnVis;
-    [SerializeField] private bool clickable;
-    private Indicator currentIndicator;
-    private Sprite artWork;
-    private float lifetime;
-    private bool shouldIndicatorPulse;
-    private Action onClickAction;
-
-    public Action OnVisible;
-    public Action OnInvisible;
-
-    public Sprite ArtWork { get => artWork; }
-    public float Lifetime { get => lifetime;}
-    public bool Clickable { get => clickable;}
-    public Action OnClickAction { get => onClickAction;}
-    public Indicator CurrentIndicator { get => currentIndicator; }
-    public bool ShouldIndicatorPulse { get => shouldIndicatorPulse; }
-
-    private IndicatorPointerSpriteType indicatorPointerSpriteType;
-    public IndicatorPointerSpriteType IndicatorPointerSpriteType { get => indicatorPointerSpriteType; }
-
-
-    public void Init(Sprite art, Action action = null, float lifetime = 0, bool clickable = false, bool shouldIndicatorPulse = false, IndicatorPointerSpriteType indicatorPointerSprite = IndicatorPointerSpriteType.Default)
+    public class Indicatable : MonoBehaviour
     {
-        indicatorPointerSpriteType = indicatorPointerSprite;
-        this.lifetime = lifetime;
-        artWork = art;
-        onClickAction = action;
-        this.clickable = clickable;
-        this.shouldIndicatorPulse = shouldIndicatorPulse;
-    }
+        [SerializeField] private bool toggleOnVis;
+        [SerializeField] private bool clickable;
+        private Visual.Indicator.Indicator currentIndicator;
+        private Sprite artWork;
+        private float lifetime;
+        private bool shouldIndicatorPulse;
+        private Action onClickAction;
+
+        public Action OnVisible;
+        public Action OnInvisible;
+
+        public Sprite ArtWork { get => artWork; }
+        public float Lifetime { get => lifetime;}
+        public bool Clickable { get => clickable;}
+        public Action OnClickAction { get => onClickAction;}
+        public Visual.Indicator.Indicator CurrentIndicator { get => currentIndicator; }
+        public bool ShouldIndicatorPulse { get => shouldIndicatorPulse; }
+
+        private IndicatorPointerSpriteType indicatorPointerSpriteType;
+        public IndicatorPointerSpriteType IndicatorPointerSpriteType { get => indicatorPointerSpriteType; }
 
 
-    private void OnBecameVisible()
-    {
-        if (!toggleOnVis)
+        public void Init(Sprite art, Action action = null, float lifetime = 0, bool clickable = false, bool shouldIndicatorPulse = false, IndicatorPointerSpriteType indicatorPointerSprite = IndicatorPointerSpriteType.Default)
         {
-            return;
+            indicatorPointerSpriteType = indicatorPointerSprite;
+            this.lifetime = lifetime;
+            artWork = art;
+            onClickAction = action;
+            this.clickable = clickable;
+            this.shouldIndicatorPulse = shouldIndicatorPulse;
         }
 
-        OnVisible?.Invoke();
 
-        if (!ReferenceEquals(currentIndicator, null))
+        private void OnBecameVisible()
         {
-            currentIndicator.gameObject.SetActive(false);
-        }
+            if (!toggleOnVis)
+            {
+                return;
+            }
 
-        currentIndicator = null;
-    }
+            OnVisible?.Invoke();
 
-    private void OnBecameInvisible()
-    {
-        if (!Application.isPlaying || !toggleOnVis)
-        {
-            return;
-        }
+            if (!ReferenceEquals(currentIndicator, null))
+            {
+                currentIndicator.gameObject.SetActive(false);
+            }
 
-        OnInvisible?.Invoke();
-        SetCurrentIndicator();
-    }
-
-
-
-    [ContextMenu("Test Indicator")]
-    public void SetCurrentIndicator()
-    {
-        currentIndicator = LevelManager.Instance?.IndicatorManager.CreateIndicator(this);
-    }
-
-    public void ToggleIndicatableRendering(bool state)
-    {
-        toggleOnVis = state;
-        if (!ReferenceEquals(currentIndicator, null))
-        {
-            currentIndicator.gameObject.SetActive(state);
-        }
-
-        if(state == false)
-        {
             currentIndicator = null;
         }
+
+        private void OnBecameInvisible()
+        {
+            if (!Application.isPlaying || !toggleOnVis)
+            {
+                return;
+            }
+
+            OnInvisible?.Invoke();
+            SetCurrentIndicator();
+        }
+
+
+
+        [ContextMenu("Test Indicator")]
+        public void SetCurrentIndicator()
+        {
+            currentIndicator = LevelManager.Instance?.IndicatorManager.CreateIndicator(this);
+        }
+
+        public void ToggleIndicatableRendering(bool state)
+        {
+            toggleOnVis = state;
+            if (!ReferenceEquals(currentIndicator, null))
+            {
+                currentIndicator.gameObject.SetActive(state);
+            }
+
+            if(state == false)
+            {
+                currentIndicator = null;
+            }
+        }
+
+
     }
-
-
 }

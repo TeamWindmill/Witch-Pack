@@ -1,11 +1,14 @@
-public interface ITimer
+namespace Tools.Time
 {
-    public void StartTimer();
-    public void PauseTimer();
-    public void StopTimer();
-    public void TimerTick();
+    public interface ITimer
+    {
+        public void StartTimer();
+        public void PauseTimer();
+        public void StopTimer();
+        public void TimerTick();
 
-    public void RemoveThisTimer();
+        public void RemoveThisTimer();
 
-    public void AddThisTimer();
+        public void AddThisTimer();
+    }
 }

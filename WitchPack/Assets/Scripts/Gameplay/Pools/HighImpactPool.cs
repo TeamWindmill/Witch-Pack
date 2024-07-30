@@ -1,4 +1,10 @@
-public class HighImpactPool : ObjectPool<HighImpactSmokeBombMono>
+using Gameplay.Pools.Pool_System;
+using Gameplay.Units.Abilities.Shaman_Abilities.JavanAbilities.SmokeBomb;
+
+namespace Gameplay.Pools
 {
+    public class HighImpactPool : ObjectPool<HighImpactSmokeBombMono>
+    {
     
+    }
 }

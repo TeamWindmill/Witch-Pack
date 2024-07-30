@@ -1,4 +1,7 @@
-public class CoreTargeter : Targeter<CoreTemple>
+namespace Gameplay.Targeter
 {
+    public class CoreTargeter : Targeter<CoreTemple.CoreTemple>
+    {
     
+    }
 }

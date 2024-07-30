@@ -1,14 +1,14 @@
 #if UNITY_EDITOR
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-using System.Reflection;
 using System.Linq;
-using static VTabs.Libs.VUtils;
+using System.Reflection;
+using UnityEditor;
+using UnityEngine;
+using static External_Assets.vTools.vTabs.VUtils;
 
 
 
-namespace VTabs
+namespace External_Assets.vTools.vTabs
 {
     public static class VTabs
     {

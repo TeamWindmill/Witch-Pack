@@ -1,8 +1,12 @@
+using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs;
 using UnityEngine;
 
-public abstract class RangedAutoAttackSO : OffensiveAbilitySO
+namespace Gameplay.Units.Abilities.Auto_Attack.Configs
 {
-    [SerializeField] private float _speed;
+    public abstract class RangedAutoAttackSO : OffensiveAbilitySO
+    {
+        [SerializeField] private float _speed;
 
-    public float Speed => _speed;
+        public float Speed => _speed;
+    }
 }

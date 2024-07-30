@@ -1,17 +1,17 @@
 #if UNITY_EDITOR
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-using System.Linq;
 using System.IO;
+using System.Linq;
+using UnityEditor;
 using UnityEditorInternal;
-using static VFolders.Libs.VUtils;
-using static VFolders.Libs.VGUI;
-using static VFolders.VFoldersData;
+using UnityEngine;
+using static External_Assets.vTools.vFolders.VUtils;
+using static External_Assets.vTools.vFolders.VGUI;
+using static External_Assets.vTools.vFolders.VFoldersData;
 
 
 
-namespace VFolders
+namespace External_Assets.vTools.vFolders
 {
     public static class VFolders
     {

@@ -1,45 +1,48 @@
-using System;
+using GameTime;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class RootingVinesVisuals : MonoBehaviour
+namespace Gameplay.Units.Abilities.Shaman_Abilities.NadiaAbilities.Visuals
 {
-    //[SerializeField] StatusEffectConfig root;
-    [SerializeField] PlayableDirector exitAnimation;
-    [SerializeField] private GameObject entryGameObject;
-    [SerializeField] private GameObject exitGameObject;
-
-    float elapsedTime;
-    float exitTime;
-    private bool _isInitialized;
-
-    public void Init(float duration)
+    public class RootingVinesVisuals : MonoBehaviour
     {
-        exitTime = duration - (float)exitAnimation.duration;
-        elapsedTime = 0;
-        SwitchGameObjects(true);
-        _isInitialized = true;
-    }
+        //[SerializeField] StatusEffectConfig root;
+        [SerializeField] PlayableDirector exitAnimation;
+        [SerializeField] private GameObject entryGameObject;
+        [SerializeField] private GameObject exitGameObject;
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(!_isInitialized) return;
-        elapsedTime += GAME_TIME.GameDeltaTime;
-        if (elapsedTime >= exitTime)
+        float elapsedTime;
+        float exitTime;
+        private bool _isInitialized;
+
+        public void Init(float duration)
         {
-            SwitchGameObjects(false);
+            exitTime = duration - (float)exitAnimation.duration;
+            elapsedTime = 0;
+            SwitchGameObjects(true);
+            _isInitialized = true;
         }
-    }
 
-    private void OnDisable()
-    {
-        _isInitialized = false;
-    }
+        // Update is called once per frame
+        void Update()
+        {
+            if(!_isInitialized) return;
+            elapsedTime += GAME_TIME.GameDeltaTime;
+            if (elapsedTime >= exitTime)
+            {
+                SwitchGameObjects(false);
+            }
+        }
 
-    private void SwitchGameObjects(bool entryState)
-    {
-        entryGameObject.SetActive(entryState);
-        exitGameObject.SetActive(!entryState);
+        private void OnDisable()
+        {
+            _isInitialized = false;
+        }
+
+        private void SwitchGameObjects(bool entryState)
+        {
+            entryGameObject.SetActive(entryState);
+            exitGameObject.SetActive(!entryState);
+        }
     }
 }

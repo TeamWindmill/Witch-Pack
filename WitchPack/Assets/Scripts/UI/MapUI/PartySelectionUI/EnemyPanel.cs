@@ -1,76 +1,80 @@
 using System;
 using System.Collections.Generic;
+using Configs;
 using Sirenix.OdinInspector;
-//using Sirenix.OdinInspector;
+using UI.UISystem;
 using UnityEngine;
 
-public class EnemyPanel : UIElement
+namespace UI.MapUI.PartySelectionUI
 {
-    [SerializeField] private EnemyIcon _enemyIconPrefab;
-    [SerializeField] private Transform _holder;
-
-    private Dictionary<EnemyConfig, int> _enemiesInLevel;
-    private List<EnemyIcon> _enemyIcons = new();
-
-    public void Init(LevelConfig levelConfig,EnemyPanelConfig enemyPanelConfig)
+    public class EnemyPanel : UIElement
     {
-        Hide();
-        _enemiesInLevel = new();
-        foreach (var enemySpawnData in levelConfig.levelPrefab.WaveHandler.WaveData.waves)
-        {
-            foreach (var enemyGroup in enemySpawnData.Groups)
-            {
-                if (_enemiesInLevel.ContainsKey(enemyGroup.Enemy))
-                    _enemiesInLevel[enemyGroup.Enemy] += enemyGroup.TotalAmount;
-                else _enemiesInLevel[enemyGroup.Enemy] = enemyGroup.TotalAmount;
-            }
-        }
+        [SerializeField] private EnemyIcon _enemyIconPrefab;
+        [SerializeField] private Transform _holder;
 
-        foreach (var enemyType in _enemiesInLevel)
+        private Dictionary<EnemyConfig, int> _enemiesInLevel;
+        private List<EnemyIcon> _enemyIcons = new();
+
+        public void Init(LevelConfig levelConfig,EnemyPanelConfig enemyPanelConfig)
         {
-            //Debug.Log($"{enemyType.Key.Name}: {enemyType.Value}");
-            foreach (var config in enemyPanelConfig.EnemyAmounts)
+            Hide();
+            _enemiesInLevel = new();
+            foreach (var enemySpawnData in levelConfig.levelPrefab.WaveHandler.WaveData.waves)
             {
-                if (enemyType.Value > config.AmountRange.x && enemyType.Value < config.AmountRange.y)
+                foreach (var enemyGroup in enemySpawnData.Groups)
                 {
-                    EnemyIcon enemyIcon = Instantiate(_enemyIconPrefab, _holder);
-                    enemyIcon.Init(enemyType.Key, config.AmountName);
-                    _enemyIcons.Add(enemyIcon);
+                    if (_enemiesInLevel.ContainsKey(enemyGroup.Enemy))
+                        _enemiesInLevel[enemyGroup.Enemy] += enemyGroup.TotalAmount;
+                    else _enemiesInLevel[enemyGroup.Enemy] = enemyGroup.TotalAmount;
                 }
             }
 
-            if (enemyType.Value > enemyPanelConfig.AmountThreshold)
+            foreach (var enemyType in _enemiesInLevel)
             {
-                EnemyIcon enemyIcon = Instantiate(_enemyIconPrefab, _holder);
-                enemyIcon.Init(enemyType.Key, enemyPanelConfig.AmountName);
-                _enemyIcons.Add(enemyIcon);
+                //Debug.Log($"{enemyType.Key.Name}: {enemyType.Value}");
+                foreach (var config in enemyPanelConfig.EnemyAmounts)
+                {
+                    if (enemyType.Value > config.AmountRange.x && enemyType.Value < config.AmountRange.y)
+                    {
+                        EnemyIcon enemyIcon = Instantiate(_enemyIconPrefab, _holder);
+                        enemyIcon.Init(enemyType.Key, config.AmountName);
+                        _enemyIcons.Add(enemyIcon);
+                    }
+                }
+
+                if (enemyType.Value > enemyPanelConfig.AmountThreshold)
+                {
+                    EnemyIcon enemyIcon = Instantiate(_enemyIconPrefab, _holder);
+                    enemyIcon.Init(enemyType.Key, enemyPanelConfig.AmountName);
+                    _enemyIcons.Add(enemyIcon);
+                }
             }
         }
-    }
 
-    public override void Hide()
-    {
-        if (_enemyIcons.Count > 0)
+        public override void Hide()
         {
-            foreach (var enemyIcon in _enemyIcons)
+            if (_enemyIcons.Count > 0)
             {
-                Destroy(enemyIcon.gameObject);
+                foreach (var enemyIcon in _enemyIcons)
+                {
+                    Destroy(enemyIcon.gameObject);
+                }
+                _enemyIcons.Clear();
             }
-            _enemyIcons.Clear();
         }
     }
-}
 
-[Serializable]
-public struct EnemyPanelConfig
-{
-    public EnemyAmountDisplayConfig[] EnemyAmounts;
-    [BoxGroup("Threshold")] public string AmountName;
-    [BoxGroup("Threshold")] public int AmountThreshold;
-}
-[Serializable]
-public struct EnemyAmountDisplayConfig
-{
-    public string AmountName;
-    [MinMaxSlider(1,500)]public Vector2Int AmountRange;
+    [Serializable]
+    public struct EnemyPanelConfig
+    {
+        public EnemyAmountDisplayConfig[] EnemyAmounts;
+        [BoxGroup("Threshold")] public string AmountName;
+        [BoxGroup("Threshold")] public int AmountThreshold;
+    }
+    [Serializable]
+    public struct EnemyAmountDisplayConfig
+    {
+        public string AmountName;
+        [MinMaxSlider(1,500)]public Vector2Int AmountRange;
+    }
 }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace PathCreation
+namespace External_Assets.PathCreator.Core.Runtime.Objects
 {
     //[CreateAssetMenu()]
     public class GlobalDisplaySettings : ScriptableObject

@@ -1,17 +1,21 @@
+using UI.UISystem;
 using UnityEngine;
 
-public class SettingsWindow : UIElement
+namespace UI.MenuUI
 {
-    [SerializeField] private Canvas _settingsCanvas;
-    public override void Show()
+    public class SettingsWindow : UIElement
     {
-        _settingsCanvas.gameObject.SetActive(true);
-        base.Show();
-    }
+        [SerializeField] private Canvas _settingsCanvas;
+        public override void Show()
+        {
+            _settingsCanvas.gameObject.SetActive(true);
+            base.Show();
+        }
 
-    public override void Hide()
-    {
-        _settingsCanvas.gameObject.SetActive(false);
-        base.Hide();
+        public override void Hide()
+        {
+            _settingsCanvas.gameObject.SetActive(false);
+            base.Hide();
+        }
     }
 }

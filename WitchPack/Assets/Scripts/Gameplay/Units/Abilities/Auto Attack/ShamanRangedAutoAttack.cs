@@ -1,30 +1,38 @@
-public class ShamanRangedAutoAttack : OffensiveAbility
-{
-    private RangedAutoAttackSO _config;
-    
-    public ShamanRangedAutoAttack(RangedAutoAttackSO config, BaseUnit owner) : base(config, owner)
-    {
-        _config = config;
-    }
+using Gameplay.Units.Abilities.AbilitySystem.BaseAbilities;
+using Gameplay.Units.Abilities.Auto_Attack.Configs;
+using Gameplay.Units.Damage_System;
+using Managers;
 
-    public override bool CastAbility(out IDamagable target)
+namespace Gameplay.Units.Abilities.Auto_Attack
+{
+    public class ShamanRangedAutoAttack : OffensiveAbility
     {
-        target = Owner.EnemyTargetHelper.GetTarget(TargetData);
-        if (ReferenceEquals(target, null))
+        private RangedAutoAttackSO _config;
+    
+        public ShamanRangedAutoAttack(RangedAutoAttackSO config, BaseUnit owner) : base(config, owner)
         {
-            return false;
+            _config = config;
         }
 
-        AutoAttackMono newPew = PoolManager.GetPooledObject<AutoAttackMono>();
-        newPew.transform.position = Owner.CastPos.transform.position;
-        newPew.gameObject.SetActive(true);
-        newPew.Fire(Owner, this, target, _config.Speed);
-        return true;
-    }
+        public override bool CastAbility(out IDamagable target)
+        {
+            target = Owner.EnemyTargetHelper.GetTarget(TargetData);
+            if (ReferenceEquals(target, null))
+            {
+                return false;
+            }
 
-    public override bool CheckCastAvailable()
-    {
-        BaseUnit target = Owner.EnemyTargetHelper.GetTarget(TargetData);
-        return !ReferenceEquals(target, null);
+            AutoAttackMono newPew = PoolManager.GetPooledObject<AutoAttackMono>();
+            newPew.transform.position = Owner.CastPos.transform.position;
+            newPew.gameObject.SetActive(true);
+            newPew.Fire(Owner, this, target, _config.Speed);
+            return true;
+        }
+
+        public override bool CheckCastAvailable()
+        {
+            BaseUnit target = Owner.EnemyTargetHelper.GetTarget(TargetData);
+            return !ReferenceEquals(target, null);
+        }
     }
 }

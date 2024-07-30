@@ -1,77 +1,81 @@
-using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
+using Gameplay.Units.Stats;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class Targeter<T> : MonoBehaviour where T : Component
+namespace Gameplay.Targeter
 {
-    [SerializeField] protected List<T> availableTargets = new List<T>();
-    public Action<T> OnTargetAdded;
-    public Action<T> OnTargetLost;
-
-    public bool HasTarget => availableTargets.Count > 0;
-
-    public List<T> AvailableTargets
+    public class Targeter<T> : MonoBehaviour where T : Component
     {
-        get => availableTargets;
-    }
+        [SerializeField] protected List<T> availableTargets = new List<T>();
+        public Action<T> OnTargetAdded;
+        public Action<T> OnTargetLost;
 
-    public void AddRadius(float value)
-    {
-        transform.parent.localScale = new Vector3(value, value, value);
-    }
+        public bool HasTarget => availableTargets.Count > 0;
 
-    public void SetRadius(float value)
-    {
-        transform.parent.localScale = new Vector3(value, value, value);
-    }
-
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
-    {
-        T possibleTarget = collision.GetComponent<T>();
-        if (!ReferenceEquals(possibleTarget, null) && !availableTargets.Contains(possibleTarget))
+        public List<T> AvailableTargets
         {
-            availableTargets.Add(possibleTarget);
-            OnTargetAdded?.Invoke(possibleTarget);
+            get => availableTargets;
+        }
+
+        public void AddRadius(float value)
+        {
+            transform.parent.localScale = new Vector3(value, value, value);
+        }
+
+        public void SetRadius(float value)
+        {
+            transform.parent.localScale = new Vector3(value, value, value);
+        }
+
+        protected virtual void OnTriggerEnter2D(Collider2D collision)
+        {
+            T possibleTarget = collision.GetComponent<T>();
+            if (!ReferenceEquals(possibleTarget, null) && !availableTargets.Contains(possibleTarget))
+            {
+                availableTargets.Add(possibleTarget);
+                OnTargetAdded?.Invoke(possibleTarget);
+            }
+        }
+
+        protected virtual void OnTriggerExit2D(Collider2D collision)
+        {
+            T possibleTarget = collision.GetComponent<T>();
+            if (!ReferenceEquals(possibleTarget, null))
+            {
+                availableTargets.Remove(possibleTarget);
+                OnTargetLost?.Invoke(possibleTarget);
+            }
         }
     }
 
-    protected virtual void OnTriggerExit2D(Collider2D collision)
+    public enum TargetPriority
     {
-        T possibleTarget = collision.GetComponent<T>();
-        if (!ReferenceEquals(possibleTarget, null))
-        {
-            availableTargets.Remove(possibleTarget);
-            OnTargetLost?.Invoke(possibleTarget);
-        }
+        Distance,
+        DistnaceToCore,
+        Stat,
+        Threatened,
+        CurrentHP,
+        CurrentHPPrecentage,
+        Random
     }
-}
 
-public enum TargetPriority
-{
-    Distance,
-    DistnaceToCore,
-    Stat,
-    Threatened,
-    CurrentHP,
-    CurrentHPPrecentage,
-    Random
-}
+    public enum TargetModifier
+    {
+        Most,
+        Least
+    }
 
-public enum TargetModifier
-{
-    Most,
-    Least
-}
+    [System.Serializable]
+    public struct TargetData
+    {
+        public TargetPriority Priority;
+        public TargetModifier Modifier;
 
-[System.Serializable]
-public struct TargetData
-{
-    public TargetPriority Priority;
-    public TargetModifier Modifier;
+        [ShowIf(nameof(Priority), TargetPriority.Stat)]
+        public StatType StatType;
 
-    [ShowIf(nameof(Priority), TargetPriority.Stat)]
-    public StatType StatType;
-
-    public bool AvoidCharmedTargets;
+        public bool AvoidCharmedTargets;
+    }
 }

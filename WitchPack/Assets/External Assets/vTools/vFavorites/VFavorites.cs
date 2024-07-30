@@ -1,14 +1,14 @@
 #if UNITY_EDITOR
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-using System.Reflection;
 using System.Linq;
-using static VFavorites.Libs.VUtils;
-using static VFavorites.Libs.VGUI;
+using System.Reflection;
+using UnityEditor;
+using UnityEngine;
+using static External_Assets.vTools.vFavorites.VUtils;
+using static External_Assets.vTools.vFavorites.VGUI;
 
 
-namespace VFavorites
+namespace External_Assets.vTools.vFavorites
 {
     public static class VFavorites
     {

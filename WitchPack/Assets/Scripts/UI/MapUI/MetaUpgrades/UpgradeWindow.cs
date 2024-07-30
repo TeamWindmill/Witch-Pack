@@ -1,83 +1,92 @@
 using System.Collections.Generic;
-using TMPro;
+using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs;
+using Gameplay.Units.Shaman;
+using Managers;
+using UI.MapUI.MetaUpgrades.ShamanSelectionPanel;
+using UI.MapUI.MetaUpgrades.UpgradePanel;
+using UI.MapUI.MetaUpgrades.UpgradePanel.Configs;
+using UI.UISystem;
 using UnityEngine;
 
-public class UpgradeWindow : UIWindowManager
+namespace UI.MapUI.MetaUpgrades
 {
-    [SerializeField] private ShamanUpgradePanel _shamanUpgradePanel;
-    [SerializeField] private ShamanDetailsPanel _shamanDetailsPanel;
-    [SerializeField] private AbilityDetailsPanel _abilityDetailsPanel;
-    [SerializeField] private UpgradesPartyUIPanel _upgradesPartyUIPanel;
-    [SerializeField] private List<ShamanSaveData> _shamanRoster;
-
-    public ShamanSaveData SelectedShaman { get; private set; }
-    public override void Show()
+    public class UpgradeWindow : UIWindowManager
     {
-        _shamanRoster = GameManager.SaveData.ShamanRoster;
-        _upgradesPartyUIPanel.Init();
-        _shamanUpgradePanel.OnStatUpgrade += _shamanDetailsPanel.AddUpgradeToStats;
-        base.Show();
-        SelectShaman(_shamanRoster[0]);
-    }
+        [SerializeField] private ShamanUpgradePanel _shamanUpgradePanel;
+        [SerializeField] private ShamanDetailsPanel.ShamanDetailsPanel _shamanDetailsPanel;
+        [SerializeField] private AbilityDetailsPanel.AbilityDetailsPanel _abilityDetailsPanel;
+        [SerializeField] private UpgradesPartyUIPanel _upgradesPartyUIPanel;
+        [SerializeField] private List<ShamanSaveData> _shamanRoster;
 
-    public void SelectShaman(ShamanSaveData shamanSaveData)
-    {
-        SelectedShaman = shamanSaveData;
-        _upgradesPartyUIPanel.SelectShamanIcon(shamanSaveData);
-        _shamanUpgradePanel.Init(shamanSaveData);
-        _shamanDetailsPanel.Init(shamanSaveData);
-        SelectAbility(0,SelectedShaman.Config.RootAbilities[0]);
-        Refresh();
-    }
-
-    #region Select Ability
-
-    public void SelectAbility(int abilityPanelIndex,AbilitySO abilitySo)
-    {
-        _abilityDetailsPanel.Init(SelectedShaman,abilitySo,null);
-        _shamanUpgradePanel.SelectAbility(abilityPanelIndex,abilitySo);
-        Refresh();
-    }
-    public void SelectAbility(int abilityPanelIndex,AbilitySO abilitySo, AbilityUpgradeConfig upgradeConfig)
-    {
-        _abilityDetailsPanel.Init(SelectedShaman,abilitySo,upgradeConfig?.AbilitiesToUpgrade);
-        _shamanUpgradePanel.SelectAbility(abilityPanelIndex,abilitySo);
-        foreach (var statUpgrade in upgradeConfig.Stats)
+        public ShamanSaveData SelectedShaman { get; private set; }
+        public override void Show()
         {
-            _abilityDetailsPanel.ShowStatBonus(statUpgrade.StatType,statUpgrade.Factor,statUpgrade.StatValue);
+            _shamanRoster = GameManager.SaveData.ShamanRoster;
+            _upgradesPartyUIPanel.Init();
+            _shamanUpgradePanel.OnStatUpgrade += _shamanDetailsPanel.AddUpgradeToStats;
+            base.Show();
+            SelectShaman(_shamanRoster[0]);
         }
-        Refresh();
-    }
 
-    public void SelectAbility(int abilityPanelIndex, AbilitySO abilitySo, StatMetaUpgradeConfig upgradeConfig)
-    {
-        foreach (var statUpgrade in upgradeConfig.Stats)
+        public void SelectShaman(ShamanSaveData shamanSaveData)
         {
-            _shamanDetailsPanel.ShowStatBonus(statUpgrade.StatType,statUpgrade.Factor,statUpgrade.StatValue);
+            SelectedShaman = shamanSaveData;
+            _upgradesPartyUIPanel.SelectShamanIcon(shamanSaveData);
+            _shamanUpgradePanel.Init(shamanSaveData);
+            _shamanDetailsPanel.Init(shamanSaveData);
+            SelectAbility(0,SelectedShaman.Config.RootAbilities[0]);
+            Refresh();
         }
-        _abilityDetailsPanel.Init(SelectedShaman,abilitySo,upgradeConfig?.AbilitiesToUpgrade);
-        _shamanUpgradePanel.SelectAbility(abilityPanelIndex,abilitySo);
-        Refresh();
-    }
 
-    #endregion
-    public void GainExp()
-    {
-        SelectedShaman.ShamanExperienceHandler.ManualExpGain();
-        Refresh();
-    }
+        #region Select Ability
 
-    public void ResetSkillPoints()
-    {
-        SelectedShaman.ShamanExperienceHandler.ResetSkillPoints();
-        SelectedShaman.AbilityUpgrades = new();
-        SelectedShaman.StatUpgrades = new();
-        Refresh();
-    }
+        public void SelectAbility(int abilityPanelIndex,AbilitySO abilitySo)
+        {
+            _abilityDetailsPanel.Init(SelectedShaman,abilitySo,null);
+            _shamanUpgradePanel.SelectAbility(abilityPanelIndex,abilitySo);
+            Refresh();
+        }
+        public void SelectAbility(int abilityPanelIndex,AbilitySO abilitySo, AbilityUpgradeConfig upgradeConfig)
+        {
+            _abilityDetailsPanel.Init(SelectedShaman,abilitySo,upgradeConfig?.AbilitiesToUpgrade);
+            _shamanUpgradePanel.SelectAbility(abilityPanelIndex,abilitySo);
+            foreach (var statUpgrade in upgradeConfig.Stats)
+            {
+                _abilityDetailsPanel.ShowStatBonus(statUpgrade.StatType,statUpgrade.Factor,statUpgrade.StatValue);
+            }
+            Refresh();
+        }
 
-    public override void Hide()
-    {
-        _shamanUpgradePanel.OnStatUpgrade -= _shamanDetailsPanel.AddUpgradeToStats;
-        base.Hide();
+        public void SelectAbility(int abilityPanelIndex, AbilitySO abilitySo, StatMetaUpgradeConfig upgradeConfig)
+        {
+            foreach (var statUpgrade in upgradeConfig.Stats)
+            {
+                _shamanDetailsPanel.ShowStatBonus(statUpgrade.StatType,statUpgrade.Factor,statUpgrade.StatValue);
+            }
+            _abilityDetailsPanel.Init(SelectedShaman,abilitySo,upgradeConfig?.AbilitiesToUpgrade);
+            _shamanUpgradePanel.SelectAbility(abilityPanelIndex,abilitySo);
+            Refresh();
+        }
+
+        #endregion
+        public void GainExp()
+        {
+            SelectedShaman.ShamanExperienceHandler.ManualExpGain();
+            Refresh();
+        }
+
+        public void ResetSkillPoints()
+        {
+            SelectedShaman.ShamanExperienceHandler.ResetSkillPoints();
+            SelectedShaman.AbilityUpgrades = new();
+            SelectedShaman.StatUpgrades = new();
+            Refresh();
+        }
+
+        public override void Hide()
+        {
+            _shamanUpgradePanel.OnStatUpgrade -= _shamanDetailsPanel.AddUpgradeToStats;
+            base.Hide();
+        }
     }
 }

@@ -1,36 +1,42 @@
 using System.Collections.Generic;
-using UnityEngine;
+using Gameplay.Units.Abilities.AbilitiesMono.General_Abilities;
+using Gameplay.Units.Abilities.AbilitySystem.BaseAbilities;
+using Gameplay.Units.Damage_System;
+using Tools.Time;
 
-public class AoeFire : AoeMono
+namespace Gameplay.Units.Abilities.Enemy_Abilities.Blaster
 {
+    public class AoeFire : AoeMono
+    {
     
-    private Fireball _fireball;
-    private Dictionary<Shaman,ITimer> _activeTimers = new();
-    public override void Init(BaseUnit owner, CastingAbility ability, float lastingTime,float aoeRange)
-    {
-        _fireball = ability as Fireball;
-        base.Init(owner, ability, lastingTime,aoeRange);
-    }
+        private Fireball _fireball;
+        private Dictionary<Shaman.Shaman,ITimer> _activeTimers = new();
+        public override void Init(BaseUnit owner, CastingAbility ability, float lastingTime,float aoeRange)
+        {
+            _fireball = ability as Fireball;
+            base.Init(owner, ability, lastingTime,aoeRange);
+        }
 
-    protected override void OnShamanEnter(Shaman shaman)
-    {
-        if (!_activeTimers.ContainsKey(shaman))
+        protected override void OnShamanEnter(Shaman.Shaman shaman)
         {
-            var timer = TimerManager.AddTimer(_fireball.Config.TickTime, shaman, OnFireTick, true, _fireball.Config.TickAmount);
-            _activeTimers.Add(shaman,timer);
+            if (!_activeTimers.ContainsKey(shaman))
+            {
+                var timer = TimerManager.AddTimer(_fireball.Config.TickTime, shaman, OnFireTick, true, _fireball.Config.TickAmount);
+                _activeTimers.Add(shaman,timer);
+            }
         }
-    }
-    protected override void OnShamanExit(Shaman shaman)
-    {
-        if (_activeTimers.TryGetValue(shaman,out var timer))
+        protected override void OnShamanExit(Shaman.Shaman shaman)
         {
-            timer.RemoveThisTimer();
-            _activeTimers.Remove(shaman);
+            if (_activeTimers.TryGetValue(shaman,out var timer))
+            {
+                timer.RemoveThisTimer();
+                _activeTimers.Remove(shaman);
+            }
         }
-    }
-    private void OnFireTick(Shaman shaman)
-    {
-        var damage = new DamageHandler(_fireball.Config.BurnDamage);
-        shaman.Damageable.TakeDamage(_owner.DamageDealer,damage,_fireball,false);
+        private void OnFireTick(Shaman.Shaman shaman)
+        {
+            var damage = new DamageHandler(_fireball.Config.BurnDamage);
+            shaman.Damageable.TakeDamage(_owner.DamageDealer,damage,_fireball,false);
+        }
     }
 }

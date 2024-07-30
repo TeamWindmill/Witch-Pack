@@ -1,4 +1,7 @@
-public interface ITargetable
+namespace Gameplay.Targeter
 {
+    public interface ITargetable
+    {
     
+    }
 }

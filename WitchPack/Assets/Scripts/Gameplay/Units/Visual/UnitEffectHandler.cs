@@ -1,155 +1,161 @@
 using System;
 using System.Collections.Generic;
+using Configs;
+using Gameplay.Units.Damage_System;
+using Gameplay.Units.Stats;
 using UnityEngine;
 
-public class UnitEffectHandler : MonoBehaviour
+namespace Gameplay.Units.Visual
 {
-    [SerializeField] private EffectVisual<StatusEffectVisual>[] _statusEffectVisuals;
-    [SerializeField] private EffectVisual<CastingHandsEffectType>[] _castingHandsVisuals;
-
-    public virtual void Init(BaseUnitConfig config)
+    public class UnitEffectHandler : MonoBehaviour
     {
-        DisableAllEffects();
-    }
+        [SerializeField] private EffectVisual<StatusEffectVisual>[] _statusEffectVisuals;
+        [SerializeField] private EffectVisual<CastingHandsEffectType>[] _castingHandsVisuals;
+
+        public virtual void Init(BaseUnitConfig config)
+        {
+            DisableAllEffects();
+        }
     
-    public virtual void PlayEffect(Effectable effectable, Affector affector, StatusEffect statusEffect)
-    {
-        foreach (var effectVisual in _statusEffectVisuals)
+        public virtual void PlayEffect(Effectable effectable, Affector affector, StatusEffect statusEffect)
         {
-            if (effectVisual.StatusEffectType == statusEffect.StatusEffectVisual)
+            foreach (var effectVisual in _statusEffectVisuals)
             {
-                if (effectVisual.PlayAllEffects)
+                if (effectVisual.StatusEffectType == statusEffect.StatusEffectVisual)
                 {
-                    foreach (var go in effectVisual.visualGameObjects)
+                    if (effectVisual.PlayAllEffects)
                     {
-                        go.SetActive(true);
+                        foreach (var go in effectVisual.visualGameObjects)
+                        {
+                            go.SetActive(true);
+                        }
                     }
-                }
-                else
-                {
-                    effectVisual.GetGameObject().SetActive(true);                            
-                }
-                return;
-            }
-        }
-        
-    }
-    public virtual void PlayEffect(StatusEffectVisual statusEffectVisual)
-    {
-        foreach (var effectVisual in _statusEffectVisuals)
-        {
-            if (effectVisual.StatusEffectType == statusEffectVisual)
-            {
-                if (effectVisual.PlayAllEffects)
-                {
-                    foreach (var go in effectVisual.visualGameObjects)
+                    else
                     {
-                        go.SetActive(true);
+                        effectVisual.GetGameObject().SetActive(true);                            
                     }
+                    return;
                 }
-                else
+            }
+        
+        }
+        public virtual void PlayEffect(StatusEffectVisual statusEffectVisual)
+        {
+            foreach (var effectVisual in _statusEffectVisuals)
+            {
+                if (effectVisual.StatusEffectType == statusEffectVisual)
                 {
-                    effectVisual.GetGameObject().SetActive(true);                            
+                    if (effectVisual.PlayAllEffects)
+                    {
+                        foreach (var go in effectVisual.visualGameObjects)
+                        {
+                            go.SetActive(true);
+                        }
+                    }
+                    else
+                    {
+                        effectVisual.GetGameObject().SetActive(true);                            
+                    }
+                    return;
                 }
-                return;
+            }
+        
+        }
+        public virtual void PlayEffect(CastingHandsEffectType effectType)
+        {
+            foreach (var effectVisual in _castingHandsVisuals)
+            {
+                if (effectVisual.StatusEffectType == effectType)
+                {                
+                    effectVisual.GetGameObject().SetActive(true);                            
+                    return;
+                }
+            }
+        
+        }
+        public virtual void DisableEffect(StatusEffect statusEffect)
+        {
+            foreach (var effectVisual in _statusEffectVisuals)
+            {
+                if (effectVisual.StatusEffectType == statusEffect.StatusEffectVisual)
+                {
+                    effectVisual.SetOffAllVisualGameObjects();
+                    return;
+                }
             }
         }
-        
-    }
-    public virtual void PlayEffect(CastingHandsEffectType effectType)
-    {
-        foreach (var effectVisual in _castingHandsVisuals)
+        public virtual void DisableEffect(StatusEffectVisual statusEffectVisual)
         {
-            if (effectVisual.StatusEffectType == effectType)
-            {                
-                effectVisual.GetGameObject().SetActive(true);                            
-                return;
+            foreach (var effectVisual in _statusEffectVisuals)
+            {
+                if (effectVisual.StatusEffectType == statusEffectVisual)
+                {
+                    effectVisual.SetOffAllVisualGameObjects();
+                    return;
+                }
             }
         }
-        
-    }
-    public virtual void DisableEffect(StatusEffect statusEffect)
-    {
-        foreach (var effectVisual in _statusEffectVisuals)
+        public virtual void DisableEffect(CastingHandsEffectType effectType)
         {
-            if (effectVisual.StatusEffectType == statusEffect.StatusEffectVisual)
+            foreach (var effectVisual in _castingHandsVisuals)
+            {
+                if (effectVisual.StatusEffectType == effectType)
+                {
+                    effectVisual.SetOffAllVisualGameObjects();
+                    return;
+                }
+            }
+        
+        }
+
+        public void DisableAllEffects()
+        {
+            foreach (var effectVisual in _statusEffectVisuals)
             {
                 effectVisual.SetOffAllVisualGameObjects();
-                return;
             }
-        }
-    }
-    public virtual void DisableEffect(StatusEffectVisual statusEffectVisual)
-    {
-        foreach (var effectVisual in _statusEffectVisuals)
-        {
-            if (effectVisual.StatusEffectType == statusEffectVisual)
+            foreach (var effectVisual in _castingHandsVisuals)
             {
                 effectVisual.SetOffAllVisualGameObjects();
-                return;
             }
         }
     }
-    public virtual void DisableEffect(CastingHandsEffectType effectType)
+
+    [Serializable]
+    public struct EffectVisual<T> where T : Enum
     {
-        foreach (var effectVisual in _castingHandsVisuals)
+        public T StatusEffectType;
+        [SerializeField] public bool PlayAllEffects;
+        [SerializeField] public List<GameObject> visualGameObjects;
+
+        public GameObject GetGameObject()
         {
-            if (effectVisual.StatusEffectType == effectType)
+            int index = 0;
+            if(visualGameObjects.Count > 1)
             {
-                effectVisual.SetOffAllVisualGameObjects();
-                return;
+                index = new System.Random().Next(0, visualGameObjects.Count); // Gets a random go from the list if there's more than one option
+            }
+
+            return visualGameObjects[index];
+        }
+
+        public void SetOffAllVisualGameObjects()
+        {
+            foreach (GameObject go in visualGameObjects)
+            {
+                go.SetActive(false);
             }
         }
-        
     }
 
-    public void DisableAllEffects()
+    public enum CastingHandsEffectType
     {
-        foreach (var effectVisual in _statusEffectVisuals)
-        {
-            effectVisual.SetOffAllVisualGameObjects();
-        }
-        foreach (var effectVisual in _castingHandsVisuals)
-        {
-            effectVisual.SetOffAllVisualGameObjects();
-        }
+        Orange,
+        YellowWhite,
+        Blue,
+        Red,
+        Turquoise,
+        Green,
+        GreenYellow,
     }
-}
-
-[Serializable]
-public struct EffectVisual<T> where T : Enum
-{
-    public T StatusEffectType;
-    [SerializeField] public bool PlayAllEffects;
-    [SerializeField] public List<GameObject> visualGameObjects;
-
-    public GameObject GetGameObject()
-    {
-        int index = 0;
-        if(visualGameObjects.Count > 1)
-        {
-            index = new System.Random().Next(0, visualGameObjects.Count); // Gets a random go from the list if there's more than one option
-        }
-
-        return visualGameObjects[index];
-    }
-
-    public void SetOffAllVisualGameObjects()
-    {
-        foreach (GameObject go in visualGameObjects)
-        {
-            go.SetActive(false);
-        }
-    }
-}
-
-public enum CastingHandsEffectType
-{
-    Orange,
-    YellowWhite,
-    Blue,
-    Red,
-    Turquoise,
-    Green,
-    GreenYellow,
 }

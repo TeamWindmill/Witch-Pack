@@ -1,38 +1,44 @@
-using UnityEngine;
+using Gameplay.Units.Abilities.AbilitySystem.BaseAbilities;
+using Gameplay.Units.Damage_System;
+using Sound;
+using Tools.Time;
 
-public class HealingWeedsMono : RootingVinesMono
+namespace Gameplay.Units.Abilities.Shaman_Abilities.NadiaAbilities.Rooting_Vines
 {
-    private HealingWeeds _healingWeedsAbility;
-    public override void Init(BaseUnit owner, CastingAbility ability, float lastingTime, float aoeRange)
+    public class HealingWeedsMono : RootingVinesMono
     {
-        base.Init(owner, ability, lastingTime, aoeRange);
-        _healingWeedsAbility = ability as HealingWeeds;
-    }
-
-    protected override void OnRoot(Enemy enemy)
-    {
-        base.OnRoot(enemy);
-        enemy.Damageable.OnDeath += HerbalWeeds;
-        TimerData<Enemy> timerData = new TimerData<Enemy>(tickTime: 1, data: enemy, tickAmount: _healingWeedsAbility.StatusEffects[0].Duration.Value, usingGameTime: true);
-        Timer<Enemy> timer = new Timer<Enemy>(timerData);
-        timer.OnTimerEnd += RemoveHerbalWeeds;
-        TimerManager.AddTimer(timer);
-        enemy.UnitTimers.Add(timer);
-    }
-
-    private void RemoveHerbalWeeds(Timer<Enemy> timer)
-    {
-        timer.Data.Damageable.OnDeath -= HerbalWeeds;
-    }
-
-    private void HerbalWeeds(Damageable damageable, DamageDealer damageDealer)
-    {
-        damageDealer.Owner.Effectable.AddEffects(_healingWeedsAbility.HealStatusEffects, damageable.Owner.Affector);
-        if (damageDealer.Owner is Shaman shaman)
+        private HealingWeeds _healingWeedsAbility;
+        public override void Init(BaseUnit owner, CastingAbility ability, float lastingTime, float aoeRange)
         {
-            shaman.ShamanVisualHandler.HealingWeedsEffect.Play();
+            base.Init(owner, ability, lastingTime, aoeRange);
+            _healingWeedsAbility = ability as HealingWeeds;
         }
-        SoundManager.PlayAudioClip(SoundEffectType.HealingWeeds);
-    }
 
+        protected override void OnRoot(Enemy.Enemy enemy)
+        {
+            base.OnRoot(enemy);
+            enemy.Damageable.OnDeath += HerbalWeeds;
+            TimerData<Enemy.Enemy> timerData = new TimerData<Enemy.Enemy>(tickTime: 1, data: enemy, tickAmount: _healingWeedsAbility.StatusEffects[0].Duration.Value, usingGameTime: true);
+            Timer<Enemy.Enemy> timer = new Timer<Enemy.Enemy>(timerData);
+            timer.OnTimerEnd += RemoveHerbalWeeds;
+            TimerManager.AddTimer(timer);
+            enemy.UnitTimers.Add(timer);
+        }
+
+        private void RemoveHerbalWeeds(Timer<Enemy.Enemy> timer)
+        {
+            timer.Data.Damageable.OnDeath -= HerbalWeeds;
+        }
+
+        private void HerbalWeeds(Damageable damageable, DamageDealer damageDealer)
+        {
+            damageDealer.Owner.Effectable.AddEffects(_healingWeedsAbility.HealStatusEffects, damageable.Owner.Affector);
+            if (damageDealer.Owner is Shaman.Shaman shaman)
+            {
+                shaman.ShamanVisualHandler.HealingWeedsEffect.Play();
+            }
+            SoundManager.PlayAudioClip(SoundEffectType.HealingWeeds);
+        }
+
+    }
 }

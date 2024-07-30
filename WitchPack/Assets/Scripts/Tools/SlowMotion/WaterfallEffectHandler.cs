@@ -3,28 +3,31 @@ using DG.Tweening;
 using Tools.Lerp;
 using UnityEngine;
 
-[Serializable]
-public class WaterfallEffectHandler 
+namespace Tools.SlowMotion
 {
-    private Animator _waterfallAnimator;
-    [SerializeField] private LerpConfig<float> LerpConfig;
-    public void Init(Animator waterfallAnimator)
+    [Serializable]
+    public class WaterfallEffectHandler 
     {
-        _waterfallAnimator = waterfallAnimator;
+        private Animator _waterfallAnimator;
+        [SerializeField] private LerpConfig<float> LerpConfig;
+        public void Init(Animator waterfallAnimator)
+        {
+            _waterfallAnimator = waterfallAnimator;
+        }
+
+        public void StartTransition()
+        {
+            DOTween.To(() => _waterfallAnimator.speed, x => _waterfallAnimator.speed = x, LerpConfig.EndValue, LerpConfig.TransitionTime);
+        }
+
+        public void EndTransition()
+        {
+            DOTween.To(() => _waterfallAnimator.speed, x => _waterfallAnimator.speed = x, LerpConfig.StartValue, LerpConfig.TransitionTime);
+        }
     }
 
-    public void StartTransition()
+    public enum AnimatorSlowMotionEffectType
     {
-        DOTween.To(() => _waterfallAnimator.speed, x => _waterfallAnimator.speed = x, LerpConfig.EndValue, LerpConfig.TransitionTime);
+        speed,
     }
-
-    public void EndTransition()
-    {
-        DOTween.To(() => _waterfallAnimator.speed, x => _waterfallAnimator.speed = x, LerpConfig.StartValue, LerpConfig.TransitionTime);
-    }
-}
-
-public enum AnimatorSlowMotionEffectType
-{
-    speed,
 }

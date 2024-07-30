@@ -1,12 +1,16 @@
+using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ability", menuName = "Ability/Nadia/RootingVines/RootingVines")]
-
-public class RootingVinesSO : OffensiveAbilitySO
+namespace Gameplay.Units.Abilities.Shaman_Abilities.NadiaAbilities.Rooting_Vines.Configs
 {
-    [SerializeField] private float lastingTime;
-    [SerializeField] private float _aoeScale = 1;
+    [CreateAssetMenu(fileName = "ability", menuName = "Ability/Nadia/RootingVines/RootingVines")]
 
-    public float LastingTime => lastingTime;
-    public float AoeScale => _aoeScale;
+    public class RootingVinesSO : OffensiveAbilitySO
+    {
+        [SerializeField] private float lastingTime;
+        [SerializeField] private float _aoeScale = 1;
+
+        public float LastingTime => lastingTime;
+        public float AoeScale => _aoeScale;
+    }
 }

@@ -1,72 +1,75 @@
 ﻿using System.Collections.Generic;
+using UI.UISystem;
 using UnityEngine;
 
-
-public class TimeControlUIHandler : UIElement
+namespace UI.GameUI.TimeUI
 {
-    public static TimeControlUIHandler Instance;
-    public TimeButtonsUI CurrentTimeButton { get; private set; }
-
-    [SerializeField] private List<TimeButtonsUI> _timeButtons;
-
-    protected override void Awake()
+    public class TimeControlUIHandler : UIElement
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(Instance);
-        }
-        else Instance = this;
-        base.Awake();
-    }
+        public static TimeControlUIHandler Instance;
+        public TimeButtonsUI CurrentTimeButton { get; private set; }
 
-    public void ChangeTimeButton(TimeButtons button)
-    {
-        foreach (var timeButton in _timeButtons)
+        [SerializeField] private List<TimeButtonsUI> _timeButtons;
+
+        protected override void Awake()
         {
-            if (timeButton.ButtonType == button)
+            if (Instance != null && Instance != this)
             {
-                timeButton.SetState(true);
+                Destroy(Instance);
+            }
+            else Instance = this;
+            base.Awake();
+        }
+
+        public void ChangeTimeButton(TimeButtons button)
+        {
+            foreach (var timeButton in _timeButtons)
+            {
+                if (timeButton.ButtonType == button)
+                {
+                    timeButton.SetState(true);
+                }
             }
         }
-    }
 
-    public override void Show()
-    {
-        foreach (var timeButtonsUI in _timeButtons)
+        public override void Show()
         {
-            timeButtonsUI.OnTurnOn += OnButtonPressed;
-            if (timeButtonsUI.IsActive)
+            foreach (var timeButtonsUI in _timeButtons)
+            {
+                timeButtonsUI.OnTurnOn += OnButtonPressed;
+                if (timeButtonsUI.IsActive)
+                    CurrentTimeButton = timeButtonsUI;
+            }
+
+            base.Show();
+        }
+
+
+        public override void Hide()
+        {
+            foreach (var timeButtonsUI in _timeButtons)
+                timeButtonsUI.OnTurnOn -= OnButtonPressed;
+            base.Hide();
+        }
+
+        private void OnButtonPressed(TimeButtonsUI timeButtonsUI)
+        {
+            if (CurrentTimeButton == null)
+            {
                 CurrentTimeButton = timeButtonsUI;
-        }
+                return;
+            }
 
-        base.Show();
-    }
-
-
-    public override void Hide()
-    {
-        foreach (var timeButtonsUI in _timeButtons)
-            timeButtonsUI.OnTurnOn -= OnButtonPressed;
-        base.Hide();
-    }
-
-    private void OnButtonPressed(TimeButtonsUI timeButtonsUI)
-    {
-        if (CurrentTimeButton == null)
-        {
+            CurrentTimeButton.SetState(false);
             CurrentTimeButton = timeButtonsUI;
-            return;
         }
-
-        CurrentTimeButton.SetState(false);
-        CurrentTimeButton = timeButtonsUI;
     }
-}
 
-public enum TimeButtons
-{
-    Pause,
-    Play,
-    X2,
-    X3,
+    public enum TimeButtons
+    {
+        Pause,
+        Play,
+        X2,
+        X3,
+    }
 }

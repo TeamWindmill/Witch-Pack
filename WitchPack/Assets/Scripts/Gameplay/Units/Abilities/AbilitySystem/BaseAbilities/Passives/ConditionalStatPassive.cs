@@ -1,34 +1,41 @@
-public class ConditionalStatPassive : StatPassive
+using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs.Passives;
+using Gameplay.Units.Damage_System;
+using Gameplay.Units.Stats;
+
+namespace Gameplay.Units.Abilities.AbilitySystem.BaseAbilities.Passives
 {
-    private ConditionalStatPassiveSO _config;
-    public ConditionalStatPassive(ConditionalStatPassiveSO config, BaseUnit owner) : base(config, owner)
+    public class ConditionalStatPassive : StatPassive
     {
-        _config = config;
-    }
-    
-    public override void SubscribePassive()
-    {
-        Owner.Effectable.OnAffected += TryAddStat;
-        Owner.Effectable.OnEffectRemoved += TryRemoveStat;
-    }
-    
-    private void TryAddStat(Effectable arg1, Affector arg2, StatusEffect statusEffect)
-    {
-        if (statusEffect.StatusEffectVisual == _config.ConditionalStatusEffect.StatusEffectVisual)
+        private ConditionalStatPassiveSO _config;
+        public ConditionalStatPassive(ConditionalStatPassiveSO config, BaseUnit owner) : base(config, owner)
         {
-            foreach (var statIncrease in PassiveAbilityStats)
+            _config = config;
+        }
+    
+        public override void SubscribePassive()
+        {
+            Owner.Effectable.OnAffected += TryAddStat;
+            Owner.Effectable.OnEffectRemoved += TryRemoveStat;
+        }
+    
+        private void TryAddStat(Effectable arg1, Affector arg2, StatusEffect statusEffect)
+        {
+            if (statusEffect.StatusEffectVisual == _config.ConditionalStatusEffect.StatusEffectVisual)
             {
-                Owner.Stats[statIncrease.StatType].AddModifier(statIncrease.Value);
+                foreach (var statIncrease in PassiveAbilityStats)
+                {
+                    Owner.Stats[statIncrease.StatType].AddModifier(statIncrease.Value);
+                }
             }
         }
-    }
-    private void TryRemoveStat(StatusEffect statusEffect)
-    {
-        if (statusEffect.StatusEffectVisual == _config.ConditionalStatusEffect.StatusEffectVisual)
+        private void TryRemoveStat(StatusEffect statusEffect)
         {
-            foreach (var statIncrease in PassiveAbilityStats)
+            if (statusEffect.StatusEffectVisual == _config.ConditionalStatusEffect.StatusEffectVisual)
             {
-                Owner.Stats[statIncrease.StatType].RemoveModifier(statIncrease.Value);
+                foreach (var statIncrease in PassiveAbilityStats)
+                {
+                    Owner.Stats[statIncrease.StatType].RemoveModifier(statIncrease.Value);
+                }
             }
         }
     }

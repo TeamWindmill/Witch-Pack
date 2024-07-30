@@ -1,15 +1,15 @@
+using External_Assets.NavMeshPlus_master.NavMeshComponents.Scripts;
+using UnityEditor;
+using UnityEditor.AI;
 using UnityEditor.IMGUI.Controls;
 using UnityEditorInternal;
 using UnityEngine;
-using UnityEditor;
-using UnityEditor.AI;
-using NavMeshPlus.Components;
 
-namespace NavMeshPlus.Editors.Components
+namespace External_Assets.NavMeshPlus_master.NavMeshComponents.Editor
 {
     [CanEditMultipleObjects]
     [CustomEditor(typeof(NavMeshModifierVolume))]
-    class NavMeshModifierVolumeEditor : Editor
+    class NavMeshModifierVolumeEditor : UnityEditor.Editor
     {
         SerializedProperty m_AffectedAgents;
         SerializedProperty m_Area;

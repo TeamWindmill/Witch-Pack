@@ -1,9 +1,10 @@
-#if UNITY_EDITOR
-namespace Sirenix.OdinInspector.Demos.RPGEditor
-{
-    using System;
-    using UnityEngine;
+using System;
+using Sirenix.OdinInspector;
+using UnityEngine;
 
+#if UNITY_EDITOR
+namespace Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Misc
+{
     // 
     // These StatValues are used by StatLists, and are setup so the StatType cannot be changed after it has been added to the list.
     // This is done by giving the Type a HideInInspector attribute, and we then rename the Value label to be the name of the type,

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace DamageNumbersPro.Demo
+namespace External_Assets.DamageNumbersPro.Demo.Scripts
 {
     public class DNP_CubeSpawner : MonoBehaviour
     {

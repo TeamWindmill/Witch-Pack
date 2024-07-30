@@ -1,8 +1,12 @@
+using Gameplay.Units.Stats;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ability", menuName = "Ability/Nadia/Heal/BlessingOfSwiftness")]
-public class BlessingOfSwiftnessSO : HealSO
+namespace Gameplay.Units.Abilities.Shaman_Abilities.NadiaAbilities.Heal.Configs
 {
-    [SerializeField] private StatusEffectConfig attackSpeedBoost;
-    public StatusEffectConfig AttackSpeedBoost => attackSpeedBoost;
+    [CreateAssetMenu(fileName = "ability", menuName = "Ability/Nadia/Heal/BlessingOfSwiftness")]
+    public class BlessingOfSwiftnessSO : HealSO
+    {
+        [SerializeField] private StatusEffectConfig attackSpeedBoost;
+        public StatusEffectConfig AttackSpeedBoost => attackSpeedBoost;
+    }
 }

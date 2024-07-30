@@ -1,12 +1,13 @@
-#if UNITY_EDITOR
-namespace Sirenix.OdinInspector.Demos.RPGEditor
-{
-    using Sirenix.OdinInspector.Editor;
-    using Sirenix.Utilities;
-    using Sirenix.Utilities.Editor;
-    using UnityEditor;
-    using UnityEngine;
+using Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Items;
+using Sirenix.OdinInspector.Editor;
+using Sirenix.Utilities;
+using Sirenix.Utilities.Editor;
+using UnityEditor;
+using UnityEngine;
 
+#if UNITY_EDITOR
+namespace Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Editor
+{
     //
     // All items are scriptable objects, but we don't want to draw them with the boring scriptable object icon.
     // Here we create a custom drawer for all Item types, that renders a preview-field using the item icon followed

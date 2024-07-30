@@ -1,76 +1,80 @@
 using System;
 using System.Collections;
+using Tools.Helpers;
 using UnityEngine;
 
-public class LerpValuesHandler : MonoSingleton<LerpValuesHandler>
+namespace Tools.Lerp
 {
-    private static AnimationCurve _defaultCurve = AnimationCurve.Linear(0, 0, 1, 1);
-    [SerializeField] private LerpValueConfig _defaultConfig;
+    public class LerpValuesHandler : MonoSingleton<LerpValuesHandler>
+    {
+        private static AnimationCurve _defaultCurve = AnimationCurve.Linear(0, 0, 1, 1);
+        [SerializeField] private LerpValueConfig _defaultConfig;
 
-    // public static TweenerCore<float,float,FloatOptions> LerpValues(ILerpable<float> lerpable,float targetValue,float time)
-    // {
-    //     //return DOTween.To(() => lerpable.CurrentValue,x=> lerpable.SetValue(x) = x,targetValue,time);
-    // }
-    public void StartLerpByType<T>(LerpValueConfig config, T type, float currentValue, float newValue, Action<T, float> setter, Action<float> onEnd = null)
-        where T : Enum
-    {
-        StartCoroutine(LerpBetweenValues<T>(config, type, currentValue, newValue, setter,onEnd));
-    }
-    public void StartLerpByType<T>(T type, float currentValue, float newValue, Action<T, float> setter, Action<float> onEnd = null) where T : Enum
-    {
-        StartCoroutine(LerpBetweenValues<T>(_defaultConfig, type, currentValue, newValue, setter,onEnd));
-    }
-    public void StartLerp(LerpValueConfig config, float currentValue, float newValue, Action<float> setter, Action<float> onEnd = null)
-    {
-        StartCoroutine(LerpBetweenValues(config, currentValue, newValue, setter,onEnd));
-    }
-    public void StartLerp(float currentValue, float newValue, Action<float> setter, Action<float> onEnd = null)
-    {
-        StartCoroutine(LerpBetweenValues(_defaultConfig, currentValue, newValue, setter,onEnd));
-    }
+        // public static TweenerCore<float,float,FloatOptions> LerpValues(ILerpable<float> lerpable,float targetValue,float time)
+        // {
+        //     //return DOTween.To(() => lerpable.CurrentValue,x=> lerpable.SetValue(x) = x,targetValue,time);
+        // }
+        public void StartLerpByType<T>(LerpValueConfig config, T type, float currentValue, float newValue, Action<T, float> setter, Action<float> onEnd = null)
+            where T : Enum
+        {
+            StartCoroutine(LerpBetweenValues<T>(config, type, currentValue, newValue, setter,onEnd));
+        }
+        public void StartLerpByType<T>(T type, float currentValue, float newValue, Action<T, float> setter, Action<float> onEnd = null) where T : Enum
+        {
+            StartCoroutine(LerpBetweenValues<T>(_defaultConfig, type, currentValue, newValue, setter,onEnd));
+        }
+        public void StartLerp(LerpValueConfig config, float currentValue, float newValue, Action<float> setter, Action<float> onEnd = null)
+        {
+            StartCoroutine(LerpBetweenValues(config, currentValue, newValue, setter,onEnd));
+        }
+        public void StartLerp(float currentValue, float newValue, Action<float> setter, Action<float> onEnd = null)
+        {
+            StartCoroutine(LerpBetweenValues(_defaultConfig, currentValue, newValue, setter,onEnd));
+        }
 
     
-    private IEnumerator LerpBetweenValues(LerpValueConfig config, float currentValue, float newValue,
-        Action<float> setter,Action<float> onEnd)
-    {
-        float transitionTimeCount = 0;
-        var animationCurve = config.TransitionCurve ?? _defaultCurve;
-        while (transitionTimeCount < config.TransitionTime)
+        private IEnumerator LerpBetweenValues(LerpValueConfig config, float currentValue, float newValue,
+            Action<float> setter,Action<float> onEnd)
         {
-            transitionTimeCount += Time.deltaTime;
+            float transitionTimeCount = 0;
+            var animationCurve = config.TransitionCurve ?? _defaultCurve;
+            while (transitionTimeCount < config.TransitionTime)
+            {
+                transitionTimeCount += UnityEngine.Time.deltaTime;
 
-            float evaluateValue = animationCurve.Evaluate(transitionTimeCount / config.TransitionTime);
+                float evaluateValue = animationCurve.Evaluate(transitionTimeCount / config.TransitionTime);
 
-            float value = Mathf.Lerp(currentValue, newValue, evaluateValue);
-            setter.Invoke(value);
+                float value = Mathf.Lerp(currentValue, newValue, evaluateValue);
+                setter.Invoke(value);
 
-            yield return null;
+                yield return null;
+            }
+            onEnd?.Invoke(newValue);
         }
-        onEnd?.Invoke(newValue);
-    }
-    private IEnumerator LerpBetweenValues<T>(LerpValueConfig config, T type, float currentValue, float newValue,
-        Action<T, float> setter,Action<float> onEnd) where T : Enum
-    {
-        float transitionTimeCount = 0;
-        var animationCurve = config.TransitionCurve ?? _defaultCurve;
-        while (transitionTimeCount < config.TransitionTime)
+        private IEnumerator LerpBetweenValues<T>(LerpValueConfig config, T type, float currentValue, float newValue,
+            Action<T, float> setter,Action<float> onEnd) where T : Enum
         {
-            transitionTimeCount += Time.deltaTime;
+            float transitionTimeCount = 0;
+            var animationCurve = config.TransitionCurve ?? _defaultCurve;
+            while (transitionTimeCount < config.TransitionTime)
+            {
+                transitionTimeCount += UnityEngine.Time.deltaTime;
 
-            float evaluateValue = animationCurve.Evaluate(transitionTimeCount / config.TransitionTime);
+                float evaluateValue = animationCurve.Evaluate(transitionTimeCount / config.TransitionTime);
 
-            float value = Mathf.Lerp(currentValue, newValue, evaluateValue);
-            setter.Invoke(type, value);
+                float value = Mathf.Lerp(currentValue, newValue, evaluateValue);
+                setter.Invoke(type, value);
 
-            yield return null;
+                yield return null;
+            }
+            onEnd?.Invoke(newValue);
         }
-        onEnd?.Invoke(newValue);
     }
-}
 
-[Serializable]
-public class LerpValueConfig
-{
-    public AnimationCurve TransitionCurve;
-    public float TransitionTime;
+    [Serializable]
+    public class LerpValueConfig
+    {
+        public AnimationCurve TransitionCurve;
+        public float TransitionTime;
+    }
 }

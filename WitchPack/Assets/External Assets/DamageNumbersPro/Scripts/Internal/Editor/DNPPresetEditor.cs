@@ -1,12 +1,12 @@
 ﻿#if UNITY_EDITOR
 
-using UnityEngine;
 using UnityEditor;
+using UnityEngine;
 
-namespace DamageNumbersPro.Internal
+namespace External_Assets.DamageNumbersPro.Scripts.Internal.Editor
 {
     [CustomEditor(typeof(DNPPreset))]
-    public class DNPPresetEditor : Editor
+    public class DNPPresetEditor : UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {

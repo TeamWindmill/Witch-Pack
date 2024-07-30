@@ -1,28 +1,31 @@
 using System;
 
-public class BooleanStat
+namespace Gameplay.Units.Stats
 {
-    public event Action<bool> OnStatChange;
-    public BooleanStatType StatType;
-
-    public bool Value
+    public class BooleanStat
     {
-        get => Value;
-        set
+        public event Action<bool> OnStatChange;
+        public BooleanStatType StatType;
+
+        public bool Value
         {
-            OnStatChange?.Invoke(value);
+            get => Value;
+            set
+            {
+                OnStatChange?.Invoke(value);
+                Value = value;
+            }
+        }
+
+        public BooleanStat(BooleanStatType statType, bool value)
+        {
+            StatType = statType;
             Value = value;
         }
     }
 
-    public BooleanStat(BooleanStatType statType, bool value)
+    public enum BooleanStatType
     {
-        StatType = statType;
-        Value = value;
-    }
-}
-
-public enum BooleanStatType
-{
     
+    }
 }

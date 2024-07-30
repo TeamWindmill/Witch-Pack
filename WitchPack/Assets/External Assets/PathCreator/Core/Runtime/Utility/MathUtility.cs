@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using External_Assets.PathCreator.Core.Runtime.Objects;
+using UnityEngine;
 
-namespace PathCreation.Utility {
+namespace External_Assets.PathCreator.Core.Runtime.Utility {
     public static class MathUtility {
 
         static PosRotScale LockTransformToSpace (Transform t, PathSpace space) {

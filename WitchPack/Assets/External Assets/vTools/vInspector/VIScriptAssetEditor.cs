@@ -1,15 +1,15 @@
 #if UNITY_EDITOR
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-using System.Reflection;
 using System.Linq;
+using System.Reflection;
+using UnityEditor;
+using UnityEngine;
 using Type = System.Type;
-using static VInspector.Libs.VUtils;
-using static VInspector.Libs.VGUI;
+using static External_Assets.vTools.vInspector.VUtils;
+using static External_Assets.vTools.vInspector.VGUI;
 
 
-namespace VInspector
+namespace External_Assets.vTools.vInspector
 {
     class VIScriptAssetEditor
     {

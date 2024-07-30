@@ -1,24 +1,27 @@
 ﻿using UnityEngine;
 
-[DefaultExecutionOrder(-1)]
-public abstract class MonoSingleton<T> : MonoBehaviour where T : Component
+namespace Tools.Helpers
 {
-    private static T _instance;
-    public static T Instance => _instance;
-
-    protected virtual void Awake()
+    [DefaultExecutionOrder(-1)]
+    public abstract class MonoSingleton<T> : MonoBehaviour where T : Component
     {
-        if (isActiveAndEnabled)
+        private static T _instance;
+        public static T Instance => _instance;
+
+        protected virtual void Awake()
         {
-            if (Instance == null)
-                _instance = this as T;
-            else if (Instance != this as T)
-                Destroy(this);
+            if (isActiveAndEnabled)
+            {
+                if (Instance == null)
+                    _instance = this as T;
+                else if (Instance != this as T)
+                    Destroy(this);
+            }
         }
-    }
 
-    protected virtual void OnDestroy()
-    {
-        _instance = null;
+        protected virtual void OnDestroy()
+        {
+            _instance = null;
+        }
     }
 }

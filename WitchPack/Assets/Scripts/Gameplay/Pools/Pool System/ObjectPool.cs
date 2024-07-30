@@ -1,64 +1,67 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObjectPool<T> : MonoBehaviour, IObjectPool where T : MonoBehaviour, IPoolable
+namespace Gameplay.Pools.Pool_System
 {
-    public T PrefabToPool;
-    public int NumToPool;
-    public List<T> PooledObjects { get; set; } = new List<T>();
+    public class ObjectPool<T> : MonoBehaviour, IObjectPool where T : MonoBehaviour, IPoolable
+    {
+        public T PrefabToPool;
+        public int NumToPool;
+        public List<T> PooledObjects { get; set; } = new List<T>();
 
 
-    private void OnDestroy()
-    {
-        PooledObjects.Clear();
-    }
-    public void Awake()
-    {
-        
-        for (int i = 0; i < NumToPool; i++)
+        private void OnDestroy()
         {
+            PooledObjects.Clear();
+        }
+        public void Awake()
+        {
+        
+            for (int i = 0; i < NumToPool; i++)
+            {
+                T newPooledObject = Instantiate(PrefabToPool, transform);
+                PooledObjects.Add(newPooledObject);
+                newPooledObject.PoolableGameObject.SetActive(false);
+            }
+        }
+
+        public IPoolable GetPooledObject()
+        {
+            foreach (var item in PooledObjects)
+            {
+                if (ReferenceEquals(item, null)) continue; 
+                if (!item.PoolableGameObject.gameObject.activeInHierarchy)
+                {
+                    return item;
+                }
+            }
+
             T newPooledObject = Instantiate(PrefabToPool, transform);
             PooledObjects.Add(newPooledObject);
             newPooledObject.PoolableGameObject.SetActive(false);
+            return newPooledObject;
         }
-    }
-
-    public IPoolable GetPooledObject()
-    {
-        foreach (var item in PooledObjects)
+        public void ReturnPooledObject(IPoolable obj)
         {
-            if (ReferenceEquals(item, null)) continue; 
-            if (!item.PoolableGameObject.gameObject.activeInHierarchy)
-            {
-                return item;
-            }
+            obj.PoolableGameObject.transform.parent = transform;
+            obj.PoolableGameObject.transform.position = Vector3.one;
+            obj.PoolableGameObject.transform.rotation = Quaternion.identity;
+            obj.PoolableGameObject.transform.localScale = Vector3.one;
+            obj.PoolableGameObject.SetActive(false);
         }
 
-        T newPooledObject = Instantiate(PrefabToPool, transform);
-        PooledObjects.Add(newPooledObject);
-        newPooledObject.PoolableGameObject.SetActive(false);
-        return newPooledObject;
-    }
-    public void ReturnPooledObject(IPoolable obj)
-    {
-        obj.PoolableGameObject.transform.parent = transform;
-        obj.PoolableGameObject.transform.position = Vector3.one;
-        obj.PoolableGameObject.transform.rotation = Quaternion.identity;
-        obj.PoolableGameObject.transform.localScale = Vector3.one;
-        obj.PoolableGameObject.SetActive(false);
-    }
-
-    public bool CheckActiveInstance()
-    {
-        foreach (var item in PooledObjects)
+        public bool CheckActiveInstance()
         {
-            if (item.PoolableGameObject.activeInHierarchy)
+            foreach (var item in PooledObjects)
             {
-                return true;
+                if (item.PoolableGameObject.activeInHierarchy)
+                {
+                    return true;
+                }
             }
+            return false;
         }
-        return false;
-    }
 
-    public IPoolable Poolable => PrefabToPool;
+        public IPoolable Poolable => PrefabToPool;
+    }
 }

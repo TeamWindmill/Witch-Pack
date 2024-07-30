@@ -1,80 +1,86 @@
 using System;
+using Gameplay.Units.Abilities.AbilitySystem.BaseAbilities;
+using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs;
+using Gameplay.Units.Stats;
 
-public class DamageDealer
+namespace Gameplay.Units.Damage_System
 {
-    private BaseUnit owner;
-
-    public Action<Damageable, DamageDealer, DamageHandler, Ability, bool> OnHitTarget;
-    public Action<Damageable, DamageDealer, DamageHandler, Ability, bool> OnKill;
-    public Action<Damageable, DamageDealer, DamageHandler, Ability, bool> OnAssist;
-
-    private OffensiveAbilitySO autoAttack;
-
-    public BaseUnit Owner
+    public class DamageDealer
     {
-        get => owner;
-    }
+        private BaseUnit owner;
 
-    public DamageDealer(BaseUnit owner, OffensiveAbilitySO autoAttack)
-    {
-        this.owner = owner;
-        this.autoAttack = autoAttack;
-        OnHitTarget += SubscribeStatDamage;
-        OnHitTarget += SubscribeDamageBoostsFromAbility;
-    }
+        public Action<Damageable, DamageDealer, DamageHandler, Ability, bool> OnHitTarget;
+        public Action<Damageable, DamageDealer, DamageHandler, Ability, bool> OnKill;
+        public Action<Damageable, DamageDealer, DamageHandler, Ability, bool> OnAssist;
 
+        private OffensiveAbilitySO autoAttack;
 
-    public bool CritChance(Ability ability)
-    {
-        if (ReferenceEquals(ability, owner.AbilityHandler.AutoAttackCaster.Ability) && UnityEngine.Random.Range(0, 100) <= owner.Stats[StatType.CritChance].Value)
+        public BaseUnit Owner
         {
-            return true;
+            get => owner;
         }
 
-        return false;
-    }
-
-    private void SubscribeStatDamage(Damageable target, DamageDealer dealer, DamageHandler dmg, Ability ability, bool crit)
-    {
-        if (ReferenceEquals(ability, owner.AbilityHandler.AutoAttackCaster.Ability))
+        public DamageDealer(BaseUnit owner, OffensiveAbilitySO autoAttack)
         {
-            dmg.AddFlatMod(owner.Stats[StatType.BaseDamage].IntValue);
-            if (crit)
+            this.owner = owner;
+            this.autoAttack = autoAttack;
+            OnHitTarget += SubscribeStatDamage;
+            OnHitTarget += SubscribeDamageBoostsFromAbility;
+        }
+
+
+        public bool CritChance(Ability ability)
+        {
+            if (ReferenceEquals(ability, owner.AbilityHandler.AutoAttackCaster.Ability) && UnityEngine.Random.Range(0, 100) <= owner.Stats[StatType.CritChance].Value)
             {
-                float critDamage = (Owner.Stats[StatType.CritDamage].Value / 100f);
-                dmg.AddMultiplierMod(critDamage); 
+                return true;
+            }
+
+            return false;
+        }
+
+        private void SubscribeStatDamage(Damageable target, DamageDealer dealer, DamageHandler dmg, Ability ability, bool crit)
+        {
+            if (ReferenceEquals(ability, owner.AbilityHandler.AutoAttackCaster.Ability))
+            {
+                dmg.AddFlatMod(owner.Stats[StatType.BaseDamage].IntValue);
+                if (crit)
+                {
+                    float critDamage = (Owner.Stats[StatType.CritDamage].Value / 100f);
+                    dmg.AddMultiplierMod(critDamage); 
+                }
             }
         }
-    }
 
-    private void SubscribeDamageBoostsFromAbility(Damageable target, DamageDealer dealer, DamageHandler dmg, Ability ability, bool crit)
-    {
-        if (ability is not OffensiveAbility offensiveAbility) return;
-
-        foreach (var item in offensiveAbility.DamageBoosts)
+        private void SubscribeDamageBoostsFromAbility(Damageable target, DamageDealer dealer, DamageHandler dmg, Ability ability, bool crit)
         {
-            switch (item.Type)
+            if (ability is not OffensiveAbility offensiveAbility) return;
+
+            foreach (var item in offensiveAbility.DamageBoosts)
             {
-                case DamageBonusType.CurHp:
-                    dmg.AddFlatMod(GetModCurHp(item, target));
-                    break;
-                case DamageBonusType.MissingHp:
-                    dmg.AddFlatMod(GetModMissingHp(item, target));
-                    break;
+                switch (item.Type)
+                {
+                    case DamageBonusType.CurHp:
+                        dmg.AddFlatMod(GetModCurHp(item, target));
+                        break;
+                    case DamageBonusType.MissingHp:
+                        dmg.AddFlatMod(GetModMissingHp(item, target));
+                        break;
+                }
             }
         }
-    }
 
-    private int GetModCurHp(DamageBoostData boostData, Damageable target)
-    {
-        float damageBasedOnCurrentHP = target.CurrentHp * (boostData.damageBonusInPercent / 100);
-        return (int)damageBasedOnCurrentHP;
-    }
+        private int GetModCurHp(DamageBoostData boostData, Damageable target)
+        {
+            float damageBasedOnCurrentHP = target.CurrentHp * (boostData.damageBonusInPercent / 100);
+            return (int)damageBasedOnCurrentHP;
+        }
 
-    private int GetModMissingHp(DamageBoostData boostData, Damageable target)
-    {
-        var missingHp = (target.MaxHp - target.CurrentHp);
-        float damageBasedOnMissingHp = missingHp * (boostData.damageBonusInPercent / 100);
-        return (int)damageBasedOnMissingHp;
+        private int GetModMissingHp(DamageBoostData boostData, Damageable target)
+        {
+            var missingHp = (target.MaxHp - target.CurrentHp);
+            float damageBasedOnMissingHp = missingHp * (boostData.damageBonusInPercent / 100);
+            return (int)damageBasedOnMissingHp;
+        }
     }
 }

@@ -1,52 +1,58 @@
 using System;
 using System.Collections.Generic;
+using Configs;
+using Gameplay.Units.Shaman;
+using Systems.SaveSystem;
 using UnityEngine;
 
-[Serializable]
-public class ShamansManager
+namespace Managers
 {
-    [SerializeField] private List<ShamanConfig> _startingShamanRoster;
-
-    public List<ShamanSaveData> ShamanRoster { get; private set; }
-
-    private GameSaveData _gameSaveData;
-
-    public void Init(GameSaveData saveData)
+    [Serializable]
+    public class ShamansManager
     {
-        _gameSaveData = saveData;
-        if (saveData.ShamanRoster == null)
+        [SerializeField] private List<ShamanConfig> _startingShamanRoster;
+
+        public List<ShamanSaveData> ShamanRoster { get; private set; }
+
+        private GameSaveData _gameSaveData;
+
+        public void Init(GameSaveData saveData)
         {
-            List<ShamanSaveData> shamansSaveData = new();
-            _startingShamanRoster.ForEach((config) => shamansSaveData.Add(new ShamanSaveData(config)));
-            ShamanRoster = shamansSaveData;
-            saveData.ShamanRoster = ShamanRoster;
+            _gameSaveData = saveData;
+            if (saveData.ShamanRoster == null)
+            {
+                List<ShamanSaveData> shamansSaveData = new();
+                _startingShamanRoster.ForEach((config) => shamansSaveData.Add(new ShamanSaveData(config)));
+                ShamanRoster = shamansSaveData;
+                saveData.ShamanRoster = ShamanRoster;
+            }
+            else
+            {
+                ShamanRoster = saveData.ShamanRoster;
+            }
         }
-        else
-        {
-            ShamanRoster = saveData.ShamanRoster;
-        }
-    }
     
-    public void AddShamanToRoster(ShamanConfig shamanConfig)
-    {
-        foreach (var saveData in ShamanRoster)
+        public void AddShamanToRoster(ShamanConfig shamanConfig)
         {
-            if(saveData.Config == shamanConfig) return; 
+            foreach (var saveData in ShamanRoster)
+            {
+                if(saveData.Config == shamanConfig) return; 
+            }
+            ShamanRoster.Add(new ShamanSaveData(shamanConfig));
         }
-        ShamanRoster.Add(new ShamanSaveData(shamanConfig));
-    }
-    public void AddShamanToRoster(ShamanConfig[] shamansConfig)
-    {
-        foreach (var config in shamansConfig)
+        public void AddShamanToRoster(ShamanConfig[] shamansConfig)
         {
-            AddShamanToRoster(config);
+            foreach (var config in shamansConfig)
+            {
+                AddShamanToRoster(config);
+            }
         }
+        // public void RemoveShamansFromRoster(ShamanConfig[] shamansConfig)
+        // {
+        //     foreach (var config in shamansConfig)
+        //     {
+        //         
+        //     }
+        // }
     }
-    // public void RemoveShamansFromRoster(ShamanConfig[] shamansConfig)
-    // {
-    //     foreach (var config in shamansConfig)
-    //     {
-    //         
-    //     }
-    // }
 }

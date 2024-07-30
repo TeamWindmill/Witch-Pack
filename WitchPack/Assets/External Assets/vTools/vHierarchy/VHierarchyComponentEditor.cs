@@ -1,13 +1,12 @@
 #if UNITY_EDITOR
-using UnityEngine;
 using UnityEditor;
-using static VHierarchy.Libs.VUtils;
-using static VHierarchy.Libs.VGUI;
+using UnityEngine;
+using static External_Assets.vTools.vHierarchy.VGUI;
 
 
-namespace VHierarchy
+namespace External_Assets.vTools.vHierarchy
 {
-    public class VHierarchyComponentEditor : CustomPopupWindow
+    public class VHierarchyComponentEditor : VGUI.CustomPopupWindow
     {
         void OnGUI()
         {

@@ -1,12 +1,13 @@
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+
 // using static VInspector.Libs.VUtils;
 // using static VInspector.Libs.VGUI;
 // 
 
 
-namespace VInspector
+namespace External_Assets.vTools.vInspector
 {
     [System.Serializable]
     public class SerializedDictionary<TKey, TValue> : Dictionary<TKey, TValue>, ISerializationCallbackReceiver

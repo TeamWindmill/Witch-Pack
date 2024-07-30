@@ -1,17 +1,17 @@
 #if UNITY_EDITOR
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
 using System.Linq;
-using UnityEngine.SceneManagement;
+using UnityEditor;
 using UnityEditor.SceneManagement;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using Type = System.Type;
-using static VHierarchy.VHierarchyData;
-using static VHierarchy.Libs.VUtils;
-using static VHierarchy.Libs.VGUI;
+using static External_Assets.vTools.vHierarchy.VHierarchyData;
+using static External_Assets.vTools.vHierarchy.VUtils;
+using static External_Assets.vTools.vHierarchy.VGUI;
 
 
-namespace VHierarchy
+namespace External_Assets.vTools.vHierarchy
 {
     public static class VHierarchy
     {

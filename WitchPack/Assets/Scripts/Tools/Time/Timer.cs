@@ -1,193 +1,196 @@
 using System;
-using UnityEngine;
+using GameTime;
 
-public class Timer : ITimer
+namespace Tools.Time
 {
-    public event Action<Timer> OnTimerEnd;
-    
-    private readonly Action _onTimerTick;
-    private readonly float _tickTime;
-    private readonly float _tickAmount;
-    private readonly bool _usingGameTime;
-    private readonly bool _dontDestroyTimer;
-    
-    private float _timer;
-    private int _currentTicks;
-    private bool _isActive;
-
-    public Timer(TimerData timerData)
+    public class Timer : ITimer
     {
-        _timer = 0;
-        _tickTime = timerData.TickTime;
-        _tickAmount = timerData.TickAmount; 
-        _usingGameTime = timerData.UsingGameTime;
-        _dontDestroyTimer = timerData.DontDestroyTimer;
-        _onTimerTick = timerData.OnTimerTick;
-        _isActive = true;
-    }
+        public event Action<Timer> OnTimerEnd;
     
-    public void StartTimer() => _isActive = true;
-    public void PauseTimer() => _isActive = false;
+        private readonly Action _onTimerTick;
+        private readonly float _tickTime;
+        private readonly float _tickAmount;
+        private readonly bool _usingGameTime;
+        private readonly bool _dontDestroyTimer;
+    
+        private float _timer;
+        private int _currentTicks;
+        private bool _isActive;
 
-    public void StopTimer()
-    { 
-        _isActive = false;
-        _timer = 0;
-    } 
-
-    public void TimerTick()
-    {
-        if(!_isActive) return;
-        
-        //update timer
-        if (!_usingGameTime) _timer += Time.deltaTime;
-        else _timer += GAME_TIME.GameDeltaTime;
-        
-        if (_timer >= _tickTime)
+        public Timer(TimerData timerData)
         {
             _timer = 0;
+            _tickTime = timerData.TickTime;
+            _tickAmount = timerData.TickAmount; 
+            _usingGameTime = timerData.UsingGameTime;
+            _dontDestroyTimer = timerData.DontDestroyTimer;
+            _onTimerTick = timerData.OnTimerTick;
+            _isActive = true;
+        }
+    
+        public void StartTimer() => _isActive = true;
+        public void PauseTimer() => _isActive = false;
 
-            OnTimerTick();
-            if(_dontDestroyTimer) return;
-            
-            _currentTicks++;
-            if (_currentTicks >= _tickAmount)
+        public void StopTimer()
+        { 
+            _isActive = false;
+            _timer = 0;
+        } 
+
+        public void TimerTick()
+        {
+            if(!_isActive) return;
+        
+            //update timer
+            if (!_usingGameTime) _timer += UnityEngine.Time.deltaTime;
+            else _timer += GAME_TIME.GameDeltaTime;
+        
+            if (_timer >= _tickTime)
             {
-                _isActive = false;
-                OnEndTimer();
+                _timer = 0;
+
+                OnTimerTick();
+                if(_dontDestroyTimer) return;
+            
+                _currentTicks++;
+                if (_currentTicks >= _tickAmount)
+                {
+                    _isActive = false;
+                    OnEndTimer();
+                }
             }
         }
-    }
-    protected virtual void OnTimerTick()
-    {
-        if (_onTimerTick is null) return;
-        _onTimerTick?.Invoke();
-    }
-    protected virtual void OnEndTimer() => OnTimerEnd?.Invoke(this);
+        protected virtual void OnTimerTick()
+        {
+            if (_onTimerTick is null) return;
+            _onTimerTick?.Invoke();
+        }
+        protected virtual void OnEndTimer() => OnTimerEnd?.Invoke(this);
 
-    public void RemoveThisTimer()
-    {
-        TimerManager.RemoveTimer(this);
-    }
+        public void RemoveThisTimer()
+        {
+            TimerManager.RemoveTimer(this);
+        }
 
-    public void AddThisTimer()
-    {
-        TimerManager.AddTimer(this);
+        public void AddThisTimer()
+        {
+            TimerManager.AddTimer(this);
+        }
     }
-}
-public class Timer<T> : ITimer
-{
-    public event Action<Timer<T>> OnTimerEnd;
+    public class Timer<T> : ITimer
+    {
+        public event Action<Timer<T>> OnTimerEnd;
     
-    private readonly Action<T> _onTimerTick;
-    private readonly float _tickTime;
-    private readonly float _tickAmount;
-    private readonly bool _usingGameTime;
-    private readonly bool _dontDestroyTimer;
+        private readonly Action<T> _onTimerTick;
+        private readonly float _tickTime;
+        private readonly float _tickAmount;
+        private readonly bool _usingGameTime;
+        private readonly bool _dontDestroyTimer;
     
-    private float _timer;
-    private int _currentTicks;
-    private bool _isActive;
-    private T _data;
+        private float _timer;
+        private int _currentTicks;
+        private bool _isActive;
+        private T _data;
 
-    public T Data { get => _data; }
+        public T Data { get => _data; }
 
-    public Timer(TimerData<T> timerData)
-    {
-        _timer = 0;
-        _data = timerData.Data;
-        _tickTime = timerData.TickTime;
-        _tickAmount = timerData.TickAmount; 
-        _usingGameTime = timerData.UsingGameTime;
-        _dontDestroyTimer = timerData.DontDestroyTimer;
-        _onTimerTick = timerData.OnTimerTick;
-        _isActive = true;
-    }
-    
-    public void StartTimer() => _isActive = true;
-    public void PauseTimer() => _isActive = false;
-
-    public void StopTimer()
-    { 
-        _isActive = false;
-        _timer = 0;
-    } 
-
-    public void TimerTick()
-    {
-        if(!_isActive) return;
-        
-        //update timer
-        if (!_usingGameTime) _timer += Time.deltaTime;
-        else _timer += GAME_TIME.GameDeltaTime;
-        
-        if (_timer >= _tickTime)
+        public Timer(TimerData<T> timerData)
         {
             _timer = 0;
+            _data = timerData.Data;
+            _tickTime = timerData.TickTime;
+            _tickAmount = timerData.TickAmount; 
+            _usingGameTime = timerData.UsingGameTime;
+            _dontDestroyTimer = timerData.DontDestroyTimer;
+            _onTimerTick = timerData.OnTimerTick;
+            _isActive = true;
+        }
+    
+        public void StartTimer() => _isActive = true;
+        public void PauseTimer() => _isActive = false;
 
-            OnTimerTick();
-            if(_dontDestroyTimer) return;
-            
-            _currentTicks++;
-            if (_currentTicks >= _tickAmount)
+        public void StopTimer()
+        { 
+            _isActive = false;
+            _timer = 0;
+        } 
+
+        public void TimerTick()
+        {
+            if(!_isActive) return;
+        
+            //update timer
+            if (!_usingGameTime) _timer += UnityEngine.Time.deltaTime;
+            else _timer += GAME_TIME.GameDeltaTime;
+        
+            if (_timer >= _tickTime)
             {
-                _isActive = false;
-                OnEndTimer();
+                _timer = 0;
+
+                OnTimerTick();
+                if(_dontDestroyTimer) return;
+            
+                _currentTicks++;
+                if (_currentTicks >= _tickAmount)
+                {
+                    _isActive = false;
+                    OnEndTimer();
+                }
             }
         }
-    }
-    protected virtual void OnTimerTick()
-    {
-        if (_onTimerTick is null) return;
-        _onTimerTick?.Invoke(_data);
-    }
-    protected virtual void OnEndTimer() => OnTimerEnd?.Invoke(this);
+        protected virtual void OnTimerTick()
+        {
+            if (_onTimerTick is null) return;
+            _onTimerTick?.Invoke(_data);
+        }
+        protected virtual void OnEndTimer() => OnTimerEnd?.Invoke(this);
 
-    public void RemoveThisTimer()
-    {
-        TimerManager.RemoveTimer<T>(this);
+        public void RemoveThisTimer()
+        {
+            TimerManager.RemoveTimer<T>(this);
+        }
+
+        public void AddThisTimer()
+        {
+            TimerManager.AddTimer<T>(this);
+        }
     }
 
-    public void AddThisTimer()
+    public struct TimerData
     {
-        TimerManager.AddTimer<T>(this);
+        public readonly Action OnTimerTick;
+        public readonly float TickTime;
+        public readonly float TickAmount;
+        public readonly bool UsingGameTime;
+        public readonly bool DontDestroyTimer;
+
+        public TimerData(float tickTime, Action onTimerTick = null, float tickAmount = 1, bool usingGameTime = false, bool dontDestroyTimer = false)
+        {
+            OnTimerTick = onTimerTick;
+            TickTime = tickTime;
+            TickAmount = tickAmount;
+            UsingGameTime = usingGameTime;
+            DontDestroyTimer = dontDestroyTimer;
+        }
     }
-}
-
-public struct TimerData
-{
-    public readonly Action OnTimerTick;
-    public readonly float TickTime;
-    public readonly float TickAmount;
-    public readonly bool UsingGameTime;
-    public readonly bool DontDestroyTimer;
-
-    public TimerData(float tickTime, Action onTimerTick = null, float tickAmount = 1, bool usingGameTime = false, bool dontDestroyTimer = false)
+    public struct TimerData<T>
     {
-        OnTimerTick = onTimerTick;
-        TickTime = tickTime;
-        TickAmount = tickAmount;
-        UsingGameTime = usingGameTime;
-        DontDestroyTimer = dontDestroyTimer;
-    }
-}
-public struct TimerData<T>
-{
-    public readonly Action<T> OnTimerTick;
-    public readonly float TickTime;
-    public readonly float TickAmount;
-    public readonly bool UsingGameTime;
-    public readonly bool DontDestroyTimer;
-    public readonly T Data;
+        public readonly Action<T> OnTimerTick;
+        public readonly float TickTime;
+        public readonly float TickAmount;
+        public readonly bool UsingGameTime;
+        public readonly bool DontDestroyTimer;
+        public readonly T Data;
     
 
-    public TimerData(float tickTime,T data, Action<T> onTimerTick = null, float tickAmount = 1, bool usingGameTime = false, bool dontDestroyTimer = false)
-    {
-        Data = data;
-        OnTimerTick = onTimerTick;
-        TickTime = tickTime;
-        TickAmount = tickAmount;
-        UsingGameTime = usingGameTime;
-        DontDestroyTimer = dontDestroyTimer;
+        public TimerData(float tickTime,T data, Action<T> onTimerTick = null, float tickAmount = 1, bool usingGameTime = false, bool dontDestroyTimer = false)
+        {
+            Data = data;
+            OnTimerTick = onTimerTick;
+            TickTime = tickTime;
+            TickAmount = tickAmount;
+            UsingGameTime = usingGameTime;
+            DontDestroyTimer = dontDestroyTimer;
+        }
     }
 }

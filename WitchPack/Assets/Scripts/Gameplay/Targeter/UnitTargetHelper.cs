@@ -1,109 +1,115 @@
 using System;
 using System.Collections.Generic;
+using Gameplay.Units;
+using Gameplay.Units.Stats;
 using Tools.Targeter;
+using Tools.Time;
 
-public class UnitTargetHelper<T> where T : BaseUnit
+namespace Gameplay.Targeter
 {
-    public event Action<BaseUnit> OnTarget;
-
-    public T CurrentTarget { get; private set; }
-    public bool IsTaunted { get; private set; }
-    private BaseUnit owner;
-    private List<T> _availableTargets;
-    private List<T> _targetsToAvoid;
-
-    public UnitTargetHelper(Targeter<T> targeter, BaseUnit givenOwner,List<T> targetsToAvoid = null)
+    public class UnitTargetHelper<T> where T : BaseUnit
     {
-        _targetsToAvoid = targetsToAvoid;
-        owner = givenOwner;
-        _availableTargets = targeter.AvailableTargets;
-        owner.Damageable.OnDeathGFX += OnDeath;
-    }
+        public event Action<BaseUnit> OnTarget;
 
-    public T GetTarget(TargetData givenData, List<T> targetsToAvoid = null)
-    {
-        if (IsTaunted) return CurrentTarget;
-        
-        List<T> totalTargetsToAvoid = null;
-        if (targetsToAvoid != null || _targetsToAvoid != null)
+        public T CurrentTarget { get; private set; }
+        public bool IsTaunted { get; private set; }
+        private BaseUnit owner;
+        private List<T> _availableTargets;
+        private List<T> _targetsToAvoid;
+
+        public UnitTargetHelper(Targeter<T> targeter, BaseUnit givenOwner,List<T> targetsToAvoid = null)
         {
-            totalTargetsToAvoid = new List<T>();
-            if(_targetsToAvoid is { Count: > 0 }) totalTargetsToAvoid.AddRange(_targetsToAvoid);
-            if (targetsToAvoid is { Count: > 0 }) totalTargetsToAvoid.AddRange(targetsToAvoid);
-        }
-        
-        var target = TargetingHelper<T>.GetTarget(_availableTargets, givenData, totalTargetsToAvoid, owner.transform);
-        if (!ReferenceEquals(target, null))
-        {
-            if (givenData.AvoidCharmedTargets)
-                if (target.Effectable.ContainsStatusEffect(StatusEffectVisual.Charm))
-                    return null;
-
-            RemoveCurrentTarget();
-
-            CurrentTarget = target;
-            CurrentTarget.Stats[StatType.ThreatLevel].AddModifier(owner.UnitConfig.BaseStats.Threat.value);
-            OnTarget?.Invoke(target);
+            _targetsToAvoid = targetsToAvoid;
+            owner = givenOwner;
+            _availableTargets = targeter.AvailableTargets;
+            owner.Damageable.OnDeathGFX += OnDeath;
         }
 
-        return target;
-    }
-
-    public List<T> GetAvailableTargets(TargetData givenData, List<T> targetsToAvoid = null)
-    {
-        var validTargets = new List<T>();
-        foreach (var target in _availableTargets)
+        public T GetTarget(TargetData givenData, List<T> targetsToAvoid = null)
         {
-            if (targetsToAvoid != null)
+            if (IsTaunted) return CurrentTarget;
+        
+            List<T> totalTargetsToAvoid = null;
+            if (targetsToAvoid != null || _targetsToAvoid != null)
             {
-                if (_targetsToAvoid.Contains(target)) continue;
+                totalTargetsToAvoid = new List<T>();
+                if(_targetsToAvoid is { Count: > 0 }) totalTargetsToAvoid.AddRange(_targetsToAvoid);
+                if (targetsToAvoid is { Count: > 0 }) totalTargetsToAvoid.AddRange(targetsToAvoid);
             }
-            if(target.IsDead) continue;
-            if(givenData.AvoidCharmedTargets && target.Effectable.ContainsStatusEffect(StatusEffectVisual.Charm)) continue;
+        
+            var target = TargetingHelper<T>.GetTarget(_availableTargets, givenData, totalTargetsToAvoid, owner.transform);
+            if (!ReferenceEquals(target, null))
+            {
+                if (givenData.AvoidCharmedTargets)
+                    if (target.Effectable.ContainsStatusEffect(StatusEffectVisual.Charm))
+                        return null;
+
+                RemoveCurrentTarget();
+
+                CurrentTarget = target;
+                CurrentTarget.Stats[StatType.ThreatLevel].AddModifier(owner.UnitConfig.BaseStats.Threat.value);
+                OnTarget?.Invoke(target);
+            }
+
+            return target;
+        }
+
+        public List<T> GetAvailableTargets(TargetData givenData, List<T> targetsToAvoid = null)
+        {
+            var validTargets = new List<T>();
+            foreach (var target in _availableTargets)
+            {
+                if (targetsToAvoid != null)
+                {
+                    if (_targetsToAvoid.Contains(target)) continue;
+                }
+                if(target.IsDead) continue;
+                if(givenData.AvoidCharmedTargets && target.Effectable.ContainsStatusEffect(StatusEffectVisual.Charm)) continue;
                 
             
-            validTargets.Add(target);
+                validTargets.Add(target);
+            }
+
+            return validTargets;
         }
 
-        return validTargets;
-    }
-
-    public void ApplyTaunt(T target, float duration)
-    {
-        IsTaunted = true;
-        CurrentTarget = target;
-        TimerManager.AddTimer(duration, RemoveTaunt);
-    }
-
-    private void RemoveTaunt()
-    {
-        IsTaunted = false;
-        CurrentTarget = null;
-    }
-
-    public void RemoveCurrentTarget()
-    {
-        if (!ReferenceEquals(CurrentTarget, null))
+        public void ApplyTaunt(T target, float duration)
         {
-            CurrentTarget.Stats[StatType.ThreatLevel].RemoveModifier(owner.UnitConfig.BaseStats.Threat.value);
+            IsTaunted = true;
+            CurrentTarget = target;
+            TimerManager.AddTimer(duration, RemoveTaunt);
         }
 
-        CurrentTarget = null;
-    }
+        private void RemoveTaunt()
+        {
+            IsTaunted = false;
+            CurrentTarget = null;
+        }
 
-    public void AddTargetToAvoid(T target)
-    {
-        _targetsToAvoid ??= new List<T>();
-        if(!_targetsToAvoid.Contains(target)) _targetsToAvoid.Add(target);
-    }
+        public void RemoveCurrentTarget()
+        {
+            if (!ReferenceEquals(CurrentTarget, null))
+            {
+                CurrentTarget.Stats[StatType.ThreatLevel].RemoveModifier(owner.UnitConfig.BaseStats.Threat.value);
+            }
 
-    public void RemoveTargetToAvoid(T target)
-    {
-        _targetsToAvoid?.Remove(target);
-    }
-    private void OnDeath()
-    {
-        RemoveCurrentTarget();
-        owner.Damageable.OnDeathGFX -= OnDeath;
+            CurrentTarget = null;
+        }
+
+        public void AddTargetToAvoid(T target)
+        {
+            _targetsToAvoid ??= new List<T>();
+            if(!_targetsToAvoid.Contains(target)) _targetsToAvoid.Add(target);
+        }
+
+        public void RemoveTargetToAvoid(T target)
+        {
+            _targetsToAvoid?.Remove(target);
+        }
+        private void OnDeath()
+        {
+            RemoveCurrentTarget();
+            owner.Damageable.OnDeathGFX -= OnDeath;
+        }
     }
 }

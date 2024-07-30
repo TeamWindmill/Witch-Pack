@@ -1,12 +1,12 @@
 ﻿#if UNITY_EDITOR
 
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
 using TMPro;
+using UnityEditor;
+using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace DamageNumbersPro.Internal {
+namespace External_Assets.DamageNumbersPro.Scripts.Internal.Editor {
     public static class DNPEditorInternal
     {
         //Public:
@@ -40,7 +40,7 @@ namespace DamageNumbersPro.Internal {
         static bool cleanEditor;
         static Material[] currentMaterials;
         static MaterialEditor materialEditor;
-        static Editor textMeshProEditor;
+        static UnityEditor.Editor textMeshProEditor;
         static bool generatedGUIStyles;
 
         public static void PrepareInspector(DamageNumberEditor damageNumberEditor)
@@ -510,7 +510,7 @@ namespace DamageNumbersPro.Internal {
                         {
                             Object.DestroyImmediate(textMeshProEditor);
                         }
-                        textMeshProEditor = Editor.CreateEditor(textMeshPros, null);
+                        textMeshProEditor = UnityEditor.Editor.CreateEditor(textMeshPros, null);
                     }
 
                     //Editor:
@@ -552,7 +552,7 @@ namespace DamageNumbersPro.Internal {
                             }
                         }
 
-                        textMeshProEditor = Editor.CreateEditor(tmps, null);
+                        textMeshProEditor = UnityEditor.Editor.CreateEditor(tmps, null);
                     }
 
                     //Editor:
@@ -624,7 +624,7 @@ namespace DamageNumbersPro.Internal {
                 Object.DestroyImmediate(materialEditor);
             }
 
-            materialEditor = (MaterialEditor)Editor.CreateEditor(currentMaterials);
+            materialEditor = (MaterialEditor)UnityEditor.Editor.CreateEditor(currentMaterials);
         }
 
         static void ShowPresets(bool isMesh)

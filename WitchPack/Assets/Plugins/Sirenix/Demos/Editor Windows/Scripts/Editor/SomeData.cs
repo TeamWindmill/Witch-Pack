@@ -1,9 +1,10 @@
-#if UNITY_EDITOR
-namespace Sirenix.OdinInspector.Demos
-{
-    using UnityEditor;
-    using System;
+using System;
+using Sirenix.OdinInspector;
+using UnityEditor;
 
+#if UNITY_EDITOR
+namespace Plugins.Sirenix.Demos.Editor_Windows.Scripts.Editor
+{
     [HideLabel]
     [Serializable]
     public class SomeData

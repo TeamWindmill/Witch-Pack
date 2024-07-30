@@ -1,16 +1,22 @@
 using System;
 using System.Collections.Generic;
+using Configs;
+using Gameplay.Units.Energy_Exp.Exp;
+using UI.MapUI.MetaUpgrades.UpgradePanel.Configs;
 
-[Serializable]
-public class ShamanSaveData
+namespace Gameplay.Units.Shaman
 {
-    public ShamanConfig Config;
-    public ShamanExperienceHandler ShamanExperienceHandler;
-    public List<AbilityUpgradeConfig> AbilityUpgrades = new();
-    public List<StatMetaUpgradeConfig> StatUpgrades = new();
-    public ShamanSaveData(ShamanConfig config)
+    [Serializable]
+    public class ShamanSaveData
     {
-        Config = config;
-        ShamanExperienceHandler = new ShamanExperienceHandler(config.ShamanExperienceConfig);
+        public ShamanConfig Config;
+        public ShamanExperienceHandler ShamanExperienceHandler;
+        public List<AbilityUpgradeConfig> AbilityUpgrades = new();
+        public List<StatMetaUpgradeConfig> StatUpgrades = new();
+        public ShamanSaveData(ShamanConfig config)
+        {
+            Config = config;
+            ShamanExperienceHandler = new ShamanExperienceHandler(config.ShamanExperienceConfig);
+        }
     }
 }

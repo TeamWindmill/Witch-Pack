@@ -1,14 +1,18 @@
-﻿using TMPro;
+﻿using Managers;
+using TMPro;
+using UI.UISystem;
 using UnityEngine;
 
-
-public class EndScreenWaveInteractiveUIHandler : UIElement
+namespace UI.GameUI.EndScreen
 {
-    [SerializeField] private TMP_Text _text;
-
-    public override void Show()
+    public class EndScreenWaveInteractiveUIHandler : UIElement
     {
-        base.Show();
-        _text.text = $"{LevelManager.Instance.CurrentLevel.WaveHandler.CurrentWave}/{LevelManager.Instance.CurrentLevel.WaveHandler.TotalWaves}";
+        [SerializeField] private TMP_Text _text;
+
+        public override void Show()
+        {
+            base.Show();
+            _text.text = $"{LevelManager.Instance.CurrentLevel.WaveHandler.CurrentWave}/{LevelManager.Instance.CurrentLevel.WaveHandler.TotalWaves}";
+        }
     }
 }

@@ -1,16 +1,16 @@
 #if UNITY_EDITOR
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
+using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
-using UnityEditor.UIElements;
-using UnityEditor;
-using static VInspector.Libs.VUtils;
-using static VInspector.Libs.VGUI;
+using static External_Assets.vTools.vInspector.VUtils;
+using static External_Assets.vTools.vInspector.VGUI;
 
 
 
-namespace VInspector
+namespace External_Assets.vTools.vInspector
 {
     public class VICleanerHeader
     {

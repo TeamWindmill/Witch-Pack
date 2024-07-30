@@ -1,35 +1,39 @@
 using System;
+using Gameplay.Units.Stats;
 
-[Serializable]
-public class AbilityStat : BaseStat<AbilityStatType>
+namespace Gameplay.Units.Abilities.AbilitySystem.AbilityStats
 {
-    public AbilityStat(AbilityStatType statType, float baseValue) : base(statType, baseValue)
+    [Serializable]
+    public class AbilityStat : BaseStat<AbilityStatType>
     {
+        public AbilityStat(AbilityStatType statType, float baseValue) : base(statType, baseValue)
+        {
         
+        }
     }
-}
 
-public enum AbilityStatType
-{
-    Damage,
-    Cooldown,
-    Speed,
-    TargetingRangeNotWorking, //not supported currently
-    CastTime,
-    Penetration,
-    ExtraPenetrationPerKill,
-    KillToIncreasePenetration,
-    EnergyPointsOnCast,
-    ProjectilesAmount,
-    Duration,
-    BounceAmount,
-    DamageIncreasePerShot,
-    Size,
-    Heal,
-    MovementSpeedSlow,
-    Armor,
-    DotDamage,
-    HpRegen,
-    TickInterval,
-    FinalDamageModifier,
+    public enum AbilityStatType
+    {
+        Damage,
+        Cooldown,
+        Speed,
+        TargetingRangeNotWorking, //not supported currently
+        CastTime,
+        Penetration,
+        ExtraPenetrationPerKill,
+        KillToIncreasePenetration,
+        EnergyPointsOnCast,
+        ProjectilesAmount,
+        Duration,
+        BounceAmount,
+        DamageIncreasePerShot,
+        Size,
+        Heal,
+        MovementSpeedSlow,
+        Armor,
+        DotDamage,
+        HpRegen,
+        TickInterval,
+        FinalDamageModifier,
+    }
 }
