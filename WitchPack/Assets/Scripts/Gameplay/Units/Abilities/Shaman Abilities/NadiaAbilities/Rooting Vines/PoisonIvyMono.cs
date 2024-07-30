@@ -1,4 +1,6 @@
 
+using UnityEngine;
+
 public class PoisonIvyMono : RootingVinesMono
 {
     private PoisonIvy poisonIvy;
@@ -54,6 +56,4 @@ public class PoisonIvyMono : RootingVinesMono
     {
         enemy.EnemyVisualHandler.EnemyEffectHandler.PoisonIvyVisuals.StopPoisonParticle();
     }
-
-
 }

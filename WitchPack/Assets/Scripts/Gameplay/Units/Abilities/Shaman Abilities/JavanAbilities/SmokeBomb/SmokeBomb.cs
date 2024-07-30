@@ -40,7 +40,7 @@ public class SmokeBomb : OffensiveAbility
     
     protected virtual bool Cast(BaseUnit caster, IDamagable target)
     {
-        SmokeBombMono smokeBombMono = LevelManager.Instance.PoolManager.SmokeBombPool.GetPooledObject();
+        SmokeBombMono smokeBombMono = PoolManager.GetPooledObject<SmokeBombMono>();
         smokeBombMono.transform.position = target.GameObject.transform.position;
         smokeBombMono.gameObject.SetActive(true);
         smokeBombMono.SpawnBomb(this, caster);

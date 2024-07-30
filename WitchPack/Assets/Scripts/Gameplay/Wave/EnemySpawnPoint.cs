@@ -19,7 +19,7 @@ public class EnemySpawnPoint : MonoBehaviour
 
     public Enemy SpawnEnemy(EnemyConfig givenConf,LevelConfig levelConfig)
     {
-        Enemy enemy = LevelManager.Instance.PoolManager.EnemyPool.GetPooledObject();
+        Enemy enemy = PoolManager.GetPooledObject<Enemy>();
         enemy.transform.position = transform.position;
         enemy.gameObject.SetActive(true);
         givenConf.Path = path;

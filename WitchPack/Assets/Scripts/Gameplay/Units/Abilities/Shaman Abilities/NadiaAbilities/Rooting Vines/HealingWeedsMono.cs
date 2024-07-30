@@ -34,4 +34,5 @@ public class HealingWeedsMono : RootingVinesMono
         }
         SoundManager.PlayAudioClip(SoundEffectType.HealingWeeds);
     }
+
 }

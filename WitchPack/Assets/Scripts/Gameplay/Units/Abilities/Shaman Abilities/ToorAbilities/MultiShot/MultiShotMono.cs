@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MultiShotMono : MonoBehaviour
+public class MultiShotMono : MonoBehaviour, IPoolable
 {
     public bool Launched { get; private set; }
 
@@ -90,4 +90,5 @@ public class MultiShotMono : MonoBehaviour
         Launched = false;
         gameObject.SetActive(false);
     }
+    public GameObject PoolableGameObject => gameObject;
 }

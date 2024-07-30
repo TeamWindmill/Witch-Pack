@@ -22,7 +22,7 @@ public class EnemyRangedAutoAttack : OffensiveAbility
         {
             return false;
         }
-        AutoAttackMono newPew = LevelManager.Instance.PoolManager.ShamanAutoAttackPool.GetPooledObject();
+        AutoAttackMono newPew = PoolManager.GetPooledObject<AutoAttackMono>();
         newPew.transform.position = Owner.CastPos.transform.position;
         newPew.gameObject.SetActive(true);
         newPew.Fire(Owner, this, target,Config.Speed);

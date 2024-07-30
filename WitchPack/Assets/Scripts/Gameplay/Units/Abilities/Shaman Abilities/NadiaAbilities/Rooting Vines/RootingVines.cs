@@ -13,7 +13,7 @@ public class RootingVines : OffensiveAbility
         target = Owner.EnemyTargetHelper.GetTarget(TargetData);    
         if (!ReferenceEquals(target, null))
         {
-            RootingVinesMono newVines = LevelManager.Instance.PoolManager.RootingVinesPool.GetPooledObject();
+            RootingVinesMono newVines = PoolManager.GetPooledObject<RootingVinesMono>();
             newVines.Init(Owner, this, GetAbilityStatValue(AbilityStatType.Duration) ,GetAbilityStatValue(AbilityStatType.Size));
             newVines.transform.position = target.GameObject.transform.position;
             newVines.gameObject.SetActive(true);

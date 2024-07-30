@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class OrbitalStonesMono : MonoBehaviour
+public class OrbitalStonesMono : MonoBehaviour,IPoolable
 {
     public float AngularSpeed => _angularSpeed;
     public float Radius => _radius;
@@ -44,7 +44,7 @@ public class OrbitalStonesMono : MonoBehaviour
 
     public void SpawnStone(int index)
     {
-        var stone = LevelManager.Instance.PoolManager.FloatingStonesPool.GetPooledObject();
+        var stone = PoolManager.GetPooledObject<FloatingStoneMono>();
         stone.Init(this,index);
         _activeStones.Add(stone);
         SoundManager.PlayAudioClip(SoundEffectType.OrbitalStonesCreating);
@@ -69,4 +69,5 @@ public class OrbitalStonesMono : MonoBehaviour
         if (!_isActive) return;
         transform.position = Owner.transform.position;
     }
+    public GameObject PoolableGameObject => gameObject;
 }

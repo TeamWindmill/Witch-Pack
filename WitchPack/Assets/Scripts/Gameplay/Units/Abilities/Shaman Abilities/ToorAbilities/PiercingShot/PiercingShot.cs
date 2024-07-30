@@ -20,7 +20,7 @@ public class PiercingShot : OffensiveAbility
         target = Owner.EnemyTargetHelper.GetTarget(TargetData);
         if (!ReferenceEquals(target, null))
         {
-            PiercingShotMono newPew = LevelManager.Instance.PoolManager.PiercingShotPool.GetPooledObject();
+            PiercingShotMono newPew = PoolManager.GetPooledObject<PiercingShotMono>();
             var position = Owner.transform.position;
             newPew.transform.position = position;
             newPew.gameObject.SetActive(true);

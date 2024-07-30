@@ -3,7 +3,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Collider2D))]
 [RequireComponent(typeof(Rigidbody2D))]
-public class PiercingShotMono : MonoBehaviour
+public class PiercingShotMono : MonoBehaviour,IPoolable
 {
     
     [Header("refs")]
@@ -122,5 +122,5 @@ public class PiercingShotMono : MonoBehaviour
         Disable();
     }
 
-
+    public GameObject PoolableGameObject => gameObject;
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class HighImpactSmokeBombMono : SmokeBombMono
+public class HighImpactSmokeBombMono : SmokeBombMono, IPoolable
 {
     [SerializeField] private ParticleSystem _explosionParticleSystem;
     private bool _explosionActive = true;
@@ -46,4 +46,5 @@ public class HighImpactSmokeBombMono : SmokeBombMono
         _explosionParticleSystem.gameObject.SetActive(false);
         base.OnEnd(director);
     }
+    public GameObject PoolableGameObject => gameObject;
 }

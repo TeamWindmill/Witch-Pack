@@ -89,6 +89,6 @@ public class MultiShot : OffensiveAbility
     
     protected virtual MultiShotMono GetPooledObject()
     {
-        return LevelManager.Instance.PoolManager.MultiShotPool.GetPooledObject();
+        return PoolManager.GetPooledObject<MultiShotMono>();
     }
 }

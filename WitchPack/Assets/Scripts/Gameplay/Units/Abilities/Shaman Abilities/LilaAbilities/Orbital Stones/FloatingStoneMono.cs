@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
 using UnityEngine;
-public class FloatingStoneMono : MonoBehaviour
+public class FloatingStoneMono : MonoBehaviour, IPoolable
 {
     [SerializeField] private PolygonCollider2D _polygonCollider;
     [SerializeField] private Sprite[] _sprites;
@@ -92,4 +92,6 @@ public class FloatingStoneMono : MonoBehaviour
         _polygonCollider ??= GetComponent<PolygonCollider2D>();
         _spriteRenderer ??= GetComponent<SpriteRenderer>();
     }
+
+    public GameObject PoolableGameObject => gameObject;
 }

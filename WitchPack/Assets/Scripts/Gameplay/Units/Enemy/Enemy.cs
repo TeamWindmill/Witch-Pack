@@ -3,7 +3,7 @@ using PathCreation;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class Enemy : BaseUnit
+public class Enemy : BaseUnit,IPoolable
 {
     [SerializeField, TabGroup("Visual")] private EnemyVisualHandler enemyVisualHandler;
     [SerializeField, TabGroup("Combat")] private EnemyAI enemyAI;
@@ -96,5 +96,6 @@ public class Enemy : BaseUnit
     //private void AttackSFX() => SoundManager.Instance.PlayAudioClip(SoundEffectType.EnemyAttack);
     
     #endregion
-    
+    public GameObject PoolableGameObject => gameObject;
+
 }

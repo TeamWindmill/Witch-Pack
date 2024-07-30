@@ -1,4 +1,6 @@
-public class AutoAttackMono : ProjectileMono
+using UnityEngine;
+
+public class AutoAttackMono : ProjectileMono,IPoolable
 {
     protected override void OnTargetHit(IDamagable target)
     {
@@ -13,4 +15,5 @@ public class AutoAttackMono : ProjectileMono
                 break;
         }
     }
+    public GameObject PoolableGameObject => gameObject;
 }

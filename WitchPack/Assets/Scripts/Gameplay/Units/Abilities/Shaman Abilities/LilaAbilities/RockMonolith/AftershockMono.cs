@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class AftershockMono : MonoBehaviour
+public class AftershockMono : MonoBehaviour, IPoolable
 {
     public event Action OnActivation;
     [SerializeField] private GroundColliderTargeter _targeter;
@@ -55,7 +55,7 @@ public class AftershockMono : MonoBehaviour
 
     private void OnEnemyDeath(Damageable damageable, DamageHandler damageHandler)
     {
-        var aftershockMono = LevelManager.Instance.PoolManager.AftershockPool.GetPooledObject();
+        var aftershockMono = PoolManager.GetPooledObject<AftershockMono>();
         var enemy = damageable.Owner as Enemy;
         aftershockMono.transform.position = enemy.transform.position;
         aftershockMono.gameObject.SetActive(true);
@@ -67,4 +67,6 @@ public class AftershockMono : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
+    public GameObject PoolableGameObject => gameObject;
 }

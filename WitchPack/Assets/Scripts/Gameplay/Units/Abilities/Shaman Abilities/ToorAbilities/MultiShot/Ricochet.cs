@@ -9,6 +9,6 @@ public class Ricochet : MultiShot
 
     protected override MultiShotMono GetPooledObject()
     {
-        return LevelManager.Instance.PoolManager.RicochetPool.GetPooledObject();
+        return PoolManager.GetPooledObject<RicochetMono>();
     }
 }

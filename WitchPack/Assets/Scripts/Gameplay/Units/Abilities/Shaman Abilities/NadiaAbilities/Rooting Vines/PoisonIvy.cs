@@ -15,7 +15,7 @@ public class PoisonIvy : OffensiveAbility
         target = Owner.EnemyTargetHelper.GetTarget(TargetData);
         if (!ReferenceEquals(target, null))
         {
-            PoisonIvyMono newIvyPoison = LevelManager.Instance.PoolManager.PoisonIvyPool.GetPooledObject();
+            PoisonIvyMono newIvyPoison = PoolManager.GetPooledObject<PoisonIvyMono>();
             newIvyPoison.Init(Owner, this, GetAbilityStatValue(AbilityStatType.Duration),GetAbilityStatValue(AbilityStatType.Size));
             newIvyPoison.transform.position = target.GameObject.transform.position;
             newIvyPoison.gameObject.SetActive(true);

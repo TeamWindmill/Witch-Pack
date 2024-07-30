@@ -56,7 +56,7 @@ public class RockMonolith : OffensiveAbility
 
     protected virtual void OnTauntEnd()
     {
-        _activeAftershock = LevelManager.Instance.PoolManager.AftershockPool.GetPooledObject();
+        _activeAftershock = PoolManager.GetPooledObject<AftershockMono>();
         _activeAftershock.transform.position = Owner.transform.position;
         _activeAftershock.gameObject.SetActive(true);
         _activeAftershock.Init(_shamanOwner,this,false,0);

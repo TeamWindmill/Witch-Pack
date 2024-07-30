@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class SmokeBombMono : MonoBehaviour
+public class SmokeBombMono : MonoBehaviour,IPoolable
 {
     public event Action OnAbilityEnd;
     
@@ -115,4 +115,5 @@ public class SmokeBombMono : MonoBehaviour
         }
         
     }
+    public GameObject PoolableGameObject => gameObject;
 }

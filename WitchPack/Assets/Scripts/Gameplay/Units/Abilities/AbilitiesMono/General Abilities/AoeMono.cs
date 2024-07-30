@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AoeMono : MonoBehaviour
+public class AoeMono : MonoBehaviour,IPoolable
 {
     private float ringLastingTime;
     private float elapsedTime;
@@ -72,4 +72,5 @@ public class AoeMono : MonoBehaviour
     {
         
     }
+    public GameObject PoolableGameObject => gameObject;
 }
