@@ -26,6 +26,7 @@ public class AbilitySkillTreeDetails : UIElement<AbilityDetailsPanel,AbilitySO>
         _rootAbility = selectedAbility.RootAbility;
         title.text = selectedAbility.Name;
         IconsInit(_rootAbility);
+        SelectIcon(selectedAbility);
         base.Init(detailsPanel,selectedAbility);
         Show();
     }
@@ -74,14 +75,14 @@ public class AbilitySkillTreeDetails : UIElement<AbilityDetailsPanel,AbilitySO>
     private void IconsInit(AbilitySO rootAbility)
     {
         _abilityUpgrades = rootAbility.GetUpgrades();
-        baseAbilityUpgradeUIButton.Init(rootAbility,OnIconClick);
+        baseAbilityUpgradeUIButton.Init(rootAbility,SelectIcon);
         if (_abilityUpgrades.Count == 3)
         {
             upgrades3BG.gameObject.SetActive(true);
             upgrades3Holder.gameObject.SetActive(true);
             for (int i = 0; i < _abilityUpgrades.Count; i++)
             {
-                abilityUpgrades3UI[i].Init(_abilityUpgrades[i],OnIconClick);
+                abilityUpgrades3UI[i].Init(_abilityUpgrades[i],SelectIcon);
             }
         }
         else if (_abilityUpgrades.Count == 2)
@@ -90,12 +91,12 @@ public class AbilitySkillTreeDetails : UIElement<AbilityDetailsPanel,AbilitySO>
             upgrades2Holder.gameObject.SetActive(true);
             for (int i = 0; i < _abilityUpgrades.Count; i++)
             {
-                abilityUpgrades2UI[i].Init(_abilityUpgrades[i],OnIconClick);
+                abilityUpgrades2UI[i].Init(_abilityUpgrades[i],SelectIcon);
             }
         }
     }
 
-    private void OnIconClick(AbilitySO ability)
+    private void SelectIcon(AbilitySO ability)
     {
         //disable all
         baseAbilityUpgradeUIButton.SelectIcon(false);
