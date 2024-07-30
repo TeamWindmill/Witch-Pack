@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using Dialog;
 using Gameplay.Level;
-using Gameplay.Units.Energy_Exp.Exp;
-using Gameplay.Units.Shaman;
+using Gameplay.Units.Energy_Exp;
+using Gameplay.Units;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

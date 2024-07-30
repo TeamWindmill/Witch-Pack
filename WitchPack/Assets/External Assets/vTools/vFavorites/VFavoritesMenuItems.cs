@@ -20,7 +20,7 @@ namespace External_Assets.vTools.vFavorites
         [MenuItem(menuDir + "Disable vFavorites", false, 1001)]
         static void das() => ToggleDefineDisabledInScript(typeof(VFavorites));
         [MenuItem(menuDir + "Disable vFavorites", true, 1001)]
-        static bool dassadc() { UnityEditor.Menu.SetChecked(menuDir + "Disable vFavorites", ScriptHasDefineDisabled(typeof(VFavorites))); return true; }
+        static bool dassadc() { Menu.SetChecked(menuDir + "Disable vFavorites", ScriptHasDefineDisabled(typeof(VFavorites))); return true; }
 
     }
 }

@@ -1,14 +1,13 @@
 using System;
 using System.Collections.Generic;
-using Gameplay.Pools;
-using Gameplay.Pools.Pool_System;
 using UnityEngine;
 
-namespace Managers
+namespace Gameplay.Pools.Pool_System
 {
     public class PoolManager : MonoBehaviour
     {
         [SerializeField] private IndicatorPool indicatorPool;
+        
         private static Dictionary<Type, IObjectPool> _pools;
 
         private void Awake()

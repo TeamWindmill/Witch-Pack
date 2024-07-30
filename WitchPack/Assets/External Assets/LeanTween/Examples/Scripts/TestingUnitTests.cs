@@ -161,8 +161,8 @@ namespace External_Assets.LeanTween.Examples.Scripts
                 d.setTime(0.5f);
                 Framework.LeanTween.delayedCall(0.0f, () => { }).setOnStart(() => {
                     float diffAmt = 1f;// This variable is dependent on a good frame-rate because it evalutes at the next Update
-                    beforeX += UnityEngine.Time.deltaTime * 100f * 2f;
-                    LeanTest.expect(Mathf.Abs(jumpCube.transform.position.x - beforeX) < diffAmt, "CHANGING TIME DOESN'T JUMP AHEAD", "Difference:" + Mathf.Abs(jumpCube.transform.position.x - beforeX) + " beforeX:" + beforeX + " now:" + jumpCube.transform.position.x + " dt:" + UnityEngine.Time.deltaTime);
+                    beforeX += Time.deltaTime * 100f * 2f;
+                    LeanTest.expect(Mathf.Abs(jumpCube.transform.position.x - beforeX) < diffAmt, "CHANGING TIME DOESN'T JUMP AHEAD", "Difference:" + Mathf.Abs(jumpCube.transform.position.x - beforeX) + " beforeX:" + beforeX + " now:" + jumpCube.transform.position.x + " dt:" + Time.deltaTime);
                 });
             });
 
@@ -210,9 +210,9 @@ namespace External_Assets.LeanTween.Examples.Scripts
             float onStartTime = -1f;
             Framework.LeanTween.color(cubeAlpha2, Color.cyan, 0.3f).setOnComplete(() => {
                 LeanTest.expect(cubeAlpha2.GetComponent<Renderer>().material.color == Color.cyan, "COLOR");
-                LeanTest.expect(onStartTime >= 0f && onStartTime < UnityEngine.Time.time, "ON START", "onStartTime:" + onStartTime + " time:" + UnityEngine.Time.time);
+                LeanTest.expect(onStartTime >= 0f && onStartTime < Time.time, "ON START", "onStartTime:" + onStartTime + " time:" + Time.time);
             }).setOnStart(() => {
-                onStartTime = UnityEngine.Time.time;
+                onStartTime = Time.time;
             });
             // moveLocalY (make sure uses y values)
             Vector3 beforePos = cubeAlpha1.transform.position;
@@ -227,7 +227,7 @@ namespace External_Assets.LeanTween.Examples.Scripts
 
             AudioClip audioClip = LeanAudio.createAudio(new AnimationCurve(new Keyframe(0f, 1f, 0f, -1f), new Keyframe(1f, 0f, -1f, 0f)), new AnimationCurve(new Keyframe(0f, 0.001f, 0f, 0f), new Keyframe(1f, 0.001f, 0f, 0f)), LeanAudio.options());
             Framework.LeanTween.delayedSound(gameObject, audioClip, new Vector3(0f, 0f, 0f), 0.1f).setDelay(0.2f).setOnComplete(() => {
-                LeanTest.expect(UnityEngine.Time.time > 0, "DELAYED SOUND");
+                LeanTest.expect(Time.time > 0, "DELAYED SOUND");
             });
 
             // Easing Methods
@@ -298,7 +298,7 @@ namespace External_Assets.LeanTween.Examples.Scripts
             GameObject cubeNormal = cubeNamed("normalTimeScale");
             // float timeElapsedNormal = Time.time;
             Framework.LeanTween.moveX(cubeNormal, 12f, 1.5f).setIgnoreTimeScale(false).setOnComplete(() => {
-                timeElapsedNormalTimeScale = UnityEngine.Time.time;
+                timeElapsedNormalTimeScale = Time.time;
             });
 
             LTDescr[] descr = Framework.LeanTween.descriptions(cubeNormal);
@@ -306,14 +306,14 @@ namespace External_Assets.LeanTween.Examples.Scripts
 
             GameObject cubeIgnore = cubeNamed("ignoreTimeScale");
             Framework.LeanTween.moveX(cubeIgnore, 5f, 1.5f).setIgnoreTimeScale(true).setOnComplete(() => {
-                timeElapsedIgnoreTimeScale = UnityEngine.Time.time;
+                timeElapsedIgnoreTimeScale = Time.time;
             });
 
             yield return new WaitForSeconds(1.5f);
             LeanTest.expect(Mathf.Abs(timeElapsedNormalTimeScale - timeElapsedIgnoreTimeScale) < 0.7f, "START IGNORE TIMING", "timeElapsedIgnoreTimeScale:" + timeElapsedIgnoreTimeScale + " timeElapsedNormalTimeScale:" + timeElapsedNormalTimeScale);
 
             //          yield return new WaitForSeconds(100f);
-            UnityEngine.Time.timeScale = 4f;
+            Time.timeScale = 4f;
 
             int pauseCount = 0;
             Framework.LeanTween.value(gameObject, 0f, 1f, 1f).setOnUpdate((float val) => {
@@ -496,15 +496,15 @@ namespace External_Assets.LeanTween.Examples.Scripts
 
 
             yield return new WaitForEndOfFrame();
-            UnityEngine.Time.timeScale = 0.25f;
+            Time.timeScale = 0.25f;
             float tweenTime = 0.2f;
-            float expectedTime = tweenTime * (1f / UnityEngine.Time.timeScale);
-            float start = UnityEngine.Time.realtimeSinceStartup;
+            float expectedTime = tweenTime * (1f / Time.timeScale);
+            float start = Time.realtimeSinceStartup;
             bool onUpdateWasCalled = false;
             Framework.LeanTween.moveX(cube1, -5f, tweenTime).setOnUpdate((float val) => {
                 onUpdateWasCalled = true;
             }).setOnComplete(() => {
-                float end = UnityEngine.Time.realtimeSinceStartup;
+                float end = Time.realtimeSinceStartup;
                 float diff = end - start;
 
                 LeanTest.expect(Mathf.Abs(expectedTime - diff) < 0.06f, "SCALED TIMING DIFFERENCE", "expected to complete in roughly " + expectedTime + " but completed in " + diff);
@@ -520,7 +520,7 @@ namespace External_Assets.LeanTween.Examples.Scripts
             });
 
             yield return new WaitForSeconds(expectedTime);
-            UnityEngine.Time.timeScale = 1f;
+            Time.timeScale = 1f;
 
             int ltCount = 0;
             GameObject[] allGos = FindObjectsOfType(typeof(GameObject)) as GameObject[];
@@ -538,7 +538,7 @@ namespace External_Assets.LeanTween.Examples.Scripts
         {
             yield return new WaitForEndOfFrame();
 
-            UnityEngine.Time.timeScale = 4f;
+            Time.timeScale = 4f;
             int cubeCount = 10;
 
             int[] tweensA = new int[cubeCount];
@@ -616,10 +616,10 @@ namespace External_Assets.LeanTween.Examples.Scripts
         IEnumerator pauseTimeNow()
         {
             yield return new WaitForSeconds(0.5f);
-            UnityEngine.Time.timeScale = 0;
+            Time.timeScale = 0;
 
             Framework.LeanTween.delayedCall(0.5f, () => {
-                UnityEngine.Time.timeScale = 1f;
+                Time.timeScale = 1f;
             }).setUseEstimatedTime(true);
 
             Framework.LeanTween.delayedCall(1.5f, () => {

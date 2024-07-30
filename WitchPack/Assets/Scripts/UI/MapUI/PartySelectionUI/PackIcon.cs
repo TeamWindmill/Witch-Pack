@@ -1,5 +1,5 @@
 using System;
-using Gameplay.Units.Shaman;
+using Gameplay.Units;
 using Plugins.Demigiant.DOTween.Modules;
 using UI.UISystem;
 using UnityEngine;

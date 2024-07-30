@@ -55,18 +55,18 @@ namespace Gameplay.Units.Abilities.AbilitiesMono.General_Abilities
                 else OnEnemyExit(enemy);
 
             }
-            else if (collider.Unit is Shaman.Shaman shaman)
+            else if (collider.Unit is Shaman shaman)
             {
                 if (enter) OnShamanEnter(shaman);
                 else OnShamanExit(shaman);
             }
         }
 
-        protected virtual void OnShamanEnter(Shaman.Shaman shaman)
+        protected virtual void OnShamanEnter(Shaman shaman)
         {
         
         }
-        protected virtual void OnShamanExit(Shaman.Shaman shaman)
+        protected virtual void OnShamanExit(Shaman shaman)
         {
         
         }

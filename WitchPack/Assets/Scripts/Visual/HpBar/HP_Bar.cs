@@ -97,7 +97,7 @@ namespace Visual.HpBar
             while (t <= duration)
             {
                 currentValue = Mathf.Lerp(startValue, targetValue, t);
-                t += UnityEngine.Time.deltaTime / duration;
+                t += Time.deltaTime / duration;
                 SetBar((int)currentValue,(int)_maxValue);
                 yield return null;
             }

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Gameplay.Units.Stats
 {
-    [System.Serializable]
+    [Serializable]
     public class UnitStats
     {
 

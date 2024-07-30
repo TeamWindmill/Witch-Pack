@@ -24,7 +24,7 @@ namespace External_Assets.PathCreator.Examples.Scripts
         {
             if (pathCreator != null)
             {
-                distanceTravelled += speed * UnityEngine.Time.deltaTime;
+                distanceTravelled += speed * Time.deltaTime;
                 transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
                 transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
             }

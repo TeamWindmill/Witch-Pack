@@ -338,7 +338,7 @@ namespace External_Assets.vTools.vInspector
             if (datasByTarget.ContainsKey(target) && datasByTarget[target] != null)
                 data = datasByTarget[target];
             else
-                data = datasByTarget[target] = (VInspectorData)(serializedDataField?.GetValue(target)) ?? ScriptableObject.CreateInstance<VInspectorData>();
+                data = datasByTarget[target] = (VInspectorData)(serializedDataField?.GetValue(target)) ?? CreateInstance<VInspectorData>();
 
             serializedDataField?.SetValue(target, data);
 

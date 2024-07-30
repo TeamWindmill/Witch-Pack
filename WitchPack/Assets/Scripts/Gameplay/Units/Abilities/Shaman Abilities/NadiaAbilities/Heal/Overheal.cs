@@ -15,7 +15,7 @@ namespace Gameplay.Units.Abilities.Shaman_Abilities.NadiaAbilities.Heal
             abilityStats.Add(new AbilityStat(AbilityStatType.Heal,config.HealAmount));
         }
 
-        protected override void HealTarget(Shaman.Shaman target, BaseUnit caster)
+        protected override void HealTarget(Shaman target, BaseUnit caster)
         {
             if (HasAbilityBehavior(AbilityBehavior.OverhealExcessHealing)) ExcessHealthGain(target);
             else FixedHealthGain(target);
@@ -24,7 +24,7 @@ namespace Gameplay.Units.Abilities.Shaman_Abilities.NadiaAbilities.Heal
             target.Damageable.Heal((int)GetAbilityStatValue(AbilityStatType.Heal));
         }
 
-        private void ExcessHealthGain(Shaman.Shaman target)
+        private void ExcessHealthGain(Shaman target)
         {
             var healAmount = (int)GetAbilityStatValue(AbilityStatType.Heal);
             if(target.Damageable.CurrentHp + healAmount > target.Stats[StatType.MaxHp].Value)
@@ -34,7 +34,7 @@ namespace Gameplay.Units.Abilities.Shaman_Abilities.NadiaAbilities.Heal
             }
         }
 
-        private void FixedHealthGain(Shaman.Shaman target)
+        private void FixedHealthGain(Shaman target)
         {
             var healAmount = (int)GetAbilityStatValue(AbilityStatType.Heal);
             if(target.Damageable.CurrentHp + healAmount > target.Stats[StatType.MaxHp].Value)

@@ -1,33 +1,52 @@
+using DG.Tweening;
 using Gameplay.Pools.Pool_System;
 using Gameplay.Targeter;
 using UnityEngine;
 
-namespace Gameplay.Units.Energy_Exp.Energy
+namespace Gameplay.Units.Energy_Exp
 {
     public class EnergyParticle : MonoBehaviour, IPoolable
     {
         [SerializeField] private ParticleSystem particleSystem;
         [SerializeField] private ShamanTargeter particleCollider;
         [SerializeField] private float magnetSpeed;
-        [SerializeField] private int energyValue;
+        [SerializeField] private float dropDuration;
+        [SerializeField] private float dropRadius;
+        [SerializeField] private Ease dropAnimationEase;
+        private int _energyValue;
         private bool _shamanInRadius;
-        private Shaman.Shaman _shamanTarget;
+        private Shaman _shamanTarget;
 
         private void Awake()
         {
             particleCollider.OnTargetAdded += PopEnergyParticle;
         }
 
-        private void PopEnergyParticle(Shaman.Shaman shaman)
+        public void Init(Vector3 position,int energyValue,int randomAngle)
         {
-            Debug.Log(energyValue +" energy gained");
+            _energyValue = energyValue;
+            transform.position = position;
+            gameObject.SetActive(true);
+            ParticleDropAnimation(position,randomAngle);
+        }
+
+        private void ParticleDropAnimation(Vector3 position,int randomAngle)
+        {
+            var x = Mathf.Sin(randomAngle);
+            var y = Mathf.Cos(randomAngle);
+            transform.DOMove(position + new Vector3(x, y, 0) * dropRadius, dropDuration).SetEase(dropAnimationEase);
+        }
+
+        private void PopEnergyParticle(Shaman shaman)
+        {
+            PartyEnergyHandler.AddEnergy(_energyValue);
             gameObject.SetActive(false);
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if(_shamanInRadius) return;
-            if (other.TryGetComponent<Shaman.Shaman>(out var shaman))
+            if (other.TryGetComponent<Shaman>(out var shaman))
             {
                 _shamanInRadius = true;
                 _shamanTarget = shaman;
@@ -36,7 +55,7 @@ namespace Gameplay.Units.Energy_Exp.Energy
 
         private void OnTriggerExit2D(Collider2D other)
         {
-            if (other.TryGetComponent<Shaman.Shaman>(out var shaman))
+            if (other.TryGetComponent<Shaman>(out var shaman))
             {
                 if (shaman != _shamanTarget) return;
                 _shamanInRadius = false;
@@ -48,7 +67,7 @@ namespace Gameplay.Units.Energy_Exp.Energy
         {
             if (_shamanInRadius)
             {
-                transform.position = Vector3.MoveTowards(transform.position, _shamanTarget.transform.position, magnetSpeed * UnityEngine.Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, _shamanTarget.transform.position, magnetSpeed * Time.deltaTime);
             }
         }
 

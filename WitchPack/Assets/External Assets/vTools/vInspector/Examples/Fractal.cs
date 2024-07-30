@@ -130,7 +130,7 @@ namespace External_Assets.vTools.vInspector.Examples
         {
             foreach (var position in positions)
             {
-                var child = (step == steps ? GameObject.Instantiate(primitive) : new GameObject()).transform;
+                var child = (step == steps ? Instantiate(primitive) : new GameObject()).transform;
 
                 child.parent = parent;
                 child.localScale = Vector3.one / 3;
@@ -159,7 +159,7 @@ namespace External_Assets.vTools.vInspector.Examples
                 var dir = new Vector3(child.localPosition.y, child.localPosition.z, child.localPosition.x);
                 dir = Vector3.Lerp(dir, child.localPosition, direction);
 
-                child.Rotate(dir, speed * 2, UnityEngine.Space.Self);
+                child.Rotate(dir, speed * 2, Space.Self);
 
 
                 PlayAnimation(child);

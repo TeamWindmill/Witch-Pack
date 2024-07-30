@@ -487,7 +487,7 @@ namespace External_Assets.NavMeshPlus_master.NavMeshComponents.Scripts
                 return false;
 
             // An instance can share asset reference only with its prefab parent
-            var prefab = UnityEditor.PrefabUtility.GetCorrespondingObjectFromSource(this) as NavMeshSurface;
+            var prefab = PrefabUtility.GetCorrespondingObjectFromSource(this) as NavMeshSurface;
             if (prefab != null && prefab.navMeshData == navMeshData)
                 return false;
 

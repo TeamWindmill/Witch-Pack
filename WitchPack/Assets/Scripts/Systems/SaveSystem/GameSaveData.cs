@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Gameplay.Units.Shaman;
+using Gameplay.Units;
 using Map;
 
 namespace Systems.SaveSystem

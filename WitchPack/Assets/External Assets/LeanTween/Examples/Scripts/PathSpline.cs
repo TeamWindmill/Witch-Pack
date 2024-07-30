@@ -27,7 +27,7 @@ namespace External_Assets.LeanTween.Examples.Scripts
 			// Iterating over path
 			ltLogo.transform.position = spline.point( iter /*(Time.time*1000)%1000 * 1.0 / 1000.0 */);
 
-			iter += UnityEngine.Time.deltaTime*0.1f;
+			iter += Time.deltaTime*0.1f;
 			if(iter>1.0f)
 				iter = 0.0f;
 		}

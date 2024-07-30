@@ -50,7 +50,7 @@ namespace External_Assets.LeanTween.Examples.Scripts
 
 			// Update avatar's position on correct track
 			track.place( car.transform, carIter );
-			carIter += carAdd * UnityEngine.Time.deltaTime;
+			carIter += carAdd * Time.deltaTime;
 
 			// we'll place the trail renders always a bit in front of the car
 			track.place( trackTrailRenderers.transform, carIter + pushTrackAhead );

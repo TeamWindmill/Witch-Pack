@@ -63,7 +63,7 @@ namespace External_Assets.PathCreator.Core.Runtime.Utility {
 
             List<float> extremePointTimes = ExtremePointTimes (p0,p1,p2,p3);
             foreach (float t in extremePointTimes) {
-                minMax.AddValue (CubicBezierUtility.EvaluateCurve (p0, p1, p2, p3, t));
+                minMax.AddValue (EvaluateCurve (p0, p1, p2, p3, t));
             }
 
             return new Bounds ((minMax.Min + minMax.Max) / 2, minMax.Max - minMax.Min);

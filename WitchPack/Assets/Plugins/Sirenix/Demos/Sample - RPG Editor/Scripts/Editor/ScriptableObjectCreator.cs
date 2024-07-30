@@ -54,7 +54,7 @@ namespace Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Editor
             {
                 this.onScritpableObjectCreated = onScritpableObjectCreated;
                 this.defaultDestinationPath = defaultDestinationPath;
-                this.SelectionConfirmed += this.ShowSaveFileDialog;
+                SelectionConfirmed += ShowSaveFileDialog;
             }
 
             protected override void BuildSelectionTree(OdinMenuTree tree)
@@ -72,7 +72,7 @@ namespace Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Editor
             {
                 var obj = ScriptableObject.CreateInstance(selection.FirstOrDefault()) as T;
 
-                string dest = this.defaultDestinationPath.TrimEnd('/');
+                string dest = defaultDestinationPath.TrimEnd('/');
 
                 if (!Directory.Exists(dest))
                 {
@@ -87,9 +87,9 @@ namespace Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Editor
                     AssetDatabase.CreateAsset(obj, dest);
                     AssetDatabase.Refresh();
 
-                    if (this.onScritpableObjectCreated != null)
+                    if (onScritpableObjectCreated != null)
                     {
-                        this.onScritpableObjectCreated(obj);
+                        onScritpableObjectCreated(obj);
                     }
                 }
                 else

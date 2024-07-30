@@ -24,19 +24,19 @@ namespace Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Misc
 
         public StatValue(StatType type, float value)
         {
-            this.Type = type;
-            this.Value = value;
+            Type = type;
+            Value = value;
         }
 
         public StatValue(StatType type)
         {
-            this.Type = type;
-            this.Value = 0;
+            Type = type;
+            Value = 0;
         }
 
         public bool Equals(StatValue other)
         {
-            return this.Type == other.Type && this.Value == other.Value;
+            return Type == other.Type && Value == other.Value;
         }
     }
 }

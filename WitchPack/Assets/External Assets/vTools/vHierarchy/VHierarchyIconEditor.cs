@@ -8,7 +8,7 @@ using static External_Assets.vTools.vHierarchy.VHierarchyData;
 
 namespace External_Assets.vTools.vHierarchy
 {
-    public class VHierarchyIconEditor : VGUI.CustomPopupWindow
+    public class VHierarchyIconEditor : CustomPopupWindow
     {
         void OnGUI()
         {

@@ -48,13 +48,13 @@ namespace External_Assets.LeanTween.Examples.Scripts
 
         void pauseNow()
         {
-            UnityEngine.Time.timeScale = 0f;
+            Time.timeScale = 0f;
             Debug.Log("pausing");
         }
 
         void OnGUI()
         {
-            string label = useEstimatedTime ? "useEstimatedTime" : "timeScale:" + UnityEngine.Time.timeScale;
+            string label = useEstimatedTime ? "useEstimatedTime" : "timeScale:" + Time.timeScale;
             GUI.Label(new Rect(0.03f * Screen.width, 0.03f * Screen.height, 0.5f * Screen.width, 0.3f * Screen.height), label);
         }
 
@@ -72,15 +72,15 @@ namespace External_Assets.LeanTween.Examples.Scripts
                     iter = 0;
                 timingType = (TimingType)iter;
                 useEstimatedTime = timingType == TimingType.IgnoreTimeScale;
-                UnityEngine.Time.timeScale = useEstimatedTime ? 0 : 1f; // pause the Time Scale to show the effectiveness of the useEstimatedTime feature (this is very usefull with Pause Screens)
+                Time.timeScale = useEstimatedTime ? 0 : 1f; // pause the Time Scale to show the effectiveness of the useEstimatedTime feature (this is very usefull with Pause Screens)
                 if (timingType == TimingType.HalfTimeScale)
-                    UnityEngine.Time.timeScale = 0.5f;
+                    Time.timeScale = 0.5f;
 
                 if (timingType == TimingType.VariableTimeScale)
                 {
                     descrTimeScaleChangeId = gameObject.LeanValue(0.01f, 10.0f, 3f).setOnUpdate((float val) => {
                         //Debug.Log("timeScale val:"+val);
-                        UnityEngine.Time.timeScale = val;
+                        Time.timeScale = val;
                     }).setEase(LeanTweenType.easeInQuad).setUseEstimatedTime(true).setRepeat(-1).id;
                 }
                 else
@@ -100,7 +100,7 @@ namespace External_Assets.LeanTween.Examples.Scripts
 
         public void updateValue3Example()
         {
-            Debug.Log("updateValue3Example Time:" + UnityEngine.Time.time);
+            Debug.Log("updateValue3Example Time:" + Time.time);
             gameObject.LeanValue( updateValue3ExampleCallback, new Vector3(0.0f, 270.0f, 0.0f), new Vector3(30.0f, 270.0f, 180f), 0.5f).setEase(LeanTweenType.easeInBounce).setRepeat(2).setLoopPingPong().setOnUpdateVector3(updateValue3ExampleUpdate).setUseEstimatedTime(useEstimatedTime);
         }
 
@@ -117,7 +117,7 @@ namespace External_Assets.LeanTween.Examples.Scripts
 
         public void loopTestClamp()
         {
-            Debug.Log("loopTestClamp Time:" + UnityEngine.Time.time);
+            Debug.Log("loopTestClamp Time:" + Time.time);
             Transform cube1 = GameObject.Find("Cube1").transform;
             cube1.localScale = new Vector3(1.0f, 1.0f, 1.0f);
             cube1.LeanScaleZ( 4.0f, 1.0f).setEase(LeanTweenType.easeOutElastic).setRepeat(7).setLoopClamp().setUseEstimatedTime(useEstimatedTime);//
@@ -125,7 +125,7 @@ namespace External_Assets.LeanTween.Examples.Scripts
 
         public void loopTestPingPong()
         {
-            Debug.Log("loopTestPingPong Time:" + UnityEngine.Time.time);
+            Debug.Log("loopTestPingPong Time:" + Time.time);
             Transform cube2 = GameObject.Find("Cube2").transform;
             cube2.localScale = new Vector3(1.0f, 1.0f, 1.0f);
             cube2.LeanScaleY( 4.0f, 1.0f).setEase(LeanTweenType.easeOutQuad).setLoopPingPong(4).setUseEstimatedTime(useEstimatedTime);
@@ -140,7 +140,7 @@ namespace External_Assets.LeanTween.Examples.Scripts
 
         public void moveOnACurveExample()
         {
-            Debug.Log("moveOnACurveExample Time:" + UnityEngine.Time.time);
+            Debug.Log("moveOnACurveExample Time:" + Time.time);
 
             Vector3[] path = new Vector3[] { origin, pt1.position, pt2.position, pt3.position, pt3.position, pt4.position, pt5.position, origin };
             ltLogo.LeanMove( path, 1.0f).setEase(LeanTweenType.easeOutQuad).setOrientToPath(true).setUseEstimatedTime(useEstimatedTime);

@@ -1,4 +1,4 @@
-namespace Gameplay.Units.Energy_Exp.Exp
+namespace Gameplay.Units.Energy_Exp
 {
     public static class LevelExpCalculator
     {

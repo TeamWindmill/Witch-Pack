@@ -8,7 +8,7 @@ namespace Gameplay.Units.Shadow
     public class Shadow : MonoBehaviour
     {
         public UnitStats Stats => _stats;
-        public Shaman.Shaman Shaman => _shaman;
+        public Shaman Shaman => _shaman;
         public Dictionary<StatType, float> CurrentStatPSEffects => currentStatPSEffects;
         public bool IsActive => _isActive;
 
@@ -17,12 +17,12 @@ namespace Gameplay.Units.Shadow
         [SerializeField] private LineRenderer lineRenderer;
 
         [SerializeField] private UnitStats _stats;
-        private Shaman.Shaman _shaman;
+        private Shaman _shaman;
         private bool _isActive;
 
         private Dictionary<StatType, float> currentStatPSEffects;
 
-        public void Show(Shaman.Shaman shaman)
+        public void Show(Shaman shaman)
         {
             currentStatPSEffects = new();
             _stats = shaman.Stats;

@@ -10,14 +10,14 @@ namespace Gameplay.Units.Abilities.Enemy_Abilities.Blaster
     {
     
         private Fireball _fireball;
-        private Dictionary<Shaman.Shaman,ITimer> _activeTimers = new();
+        private Dictionary<Shaman,ITimer> _activeTimers = new();
         public override void Init(BaseUnit owner, CastingAbility ability, float lastingTime,float aoeRange)
         {
             _fireball = ability as Fireball;
             base.Init(owner, ability, lastingTime,aoeRange);
         }
 
-        protected override void OnShamanEnter(Shaman.Shaman shaman)
+        protected override void OnShamanEnter(Shaman shaman)
         {
             if (!_activeTimers.ContainsKey(shaman))
             {
@@ -25,7 +25,7 @@ namespace Gameplay.Units.Abilities.Enemy_Abilities.Blaster
                 _activeTimers.Add(shaman,timer);
             }
         }
-        protected override void OnShamanExit(Shaman.Shaman shaman)
+        protected override void OnShamanExit(Shaman shaman)
         {
             if (_activeTimers.TryGetValue(shaman,out var timer))
             {
@@ -33,7 +33,7 @@ namespace Gameplay.Units.Abilities.Enemy_Abilities.Blaster
                 _activeTimers.Remove(shaman);
             }
         }
-        private void OnFireTick(Shaman.Shaman shaman)
+        private void OnFireTick(Shaman shaman)
         {
             var damage = new DamageHandler(_fireball.Config.BurnDamage);
             shaman.Damageable.TakeDamage(_owner.DamageDealer,damage,_fireball,false);

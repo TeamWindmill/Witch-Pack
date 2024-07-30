@@ -43,22 +43,22 @@ namespace External_Assets.vTools.vHierarchy
         [MenuItem(menuDir + "Shortcuts", true, 1)] static bool dadsas123() => false;
 
         [MenuItem(setActive, false, 2)] static void dadsadadsas() => setActiveEnabled = !setActiveEnabled;
-        [MenuItem(setActive, true, 2)] static bool dadsaddasadsas() { UnityEditor.Menu.SetChecked(setActive, setActiveEnabled); return true; }
+        [MenuItem(setActive, true, 2)] static bool dadsaddasadsas() { Menu.SetChecked(setActive, setActiveEnabled); return true; }
 
         [MenuItem(focus, false, 3)] static void dadsadasdadsas() => focusEnabled = !focusEnabled;
-        [MenuItem(focus, true, 3)] static bool dadsadsaddasadsas() { UnityEditor.Menu.SetChecked(focus, focusEnabled); return true; }
+        [MenuItem(focus, true, 3)] static bool dadsadsaddasadsas() { Menu.SetChecked(focus, focusEnabled); return true; }
 
         [MenuItem(delete, false, 4)] static void dadsadsadasdadsas() => deleteEnabled = !deleteEnabled;
-        [MenuItem(delete, true, 4)] static bool dadsaddsasaddasadsas() { UnityEditor.Menu.SetChecked(delete, deleteEnabled); return true; }
+        [MenuItem(delete, true, 4)] static bool dadsaddsasaddasadsas() { Menu.SetChecked(delete, deleteEnabled); return true; }
 
         [MenuItem(expandCollapse, false, 5)] static void dadsadsadasdsadadsas() => expandCollapseEnabled = !expandCollapseEnabled;
-        [MenuItem(expandCollapse, true, 5)] static bool dadsaddsasadadsdasadsas() { UnityEditor.Menu.SetChecked(expandCollapse, expandCollapseEnabled); return true; }
+        [MenuItem(expandCollapse, true, 5)] static bool dadsaddsasadadsdasadsas() { Menu.SetChecked(expandCollapse, expandCollapseEnabled); return true; }
 
         [MenuItem(collapseEverythingElse, false, 6)] static void dadsadsasdadasdsadadsas() => collapseEverythingElseEnabled = !collapseEverythingElseEnabled;
-        [MenuItem(collapseEverythingElse, true, 6)] static bool dadsaddsdasasadadsdasadsas() { UnityEditor.Menu.SetChecked(collapseEverythingElse, collapseEverythingElseEnabled); return true; }
+        [MenuItem(collapseEverythingElse, true, 6)] static bool dadsaddsdasasadadsdasadsas() { Menu.SetChecked(collapseEverythingElse, collapseEverythingElseEnabled); return true; }
 
         [MenuItem(collapseEverything, false, 7)] static void dadsadsdasadasdsadadsas() => collapseEverythingEnabled = !collapseEverythingEnabled;
-        [MenuItem(collapseEverything, true, 7)] static bool dadsaddssdaasadadsdasadsas() { UnityEditor.Menu.SetChecked(collapseEverything, collapseEverythingEnabled); return true; }
+        [MenuItem(collapseEverything, true, 7)] static bool dadsaddssdaasadadsdasadsas() { Menu.SetChecked(collapseEverything, collapseEverythingEnabled); return true; }
 
 
 
@@ -67,13 +67,13 @@ namespace External_Assets.vTools.vHierarchy
         [MenuItem(menuDir + "Features", true, 101)] static bool dadsdasas123() => false;
 
         [MenuItem(icons, false, 102)] static void dadsadaasdsdadsas() => iconsEnabled = !iconsEnabled;
-        [MenuItem(icons, true, 102)] static bool dadsadsadadssaddasadsas() { UnityEditor.Menu.SetChecked(icons, iconsEnabled); return true; }
+        [MenuItem(icons, true, 102)] static bool dadsadsadadssaddasadsas() { Menu.SetChecked(icons, iconsEnabled); return true; }
 
         [MenuItem(componentMinimap, false, 103)] static void daadsdsadasdadsas() => componentMinimapEnabled = !componentMinimapEnabled;
-        [MenuItem(componentMinimap, true, 103)] static bool dadsadasddasadsas() { UnityEditor.Menu.SetChecked(componentMinimap, componentMinimapEnabled); return true; }
+        [MenuItem(componentMinimap, true, 103)] static bool dadsadasddasadsas() { Menu.SetChecked(componentMinimap, componentMinimapEnabled); return true; }
 
         [MenuItem(collapseAndLightingButtons, false, 104)] static void daadsdsadadsasdadsas() => collapseAndLightingButtonsEnabled = !collapseAndLightingButtonsEnabled;
-        [MenuItem(collapseAndLightingButtons, true, 104)] static bool dadsadasdsaddasadsas() { UnityEditor.Menu.SetChecked(collapseAndLightingButtons, collapseAndLightingButtonsEnabled); return true; }
+        [MenuItem(collapseAndLightingButtons, true, 104)] static bool dadsadasdsaddasadsas() { Menu.SetChecked(collapseAndLightingButtons, collapseAndLightingButtonsEnabled); return true; }
 
 
 
@@ -93,7 +93,7 @@ namespace External_Assets.vTools.vHierarchy
         [MenuItem(menuDir + "Disable vHierarchy", false, 10001)]
         static void das() => ToggleDefineDisabledInScript(typeof(VHierarchy));
         [MenuItem(menuDir + "Disable vHierarchy", true, 10001)]
-        static bool dassadc() { UnityEditor.Menu.SetChecked(menuDir + "Disable vHierarchy", ScriptHasDefineDisabled(typeof(VHierarchy))); return true; }
+        static bool dassadc() { Menu.SetChecked(menuDir + "Disable vHierarchy", ScriptHasDefineDisabled(typeof(VHierarchy))); return true; }
 
 
 

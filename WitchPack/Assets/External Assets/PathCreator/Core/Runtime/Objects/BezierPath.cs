@@ -90,8 +90,8 @@ namespace External_Assets.PathCreator.Core.Runtime.Objects {
                 }
             }
 
-            this.Space = space;
-            this.IsClosed = isClosed;
+            Space = space;
+            IsClosed = isClosed;
         }
 
         /// <summary> Creates a path from the positions of the supplied 2D points </summary>

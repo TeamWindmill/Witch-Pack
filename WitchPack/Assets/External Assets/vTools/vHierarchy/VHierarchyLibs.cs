@@ -74,12 +74,12 @@ namespace External_Assets.vTools.vHierarchy
 
         public const BindingFlags maxBindingFlags = (BindingFlags)62;
 
-        public static List<System.Type> GetSubclasses(this System.Type t) => t.Assembly.GetTypes().Where(type => type.IsSubclassOf(t)).ToList();
+        public static List<Type> GetSubclasses(this Type t) => t.Assembly.GetTypes().Where(type => type.IsSubclassOf(t)).ToList();
         public static object GetDefaultValue(this FieldInfo f, params object[] constructorVars) => f.GetValue(System.Activator.CreateInstance(((MemberInfo)f).ReflectedType, constructorVars));
         public static object GetDefaultValue(this FieldInfo f) => f.GetValue(System.Activator.CreateInstance(((MemberInfo)f).ReflectedType));
 
-        public static IEnumerable<FieldInfo> GetFieldsWithoutBase(this System.Type t) => t.GetFields().Where(r => !t.BaseType.GetFields().Any(rr => rr.Name == r.Name));
-        public static IEnumerable<PropertyInfo> GetPropertiesWithoutBase(this System.Type t) => t.GetProperties().Where(r => !t.BaseType.GetProperties().Any(rr => rr.Name == r.Name));
+        public static IEnumerable<FieldInfo> GetFieldsWithoutBase(this Type t) => t.GetFields().Where(r => !t.BaseType.GetFields().Any(rr => rr.Name == r.Name));
+        public static IEnumerable<PropertyInfo> GetPropertiesWithoutBase(this Type t) => t.GetProperties().Where(r => !t.BaseType.GetProperties().Any(rr => rr.Name == r.Name));
 
         public static object GetFieldValue(this object o, string fieldName, int typeHeight = 0)
         {
@@ -113,7 +113,7 @@ namespace External_Assets.vTools.vHierarchy
         {
             var signature = parameters.Select(r => r.GetType());
 
-            var type = o is System.Type t ? t : o.GetType();
+            var type = o is Type t ? t : o.GetType();
 
             var mi = type.GetMethods(maxBindingFlags).FirstOrDefault(r => r.Name == methodName && r.GetParameters().Select(rr => rr.ParameterType).SequenceEqual(signature));
 
@@ -289,7 +289,7 @@ namespace External_Assets.vTools.vHierarchy
         public static void EnsureDirExistsAndRevealInFinder(string dir)
         {
             EnsureDirExists(dir);
-            UnityEditor.EditorUtility.OpenWithDefaultApp(dir);
+            EditorUtility.OpenWithDefaultApp(dir);
         }
 #endif
 
@@ -322,8 +322,8 @@ namespace External_Assets.vTools.vHierarchy
 
         public static Object LoadGuid(this string guid) => AssetDatabase.LoadAssetAtPath(guid.ToPath(), typeof(Object));
 
-        public static List<string> FindAllAssetsOfType_guids(System.Type type) => AssetDatabase.FindAssets("t:" + type.Name).ToList();
-        public static List<string> FindAllAssetsOfType_guids(System.Type type, string path) => AssetDatabase.FindAssets("t:" + type.Name, new[] { path }).ToList();
+        public static List<string> FindAllAssetsOfType_guids(Type type) => AssetDatabase.FindAssets("t:" + type.Name).ToList();
+        public static List<string> FindAllAssetsOfType_guids(Type type, string path) => AssetDatabase.FindAssets("t:" + type.Name, new[] { path }).ToList();
         public static List<T> FindAllAssetsOfType<T>() where T : Object => FindAllAssetsOfType_guids(typeof(T)).Select(r => (T)r.LoadGuid()).ToList();
         public static List<T> FindAllAssetsOfType<T>(string path) where T : Object => FindAllAssetsOfType_guids(typeof(T), path).Select(r => (T)r.LoadGuid()).ToList();
 
@@ -337,7 +337,7 @@ namespace External_Assets.vTools.vHierarchy
         #region Editor
 #if UNITY_EDITOR
 
-        public static void ToggleDefineDisabledInScript(System.Type scriptType)
+        public static void ToggleDefineDisabledInScript(Type scriptType)
         {
             var path = GetScriptPath(scriptType.Name);
 
@@ -349,7 +349,7 @@ namespace External_Assets.vTools.vHierarchy
 
             AssetDatabase.ImportAsset(path);
         }
-        public static bool ScriptHasDefineDisabled(System.Type scriptType) => File.ReadLines(GetScriptPath(scriptType.Name)).First().StartsWith("#define DISABLED");
+        public static bool ScriptHasDefineDisabled(Type scriptType) => File.ReadLines(GetScriptPath(scriptType.Name)).First().StartsWith("#define DISABLED");
 
         public static int GetProjectId() => Application.dataPath.GetHashCode();
 
@@ -380,7 +380,7 @@ namespace External_Assets.vTools.vHierarchy
             t.GetMethod("OpenSelectedFolders", (BindingFlags)62).Invoke(null, null);
         }
 
-        public static void Dirty(this Object o) => UnityEditor.EditorUtility.SetDirty(o);
+        public static void Dirty(this Object o) => EditorUtility.SetDirty(o);
         public static void RecordUndo(this Object so) => Undo.RecordObject(so, "");
 
 #endif
@@ -404,8 +404,8 @@ namespace External_Assets.vTools.vHierarchy
             }
             public void OnAfterDeserialize()
             {
-                this.Clear();
-                for (int i = 0; i < keys.Count; i++) this.Add(keys[i], values[i]);
+                Clear();
+                for (int i = 0; i < keys.Count; i++) Add(keys[i], values[i]);
             }
         }
 
@@ -619,7 +619,7 @@ namespace External_Assets.vTools.vHierarchy
 
             cur = Field(rect, name, cur);
 
-            if (!object.Equals(cur, resetTo))
+            if (!Equals(cur, resetTo))
                 _DrawResettableFieldCrossIcon(lastRect, isObjectField);
 
             return reset ? resetTo : cur;
@@ -634,7 +634,7 @@ namespace External_Assets.vTools.vHierarchy
 
             cur = Slider(rect, name, cur, min, max);
 
-            if (!object.Equals(cur, resetTo))
+            if (!Equals(cur, resetTo))
                 _DrawResettableFieldCrossIcon(lastRect);
 
             return reset ? resetTo : cur;
@@ -907,7 +907,7 @@ namespace External_Assets.vTools.vHierarchy
 
         public static Event e => Event.current;
         public static bool ePresent => Event.current != null;
-        public static UnityEngine.EventType eType => ePresent ? e.type : UnityEngine.EventType.Ignore;
+        public static EventType eType => ePresent ? e.type : EventType.Ignore;
         public static bool mouseDown(this Event e) => eType == EventType.MouseDown && e.button == 0;
         public static bool mouseUp(this Event e) => eType == EventType.MouseUp && e.button == 0;
         public static bool keyDown(this Event e) => eType == EventType.KeyDown;
@@ -1209,7 +1209,7 @@ namespace External_Assets.vTools.vHierarchy
                 if (rect.IsHovered() && eType == EventType.MouseDrag && !isDragged)
                 {
                     isDragged = true;
-                    dragInitMousePos = EditorGUIUtility.GUIToScreenPoint(e.mousePosition);
+                    dragInitMousePos = GUIUtility.GUIToScreenPoint(e.mousePosition);
                     dragInitWindowPos = position.position;
                 }
 
@@ -1217,7 +1217,7 @@ namespace External_Assets.vTools.vHierarchy
                     isDragged = false;
 
                 if (isDragged && eType == EventType.MouseDrag)
-                    position = position.SetPos(dragInitWindowPos + EditorGUIUtility.GUIToScreenPoint(e.mousePosition) - dragInitMousePos);
+                    position = position.SetPos(dragInitWindowPos + GUIUtility.GUIToScreenPoint(e.mousePosition) - dragInitMousePos);
 
             }
             bool isDragged;
@@ -1247,11 +1247,11 @@ namespace External_Assets.vTools.vHierarchy
 
             public static T Create<T>(bool closeOnFocusLost = true, Vector2 position = default) where T : CustomPopupWindow
             {
-                var window = ScriptableObject.CreateInstance<T>();
+                var window = CreateInstance<T>();
 
 
                 if (position == default)
-                    position = EditorGUIUtility.GUIToScreenPoint(e.mousePosition) + new Vector2(8, -8);
+                    position = GUIUtility.GUIToScreenPoint(e.mousePosition) + new Vector2(8, -8);
 
                 window.ShowPopup();
 

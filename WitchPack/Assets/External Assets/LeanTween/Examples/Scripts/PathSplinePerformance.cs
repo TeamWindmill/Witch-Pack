@@ -71,7 +71,7 @@ namespace External_Assets.LeanTween.Examples.Scripts
 			// Update avatar's position on correct track
 			track.place( car.transform, trackPosition );
 
-			trackPosition += UnityEngine.Time.deltaTime * carAdd;
+			trackPosition += Time.deltaTime * carAdd;
 
 			if(trackPosition>1f)
 				trackPosition = 0f; // We need to keep the ratio between 0-1 so after one we will loop back to the beginning of the track

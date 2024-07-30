@@ -35,7 +35,7 @@ namespace Plugins.Sirenix.Demos.Editor_Windows.Scripts.Editor
                 { "Odin Settings/Color Palettes",   ColorPaletteManager.Instance,   SdfIconType.PaletteFill                 },
                 { "Odin Settings/AOT Generation",   AOTGenerationConfig.Instance,   EditorIcons.SmartPhone                  },
                 { "Player Settings",                Resources.FindObjectsOfTypeAll<PlayerSettings>().FirstOrDefault()       },
-                { "Some Class",                     this.someData                                                           }
+                { "Some Class",                     someData                                                           }
             };
 
             tree.AddAllAssetsAtPath("Odin Settings/More Odin Settings", "Plugins/Sirenix", typeof(ScriptableObject), true)

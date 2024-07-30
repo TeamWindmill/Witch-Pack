@@ -4,6 +4,7 @@ using Gameplay.Targeter;
 using Gameplay.Units.Abilities;
 using Gameplay.Units.Abilities.AbilitySystem.Casting;
 using Gameplay.Units.Damage_System;
+using Gameplay.Units.Energy_Exp;
 using Gameplay.Units.Movement;
 using Gameplay.Units.Stats;
 using Managers;
@@ -27,7 +28,7 @@ namespace Gameplay.Units
         public DamageDealer DamageDealer { get; private set; }
         public Affector Affector { get; private set; }
         public Effectable Effectable { get; private set; }
-        public UnitTargetHelper<Shaman.Shaman> ShamanTargetHelper { get; private set; }
+        public UnitTargetHelper<Shaman> ShamanTargetHelper { get; private set; }
         public UnitTargetHelper<Enemy.Enemy> EnemyTargetHelper { get; private set; }
         public List<ITimer> UnitTimers { get; private set; }
         public HP_Bar HpBar => hpBar;
@@ -66,7 +67,7 @@ namespace Gameplay.Units
             Affector = new Affector(this);
             Effectable = new Effectable(this);
             Damageable = new Damageable(this);
-            ShamanTargetHelper = new UnitTargetHelper<Shaman.Shaman>(ShamanTargeter, this);
+            ShamanTargetHelper = new UnitTargetHelper<Shaman>(ShamanTargeter, this);
             EnemyTargetHelper = new UnitTargetHelper<Enemy.Enemy>(EnemyTargeter, this);
             UnitTimers = new List<ITimer>();
             Movement.SetUp(this);
@@ -113,7 +114,7 @@ namespace Gameplay.Units
             boxCollider.enabled = state;
         }
 
-        public void OnDeathAnimation()
+        public virtual void OnDeathAnimation()
         {
             IsDead = true;
             Movement.ToggleMovement(false);

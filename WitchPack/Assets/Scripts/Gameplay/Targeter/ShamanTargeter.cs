@@ -1,4 +1,4 @@
-using Gameplay.Units.Shaman;
+using Gameplay.Units;
 
 namespace Gameplay.Targeter
 {

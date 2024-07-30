@@ -10,12 +10,12 @@ namespace Gameplay.Units.Selection
 {
     public class SelectionHandler : MonoBehaviour, ISelection
     {
-        public event Action<Shaman.Shaman> OnShamanSelect;
-        public event Action<Shaman.Shaman> OnShamanDeselected;
+        public event Action<Shaman> OnShamanSelect;
+        public event Action<Shaman> OnShamanDeselected;
         public event Action<Shadow.Shadow> OnShadowSelect;
         public event Action<Shadow.Shadow> OnShadowDeselected;
         public SelectionType SelectMode { get; }
-        public Shaman.Shaman SelectedShaman { get; private set; }
+        public Shaman SelectedShaman { get; private set; }
         public Shadow.Shadow Shadow { get; }
     
         [SerializeField] private Shadow.Shadow shadow;
@@ -31,7 +31,7 @@ namespace Gameplay.Units.Selection
         private bool _inSelectMode;
         private bool _cancelSelection;
 
-        public void OnShamanClick(PointerEventData.InputButton button, Shaman.Shaman shaman)
+        public void OnShamanClick(PointerEventData.InputButton button, Shaman shaman)
         {
             if (button == PointerEventData.InputButton.Left)
             {
@@ -78,7 +78,7 @@ namespace Gameplay.Units.Selection
                 }
                 else
                 {
-                    _currentHoldTime += UnityEngine.Time.deltaTime;
+                    _currentHoldTime += Time.deltaTime;
                 }
             }
             else

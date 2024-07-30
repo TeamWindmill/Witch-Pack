@@ -1,10 +1,10 @@
+using Gameplay.Pools.Pool_System;
 using Gameplay.Units.Abilities.AbilitySystem.AbilityStats;
 using Gameplay.Units.Abilities.AbilitySystem.BaseAbilities;
 using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs;
 using Gameplay.Units.Abilities.Shaman_Abilities.LilaAbilities.RockMonolith.Configs;
 using Gameplay.Units.Damage_System;
 using Gameplay.Units.Enemy.EnemyAIBehavior.GroundEnemies.States;
-using Managers;
 using Sound;
 using Tools.Time;
 
@@ -14,11 +14,11 @@ namespace Gameplay.Units.Abilities.Shaman_Abilities.LilaAbilities.RockMonolith
     {
         public int DamageIncrement { get; protected set; }
         public RockMonolithSO RockMonolithConfig;
-        protected Shaman.Shaman _shamanOwner;
+        protected Shaman _shamanOwner;
         private AftershockMono _activeAftershock;
         public RockMonolith(OffensiveAbilitySO config, BaseUnit owner) : base(config, owner)
         {
-            _shamanOwner = Owner as Shaman.Shaman;
+            _shamanOwner = Owner as Shaman;
             RockMonolithConfig = config as RockMonolithSO;
             abilityStats.Add(new AbilityStat(AbilityStatType.Duration,RockMonolithConfig.Duration));
             abilityStats.Add(new AbilityStat(AbilityStatType.FinalDamageModifier,1));

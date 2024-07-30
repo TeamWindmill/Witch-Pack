@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Gameplay.Units.Energy_Exp.Exp
+namespace Gameplay.Units.Energy_Exp
 {
     [CreateAssetMenu(menuName = "ShamanExperienceConfig",fileName = "ShamanExperienceConfig")]
     public class ShamanExperienceConfig : ScriptableObject

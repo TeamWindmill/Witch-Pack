@@ -35,7 +35,7 @@ namespace Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Character
         public void UpdateCharacterOverview()
         {
             // Finds and assigns all scriptable objects of type Character
-            this.AllCharacters = AssetDatabase.FindAssets("t:Character")
+            AllCharacters = AssetDatabase.FindAssets("t:Character")
                 .Select(guid => AssetDatabase.LoadAssetAtPath<Character>(AssetDatabase.GUIDToAssetPath(guid)))
                 .ToArray();
         }

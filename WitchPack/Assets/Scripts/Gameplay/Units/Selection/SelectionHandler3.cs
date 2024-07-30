@@ -9,12 +9,12 @@ namespace Gameplay.Units.Selection
 {
     public class SelectionHandler3 : MonoBehaviour, ISelection
     {
-        public event Action<Shaman.Shaman> OnShamanSelect;
-        public event Action<Shaman.Shaman> OnShamanDeselected;
+        public event Action<Shaman> OnShamanSelect;
+        public event Action<Shaman> OnShamanDeselected;
         public event Action<Shadow.Shadow> OnShadowSelect;
         public event Action<Shadow.Shadow> OnShadowDeselected;
         public SelectionType SelectMode => _selectMode;
-        public Shaman.Shaman SelectedShaman => _selectedShaman;
+        public Shaman SelectedShaman => _selectedShaman;
         public Shadow.Shadow Shadow => shadow;
 
         [SerializeField] private Shadow.Shadow shadow;
@@ -22,7 +22,7 @@ namespace Gameplay.Units.Selection
         private const int RIGHT_CLICK = 1;
         private const int MIDDLE_CLICK = 2;
         private bool _mouseOverSelectionUI => HeroSelectionUI.Instance.isMouseOver;
-        private Shaman.Shaman _selectedShaman;
+        private Shaman _selectedShaman;
         private SelectionType _selectMode;
         [SerializeField] private float _maxHoldTime;
         private float _currentHoldTime;
@@ -34,7 +34,7 @@ namespace Gameplay.Units.Selection
             _selectedShaman = LevelManager.Instance.ShamanParty[0];
             HeroSelectionUI.Instance.Show(_selectedShaman);
         }
-        public void OnShamanClick(PointerEventData.InputButton button, Shaman.Shaman shaman)
+        public void OnShamanClick(PointerEventData.InputButton button, Shaman shaman)
         {
             if (button == PointerEventData.InputButton.Right)
             {
@@ -65,7 +65,7 @@ namespace Gameplay.Units.Selection
                     }
                     else
                     {
-                        _currentHoldTime += UnityEngine.Time.deltaTime;
+                        _currentHoldTime += Time.deltaTime;
                     }
                 }
                 if (Input.GetMouseButtonUp(LEFT_CLICK))

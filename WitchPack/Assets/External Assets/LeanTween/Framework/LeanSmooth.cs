@@ -32,7 +32,7 @@ namespace External_Assets.LeanTween.Framework
         public static float damp(float current, float target, ref float currentVelocity, float smoothTime, float maxSpeed = -1f, float deltaTime = -1f)
         {
             if (deltaTime < 0f)
-                deltaTime = UnityEngine.Time.deltaTime;
+                deltaTime = Time.deltaTime;
 
             smoothTime = Mathf.Max(0.0001f, smoothTime);
             float num = 2f / smoothTime;
@@ -123,7 +123,7 @@ namespace External_Assets.LeanTween.Framework
         public static float spring(float current, float target, ref float currentVelocity, float smoothTime, float maxSpeed = -1f, float deltaTime = -1f, float friction = 2f, float accelRate = 0.5f)
         {
             if (deltaTime < 0f)
-                deltaTime = UnityEngine.Time.deltaTime;
+                deltaTime = Time.deltaTime;
 
             float diff = target - current;
 
@@ -205,7 +205,7 @@ namespace External_Assets.LeanTween.Framework
         public static float linear(float current, float target, float moveSpeed, float deltaTime = -1f)
         {
             if (deltaTime < 0f)
-                deltaTime = UnityEngine.Time.deltaTime;
+                deltaTime = Time.deltaTime;
 
             bool targetGreater = (target > current);
 
@@ -285,7 +285,7 @@ namespace External_Assets.LeanTween.Framework
         public static float bounceOut(float current, float target, ref float currentVelocity, float smoothTime, float maxSpeed = -1f, float deltaTime = -1f, float friction = 2f, float accelRate = 0.5f, float hitDamping = 0.9f)
         {
             if (deltaTime < 0f)
-                deltaTime = UnityEngine.Time.deltaTime;
+                deltaTime = Time.deltaTime;
 
             float diff = target - current;
 

@@ -5,7 +5,7 @@ using Gameplay.PowerStructures;
 using Gameplay.Units.Abilities.AbilitySystem.BaseAbilities;
 using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs;
 using Gameplay.Units.Abilities.Shaman_Abilities;
-using Gameplay.Units.Energy_Exp.Energy;
+using Gameplay.Units.Energy_Exp;
 using Gameplay.Units.Stats;
 using Gameplay.Units.Visual;
 using Gameplay.Wave.Indicator;
@@ -17,7 +17,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Visual.Indicator;
 
-namespace Gameplay.Units.Shaman
+namespace Gameplay.Units
 {
     public class Shaman : BaseUnit
     {
@@ -28,7 +28,6 @@ namespace Gameplay.Units.Shaman
         public ShamanSaveData SaveData { get; private set; }
         public ShamanAbilityHandler ShamanAbilityHandler { get; private set; }
         public bool MouseOverShaman => clicker.IsHover;
-        public EnergyHandler EnergyHandler => energyHandler;
         public ShamanVisualHandler ShamanVisualHandler => shamanVisualHandler;
         public Dictionary<PowerStructure, int> ActivePowerStructures { get; } = new();
 
@@ -43,7 +42,7 @@ namespace Gameplay.Units.Shaman
         [SerializeField] private ClickHelper clicker;
         [SerializeField] private Indicatable indicatable;
         [SerializeField] private ParticleSystem levelUpEffect;
-        [SerializeField] private EnergyHandler energyHandler;
+        public ShamanEnergyHandler EnergyHandler { get; private set; }
 
         #endregion
 
@@ -64,7 +63,7 @@ namespace Gameplay.Units.Shaman
             ShamanAbilityHandler.AddMetaUpgrades(saveData);
         
             Damageable.Init();
-            energyHandler = new EnergyHandler(this);
+            EnergyHandler = new ShamanEnergyHandler(this);
             EnemyTargeter.SetRadius(Stats[StatType.BaseRange].Value);
             shamanAnimator.Init(this);
             indicatable.Init(ShamanConfig.UnitIndicatorIcon, action: FocusCameraOnShaman, clickable: true,
@@ -83,9 +82,9 @@ namespace Gameplay.Units.Shaman
             clicker.OnClick += SetSelectedShaman;
             clicker.OnEnterHover += ShamanHoveredEntered;
             clicker.OnExitHover += ShamanHoveredExit;
-            DamageDealer.OnKill += energyHandler.OnEnemyKill;
-            DamageDealer.OnAssist += energyHandler.OnEnemyAssist;
-            energyHandler.OnShamanLevelUp += OnLevelUpGFX;
+            //DamageDealer.OnKill += energyHandler.OnEnemyKill;
+            //DamageDealer.OnAssist += energyHandler.OnEnemyAssist;
+            EnergyHandler.OnShamanLevelUp += OnLevelUpGFX;
             Damageable.OnHitGFX += OnHitSFX;
             Damageable.OnDeathGFX += DeathSFX;
             Damageable.OnDeathGFX += SetOffIndicator;

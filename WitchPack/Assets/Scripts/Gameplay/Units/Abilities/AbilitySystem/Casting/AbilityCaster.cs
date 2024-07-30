@@ -22,12 +22,12 @@ namespace Gameplay.Units.Abilities.AbilitySystem.Casting
         {
             _unit = owner;
             this.ability = ability;
-            if (owner is Shaman.Shaman shaman)
+            if (owner is Shaman shaman)
             {
                 if(ability.CastingConfig.HasSfx) OnCastGFX += shaman.ShamanAbilityCastSFX;
                 if (ability.CastingConfig.GivesEnergyPoints)
                 {
-                    OnCast += shaman.EnergyHandler.OnShamanCast;
+                    //OnCast += shaman.EnergyHandler.OnShamanCast;
                 }
             }
             else if (owner is Enemy.Enemy enemy)

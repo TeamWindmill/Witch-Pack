@@ -29,7 +29,7 @@ public class PathBezier : MonoBehaviour {
 		// Or Update Manually
 		//cr.place2d( sprite1.transform, iter );
 
-		iter += UnityEngine.Time.deltaTime*0.07f;
+		iter += Time.deltaTime*0.07f;
 		if(iter>1.0f)
 			iter = 0.0f;
 	}

@@ -59,13 +59,14 @@ namespace Tutorial
             GAME_TIME.Pause();
             TimerManager.AddTimer(_clickToCancelDelay, () => _isActive = true);
             LevelManager.Instance.ShamanParty[0].Movement.OnDestinationReached -= PlayPowerStructuresTutorial;
-            LevelManager.Instance.ShamanParty[0].EnergyHandler.OnShamanLevelUp += OnLevelUp;
+            //LevelManager.Instance.ShamanParty[0].EnergyHandler.OnShamanLevelUp += OnLevelUp;
+            //TODO replace with new level up system
         }
 
         private void OnLevelUp(int obj)
         {
             TimerManager.AddTimer(_onLevelUpTutorialDelay, PlayUpgradeTutorial);
-            LevelManager.Instance.ShamanParty[0].EnergyHandler.OnShamanLevelUp -= OnLevelUp;
+            //LevelManager.Instance.ShamanParty[0].EnergyHandler.OnShamanLevelUp -= OnLevelUp;
         }
 
         public void PlayUpgradeTutorial()

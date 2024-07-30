@@ -298,7 +298,7 @@ namespace External_Assets.DamageNumbersPro.Scripts.Internal.Editor {
             //On Switch:
             if (currentTab != lastTab)
             {
-                EditorGUIUtility.keyboardControl = EditorGUIUtility.hotControl = 0;
+                GUIUtility.keyboardControl = GUIUtility.hotControl = 0;
                 hints = new HashSet<string>(); //Clear Hints.
             }
 
@@ -873,7 +873,7 @@ namespace External_Assets.DamageNumbersPro.Scripts.Internal.Editor {
             //Destroy TextB:
             if (go.transform.Find("TextB"))
             {
-                MonoBehaviour.DestroyImmediate(go.transform.Find("TextB").gameObject, true);
+                Object.DestroyImmediate(go.transform.Find("TextB").gameObject, true);
             }
 
             //Create TMP:
@@ -1144,7 +1144,7 @@ namespace External_Assets.DamageNumbersPro.Scripts.Internal.Editor {
 
         public static void ScalingLabel(string text, float scaleWidth)
         {
-            int size = Mathf.FloorToInt(Mathf.Clamp(12 * Mathf.Pow(DNPEditorInternal.currentWidth / scaleWidth, 1.525f), 9, 12));
+            int size = Mathf.FloorToInt(Mathf.Clamp(12 * Mathf.Pow(currentWidth / scaleWidth, 1.525f), 9, 12));
             Label("<size=" + size + ">" + text + "</size>");
         }
 

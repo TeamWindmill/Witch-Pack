@@ -225,7 +225,7 @@ namespace Gameplay.CameraSystem
             }
 
             //moving the camera
-            cameraPosition += moveDir * (fixedCameraSpeed * UnityEngine.Time.deltaTime);
+            cameraPosition += moveDir * (fixedCameraSpeed * Time.deltaTime);
             cameraPosition = CameraMoveClamp(cameraPosition);
             _cameraFollowObject.position = cameraPosition;
         }
@@ -255,7 +255,7 @@ namespace Gameplay.CameraSystem
                 Mathf.Clamp(_targetOrthographicSize, _cameraSettings.ZoomMinClamp, _zoomPadding);
             //camera zoom 
             _cinemachineVirtualCamera.m_Lens.OrthographicSize = Mathf.Lerp(_cinemachineVirtualCamera.m_Lens.OrthographicSize, _targetOrthographicSize,
-                UnityEngine.Time.deltaTime * _cameraSettings.ZoomSpeed);
+                Time.deltaTime * _cameraSettings.ZoomSpeed);
         }
 
         #endregion

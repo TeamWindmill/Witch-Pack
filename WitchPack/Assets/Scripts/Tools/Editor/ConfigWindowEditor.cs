@@ -1,8 +1,7 @@
 using Configs;
 using Gameplay.PowerStructures;
 using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs;
-using Gameplay.Units.Energy_Exp.Energy;
-using Gameplay.Units.Energy_Exp.Exp;
+using Gameplay.Units.Energy_Exp;
 using Gameplay.Units.Stats;
 using Gameplay.Wave;
 using Sirenix.OdinInspector;
@@ -124,7 +123,7 @@ namespace Tools.Editor
         
             public CreateNewConfigData(string name,string path)
             {
-                CofigData = ScriptableObject.CreateInstance<T>();
+                CofigData = CreateInstance<T>();
                 _configPath = path;
                 _configName = name;
                 CofigData.Name = name;
@@ -139,7 +138,7 @@ namespace Tools.Editor
                 AssetDatabase.SaveAssets();
             
             
-                CofigData = ScriptableObject.CreateInstance<T>();
+                CofigData = CreateInstance<T>();
                 CofigData.Name = _configName;
             }
         }

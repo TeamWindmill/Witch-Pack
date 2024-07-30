@@ -3,7 +3,6 @@ using System.Linq;
 using Gameplay.Targeter;
 using Gameplay.Units;
 using Gameplay.Units.Enemy;
-using Gameplay.Units.Shaman;
 using Gameplay.Units.Stats;
 using Managers;
 using UnityEngine;

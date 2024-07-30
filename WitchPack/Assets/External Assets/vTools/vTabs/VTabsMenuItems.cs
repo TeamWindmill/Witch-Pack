@@ -59,16 +59,16 @@ namespace External_Assets.vTools.vTabs
         [MenuItem(menuDir + "Shortcuts", true, 1)] static bool dadsas123() => false;
 
         [MenuItem(addTab, false, 2)] static void dadsadadsas() => addTabEnabled = !addTabEnabled;
-        [MenuItem(addTab, true, 2)] static bool dadsaddasadsas() { UnityEditor.Menu.SetChecked(addTab, addTabEnabled); return true; }
+        [MenuItem(addTab, true, 2)] static bool dadsaddasadsas() { Menu.SetChecked(addTab, addTabEnabled); return true; }
 
         [MenuItem(closeTab, false, 3)] static void dadsadasdadsas() => closeTabEnabled = !closeTabEnabled;
-        [MenuItem(closeTab, true, 3)] static bool dadsadsaddasadsas() { UnityEditor.Menu.SetChecked(closeTab, closeTabEnabled); return true; }
+        [MenuItem(closeTab, true, 3)] static bool dadsadsaddasadsas() { Menu.SetChecked(closeTab, closeTabEnabled); return true; }
 
         [MenuItem(reopenTab, false, 4)] static void dadsadsadasdadsas() => reopenTabEnabled = !reopenTabEnabled;
-        [MenuItem(reopenTab, true, 4)] static bool dadsaddsasaddasadsas() { UnityEditor.Menu.SetChecked(reopenTab, reopenTabEnabled); return true; }
+        [MenuItem(reopenTab, true, 4)] static bool dadsaddsasaddasadsas() { Menu.SetChecked(reopenTab, reopenTabEnabled); return true; }
 
         [MenuItem(dragndrop, false, 5)] static void dadsadsadasdsadadsas() => dragndropEnabled = !dragndropEnabled;
-        [MenuItem(dragndrop, true, 5)] static bool dadsaddsasadadsdasadsas() { UnityEditor.Menu.SetChecked(dragndrop, dragndropEnabled); return true; }
+        [MenuItem(dragndrop, true, 5)] static bool dadsaddsasadadsdasadsas() { Menu.SetChecked(dragndrop, dragndropEnabled); return true; }
 
 
 
@@ -76,10 +76,10 @@ namespace External_Assets.vTools.vTabs
         [MenuItem(menuDir + "Shift-Scroll", true, 101)] static bool dadsasads() => false;
 
         [MenuItem(shiftscrollSwitchTab, false, 102)] static void dadsadsadsadsadasdsadadsas() => shiftscrollSwitchTabEnabled = !shiftscrollSwitchTabEnabled;
-        [MenuItem(shiftscrollSwitchTab, true, 102)] static bool dadsadasdasddsasadadsdasadsas() { UnityEditor.Menu.SetChecked(shiftscrollSwitchTab, shiftscrollSwitchTabEnabled); return true; }
+        [MenuItem(shiftscrollSwitchTab, true, 102)] static bool dadsadasdasddsasadadsdasadsas() { Menu.SetChecked(shiftscrollSwitchTab, shiftscrollSwitchTabEnabled); return true; }
 
         [MenuItem(shiftscrollMoveTab, false, 103)] static void dadsadsadsadasdsadadsas() => shiftscrollMoveTabEnabled = !shiftscrollMoveTabEnabled;
-        [MenuItem(shiftscrollMoveTab, true, 103)] static bool dadsadasddsasadadsdasadsas() { UnityEditor.Menu.SetChecked(shiftscrollMoveTab, shiftscrollMoveTabEnabled); return true; }
+        [MenuItem(shiftscrollMoveTab, true, 103)] static bool dadsadasddsasadadsdasadsas() { Menu.SetChecked(shiftscrollMoveTab, shiftscrollMoveTabEnabled); return true; }
 
 
 
@@ -87,10 +87,10 @@ namespace External_Assets.vTools.vTabs
         [MenuItem(menuDir + "Sidescroll", true, 1001)] static bool dadsasasdads() => false;
 
         [MenuItem(sidescrollSwitchTab, false, 1002)] static void dadsadsadsadsadasdadssadadsas() => sidescrollSwitchTabEnabled = !sidescrollSwitchTabEnabled;
-        [MenuItem(sidescrollSwitchTab, true, 1002)] static bool dadsadasdasddsadassadadsdasadsas() { UnityEditor.Menu.SetChecked(sidescrollSwitchTab, sidescrollSwitchTabEnabled); return true; }
+        [MenuItem(sidescrollSwitchTab, true, 1002)] static bool dadsadasdasddsadassadadsdasadsas() { Menu.SetChecked(sidescrollSwitchTab, sidescrollSwitchTabEnabled); return true; }
 
         [MenuItem(sidescrollMoveTab, false, 1003)] static void dadsadsadsaddasasdsadadsas() => sidescrollMoveTabEnabled = !sidescrollMoveTabEnabled;
-        [MenuItem(sidescrollMoveTab, true, 1003)] static bool dadsadasddsaasdsadadsdasadsas() { UnityEditor.Menu.SetChecked(sidescrollMoveTab, sidescrollMoveTabEnabled); return true; }
+        [MenuItem(sidescrollMoveTab, true, 1003)] static bool dadsadasddsaasdsadadsdasadsas() { Menu.SetChecked(sidescrollMoveTab, sidescrollMoveTabEnabled); return true; }
 
         [MenuItem(incSidescrollSens, false, 1004)] static void qdadadsssa() { sidescrollSensitivity += .2f; Debug.Log("vTabs: sidescroll sensitivity increased to " + sidescrollSensitivity); }
 
@@ -113,10 +113,10 @@ namespace External_Assets.vTools.vTabs
         [MenuItem(menuDir + "Troubleshooting", true, 100001)] static bool dadsaadssasdads() => false;
 
         [MenuItem(fixPhantomScrolling, false, 100002)] static void dadsadsaadsdsadasdsadadsas() => fixPhantomScrollingEnabled = !fixPhantomScrollingEnabled;
-        [MenuItem(fixPhantomScrolling, true, 100002)] static bool dadsadasdasdadsdsasadadsdasadsas() { UnityEditor.Menu.SetChecked(fixPhantomScrolling, fixPhantomScrollingEnabled); return true; }
+        [MenuItem(fixPhantomScrolling, true, 100002)] static bool dadsadasdasdadsdsasadadsdasadsas() { Menu.SetChecked(fixPhantomScrolling, fixPhantomScrollingEnabled); return true; }
 
         [MenuItem(disable, false, 100003)] static void asdsasda() => ToggleDefineDisabledInScript(typeof(VTabs));
-        [MenuItem(disable, true, 100003)] static bool adsassad() { UnityEditor.Menu.SetChecked(disable, ScriptHasDefineDisabled(typeof(VTabs))); return true; }
+        [MenuItem(disable, true, 100003)] static bool adsassad() { Menu.SetChecked(disable, ScriptHasDefineDisabled(typeof(VTabs))); return true; }
 
 
     }

@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Gameplay.Units.Shaman;
+using Gameplay.Units;
 using Managers;
 using Tools.Helpers;
 using UI.GameUI.StatEffectPopup;

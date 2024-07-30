@@ -8,7 +8,7 @@ using static External_Assets.vTools.vFolders.VGUI;
 
 namespace External_Assets.vTools.vFolders
 {
-    public class VFoldersIconEditor : VGUI.CustomPopupWindow
+    public class VFoldersIconEditor : CustomPopupWindow
     {
         void OnGUI()
         {

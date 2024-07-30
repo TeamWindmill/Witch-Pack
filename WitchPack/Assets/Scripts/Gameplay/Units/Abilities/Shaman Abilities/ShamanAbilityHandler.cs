@@ -6,7 +6,7 @@ using Gameplay.Units.Abilities.AbilitySystem.BaseAbilities;
 using Gameplay.Units.Abilities.AbilitySystem.BaseAbilities.Passives;
 using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs;
 using Gameplay.Units.Abilities.AbilitySystem.Casting;
-using Gameplay.Units.Shaman;
+using Gameplay.Units;
 using UI.GameUI.HeroSelectionUI.AbilityUI;
 using UI.MapUI.MetaUpgrades.UpgradePanel.Configs;
 
@@ -18,11 +18,11 @@ namespace Gameplay.Units.Abilities.Shaman_Abilities
         public List<Ability> KnownAbilities { get; } = new();
         public List<Ability> RootAbilities { get; } = new();
 
-        private readonly Shaman.Shaman _shamanOwner;
+        private readonly Shaman _shamanOwner;
     
         public ShamanAbilityHandler(BaseUnit owner) : base(owner)
         {
-            _shamanOwner = owner as Shaman.Shaman;
+            _shamanOwner = owner as Shaman;
             AutoAttackCaster.OnAttack += _shamanOwner.AttackSFX;
         
         }

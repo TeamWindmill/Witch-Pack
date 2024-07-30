@@ -1,4 +1,4 @@
-using Gameplay.Units.Shaman;
+using Gameplay.Units;
 using UI.MapUI.MetaUpgrades.UpgradePanel;
 using UI.UISystem;
 using UnityEngine;

@@ -3,19 +3,20 @@ using System.Linq;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using static External_Assets.vTools.vHierarchy.VUtils;
 using static External_Assets.vTools.vHierarchy.VGUI;
 
 
 namespace External_Assets.vTools.vHierarchy
 {
-    public class VHierarchyLightingWindow : VGUI.CustomPopupWindow
+    public class VHierarchyLightingWindow : CustomPopupWindow
     {
         void OnGUI()
         {
             void directionalLight()
             {
-                var light = FindObjects<Light>().Where(r => r.type == LightType.Directional && r.gameObject.scene == EditorSceneManager.GetActiveScene()).FirstOrDefault();
+                var light = FindObjects<Light>().Where(r => r.type == LightType.Directional && r.gameObject.scene == SceneManager.GetActiveScene()).FirstOrDefault();
 
                 if (!light) return;
 

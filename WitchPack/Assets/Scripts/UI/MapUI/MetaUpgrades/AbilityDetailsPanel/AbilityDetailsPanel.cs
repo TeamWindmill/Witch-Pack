@@ -4,7 +4,7 @@ using Gameplay.Units.Abilities.AbilitySystem;
 using Gameplay.Units.Abilities.AbilitySystem.AbilityStats;
 using Gameplay.Units.Abilities.AbilitySystem.BaseAbilities;
 using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs;
-using Gameplay.Units.Shaman;
+using Gameplay.Units;
 using Gameplay.Units.Stats;
 using Sirenix.Utilities;
 using TMPro;

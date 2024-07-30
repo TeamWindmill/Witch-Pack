@@ -215,7 +215,7 @@ namespace External_Assets.DamageNumbersPro.Scripts.Internal.Editor
                     //Clear Children:
                     while (oldComponent.transform.childCount > 0)
                     {
-                        Object.DestroyImmediate(oldComponent.transform.GetChild(0).gameObject);
+                        DestroyImmediate(oldComponent.transform.GetChild(0).gameObject);
                     }
 
                     //Add GUI Component:
@@ -274,7 +274,7 @@ namespace External_Assets.DamageNumbersPro.Scripts.Internal.Editor
                     //Clear Children:
                     while (previousComponent.transform.childCount > 0)
                     {
-                        Object.DestroyImmediate(previousComponent.transform.GetChild(0).gameObject);
+                        DestroyImmediate(previousComponent.transform.GetChild(0).gameObject);
                     }
 
                     //Add GUI Component:
@@ -602,7 +602,7 @@ namespace External_Assets.DamageNumbersPro.Scripts.Internal.Editor
                         int leftTextPosition = TextPosition(0);
                         if (leftTextPosition != 0)
                         {
-                            EditorGUIUtility.keyboardControl = EditorGUIUtility.hotControl = 0; //Unselect Fields
+                            GUIUtility.keyboardControl = GUIUtility.hotControl = 0; //Unselect Fields
 
                             foreach (DamageNumber dn in DNPEditorInternal.damageNumbers)
                             {
@@ -647,7 +647,7 @@ namespace External_Assets.DamageNumbersPro.Scripts.Internal.Editor
                         int rightTextPosition = TextPosition(1);
                         if (rightTextPosition != 1)
                         {
-                            EditorGUIUtility.keyboardControl = EditorGUIUtility.hotControl = 0; //Unselect Fields
+                            GUIUtility.keyboardControl = GUIUtility.hotControl = 0; //Unselect Fields
 
                             foreach (DamageNumber dn in DNPEditorInternal.damageNumbers)
                             {
@@ -692,7 +692,7 @@ namespace External_Assets.DamageNumbersPro.Scripts.Internal.Editor
                         int topTextPosition = TextPosition(2);
                         if (topTextPosition != 2)
                         {
-                            EditorGUIUtility.keyboardControl = EditorGUIUtility.hotControl = 0; //Unselect Fields
+                            GUIUtility.keyboardControl = GUIUtility.hotControl = 0; //Unselect Fields
 
                             foreach (DamageNumber dn in DNPEditorInternal.damageNumbers)
                             {
@@ -737,7 +737,7 @@ namespace External_Assets.DamageNumbersPro.Scripts.Internal.Editor
                         int bottomTextPosition = TextPosition(3);
                         if (bottomTextPosition != 3)
                         {
-                            EditorGUIUtility.keyboardControl = EditorGUIUtility.hotControl = 0; //Unselect Fields
+                            GUIUtility.keyboardControl = GUIUtility.hotControl = 0; //Unselect Fields
 
                             foreach (DamageNumber dn in DNPEditorInternal.damageNumbers)
                             {
@@ -1934,7 +1934,7 @@ namespace External_Assets.DamageNumbersPro.Scripts.Internal.Editor
 
             if (GUILayout.Button(resetButton, GUILayout.Width(21)))
             {
-                EditorGUIUtility.keyboardControl = EditorGUIUtility.hotControl = 0;
+                GUIUtility.keyboardControl = GUIUtility.hotControl = 0;
                 ResetCategory(category);
             }
         }

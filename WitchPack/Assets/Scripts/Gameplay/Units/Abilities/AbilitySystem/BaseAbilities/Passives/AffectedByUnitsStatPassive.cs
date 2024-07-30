@@ -36,7 +36,7 @@ namespace Gameplay.Units.Abilities.AbilitySystem.BaseAbilities.Passives
         }
 
 
-        protected void ChangeStatByShaman(Shaman.Shaman shaman, bool addition)
+        protected void ChangeStatByShaman(Shaman shaman, bool addition)
         {
             if (_config.AffectedByShamansWithStatusEffect)
             {

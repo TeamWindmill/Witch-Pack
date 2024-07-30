@@ -20,8 +20,9 @@ namespace UI.DevTools
 
         public void EnergyGain()
         {
-            if (LevelManager.Instance.SelectionHandler.SelectedShaman != null)
-                LevelManager.Instance.SelectionHandler.SelectedShaman.EnergyHandler.ManualGainEnergy();
+            // if (LevelManager.Instance.SelectionHandler.SelectedShaman != null)
+            //     LevelManager.Instance.SelectionHandler.SelectedShaman.EnergyHandler.ManualGainEnergy();
+            //TODO replace with new level up system
         }
         // public void ExpGain()
         // {

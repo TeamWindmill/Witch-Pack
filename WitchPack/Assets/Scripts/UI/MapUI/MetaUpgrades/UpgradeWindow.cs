@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs;
-using Gameplay.Units.Shaman;
+using Gameplay.Units;
 using Managers;
 using UI.MapUI.MetaUpgrades.ShamanSelectionPanel;
 using UI.MapUI.MetaUpgrades.UpgradePanel;

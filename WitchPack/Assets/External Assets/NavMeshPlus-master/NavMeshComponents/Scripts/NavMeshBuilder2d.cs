@@ -12,7 +12,7 @@ namespace External_Assets.NavMeshPlus_master.NavMeshComponents.Scripts
     {
         public Dictionary<Sprite, Mesh> spriteMeshMap;
         public Dictionary<uint, Mesh> coliderMeshMap;
-        public Action<UnityEngine.Object, NavMeshBuildSource> lookupCallback;
+        public Action<Object, NavMeshBuildSource> lookupCallback;
         public int defaultArea;
         public int layerMask;
         public int agentID;

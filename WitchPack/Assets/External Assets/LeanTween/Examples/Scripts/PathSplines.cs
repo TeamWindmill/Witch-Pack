@@ -31,7 +31,7 @@ namespace External_Assets.LeanTween.Examples.Scripts
 			// Or Update Manually
 			// cr.place( avatar1.transform, iter );
 
-			iter += UnityEngine.Time.deltaTime*0.07f;
+			iter += Time.deltaTime*0.07f;
 			if(iter>1.0f)
 				iter = 0.0f;
 		}

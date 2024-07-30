@@ -44,7 +44,7 @@ namespace Gameplay.Units.Enemy.EnemyAIBehavior.GroundEnemies.States
                 }
                 else
                 {
-                    _stateCheckTimer += _usingGameTime ? GAME_TIME.GameDeltaTime : UnityEngine.Time.deltaTime;
+                    _stateCheckTimer += _usingGameTime ? GAME_TIME.GameDeltaTime : Time.deltaTime;
                 }
             }
             else
@@ -56,7 +56,7 @@ namespace Gameplay.Units.Enemy.EnemyAIBehavior.GroundEnemies.States
                 }
                 else
                 {
-                    _stateCheckTimer += _usingGameTime ? GAME_TIME.GameDeltaTime : UnityEngine.Time.deltaTime;
+                    _stateCheckTimer += _usingGameTime ? GAME_TIME.GameDeltaTime : Time.deltaTime;
                 }
             }
         }

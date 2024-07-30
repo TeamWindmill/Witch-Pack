@@ -12,8 +12,8 @@ namespace External_Assets.LeanTween.Framework
 		}
 
 		IEnumerator timeoutCheck(){
-			float pauseEndTime = UnityEngine.Time.realtimeSinceStartup + timeout;
-			while (UnityEngine.Time.realtimeSinceStartup < pauseEndTime)
+			float pauseEndTime = Time.realtimeSinceStartup + timeout;
+			while (Time.realtimeSinceStartup < pauseEndTime)
 			{
 				yield return 0;
 			}

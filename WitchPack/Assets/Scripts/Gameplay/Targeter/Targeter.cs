@@ -67,7 +67,7 @@ namespace Gameplay.Targeter
         Least
     }
 
-    [System.Serializable]
+    [Serializable]
     public struct TargetData
     {
         public TargetPriority Priority;

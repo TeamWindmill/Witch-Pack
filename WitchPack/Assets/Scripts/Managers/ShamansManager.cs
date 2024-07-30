@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Configs;
-using Gameplay.Units.Shaman;
+using Gameplay.Units;
 using Systems.SaveSystem;
 using UnityEngine;
 

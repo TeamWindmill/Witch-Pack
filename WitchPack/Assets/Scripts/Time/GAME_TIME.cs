@@ -16,11 +16,11 @@ namespace GameTime
         private static AnimationCurve _defaultCurve = AnimationCurve.Linear(0, 0, 1, 1);
 
         private static float _tempTimeData = 1;
-        public static float TimePlayed => UnityEngine.Time.realtimeSinceStartup - _startGameTime;
+        public static float TimePlayed => Time.realtimeSinceStartup - _startGameTime;
         public static float GameTime => _gameTime;
         public static float TimeRate => _timeRate;
-        public static float GameDeltaTime => UnityEngine.Time.deltaTime * _timeRate;
-        public static float GameFixedDeltaTime => UnityEngine.Time.fixedDeltaTime * _timeRate;
+        public static float GameDeltaTime => Time.deltaTime * _timeRate;
+        public static float GameFixedDeltaTime => Time.fixedDeltaTime * _timeRate;
         public static bool IsTimeStopped => _timeRate == 0;
         private static MonoBehaviour _monoBehaviour;
         private static Coroutine _fadeCoroutine;
@@ -29,7 +29,7 @@ namespace GameTime
         private void Awake()
         {
             _monoBehaviour = this;
-            _startGameTime = UnityEngine.Time.realtimeSinceStartup;
+            _startGameTime = Time.realtimeSinceStartup;
             _gameTime = 0;
         }
         private void Update()
@@ -39,7 +39,7 @@ namespace GameTime
 
         public static void StartGame()
         {
-            _startGameTime = UnityEngine.Time.time;
+            _startGameTime = Time.time;
         }
 
         /// <summary>
@@ -84,7 +84,7 @@ namespace GameTime
 
             while (_transitionTimeCount < transitionTime)
             {
-                _transitionTimeCount += UnityEngine.Time.deltaTime;
+                _transitionTimeCount += Time.deltaTime;
 
                 float evaluateValue = animationCurve.Evaluate(_transitionTimeCount / transitionTime);
 

@@ -61,7 +61,7 @@ namespace Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Items
 
         private bool IsSupportedType(ItemTypes type)
         {
-            return this.SupportedItemTypes.Contains(type);
+            return SupportedItemTypes.Contains(type);
         }
     }
 }

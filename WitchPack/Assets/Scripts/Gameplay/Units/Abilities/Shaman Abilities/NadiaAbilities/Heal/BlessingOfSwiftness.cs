@@ -12,7 +12,7 @@ namespace Gameplay.Units.Abilities.Shaman_Abilities.NadiaAbilities.Heal
             abilityStats.Add(new AbilityStat(AbilityStatType.Heal,config.HealAmount));
         }
 
-        protected override void HealTarget(Shaman.Shaman target, BaseUnit caster)
+        protected override void HealTarget(Shaman target, BaseUnit caster)
         {
             target.Damageable.Heal((int)GetAbilityStatValue(AbilityStatType.Heal));
             target.ShamanVisualHandler.HealEffect.Play();

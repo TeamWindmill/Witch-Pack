@@ -1,7 +1,7 @@
 using System;
 using Gameplay.Targeter;
 using Gameplay.Units.Shadow;
-using Gameplay.Units.Shaman;
+using Gameplay.Units;
 using UnityEngine;
 
 namespace Gameplay.PowerStructures

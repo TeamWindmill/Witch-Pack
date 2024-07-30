@@ -158,7 +158,7 @@ namespace External_Assets.vTools.vFavorites
         public static void EnsureDirExistsAndRevealInFinder(string dir)
         {
             EnsureDirExists(dir);
-            UnityEditor.EditorUtility.OpenWithDefaultApp(dir);
+            EditorUtility.OpenWithDefaultApp(dir);
         }
 #endif
 
@@ -251,7 +251,7 @@ namespace External_Assets.vTools.vFavorites
             t.GetMethod("OpenSelectedFolders", maxBindingFlags).Invoke(null, null);
         }
 
-        public static void Dirty(this Object o) => UnityEditor.EditorUtility.SetDirty(o);
+        public static void Dirty(this Object o) => EditorUtility.SetDirty(o);
         public static void RecordUndo(this Object so) => Undo.RecordObject(so, "");
 
 #endif
@@ -311,7 +311,7 @@ namespace External_Assets.vTools.vFavorites
 
         public static Event e => Event.current;
         public static bool ePresent => Event.current != null;
-        public static UnityEngine.EventType eType => ePresent ? e.type : UnityEngine.EventType.Ignore;
+        public static EventType eType => ePresent ? e.type : EventType.Ignore;
         public static bool mouseDown(this Event e) => eType == EventType.MouseDown && e.button == 0;
         public static bool mouseUp(this Event e) => eType == EventType.MouseUp && e.button == 0;
         public static bool keyDown(this Event e) => eType == EventType.KeyDown;

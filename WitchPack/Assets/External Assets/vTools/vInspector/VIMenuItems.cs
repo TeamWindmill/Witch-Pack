@@ -28,13 +28,13 @@ namespace External_Assets.vTools.vInspector
 
 
         [MenuItem(resettableVariables, false, 1)] static void dadsaadsdadsas() => resettableVariablesEnabled = !resettableVariablesEnabled;
-        [MenuItem(resettableVariables, true, 1)] static bool dadsadadsdasadsas() { UnityEditor.Menu.SetChecked(resettableVariables, resettableVariablesEnabled); return !pluginDisabled; }
+        [MenuItem(resettableVariables, true, 1)] static bool dadsadadsdasadsas() { Menu.SetChecked(resettableVariables, resettableVariablesEnabled); return !pluginDisabled; }
 
         [MenuItem(cleanerHeader, false, 2)] static void dadsadadsas() { cleanerHeaderEnabled = !cleanerHeaderEnabled; UnityEditor.Compilation.CompilationPipeline.RequestScriptCompilation(); }
-        [MenuItem(cleanerHeader, true, 2)] static bool dadsaddasadsas() { UnityEditor.Menu.SetChecked(cleanerHeader, cleanerHeaderEnabled); return !pluginDisabled; }
+        [MenuItem(cleanerHeader, true, 2)] static bool dadsaddasadsas() { Menu.SetChecked(cleanerHeader, cleanerHeaderEnabled); return !pluginDisabled; }
 
         [MenuItem(staticInspector, false, 3)] static void dadsaadsdadsdasas() => staticInspectorEnabled = !staticInspectorEnabled;
-        [MenuItem(staticInspector, true, 3)] static bool dadsadadsddsaasadsas() { UnityEditor.Menu.SetChecked(staticInspector, staticInspectorEnabled); return !pluginDisabled; }
+        [MenuItem(staticInspector, true, 3)] static bool dadsadadsddsaasadsas() { Menu.SetChecked(staticInspector, staticInspectorEnabled); return !pluginDisabled; }
 
 
         [MenuItem(menuDir + "Join our Discord", false, 101)]
@@ -45,7 +45,7 @@ namespace External_Assets.vTools.vInspector
 
 
         [MenuItem(disable, false, 1001)] static void dadsaaadsdsdadsdasas() => pluginDisabled = !pluginDisabled;
-        [MenuItem(disable, true, 1001)] static bool dadsadaadsdsddsaasadsas() { UnityEditor.Menu.SetChecked(disable, pluginDisabled); return true; }
+        [MenuItem(disable, true, 1001)] static bool dadsadaadsdsddsaasadsas() { Menu.SetChecked(disable, pluginDisabled); return true; }
 
 
 

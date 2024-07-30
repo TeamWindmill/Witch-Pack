@@ -1,5 +1,5 @@
 using Gameplay.Units.Abilities.AbilitySystem.BaseAbilities;
-using Gameplay.Units.Shaman;
+using Gameplay.Units;
 using Sound;
 using UnityEngine;
 
@@ -19,7 +19,7 @@ namespace UI.GameUI.HeroSelectionUI.AbilityUI
             _shaman = shaman;
             abilityUpgradePanelUI.SetShaman(shaman);
             abilityUpgradePanelUI.OnAbilityUpgrade += OnAbilityUpgrade;
-            shaman.EnergyHandler.OnShamanLevelUp += OnShamanLevelUp;
+            //shaman.EnergyHandler.OnShamanLevelUp += OnShamanLevelUp;
             var rootAbilities = shaman.ShamanAbilityHandler.RootAbilities;
             foreach (var uiBlock in abilityUIButtons)
             {
@@ -44,7 +44,7 @@ namespace UI.GameUI.HeroSelectionUI.AbilityUI
         {
         
             abilityUpgradePanelUI.OnAbilityUpgrade -= OnAbilityUpgrade;
-            if(_shaman != null) _shaman.EnergyHandler.OnShamanLevelUp -= OnShamanLevelUp;
+            //if(_shaman != null) _shaman.EnergyHandler.OnShamanLevelUp -= OnShamanLevelUp;
             abilityUpgradePanelUI.Hide();
             foreach (var uiBlock in abilityUIButtons)
             {
@@ -100,7 +100,7 @@ namespace UI.GameUI.HeroSelectionUI.AbilityUI
 
         private static bool CheckAbilityUpgradable(Shaman shaman, Ability ability)
         {
-            if (!shaman.EnergyHandler.HasSkillPoints) return false;
+            //if (!shaman.EnergyHandler.HasSkillPoints) return false;
             if (ability is not null)
             {
                 if (ability.Upgrades.Count == 0) return false;

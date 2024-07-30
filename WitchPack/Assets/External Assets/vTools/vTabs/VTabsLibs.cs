@@ -229,7 +229,7 @@ namespace External_Assets.vTools.vTabs
         public static void EnsureDirExistsAndRevealInFinder(string dir)
         {
             EnsureDirExists(dir);
-            UnityEditor.EditorUtility.OpenWithDefaultApp(dir);
+            EditorUtility.OpenWithDefaultApp(dir);
         }
 #endif
 
@@ -320,7 +320,7 @@ namespace External_Assets.vTools.vTabs
             t.GetMethod("OpenSelectedFolders", (BindingFlags)62).Invoke(null, null);
         }
 
-        public static void Dirty(this Object o) => UnityEditor.EditorUtility.SetDirty(o);
+        public static void Dirty(this Object o) => EditorUtility.SetDirty(o);
         public static void RecordUndo(this Object so) => Undo.RecordObject(so, "");
 
 #endif

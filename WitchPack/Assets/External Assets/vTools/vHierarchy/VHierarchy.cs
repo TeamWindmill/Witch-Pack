@@ -30,12 +30,12 @@ namespace External_Assets.vTools.vHierarchy
             {
                 var iScene = -1;
 
-                for (int i = 0; i < EditorSceneManager.sceneCount; i++)
-                    if (EditorSceneManager.GetSceneAt(i).GetHashCode() == instanceId)
+                for (int i = 0; i < SceneManager.sceneCount; i++)
+                    if (SceneManager.GetSceneAt(i).GetHashCode() == instanceId)
                         iScene = i;
 
                 if (iScene != -1)
-                    SceneRowGUI(EditorSceneManager.GetSceneAt(iScene), rowRect);
+                    SceneRowGUI(SceneManager.GetSceneAt(iScene), rowRect);
             }
 
         }
@@ -243,7 +243,7 @@ namespace External_Assets.vTools.vHierarchy
                         editedComponent = component;
 
                         var pos = rect.position + new Vector2(-12, 16);
-                        var window = CustomPopupWindow.Create<VHierarchyComponentEditor>(true, EditorGUIUtility.GUIToScreenPoint(pos));
+                        var window = CustomPopupWindow.Create<VHierarchyComponentEditor>(true, GUIUtility.GUIToScreenPoint(pos));
                         window.Init(component);
 
                         e.Use();
@@ -294,7 +294,7 @@ namespace External_Assets.vTools.vHierarchy
                 ensureGoDataExists();
 
                 var pos = rowRect.SetWidth(16).position + new Vector2(-8, 15);
-                var window = CustomPopupWindow.Create<VHierarchyIconEditor>(true, EditorGUIUtility.GUIToScreenPoint(pos));
+                var window = CustomPopupWindow.Create<VHierarchyIconEditor>(true, GUIUtility.GUIToScreenPoint(pos));
                 window.Init(go, goData);
 
                 e.Use();
@@ -570,7 +570,7 @@ namespace External_Assets.vTools.vHierarchy
             return componentIconsByType[component.GetType()];
 
         }
-        static Dictionary<System.Type, GUIContent> componentIconsByType = new Dictionary<Type, GUIContent>();
+        static Dictionary<Type, GUIContent> componentIconsByType = new Dictionary<Type, GUIContent>();
 
         public static string GetComponentName(Component component)
         {

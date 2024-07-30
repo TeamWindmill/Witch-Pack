@@ -1,4 +1,4 @@
-using Gameplay.Units.Shaman;
+using Gameplay.Units;
 using Managers;
 using Sirenix.OdinInspector;
 using TMPro;
@@ -46,8 +46,8 @@ namespace UI.GameUI.HeroSelectionUI
             abilitiesHandlerUI.Show(shaman);
             shamanSprite.sprite = shaman.ShamanConfig.UnitIcon;
             shamanName.text = shaman.ShamanConfig.Name;
-            shamanLevel.text = "Lvl: " + shaman.EnergyHandler.ShamanLevel;
-            shaman.EnergyHandler.OnShamanLevelUp += OnShamanLevelUp;
+            //shamanLevel.text = "Lvl: " + shaman.EnergyHandler.ShamanLevel;
+            //shaman.EnergyHandler.OnShamanLevelUp += OnShamanLevelUp;
         
             IsActive = true;
             gameObject.SetActive(true);

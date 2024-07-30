@@ -28,7 +28,7 @@ namespace External_Assets.vTools.vFolders
             if (!AssetDatabase.IsValidFolder(guid.ToPath()))
             {
                 if (eType == EventType.Repaint && isSingleLine)
-                    listviewAssetRectX = EditorGUIUtility.GUIToScreenPoint(rect.position).x;
+                    listviewAssetRectX = GUIUtility.GUIToScreenPoint(rect.position).x;
 
                 return;
             }
@@ -206,7 +206,7 @@ namespace External_Assets.vTools.vFolders
                     if (mouseDownOnGuid != guid) return;
 
                     var pos = new Vector2(Mathf.Max(e.mousePosition.x + 3, rect.xMax + 3), rect.y);
-                    var window = CustomPopupWindow.Create<VFoldersIconEditor>(true, EditorGUIUtility.GUIToScreenPoint(pos));
+                    var window = CustomPopupWindow.Create<VFoldersIconEditor>(true, GUIUtility.GUIToScreenPoint(pos));
                     window.Init(folderData);
 
                 }

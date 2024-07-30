@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Gameplay.Units.Energy_Exp.Exp
+namespace Gameplay.Units.Energy_Exp
 {
     [Serializable]
     public struct ExpCalculatorConfig 

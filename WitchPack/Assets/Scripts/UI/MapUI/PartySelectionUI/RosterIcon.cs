@@ -1,5 +1,5 @@
 using System;
-using Gameplay.Units.Shaman;
+using Gameplay.Units;
 using UI.UISystem;
 using UnityEngine;
 using UnityEngine.EventSystems;

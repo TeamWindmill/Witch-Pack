@@ -6,7 +6,7 @@ using static External_Assets.vTools.vHierarchy.VGUI;
 
 namespace External_Assets.vTools.vHierarchy
 {
-    public class VHierarchyComponentEditor : VGUI.CustomPopupWindow
+    public class VHierarchyComponentEditor : CustomPopupWindow
     {
         void OnGUI()
         {
@@ -118,7 +118,7 @@ namespace External_Assets.vTools.vHierarchy
         public void Init(Component component)
         {
             this.component = component;
-            this.editor = Editor.CreateEditor(component);
+            editor = Editor.CreateEditor(component);
 
             Undo.undoRedoPerformed += RepaintOnUndoRedo;
 

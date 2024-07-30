@@ -24,10 +24,10 @@ namespace External_Assets.vTools.vFolders
 
 
         [MenuItem(autoIcons, false, 1)] static void dadsadadsas() => autoIconsEnabled = !autoIconsEnabled;
-        [MenuItem(autoIcons, true, 1)] static bool dadsaddasadsas() { UnityEditor.Menu.SetChecked(autoIcons, autoIconsEnabled); return true; }
+        [MenuItem(autoIcons, true, 1)] static bool dadsaddasadsas() { Menu.SetChecked(autoIcons, autoIconsEnabled); return true; }
 
         [MenuItem(customIcons, false, 2)] static void dadsaadsdadsas() => customIconsEnabled = !customIconsEnabled;
-        [MenuItem(customIcons, true, 2)] static bool dadsadadsdasadsas() { UnityEditor.Menu.SetChecked(customIcons, customIconsEnabled); return true; }
+        [MenuItem(customIcons, true, 2)] static bool dadsadadsdasadsas() { Menu.SetChecked(customIcons, customIconsEnabled); return true; }
 
         // #if UNITY_EDITOR_OSX
         //         [MenuItem(foldersFirst, false, 12)] static void dadsdsfaadsdadsas() => foldersFirstEnabled = !foldersFirstEnabled;
@@ -47,7 +47,7 @@ namespace External_Assets.vTools.vFolders
         [MenuItem(menuDir + "Disable vFolders", false, 1001)]
         static void das() => ToggleDefineDisabledInScript(typeof(VFolders));
         [MenuItem(menuDir + "Disable vFolders", true, 1001)]
-        static bool dassadc() { UnityEditor.Menu.SetChecked(menuDir + "Disable vFolders", ScriptHasDefineDisabled(typeof(VFolders))); return true; }
+        static bool dassadc() { Menu.SetChecked(menuDir + "Disable vFolders", ScriptHasDefineDisabled(typeof(VFolders))); return true; }
 
 
 

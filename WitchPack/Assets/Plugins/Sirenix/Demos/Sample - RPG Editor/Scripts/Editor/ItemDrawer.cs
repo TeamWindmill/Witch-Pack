@@ -30,7 +30,7 @@ namespace Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Editor
                 rect = EditorGUI.IndentedRect(rect);
             }
 
-            Item item = this.ValueEntry.SmartValue;
+            Item item = ValueEntry.SmartValue;
             Texture texture = null;
 
             if (item)
@@ -39,7 +39,7 @@ namespace Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Editor
                 GUI.Label(rect.AddXMin(50).AlignMiddle(16), EditorGUI.showMixedValue ? "-" : item.Name);
             }
 
-            this.ValueEntry.WeakSmartValue = SirenixEditorFields.UnityPreviewObjectField(rect.AlignLeft(45), item, texture, this.ValueEntry.BaseValueType);
+            ValueEntry.WeakSmartValue = SirenixEditorFields.UnityPreviewObjectField(rect.AlignLeft(45), item, texture, ValueEntry.BaseValueType);
         }
     }
 }

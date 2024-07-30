@@ -24,34 +24,34 @@ namespace Plugins.Sirenix.Demos.Editor_Windows.Scripts.Editor
         [Title("OdinEditorWindow.InspectObject examples", "Make sure to checkout QuicklyInspectObjects.cs")]
         private void InspectObject()
         {
-            OdinEditorWindow.InspectObject(this.someObject);
+            OdinEditorWindow.InspectObject(someObject);
         }
 
         [Button(ButtonSizes.Large), HorizontalGroup("row1")]
         private void InDropDownAutoHeight()
         {
             var btnRect = GUIHelper.GetCurrentLayoutRect();
-            OdinEditorWindow.InspectObjectInDropDown(this.someObject, btnRect, btnRect.width);
+            OdinEditorWindow.InspectObjectInDropDown(someObject, btnRect, btnRect.width);
         }
 
         [Button(ButtonSizes.Large), HorizontalGroup("row1")]
         private void InDropDown()
         {
             var btnRect = GUIHelper.GetCurrentLayoutRect();
-            OdinEditorWindow.InspectObjectInDropDown(this.someObject, btnRect, new Vector2(btnRect.width, 100));
+            OdinEditorWindow.InspectObjectInDropDown(someObject, btnRect, new Vector2(btnRect.width, 100));
         }
 
         [Button(ButtonSizes.Large), HorizontalGroup("row2")]
         private void InCenter()
         {
-            var window = OdinEditorWindow.InspectObject(this.someObject);
+            var window = OdinEditorWindow.InspectObject(someObject);
             window.position = GUIHelper.GetEditorWindowRect().AlignCenter(270, 200);
         }
 
         [Button(ButtonSizes.Large), HorizontalGroup("row2")]
         private void OtherStuffYouCanDo()
         {
-            var window = OdinEditorWindow.InspectObject(this.someObject);
+            var window = OdinEditorWindow.InspectObject(someObject);
 
             window.position = GUIHelper.GetEditorWindowRect().AlignCenter(270, 200);
             window.titleContent = new GUIContent("Custom title", EditorIcons.RulerRect.Active);

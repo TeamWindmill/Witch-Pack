@@ -47,7 +47,7 @@ namespace External_Assets.vTools.vTabs
                 if (curEvent.delta == Vector2.zero) return;
                 if (curEvent.type == EventType.MouseMove) return;
                 if (curEvent.type == EventType.MouseDrag) return;
-                if (curEvent.type != EventType.ScrollWheel && delayedMousePosition_screenSpace != EditorGUIUtility.GUIToScreenPoint(curEvent.mousePosition)) return; // uncaptured mouse move/drag check
+                if (curEvent.type != EventType.ScrollWheel && delayedMousePosition_screenSpace != GUIUtility.GUIToScreenPoint(curEvent.mousePosition)) return; // uncaptured mouse move/drag check
                 if (curEvent.type != EventType.ScrollWheel && VTabsMenuItems.fixPhantomScrollingEnabled && curEvent.delta.x == (int)curEvent.delta.x) return; // osx uncaptured mouse move/drag in sceneview ang gameview workaround
 
 
@@ -144,7 +144,7 @@ namespace External_Assets.vTools.vTabs
         {
             var curEvent = (Event)typeof(Event).GetField("s_Current", maxBindingFlags).GetValue(maxBindingFlags);
 
-            delayedMousePosition_screenSpace = EditorGUIUtility.GUIToScreenPoint(curEvent.mousePosition);
+            delayedMousePosition_screenSpace = GUIUtility.GUIToScreenPoint(curEvent.mousePosition);
 
             EditorApplication.delayCall += UpdateDelayedMousePosition;
 

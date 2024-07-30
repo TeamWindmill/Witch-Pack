@@ -44,14 +44,14 @@ namespace External_Assets.PathCreator.Core.Runtime.Objects {
         ///<param name="maxAngleError">How much can the angle of the path change before a vertex is added. This allows fewer vertices to be generated in straighter sections.</param>
         ///<param name="minVertexDst">Vertices won't be added closer together than this distance, regardless of angle error.</param>
         public VertexPath (BezierPath bezierPath, Transform transform, float maxAngleError = 0.3f, float minVertexDst = 0):
-            this (bezierPath, VertexPathUtility.SplitBezierPathByAngleError (bezierPath, maxAngleError, minVertexDst, VertexPath.accuracy), transform) { }
+            this (bezierPath, VertexPathUtility.SplitBezierPathByAngleError (bezierPath, maxAngleError, minVertexDst, accuracy), transform) { }
 
         /// <summary> Splits bezier path into array of vertices along the path.</summary>
         ///<param name="maxAngleError">How much can the angle of the path change before a vertex is added. This allows fewer vertices to be generated in straighter sections.</param>
         ///<param name="minVertexDst">Vertices won't be added closer together than this distance, regardless of angle error.</param>
         ///<param name="accuracy">Higher value means the change in angle is checked more frequently.</param>
         public VertexPath (BezierPath bezierPath, Transform transform, float vertexSpacing):
-            this (bezierPath, VertexPathUtility.SplitBezierPathEvenly (bezierPath, Mathf.Max (vertexSpacing, minVertexSpacing), VertexPath.accuracy), transform) { }
+            this (bezierPath, VertexPathUtility.SplitBezierPathEvenly (bezierPath, Mathf.Max (vertexSpacing, minVertexSpacing), accuracy), transform) { }
 
         /// Internal contructor
         VertexPath (BezierPath bezierPath, VertexPathUtility.PathSplitData pathSplitData, Transform transform) {
@@ -330,8 +330,8 @@ namespace External_Assets.PathCreator.Core.Runtime.Objects {
             public readonly float percentBetweenIndices;
 
             public TimeOnPathData (int prev, int next, float percentBetweenIndices) {
-                this.previousIndex = prev;
-                this.nextIndex = next;
+                previousIndex = prev;
+                nextIndex = next;
                 this.percentBetweenIndices = percentBetweenIndices;
             }
         }

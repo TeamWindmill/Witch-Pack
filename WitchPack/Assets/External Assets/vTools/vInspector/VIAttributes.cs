@@ -7,7 +7,7 @@ namespace External_Assets.vTools.vInspector
     {
         public string name;
 
-        public ButtonAttribute() => this.name = "";
+        public ButtonAttribute() => name = "";
         public ButtonAttribute(string name) => this.name = name;
     }
 
@@ -22,7 +22,7 @@ namespace External_Assets.vTools.vInspector
     {
         public float space;
 
-        public ButtonSpaceAttribute() => this.space = 10;
+        public ButtonSpaceAttribute() => space = 10;
         public ButtonSpaceAttribute(float space) => this.space = space;
     }
 
@@ -75,10 +75,10 @@ namespace External_Assets.vTools.vInspector
         public object variableValue;
 
 #if UNITY_EDITOR
-        public bool Evaluate(object target) => target.GetType().GetField(variableName, (BindingFlags)62) is FieldInfo fi && object.Equals(fi.GetValue(target), variableValue);//
+        public bool Evaluate(object target) => target.GetType().GetField(variableName, (BindingFlags)62) is FieldInfo fi && Equals(fi.GetValue(target), variableValue);//
 #endif
 
-        public IfAttribute(string boolName) { this.variableName = boolName; this.variableValue = true; }
+        public IfAttribute(string boolName) { variableName = boolName; variableValue = true; }
         public IfAttribute(string variableName, object variableValue) { this.variableName = variableName; this.variableValue = variableValue; }
     }
 

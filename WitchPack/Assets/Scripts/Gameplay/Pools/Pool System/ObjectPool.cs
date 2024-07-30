@@ -25,7 +25,7 @@ namespace Gameplay.Pools.Pool_System
             }
         }
 
-        public IPoolable GetPooledObject()
+        public virtual IPoolable GetPooledObject()
         {
             foreach (var item in PooledObjects)
             {
@@ -41,7 +41,7 @@ namespace Gameplay.Pools.Pool_System
             newPooledObject.PoolableGameObject.SetActive(false);
             return newPooledObject;
         }
-        public void ReturnPooledObject(IPoolable obj)
+        public virtual void ReturnPooledObject(IPoolable obj)
         {
             obj.PoolableGameObject.transform.parent = transform;
             obj.PoolableGameObject.transform.position = Vector3.one;

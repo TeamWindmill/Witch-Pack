@@ -369,7 +369,7 @@ namespace External_Assets.LeanTween.Framework
         }
 
         public void Update(){
-            LeanTween.update();
+            update();
         }
 
 #if UNITY_5_4_OR_NEWER
@@ -386,7 +386,7 @@ namespace External_Assets.LeanTween.Framework
         private static int maxTweenReached;
 
         public static void update() {
-            if(frameRendered != UnityEngine.Time.frameCount){ // make sure update is only called once per frame
+            if(frameRendered != Time.frameCount){ // make sure update is only called once per frame
                 init();
 
 #if UNITY_3_5 || UNITY_4_0 || UNITY_4_0_1 || UNITY_4_1 || UNITY_4_2 || UNITY_4_3 || UNITY_4_5
@@ -396,12 +396,12 @@ namespace External_Assets.LeanTween.Framework
             previousRealTime = Time.realtimeSinceStartup;
 #else
 
-                dtEstimated = dtEstimated<0f ? 0f : dtEstimated = UnityEngine.Time.unscaledDeltaTime;
+                dtEstimated = dtEstimated<0f ? 0f : dtEstimated = Time.unscaledDeltaTime;
 
                 //      Debug.Log("Time.unscaledDeltaTime:"+Time.unscaledDeltaTime);
 #endif
 
-                dtActual = UnityEngine.Time.deltaTime;
+                dtActual = Time.deltaTime;
                 maxTweenReached = 0;
                 finishedCnt = 0;
                 // if(tweenMaxSearch>1500)
@@ -423,7 +423,7 @@ namespace External_Assets.LeanTween.Framework
 
                 // Debug.Log("maxTweenReached:"+maxTweenReached);
                 tweenMaxSearch = maxTweenReached;
-                frameRendered = UnityEngine.Time.frameCount;
+                frameRendered = Time.frameCount;
 
                 for(int i = 0; i < finishedCnt; i++){
                     j = tweensFinished[i];
@@ -710,7 +710,7 @@ namespace External_Assets.LeanTween.Framework
             return descrs.ToArray();
         }
 
-        [System.Obsolete("Use 'pause( id )' instead")]
+        [Obsolete("Use 'pause( id )' instead")]
         public static void pause( GameObject gameObject, int uniqueId ){
             pause( uniqueId );
         }
@@ -773,7 +773,7 @@ namespace External_Assets.LeanTween.Framework
             }
         }
 
-        [System.Obsolete("Use 'resume( id )' instead")]
+        [Obsolete("Use 'resume( id )' instead")]
         public static void resume( GameObject gameObject, int uniqueId ){
             resume( uniqueId );
         }
@@ -1055,7 +1055,7 @@ namespace External_Assets.LeanTween.Framework
     * @example
     * LeanTween.play(gameObject.GetComponent&lt;RectTransform&gt;(), sprites).setLoopPingPong();
     */  
-        public static LTDescr play(RectTransform rectTransform, UnityEngine.Sprite[] sprites){
+        public static LTDescr play(RectTransform rectTransform, Sprite[] sprites){
             float defaultFrameRate = 0.25f;
             float time = defaultFrameRate * sprites.Length;
             return pushNewTween(rectTransform.gameObject, new Vector3((float)sprites.Length - 1.0f,0,0), time, options().setCanvasPlaySprite().setSprites( sprites ).setRepeat(-1));
@@ -2506,46 +2506,46 @@ namespace External_Assets.LeanTween.Framework
                 case LeanProp.localPosition:
                     d.optional.axis = d.trans.localPosition;
                     d.easeInternal = () => {
-                        d.optional.axis = LeanSmooth.damp(d.optional.axis, d.toTrans.localPosition, ref d.fromInternal, smoothTime, maxSpeed, UnityEngine.Time.deltaTime);
+                        d.optional.axis = LeanSmooth.damp(d.optional.axis, d.toTrans.localPosition, ref d.fromInternal, smoothTime, maxSpeed, Time.deltaTime);
                         d.trans.localPosition = d.optional.axis + d.toInternal;
                     }; break;
                 case LeanProp.position:
                     d.diff = d.trans.position;
                     d.easeInternal = () => {
-                        d.optional.axis = LeanSmooth.damp(d.optional.axis, d.toTrans.position, ref d.fromInternal, smoothTime, maxSpeed, UnityEngine.Time.deltaTime);
+                        d.optional.axis = LeanSmooth.damp(d.optional.axis, d.toTrans.position, ref d.fromInternal, smoothTime, maxSpeed, Time.deltaTime);
                         d.trans.position = d.optional.axis + d.toInternal;
                     }; break;
                 case LeanProp.localX: 
                     d.easeInternal = () => { 
-                        d.trans.LeanSetLocalPosX(LeanSmooth.damp(d.trans.localPosition.x, d.toTrans.localPosition.x, ref d.fromInternal.x, smoothTime, maxSpeed, UnityEngine.Time.deltaTime)); 
+                        d.trans.LeanSetLocalPosX(LeanSmooth.damp(d.trans.localPosition.x, d.toTrans.localPosition.x, ref d.fromInternal.x, smoothTime, maxSpeed, Time.deltaTime)); 
                     }; break;
                 case LeanProp.localY:
                     d.easeInternal = () => {
-                        d.trans.LeanSetLocalPosY(LeanSmooth.damp(d.trans.localPosition.y, d.toTrans.localPosition.y, ref d.fromInternal.y, smoothTime, maxSpeed, UnityEngine.Time.deltaTime));
+                        d.trans.LeanSetLocalPosY(LeanSmooth.damp(d.trans.localPosition.y, d.toTrans.localPosition.y, ref d.fromInternal.y, smoothTime, maxSpeed, Time.deltaTime));
                     }; break;
                 case LeanProp.localZ:
                     d.easeInternal = () => {
-                        d.trans.LeanSetLocalPosZ(LeanSmooth.damp(d.trans.localPosition.z, d.toTrans.localPosition.z, ref d.fromInternal.z, smoothTime, maxSpeed, UnityEngine.Time.deltaTime));
+                        d.trans.LeanSetLocalPosZ(LeanSmooth.damp(d.trans.localPosition.z, d.toTrans.localPosition.z, ref d.fromInternal.z, smoothTime, maxSpeed, Time.deltaTime));
                     }; break;
                 case LeanProp.x:
                     d.easeInternal = () => {
-                        d.trans.LeanSetPosX(LeanSmooth.damp(d.trans.position.x, d.toTrans.position.x, ref d.fromInternal.x, smoothTime, maxSpeed, UnityEngine.Time.deltaTime));
+                        d.trans.LeanSetPosX(LeanSmooth.damp(d.trans.position.x, d.toTrans.position.x, ref d.fromInternal.x, smoothTime, maxSpeed, Time.deltaTime));
                     }; break;
                 case LeanProp.y:
                     d.easeInternal = () => {
-                        d.trans.LeanSetPosY(LeanSmooth.damp(d.trans.position.y, d.toTrans.position.y, ref d.fromInternal.y, smoothTime, maxSpeed, UnityEngine.Time.deltaTime));
+                        d.trans.LeanSetPosY(LeanSmooth.damp(d.trans.position.y, d.toTrans.position.y, ref d.fromInternal.y, smoothTime, maxSpeed, Time.deltaTime));
                     }; break;
                 case LeanProp.z:
                     d.easeInternal = () => { 
-                        d.trans.LeanSetPosZ(LeanSmooth.damp(d.trans.position.z, d.toTrans.position.z, ref d.fromInternal.z, smoothTime, maxSpeed, UnityEngine.Time.deltaTime)); 
+                        d.trans.LeanSetPosZ(LeanSmooth.damp(d.trans.position.z, d.toTrans.position.z, ref d.fromInternal.z, smoothTime, maxSpeed, Time.deltaTime)); 
                     }; break;
                 case LeanProp.scale:
                     d.easeInternal = () => {
-                        d.trans.localScale = LeanSmooth.damp(d.trans.localScale, d.toTrans.localScale, ref d.fromInternal, smoothTime, maxSpeed, UnityEngine.Time.deltaTime);
+                        d.trans.localScale = LeanSmooth.damp(d.trans.localScale, d.toTrans.localScale, ref d.fromInternal, smoothTime, maxSpeed, Time.deltaTime);
                     }; break;
                 case LeanProp.color:
                     d.easeInternal = () => {
-                        var col = LeanSmooth.damp(d.trans.LeanColor(), d.toTrans.LeanColor(), ref d.optional.color, smoothTime, maxSpeed, UnityEngine.Time.deltaTime);
+                        var col = LeanSmooth.damp(d.trans.LeanColor(), d.toTrans.LeanColor(), ref d.optional.color, smoothTime, maxSpeed, Time.deltaTime);
                         d.trans.GetComponent<Renderer>().material.color = col;
                     }; break;
             }
@@ -2575,46 +2575,46 @@ namespace External_Assets.LeanTween.Framework
                 case LeanProp.localPosition:
                     d.optional.axis = d.trans.localPosition;
                     d.easeInternal = () => {
-                        d.optional.axis = LeanSmooth.spring(d.optional.axis, d.toTrans.localPosition, ref d.fromInternal, smoothTime, maxSpeed, UnityEngine.Time.deltaTime, friction, accelRate);
+                        d.optional.axis = LeanSmooth.spring(d.optional.axis, d.toTrans.localPosition, ref d.fromInternal, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate);
                         d.trans.localPosition = d.optional.axis + d.toInternal;
                     }; break;
                 case LeanProp.position:
                     d.diff = d.trans.position;
                     d.easeInternal = () => {
-                        d.diff = LeanSmooth.spring(d.diff, d.toTrans.position, ref d.fromInternal, smoothTime, maxSpeed, UnityEngine.Time.deltaTime, friction, accelRate);
+                        d.diff = LeanSmooth.spring(d.diff, d.toTrans.position, ref d.fromInternal, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate);
                         d.trans.position = d.diff;// + d.toInternal;
                     }; break;
                 case LeanProp.localX:
                     d.easeInternal = () => {
-                        d.trans.LeanSetLocalPosX(LeanSmooth.spring(d.trans.localPosition.x, d.toTrans.localPosition.x, ref d.fromInternal.x, smoothTime, maxSpeed, UnityEngine.Time.deltaTime, friction, accelRate));
+                        d.trans.LeanSetLocalPosX(LeanSmooth.spring(d.trans.localPosition.x, d.toTrans.localPosition.x, ref d.fromInternal.x, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate));
                     }; break;
                 case LeanProp.localY:
                     d.easeInternal = () => {
-                        d.trans.LeanSetLocalPosY(LeanSmooth.spring(d.trans.localPosition.y, d.toTrans.localPosition.y, ref d.fromInternal.y, smoothTime, maxSpeed, UnityEngine.Time.deltaTime, friction, accelRate));
+                        d.trans.LeanSetLocalPosY(LeanSmooth.spring(d.trans.localPosition.y, d.toTrans.localPosition.y, ref d.fromInternal.y, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate));
                     }; break;
                 case LeanProp.localZ:
                     d.easeInternal = () => {
-                        d.trans.LeanSetLocalPosZ(LeanSmooth.spring(d.trans.localPosition.z, d.toTrans.localPosition.z, ref d.fromInternal.z, smoothTime, maxSpeed, UnityEngine.Time.deltaTime, friction, accelRate));
+                        d.trans.LeanSetLocalPosZ(LeanSmooth.spring(d.trans.localPosition.z, d.toTrans.localPosition.z, ref d.fromInternal.z, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate));
                     }; break;
                 case LeanProp.x:
                     d.easeInternal = () => {
-                        d.trans.LeanSetPosX(LeanSmooth.spring(d.trans.position.x, d.toTrans.position.x, ref d.fromInternal.x, smoothTime, maxSpeed, UnityEngine.Time.deltaTime, friction, accelRate));
+                        d.trans.LeanSetPosX(LeanSmooth.spring(d.trans.position.x, d.toTrans.position.x, ref d.fromInternal.x, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate));
                     }; break;
                 case LeanProp.y:
                     d.easeInternal = () => {
-                        d.trans.LeanSetPosY(LeanSmooth.spring(d.trans.position.y, d.toTrans.position.y, ref d.fromInternal.y, smoothTime, maxSpeed, UnityEngine.Time.deltaTime, friction, accelRate));
+                        d.trans.LeanSetPosY(LeanSmooth.spring(d.trans.position.y, d.toTrans.position.y, ref d.fromInternal.y, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate));
                     }; break;
                 case LeanProp.z:
                     d.easeInternal = () => {
-                        d.trans.LeanSetPosZ(LeanSmooth.spring(d.trans.position.z, d.toTrans.position.z, ref d.fromInternal.z, smoothTime, maxSpeed, UnityEngine.Time.deltaTime, friction, accelRate));
+                        d.trans.LeanSetPosZ(LeanSmooth.spring(d.trans.position.z, d.toTrans.position.z, ref d.fromInternal.z, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate));
                     }; break;
                 case LeanProp.scale:
                     d.easeInternal = () => {
-                        d.trans.localScale = LeanSmooth.spring(d.trans.localScale, d.toTrans.localScale, ref d.fromInternal, smoothTime, maxSpeed, UnityEngine.Time.deltaTime, friction, accelRate);
+                        d.trans.localScale = LeanSmooth.spring(d.trans.localScale, d.toTrans.localScale, ref d.fromInternal, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate);
                     }; break;
                 case LeanProp.color:
                     d.easeInternal = () => {
-                        var col = LeanSmooth.spring(d.trans.LeanColor(), d.toTrans.LeanColor(), ref d.optional.color, smoothTime, maxSpeed, UnityEngine.Time.deltaTime, friction, accelRate);
+                        var col = LeanSmooth.spring(d.trans.LeanColor(), d.toTrans.LeanColor(), ref d.optional.color, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate);
                         d.trans.GetComponent<Renderer>().material.color = col;
                     }; break;
             }
@@ -2645,45 +2645,45 @@ namespace External_Assets.LeanTween.Framework
                 case LeanProp.localPosition:
                     d.optional.axis = d.trans.localPosition;
                     d.easeInternal = () => {
-                        d.optional.axis = LeanSmooth.bounceOut(d.optional.axis, d.toTrans.localPosition, ref d.fromInternal, smoothTime, maxSpeed, UnityEngine.Time.deltaTime, friction, accelRate, hitDamping);
+                        d.optional.axis = LeanSmooth.bounceOut(d.optional.axis, d.toTrans.localPosition, ref d.fromInternal, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping);
                         d.trans.localPosition = d.optional.axis + d.toInternal;
                     }; break;
                 case LeanProp.position:
                     d.easeInternal = () => {
-                        d.optional.axis = LeanSmooth.bounceOut(d.optional.axis, d.toTrans.position, ref d.fromInternal, smoothTime, maxSpeed, UnityEngine.Time.deltaTime, friction, accelRate, hitDamping);
+                        d.optional.axis = LeanSmooth.bounceOut(d.optional.axis, d.toTrans.position, ref d.fromInternal, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping);
                         d.trans.position = d.optional.axis + d.toInternal;
                     }; break;
                 case LeanProp.localX:
                     d.easeInternal = () => {
-                        d.trans.LeanSetLocalPosX(LeanSmooth.bounceOut(d.trans.localPosition.x, d.toTrans.localPosition.x, ref d.fromInternal.x, smoothTime, maxSpeed, UnityEngine.Time.deltaTime, friction, accelRate, hitDamping));
+                        d.trans.LeanSetLocalPosX(LeanSmooth.bounceOut(d.trans.localPosition.x, d.toTrans.localPosition.x, ref d.fromInternal.x, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping));
                     }; break;
                 case LeanProp.localY:
                     d.easeInternal = () => {
-                        d.trans.LeanSetLocalPosY(LeanSmooth.bounceOut(d.trans.localPosition.y, d.toTrans.localPosition.y, ref d.fromInternal.y, smoothTime, maxSpeed, UnityEngine.Time.deltaTime, friction, accelRate, hitDamping));
+                        d.trans.LeanSetLocalPosY(LeanSmooth.bounceOut(d.trans.localPosition.y, d.toTrans.localPosition.y, ref d.fromInternal.y, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping));
                     }; break;
                 case LeanProp.localZ:
                     d.easeInternal = () => {
-                        d.trans.LeanSetLocalPosZ(LeanSmooth.bounceOut(d.trans.localPosition.z, d.toTrans.localPosition.z, ref d.fromInternal.z, smoothTime, maxSpeed, UnityEngine.Time.deltaTime, friction, accelRate, hitDamping));
+                        d.trans.LeanSetLocalPosZ(LeanSmooth.bounceOut(d.trans.localPosition.z, d.toTrans.localPosition.z, ref d.fromInternal.z, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping));
                     }; break;
                 case LeanProp.x:
                     d.easeInternal = () => {
-                        d.trans.LeanSetPosX(LeanSmooth.bounceOut(d.trans.position.x, d.toTrans.position.x, ref d.fromInternal.x, smoothTime, maxSpeed, UnityEngine.Time.deltaTime, friction, accelRate, hitDamping));
+                        d.trans.LeanSetPosX(LeanSmooth.bounceOut(d.trans.position.x, d.toTrans.position.x, ref d.fromInternal.x, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping));
                     }; break;
                 case LeanProp.y:
                     d.easeInternal = () => {
-                        d.trans.LeanSetPosY(LeanSmooth.bounceOut(d.trans.position.y, d.toTrans.position.y, ref d.fromInternal.y, smoothTime, maxSpeed, UnityEngine.Time.deltaTime, friction, accelRate, hitDamping));
+                        d.trans.LeanSetPosY(LeanSmooth.bounceOut(d.trans.position.y, d.toTrans.position.y, ref d.fromInternal.y, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping));
                     }; break;
                 case LeanProp.z:
                     d.easeInternal = () => {
-                        d.trans.LeanSetPosZ(LeanSmooth.bounceOut(d.trans.position.z, d.toTrans.position.z, ref d.fromInternal.z, smoothTime, maxSpeed, UnityEngine.Time.deltaTime, friction, accelRate, hitDamping));
+                        d.trans.LeanSetPosZ(LeanSmooth.bounceOut(d.trans.position.z, d.toTrans.position.z, ref d.fromInternal.z, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping));
                     }; break;
                 case LeanProp.scale:
                     d.easeInternal = () => {
-                        d.trans.localScale = LeanSmooth.bounceOut(d.trans.localScale, d.toTrans.localScale, ref d.fromInternal, smoothTime, maxSpeed, UnityEngine.Time.deltaTime, friction, accelRate, hitDamping);
+                        d.trans.localScale = LeanSmooth.bounceOut(d.trans.localScale, d.toTrans.localScale, ref d.fromInternal, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping);
                     }; break;
                 case LeanProp.color:
                     d.easeInternal = () => {
-                        var col = LeanSmooth.bounceOut(d.trans.LeanColor(), d.toTrans.LeanColor(), ref d.optional.color, smoothTime, maxSpeed, UnityEngine.Time.deltaTime, friction, accelRate, hitDamping);
+                        var col = LeanSmooth.bounceOut(d.trans.LeanColor(), d.toTrans.LeanColor(), ref d.optional.color, smoothTime, maxSpeed, Time.deltaTime, friction, accelRate, hitDamping);
                         d.trans.GetComponent<Renderer>().material.color = col;
                     }; break;
             }
@@ -2757,14 +2757,14 @@ namespace External_Assets.LeanTween.Framework
 
         // LeanTween Listening/Dispatch
 
-        private static System.Action<LTEvent>[] eventListeners;
+        private static Action<LTEvent>[] eventListeners;
         private static GameObject[] goListeners;
         private static int eventsMaxSearch = 0;
         public static int EVENTS_MAX = 10;
         public static int LISTENERS_MAX = 10;
         private static int INIT_LISTENERS_MAX = LISTENERS_MAX;
 
-        public static void addListener( int eventId, System.Action<LTEvent> callback ){
+        public static void addListener( int eventId, Action<LTEvent> callback ){
             addListener(tweenEmpty, eventId, callback);
         }
 
@@ -2780,10 +2780,10 @@ namespace External_Assets.LeanTween.Framework
     * <br />
     * void jumpUp( LTEvent e ){ Debug.Log("jump!"); }<br />
     */
-        public static void addListener( GameObject caller, int eventId, System.Action<LTEvent> callback ){
+        public static void addListener( GameObject caller, int eventId, Action<LTEvent> callback ){
             if(eventListeners==null){
                 INIT_LISTENERS_MAX = LISTENERS_MAX;
-                eventListeners = new System.Action<LTEvent>[ EVENTS_MAX * LISTENERS_MAX ];
+                eventListeners = new Action<LTEvent>[ EVENTS_MAX * LISTENERS_MAX ];
                 goListeners = new GameObject[ EVENTS_MAX * LISTENERS_MAX ];
             }
             // Debug.Log("searching for an empty space for:"+caller + " eventid:"+event);
@@ -2813,7 +2813,7 @@ namespace External_Assets.LeanTween.Framework
             Debug.LogError("You ran out of areas to add listeners, consider increasing LISTENERS_MAX, ex: LeanTween.LISTENERS_MAX = "+(LISTENERS_MAX*2));
         }
 
-        public static bool removeListener( int eventId, System.Action<LTEvent> callback ){
+        public static bool removeListener( int eventId, Action<LTEvent> callback ){
             return removeListener( tweenEmpty, eventId, callback);
         }
 
@@ -2836,7 +2836,7 @@ namespace External_Assets.LeanTween.Framework
     * <br />
     * void jumpUp( LTEvent e ){ }<br />
     */
-        public static bool removeListener( GameObject caller, int eventId, System.Action<LTEvent> callback ){
+        public static bool removeListener( GameObject caller, int eventId, Action<LTEvent> callback ){
             for(i = 0; i < eventsMaxSearch; i++){
                 int point = eventId*INIT_LISTENERS_MAX + i;
 #if UNITY_FLASH
@@ -2923,41 +2923,41 @@ namespace External_Assets.LeanTween.Framework
             bb = 3*(a+c) - 6*b;
             cc = 3*(b-a);
 
-            this.len = 1.0f / precision;
-            arcLengths = new float[(int)this.len + (int)1];
+            len = 1.0f / precision;
+            arcLengths = new float[(int)len + (int)1];
             arcLengths[0] = 0;
 
             Vector3 ov = a;
             Vector3 v;
             float clen = 0.0f;
-            for(int i = 1; i <= this.len; i++) {
+            for(int i = 1; i <= len; i++) {
                 v = bezierPoint(i * precision);
                 clen += (ov - v).magnitude;
-                this.arcLengths[i] = clen;
+                arcLengths[i] = clen;
                 ov = v;
             }
-            this.length = clen;
+            length = clen;
         }
 
         private float map(float u) {
-            float targetLength = u * this.arcLengths[(int)this.len];
+            float targetLength = u * arcLengths[(int)len];
             int low = 0;
-            int high = (int)this.len;
+            int high = (int)len;
             int index = 0;
             while (low < high) {
                 index = low + ((int)((high - low) / 2.0f) | 0);
-                if (this.arcLengths[index] < targetLength) {
+                if (arcLengths[index] < targetLength) {
                     low = index + 1;
                 } else {
                     high = index;
                 }
             }
-            if(this.arcLengths[index] > targetLength)
+            if(arcLengths[index] > targetLength)
                 index--;
             if(index<0)
                 index = 0;
 
-            return (index + (targetLength - arcLengths[index]) / (arcLengths[index + 1] - arcLengths[index])) / this.len;
+            return (index + (targetLength - arcLengths[index]) / (arcLengths[index + 1] - arcLengths[index])) / len;
         }
 
         private Vector3 bezierPoint(float t){
@@ -3191,7 +3191,7 @@ namespace External_Assets.LeanTween.Framework
 * LeanTween.moveSpline(lt, ltSpline.vec3, 4.0f).setOrientToPath(true).setDelay(1f).setEase(LeanTweenType.easeInOutQuad); // animate <br />
 * Vector3 pt = ltSpline.point( 0.6f ); // retrieve a point along the path
 */
-    [System.Serializable]
+    [Serializable]
     public class LTSpline {
         public static int DISTANCE_COUNT = 3; // increase for a more accurate constant speed
         public static int SUBLINE_COUNT = 20; // increase for a more accurate smoothing of the curves into lines
@@ -3204,7 +3204,7 @@ namespace External_Assets.LeanTween.Framework
         public bool constantSpeed = true;
 
         public Vector3[] pts;
-        [System.NonSerialized]
+        [NonSerialized]
         public Vector3[] ptsAdj;
         public int ptsAdjLength;
         public bool orientToPath;
@@ -3228,7 +3228,7 @@ namespace External_Assets.LeanTween.Framework
             }
 
             this.pts = new Vector3[pts.Length];
-            System.Array.Copy(pts, this.pts, pts.Length);
+            Array.Copy(pts, this.pts, pts.Length);
 
             numSections = pts.Length - 3;
 
@@ -3476,14 +3476,14 @@ namespace External_Assets.LeanTween.Framework
         }
 
         public void drawGizmo( Color color ) {
-            if( this.ptsAdjLength>=4){
+            if( ptsAdjLength>=4){
 
-                Vector3 prevPt = this.ptsAdj[0];
+                Vector3 prevPt = ptsAdj[0];
 
                 Color colorBefore = Gizmos.color;
                 Gizmos.color = color;
-                for (int i = 0; i < this.ptsAdjLength; i++) {
-                    Vector3 currPt2 = this.ptsAdj[i];
+                for (int i = 0; i < ptsAdjLength; i++) {
+                    Vector3 currPt2 = ptsAdj[i];
                     // Debug.Log("currPt2:"+currPt2);
 
                     Gizmos.DrawLine(prevPt, currPt2);
@@ -3547,12 +3547,12 @@ namespace External_Assets.LeanTween.Framework
             GL.Color(color);
 
             if (constantSpeed) {
-                if (this.ptsAdjLength >= 4) {
+                if (ptsAdjLength >= 4) {
 
-                    Vector3 prevPt = this.ptsAdj[0];
+                    Vector3 prevPt = ptsAdj[0];
 
-                    for (int i = 0; i < this.ptsAdjLength; i++) {
-                        Vector3 currPt2 = this.ptsAdj[i];
+                    for (int i = 0; i < ptsAdjLength; i++) {
+                        Vector3 currPt2 = ptsAdj[i];
                         GL.Vertex(prevPt);
                         GL.Vertex(currPt2);
 
@@ -3561,11 +3561,11 @@ namespace External_Assets.LeanTween.Framework
                 }
 
             } else {
-                if (this.pts.Length >= 4) {
+                if (pts.Length >= 4) {
 
-                    Vector3 prevPt = this.pts[0];
+                    Vector3 prevPt = pts[0];
 
-                    float split = 1f / ((float)this.pts.Length * 10f);
+                    float split = 1f / ((float)pts.Length * 10f);
 
                     float iter = 0f;
                     while (iter < 1f) {
@@ -3590,12 +3590,12 @@ namespace External_Assets.LeanTween.Framework
         }
 
         public Vector3[] generateVectors(){
-            if (this.pts.Length >= 4) {
+            if (pts.Length >= 4) {
                 List<Vector3> meshPoints = new List<Vector3>();
-                Vector3 prevPt = this.pts[0];
+                Vector3 prevPt = pts[0];
                 meshPoints.Add(prevPt);
 
-                float split = 1f / ((float)this.pts.Length * 10f);
+                float split = 1f / ((float)pts.Length * 10f);
 
                 float iter = 0f;
                 while (iter < 1f) {
@@ -3643,7 +3643,7 @@ namespace External_Assets.LeanTween.Framework
 * @param {float} rotation:float (Optional) initial rotation in degrees (0-360) 
 */
 
-    [System.Serializable]
+    [Serializable]
     public class LTRect : System.Object{
         /**
     * Pass this value to the GUI Methods
@@ -3681,7 +3681,7 @@ namespace External_Assets.LeanTween.Framework
 
         public LTRect(){
             reset();
-            this.rotateEnabled = this.alphaEnabled = true;
+            rotateEnabled = alphaEnabled = true;
             _rect = new Rect(0f,0f,1f,1f);
         }
 
@@ -3692,25 +3692,25 @@ namespace External_Assets.LeanTween.Framework
 
         public LTRect(float x, float y, float width, float height){
             _rect = new Rect(x,y,width,height);
-            this.alpha = 1.0f;
-            this.rotation = 0.0f;
-            this.rotateEnabled = this.alphaEnabled = false;
+            alpha = 1.0f;
+            rotation = 0.0f;
+            rotateEnabled = alphaEnabled = false;
         }
 
         public LTRect(float x, float y, float width, float height, float alpha){
             _rect = new Rect(x,y,width,height);
             this.alpha = alpha;
-            this.rotation = 0.0f;
-            this.rotateEnabled = this.alphaEnabled = false;
+            rotation = 0.0f;
+            rotateEnabled = alphaEnabled = false;
         }
 
         public LTRect(float x, float y, float width, float height, float alpha, float rotation){
             _rect = new Rect(x,y,width,height);
             this.alpha = alpha;
             this.rotation = rotation;
-            this.rotateEnabled = this.alphaEnabled = false;
+            rotateEnabled = alphaEnabled = false;
             if(rotation!=0.0f){
-                this.rotateEnabled = true;
+                rotateEnabled = true;
                 resetForRotation();
             }
         }
@@ -3736,17 +3736,17 @@ namespace External_Assets.LeanTween.Framework
         } 
 
         public void setId( int id, int counter){
-            this._id = id;
+            _id = id;
             this.counter = counter;
         }
 
         public void reset(){
-            this.alpha = 1.0f;
-            this.rotation = 0.0f;
-            this.rotateEnabled = this.alphaEnabled = false;
-            this.margin = Vector2.zero;
-            this.sizeByHeight = false;
-            this.useColor = false;
+            alpha = 1.0f;
+            rotation = 0.0f;
+            rotateEnabled = alphaEnabled = false;
+            margin = Vector2.zero;
+            sizeByHeight = false;
+            useColor = false;
         }
 
         public void resetForRotation(){
@@ -3798,8 +3798,8 @@ namespace External_Assets.LeanTween.Framework
                     colorTouched = true;
                 }
                 if(fontScaleToFit){
-                    if(this.useSimpleScale){
-                        style.fontSize = (int)(_rect.height*this.relativeRect.height);
+                    if(useSimpleScale){
+                        style.fontSize = (int)(_rect.height*relativeRect.height);
                     }else{
                         style.fontSize = (int)_rect.height;
                     }
@@ -3824,7 +3824,7 @@ namespace External_Assets.LeanTween.Framework
 
         public LTRect setColor( Color color ){
             this.color = color;
-            this.useColor = true;
+            useColor = true;
             return this;
         }
 
@@ -3834,7 +3834,7 @@ namespace External_Assets.LeanTween.Framework
         }
 
         public LTRect setLabel( String str ){
-            this.labelStr = str;
+            labelStr = str;
             return this;
         }
 
@@ -3846,7 +3846,7 @@ namespace External_Assets.LeanTween.Framework
 
         public LTRect setUseSimpleScale( bool useSimpleScale){
             this.useSimpleScale = useSimpleScale;
-            this.relativeRect = new Rect(0f,0f,Screen.width,Screen.height);
+            relativeRect = new Rect(0f,0f,Screen.width,Screen.height);
             return this;
         }
 
@@ -4019,7 +4019,7 @@ namespace External_Assets.LeanTween.Framework
             if(rect!=null){
                 destroy(rect.id);
             }
-            if(rect.type==LTGUI.Element_Type.Label && rect.style!=null){
+            if(rect.type==Element_Type.Label && rect.style!=null){
                 if(rect.style.normal.textColor.a<=0f){
                     Debug.LogWarning("Your GUI normal color has an alpha of zero, and will not be rendered.");
                 }
@@ -4059,7 +4059,7 @@ namespace External_Assets.LeanTween.Framework
                 //Debug.Log("buttonLevels["+i+"]:"+buttonLevels[i]);
                 if(buttonLevels[i]>=0){
                     //Debug.Log("buttonLastFrame["+i+"]:"+buttonLastFrame[i]+" Time.frameCount:"+Time.frameCount);
-                    if( buttonLastFrame[i] + 1 < UnityEngine.Time.frameCount ){ // It has to have been visible within the current, or
+                    if( buttonLastFrame[i] + 1 < Time.frameCount ){ // It has to have been visible within the current, or
                         buttonLevels[i] = -1;
                         // Debug.Log("resetting i:"+i);
                     }else{
@@ -4082,7 +4082,7 @@ namespace External_Assets.LeanTween.Framework
                     wasAddedToList = true;
                     buttonLevels[i] = depth;
                     buttons[i] = rect;
-                    buttonLastFrame[i] = UnityEngine.Time.frameCount;
+                    buttonLastFrame[i] = Time.frameCount;
                 }
             }
 

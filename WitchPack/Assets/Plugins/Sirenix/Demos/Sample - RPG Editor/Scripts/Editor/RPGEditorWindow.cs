@@ -48,7 +48,7 @@ namespace Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Editor
 
             // Add all scriptable object items.
             tree.AddAllAssetsAtPath("", "Assets/Plugins/Sirenix/Demos/SAMPLE - RPG Editor/Items", typeof(Item), true)
-                .ForEach(this.AddDragHandles);
+                .ForEach(AddDragHandles);
 
             // Add drag handles to items, so they can be easily dragged into the inventory if characters etc...
             tree.EnumerateTree().Where(x => x.Value as Item).ForEach(AddDragHandles);
@@ -67,8 +67,8 @@ namespace Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Editor
 
         protected override void OnBeginDrawEditors()
         {
-            var selected = this.MenuTree.Selection.FirstOrDefault();
-            var toolbarHeight = this.MenuTree.Config.SearchToolbarHeight;
+            var selected = MenuTree.Selection.FirstOrDefault();
+            var toolbarHeight = MenuTree.Config.SearchToolbarHeight;
 
             // Draws a toolbar with the name of the currently selected menu item.
             SirenixEditorGUI.BeginHorizontalToolbar(toolbarHeight);
@@ -83,7 +83,7 @@ namespace Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Editor
                     ScriptableObjectCreator.ShowDialog<Item>("Assets/Plugins/Sirenix/Demos/Sample - RPG Editor/Items", obj =>
                     {
                         obj.Name = obj.name;
-                        base.TrySelectMenuItemWithObject(obj); // Selects the newly created item in the editor
+                        TrySelectMenuItemWithObject(obj); // Selects the newly created item in the editor
                     });
                 }
 
@@ -92,7 +92,7 @@ namespace Plugins.Sirenix.Demos.Sample___RPG_Editor.Scripts.Editor
                     ScriptableObjectCreator.ShowDialog<Character.Character>("Assets/Plugins/Sirenix/Demos/Sample - RPG Editor/Character", obj =>
                     {
                         obj.Name = obj.name;
-                        base.TrySelectMenuItemWithObject(obj); // Selects the newly created item in the editor
+                        TrySelectMenuItemWithObject(obj); // Selects the newly created item in the editor
                     });
                 }
             }

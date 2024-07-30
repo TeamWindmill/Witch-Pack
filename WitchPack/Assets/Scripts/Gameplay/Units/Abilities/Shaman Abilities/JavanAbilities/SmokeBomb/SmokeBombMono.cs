@@ -24,7 +24,7 @@ namespace Gameplay.Units.Abilities.Shaman_Abilities.JavanAbilities.SmokeBomb
         [SerializeField] private PlayableDirector cloudsIdle;
         [SerializeField] private PlayableDirector cloudsExit;
 
-        private Dictionary<Shaman.Shaman,StatusEffect[]> _affectedShamans = new ();
+        private Dictionary<Shaman,StatusEffect[]> _affectedShamans = new ();
         protected SmokeBomb _ability;
         protected BaseUnit _owner;
 
@@ -53,7 +53,7 @@ namespace Gameplay.Units.Abilities.Shaman_Abilities.JavanAbilities.SmokeBomb
         protected virtual void OnTargetEntered(GroundCollider collider)
         {
             var unit = collider.Unit;
-            if (unit is not Shaman.Shaman shaman) return;
+            if (unit is not Shaman shaman) return;
             if (_affectedShamans.ContainsKey(shaman)) return;
 
             StatusEffect[] statusEffects = shaman.Effectable.AddEffects(_ability.StatusEffects,_owner.Affector).ToArray();
@@ -61,7 +61,7 @@ namespace Gameplay.Units.Abilities.Shaman_Abilities.JavanAbilities.SmokeBomb
         }
         private void OnTargetExited(GroundCollider collider)
         {
-            if (collider.Unit is Shaman.Shaman shaman)
+            if (collider.Unit is Shaman shaman)
             {
                 if (_affectedShamans.TryGetValue(shaman,out var statusEffects))
                 {

@@ -54,7 +54,7 @@ namespace External_Assets.PathCreator.Core.Runtime.Objects
             if (guids.Length == 0)
             {
                 Debug.LogWarning("Could not find DisplaySettings asset. Will use default settings instead.");
-                return ScriptableObject.CreateInstance<GlobalDisplaySettings>();
+                return CreateInstance<GlobalDisplaySettings>();
             }
             else
             {

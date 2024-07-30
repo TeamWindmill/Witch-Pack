@@ -245,10 +245,10 @@ namespace External_Assets.vTools.vInspector
 
             SetupProps(prop);
 
-            this.list = new ReorderableList(kvpsProp.serializedObject, kvpsProp, true, false, true, true);
-            this.list.drawElementCallback = DrawListElement;
-            this.list.elementHeightCallback = GetListElementHeight;
-            this.list.drawNoneElementCallback = DrawDictionaryIsEmpty;
+            list = new ReorderableList(kvpsProp.serializedObject, kvpsProp, true, false, true, true);
+            list.drawElementCallback = DrawListElement;
+            list.elementHeightCallback = GetListElementHeight;
+            list.drawNoneElementCallback = DrawDictionaryIsEmpty;
 
         }
         ReorderableList list;
@@ -260,8 +260,8 @@ namespace External_Assets.vTools.vInspector
             if (this.prop != null) return;
 
             this.prop = prop;
-            this.kvpsProp = prop.FindPropertyRelative("serializedKvps");
-            this.dividerPosProp = prop.FindPropertyRelative("dividerPos");
+            kvpsProp = prop.FindPropertyRelative("serializedKvps");
+            dividerPosProp = prop.FindPropertyRelative("dividerPos");
 
 
         }

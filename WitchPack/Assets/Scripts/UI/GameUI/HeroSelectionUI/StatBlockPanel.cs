@@ -1,4 +1,4 @@
-using Gameplay.Units.Shaman;
+using Gameplay.Units;
 using Gameplay.Units.Stats;
 using Sirenix.Utilities;
 using UI.UISystem;
@@ -34,8 +34,8 @@ namespace UI.GameUI.HeroSelectionUI
                         _shaman.Damageable.OnHealthChange += statBar.UpdateStatbar;
                         break;
                     case StatBarType.Energy:
-                        statBar.Init(new StatBarData("Energy", _shaman.EnergyHandler.CurrentEnergy, _shaman.EnergyHandler.MaxEnergyToNextLevel));
-                        _shaman.EnergyHandler.OnShamanGainEnergy += statBar.UpdateStatbar;
+                        //statBar.Init(new StatBarData("Energy", _shaman.EnergyHandler.CurrentEnergy, _shaman.EnergyHandler.MaxEnergyToNextLevel));
+                        //_shaman.EnergyHandler.OnShamanGainEnergy += statBar.UpdateStatbar;
                         break;
                 }
             }
@@ -71,7 +71,7 @@ namespace UI.GameUI.HeroSelectionUI
                         _shaman.Damageable.OnHealthChange -= statBar.UpdateStatbar;
                         break;
                     case StatBarType.Energy:
-                        _shaman.EnergyHandler.OnShamanGainEnergy -= statBar.UpdateStatbar;
+                        //_shaman.EnergyHandler.OnShamanGainEnergy -= statBar.UpdateStatbar;
                         break;
                 }
             }

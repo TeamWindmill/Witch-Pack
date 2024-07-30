@@ -4,7 +4,7 @@ using Gameplay.Units.Abilities.AbilitySystem.BaseAbilities;
 using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs;
 using Gameplay.Units.Damage_System;
 using Gameplay.Units.Enemy;
-using Gameplay.Units.Shaman;
+using Gameplay.Units;
 using Gameplay.Units.Stats;
 using GameTime;
 using UI.Popups;

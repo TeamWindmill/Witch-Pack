@@ -64,8 +64,8 @@ namespace External_Assets.LeanTween.Examples.Scripts
 
 		void FixedUpdate(){
 			if(turnForIter < turnForLength){
-				GetComponent<Rigidbody>().MoveRotation( GetComponent<Rigidbody>().rotation * Quaternion.Euler(towardsRotation * UnityEngine.Time.deltaTime ) );
-				turnForIter += UnityEngine.Time.deltaTime;
+				GetComponent<Rigidbody>().MoveRotation( GetComponent<Rigidbody>().rotation * Quaternion.Euler(towardsRotation * Time.deltaTime ) );
+				turnForIter += Time.deltaTime;
 			}
 
 			GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * 4.5f);

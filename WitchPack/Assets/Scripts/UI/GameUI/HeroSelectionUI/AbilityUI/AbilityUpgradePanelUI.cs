@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using Gameplay.Units.Abilities.AbilitySystem.BaseAbilities;
 using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs.Passives;
-using Gameplay.Units.Shaman;
+using Gameplay.Units;
 using TMPro;
 using Tools.SlowMotion;
 using UI.UISystem;
@@ -63,7 +63,7 @@ namespace UI.GameUI.HeroSelectionUI.AbilityUI
             var position = rectTransform.position;
             rectTransform.position = new Vector3(_abilityUIButton.RectTransform.position.x + (_abilityUIButton.RectTransform.rect.width / 2), position.y, position.z);
 
-            var shamanHasSkillPoints = _shaman.EnergyHandler.AvailableSkillPoints > 0;
+            var shamanHasSkillPoints = false;
             baseAbilityUpgradeUIButton.Init(rootAbility,shamanHasSkillPoints);
             if (_abilityUpgrades.Count == 3)
             {
@@ -143,7 +143,7 @@ namespace UI.GameUI.HeroSelectionUI.AbilityUI
                 _shaman.ShamanAbilityHandler.LearnAbility(ability);
             }
 
-            _shaman.EnergyHandler.TryUseSkillPoint();
+            //_shaman.EnergyHandler.TryUseSkillPoint();
             var caster = _shaman.ShamanAbilityHandler.GetCasterFromAbility(ability);
             OnAbilityUpgrade?.Invoke();
             _abilityUIButton.Init(rootAbility, ability, caster);

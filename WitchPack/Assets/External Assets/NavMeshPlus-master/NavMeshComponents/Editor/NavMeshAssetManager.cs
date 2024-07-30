@@ -109,7 +109,7 @@ namespace External_Assets.NavMeshPlus_master.NavMeshComponents.Editor
                 AssetDatabase.DeleteAsset(AssetDatabase.GetAssetPath(assetToDelete));
         }
 
-        public void StartBakingSurfaces(UnityEngine.Object[] surfaces)
+        public void StartBakingSurfaces(Object[] surfaces)
         {
             // Remove first to avoid double registration of the callback
             EditorApplication.update -= UpdateAsyncBuildOperations;
@@ -133,7 +133,7 @@ namespace External_Assets.NavMeshPlus_master.NavMeshComponents.Editor
         {
             var emptySources = new List<NavMeshBuildSource>();
             var emptyBounds = new Bounds();
-            return UnityEngine.AI.NavMeshBuilder.BuildNavMeshData(surface.GetBuildSettings(), emptySources, emptyBounds
+            return NavMeshBuilder.BuildNavMeshData(surface.GetBuildSettings(), emptySources, emptyBounds
                 , surface.transform.position, surface.transform.rotation);
         }
 
@@ -182,7 +182,7 @@ namespace External_Assets.NavMeshPlus_master.NavMeshComponents.Editor
             return false;
         }
 
-        public void ClearSurfaces(UnityEngine.Object[] surfaces)
+        public void ClearSurfaces(Object[] surfaces)
         {
             foreach (NavMeshSurface s in surfaces)
                 ClearSurface(s);

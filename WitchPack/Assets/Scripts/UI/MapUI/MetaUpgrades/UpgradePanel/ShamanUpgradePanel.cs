@@ -1,6 +1,6 @@
 using System;
 using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs;
-using Gameplay.Units.Shaman;
+using Gameplay.Units;
 using Sirenix.Utilities;
 using UI.MapUI.MetaUpgrades.UpgradePanel.Configs;
 using UI.UISystem;

@@ -1,10 +1,10 @@
 using System;
 using System.Collections.Generic;
 using Configs;
-using Gameplay.Units.Energy_Exp.Exp;
+using Gameplay.Units.Energy_Exp;
 using UI.MapUI.MetaUpgrades.UpgradePanel.Configs;
 
-namespace Gameplay.Units.Shaman
+namespace Gameplay.Units
 {
     [Serializable]
     public class ShamanSaveData

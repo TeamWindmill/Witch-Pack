@@ -61,7 +61,7 @@ namespace UI.UISystem
             if (!enableHoldClick || _holdClickHappened) return;
             if (PointerDown)
             {
-                HoldClickTimer += UnityEngine.Time.deltaTime;
+                HoldClickTimer += Time.deltaTime;
                 if (HoldClickTimer > holdClickSpeed)
                 {
                     OnHoldClick();
@@ -78,7 +78,7 @@ namespace UI.UISystem
             if (_clickNum == 0 || !enableDoubleClick)
                 return;
 
-            DoubleClickTimer -= UnityEngine.Time.deltaTime;
+            DoubleClickTimer -= Time.deltaTime;
 
             if (DoubleClickTimer <= 0)
             {

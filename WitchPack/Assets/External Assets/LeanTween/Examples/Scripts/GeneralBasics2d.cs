@@ -44,7 +44,7 @@ namespace External_Assets.LeanTween.Examples.Scripts
 			go.transform.position = pos;
 
 			if(hasParticles){
-				GameObject particles = (GameObject)GameObject.Instantiate(prefabParticles, Vector3.zero, prefabParticles.transform.rotation );
+				GameObject particles = (GameObject)Instantiate(prefabParticles, Vector3.zero, prefabParticles.transform.rotation );
 				particles.transform.parent = go.transform;
 				particles.transform.localPosition = prefabParticles.transform.position;
 			}

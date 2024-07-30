@@ -1,5 +1,5 @@
 ﻿using Gameplay.Units.Damage_System;
-using Gameplay.Units.Shaman;
+using Gameplay.Units;
 using Managers;
 using UI.UISystem;
 using UnityEngine;
@@ -30,19 +30,19 @@ namespace UI.GameUI.PartyUI
             _healthBar.value = 1;
             Color upgradeColor = _upgradeFrame.color;
             _redInjuryImage.fillAmount = 0;
-            if (shaman.EnergyHandler.HasSkillPoints)
-            {
-                upgradeColor.a = 100;
-                _upgradeArrow.gameObject.SetActive(true);
-            }
-            else
+            // if (shaman.EnergyHandler.HasSkillPoints)
+            // {
+            //     upgradeColor.a = 100;
+            //     _upgradeArrow.gameObject.SetActive(true);
+            // }
+            // else
             {
                 upgradeColor.a = 0;
                 _upgradeArrow.gameObject.SetActive(false);
             }
             _upgradeFrame.color = upgradeColor;
-            shaman.EnergyHandler.OnShamanUpgrade += OnShamanUpgrade;
-            shaman.EnergyHandler.OnShamanLevelUp += OnShamanLevelUp;
+            //shaman.EnergyHandler.OnShamanUpgrade += OnShamanUpgrade;
+            //shaman.EnergyHandler.OnShamanLevelUp += OnShamanLevelUp;
             shaman.Damageable.OnHealthChange += OnCurrentChangeHealth;
             shaman.Damageable.OnDeath += ShamanDeathUI;
             OnClickEvent += GoToShaman;

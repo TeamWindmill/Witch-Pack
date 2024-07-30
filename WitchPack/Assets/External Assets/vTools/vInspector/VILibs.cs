@@ -65,7 +65,7 @@ namespace External_Assets.vTools.vInspector
         {
             var s = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur Excepteur sint occaecat cupidatat non proident sunt in culpa qui officia deserunt mollit anim id est laborum";
             var ws = s.Split(' ').Select(r => r.ToLower().Trim(new[] { ',', '.' }));
-            ws = ws.OrderBy(r => UnityEngine.Random.Range(0, 1232)).Take(words);
+            ws = ws.OrderBy(r => Random.Range(0, 1232)).Take(words);
             var ss = string.Join(" ", ws);
             return char.ToUpper(ss[0]) + ss.Substring(1);
         }
@@ -562,7 +562,7 @@ namespace External_Assets.vTools.vInspector
 
         }
 
-        public static void Dirty(this Object o) => UnityEditor.EditorUtility.SetDirty(o);
+        public static void Dirty(this Object o) => EditorUtility.SetDirty(o);
         // public static void Save(this Object o) => AssetDatabase.SaveAssetIfDirty(o);
         public static void RecordUndo(this Object o)
         {
@@ -658,7 +658,7 @@ namespace External_Assets.vTools.vInspector
 
             cur = Field(rect, name, cur);
 
-            if (!object.Equals(cur, resetTo))
+            if (!Equals(cur, resetTo))
                 _DrawResettableFieldCrossIcon(rect, isObjectField);
 
             return reset ? resetTo : cur;
@@ -673,7 +673,7 @@ namespace External_Assets.vTools.vInspector
 
             cur = Slider(rect, name, cur, min, max);
 
-            if (!object.Equals(cur, resetTo))
+            if (!Equals(cur, resetTo))
                 _DrawResettableFieldCrossIcon(lastRect);
 
             return reset ? resetTo : cur;
@@ -918,7 +918,7 @@ namespace External_Assets.vTools.vInspector
 
         public static Event e => Event.current;
         public static bool ePresent => Event.current != null;
-        public static UnityEngine.EventType eType => ePresent ? e.type : UnityEngine.EventType.Ignore;
+        public static EventType eType => ePresent ? e.type : EventType.Ignore;
         public static bool mouseDown(this Event e) => eType == EventType.MouseDown && e.button == 0;
         public static bool mouseUp(this Event e) => eType == EventType.MouseUp && e.button == 0;
         public static bool keyDown(this Event e) => eType == EventType.KeyDown;

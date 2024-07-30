@@ -77,13 +77,13 @@ namespace External_Assets.vTools.vInspector
                     isResetted = !prop.prefabOverride;
                 else
                 {
-                    isResetted = object.Equals(valCur, valDefault);
+                    isResetted = Equals(valCur, valDefault);
 
                     if (typeof(Object).IsAssignableFrom(fieldInfo.FieldType))
                         isResetted |= (valDefault == null) && !(bool)(Object)valCur;
 
                     if (fieldInfo.FieldType == typeof(string))
-                        isResetted |= fieldInfo.FieldType == typeof(string) && (object.Equals(valCur, "") && object.Equals(valDefault, null));
+                        isResetted |= fieldInfo.FieldType == typeof(string) && (Equals(valCur, "") && Equals(valDefault, null));
                 }
 
 

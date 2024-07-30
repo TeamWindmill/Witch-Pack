@@ -1,4 +1,4 @@
-using Gameplay.Units.Shaman;
+using Gameplay.Units;
 using Managers;
 using UI.UISystem;
 using UnityEngine;

@@ -137,9 +137,9 @@ namespace External_Assets.vTools.vInspector
         static bool staticVariablesExpanded { get => EditorPrefs.GetBool("VIScriptAssetEditor-staticVariablesExpanded", false); set => EditorPrefs.SetBool("VIScriptAssetEditor-staticVariablesExpanded", value); }
         static bool staticFunctionsExpanded { get => EditorPrefs.GetBool("VIScriptAssetEditor-staticMethodsExpanded", false); set => EditorPrefs.SetBool("VIScriptAssetEditor-staticMethodsExpanded", value); }
 
-        static Dictionary<System.Type, Dictionary<FieldInfo, object>> defaultValuesByClassType = new Dictionary<System.Type, Dictionary<FieldInfo, object>>();
+        static Dictionary<Type, Dictionary<FieldInfo, object>> defaultValuesByClassType = new Dictionary<Type, Dictionary<FieldInfo, object>>();
 
-        static System.Type[] supportedTypes = new[] { typeof(Object), typeof(float), typeof(int), typeof(string), typeof(bool) };
+        static Type[] supportedTypes = new[] { typeof(Object), typeof(float), typeof(int), typeof(string), typeof(bool) };
 
 
 #if !DISABLED

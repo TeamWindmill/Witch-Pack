@@ -146,9 +146,9 @@ namespace External_Assets.PathCreator.Core.Runtime.Utility {
             public readonly Vector3 scale;
 
             public PosRotScale (Transform t) {
-                this.position = t.position;
-                this.rotation = t.rotation;
-                this.scale = t.localScale;
+                position = t.position;
+                rotation = t.rotation;
+                scale = t.localScale;
             }
 
             public void SetTransform (Transform t) {

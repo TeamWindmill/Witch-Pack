@@ -33,7 +33,7 @@ namespace Gameplay.Units.Abilities.Shaman_Abilities.NadiaAbilities.Rooting_Vines
         private void HerbalWeeds(Damageable damageable, DamageDealer damageDealer)
         {
             damageDealer.Owner.Effectable.AddEffects(_healingWeedsAbility.HealStatusEffects, damageable.Owner.Affector);
-            if (damageDealer.Owner is Shaman.Shaman shaman)
+            if (damageDealer.Owner is Shaman shaman)
             {
                 shaman.ShamanVisualHandler.HealingWeedsEffect.Play();
             }

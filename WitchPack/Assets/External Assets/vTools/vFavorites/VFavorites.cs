@@ -68,12 +68,12 @@ namespace External_Assets.vTools.vFavorites
             }
             void gaps_()
             {
-                while (VFavorites.gaps.Count < guids.Count + 1) VFavorites.gaps.Add(0);
-                while (VFavorites.gaps.Count > guids.Count + 1) VFavorites.gaps.RemoveLast();
+                while (gaps.Count < guids.Count + 1) gaps.Add(0);
+                while (gaps.Count > guids.Count + 1) gaps.RemoveLast();
 
                 if (eType == EventType.Layout)
-                    for (int i = 0; i < VFavorites.gaps.Count; i++)
-                        VFavorites.gaps[i] = Lerp(VFavorites.gaps[i], dragging && i == draggedGuidInsertAt ? rowHeight : 0, lerpSpeed);
+                    for (int i = 0; i < gaps.Count; i++)
+                        gaps[i] = Lerp(gaps[i], dragging && i == draggedGuidInsertAt ? rowHeight : 0, lerpSpeed);
 
             }
             void footer()
@@ -268,7 +268,7 @@ namespace External_Assets.vTools.vFavorites
 
                 for (int i = 0; i < guids.Count; i++)
                 {
-                    GUILayout.Space(VFavorites.gaps[i]);
+                    GUILayout.Space(gaps[i]);
                     GUILayout.Space(rowHeight);
 
                     if (!lerpingAcceptedDrag || acceptedDragInd != i)

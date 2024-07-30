@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs;
-using Gameplay.Units.Energy_Exp.Energy;
-using Gameplay.Units.Energy_Exp.Exp;
+using Gameplay.Units.Energy_Exp;
 using UI.MapUI.MetaUpgrades.UpgradePanel.Configs;
 using UnityEngine;
 

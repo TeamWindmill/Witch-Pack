@@ -26,7 +26,7 @@ namespace Gameplay.Units.Abilities.Shaman_Abilities.NadiaAbilities.Visuals
         {
             elapsedTime = 0;
             this.duration = duration;
-            this.gameObject.SetActive(true);
+            gameObject.SetActive(true);
         }
 
         public void StopPoisonParticle()

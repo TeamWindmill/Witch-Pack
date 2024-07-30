@@ -41,7 +41,7 @@ namespace Map
                 _pathMasks.Add(mask);
                 _pathMaskTimer = 0;
             }
-            else _pathMaskTimer += UnityEngine.Time.deltaTime;
+            else _pathMaskTimer += Time.deltaTime;
         }
 
         private void OnFinishTokenAnimation()

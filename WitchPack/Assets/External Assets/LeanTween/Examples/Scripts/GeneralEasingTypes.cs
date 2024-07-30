@@ -41,7 +41,7 @@ namespace External_Assets.LeanTween.Examples.Scripts
 
 					obj1.localPosition = vec;
 
-					obj1val += UnityEngine.Time.deltaTime/5f;
+					obj1val += Time.deltaTime/5f;
 					if(obj1val>1f)
 						obj1val = 0f;
 				});

@@ -42,7 +42,7 @@ namespace Plugins.Sirenix.Demos.Editor_Windows.Scripts.Editor
         // This come in handy if you want to add titles, boxes, or draw them in a GUI.Window etc...
         protected override void DrawEditor(int index)
         {
-            var currentDrawingEditor = this.CurrentDrawingTargets[index];
+            var currentDrawingEditor = CurrentDrawingTargets[index];
 
             SirenixEditorGUI.Title(
                 title: currentDrawingEditor.ToString(),
@@ -53,7 +53,7 @@ namespace Plugins.Sirenix.Demos.Editor_Windows.Scripts.Editor
 
             base.DrawEditor(index);
 
-            if (index != this.CurrentDrawingTargets.Count - 1)
+            if (index != CurrentDrawingTargets.Count - 1)
             {
                 SirenixEditorGUI.DrawThickHorizontalSeparator(15, 15);
             }

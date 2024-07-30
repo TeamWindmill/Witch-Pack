@@ -1,7 +1,7 @@
 using System;
 using Sirenix.OdinInspector;
 
-namespace Gameplay.Units.Energy_Exp.Exp
+namespace Gameplay.Units.Energy_Exp
 {
     public class ShamanExperienceHandler
     {

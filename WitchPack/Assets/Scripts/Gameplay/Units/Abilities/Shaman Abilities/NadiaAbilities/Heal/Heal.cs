@@ -28,7 +28,7 @@ namespace Gameplay.Units.Abilities.Shaman_Abilities.NadiaAbilities.Heal
                 float targetCurrentHpRatio = shaman.Damageable.CurrentHp / maxHp;
                 if (casterCurrentHpRatio < targetCurrentHpRatio)
                 {
-                    shaman = Owner as Shaman.Shaman;
+                    shaman = Owner as Shaman;
                 }
 
                 if (!HasAbilityBehavior(AbilityBehavior.HealOnFullHealth))
@@ -48,14 +48,14 @@ namespace Gameplay.Units.Abilities.Shaman_Abilities.NadiaAbilities.Heal
             {
                 if (HasAbilityBehavior(AbilityBehavior.HealOnFullHealth))
                 {
-                    HealTarget(Owner as Shaman.Shaman, Owner);
+                    HealTarget(Owner as Shaman, Owner);
                     target = Owner;
                     return true;
                 }
             
                 if(Owner.Damageable.CurrentHp < Owner.Stats[StatType.MaxHp].Value) // check if caster is injured
                 {
-                    HealTarget(Owner as Shaman.Shaman, Owner);
+                    HealTarget(Owner as Shaman, Owner);
                     target = Owner;
                     return true;
                 } 
@@ -67,7 +67,7 @@ namespace Gameplay.Units.Abilities.Shaman_Abilities.NadiaAbilities.Heal
 
         public override bool CheckCastAvailable()
         {
-            Shaman.Shaman target = Owner.ShamanTargetHelper.GetTarget(TargetData); 
+            Shaman target = Owner.ShamanTargetHelper.GetTarget(TargetData); 
             if (!ReferenceEquals(target, null)) // any shaman in range?
             {
                 // Check if caster has lower hp (ratio) than lowest hp target
@@ -75,7 +75,7 @@ namespace Gameplay.Units.Abilities.Shaman_Abilities.NadiaAbilities.Heal
                 float targetCurrentHpRatio = target.Damageable.CurrentHp / target.Stats[StatType.MaxHp].Value;
                 if (casterCurrentHpRatio < targetCurrentHpRatio)
                 {
-                    target = Owner as Shaman.Shaman;
+                    target = Owner as Shaman;
                 }
             
                 if (HasAbilityBehavior(AbilityBehavior.HealOnFullHealth)) return true;
@@ -99,7 +99,7 @@ namespace Gameplay.Units.Abilities.Shaman_Abilities.NadiaAbilities.Heal
         }
     
     
-        protected virtual void HealTarget(Shaman.Shaman target, BaseUnit caster)
+        protected virtual void HealTarget(Shaman target, BaseUnit caster)
         {
             target.Damageable.Heal((int)GetAbilityStatValue(AbilityStatType.Heal));
             target.ShamanVisualHandler.HealEffect.Play();

@@ -66,7 +66,7 @@ namespace UI.UISystem
         {
             if (_activeShowRequest)
             {
-                infoWindowDelayTimer += UnityEngine.Time.deltaTime;
+                infoWindowDelayTimer += Time.deltaTime;
                 if (infoWindowDelayTimer > _delayTime)
                 {
                     infoWindowDelayTimer = 0;

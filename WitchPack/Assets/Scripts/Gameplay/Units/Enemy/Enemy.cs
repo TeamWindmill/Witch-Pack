@@ -5,6 +5,7 @@ using Gameplay.Pools.Pool_System;
 using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs;
 using Gameplay.Units.Abilities.Enemy_Abilities;
 using Gameplay.Units.Enemy.EnemyAIBehavior;
+using Gameplay.Units.Energy_Exp;
 using Gameplay.Units.Stats;
 using Gameplay.Units.Visual;
 using Managers;
@@ -92,8 +93,12 @@ namespace Gameplay.Units.Enemy
 
             Initialized = false;
         }
-    
-    
+
+        public override void OnDeathAnimation()
+        {
+            base.OnDeathAnimation();
+            EnergyParticleManager.SpawnParticle(transform.position, EnergyPoints);
+        }
 
         #region SFX
 

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using Gameplay.Units.Shadow;
-using Gameplay.Units.Shaman;
+using Gameplay.Units;
 using Gameplay.Units.Stats;
 using Managers;
 using UI.GameUI.HeroSelectionUI;

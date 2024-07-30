@@ -44,7 +44,7 @@ namespace External_Assets.LeanTween.Examples.Scripts
 			// Update avatar's position on correct track
 			track.place( car.transform, trackPosition );
 
-			trackPosition += UnityEngine.Time.deltaTime * 0.03f;// * Input.GetAxis("Vertical"); // Uncomment to have the forward and backwards controlled by the directional arrows
+			trackPosition += Time.deltaTime * 0.03f;// * Input.GetAxis("Vertical"); // Uncomment to have the forward and backwards controlled by the directional arrows
 
 			if (trackPosition < 0f) // We need to keep the ratio between 0-1 so after one we will loop back to the beginning of the track
 				trackPosition = 1f;

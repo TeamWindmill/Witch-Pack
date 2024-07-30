@@ -85,12 +85,12 @@ namespace Plugins.Sirenix.Demos.Editor_Windows.Scripts.Editor
             protected override void OnDrawMenuItem(Rect rect, Rect labelRect)
             {
                 labelRect.x -= 16;
-                this.instance.Enabled = GUI.Toggle(labelRect.AlignMiddle(18).AlignLeft(16), this.instance.Enabled, GUIContent.none);
+                instance.Enabled = GUI.Toggle(labelRect.AlignMiddle(18).AlignLeft(16), instance.Enabled, GUIContent.none);
 
                 // Toggle selection when pressing space.
                 if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Space)
                 {
-                    var selection = this.MenuTree.Selection
+                    var selection = MenuTree.Selection
                         .Select(x => x.Value)
                         .OfType<SomeCustomClass>();
 
@@ -103,7 +103,7 @@ namespace Plugins.Sirenix.Demos.Editor_Windows.Scripts.Editor
                 }
             }
 
-            public override string SmartName { get { return this.instance.Name; } }
+            public override string SmartName { get { return instance.Name; } }
         }
 
         private class SomeCustomClass
