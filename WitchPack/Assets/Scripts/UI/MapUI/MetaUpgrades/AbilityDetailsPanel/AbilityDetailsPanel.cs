@@ -20,15 +20,15 @@ public class AbilityDetailsPanel : UIElement<ShamanSaveData,AbilitySO,AbilitySO[
     private ShamanSaveData _shamanSaveData;
     private Ability _ability;
 
-    public override void Init(ShamanSaveData shamanSaveData, AbilitySO abilitySO,AbilitySO[] affectedAbilities = null)
+    public override void Init(ShamanSaveData shamanSaveData, AbilitySO abilitySO,AbilitySO[] highlightedAbilities = null)
     {
         _shamanSaveData = shamanSaveData;
         _abilityConfig = abilitySO;
         DisplayAbility(abilitySO);
         abilitySkillTree.Init(this,abilitySO);
         abilitySkillTree.DisableHighlightOnAllIcons();
-        if(affectedAbilities != null) abilitySkillTree.HighlightIcons(affectedAbilities);
-        base.Init(shamanSaveData,abilitySO,affectedAbilities);
+        if(highlightedAbilities != null) abilitySkillTree.HighlightIcons(highlightedAbilities);
+        base.Init(shamanSaveData,abilitySO,highlightedAbilities);
     }
 
     public void DisplayAbility(AbilitySO abilitySO)
