@@ -21,7 +21,7 @@ public class AbilityStatBlockUI : StatBlock<AbilityStatType>
                 statName = "CastTime";
                 break;
             case AbilityStatType.Penetration:
-                statName = "Damage";
+                statName = "Penetration";
                 break;
             case AbilityStatType.ExtraPenetrationPerKill:
                 statName = "Extra Penetration Per Kill";

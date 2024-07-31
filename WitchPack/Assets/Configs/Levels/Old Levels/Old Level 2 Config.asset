@@ -13,8 +13,44 @@ MonoBehaviour:
   m_Name: Old Level 2 Config
   m_EditorClassIdentifier: 
   Number: 2
-  Name: Return of the Bandel
-  levelPrefab: {fileID: 6779597212755086301, guid: ddf27755cf7674c45b1c4029325cf9f7, type: 3}
-  shamansToAddAfterComplete:
-  - {fileID: 11400000, guid: 64081db4c3ccc064287c4d85bb33b92d, type: 2}
+  Name: Mount Turan
+  TestingLevel: 0
+  levelPrefab: {fileID: 6779597212755086301, guid: 5ebc1f03cdaa1034f9499eb74d528858, type: 3}
+  shamansToAddAfterComplete: []
   ShowTutorial: 0
+  ExpCalculatorConfig:
+    _firstTimeExp: 40
+    _completionExp: 25
+    _waveCompletedExp: 15
+    _coreRemainingHealthExp: 20
+  LevelChallenges:
+  - _challengeType: 0
+    _displayName: None
+    _bonusesDescription: []
+    _statUpgrades: []
+    _reduceShamanSlots: 2
+    _expMultiplier: 0
+  - _challengeType: 1
+    _displayName: +30 Enemy Health Regeneration
+    _bonusesDescription:
+    - 'EXP Modifier: +100%'
+    _statUpgrades:
+    - _statType: 10
+      _statValue: 30
+      _factor: 0
+    _reduceShamanSlots: 2
+    _expMultiplier: 1
+  - _challengeType: 2
+    _displayName: -1 Shaman Slot
+    _bonusesDescription:
+    - 'EXP Modifier: +200%'
+    _statUpgrades:
+    - _statType: 4
+      _statValue: 0.5
+      _factor: 3
+    _reduceShamanSlots: 3
+    _expMultiplier: 2
+  BeforeDialog: {fileID: 11400000, guid: d741f59513e7421479a0f0be52918642, type: 2}
+  StartDialog: {fileID: 0}
+  EndDialog: {fileID: 11400000, guid: b8916e4591f15324b806749eb6417761, type: 2}
+  AfterDialog: {fileID: 0}

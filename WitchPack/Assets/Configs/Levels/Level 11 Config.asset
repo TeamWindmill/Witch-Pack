@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7df65687d50cec4a96e34b3e38bd6ec, type: 3}
-  m_Name: Level 7 Config
+  m_Name: Level 11 Config
   m_EditorClassIdentifier: 
-  Number: 8
-  Name: ???
-  levelPrefab: {fileID: 6779597212755086301, guid: 0fd933da0c979ff44b64a487267e29fc, type: 3}
+  Number: 1
+  Name: Around we go again
+  TestingLevel: 0
+  levelPrefab: {fileID: 6779597212755086301, guid: 1bbbde31a0add3a49a5d56e86efb0919, type: 3}
   shamansToAddAfterComplete: []
   ShowTutorial: 0
   ExpCalculatorConfig:
@@ -27,20 +28,28 @@ MonoBehaviour:
     _displayName: None
     _bonusesDescription: []
     _statUpgrades: []
-    _reduceShamanSlots: 0
+    _reduceShamanSlots: 1
     _expMultiplier: 0
-  - _challengeType: 0
-    _displayName: 
-    _bonusesDescription: []
-    _statUpgrades: []
-    _reduceShamanSlots: 0
-    _expMultiplier: 0
-  - _challengeType: 0
-    _displayName: 
-    _bonusesDescription: []
-    _statUpgrades: []
-    _reduceShamanSlots: 0
-    _expMultiplier: 0
+  - _challengeType: 1
+    _displayName: +20 enemy regeneration
+    _bonusesDescription:
+    - 'EXP Modifier: +100%'
+    _statUpgrades:
+    - _statType: 10
+      _statValue: 20
+      _factor: 0
+    _reduceShamanSlots: 2
+    _expMultiplier: 1
+  - _challengeType: 1
+    _displayName: + 50 enemy armor
+    _bonusesDescription:
+    - 'EXP Modifier: +100%'
+    _statUpgrades:
+    - _statType: 9
+      _statValue: 50
+      _factor: 0
+    _reduceShamanSlots: 2
+    _expMultiplier: 1
   BeforeDialog: {fileID: 0}
   StartDialog: {fileID: 0}
   EndDialog: {fileID: 0}

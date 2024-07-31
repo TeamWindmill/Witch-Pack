@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class MetaUpgradeIcon<T> : ClickableUIElement
 {
     public event Action<T> OnUpgrade;
-    public Action<int,AbilitySO,AbilitySO[]> OnSelect;
+    public Action<int,AbilitySO,T> OnSelect;
     public UpgradeState UpgradeState { get; private set; }
     public bool OpenAtStart => _openAtStart;
     public MetaUpgradeConfig UpgradeConfig => _upgradeConfig;
@@ -20,13 +20,13 @@ public class MetaUpgradeIcon<T> : ClickableUIElement
     [SerializeField] private Image _lineImage;
     [SerializeField] private Image _frameImage;
     [SerializeField] private Image _alphaImage;
+    [SerializeField] private Image _selectedFrameImage;
     [SerializeField] private Image _lockedAlphaImage;
     [SerializeField] private bool _openAtStart;
     [SerializeField] private float _holdClickVisualsStartDelay = 0.1f;
     [Space] 
     [BoxGroup("Sprites")] [SerializeField] private Sprite upgradeReadyFrameSprite;
     [BoxGroup("Sprites")] [SerializeField] private Sprite defaultFrameSprite;
-    [BoxGroup("Sprites")] [SerializeField] private Sprite selectedFrameSprite;
     [BoxGroup("Sprites")] [SerializeField] private Sprite defaultLineSprite;
     [BoxGroup("Sprites")] [SerializeField] private Sprite upgradedLineSprite;
     
@@ -45,6 +45,7 @@ public class MetaUpgradeIcon<T> : ClickableUIElement
         _upgradeConfig = upgradeConfig;
         _availableSkillPoints = availableSkillPoints;
         _cost.text = upgradeConfig.SkillPointsCost.ToString();
+        _selectedFrameImage.gameObject.SetActive(false);
         ToggleAlpha(false);
         if (!upgradeConfig.NotWorking)
         {
@@ -63,7 +64,7 @@ public class MetaUpgradeIcon<T> : ClickableUIElement
 
     public void SelectIcon(bool state)
     {
-        _frameImage.sprite = state ? selectedFrameSprite : defaultFrameSprite;
+        _selectedFrameImage.gameObject.SetActive(state);
     }
 
     protected override void OnHoldClick()

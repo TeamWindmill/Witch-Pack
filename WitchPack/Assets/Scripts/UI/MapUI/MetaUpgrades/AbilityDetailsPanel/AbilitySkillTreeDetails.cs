@@ -4,7 +4,7 @@ using Sirenix.Utilities;
 using TMPro;
 using UnityEngine;
 
-public class AbilitySkillTreeDetails : UIElement<AbilitySO>
+public class AbilitySkillTreeDetails : UIElement<AbilityDetailsPanel,AbilitySO>
 {
     [SerializeField] private TextMeshProUGUI title;
     [SerializeField] private AbilitySkillTreeIconDetails baseAbilityUpgradeUIButton;
@@ -15,18 +15,29 @@ public class AbilitySkillTreeDetails : UIElement<AbilitySO>
     [SerializeField] private Transform upgrades2BG;
     [SerializeField] private AbilitySkillTreeIconDetails[] abilityUpgrades2UI;
 
+    private AbilityDetailsPanel _detailsPanel;
     private AbilitySO _rootAbility;
     private List<AbilitySO> _abilityUpgrades;
 
-    public override void Init(AbilitySO selectedAbility)
+    public override void Init(AbilityDetailsPanel detailsPanel,AbilitySO selectedAbility)
     {
         Hide();
+        _detailsPanel = detailsPanel;
         _rootAbility = selectedAbility.RootAbility;
-        _abilityUpgrades = selectedAbility.RootAbility.GetUpgrades();
         title.text = selectedAbility.Name;
         IconsInit(_rootAbility);
-        base.Init(selectedAbility);
+        SelectIcon(selectedAbility);
+        base.Init(detailsPanel,selectedAbility);
         Show();
+    }
+    
+    public override void Hide()
+    {
+        upgrades3BG.gameObject.SetActive(false);
+        upgrades3Holder.gameObject.SetActive(false);
+        upgrades2BG.gameObject.SetActive(false);
+        upgrades2Holder.gameObject.SetActive(false);
+        base.Hide();
     }
 
     public void HighlightIcons(AbilitySO[] abilitiesToHighlight)
@@ -63,14 +74,15 @@ public class AbilitySkillTreeDetails : UIElement<AbilitySO>
     }
     private void IconsInit(AbilitySO rootAbility)
     {
-        baseAbilityUpgradeUIButton.Init(rootAbility);
+        _abilityUpgrades = rootAbility.GetUpgrades();
+        baseAbilityUpgradeUIButton.Init(rootAbility,SelectIcon);
         if (_abilityUpgrades.Count == 3)
         {
             upgrades3BG.gameObject.SetActive(true);
             upgrades3Holder.gameObject.SetActive(true);
             for (int i = 0; i < _abilityUpgrades.Count; i++)
             {
-                abilityUpgrades3UI[i].Init(_abilityUpgrades[i]);
+                abilityUpgrades3UI[i].Init(_abilityUpgrades[i],SelectIcon);
             }
         }
         else if (_abilityUpgrades.Count == 2)
@@ -79,17 +91,40 @@ public class AbilitySkillTreeDetails : UIElement<AbilitySO>
             upgrades2Holder.gameObject.SetActive(true);
             for (int i = 0; i < _abilityUpgrades.Count; i++)
             {
-                abilityUpgrades2UI[i].Init(_abilityUpgrades[i]);
+                abilityUpgrades2UI[i].Init(_abilityUpgrades[i],SelectIcon);
             }
         }
     }
 
-    public override void Hide()
+    private void SelectIcon(AbilitySO ability)
     {
-        upgrades3BG.gameObject.SetActive(false);
-        upgrades3Holder.gameObject.SetActive(false);
-        upgrades2BG.gameObject.SetActive(false);
-        upgrades2Holder.gameObject.SetActive(false);
-        base.Hide();
+        //disable all
+        baseAbilityUpgradeUIButton.SelectIcon(false);
+        if (_abilityUpgrades.Count == 3) abilityUpgrades3UI.ForEach(ability => ability.SelectIcon(false));
+        else if (_abilityUpgrades.Count == 2) abilityUpgrades2UI.ForEach(ability => ability.SelectIcon(false));
+        
+        //enable selected
+        if (ability == _rootAbility) baseAbilityUpgradeUIButton.SelectIcon(true);
+        else
+        {
+            for (int i = 0; i < _abilityUpgrades.Count; i++)
+            {
+                if (_abilityUpgrades[i] == ability)
+                {
+                    switch (_abilityUpgrades.Count)
+                    {
+                        case 3:
+                            abilityUpgrades3UI[i].SelectIcon(true);
+                            break;
+                        case 2:
+                            abilityUpgrades2UI[i].SelectIcon(true);
+                            break;
+                    }
+                }
+            }
+        }
+        
+        title.text = ability.Name;
+        _detailsPanel.DisplayAbility(ability);
     }
 }

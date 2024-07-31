@@ -12,6 +12,7 @@ public class CameraHandler : MonoBehaviour
     public bool DragPanMoveActive => _dragPanMoveActive;
 
     #endregion
+    
     #region Consts
 
     private const float ORTHOGRAPHIC_DETECT_RANGE = 0.2f;

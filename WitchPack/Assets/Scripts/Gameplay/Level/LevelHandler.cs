@@ -55,7 +55,13 @@ public class LevelHandler : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        var startPos = cameraLevelSettings.OverrideCameraStartPos ? cameraLevelSettings.CameraStartPos : Vector3.zero;
+        Gizmos.color = Color.red;
         Gizmos.DrawWireCube(Vector3.zero, cameraLevelSettings.CameraBorders);
+        var cameraHeight = cameraLevelSettings.CameraStartZoom * 2;
+        var cameraWidth = cameraHeight * GameManager.CameraHandler.MainCamera.aspect;
+        Gizmos.color = Color.white;
+        Gizmos.DrawWireCube(startPos, new Vector2(cameraWidth,cameraHeight));
     }
 
     private void OnValidate()

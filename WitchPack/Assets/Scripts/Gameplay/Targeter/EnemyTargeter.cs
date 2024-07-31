@@ -1,4 +1,4 @@
-public class EnemyTargeter : Targeter<Enemy>
+public class EnemyTargeter : BaseUnitTargeter<Enemy>
 {
     
 }

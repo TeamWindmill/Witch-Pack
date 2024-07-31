@@ -23,6 +23,7 @@ public class SelectionHandler : MonoBehaviour, ISelection
     [SerializeField] private float _maxHoldTime;
     private float _currentHoldTime;
     private bool _inSelectMode;
+    private bool _cancelSelection;
 
     public void OnShamanClick(PointerEventData.InputButton button, Shaman shaman)
     {
@@ -45,16 +46,21 @@ public class SelectionHandler : MonoBehaviour, ISelection
         {
             if (Input.GetMouseButtonUp(RIGHT_CLICK))
             {
+                if(_cancelSelection) return;
                 QuickMove();
                 return;
             }
         }
+
+        if (Input.GetMouseButtonDown(RIGHT_CLICK)) _cancelSelection = false;
         if (Input.GetMouseButton(RIGHT_CLICK))
         {
+            if(_cancelSelection) return;
             if (Input.GetMouseButtonDown(LEFT_CLICK))
             {
                 CancelMove();
                 _inSelectMode = false;
+                _cancelSelection = true;
                 _currentHoldTime = 0;
                 return;
             }
@@ -75,7 +81,10 @@ public class SelectionHandler : MonoBehaviour, ISelection
             _currentHoldTime = 0;
         }
 
-        if (Input.GetMouseButtonUp(RIGHT_CLICK)) ReleaseMove();
+        if (Input.GetMouseButtonUp(RIGHT_CLICK))
+        {
+            ReleaseMove();
+        }
 
         if (!UIManager.MouseOverUI && !HeroSelectionUI.Instance.AbilitiesHandlerUI.AbilityUpgradePanelUI.isActiveAndEnabled)
         { 
