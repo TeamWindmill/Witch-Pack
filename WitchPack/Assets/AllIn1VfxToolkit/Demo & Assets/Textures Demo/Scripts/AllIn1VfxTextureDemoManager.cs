@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace AllIn1VfxToolkit.DemoAssets.TexturesDemo.Scripts

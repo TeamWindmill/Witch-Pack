@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using Gameplay.Units.Visual;
 using UnityEngine;
 
 
@@ -17,7 +17,7 @@ public class PowerStructure : MonoBehaviour
 
     [SerializeField] private SpriteRenderer _powerStructureSpriteRenderer;
     [SerializeField] private SpriteMask _powerStructureMask;
-    [SerializeField] private ParticleSystem _psEffect;
+    [SerializeField] private PSEffectHandler _psEffectHandler;
     [SerializeField] private Transform _infoWindowPos;
     
     private StatType _statType;
@@ -47,9 +47,7 @@ public class PowerStructure : MonoBehaviour
             ring.OnShadowEnter += OnShadowRingEnter;
             ring.OnShadowExit += OnShadowRingExit;
         }
-        _psEffect.gameObject.SetActive(false);
-        var main = _psEffect.main;
-        main.startColor = _config.PowerStructureTypeColor;
+        _psEffectHandler.DisableAllEffects();
         LevelManager.Instance.SelectionHandler.OnShadowDeselected += OnShadowDeselect;
     }
     private void OnShadowDeselect(Shadow shadow)
@@ -68,7 +66,7 @@ public class PowerStructure : MonoBehaviour
         
         //enable effects
         //enable shaman effect
-        if(!_psEffect.gameObject.activeSelf) _psEffect.gameObject.SetActive(true);
+        _psEffectHandler.PlayEffect(_config.PSEffectType);
     }
     private void OnShamanRingExit(int ringId, Shaman shaman)
     {
@@ -82,7 +80,7 @@ public class PowerStructure : MonoBehaviour
 
             //disable effects
             //disable shaman effect
-            if(_activeShamansInRings.Count == 0) _psEffect.gameObject.SetActive(false);
+            if(_activeShamansInRings.Count == 0) _psEffectHandler.DisableEffect(_config.PSEffectType);
         }
     }
     private void OnShadowRingEnter(int ringId, Shadow shadow)

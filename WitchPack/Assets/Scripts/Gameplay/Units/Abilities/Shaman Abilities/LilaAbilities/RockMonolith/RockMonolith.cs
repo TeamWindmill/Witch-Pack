@@ -1,7 +1,3 @@
-
-using System.Collections.Generic;
-using UnityEngine;
-
 public class RockMonolith : OffensiveAbility
 {
     public int DamageIncrement { get; protected set; }

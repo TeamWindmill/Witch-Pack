@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 941814908b44b4c4c92b7f50a6ce33e9, type: 3}
   m_Name: PS_AttackSpeed
   m_EditorClassIdentifier: 
+  PSEffectType: 5
   Range: 25
   RingsRanges:
   - 0.2
@@ -24,8 +25,9 @@ MonoBehaviour:
   PowerStructureSprite: {fileID: 21300000, guid: f0d1e56cac3a49147b95ee1f5fbc2e9f, type: 3}
   statEffect:
     StatType: 2
-    Modifier: 1
+    Factor: 0
     RingValues:
     - 0.6
     - 0.6
     - 0.5
+  ShowPercent: 0
