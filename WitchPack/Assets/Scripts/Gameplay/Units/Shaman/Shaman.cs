@@ -2,7 +2,6 @@ using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using Enumerable = System.Linq.Enumerable;
 
 public class Shaman : BaseUnit
 {

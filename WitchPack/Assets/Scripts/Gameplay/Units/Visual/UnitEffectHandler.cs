@@ -1,5 +1,4 @@
-using System;
-using System.Collections.Generic;
+using Gameplay.Units.Visual;
 using UnityEngine;
 
 public class UnitEffectHandler : MonoBehaviour
@@ -116,32 +115,7 @@ public class UnitEffectHandler : MonoBehaviour
     }
 }
 
-[Serializable]
-public struct EffectVisual<T> where T : Enum
-{
-    public T StatusEffectType;
-    [SerializeField] public bool PlayAllEffects;
-    [SerializeField] public List<GameObject> visualGameObjects;
 
-    public GameObject GetGameObject()
-    {
-        int index = 0;
-        if(visualGameObjects.Count > 1)
-        {
-            index = new System.Random().Next(0, visualGameObjects.Count); // Gets a random go from the list if there's more than one option
-        }
-
-        return visualGameObjects[index];
-    }
-
-    public void SetOffAllVisualGameObjects()
-    {
-        foreach (GameObject go in visualGameObjects)
-        {
-            go.SetActive(false);
-        }
-    }
-}
 
 public enum CastingHandsEffectType
 {

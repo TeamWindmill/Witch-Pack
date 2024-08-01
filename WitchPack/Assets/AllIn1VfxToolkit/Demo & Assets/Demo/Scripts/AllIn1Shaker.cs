@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace AllIn1VfxToolkit.Demo.Scripts
 {

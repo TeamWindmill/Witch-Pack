@@ -1,8 +1,6 @@
-using System;
 using Sirenix.Utilities;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class AbilityMetaUpgrade : UIElement

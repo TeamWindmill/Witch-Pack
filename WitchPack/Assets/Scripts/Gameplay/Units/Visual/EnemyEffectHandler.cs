@@ -1,9 +1,7 @@
-using System;
 using UnityEngine;
 
 public class EnemyEffectHandler : UnitEffectHandler
 {
-    
     public PoisonIvyVisuals PoisonIvyVisuals => poisonIvyVisuals;
 
     [SerializeField] private RootingVinesVisuals[] rootingVinesVisuals;
