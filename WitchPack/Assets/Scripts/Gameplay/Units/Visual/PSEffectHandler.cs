@@ -12,5 +12,6 @@ namespace Gameplay.Units.Visual
         Tree,
         Onyx,
         Turquoise,
+        AttackSpeedTree,
     }
 }

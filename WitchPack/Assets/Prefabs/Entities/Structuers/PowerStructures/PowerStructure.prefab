@@ -227,6 +227,7 @@ Transform:
   m_Children:
   - {fileID: 1617835003020001048}
   - {fileID: 6974664323646494769}
+  - {fileID: 7225917358857674311}
   m_Father: {fileID: 3248058890782170975}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!114 &3148367476887793526
@@ -250,9 +251,10 @@ MonoBehaviour:
     PlayAllEffects: 0
     visualGameObjects:
     - {fileID: 3436671146800201958}
-  - StatusEffectType: 2
+  - StatusEffectType: 5
     PlayAllEffects: 0
-    visualGameObjects: []
+    visualGameObjects:
+    - {fileID: 2835519039566419057}
 --- !u!1 &5588915253065766011
 GameObject:
   m_ObjectHideFlags: 0
@@ -768,6 +770,89 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 847729341074206653, guid: 7affbdbe11fb30e478a4679f54425446, type: 3}
   m_PrefabInstance: {fileID: 1959934396187330115}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &3375269918135700965
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1293622456647510267}
+    m_Modifications:
+    - target: {fileID: 444374965135970471, guid: 4ca240ab44bdf2f46b0a89efa2aa97ad, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 688654440327862676, guid: 4ca240ab44bdf2f46b0a89efa2aa97ad, type: 3}
+      propertyPath: m_Name
+      value: Palm Tree VFX Holder
+      objectReference: {fileID: 0}
+    - target: {fileID: 688654440327862676, guid: 4ca240ab44bdf2f46b0a89efa2aa97ad, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5085273677850831173, guid: 4ca240ab44bdf2f46b0a89efa2aa97ad, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373009405212103586, guid: 4ca240ab44bdf2f46b0a89efa2aa97ad, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373009405212103586, guid: 4ca240ab44bdf2f46b0a89efa2aa97ad, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373009405212103586, guid: 4ca240ab44bdf2f46b0a89efa2aa97ad, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373009405212103586, guid: 4ca240ab44bdf2f46b0a89efa2aa97ad, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373009405212103586, guid: 4ca240ab44bdf2f46b0a89efa2aa97ad, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373009405212103586, guid: 4ca240ab44bdf2f46b0a89efa2aa97ad, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373009405212103586, guid: 4ca240ab44bdf2f46b0a89efa2aa97ad, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373009405212103586, guid: 4ca240ab44bdf2f46b0a89efa2aa97ad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373009405212103586, guid: 4ca240ab44bdf2f46b0a89efa2aa97ad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5373009405212103586, guid: 4ca240ab44bdf2f46b0a89efa2aa97ad, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9204650593980624021, guid: 4ca240ab44bdf2f46b0a89efa2aa97ad, type: 3}
+      propertyPath: playOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4ca240ab44bdf2f46b0a89efa2aa97ad, type: 3}
+--- !u!1 &2835519039566419057 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 688654440327862676, guid: 4ca240ab44bdf2f46b0a89efa2aa97ad, type: 3}
+  m_PrefabInstance: {fileID: 3375269918135700965}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7225917358857674311 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5373009405212103586, guid: 4ca240ab44bdf2f46b0a89efa2aa97ad, type: 3}
+  m_PrefabInstance: {fileID: 3375269918135700965}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4142577279810968852
 PrefabInstance:
