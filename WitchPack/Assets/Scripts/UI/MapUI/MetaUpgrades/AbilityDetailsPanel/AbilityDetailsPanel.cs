@@ -1,9 +1,7 @@
-using System;
 using System.Linq;
 using Sirenix.Utilities;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class AbilityDetailsPanel : UIElement<ShamanSaveData,AbilitySO,AbilitySO[]>
 {

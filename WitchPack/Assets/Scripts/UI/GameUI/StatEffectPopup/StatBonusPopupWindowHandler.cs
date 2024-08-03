@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using Tools.Helpers;
 using UnityEngine;

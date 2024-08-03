@@ -1,6 +1,3 @@
-using System;
-using UnityEngine;
-
 public class MainMenuPanel : UIElement
 {
     //[SerializeField] private SettingsMenuPanel _settingsMenuPanel;

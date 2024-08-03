@@ -1,5 +1,3 @@
-using System;
-
 public class AbilityStatBlockUI : StatBlock<AbilityStatType>
 {
     protected override string GetStatName(ref float baseValue, string statName, ref string modifier)
