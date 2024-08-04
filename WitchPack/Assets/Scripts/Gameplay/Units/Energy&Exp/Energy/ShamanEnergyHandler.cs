@@ -1,12 +1,5 @@
 using System;
-using Gameplay.Units.Abilities.AbilitySystem.AbilityStats;
-using Gameplay.Units.Abilities.AbilitySystem.BaseAbilities;
-using Gameplay.Units.Abilities.AbilitySystem.Casting;
-using Gameplay.Units.Damage_System;
-using Gameplay.Units.Stats;
 using Managers;
-using Sirenix.OdinInspector;
-using UnityEngine;
 
 namespace Gameplay.Units.Energy_Exp
 {

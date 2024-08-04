@@ -6,7 +6,6 @@ using Gameplay.Units.Abilities.AbilitySystem.BaseAbilities;
 using Gameplay.Units.Abilities.AbilitySystem.BaseAbilities.Passives;
 using Gameplay.Units.Abilities.AbilitySystem.BaseConfigs;
 using Gameplay.Units.Abilities.AbilitySystem.Casting;
-using Gameplay.Units;
 using UI.GameUI.HeroSelectionUI.AbilityUI;
 using UI.MapUI.MetaUpgrades.UpgradePanel.Configs;
 

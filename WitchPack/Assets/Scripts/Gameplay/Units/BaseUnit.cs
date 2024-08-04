@@ -4,7 +4,6 @@ using Gameplay.Targeter;
 using Gameplay.Units.Abilities;
 using Gameplay.Units.Abilities.AbilitySystem.Casting;
 using Gameplay.Units.Damage_System;
-using Gameplay.Units.Energy_Exp;
 using Gameplay.Units.Movement;
 using Gameplay.Units.Stats;
 using Managers;
