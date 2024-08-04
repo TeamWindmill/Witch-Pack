@@ -16,7 +16,6 @@ public class PowerStructure : MonoBehaviour
     private ProximityRingsManager proximityRingsManager;
 
     [SerializeField] private SpriteRenderer _powerStructureSpriteRenderer;
-    [SerializeField] private SpriteMask _powerStructureMask;
     [SerializeField] private PSEffectHandler _psEffectHandler;
     [SerializeField] private Transform _infoWindowPos;
     
@@ -37,7 +36,6 @@ public class PowerStructure : MonoBehaviour
 
         proximityRingsManager.Init(this);
         _powerStructureSpriteRenderer.sprite = _config.PowerStructureSprite;
-        _powerStructureMask.sprite = _config.PowerStructureSprite;
         _statType = _config.statEffect.StatType;
         _statFactor = _config.statEffect.Factor;
         foreach (var ring in proximityRingsManager.RingHandlers)
