@@ -30,7 +30,7 @@ public class UnitStats
         Stats.Add(baseStats.AbilityCooldownReduction.statType,new Stat(baseStats.AbilityCooldownReduction.statType,baseStats.AbilityCooldownReduction.value));
         Stats.Add(baseStats.ThreatLevel.statType,new Stat(baseStats.ThreatLevel.statType,baseStats.ThreatLevel.value));
         Stats.Add(baseStats.EnergyGain.statType,new Stat(baseStats.EnergyGain.statType,baseStats.EnergyGain.value));
-        Stats.Add(baseStats.Invisibility.statType,new Stat(baseStats.EnergyGain.statType,baseStats.EnergyGain.value));
+        Stats.Add(baseStats.Invisibility.statType,new Stat(baseStats.Invisibility.statType,baseStats.Invisibility.value));
     }
 
     public Stat this[StatType statType] => Stats[statType];
