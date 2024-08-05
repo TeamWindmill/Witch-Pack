@@ -1,4 +1,3 @@
-using System;
 using PathCreation;
 using Sirenix.OdinInspector;
 using UnityEngine;

@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Unity.Collections;
-using UnityEngine;
 
 [System.Serializable]
 public class UnitStats

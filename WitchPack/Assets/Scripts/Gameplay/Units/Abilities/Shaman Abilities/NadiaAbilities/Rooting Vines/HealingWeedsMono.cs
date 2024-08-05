@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class HealingWeedsMono : RootingVinesMono
 {
     private HealingWeeds _healingWeedsAbility;

@@ -1,6 +1,4 @@
 
-using UnityEngine;
-
 public class Aftershock : RockMonolith
 {
     public AftershockSO AftershockConfig;
