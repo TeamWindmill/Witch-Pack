@@ -1,14 +1,14 @@
 using System;
 using System.Collections;
-using Systems.ObjectPool;
 using UnityEngine;
 
-public class ProjectileMono : PoolableObject
+public class ProjectileMono : MonoBehaviour
 {
     protected float _speed;
     protected OffensiveAbility Ability;
     protected BaseUnit _owner;
     protected IDamagable _target;
+    protected bool Fired;
 
     public event Action<CastingAbility, BaseUnit, IDamagable> OnShotHit;
 
@@ -21,6 +21,15 @@ public class ProjectileMono : PoolableObject
         Vector2 dir = (target.GameObject.transform.position - caster.transform.position).normalized;
         Rotate(dir);
         StartCoroutine(TravelTimeCountdown());
+        Fired = true;
+    }
+
+    private void Update()
+    {
+        if(!Fired) return;
+        
+        Vector3 vectorToTarget = _target.GameObject.transform.position - transform.position;
+        transform.rotation = Quaternion.LookRotation(Vector3.forward,vectorToTarget);
     }
 
     private void Rotate(Vector2 dir)
@@ -57,7 +66,7 @@ public class ProjectileMono : PoolableObject
         }
         yield return new WaitForEndOfFrame();
         transform.position = _target.GameObject.transform.position;
-        //Disable?
+        Disable();
     }
 
     public void SetSpeed(float value)
@@ -73,21 +82,5 @@ public class ProjectileMono : PoolableObject
         _target = null;
         OnShotHit = null;
         gameObject.SetActive(false);
-    }
-
-    public override PoolableObject FactoryMethod()
-    {
-        //return Instantiate();
-        return null;
-    }
-
-    public override void TurnOnCallback(PoolableObject obj)
-    {
-        throw new NotImplementedException();
-    }
-
-    public override void TurnOffCallback(PoolableObject obj)
-    {
-        throw new NotImplementedException();
     }
 }
