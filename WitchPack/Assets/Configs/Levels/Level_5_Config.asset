@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c7df65687d50cec4a96e34b3e38bd6ec, type: 3}
-  m_Name: Level_5_Confing
+  m_Name: Level_5_Config
   m_EditorClassIdentifier: 
   Number: 5
   Name: Around we go again
@@ -19,10 +19,10 @@ MonoBehaviour:
   shamansToAddAfterComplete: []
   ShowTutorial: 0
   ExpCalculatorConfig:
-    _firstTimeExp: 1000
-    _completionExp: 300
-    _waveCompletedExp: 150
-    _coreRemainingHealthExp: 100
+    _firstTimeExp: 200
+    _completionExp: 150
+    _waveCompletedExp: 100
+    _coreRemainingHealthExp: 50
   LevelChallenges:
   - _challengeType: 0
     _displayName: None
@@ -31,23 +31,20 @@ MonoBehaviour:
     _reduceShamanSlots: 1
     _expMultiplier: 0
   - _challengeType: 1
-    _displayName: +20 enemy regeneration
+    _displayName: +300% enemy health
     _bonusesDescription:
     - 'EXP Modifier: +100%'
     _statUpgrades:
-    - _statType: 10
-      _statValue: 20
-      _factor: 0
-    _reduceShamanSlots: 2
+    - _statType: 0
+      _statValue: 3
+      _factor: 2
+    _reduceShamanSlots: 1
     _expMultiplier: 1
   - _challengeType: 1
-    _displayName: + 50 enemy armor
+    _displayName: -1 shaman slot
     _bonusesDescription:
     - 'EXP Modifier: +100%'
-    _statUpgrades:
-    - _statType: 9
-      _statValue: 50
-      _factor: 0
+    _statUpgrades: []
     _reduceShamanSlots: 2
     _expMultiplier: 1
   BeforeDialog: {fileID: 0}
