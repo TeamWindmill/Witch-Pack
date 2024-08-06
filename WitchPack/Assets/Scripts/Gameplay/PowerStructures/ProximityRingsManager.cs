@@ -11,7 +11,6 @@ public class ProximityRingsManager : MonoBehaviour
     private bool _lockSpriteToggle;
     private Color _defaultColor;
     private Color _powerStructureTypeColor;
-    private bool _shamanSelected;
     private PowerStructureStatEffect _statEffect;
 
     private Dictionary<int, IDisposable> _activeStatusEffectOnShaman;
@@ -35,8 +34,7 @@ public class ProximityRingsManager : MonoBehaviour
         _statEffect = powerStructureConfig.statEffect;
         _clickHelper.OnEnterHover += ActivateRingSprites;
         _clickHelper.OnExitHover += DeactivateRingSprites;
-        LevelManager.Instance.SelectionHandler.OnShamanSelect += OnShamanSelect;
-        LevelManager.Instance.SelectionHandler.OnShamanDeselected += OnShamanDeselect;
+        
         ScaleCircles(powerStructureConfig.Range, powerStructureConfig.RingsRanges);
         ChangeAllRingsColors(_powerStructureTypeColor);
     }
@@ -46,8 +44,7 @@ public class ProximityRingsManager : MonoBehaviour
         _clickHelper.OnEnterHover -= ActivateRingSprites;
         _clickHelper.OnExitHover -= DeactivateRingSprites;
         if (ReferenceEquals(LevelManager.Instance,null)) return;
-        LevelManager.Instance.SelectionHandler.OnShamanSelect -= OnShamanSelect;
-        LevelManager.Instance.SelectionHandler.OnShamanDeselected -= OnShamanDeselect;
+        
     }
 
     private void ChangeAllRingsColors(Color color)
@@ -66,16 +63,6 @@ public class ProximityRingsManager : MonoBehaviour
         }
     }
 
-    private void OnShamanSelect(Shaman shaman)
-    {
-        _shamanSelected = true;
-    }
-
-    private void OnShamanDeselect(Shaman shaman)
-    {
-        _shamanSelected = false;
-    }
-
     #region SpriteActivationToggle
 
     public void ToggleAllSprites(bool state)
@@ -88,14 +75,14 @@ public class ProximityRingsManager : MonoBehaviour
 
     private void ActivateRingSprites()
     {
-        if (_shamanSelected) return;
+        if (LevelManager.Instance.SelectionHandler.ShadowSelected) return;
         ToggleRingSprite(_ringHandlers.Length-1,true);
         StatBonusPopupManager.ShowPSInfoPopup(_powerStructure);
     }
 
     private void DeactivateRingSprites()
     {
-        if (_shamanSelected) return;
+        if (LevelManager.Instance.SelectionHandler.ShadowSelected) return;
         ToggleAllSprites(false);
         StatBonusPopupManager.HidePSInfoPopup();
 
