@@ -12,5 +12,6 @@ namespace Systems.StateMachine
         public abstract void UpdateState(T parent);
         public abstract void ChangeState(T parent);
         public virtual void Exit(T parent) => StateExit?.Invoke(this);
+        public virtual Type GetStateType() => GetType();
     }
 }
