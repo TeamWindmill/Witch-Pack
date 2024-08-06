@@ -37,8 +37,13 @@ public class OrbitalStonesMono : MonoBehaviour
     {
         for (int i = 0; i < stoneAmount; i++)
         {
+            float timer = 0;
+            while (timer < timeInterval)
+            {
+                timer += GAME_TIME.GameDeltaTime;
+                yield return new WaitForEndOfFrame();
+            }
             SpawnStone(i);
-            yield return new WaitForSeconds(timeInterval);
         }
     }
 
