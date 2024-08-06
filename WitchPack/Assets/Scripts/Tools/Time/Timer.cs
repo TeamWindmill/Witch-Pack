@@ -67,6 +67,7 @@ public class Timer : ITimer
 
     public void RemoveThisTimer()
     {
+        StopTimer();
         TimerManager.RemoveTimer(this);
     }
 
@@ -145,6 +146,7 @@ public class Timer<T> : ITimer
 
     public void RemoveThisTimer()
     {
+        StopTimer();
         TimerManager.RemoveTimer<T>(this);
     }
 

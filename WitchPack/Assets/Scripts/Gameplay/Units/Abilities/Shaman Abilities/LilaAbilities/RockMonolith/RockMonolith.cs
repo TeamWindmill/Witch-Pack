@@ -29,6 +29,7 @@ public class RockMonolith : OffensiveAbility
             {
                 enemy.ShamanTargetHelper.ApplyTaunt(_shamanOwner, GetAbilityStatValue(AbilityStatType.Duration));
                 enemy.EnemyAI.SetState(typeof(Taunt));
+                TimerManager.AddTimer(GetAbilityStatValue(AbilityStatType.Duration),enemy.EnemyAI,(enemy.EnemyAI.States[typeof(Taunt)] as Taunt).EndTaunt, true);
             }
 
             target = targets[0];
@@ -41,8 +42,8 @@ public class RockMonolith : OffensiveAbility
 
     public override bool CheckCastAvailable()
     {
-        Enemy target = Owner.EnemyTargetHelper.GetTarget(TargetData);
-        if (!ReferenceEquals(target, null)) //might want to change to multiple enemies near her
+        var targets = Owner.EnemyTargetHelper.GetAvailableTargets(TargetData);
+        if (!ReferenceEquals(targets, null) && targets.Count >= RockMonolithConfig.MinEnemiesForTaunt)
         {
             return true;
         }
@@ -52,24 +53,18 @@ public class RockMonolith : OffensiveAbility
 
     protected virtual void OnTauntEnd()
     {
+        if(_shamanOwner is null) return;
         _activeAftershock = LevelManager.Instance.PoolManager.AftershockPool.GetPooledObject();
         _activeAftershock.transform.position = Owner.transform.position;
         _activeAftershock.gameObject.SetActive(true);
         _activeAftershock.Init(_shamanOwner,this,false,0);
-        _activeAftershock.OnActivation += OnAftershockActivation;
+        _shamanOwner.Damageable.OnHitGFX -= IncrementDamage;
+        DamageIncrement = 0;
     }
     
     protected void IncrementDamage(bool isCrit)
     {
         SoundManager.PlayAudioClip(SoundEffectType.MonolithofRockShield);
         DamageIncrement++;
-    }
-
-    private void OnAftershockActivation()
-    {
-        _activeAftershock.OnActivation -= OnAftershockActivation;
-        _activeAftershock = null;
-        _shamanOwner.Damageable.OnHitGFX -= IncrementDamage;
-        DamageIncrement = 0;
     }
 }

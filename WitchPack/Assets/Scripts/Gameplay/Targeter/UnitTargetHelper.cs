@@ -11,6 +11,7 @@ public class UnitTargetHelper<T> where T : BaseUnit
     private BaseUnit owner;
     private List<T> _availableTargets;
     private List<T> _targetsToAvoid;
+    private ITimer _tauntTimer;
 
     public UnitTargetHelper(Targeter<T> targeter, BaseUnit givenOwner,List<T> targetsToAvoid = null)
     {
@@ -72,11 +73,13 @@ public class UnitTargetHelper<T> where T : BaseUnit
     {
         IsTaunted = true;
         CurrentTarget = target;
-        TimerManager.AddTimer(duration, RemoveTaunt);
+        if(_tauntTimer != null) _tauntTimer.RemoveThisTimer();
+        _tauntTimer = TimerManager.AddTimer(duration, RemoveTaunt, true);
     }
 
     private void RemoveTaunt()
     {
+        _tauntTimer = null;
         IsTaunted = false;
         CurrentTarget = null;
     }

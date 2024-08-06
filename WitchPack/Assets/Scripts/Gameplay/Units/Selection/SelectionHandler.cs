@@ -10,6 +10,7 @@ public class SelectionHandler : MonoBehaviour, ISelection
     public event Action<Shadow> OnShadowDeselected;
     public SelectionType SelectMode { get; }
     public Shaman SelectedShaman { get; private set; }
+    public bool ShadowSelected { get; }
     public Shadow Shadow { get; }
     
     [SerializeField] private Shadow shadow;
