@@ -5,7 +5,6 @@ using UnityEngine.Playables;
 
 public class SmokeBombMono : MonoBehaviour
 {
-    public event Action OnAbilityEnd;
     
     [SerializeField] private GroundColliderTargeter _targeter;
     
@@ -19,6 +18,7 @@ public class SmokeBombMono : MonoBehaviour
     private Dictionary<Shaman,StatusEffect[]> _affectedShamans = new ();
     protected SmokeBomb _ability;
     protected BaseUnit _owner;
+    private bool _isActive;
 
     private void Awake()
     {
@@ -41,6 +41,7 @@ public class SmokeBombMono : MonoBehaviour
         _targeter.OnTargetAdded += OnTargetEntered;
         _targeter.OnTargetLost += OnTargetExited;
         GAME_TIME.OnTimeRateChange += SetTime;
+        _isActive = true;
     }
     protected virtual void OnTargetEntered(GroundCollider collider)
     {
@@ -68,6 +69,7 @@ public class SmokeBombMono : MonoBehaviour
     
     private void CloudsIdleAnim(PlayableDirector clip)
     {
+        if(!_isActive) return;
         clip.gameObject.SetActive(false);
         cloudsIdle.gameObject.SetActive(true);
         clip.stopped -= CloudsIdleAnim;
@@ -76,27 +78,28 @@ public class SmokeBombMono : MonoBehaviour
 
     private void EndBomb()
     {
+        if(!_isActive) return;
         cloudsIdle.gameObject.SetActive(false);
         rangeEnter.gameObject.SetActive(false);
         cloudsExit.gameObject.SetActive(true);
         rangeExit.gameObject.SetActive(true);
-        OnAbilityEnd?.Invoke();
+        rangeExit.stopped += OnEnd;
     }
 
     protected virtual void OnEnd(PlayableDirector director)
     {
+        if(!_isActive) return;
         cloudsExit.gameObject.SetActive(false);
         rangeExit.gameObject.SetActive(false);
         gameObject.SetActive(false);
         director.stopped -= OnEnd;
         _targeter.OnTargetAdded -= OnTargetEntered;
         _targeter.OnTargetLost -= OnTargetExited;
-        rangeExit.stopped += OnEnd;
-        GAME_TIME.OnTimeRateChange -= SetTime;
     }
 
     private void SetTime(float newTime)
     {
+        if(!_isActive) return;
         if (newTime == 0)
         {
             rangeEnter.Pause();
@@ -114,5 +117,11 @@ public class SmokeBombMono : MonoBehaviour
             cloudsExit.Resume();
         }
         
+    }
+
+    private void OnDisable()
+    {
+        GAME_TIME.OnTimeRateChange -= SetTime;
+        _isActive = false;
     }
 }
