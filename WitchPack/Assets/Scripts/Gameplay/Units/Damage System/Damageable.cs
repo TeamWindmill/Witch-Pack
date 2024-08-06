@@ -91,6 +91,7 @@ public class Damageable
 
     public void TakeFlatDamage(int amount)
     {
+        if (!hitable) return;
         OnHitGFX?.Invoke(false);
         currentHp -= amount;
         OnTakeFlatDamage?.Invoke(this, amount);

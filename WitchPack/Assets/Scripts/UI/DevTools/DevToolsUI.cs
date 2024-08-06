@@ -33,6 +33,10 @@ public class DevToolsUI : UIElement
     {
         LevelManager.Instance.CurrentLevel.CoreTemple.Damageable.Heal(500);
     }
+    public void InvincibleCore(bool state)
+    {
+        LevelManager.Instance.CurrentLevel.CoreTemple.Damageable.ToggleHitable(!state);
+    }
 
     public void HealShamans()
     {

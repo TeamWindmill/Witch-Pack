@@ -5,20 +5,18 @@ using UnityEngine;
 public class AttackState : State<EnemyAI>
 {
     [SerializeField] private float _attackStateDuration;
-    private float _timer;
 
     public override void Enter(EnemyAI parent)
     {
         parent.Enemy.AutoCaster.EnableCaster();
-        _timer = _attackStateDuration;
+        
+        TimerManager.AddTimer(_attackStateDuration, parent ,EndState, true);
         base.Enter(parent);
     }
 
     public override void UpdateState(EnemyAI parent)
     {
-        _timer -= GAME_TIME.GameDeltaTime;
-
-        if (_timer <= 0) parent.SetState(typeof(FollowPathBoss));
+        
     }
 
     public override void ChangeState(EnemyAI parent)
@@ -26,14 +24,19 @@ public class AttackState : State<EnemyAI>
         var target = parent.Enemy.ShamanTargetHelper.CurrentTarget;
         if (target is null)
         {
-            parent.SetState(typeof(FollowPathBoss));
+            parent.SetState(typeof(FollowPath));
             return;
         }
 
         if (target.Stats[StatType.Invisibility].IntValue > 0 || target.IsDead)
         {
-            parent.SetState(typeof(FollowPathBoss));
+            parent.SetState(typeof(FollowPath));
         }
+    }
+    public void EndState(EnemyAI parent)
+    {
+        if(parent is null) return;
+        parent.SetState(typeof(FollowPath));
     }
 
     public override void Exit(EnemyAI parent)

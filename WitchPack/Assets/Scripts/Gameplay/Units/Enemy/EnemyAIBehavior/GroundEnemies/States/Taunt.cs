@@ -8,7 +8,6 @@ public class Taunt : IntervalState<EnemyAI>
     {
         parent.Enemy.Movement.ToggleMovement(true);
         parent.Enemy.AutoCaster.EnableCaster();
-        parent.Enemy.Movement.SetDestination(parent.Enemy.ShamanTargetHelper.CurrentTarget.transform.position);
         parent.Enemy.EnemyVisualHandler.EnemyEffectHandler.PlayEffect(StatusEffectVisual.Taunt);
         base.Enter(parent);
     }
@@ -24,21 +23,16 @@ public class Taunt : IntervalState<EnemyAI>
     protected override void IntervalChangeState(EnemyAI parent)
     {
         var target = parent.Enemy.ShamanTargetHelper.CurrentTarget;
-        if (target is null)
-        {
-            parent.SetState(typeof(ReturnToPath));
-            return;
-        }
-        
-        if (/*target.Stats[StatType.Visibility].IntValue == 1 ||*/ target.IsDead)
+        if (target is null || target.IsDead)
         {
             parent.SetState(typeof(ReturnToPath));
         }
     }
 
-    public void EndTaunt(Effectable parent,StatusEffect statusEffect)
+    public void EndTaunt(EnemyAI parent)
     {
-        (parent.Owner as Enemy)?.EnemyAI.SetState(typeof(ReturnToPath));
+        if(parent is null) return;
+        parent.SetState(typeof(ReturnToPath));
     }
     public override void Exit(EnemyAI parent)
     {

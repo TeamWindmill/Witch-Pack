@@ -22,7 +22,7 @@ namespace Systems.StateMachine
             _states = new ();
             foreach (var state in states)
             {
-                _states.Add(state.GetType(), state);
+                _states.Add(state.GetStateType(), state);
             }
 
             _activeState = states[0];

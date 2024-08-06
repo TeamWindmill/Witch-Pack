@@ -8,9 +8,8 @@ public class Effectable
     public event Action<StatusEffect> OnEffectRemoved;
     public event Action<StatusEffectVisual> OnEffectRemovedVFX;
     public IDamagable Owner => _owner;
-    public List<StatusEffect> ActiveEffects => activeEffects;
+    private Dictionary<StatusEffectVisual,StatusEffect> ActiveEffects { get; } = new ();
 
-    private List<StatusEffect> activeEffects = new List<StatusEffect>();
     private IDamagable _owner;
 
     public Effectable(IDamagable owner)
@@ -39,16 +38,16 @@ public class Effectable
 
     public StatusEffect AddEffect(StatusEffect givenEffect, Affector affector)
     {
-        for (int i = 0; i < activeEffects.Count; i++) //check if affected by a similar ss already
+        for (int i = 0; i < ActiveEffects.Count; i++) //check if affected by a similar ss already
         {
-            if (activeEffects[i].StatusEffectVisual == givenEffect.StatusEffectVisual && activeEffects[i].Process == givenEffect.Process)
+            if (ActiveEffects.TryGetValue(givenEffect.StatusEffectVisual, out var effect))
             {
-                activeEffects[i].Reset();
-                return activeEffects[i];
+                effect.Reset();
+                return effect;
             }
         }
 
-        activeEffects.Add(givenEffect);
+        ActiveEffects.Add(givenEffect.StatusEffectVisual,givenEffect);
         givenEffect.Activate();
         OnAffected?.Invoke(this, affector, givenEffect);
         OnAffectedVFX?.Invoke(givenEffect.StatusEffectVisual);
@@ -57,30 +56,24 @@ public class Effectable
 
     public void RemoveEffect(StatusEffect effect)
     {
-        activeEffects.Remove(effect);
+        ActiveEffects.Remove(effect.StatusEffectVisual);
         OnEffectRemoved?.Invoke(effect);
         OnEffectRemovedVFX?.Invoke(effect.StatusEffectVisual);
     }
 
     public void RemoveEffectsOfType(StatusEffectVisual effectVisual)
     {
-        if (activeEffects.Count == 0) return;
-        foreach (var effect in ActiveEffects)
+        if (ActiveEffects.Count == 0) return;
+        if (ActiveEffects.TryGetValue(effectVisual, out var effect))
         {
-            if (effect.StatusEffectVisual == effectVisual)
-            {
-                RemoveEffect(effect);
-            }
+            effect.Remove();
         }
+
+        ActiveEffects.Remove(effectVisual);
     }
 
     public bool ContainsStatusEffect(StatusEffectVisual statusEffectVisual)
     {
-        foreach (var statusEffect in ActiveEffects)
-        {
-            if (statusEffect.StatusEffectVisual == statusEffectVisual) return true;
-        }
-
-        return false;
+        return ActiveEffects.ContainsKey(statusEffectVisual);
     }
 }
