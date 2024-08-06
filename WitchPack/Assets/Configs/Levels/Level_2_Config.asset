@@ -19,10 +19,10 @@ MonoBehaviour:
   shamansToAddAfterComplete: []
   ShowTutorial: 0
   ExpCalculatorConfig:
-    _firstTimeExp: 1000
-    _completionExp: 300
-    _waveCompletedExp: 150
-    _coreRemainingHealthExp: 100
+    _firstTimeExp: 40
+    _completionExp: 25
+    _waveCompletedExp: 15
+    _coreRemainingHealthExp: 20
   LevelChallenges:
   - _challengeType: 0
     _displayName: None
@@ -31,12 +31,12 @@ MonoBehaviour:
     _reduceShamanSlots: 2
     _expMultiplier: 0
   - _challengeType: 1
-    _displayName: +20 enemy regeneration
+    _displayName: +2 enemy movement speed
     _bonusesDescription:
     - 'EXP Modifier: +100%'
     _statUpgrades:
-    - _statType: 10
-      _statValue: 20
+    - _statType: 4
+      _statValue: 2
       _factor: 0
     _reduceShamanSlots: 2
     _expMultiplier: 1

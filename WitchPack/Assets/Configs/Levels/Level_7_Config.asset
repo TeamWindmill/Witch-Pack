@@ -31,25 +31,25 @@ MonoBehaviour:
     _reduceShamanSlots: 1
     _expMultiplier: 0
   - _challengeType: 1
-    _displayName: +20 enemy regeneration
+    _displayName: +30 enemy regeneration
     _bonusesDescription:
     - 'EXP Modifier: +100%'
     _statUpgrades:
     - _statType: 10
-      _statValue: 20
+      _statValue: 30
       _factor: 0
-    _reduceShamanSlots: 2
+    _reduceShamanSlots: 0
     _expMultiplier: 1
   - _challengeType: 1
-    _displayName: + 50 enemy armor
+    _displayName: +100% enemy speed
     _bonusesDescription:
     - 'EXP Modifier: +100%'
     _statUpgrades:
-    - _statType: 9
-      _statValue: 50
-      _factor: 0
-    _reduceShamanSlots: 2
-    _expMultiplier: 1
+    - _statType: 4
+      _statValue: 1
+      _factor: 2
+    _reduceShamanSlots: 0
+    _expMultiplier: 2
   BeforeDialog: {fileID: 11400000, guid: 5c2531aa5a1dabb479d9b760277b74c7, type: 2}
   StartDialog: {fileID: 11400000, guid: 2ec091e4e2550ca41a686b54bbf1e015, type: 2}
   EndDialog: {fileID: 11400000, guid: 0b40445208d09bb44911623eb8c7617b, type: 2}
