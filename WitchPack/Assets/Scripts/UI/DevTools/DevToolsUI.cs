@@ -16,18 +16,8 @@ public class DevToolsUI : UIElement
 
     public void EnergyGain()
     {
-        if (LevelManager.Instance.SelectionHandler.SelectedShaman != null)
-            LevelManager.Instance.SelectionHandler.SelectedShaman.EnergyHandler.ManualGainEnergy();
+        PartyEnergyHandler.AddEnergy(1000);
     }
-    // public void ExpGain()
-    // {
-    //     var shamanUpgradePanel = UIManager.GetUIGroupManager(UIGroup.ShamanUpgradePanel) as ShamanUpgradePanel;
-    //     if (shamanUpgradePanel.ShamanSaveData != null)
-    //     {
-    //         shamanUpgradePanel.ShamanSaveData.ShamanExperienceHandler.ManualExpGain();
-    //         UIManager.RefreshUIGroup(UIGroup.ShamanUpgradePanel);
-    //     }
-    // }
 
     public void HealCore()
     {

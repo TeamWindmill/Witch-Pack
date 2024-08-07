@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
+using Systems.Pool_System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Indicator : UIElement
+public class Indicator : UIElement , IPoolable
 {
     [SerializeField] private Image artwork;
     [SerializeField] private Image circle;
@@ -203,6 +204,8 @@ public class Indicator : UIElement
         counter = time;
         base.OnDisable();
     }
+
+    public GameObject PoolableGameObject => gameObject;
 }
 
 public enum IndicatorPointerSpriteType

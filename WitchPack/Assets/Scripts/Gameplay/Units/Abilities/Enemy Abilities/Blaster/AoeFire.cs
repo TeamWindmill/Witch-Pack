@@ -1,6 +1,8 @@
 using System.Collections.Generic;
+using Systems.Pool_System;
+using UnityEngine;
 
-public class AoeFire : AoeMono
+public class AoeFire : AoeMono , IPoolable
 {
     
     private Fireball _fireball;
@@ -32,4 +34,6 @@ public class AoeFire : AoeMono
         var damage = new DamageHandler(_fireball.Config.BurnDamage);
         shaman.Damageable.TakeDamage(_owner.DamageDealer,damage,_fireball,false);
     }
+
+    public GameObject PoolableGameObject => gameObject;
 }

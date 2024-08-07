@@ -1,4 +1,7 @@
-public class HealingWeedsMono : RootingVinesMono
+using Systems.Pool_System;
+using UnityEngine;
+
+public class HealingWeedsMono : RootingVinesMono, IPoolable
 {
     private HealingWeeds _healingWeedsAbility;
     public override void Init(BaseUnit owner, CastingAbility ability, float lastingTime, float aoeRange)
@@ -32,4 +35,6 @@ public class HealingWeedsMono : RootingVinesMono
         }
         SoundManager.PlayAudioClip(SoundEffectType.HealingWeeds);
     }
+
+    public GameObject PoolableGameObject => gameObject;
 }

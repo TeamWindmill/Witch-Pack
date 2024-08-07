@@ -1,7 +1,8 @@
+using Systems.Pool_System;
 using Tools.Targeter;
 using UnityEngine;
 
-public class AftershockMono : MonoBehaviour
+public class AftershockMono : MonoBehaviour , IPoolable
 {
     [SerializeField] private LayerMask _targeterLayer;
     [SerializeField] private float _lifetime;
@@ -46,7 +47,7 @@ public class AftershockMono : MonoBehaviour
     private void OnEnemyDeath(Damageable damageable, DamageHandler damageHandler)
     {
         damageHandler.OnKill -= OnEnemyDeath;
-        var aftershockMono = LevelManager.Instance.PoolManager.AftershockPool.GetPooledObject();
+        var aftershockMono = PoolManager.GetPooledObject<AftershockMono>();
         var enemy = damageable.Owner as Enemy;
         aftershockMono.transform.position = enemy.transform.position;
         aftershockMono.gameObject.SetActive(true);
@@ -62,4 +63,6 @@ public class AftershockMono : MonoBehaviour
     {
         _lifetimeTimer?.RemoveThisTimer();
     }
+
+    public GameObject PoolableGameObject => gameObject;
 }

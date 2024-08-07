@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Systems.Pool_System;
 
 public class IndicatorManager : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class IndicatorManager : MonoBehaviour
     public List<Indicator> ActiveIndicators => _activeIndicators;
     public Indicator CreateIndicator(Indicatable target)
     {
-        Indicator indicator = LevelManager.Instance.PoolManager.InidcatorPool.GetPooledObject();
+        Indicator indicator = PoolManager.GetPooledObject<Indicator>();
         indicator.transform.SetParent(LevelManager.Instance.GameUi.transform);
         indicator.gameObject.SetActive(true);
         indicator.InitIndicator(target, target.ArtWork, target.Lifetime, target.Clickable, target.OnClickAction, target.ShouldIndicatorPulse, target.IndicatorPointerSpriteType);

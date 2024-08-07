@@ -1,3 +1,5 @@
+using Systems.Pool_System;
+
 public class HighImpactSmokeBomb : SmokeBomb
 {
     private HighImpactSO Config;
@@ -8,7 +10,7 @@ public class HighImpactSmokeBomb : SmokeBomb
 
     protected override bool Cast(BaseUnit caster, IDamagable target)
     {
-        HighImpactSmokeBombMono highImpact = LevelManager.Instance.PoolManager.HighImpactPool.GetPooledObject();
+        HighImpactSmokeBombMono highImpact = PoolManager.GetPooledObject<HighImpactSmokeBombMono>();
         highImpact.transform.position = target.GameObject.transform.position;
         highImpact.gameObject.SetActive(true);
         highImpact.SpawnBomb(this, caster);

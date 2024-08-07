@@ -1,3 +1,5 @@
+using Systems.Pool_System;
+
 public class Fireball : OffensiveAbility
 {
     public readonly FireballSO Config;
@@ -15,7 +17,7 @@ public class Fireball : OffensiveAbility
             return false;
         }
 
-        FireballMono fireball = LevelManager.Instance.PoolManager.FireballPool.GetPooledObject();
+        FireballMono fireball = PoolManager.GetPooledObject<FireballMono>();
         fireball.transform.position = Owner.CastPos.transform.position;
         fireball.gameObject.SetActive(true);
         fireball.Fire(Owner, this, target,Config.Speed);

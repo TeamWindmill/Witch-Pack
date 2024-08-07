@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Systems.Pool_System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -14,14 +15,12 @@ public class LevelManager : MonoSingleton<LevelManager>
     public ISelection SelectionHandler => _selectionManager.ActiveSelectionHandler;
     public IndicatorManager IndicatorManager => indicatorManager;
     public Canvas GameUi => gameUi;
-    public PoolManager PoolManager => poolManager;
     public PopupsManager PopupsManager => popupsManager;
 
     [SerializeField] private Transform enviromentHolder;
     [SerializeField] private Transform shamanHolder;
     [SerializeField] private Shaman shamanPrefab;
     [SerializeField] private GamePartyUIPanel _gamePartyUIPanel;
-    [SerializeField] private PoolManager poolManager;
     [SerializeField] private IndicatorManager indicatorManager;
     [SerializeField] private Canvas gameUi;
     [SerializeField] private PopupsManager popupsManager;

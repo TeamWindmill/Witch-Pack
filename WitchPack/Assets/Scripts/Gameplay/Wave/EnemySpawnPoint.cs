@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using PathCreation;
+using Systems.Pool_System;
 using UnityEngine;
 
 public class EnemySpawnPoint : MonoBehaviour
@@ -19,7 +20,7 @@ public class EnemySpawnPoint : MonoBehaviour
 
     public Enemy SpawnEnemy(EnemyConfig givenConf,LevelConfig levelConfig)
     {
-        Enemy enemy = LevelManager.Instance.PoolManager.EnemyPool.GetPooledObject();
+        Enemy enemy = PoolManager.GetPooledObject<Enemy>();
         enemy.transform.position = transform.position;
         enemy.gameObject.SetActive(true);
         givenConf.Path = path;
