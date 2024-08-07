@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Systems.Pool_System;
 
 public class HealingWeeds : OffensiveAbility
 {
@@ -20,7 +21,7 @@ public class HealingWeeds : OffensiveAbility
         target = Owner.EnemyTargetHelper.GetTarget(TargetData);
         if (!ReferenceEquals(target, null))
         {
-            HealingWeedsMono newHealingWeeds = LevelManager.Instance.PoolManager.HealingWeedsPool.GetPooledObject();
+            HealingWeedsMono newHealingWeeds = PoolManager.GetPooledObject<HealingWeedsMono>();
             newHealingWeeds.Init(Owner, this, GetAbilityStatValue(AbilityStatType.Duration),GetAbilityStatValue(AbilityStatType.Size));
             newHealingWeeds.transform.position = target.GameObject.transform.position;
             newHealingWeeds.gameObject.SetActive(true);

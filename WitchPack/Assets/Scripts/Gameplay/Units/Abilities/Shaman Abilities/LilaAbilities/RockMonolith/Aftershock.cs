@@ -1,4 +1,6 @@
 
+using Systems.Pool_System;
+
 public class Aftershock : RockMonolith
 {
     public AftershockSO AftershockConfig;
@@ -10,7 +12,7 @@ public class Aftershock : RockMonolith
     protected override void OnTauntEnd()
     {
         
-        var aftershockMono = LevelManager.Instance.PoolManager.AftershockPool.GetPooledObject();
+        var aftershockMono = PoolManager.GetPooledObject<AftershockMono>();
         aftershockMono.transform.position = Owner.transform.position;
         aftershockMono.gameObject.SetActive(true);
         aftershockMono.Init(_shamanOwner,this,true,0);

@@ -1,8 +1,9 @@
 using System;
 using System.Collections;
+using Systems.Pool_System;
 using UnityEngine;
 
-public class ProjectileMono : MonoBehaviour
+public class ProjectileMono : MonoBehaviour , IPoolable
 {
     protected float _speed;
     protected OffensiveAbility Ability;
@@ -83,4 +84,6 @@ public class ProjectileMono : MonoBehaviour
         OnShotHit = null;
         gameObject.SetActive(false);
     }
+
+    public GameObject PoolableGameObject => gameObject;
 }

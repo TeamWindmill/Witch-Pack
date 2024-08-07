@@ -1,10 +1,12 @@
+using Systems.Pool_System;
+
 public class FireballMono : ProjectileMono
 {
     protected override void OnTargetHit(IDamagable target)
     {
         var fireball = Ability as Fireball;
         target.Damageable.GetHit(_owner.DamageDealer, Ability);
-        var aoeFire = LevelManager.Instance.PoolManager.AoeFirePool.GetPooledObject();
+        var aoeFire = PoolManager.GetPooledObject<AoeFire>();
         aoeFire.Init(_owner,Ability,fireball.Config.Duration,fireball.Config.AoeScale);
         aoeFire.transform.position = target.GameObject.transform.position;
         aoeFire.gameObject.SetActive(true);

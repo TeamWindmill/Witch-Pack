@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using Sirenix.OdinInspector;
+using Systems.Pool_System;
 using UnityEngine;
 
-public class BaseUnit : BaseEntity , IDamagable
+public class BaseUnit : BaseEntity , IDamagable , IPoolable
 {
     #region Public
 
@@ -125,5 +126,6 @@ public class BaseUnit : BaseEntity , IDamagable
     {
         boxCollider ??= GetComponent<BoxCollider2D>();
     }
-    
+
+    public GameObject PoolableGameObject => gameObject;
 }

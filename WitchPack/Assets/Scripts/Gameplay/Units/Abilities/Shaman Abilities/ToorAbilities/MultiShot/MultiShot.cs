@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Systems.Pool_System;
 using UnityEngine;
 
 public class MultiShot : OffensiveAbility
@@ -89,6 +90,6 @@ public class MultiShot : OffensiveAbility
     
     protected virtual MultiShotMono GetPooledObject()
     {
-        return LevelManager.Instance.PoolManager.MultiShotPool.GetPooledObject();
+        return PoolManager.GetPooledObject<MultiShotMono>();
     }
 }

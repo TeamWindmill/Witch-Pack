@@ -1,3 +1,5 @@
+using Systems.Pool_System;
+
 public class OrbitalStones : OffensiveAbility
 {
     public OrbitalStonesSO Config { get;}
@@ -40,7 +42,7 @@ public class OrbitalStones : OffensiveAbility
 
     private void Cast()
     {
-        var ability = LevelManager.Instance.PoolManager.OrbitalStonesPool.GetPooledObject();
+        var ability = PoolManager.GetPooledObject<OrbitalStonesMono>();
         ability.transform.position = Owner.transform.position; //change orbit pos
         ability.Init(Owner,this);
     }

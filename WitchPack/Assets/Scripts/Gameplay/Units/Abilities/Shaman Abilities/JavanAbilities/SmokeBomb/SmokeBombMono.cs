@@ -1,8 +1,9 @@
 using System.Collections.Generic;
+using Systems.Pool_System;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class SmokeBombMono : MonoBehaviour
+public class SmokeBombMono : MonoBehaviour , IPoolable
 {
     
     [SerializeField] private GroundColliderTargeter _targeter;
@@ -123,4 +124,6 @@ public class SmokeBombMono : MonoBehaviour
         GAME_TIME.OnTimeRateChange -= SetTime;
         _isActive = false;
     }
+
+    public GameObject PoolableGameObject => gameObject;
 }

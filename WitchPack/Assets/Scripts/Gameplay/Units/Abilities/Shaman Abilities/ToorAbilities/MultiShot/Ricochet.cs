@@ -1,3 +1,5 @@
+using Systems.Pool_System;
+
 public class Ricochet : MultiShot
 {
     public readonly RicochetSO Config;
@@ -9,6 +11,6 @@ public class Ricochet : MultiShot
 
     protected override MultiShotMono GetPooledObject()
     {
-        return LevelManager.Instance.PoolManager.RicochetPool.GetPooledObject();
+        return PoolManager.GetPooledObject<RicochetMono>();
     }
 }

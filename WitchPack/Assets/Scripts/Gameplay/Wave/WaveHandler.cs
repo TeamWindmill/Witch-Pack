@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Systems.Pool_System;
 using UnityEngine;
 
 public class WaveHandler : MonoBehaviour
@@ -70,7 +71,7 @@ public class WaveHandler : MonoBehaviour
             OnWaveEnd?.Invoke(i + 1);
             if (i == spawnData.Count - 1)//if on last wave finished spawning wait until everything dies 
             {
-                yield return new WaitUntil(() => !LevelManager.Instance.PoolManager.EnemyPool.CheckActiveIstance());
+                yield return new WaitUntil(() => !PoolManager.CheckActiveInstance<Enemy>());
             }
             else // if a wave other than the last one finished spawning set up the next wave. 
             {
