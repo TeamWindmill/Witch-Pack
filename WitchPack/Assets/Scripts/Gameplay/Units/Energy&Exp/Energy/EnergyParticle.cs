@@ -1,11 +1,16 @@
+using DG.Tweening;
+using Systems.Pool_System;
 using UnityEngine;
 
-public class EnergyParticle : MonoBehaviour
+public class EnergyParticle : MonoBehaviour, IPoolable
 {
     [SerializeField] private ParticleSystem particleSystem;
     [SerializeField] private ShamanTargeter particleCollider;
     [SerializeField] private float magnetSpeed;
-    [SerializeField] private int energyValue;
+    [SerializeField] private float dropDuration;
+    [SerializeField] private float dropRadius;
+    [SerializeField] private Ease dropAnimationEase;
+    private int _energyValue;
     private bool _shamanInRadius;
     private Shaman _shamanTarget;
 
@@ -14,15 +19,30 @@ public class EnergyParticle : MonoBehaviour
         particleCollider.OnTargetAdded += PopEnergyParticle;
     }
 
+    public void Init(Vector3 position, int energyValue, int randomAngle)
+    {
+        _energyValue = energyValue;
+        transform.position = position;
+        gameObject.SetActive(true);
+        ParticleDropAnimation(position, randomAngle);
+    }
+
+    private void ParticleDropAnimation(Vector3 position, int randomAngle)
+    {
+        var x = Mathf.Sin(randomAngle);
+        var y = Mathf.Cos(randomAngle);
+        transform.DOMove(position + new Vector3(x, y, 0) * dropRadius, dropDuration).SetEase(dropAnimationEase);
+    }
+
     private void PopEnergyParticle(Shaman shaman)
     {
-        Debug.Log(energyValue +" energy gained");
+        PartyEnergyHandler.AddEnergy(_energyValue);
         gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(_shamanInRadius) return;
+        if (_shamanInRadius) return;
         if (other.TryGetComponent<Shaman>(out var shaman))
         {
             _shamanInRadius = true;
@@ -47,4 +67,6 @@ public class EnergyParticle : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, _shamanTarget.transform.position, magnetSpeed * Time.deltaTime);
         }
     }
+
+    public GameObject PoolableGameObject => gameObject;
 }
