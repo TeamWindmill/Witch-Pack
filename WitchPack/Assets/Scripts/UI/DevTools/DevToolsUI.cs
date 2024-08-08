@@ -16,7 +16,8 @@ public class DevToolsUI : UIElement
 
     public void EnergyGain()
     {
-        PartyEnergyHandler.AddEnergy(1000);
+        //PartyEnergyHandler.AddEnergy(1000);
+        LevelManager.Instance.SelectionHandler.SelectedShaman.EnergyHandler.GainEnergy(100);
     }
 
     public void HealCore()
