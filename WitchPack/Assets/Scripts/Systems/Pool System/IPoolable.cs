@@ -13,5 +13,6 @@ namespace Systems.Pool_System
         void ReturnPooledObject(IPoolable obj);
         public bool CheckActiveInstance();
         IPoolable Poolable { get; }
+        IPoolable[] GetActiveInstances();
     }
 }

@@ -101,7 +101,7 @@ public class BaseUnit : BaseEntity , IDamagable , IPoolable
         boxCollider.enabled = state;
     }
 
-    public void OnDeathAnimation()
+    public virtual void OnDeath()
     {
         IsDead = true;
         Movement.ToggleMovement(false);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -63,5 +64,14 @@ namespace Systems.Pool_System
         }
 
         public IPoolable Poolable => PrefabToPool;
+        public IPoolable[] GetActiveInstances()
+        {
+            var activeInstances = new List<IPoolable>();
+            foreach (var item in PooledObjects)
+            {
+                if(item.PoolableGameObject.activeInHierarchy) activeInstances.Add(item);
+            }
+            return activeInstances.ToArray();
+        }
     }
 }

@@ -1,3 +1,5 @@
+using System;
+using Gameplay.Units.Energy_Exp;
 using UnityEngine;
 using NavMeshPlus.Components;
 
@@ -42,6 +44,7 @@ public class LevelHandler : MonoBehaviour
     public void StartLevel()
     {
         waveHandler.Init(Config);
+        waveHandler.OnWaveEnd += PullParticlesToCore;
     }
 
     public void TurnOffSpawnPoints()
@@ -51,6 +54,11 @@ public class LevelHandler : MonoBehaviour
             if (!spawnPoint.gameObject.activeSelf) continue;
             spawnPoint.gameObject.SetActive(false);
         }
+    }
+
+    private void PullParticlesToCore(int waveIndex)
+    {
+        EnergyParticleManager.PullAllParticlesToTarget(coreTemple.transform);
     }
 
     private void OnDrawGizmos()
@@ -67,5 +75,10 @@ public class LevelHandler : MonoBehaviour
     private void OnValidate()
     {
         powerStructures = GetComponentsInChildren<PowerStructure>();
+    }
+
+    private void OnDestroy()
+    {
+        waveHandler.OnWaveEnd -= PullParticlesToCore;
     }
 }

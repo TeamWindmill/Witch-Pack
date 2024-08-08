@@ -28,5 +28,15 @@ namespace Systems.Pool_System
         {
             return _pools[typeof(T)].CheckActiveInstance();
         }
+        public static T[] GetActiveInstances<T>() where T : class, IPoolable
+        {
+            var activeInstances = _pools[typeof(T)].GetActiveInstances();
+            T[] result = new T[activeInstances.Length];
+            for (int i = 0; i < activeInstances.Length; i++)
+            {
+                result[i] = activeInstances[i] as T;
+            }
+            return result;
+        }
     }
 }

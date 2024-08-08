@@ -1,5 +1,7 @@
+using Gameplay.Units.Energy_Exp;
 using PathCreation;
 using Sirenix.OdinInspector;
+using Systems.Pool_System;
 using UnityEngine;
 
 public class Enemy : BaseUnit
@@ -80,8 +82,6 @@ public class Enemy : BaseUnit
 
         Initialized = false;
     }
-    
-    
 
     #region SFX
 

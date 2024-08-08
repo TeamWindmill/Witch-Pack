@@ -1,4 +1,5 @@
 using System;
+using Gameplay.Units.Energy_Exp;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -78,6 +79,7 @@ public class EnergyHandler
             Debug.LogError("target not set as an enemy");
             return;
         }
+        EnergyParticleManager.SpawnParticle(enemy.transform.position, enemy.EnergyPoints);
         GainEnergy(enemy.EnergyPoints);
     }
     public void OnEnemyAssist(Damageable damageable, DamageDealer arg2, DamageHandler arg3, Ability arg4, bool arg5)

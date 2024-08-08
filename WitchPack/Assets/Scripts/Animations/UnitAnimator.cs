@@ -36,7 +36,7 @@ public abstract class UnitAnimator : MonoBehaviour
 
     protected virtual void DeathAnimation()
     {
-        unit.OnDeathAnimation();
+        unit.OnDeath();
         animator.SetBool(Death,true);
         animator.SetTrigger(_isFlipped ? "Death_Flipped" : "Death");
     }
